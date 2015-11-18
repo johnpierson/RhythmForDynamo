@@ -1,0 +1,24 @@
+<Workspace Version="0.8.0.950" X="162.739222367711" Y="167.462925985421" zoom="1.33823125" Name="String.CharacterAtIndex" ID="23947cd2-2124-4e77-bc92-2ced0a56a857" Description="Get's the character at a given index" Category="Rhythm.Core.String.Actions">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.GetItemAtIndex" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="06d6a75c-defb-4c8c-9583-d7b6f69d8721" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="153.502204707254" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="CharacterAtIndex(x,y);" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="0a7d6a8a-8659-4a4a-b6ed-b6a8bf5440b7" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="253.53718689488" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="def CharacterAtIndex (x,y)&#xA;{&#xA;return=x[y];&#xA;};" ShouldFocus="false" />
+    <Dynamo.Nodes.Symbol guid="b5cb16b3-bcd7-4481-b7ef-939a2d6fe9e7" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="List" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="2aa3e4c1-afd4-4d05-bd54-b11b458fcbe1" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Index" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="769fac7f-cbd7-4e09-bd3d-c9185b9d408a" type="Dynamo.Nodes.Output" nickname="Output" x="569" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Character" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="06d6a75c-defb-4c8c-9583-d7b6f69d8721" start_index="0" end="769fac7f-cbd7-4e09-bd3d-c9185b9d408a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b5cb16b3-bcd7-4481-b7ef-939a2d6fe9e7" start_index="0" end="06d6a75c-defb-4c8c-9583-d7b6f69d8721" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2aa3e4c1-afd4-4d05-bd54-b11b458fcbe1" start_index="0" end="06d6a75c-defb-4c8c-9583-d7b6f69d8721" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

@@ -1,0 +1,79 @@
+<Workspace Version="0.7.5.3566" X="195" Y="42" zoom="1" Description="This node overrides the projection line color with the input color value. Useful for annotation." Category="Rhythm.Revit.Elements.Element.Actions" Name="Override Projection Line Color" ID="69e20e68-f912-41db-ac95-bbb3e89882a9">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="6d6f6ae7-5d24-43f0-9315-212543da1c99" nickname="Override Projection Line Color&#xD;&#xA;" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="2">
+      <Script># Created by DPSDesign, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+#create graphic overrides properties
+gSettings = Autodesk.Revit.DB.OverrideGraphicSettings()
+#deconstruct DS Color Object and convert to RevitAPI color
+dsColor = IN[1]
+colRed = dsColor.Red
+colGreen = dsColor.Green
+colBlue = dsColor.Blue
+color = Autodesk.Revit.DB.Color(colRed, colGreen, colBlue)
+#set Projection Line color
+gSettings.SetProjectionLineColor(color)
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#apply color override to elements in an input list
+for i in elements:
+	id = i.Id
+	doc.ActiveView.SetElementOverrides(id, gSettings)
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = IN[0]</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="40e43dcf-9845-4e5d-aacc-dc216d87f408" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Element(s)" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="1850c32b-c865-4979-9490-bab6a2e94eb1" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Color" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="b5051427-ca1e-46ef-b48c-2027729172bf" nickname="Output" x="524" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="6d6f6ae7-5d24-43f0-9315-212543da1c99" start_index="0" end="b5051427-ca1e-46ef-b48c-2027729172bf" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="40e43dcf-9845-4e5d-aacc-dc216d87f408" start_index="0" end="6d6f6ae7-5d24-43f0-9315-212543da1c99" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1850c32b-c865-4979-9490-bab6a2e94eb1" start_index="0" end="6d6f6ae7-5d24-43f0-9315-212543da1c99" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

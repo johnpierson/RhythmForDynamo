@@ -1,0 +1,24 @@
+<Workspace Version="0.7.5.3566" X="780.670284700377" Y="-393.229669372212" zoom="1.703916824555" Description="Returns paramter value as string. Same effect as lunchbox node, without python." Category="Rhythm.Revit.Elements.Element.Actions" Name="GetParameterValueByNameAsString" ID="57abd1a8-7e39-4302-ac72-107952327ca4">
+  <Elements>
+    <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="d936306d-bd66-461f-9161-3cb83b1b57a5" nickname="Element.GetParameterValueByName" x="187.40564270936" y="485.35726028293" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetParameterValueByName@string" />
+    <DSCoreNodesUI.StringNodes.FromObject type="DSCoreNodesUI.StringNodes.FromObject" guid="2de7787e-e4d5-4446-b3e4-bdc741601d21" nickname="String from Object" x="777" y="381.676090642032" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="c639733f-b4af-4632-b4ce-edb3900f159e" nickname="Output" x="933" y="381.676090642032" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Value" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="74e6618d-6059-4390-add0-ac2dfe7dac44" nickname="Input" x="171.736069532078" y="381.676090642032" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Element(s)" />
+    </Dynamo.Nodes.Symbol>
+    <DSCore.Map type="DSCore.Map" guid="14f04f8b-453b-4a41-8638-b7b25a39330b" nickname="List.Map" x="471.230990533213" y="381.676090642032" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="d6c39743-d674-41bb-998c-e91136d8e69d" nickname="Input" x="12.702924102243" y="539.346896790073" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Parameter Name" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="d936306d-bd66-461f-9161-3cb83b1b57a5" start_index="0" end="14f04f8b-453b-4a41-8638-b7b25a39330b" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2de7787e-e4d5-4446-b3e4-bdc741601d21" start_index="0" end="c639733f-b4af-4632-b4ce-edb3900f159e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="74e6618d-6059-4390-add0-ac2dfe7dac44" start_index="0" end="14f04f8b-453b-4a41-8638-b7b25a39330b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="14f04f8b-453b-4a41-8638-b7b25a39330b" start_index="0" end="2de7787e-e4d5-4446-b3e4-bdc741601d21" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d6c39743-d674-41bb-998c-e91136d8e69d" start_index="0" end="d936306d-bd66-461f-9161-3cb83b1b57a5" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

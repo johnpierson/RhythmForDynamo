@@ -1,0 +1,77 @@
+<Workspace Version="0.8.1.1823" X="-324.493105440137" Y="321.324913982294" zoom="1.30764135636719" Name="String.IndicesOfCharacter" ID="1c07081a-bbf5-4973-9673-d450ff062f99" Description="This node gets all the indices of a given character" Category="Rhythm.Core.String">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="List.IndexOf[y]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.DSVarArgFunction guid="3ffca4e7-f878-4e48-b18c-64f11f685eee" type="Dynamo.Nodes.DSVarArgFunction" nickname="String.Split" x="479.188758249569" y="-41.385476677988" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="3afc68cf-b575-4daa-925b-2d895d5f9d92" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="306.405689615232" y="35.0661452740692" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="&quot;&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.Output guid="1cdb8b0c-5609-42f0-9d4a-fece5077a41b" type="Dynamo.Nodes.Output" nickname="Output" x="1211.44229173253" y="-25.2107414990925" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="int" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="9853ba7d-4662-4406-9a04-e4284a7ed344" type="Dynamo.Nodes.Symbol" nickname="Input" x="254.749107975991" y="-41.385476677988" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="str : string" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="86c6d0c8-ce4d-4853-8fd9-c00b967cd920" type="Dynamo.Nodes.Symbol" nickname="Input" x="253.391077482217" y="110" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="character : string" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="df947159-f90f-4a8c-ad9c-12dd339211f2" type="Dynamo.Nodes.Symbol" nickname="Input" x="249.804299931945" y="185.345930122738" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="ignoreCase : bool=false" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Function guid="837d642e-1c13-475e-b884-9cf666069110" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="530.614237664977" y="133.603312577677" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="93676d3e-7f00-4d02-9ae6-cdc80b266e40" />
+      <Name value="Rhythm.Toggle" />
+      <Description value="Toggle that offers two outputs. Created for Dynamo 0.8.1 because of changes to the &quot;IF&quot; node" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="boolean" />
+      </Inputs>
+      <Outputs>
+        <Output value="in" />
+        <Output value="out" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="c48efc52-b4aa-4472-b393-1419a076912d" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="943.463993679803" y="27.0613919352346" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="Flatten({in1,in2});" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="958787da-6b7c-4276-868d-253092735924" type="Dynamo.Nodes.DSFunction" nickname="String.ToLower" x="673.598896646413" y="129.721376134742" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.ToLower@string" />
+    <Dynamo.Nodes.Function guid="3cf94ad3-0e3a-494e-b13b-96095a8a4831" type="Dynamo.Nodes.Function" nickname="List.AllIndicesOf" x="765.67551563601" y="-60.8645858678884" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="ffe4a8b4-9f1c-4ac1-8e92-dae3aca4b7d0" />
+      <Name value="List.AllIndicesOf" />
+      <Description value="Given an item, returns the zero-based indices of all its occurrences in the list. If the item cannot be found, an empty list is returned. " />
+      <Inputs>
+        <Input value="list" />
+        <Input value="indices" />
+      </Inputs>
+      <Outputs>
+        <Output value="var[]..[]" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="822cd232-2b46-4f0e-bf4d-1abe6238d35e" type="Dynamo.Nodes.Function" nickname="List.AllIndicesOf" x="810.99691461758" y="108.343993043551" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="ffe4a8b4-9f1c-4ac1-8e92-dae3aca4b7d0" />
+      <Name value="List.AllIndicesOf" />
+      <Description value="Given an item, returns the zero-based indices of all its occurrences in the list. If the item cannot be found, an empty list is returned. " />
+      <Inputs>
+        <Input value="list" />
+        <Input value="indices" />
+      </Inputs>
+      <Outputs>
+        <Output value="var[]..[]" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="3ffca4e7-f878-4e48-b18c-64f11f685eee" start_index="0" end="3cf94ad3-0e3a-494e-b13b-96095a8a4831" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3ffca4e7-f878-4e48-b18c-64f11f685eee" start_index="0" end="822cd232-2b46-4f0e-bf4d-1abe6238d35e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3afc68cf-b575-4daa-925b-2d895d5f9d92" start_index="0" end="3ffca4e7-f878-4e48-b18c-64f11f685eee" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9853ba7d-4662-4406-9a04-e4284a7ed344" start_index="0" end="3ffca4e7-f878-4e48-b18c-64f11f685eee" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="86c6d0c8-ce4d-4853-8fd9-c00b967cd920" start_index="0" end="837d642e-1c13-475e-b884-9cf666069110" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="df947159-f90f-4a8c-ad9c-12dd339211f2" start_index="0" end="837d642e-1c13-475e-b884-9cf666069110" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="837d642e-1c13-475e-b884-9cf666069110" start_index="0" end="958787da-6b7c-4276-868d-253092735924" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="837d642e-1c13-475e-b884-9cf666069110" start_index="1" end="3cf94ad3-0e3a-494e-b13b-96095a8a4831" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c48efc52-b4aa-4472-b393-1419a076912d" start_index="0" end="1cdb8b0c-5609-42f0-9d4a-fece5077a41b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="958787da-6b7c-4276-868d-253092735924" start_index="0" end="822cd232-2b46-4f0e-bf4d-1abe6238d35e" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3cf94ad3-0e3a-494e-b13b-96095a8a4831" start_index="0" end="c48efc52-b4aa-4472-b393-1419a076912d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="822cd232-2b46-4f0e-bf4d-1abe6238d35e" start_index="0" end="c48efc52-b4aa-4472-b393-1419a076912d" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

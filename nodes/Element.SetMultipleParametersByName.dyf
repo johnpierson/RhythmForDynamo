@@ -1,0 +1,37 @@
+<Workspace Version="0.8.1.1823" X="208" Y="251" zoom="1" Name="Element.SetMultipleParametersByName" ID="6fcf6592-cb48-48f5-b1c4-5e1236ac7b4d" Description="Set multiple (comma seperated) parameters by name." Category="Rhythm.Revit.Elements.Element">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.cret" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="String.Fromobject" resolvedName="DSCore.String" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Math" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="String" resolvedName="DSCore.String" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="d348fadc-174f-489d-ae7d-b099941d76c5" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="619.152389577161" y="106.92406588989" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="el1&lt;1&gt;.SetParameterByName({n1}&lt;2&gt;,val1&lt;1&gt;&lt;2&gt;);" ShouldFocus="false" />
+    <Dynamo.Nodes.DSVarArgFunction guid="b6e3ae93-c07b-40e2-bc6e-93c8c98c679a" type="Dynamo.Nodes.DSVarArgFunction" nickname="String.Split" x="374.78913709289" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="827184a2-3714-4f3e-b779-37e453d16037" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="54.3430225345542" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="&quot;,&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.Symbol guid="3537b1fd-05a6-4931-bf45-acf28346d7a3" type="Dynamo.Nodes.Symbol" nickname="Input" x="-26" y="-6" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="element : var[]..[]" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="9ffbeed7-4a73-4856-b9fb-aa74d53b8f69" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="value : var[]..[]" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="e5b649f8-321f-40f3-a826-ba6b609d1e1a" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="parameterName : string" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="493cdc62-2748-440c-9d93-fd61eae934d8" type="Dynamo.Nodes.Output" nickname="Output" x="1146.15238957716" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="2c8ebd68-08ba-4fd1-8f22-f65e9bf3d290" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="1080" y="108" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="" function="Flatten@var[]..[]" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="d348fadc-174f-489d-ae7d-b099941d76c5" start_index="0" end="2c8ebd68-08ba-4fd1-8f22-f65e9bf3d290" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b6e3ae93-c07b-40e2-bc6e-93c8c98c679a" start_index="0" end="d348fadc-174f-489d-ae7d-b099941d76c5" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="827184a2-3714-4f3e-b779-37e453d16037" start_index="0" end="b6e3ae93-c07b-40e2-bc6e-93c8c98c679a" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3537b1fd-05a6-4931-bf45-acf28346d7a3" start_index="0" end="d348fadc-174f-489d-ae7d-b099941d76c5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9ffbeed7-4a73-4856-b9fb-aa74d53b8f69" start_index="0" end="d348fadc-174f-489d-ae7d-b099941d76c5" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e5b649f8-321f-40f3-a826-ba6b609d1e1a" start_index="0" end="b6e3ae93-c07b-40e2-bc6e-93c8c98c679a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2c8ebd68-08ba-4fd1-8f22-f65e9bf3d290" start_index="0" end="493cdc62-2748-440c-9d93-fd61eae934d8" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

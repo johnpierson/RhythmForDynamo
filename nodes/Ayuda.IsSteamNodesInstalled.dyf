@@ -1,0 +1,45 @@
+<Workspace Version="0.8.1.1823" X="0" Y="0" zoom="1" Name="Ayuda.IsSteamNodesInstalled" ID="fa199463-2df0-408b-9595-85d637680184" Description="This node determines if steamnodes is installed. Useful with a toggle.;" Category="Rhythm.Core.Ayuda">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Output guid="489d6bbb-efa2-4917-8552-721ed057cec3" type="Dynamo.Nodes.Output" nickname="Output" x="1173.01256643628" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="bool" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="20bf4cb2-f469-4b63-aa82-bddae9464aa3" type="Dynamo.Nodes.DSFunction" nickname="List.IsEmpty" x="990.01256643628" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.IsEmpty@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="8c0b6848-12c3-49a0-8a9a-45829fcb78f5" type="Dynamo.Nodes.DSFunction" nickname="Directory.Contents" x="766.68026579555" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.IO.Directory.Contents@var,string">
+      <PortInfo index="1" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.StringInput guid="23296eaf-0c39-4813-bc1d-47dcb3bc73a5" type="Dynamo.Nodes.StringInput" nickname="String" x="542.768770088225" y="116.267517309414" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>SteamNodes</System.String>
+      <System.String value="SteamNodes" />
+    </Dynamo.Nodes.StringInput>
+    <DSCore.File.DirectoryObject guid="738cca32-7ef1-4dca-8542-7f974d691307" type="DSCore.File.DirectoryObject" nickname="Directory.FromPath" x="569.871622104474" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.DSFunction guid="c00d070e-6145-4214-a5b7-cf60c8bbbe3b" type="Dynamo.Nodes.DSFunction" nickname="String.Insert" x="376.67414618755" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Insert@string,int,string" />
+    <Dynamo.Nodes.StringInput guid="acc18d1c-880b-453a-855f-ce53e9aaa50b" type="Dynamo.Nodes.StringInput" nickname="String" x="153.023234429525" y="184.254637355921" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>\Dynamo\0.8\packages</System.String>
+      <System.String value="\Dynamo\0.8\packages" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.DSFunction guid="14f6e5e5-ac76-4c67-9d34-62a350461add" type="Dynamo.Nodes.DSFunction" nickname="String.Length" x="219.588348012107" y="71.0235370631161" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Length@string" />
+    <Dynamo.Nodes.Function guid="d9ebec26-9af9-4179-96f6-cdcba74366c0" type="Dynamo.Nodes.Function" nickname="OS.CurrentUserAppData" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="cf928e82-e8a0-4be2-8ffd-61e9980b76f1" />
+      <Name value="OS.CurrentUserAppData" />
+      <Description value="This retrieves the current user's appdata location" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="20bf4cb2-f469-4b63-aa82-bddae9464aa3" start_index="0" end="489d6bbb-efa2-4917-8552-721ed057cec3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8c0b6848-12c3-49a0-8a9a-45829fcb78f5" start_index="0" end="20bf4cb2-f469-4b63-aa82-bddae9464aa3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="23296eaf-0c39-4813-bc1d-47dcb3bc73a5" start_index="0" end="8c0b6848-12c3-49a0-8a9a-45829fcb78f5" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="738cca32-7ef1-4dca-8542-7f974d691307" start_index="0" end="8c0b6848-12c3-49a0-8a9a-45829fcb78f5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c00d070e-6145-4214-a5b7-cf60c8bbbe3b" start_index="0" end="738cca32-7ef1-4dca-8542-7f974d691307" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="acc18d1c-880b-453a-855f-ce53e9aaa50b" start_index="0" end="c00d070e-6145-4214-a5b7-cf60c8bbbe3b" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="14f6e5e5-ac76-4c67-9d34-62a350461add" start_index="0" end="c00d070e-6145-4214-a5b7-cf60c8bbbe3b" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d9ebec26-9af9-4179-96f6-cdcba74366c0" start_index="0" end="c00d070e-6145-4214-a5b7-cf60c8bbbe3b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d9ebec26-9af9-4179-96f6-cdcba74366c0" start_index="0" end="14f6e5e5-ac76-4c67-9d34-62a350461add" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

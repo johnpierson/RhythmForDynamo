@@ -1,0 +1,71 @@
+<Workspace Version="0.8.2.2392" X="309.228212529676" Y="357.820355861049" zoom="0.910063803931435" Name="Workset.Create" Description="Creates a workset or worksets from input names." ID="cd7ec662-0b6e-4afd-8f1a-70f41d2de6d9" Category="Rhythm.Revit.Application.Document.Create">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="a5d7bfc4-e091-40ad-af8d-2e8b6c9a78bb" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="296.735877398296" y="-9.50323974082073" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#Rhythm
+#sixtysecondrevit.blogspot.com
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+worksetnames = IN[0]
+mDoc = DocumentManager.Instance.CurrentDBDocument
+newWorksets = list()
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for name in worksetnames:
+	Workset.Create(mDoc,name)
+	newWorksets.append(name)
+
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = newWorksets</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="c18ee097-8337-4bea-b2ae-599ee20324ba" type="Dynamo.Nodes.Symbol" nickname="Input" x="-101.079913606911" y="2.59179265658747" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="worksetNames" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="f8285267-af6c-4d24-9cae-84d498c23ff0" type="Dynamo.Nodes.Output" nickname="Output" x="493.924406047516" y="-3.45572354211663" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="names" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="530e76e6-13bc-47e2-a316-89d11e539a8c" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="265.321323180292" y="104.584677568652" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="4427b6b0-e80b-45c0-9e08-277e79c3b618" type="Dynamo.Nodes.DSFunction" nickname="List.Empty" x="-135.326133909287" y="161.320074394049" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.Empty" />
+    <DSCoreNodesUI.CreateList guid="fdfb2fd3-ef95-4c7f-b981-92e348a94e84" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="104.997840172786" y="3.03023758099351" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="a5d7bfc4-e091-40ad-af8d-2e8b6c9a78bb" start_index="0" end="f8285267-af6c-4d24-9cae-84d498c23ff0" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c18ee097-8337-4bea-b2ae-599ee20324ba" start_index="0" end="fdfb2fd3-ef95-4c7f-b981-92e348a94e84" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="530e76e6-13bc-47e2-a316-89d11e539a8c" start_index="0" end="a5d7bfc4-e091-40ad-af8d-2e8b6c9a78bb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4427b6b0-e80b-45c0-9e08-277e79c3b618" start_index="0" end="fdfb2fd3-ef95-4c7f-b981-92e348a94e84" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fdfb2fd3-ef95-4c7f-b981-92e348a94e84" start_index="0" end="530e76e6-13bc-47e2-a316-89d11e539a8c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

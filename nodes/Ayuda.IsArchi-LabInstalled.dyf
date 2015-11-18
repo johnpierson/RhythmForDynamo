@@ -1,0 +1,45 @@
+<Workspace Version="0.8.1.1823" X="298" Y="241" zoom="1" Name="Ayuda.IsArchi-LabInstalled" ID="8e522367-3f74-4ed4-b8ea-f3dd8269cc3c" Description="This node determines if Archi-Lab is installed. Useful with a toggle." Category="Rhythm.Core.Ayuda">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Output guid="6ab23b59-8482-46c8-b3a2-1b481c4947da" type="Dynamo.Nodes.Output" nickname="Output" x="1173.01256643628" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="bool" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="9f035c63-dcb7-44d3-94a9-30d70ae78ea7" type="Dynamo.Nodes.DSFunction" nickname="List.IsEmpty" x="990.01256643628" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.IsEmpty@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="c9f462f3-e310-444e-83b8-a539bb10b3f9" type="Dynamo.Nodes.DSFunction" nickname="Directory.Contents" x="766.68026579555" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.IO.Directory.Contents@var,string">
+      <PortInfo index="1" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.StringInput guid="3ff95451-d201-4f22-98d5-df0c43f0732f" type="Dynamo.Nodes.StringInput" nickname="String" x="542.768770088225" y="116.267517309414" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>archi-lab.net</System.String>
+      <System.String value="archi-lab.net" />
+    </Dynamo.Nodes.StringInput>
+    <DSCore.File.DirectoryObject guid="de891412-9a01-4342-ad66-ed85d2d3970a" type="DSCore.File.DirectoryObject" nickname="Directory.FromPath" x="569.871622104474" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.DSFunction guid="9c604fdc-5319-48ea-85e5-9f8e3ea21913" type="Dynamo.Nodes.DSFunction" nickname="String.Insert" x="376.67414618755" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Insert@string,int,string" />
+    <Dynamo.Nodes.StringInput guid="f9105467-7538-4106-a068-a97bd5b089cf" type="Dynamo.Nodes.StringInput" nickname="String" x="153.023234429525" y="184.254637355921" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>\Dynamo\0.8\packages</System.String>
+      <System.String value="\Dynamo\0.8\packages" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.DSFunction guid="fde1e8d8-7ec4-4fdd-8099-d660edf544a3" type="Dynamo.Nodes.DSFunction" nickname="String.Length" x="219.588348012107" y="71.0235370631161" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Length@string" />
+    <Dynamo.Nodes.Function guid="11fd3a01-47ac-47df-8308-4eb01cdf2711" type="Dynamo.Nodes.Function" nickname="OS.CurrentUserAppData" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="cf928e82-e8a0-4be2-8ffd-61e9980b76f1" />
+      <Name value="OS.CurrentUserAppData" />
+      <Description value="This retrieves the current user's appdata location" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="9f035c63-dcb7-44d3-94a9-30d70ae78ea7" start_index="0" end="6ab23b59-8482-46c8-b3a2-1b481c4947da" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c9f462f3-e310-444e-83b8-a539bb10b3f9" start_index="0" end="9f035c63-dcb7-44d3-94a9-30d70ae78ea7" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3ff95451-d201-4f22-98d5-df0c43f0732f" start_index="0" end="c9f462f3-e310-444e-83b8-a539bb10b3f9" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="de891412-9a01-4342-ad66-ed85d2d3970a" start_index="0" end="c9f462f3-e310-444e-83b8-a539bb10b3f9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9c604fdc-5319-48ea-85e5-9f8e3ea21913" start_index="0" end="de891412-9a01-4342-ad66-ed85d2d3970a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f9105467-7538-4106-a068-a97bd5b089cf" start_index="0" end="9c604fdc-5319-48ea-85e5-9f8e3ea21913" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fde1e8d8-7ec4-4fdd-8099-d660edf544a3" start_index="0" end="9c604fdc-5319-48ea-85e5-9f8e3ea21913" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="11fd3a01-47ac-47df-8308-4eb01cdf2711" start_index="0" end="9c604fdc-5319-48ea-85e5-9f8e3ea21913" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="11fd3a01-47ac-47df-8308-4eb01cdf2711" start_index="0" end="fde1e8d8-7ec4-4fdd-8099-d660edf544a3" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

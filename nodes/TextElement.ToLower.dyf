@@ -1,0 +1,67 @@
+<Workspace Version="0.7.5.3566" X="229.063286159131" Y="261.983058121033" zoom="0.910063803931439" Description="This node converts a Revit text elemnt to upper directly." Category="Rhythm.Revit.Elements.TextElement.Actions" Name="TextElement.ToLower" ID="c17e93a8-24d4-4b04-8cca-8881874f5b06">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="5344c0c4-e66e-4034-a8a3-34ae6990d90c" nickname="Python Script" x="487" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>#Created by DPS, dpsdesign.org
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#apply color override to elements in an input list
+for i in elements:
+	id = i.Id
+	i.Text=i.Text.lower()
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = IN[0]</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="1d8108b1-d3c8-4b0b-ad08-c1e2b866813b" nickname="Output" x="651" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="13cbf476-e162-45ee-ba76-a315d23507a5" nickname="Input" x="94" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Text Element(s)" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.CodeBlockNodeModel type="Dynamo.Nodes.CodeBlockNodeModel" guid="606f6115-d9a0-4800-811f-9613b7b5920e" nickname="Code Block" x="251" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="Flatten({item});" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="5344c0c4-e66e-4034-a8a3-34ae6990d90c" start_index="0" end="1d8108b1-d3c8-4b0b-ad08-c1e2b866813b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="13cbf476-e162-45ee-ba76-a315d23507a5" start_index="0" end="606f6115-d9a0-4800-811f-9613b7b5920e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="606f6115-d9a0-4800-811f-9613b7b5920e" start_index="0" end="5344c0c4-e66e-4034-a8a3-34ae6990d90c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

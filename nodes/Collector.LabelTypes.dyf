@@ -1,0 +1,63 @@
+<Workspace Version="0.8.1.1823" X="-149.54709555886" Y="200.507557235421" zoom="1.33823125" Name="Collector.LabelTypes" ID="42c1362e-faa4-4840-86f6-abda420cb8e2" Description="This node collects all of the label types for the active family document." Category="Rhythm.Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="30fe2dbc-2a77-41aa-94f2-31ee25571dc8" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="1383.71755954381" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="f7fb27ea-9339-4e06-aa9e-9416ef413d78" type="Dynamo.Nodes.DSFunction" nickname="String.Contains" x="1190.61679223973" y="94.779694346475" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Contains@string,string,bool">
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <DSCoreNodesUI.StringNodes.FromObject guid="bccb776f-babf-446d-94f9-9d97da418515" type="DSCoreNodesUI.StringNodes.FromObject" nickname="String from Object" x="991.434111004819" y="94.779694346475" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="a4135ba0-383c-4bab-9be2-54c4e02316f7" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="993.234233069101" y="181.909385999616" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="&quot;Element&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.Function guid="a9a85f3f-c14e-48f4-a2b1-ada6e37a0053" type="Dynamo.Nodes.Function" nickname="Element.Type" x="734.408849140008" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="96bd9050-f2eb-4b52-8cd3-630825d2db2f" />
+      <Name value="Element.Type" />
+      <Description value="This retrieves the element type of the given elements. (if available) Similar to others available but no python here." />
+      <Inputs>
+        <Input value="element(s)" />
+      </Inputs>
+      <Outputs>
+        <Output value="element type(s)" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <DSRevitNodesUI.ElementsOfType guid="5008129d-a68c-44a2-9f45-4bce58ab5b2d" type="DSRevitNodesUI.ElementsOfType" nickname="All Elements of Type" x="489" y="2.27373675443232E-13" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <DSRevitNodesUI.ElementTypes guid="64fe9771-277b-42e7-802c-6bcad416e2fd" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="250" y="2.27373675443232E-13" isVisible="true" isUpstreamVisible="true" lacing="Disabled" index="288:TextElement" />
+    <Dynamo.Nodes.Output guid="bb3c0588-c4e7-4abd-aca8-444e9d162671" type="Dynamo.Nodes.Output" nickname="Output" x="1603.71755954381" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="LabelTypes" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="a49ebe44-eb9f-4b3c-b317-6f03264c6d8a" type="Dynamo.Nodes.DSFunction" nickname="Element.Name" x="1520.83129919351" y="178.720469847479" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.Name" />
+    <Dynamo.Nodes.Output guid="d16edbca-588e-4189-97a6-71e0918691cc" type="Dynamo.Nodes.Output" nickname="Output" x="1811.51349631004" y="204.874395037912" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="LabelTypeNames" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="24e23800-eca6-4ecf-a73a-4af5b594e6fc" type="Dynamo.Nodes.Symbol" nickname="Input" x="268.211796771941" y="252.324265902907" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="RunMe : bool = false" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Function guid="19e68e11-630c-4ba4-8d84-127f04ca1082" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="617.211796771941" y="90.3242659029065" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="93676d3e-7f00-4d02-9ae6-cdc80b266e40" />
+      <Name value="Rhythm.Toggle" />
+      <Description value="Toggle that offers two outputs. Created for Dynamo 0.8.1 because of changes to the &quot;IF&quot; node" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="boolean" />
+      </Inputs>
+      <Outputs>
+        <Output value="in" />
+        <Output value="out" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="30fe2dbc-2a77-41aa-94f2-31ee25571dc8" start_index="0" end="bb3c0588-c4e7-4abd-aca8-444e9d162671" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="30fe2dbc-2a77-41aa-94f2-31ee25571dc8" start_index="0" end="a49ebe44-eb9f-4b3c-b317-6f03264c6d8a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f7fb27ea-9339-4e06-aa9e-9416ef413d78" start_index="0" end="30fe2dbc-2a77-41aa-94f2-31ee25571dc8" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="bccb776f-babf-446d-94f9-9d97da418515" start_index="0" end="f7fb27ea-9339-4e06-aa9e-9416ef413d78" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a4135ba0-383c-4bab-9be2-54c4e02316f7" start_index="0" end="f7fb27ea-9339-4e06-aa9e-9416ef413d78" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a9a85f3f-c14e-48f4-a2b1-ada6e37a0053" start_index="0" end="bccb776f-babf-446d-94f9-9d97da418515" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a9a85f3f-c14e-48f4-a2b1-ada6e37a0053" start_index="0" end="30fe2dbc-2a77-41aa-94f2-31ee25571dc8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5008129d-a68c-44a2-9f45-4bce58ab5b2d" start_index="0" end="19e68e11-630c-4ba4-8d84-127f04ca1082" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="64fe9771-277b-42e7-802c-6bcad416e2fd" start_index="0" end="5008129d-a68c-44a2-9f45-4bce58ab5b2d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a49ebe44-eb9f-4b3c-b317-6f03264c6d8a" start_index="0" end="d16edbca-588e-4189-97a6-71e0918691cc" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="24e23800-eca6-4ecf-a73a-4af5b594e6fc" start_index="0" end="19e68e11-630c-4ba4-8d84-127f04ca1082" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="19e68e11-630c-4ba4-8d84-127f04ca1082" start_index="0" end="a9a85f3f-c14e-48f4-a2b1-ada6e37a0053" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

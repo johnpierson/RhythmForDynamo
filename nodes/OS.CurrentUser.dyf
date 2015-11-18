@@ -1,0 +1,23 @@
+<Workspace Version="0.8.1.1823" X="0" Y="0" zoom="1" Name="OS.CurrentUser" ID="162cfc50-2557-4550-82b2-bc698223813b" Description="This node retrieves the current user logged in." Category="Rhythm.Core.OS">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="c1b9369a-29c8-41e6-9b8f-5e1be848bc90" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="0">
+      <Script>import clr
+import sys
+
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+import os
+OUT = os.environ.get( "USERNAME" )</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Output guid="7a8d9b5c-7b7a-449a-8689-eb98b566a966" type="Dynamo.Nodes.Output" nickname="Output" x="419" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="c1b9369a-29c8-41e6-9b8f-5e1be848bc90" start_index="0" end="7a8d9b5c-7b7a-449a-8689-eb98b566a966" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

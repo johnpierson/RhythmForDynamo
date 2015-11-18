@@ -1,0 +1,74 @@
+<Workspace Version="0.7.5.3566" X="-115.785145469702" Y="-298.023987094232" zoom="1.66537098414077" Description="Overrides the line thickness of projection lines" Category="Rhythm.Revit.Elements.Element.Actions" Name="Override Projection Lineweight" ID="e7f03df3-0006-4ec9-9a48-cf8e6987c137">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="d9b06ad6-7119-4f62-b0a6-e6e795e55d85" nickname="Python Script" x="691" y="424.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="2">
+      <Script>#Created by DPS Design, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+#create graphic overrides properties
+gSettings = Autodesk.Revit.DB.OverrideGraphicSettings()
+
+#set Projection Line weight
+gSettings.SetProjectionLineWeight(IN[1])
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#apply lineweight override to elements in an input list
+for i in elements:
+	id = i.Id
+	doc.ActiveView.SetElementOverrides(id, gSettings)
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = IN[0]</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="55c058e1-de83-47f5-b664-7542b3d5cf89" nickname="Input" x="512" y="391.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Element(s)" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="66373c8f-2a9c-477f-a0aa-3c2387812ff0" nickname="Input" x="512" y="474.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Number" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="5e43803c-4740-49f8-9993-a1083cc543f6" nickname="Output" x="873" y="474.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Overriden" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="d9b06ad6-7119-4f62-b0a6-e6e795e55d85" start_index="0" end="5e43803c-4740-49f8-9993-a1083cc543f6" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="55c058e1-de83-47f5-b664-7542b3d5cf89" start_index="0" end="d9b06ad6-7119-4f62-b0a6-e6e795e55d85" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="66373c8f-2a9c-477f-a0aa-3c2387812ff0" start_index="0" end="d9b06ad6-7119-4f62-b0a6-e6e795e55d85" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>
