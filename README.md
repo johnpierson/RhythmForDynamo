@@ -5,12 +5,12 @@ Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org
 If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager.
 
 ##Contributors
-This package is currently managed by aithor of http://sixtysecondrevit.blogspot.com in collaboration with DPS Design. http://dpsdesign.org
+This package is currently managed by author of http://sixtysecondrevit.blogspot.com in collaboration with DPS Design. http://dpsdesign.org
 
 ##Updates
 SInce there is not currently an update notification process on Dynamo's package manager, I post notifications for updates on [twitter](https://twitter.com/60secondrevit) 
 
-##Help to improve Rhythm
+##Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/sixtysecondrevit/RhythmForDynamo/pulls).
 
-Thank you!
+##Thank you!
