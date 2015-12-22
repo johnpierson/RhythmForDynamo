@@ -1,19 +1,14 @@
-<Workspace Version="0.8.1.1823" X="211" Y="263" zoom="1" Name="Collector.KeynoteTags" ID="94e42fcc-ecf4-4794-b3e6-f5d978a10827" Description="This collects all of the keynote tags in the model. Similar to other nodes, but this doesn't use python." Category="Rhythm.Revit.Selection">
+<Workspace Version="0.9.0.3067" X="189" Y="364" zoom="1" Name="Collector.KeynoteTags" Description="This collects all of the keynote tags in the model. Similar to other nodes, but this doesn't use python." ID="94e42fcc-ecf4-4794-b3e6-f5d978a10827" Category="Rhythm.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
-    <Dynamo.Nodes.DSFunction guid="e9d6d93a-f5f4-4b56-b71d-3e51e3a3e0ed" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="771.050039722821" y="-74.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
-    <DSCore.Map guid="3babd6bf-10bc-484a-813b-4752493de2c1" type="DSCore.Map" nickname="List.Map" x="570.050039722821" y="-10.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
-    <Dynamo.Nodes.DSFunction guid="05df1e3b-20aa-4bce-bca2-38e0c32244ec" type="Dynamo.Nodes.DSFunction" nickname="Element.Name" x="402.050039722821" y="-10.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.Name" />
-    <Dynamo.Nodes.DSFunction guid="34d73056-694c-4f39-a34f-b7cc8e55bbec" type="Dynamo.Nodes.DSFunction" nickname="String.Contains" x="420.050039722821" y="104.398676433195" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Contains@string,string,bool">
-      <PortInfo index="2" default="True" />
-    </Dynamo.Nodes.DSFunction>
-    <Dynamo.Nodes.CodeBlockNodeModel guid="3055d83f-340a-4b5b-9a95-8afd0cc9283b" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="231.050039722821" y="104.398676433195" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="&quot;Keynote&quot;;&#xA;true;" ShouldFocus="false" />
-    <DSRevitNodesUI.ElementsOfType guid="783c248e-7516-4d1a-8261-0480904ee22b" type="DSRevitNodesUI.ElementsOfType" nickname="All Elements of Type" x="28.0500397228213" y="-74.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
-    <DSRevitNodesUI.ElementTypes guid="f7ce0523-ef86-491f-95c8-948dce21a5b1" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="-158.949960277179" y="-73.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Disabled" index="109:FamilySymbol" />
-    <Dynamo.Nodes.Output guid="a1bc259b-6cc3-4d8b-85d7-fec738ceea49" type="Dynamo.Nodes.Output" nickname="Output" x="865" y="59.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+    <Dynamo.Nodes.DSFunction guid="e9d6d93a-f5f4-4b56-b71d-3e51e3a3e0ed" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="771.050039722821" y="-74.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="3055d83f-340a-4b5b-9a95-8afd0cc9283b" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="338.050039722821" y="103.398676433195" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;Keynote Tags&quot;;" ShouldFocus="false" />
+    <DSRevitNodesUI.ElementsOfType guid="783c248e-7516-4d1a-8261-0480904ee22b" type="DSRevitNodesUI.ElementsOfType" nickname="All Elements of Type" x="28.0500397228213" y="-74.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <DSRevitNodesUI.ElementTypes guid="f7ce0523-ef86-491f-95c8-948dce21a5b1" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="-158.949960277179" y="-73.601323566805" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="115:FamilySymbol" />
+    <Dynamo.Nodes.Output guid="a1bc259b-6cc3-4d8b-85d7-fec738ceea49" type="Dynamo.Nodes.Output" nickname="Output" x="968" y="-31.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
       <Symbol value="Keynote Tags" />
     </Dynamo.Nodes.Output>
-    <Dynamo.Nodes.Function guid="86389b18-5066-4b76-8d46-9ef8a3b795f5" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="254" y="-70" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+    <Dynamo.Nodes.Function guid="86389b18-5066-4b76-8d46-9ef8a3b795f5" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="254" y="-70" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
       <ID value="93676d3e-7f00-4d02-9ae6-cdc80b266e40" />
       <Name value="Rhythm.Toggle" />
       <Description value="Toggle that offers two outputs. Created for Dynamo 0.8.1 because of changes to the &quot;IF&quot; node" />
@@ -26,25 +21,39 @@
         <Output value="out" />
       </Outputs>
     </Dynamo.Nodes.Function>
-    <Dynamo.Nodes.Symbol guid="21ef47bd-3031-4c22-a3a4-e53e90dea000" type="Dynamo.Nodes.Symbol" nickname="Input" x="-95" y="92" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+    <Dynamo.Nodes.Symbol guid="21ef47bd-3031-4c22-a3a4-e53e90dea000" type="Dynamo.Nodes.Symbol" nickname="Input" x="-95" y="92" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
       <Symbol value="RunMe : bool = false" />
     </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Function guid="eed759e3-78b8-4ab8-b3f6-d297bdf38a65" type="Dynamo.Nodes.Function" nickname="Element.Category" x="430" y="-30" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="11b30011-c4e6-4d40-8a3a-d71a4fd6e747" />
+      <Name value="Element.Category" />
+      <Description value="This node will get the input element(s)' categories" />
+      <Inputs>
+        <Input value="element" />
+      </Inputs>
+      <Outputs>
+        <Output value="str" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.DSFunction guid="02e3515a-6c4f-4957-8a4c-1cd0ebd30106" type="Dynamo.Nodes.DSFunction" nickname="==" x="573" y="52" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="Operators" function="==@var[]..[],var[]..[]" />
   </Elements>
   <Connectors>
     <Dynamo.Models.ConnectorModel start="e9d6d93a-f5f4-4b56-b71d-3e51e3a3e0ed" start_index="0" end="a1bc259b-6cc3-4d8b-85d7-fec738ceea49" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="3babd6bf-10bc-484a-813b-4752493de2c1" start_index="0" end="e9d6d93a-f5f4-4b56-b71d-3e51e3a3e0ed" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="05df1e3b-20aa-4bce-bca2-38e0c32244ec" start_index="0" end="3babd6bf-10bc-484a-813b-4752493de2c1" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="34d73056-694c-4f39-a34f-b7cc8e55bbec" start_index="0" end="3babd6bf-10bc-484a-813b-4752493de2c1" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="3055d83f-340a-4b5b-9a95-8afd0cc9283b" start_index="0" end="34d73056-694c-4f39-a34f-b7cc8e55bbec" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="3055d83f-340a-4b5b-9a95-8afd0cc9283b" start_index="1" end="34d73056-694c-4f39-a34f-b7cc8e55bbec" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3055d83f-340a-4b5b-9a95-8afd0cc9283b" start_index="0" end="02e3515a-6c4f-4957-8a4c-1cd0ebd30106" end_index="1" portType="0" />
     <Dynamo.Models.ConnectorModel start="783c248e-7516-4d1a-8261-0480904ee22b" start_index="0" end="86389b18-5066-4b76-8d46-9ef8a3b795f5" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="f7ce0523-ef86-491f-95c8-948dce21a5b1" start_index="0" end="783c248e-7516-4d1a-8261-0480904ee22b" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="86389b18-5066-4b76-8d46-9ef8a3b795f5" start_index="0" end="05df1e3b-20aa-4bce-bca2-38e0c32244ec" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="86389b18-5066-4b76-8d46-9ef8a3b795f5" start_index="0" end="eed759e3-78b8-4ab8-b3f6-d297bdf38a65" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="86389b18-5066-4b76-8d46-9ef8a3b795f5" start_index="0" end="e9d6d93a-f5f4-4b56-b71d-3e51e3a3e0ed" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="21ef47bd-3031-4c22-a3a4-e53e90dea000" start_index="0" end="86389b18-5066-4b76-8d46-9ef8a3b795f5" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="eed759e3-78b8-4ab8-b3f6-d297bdf38a65" start_index="0" end="02e3515a-6c4f-4957-8a4c-1cd0ebd30106" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="02e3515a-6c4f-4957-8a4c-1cd0ebd30106" start_index="0" end="e9d6d93a-f5f4-4b56-b71d-3e51e3a3e0ed" end_index="1" portType="0" />
   </Connectors>
   <Notes>
     <Dynamo.Models.NoteModel guid="b727c36c-8895-4885-9a39-9134da0974ef" text="Sets the leader arrowhead for all keynote tags" x="11.3201512297118" y="-118.070514359696" />
   </Notes>
   <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="10.204067948028" eyeY="84.8605236058044" eyeZ="33.0922007526119" lookX="10.3162979662245" lookY="-11.1759894634098" lookZ="-49.8621068367516" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>

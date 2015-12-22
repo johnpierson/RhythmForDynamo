@@ -1,0 +1,82 @@
+<Workspace Version="0.9.0.3067" X="-84.1980450063302" Y="87.7539532539338" zoom="1.03605787560061" Name="Element.OverrideCutLineweight" Description="Overrides the cut lines of the elements" ID="52e63404-774d-4256-9326-ac5809adf8e3" Category="Rhythm.Revit.Elements.Element.Actions">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="30c840d5-5976-4658-8f94-d337181968b2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="591" y="422.559031778533" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>#Created by DPS Design, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+#create graphic overrides properties
+gSettings = Autodesk.Revit.DB.OverrideGraphicSettings()
+
+#set Projection Line weight
+gSettings.SetCutLineWeight(IN[1])
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#apply lineweight override to elements in an input list
+for i in elements:
+	id = i.Id
+	doc.ActiveView.SetElementOverrides(id, gSettings)
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = IN[0]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Output guid="ac71bf0b-b66c-4176-b182-6f109270867e" type="Dynamo.Nodes.Output" nickname="Output" x="747.904876829465" y="432.031330019095" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="b3c1ca57-0575-4375-878a-94e99268e7b7" type="Dynamo.Nodes.Symbol" nickname="Input" x="221.187229625632" y="432.47521444909" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="61b2ee22-3c39-4960-a425-6a5b3ac6292a" type="Dynamo.Nodes.Symbol" nickname="Input" x="421.651970450206" y="498.629926125514" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="number : int" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="a2f92e56-e020-44bd-9e49-2f662384b0e1" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="361.800467964527" y="427.322668602139" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="Flatten({item});" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="30c840d5-5976-4658-8f94-d337181968b2" start_index="0" end="ac71bf0b-b66c-4176-b182-6f109270867e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b3c1ca57-0575-4375-878a-94e99268e7b7" start_index="0" end="a2f92e56-e020-44bd-9e49-2f662384b0e1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="61b2ee22-3c39-4960-a425-6a5b3ac6292a" start_index="0" end="30c840d5-5976-4658-8f94-d337181968b2" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a2f92e56-e020-44bd-9e49-2f662384b0e1" start_index="0" end="30c840d5-5976-4658-8f94-d337181968b2" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

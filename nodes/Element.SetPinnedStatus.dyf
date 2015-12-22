@@ -1,0 +1,67 @@
+<Workspace Version="0.9.0.3067" X="-182.411225584057" Y="233.519947702995" zoom="2.05668026833428" Name="Element.SetPinnedStatus" Description="Will set the element to either pinned or not pinned. True is pinned, false is unpinned. For multiple elements use List.Map" ID="648bd8c3-5856-475f-9e00-ce20ec7e5e02" Category="Rhythm.Revit.Element.Elements.Actions">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="483474dc-2028-4071-913a-c4eab1228f12" type="PythonNodeModels.PythonNode" nickname="Python Script" x="486" y="-0.486220447289043" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>#Created by DPS Design, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+i = UnwrapElement(IN[0])
+TransactionManager.Instance.EnsureInTransaction(doc)
+#apply lineweight override to elements in an input list
+i.Pinned = IN[1]
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = []</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="41fa2162-2889-4ae8-99d7-92465932dfed" type="Dynamo.Nodes.Symbol" nickname="Input" x="138.719342791509" y="-18.7071299299905" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="ab09d956-11c0-47c9-a5e9-35708f310fdf" type="Dynamo.Nodes.Output" nickname="Output" x="685" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="15453921-2552-4356-b5a5-187c683dab41" type="Dynamo.Nodes.Symbol" nickname="Input" x="96.8721185420002" y="161.004270037905" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Bool : bool=false" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="483474dc-2028-4071-913a-c4eab1228f12" start_index="0" end="ab09d956-11c0-47c9-a5e9-35708f310fdf" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="41fa2162-2889-4ae8-99d7-92465932dfed" start_index="0" end="483474dc-2028-4071-913a-c4eab1228f12" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="15453921-2552-4356-b5a5-187c683dab41" start_index="0" end="483474dc-2028-4071-913a-c4eab1228f12" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
