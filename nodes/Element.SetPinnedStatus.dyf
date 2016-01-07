@@ -1,7 +1,17 @@
-<Workspace Version="0.9.0.3067" X="-182.411225584057" Y="233.519947702995" zoom="2.05668026833428" Name="Element.SetPinnedStatus" Description="Will set the element to either pinned or not pinned. True is pinned, false is unpinned. For multiple elements use List.Map" ID="648bd8c3-5856-475f-9e00-ce20ec7e5e02" Category="Rhythm.Revit.Element.Elements.Actions">
+<Workspace Version="0.9.0.3067" X="-25.5399201817667" Y="401.889745379096" zoom="1.51939327724693" Name="Element.SetPinnedStatus" Description="Will set the element to either pinned or not pinned. True is pinned, false is unpinned. For multiple elements use List.Map" ID="648bd8c3-5856-475f-9e00-ce20ec7e5e02" Category="Rhythm.Revit.Element.Elements.Actions">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="483474dc-2028-4071-913a-c4eab1228f12" type="PythonNodeModels.PythonNode" nickname="Python Script" x="486" y="-0.486220447289043" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+    <Dynamo.Nodes.Symbol guid="41fa2162-2889-4ae8-99d7-92465932dfed" type="Dynamo.Nodes.Symbol" nickname="Input" x="72.2454406672298" y="-23.9723895041908" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="ab09d956-11c0-47c9-a5e9-35708f310fdf" type="Dynamo.Nodes.Output" nickname="Output" x="685" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="element" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="15453921-2552-4356-b5a5-187c683dab41" type="Dynamo.Nodes.Symbol" nickname="Input" x="96.8721185420002" y="161.004270037905" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Bool : bool=false" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="fbc45ea3-305c-4da3-8f4f-3fdcaf7c9aca" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="236.109096511214" y="-12.5727922848636" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="Flatten({item});" ShouldFocus="false" />
+    <PythonNodeModels.PythonNode guid="095b0596-590d-4b6c-a371-69f7d4ce0f74" type="PythonNodeModels.PythonNode" nickname="Python Script" x="517.757180943596" y="4.5751498597117" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
       <Script>#Created by DPS Design, dpsdesign.org
 import clr
 clr.AddReference('ProtoGeometry')
@@ -32,31 +42,28 @@ app = uiapp.Application
 dataEnteringNode = IN
 
 #unwrap all elements to use with API
-i = UnwrapElement(IN[0])
+items = UnwrapElement(IN[0])
 TransactionManager.Instance.EnsureInTransaction(doc)
-#apply lineweight override to elements in an input list
-i.Pinned = IN[1]
+#SEt pinned status over list
+typelist = list()
+for i in items:
+	try:
+		i.Pinned = IN[1]
+	except:
+		typelist.append(list())
 
 # "End" the transaction
 TransactionManager.Instance.TransactionTaskDone()
 
 #Assign your output to the OUT variable
-OUT = []</Script>
+OUT = IN[0]</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Nodes.Symbol guid="41fa2162-2889-4ae8-99d7-92465932dfed" type="Dynamo.Nodes.Symbol" nickname="Input" x="138.719342791509" y="-18.7071299299905" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
-      <Symbol value="Element" />
-    </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.Output guid="ab09d956-11c0-47c9-a5e9-35708f310fdf" type="Dynamo.Nodes.Output" nickname="Output" x="685" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
-      <Symbol value="OUT" />
-    </Dynamo.Nodes.Output>
-    <Dynamo.Nodes.Symbol guid="15453921-2552-4356-b5a5-187c683dab41" type="Dynamo.Nodes.Symbol" nickname="Input" x="96.8721185420002" y="161.004270037905" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
-      <Symbol value="Bool : bool=false" />
-    </Dynamo.Nodes.Symbol>
   </Elements>
   <Connectors>
-    <Dynamo.Models.ConnectorModel start="483474dc-2028-4071-913a-c4eab1228f12" start_index="0" end="ab09d956-11c0-47c9-a5e9-35708f310fdf" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="41fa2162-2889-4ae8-99d7-92465932dfed" start_index="0" end="483474dc-2028-4071-913a-c4eab1228f12" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="15453921-2552-4356-b5a5-187c683dab41" start_index="0" end="483474dc-2028-4071-913a-c4eab1228f12" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="41fa2162-2889-4ae8-99d7-92465932dfed" start_index="0" end="fbc45ea3-305c-4da3-8f4f-3fdcaf7c9aca" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="15453921-2552-4356-b5a5-187c683dab41" start_index="0" end="095b0596-590d-4b6c-a371-69f7d4ce0f74" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fbc45ea3-305c-4da3-8f4f-3fdcaf7c9aca" start_index="0" end="095b0596-590d-4b6c-a371-69f7d4ce0f74" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="095b0596-590d-4b6c-a371-69f7d4ce0f74" start_index="0" end="ab09d956-11c0-47c9-a5e9-35708f310fdf" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
