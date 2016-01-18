@@ -1,4 +1,4 @@
-<Workspace Version="0.7.5.3566" X="0" Y="0" zoom="1" Description="Start of right-to-left embedding Unicode Character" Category="Rhythm.Core.Unicode" Name="RLE" ID="5575e051-9041-42ea-b975-b7f3474aeb89">
+<Workspace Version="0.7.5.3566" X="0" Y="0" zoom="1" Description="Start of right-to-left embedding Unicode Character" Category="Rhythm.Core.Unicode" Name="Unicode.RLE" ID="5575e051-9041-42ea-b975-b7f3474aeb89">
   <Elements>
     <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="6010693d-fcc7-4454-8a65-cd0c486c6ba3" nickname="Start of right-to-left embedding" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="0">
       <Script>#This script generates the Start of right-to-left embedding unicode character

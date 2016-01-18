@@ -1,7 +1,7 @@
-<Workspace Version="0.7.5.3566" X="0" Y="0" zoom="1" Description="Zero width joiner Unicode Character" Category="Rhythm.Core.Unicode" Name="ZWJ" ID="d11b42eb-46d6-4e6d-8af6-ff687c2dd15d">
+<Workspace Version="0.7.5.3566" X="0" Y="0" zoom="1" Description="Zero width joiner Unicode Character" Category="Rhythm.Core.Unicode" Name="Unicode.ZWJ" ID="d11b42eb-46d6-4e6d-8af6-ff687c2dd15d">
   <Elements>
     <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="50479370-70d6-4c91-aaa2-760e10cb6c55" nickname="Zero width joiner" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="0">
-      <Script>#This script generates the Zero width joiner mark unicode character 
+      <Script>#This script generates the Zero width joiner mark unicode character
 import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *

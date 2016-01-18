@@ -1,4 +1,4 @@
-<Workspace Version="0.7.5.3566" X="84" Y="103" zoom="1" Description="Left-to-right mark unicode character" Category="Rhythm.Core.Unicode" Name="LRM" ID="17dcaed7-5486-4b8f-88e2-034b0d2375d5">
+<Workspace Version="0.7.5.3566" X="84" Y="103" zoom="1" Description="Left-to-right mark unicode character" Category="Rhythm.Core.Unicode" Name="Unicode.LRM" ID="17dcaed7-5486-4b8f-88e2-034b0d2375d5">
   <Elements>
     <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="800e5c0c-d5cc-4b33-b2ae-d0646fe2b45c" nickname="Left-to-right Mark" x="50" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="0">
       <Script>#This script generates the Left-to-right mark unicode character
