@@ -8,7 +8,10 @@ If you appreciate the work put into this free package, please vote in support of
 This package is currently managed by author of http://sixtysecondrevit.blogspot.com in collaboration with DPS Design. http://dpsdesign.org
 
 ##Updates
-SInce there is not currently an update notification process on Dynamo's package manager, I post notifications for updates on [twitter](https://twitter.com/60secondrevit) 
+Since there is not currently an update notification process on Dynamo's package manager, I post notifications for updates on [twitter](https://twitter.com/60secondrevit)
+
+##Examples
+Luke Johnson (whatrevitwants) recently invited several Dynamo developers to co-author a site that can serve as an encyclopedia of nodes. Examples for Rhythm can be found at that site [here](http://dynamonodes.com/2016/01/27/rhythm-node-index/).
 
 ##Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/sixtysecondrevit/RhythmForDynamo/pulls).
