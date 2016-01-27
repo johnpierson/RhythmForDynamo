@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="-2521.82763139694" Y="-106.057035749912" zoom="0.959788699581266" Name="Rhythm.RenumberGridsByCurve" Description="This node will renumber grids in order of curve drawn through them. Select either letters or numbers. (Alphanumeric coming soon)" ID="b789aed2-e889-4e5d-b135-b7ae59714260" Category="Rhythm.Tools">
+<Workspace Version="0.9.0.3067" X="-746.641368618841" Y="123.533249484272" zoom="0.631317243097572" Name="Rhythm.RenumberGridsByCurve" Description="This node will renumber grids in order of curve drawn through them. Select either letters or numbers. (Alphanumeric coming soon)" ID="b789aed2-e889-4e5d-b135-b7ae59714260" Category="Rhythm.Tools">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="02d0ddc9-7c80-4971-891d-98124f87fe93" type="Dynamo.Nodes.DSFunction" nickname="Element.SetParameterByName" x="3630.22765337552" y="395.565956902304" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.SetParameterByName@string,var" />
@@ -45,11 +45,13 @@
       <Symbol value="StartNumber : int = 1" />
     </Dynamo.Nodes.Symbol>
     <Dynamo.Nodes.Function guid="7446aac9-877f-4137-964b-5f74a663feca" type="Dynamo.Nodes.Function" nickname="List.ArchitecturalAlphabeticalSequence" x="2656.58625793774" y="499.976104906448" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <PortInfo index="1" default="True" />
       <ID value="d5dbb95e-8abc-4bcb-a25f-3e072cf7930a" />
       <Name value="List.ArchitecturalAlphabeticalSequence" />
       <Description value="This creates a list of characters. What's different is we typically exclude I's and O's from our characters." />
       <Inputs>
         <Input value="amount" />
+        <Input value="skipIO" />
       </Inputs>
       <Outputs>
         <Output value="seq" />
@@ -69,6 +71,9 @@
         <Output value="result" />
       </Outputs>
     </Dynamo.Nodes.Function>
+    <DSCoreNodesUI.BoolSelector guid="7efdb63d-f0a1-4d58-92c1-46843920bdd8" type="DSCoreNodesUI.BoolSelector" nickname="Boolean" x="2432.39970641087" y="583.110133083444" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.Boolean>False</System.Boolean>
+    </DSCoreNodesUI.BoolSelector>
   </Elements>
   <Connectors>
     <Dynamo.Models.ConnectorModel start="02d0ddc9-7c80-4971-891d-98124f87fe93" start_index="0" end="68d4dff6-12c9-4b2c-8e09-9cbb68628641" end_index="0" portType="0" />
@@ -91,6 +96,7 @@
     <Dynamo.Models.ConnectorModel start="6cd09fb6-b1b6-470c-83c9-feca094387c7" start_index="0" end="114c5660-5b48-42d1-a23b-2f9200a6fe71" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="7446aac9-877f-4137-964b-5f74a663feca" start_index="0" end="504118ee-6920-4b9c-9118-367e2604c899" end_index="1" portType="0" />
     <Dynamo.Models.ConnectorModel start="d9164067-f813-4dbc-9c58-dfa590257c9b" start_index="0" end="99aa4a51-7b77-4b5b-ba67-46228c012802" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7efdb63d-f0a1-4d58-92c1-46843920bdd8" start_index="0" end="7446aac9-877f-4137-964b-5f74a663feca" end_index="1" portType="0" />
   </Connectors>
   <Notes />
   <Annotations>
@@ -110,6 +116,6 @@
   </Annotations>
   <Presets />
   <Cameras>
-    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
   </Cameras>
 </Workspace>
