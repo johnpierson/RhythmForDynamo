@@ -1,4 +1,4 @@
-<Workspace Version="0.9.0.3067" X="-746.641368618841" Y="123.533249484272" zoom="0.631317243097572" Name="Rhythm.RenumberGridsByCurve" Description="This node will renumber grids in order of curve drawn through them. Select either letters or numbers. (Alphanumeric coming soon)" ID="b789aed2-e889-4e5d-b135-b7ae59714260" Category="Rhythm.Tools">
+<Workspace Version="0.9.0.3067" X="-2576.68000133482" Y="-55.2634542945259" zoom="1.09218965916194" Name="Rhythm.RenumberGridsByCurve" Description="This node will renumber grids in order of curve drawn through them. Select either letters or numbers. (Alphanumeric coming soon)" ID="b789aed2-e889-4e5d-b135-b7ae59714260" Category="Rhythm.Tools">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="02d0ddc9-7c80-4971-891d-98124f87fe93" type="Dynamo.Nodes.DSFunction" nickname="Element.SetParameterByName" x="3630.22765337552" y="395.565956902304" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.SetParameterByName@string,var" />
@@ -72,7 +72,7 @@
       </Outputs>
     </Dynamo.Nodes.Function>
     <DSCoreNodesUI.BoolSelector guid="7efdb63d-f0a1-4d58-92c1-46843920bdd8" type="DSCoreNodesUI.BoolSelector" nickname="Boolean" x="2432.39970641087" y="583.110133083444" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
-      <System.Boolean>False</System.Boolean>
+      <System.Boolean>True</System.Boolean>
     </DSCoreNodesUI.BoolSelector>
   </Elements>
   <Connectors>
