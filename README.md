@@ -4,6 +4,9 @@ Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org
 
 If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager.
 
+##Current Version
+Rhythm is currently built against the latest Dynamo stable build. At this time that is 0.9.1.
+
 ##Contributors
 This package is currently managed by author of http://sixtysecondrevit.blogspot.com in collaboration with DPS Design. http://dpsdesign.org
 
