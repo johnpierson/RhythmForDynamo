@@ -1,0 +1,45 @@
+<Workspace Version="0.9.0.3067" X="-7724.16746648328" Y="-4887.59349284631" zoom="2.00125915806064" Name="String.ElementsModified" Description="THis custom node reports the amount of elements in a list as a phrase." ID="6c8b19ad-af80-475e-9eae-d4a7f3dcd36f" Category="Rhythm.Core.String.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="069e68ef-3ff1-44fc-b1b6-64b8c779dff7" type="Dynamo.Nodes.DSFunction" nickname="Count" x="3977.14671894404" y="2674.15724005049" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Count@var[]..[]" />
+    <Dynamo.Nodes.StringInput guid="d50f647c-3749-44b1-b3cd-f40e9e123e6a" type="Dynamo.Nodes.StringInput" nickname="String" x="3978.01357345839" y="2558.22874444198" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.String>[] Element(s) Modifed</System.String>
+      <System.String value="[] Element(s) Modifed" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.DSFunction guid="0cb45455-9aa6-4a29-bd04-151928d13eab" type="Dynamo.Nodes.DSFunction" nickname="String.Replace" x="4263.6137546682" y="2558.22874444198" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.String.Replace@string,string,string" />
+    <DSCoreNodesUI.StringNodes.FromObject guid="75672176-0459-439c-80f9-42405c58a4c3" type="DSCoreNodesUI.StringNodes.FromObject" nickname="String from Object" x="4104.75476213026" y="2675.89340390336" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.StringInput guid="b035b31f-2c0a-4bfe-8dd2-08a83532e217" type="Dynamo.Nodes.StringInput" nickname="String" x="4073.19450559266" y="2615.21265784763" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.String>[]</System.String>
+      <System.String value="[]" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.Output guid="e1320ae9-6d7f-4f0e-8db9-e5f7545f4e2a" type="Dynamo.Nodes.Output" nickname="Output" x="4431.59451042891" y="2559.94663742346" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="str" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="40ee408f-9227-464c-95e7-6379ff53c0ef" type="Dynamo.Nodes.Symbol" nickname="Input" x="3876.64308005041" y="2680.10940574234" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="list" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="069e68ef-3ff1-44fc-b1b6-64b8c779dff7" start_index="0" end="75672176-0459-439c-80f9-42405c58a4c3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d50f647c-3749-44b1-b3cd-f40e9e123e6a" start_index="0" end="0cb45455-9aa6-4a29-bd04-151928d13eab" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="0cb45455-9aa6-4a29-bd04-151928d13eab" start_index="0" end="e1320ae9-6d7f-4f0e-8db9-e5f7545f4e2a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="75672176-0459-439c-80f9-42405c58a4c3" start_index="0" end="0cb45455-9aa6-4a29-bd04-151928d13eab" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b035b31f-2c0a-4bfe-8dd2-08a83532e217" start_index="0" end="0cb45455-9aa6-4a29-bd04-151928d13eab" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="40ee408f-9227-464c-95e7-6379ff53c0ef" start_index="0" end="069e68ef-3ff1-44fc-b1b6-64b8c779dff7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Models.AnnotationModel guid="3316d25f-af81-45a1-814d-8d85ac3cc0b6" annotationText="This provides feedback on the amount of elements modified" left="3967.14671894404" top="2528.22874444198" width="540.44779148487" height="238.92849560851" fontSize="14" InitialTop="2558.22874444198" InitialHeight="238.92849560851" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="069e68ef-3ff1-44fc-b1b6-64b8c779dff7" />
+      <Models ModelGuid="d50f647c-3749-44b1-b3cd-f40e9e123e6a" />
+      <Models ModelGuid="0cb45455-9aa6-4a29-bd04-151928d13eab" />
+      <Models ModelGuid="75672176-0459-439c-80f9-42405c58a4c3" />
+      <Models ModelGuid="b035b31f-2c0a-4bfe-8dd2-08a83532e217" />
+      <Models ModelGuid="e1320ae9-6d7f-4f0e-8db9-e5f7545f4e2a" />
+    </Dynamo.Models.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

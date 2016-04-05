@@ -1,0 +1,69 @@
+<Workspace Version="0.9.2.4472" X="-277.68785625" Y="-118.224798191145" zoom="1.33823125" Name="Isolated Pick Model Elements" Description="Pick model elements in desired order of a desired category." ID="9b8026bf-215d-42e9-abed-09f280bc5ab1" Category="Rhythm.Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="f27cc8ab-fc92-496a-9180-c060b3cd97e7" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1015.67718650076" y="331" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="2">
+      <Script>#Isolated Pick Selection
+#Thanks to Dimitar and Troy Gates for Guidance
+#and this blog http://pythoncvc.net/?p=116
+import clr
+import msvcrt
+
+clr.AddReference("RevitAPIUI")
+from  Autodesk.Revit.UI import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+TaskDialog.Show('Isolated Selection','Pick ' + (IN[1].lower()) + ' in desired order, then press ESC to finish')
+sel1 = uidoc.Selection
+obt1 = Selection.ObjectType.Element
+
+class CustomISelectionFilter(Selection.ISelectionFilter):
+	def __init__(self, nom_categorie):
+		self.nom_categorie = nom_categorie
+	def AllowElement(self, e):
+		if e.Category.Name == self.nom_categorie:
+			return True
+		else:
+			return False
+	def AllowReference(self, ref, point):
+		return true
+msg1 = 'Pick '+ IN[1] +' in desired order then press ESC to finish.'
+out1 = []
+flag = True
+
+while flag:
+	try:
+		el1 = doc.GetElement(sel1.PickObject(obt1,CustomISelectionFilter(IN[1]), msg1).ElementId)
+		out1.append(el1.ToDSType(True))
+	except:
+		flag = False
+		
+		OUT = out1</Script>
+    </PythonNodeModels.PythonNode>
+    <CoreNodeModels.FromObject guid="63ecb608-15b3-4188-a063-b7e9719a3140" type="CoreNodeModels.FromObject" nickname="String from Object" x="818.356586496694" y="416.12126286768" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="779e94f7-8cb7-44e4-936a-6ac91a6425c9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="595.988609031511" y="274.769009466787" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="//toggle to reset selection&#xD;&#xA;refresh : bool = false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a300839e-5f5b-4c85-93cd-e54f05845f2a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="599.065263384038" y="502.323345229866" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="Category " />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="63ecb608-15b3-4188-a063-b7e9719a3140" start_index="0" end="f27cc8ab-fc92-496a-9180-c060b3cd97e7" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="779e94f7-8cb7-44e4-936a-6ac91a6425c9" start_index="0" end="f27cc8ab-fc92-496a-9180-c060b3cd97e7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a300839e-5f5b-4c85-93cd-e54f05845f2a" start_index="0" end="63ecb608-15b3-4188-a063-b7e9719a3140" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

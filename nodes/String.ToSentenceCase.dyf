@@ -1,0 +1,58 @@
+<Workspace Version="0.9.1.4062" X="-286" Y="39" zoom="1" Name="String.ToSentenceCase" Description="This node will convert a single string of text to have capitalized sentences. If you need to use this over a list, use List.Map." ID="9098fb41-9ae4-43bc-98b7-6b0f26b48793" Category="Rhythm.Core.String">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="1fc35417-7d6f-4d8f-85c9-96a79ce74342" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1229.2325420658" y="366.360851429293" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="str" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="258c6ae8-c174-4d38-988d-b8d2a1748e39" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="685" y="366.360851429293" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="//String to be converted to Sentence Case.&#xD;&#xA;str : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="a3b86341-fe33-4dbc-bb23-fe5613619513" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1082.35147850857" y="366.360851429293" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">
+      <Script>#Created by DPS Design, dpsdesign.org
+import clr
+import re
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+sentence = IN[0]
+
+#Assign your output to the OUT variable
+OUT = '. '.join([s.strip().capitalize() for s in sentence.split('.')]).strip()</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="258c6ae8-c174-4d38-988d-b8d2a1748e39" start_index="0" end="a3b86341-fe33-4dbc-bb23-fe5613619513" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a3b86341-fe33-4dbc-bb23-fe5613619513" start_index="0" end="1fc35417-7d6f-4d8f-85c9-96a79ce74342" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

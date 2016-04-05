@@ -1,0 +1,56 @@
+<Workspace Version="0.9.0.3067" X="-303.924787760818" Y="-84.1630000229359" zoom="0.959788699581266" Name="Curve.FromLine" Description="This will translate a line element to a curve." ID="7b93b230-085a-4572-99eb-c2e49687019a" Category="Rhythm.Geometry.Curve">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="PolyCurve" resolvedName="Autodesk.DesignScript.Geometry.PolyCurve" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="1220f151-0bb4-4620-872c-c6d19dc0510e" type="Dynamo.Nodes.Symbol" nickname="Input" x="75.4277937865182" y="460.936628654063" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="line" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="cbd3227b-dc0a-4804-b417-028c5bbd3c4c" type="Dynamo.Nodes.Output" nickname="Output" x="1604.21498379034" y="433.994496173511" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="curve" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="872e9316-23c4-41dd-b792-40005471e6e1" type="Dynamo.Nodes.DSFunction" nickname="Geometry.Explode" x="1242.27393349564" y="438.015563382648" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Geometry.Explode" />
+    <Dynamo.Nodes.DSFunction guid="be585f0c-9939-438b-80ef-8b3ee3b95541" type="Dynamo.Nodes.DSFunction" nickname="PolyCurve.ByPoints" x="990.273933495641" y="440.015563382648" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.PolyCurve.ByPoints@Autodesk.DesignScript.Geometry.Point[],bool">
+      <PortInfo index="1" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <DSCore.Combine guid="4a799c84-ac75-4195-ad12-029762ce4c43" type="DSCore.Combine" nickname="List.Combine" x="784.784140626941" y="440.713642659198" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3" />
+    <Dynamo.Nodes.DSFunction guid="84ea316e-3d72-4fee-b9e6-0fd35b3167b1" type="Dynamo.Nodes.DSFunction" nickname="Curve.EndPoint" x="603.273933495651" y="467.015563382649" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Curve.EndPoint" />
+    <Dynamo.Nodes.DSFunction guid="bc5ec77a-e54c-4aee-9324-91ca0c0e77cd" type="Dynamo.Nodes.DSFunction" nickname="Curve.StartPoint" x="602.273933495651" y="344.015563382648" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Curve.StartPoint" />
+    <DSCoreNodesUI.CreateList guid="b8ba01d3-d7b6-4879-9987-5915e4b05025" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="600.315040060491" y="234.033479906101" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />
+    <Dynamo.Nodes.DSFunction guid="111c6253-5b87-4acc-8507-5831622daa0b" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="464.888232089021" y="402.932807306945" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="c6f45743-cb5e-4f91-b6eb-db46b7c7a20f" type="Dynamo.Nodes.DSFunction" nickname="List.AddItemToFront" x="305.012923587624" y="407.13056663721" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.AddItemToFront@var[]..[],var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="34c6e46f-5f79-4460-9443-38f0f1abe2b8" type="Dynamo.Nodes.DSFunction" nickname="List.Empty" x="120.557544342673" y="337.447423366895" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.Empty" />
+    <Dynamo.Nodes.Function guid="8f7b3616-3ea8-4665-94a9-7f63b3cb6fdc" type="Dynamo.Nodes.Function" nickname="Output.Clean" x="1449.19896261297" y="436.724250041501" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="4176dc53-ab69-4804-beb4-e006bece065c" />
+      <Name value="Output.Clean" />
+      <Description value="This will return a single value or list from one input." />
+      <Inputs>
+        <Input value="input" />
+      </Inputs>
+      <Outputs>
+        <Output value="result" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="1220f151-0bb4-4620-872c-c6d19dc0510e" start_index="0" end="c6f45743-cb5e-4f91-b6eb-db46b7c7a20f" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="872e9316-23c4-41dd-b792-40005471e6e1" start_index="0" end="8f7b3616-3ea8-4665-94a9-7f63b3cb6fdc" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="be585f0c-9939-438b-80ef-8b3ee3b95541" start_index="0" end="872e9316-23c4-41dd-b792-40005471e6e1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4a799c84-ac75-4195-ad12-029762ce4c43" start_index="0" end="be585f0c-9939-438b-80ef-8b3ee3b95541" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="84ea316e-3d72-4fee-b9e6-0fd35b3167b1" start_index="0" end="4a799c84-ac75-4195-ad12-029762ce4c43" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="bc5ec77a-e54c-4aee-9324-91ca0c0e77cd" start_index="0" end="4a799c84-ac75-4195-ad12-029762ce4c43" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b8ba01d3-d7b6-4879-9987-5915e4b05025" start_index="0" end="4a799c84-ac75-4195-ad12-029762ce4c43" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="111c6253-5b87-4acc-8507-5831622daa0b" start_index="0" end="84ea316e-3d72-4fee-b9e6-0fd35b3167b1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="111c6253-5b87-4acc-8507-5831622daa0b" start_index="0" end="bc5ec77a-e54c-4aee-9324-91ca0c0e77cd" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c6f45743-cb5e-4f91-b6eb-db46b7c7a20f" start_index="0" end="111c6253-5b87-4acc-8507-5831622daa0b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="34c6e46f-5f79-4460-9443-38f0f1abe2b8" start_index="0" end="c6f45743-cb5e-4f91-b6eb-db46b7c7a20f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8f7b3616-3ea8-4665-94a9-7f63b3cb6fdc" start_index="0" end="cbd3227b-dc0a-4804-b417-028c5bbd3c4c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-20.6797375154273" eyeY="27.9863823083796" eyeZ="67.7853979912321" lookX="15.6797375154273" lookY="-16.9863823083796" lookZ="-75.7853979912321" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

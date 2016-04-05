@@ -1,4 +1,4 @@
-<Workspace Version="0.9.0.3067" X="8.07598979591972" Y="134.267216386453" zoom="0.808977913419776" Name="Select Elements By Curve" Description="This will select model elements in order that a curve is drawn through them." ID="457ab546-2afd-43c5-89ca-4fe44d831404" Category="Rhythm.Revit.Selection.Actions">
+<Workspace Version="0.9.0.3067" X="-2879.87779823834" Y="-752.755658032049" zoom="1.33218461607774" Name="Select Elements By Curve" Description="This will select model elements in order that a curve is drawn through them." ID="457ab546-2afd-43c5-89ca-4fe44d831404" Category="Rhythm.Revit.Selection.Actions">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="76dc8efb-d963-40b5-a6db-b61b73ec090f" type="Dynamo.Nodes.DSFunction" nickname="List.UniqueItems" x="4067.430089616" y="110.131759307076" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
@@ -20,7 +20,7 @@
     <Dynamo.Nodes.DSFunction guid="111bfa3b-96bc-48cc-ab12-acd5951afdd0" type="Dynamo.Nodes.DSFunction" nickname="Geometry.DoesIntersect" x="3346.81835906295" y="281.10106610343" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Geometry.DoesIntersect@Autodesk.DesignScript.Geometry.Geometry" />
     <Dynamo.Nodes.DSFunction guid="5421f4cc-be00-4ffc-895f-9070e44ae764" type="Dynamo.Nodes.DSFunction" nickname="String.TrimWhitespace" x="2098.09869791404" y="791.780307360796" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.String.TrimWhitespace@string" />
     <Dynamo.Nodes.DSFunction guid="b3c4211d-f2e3-4828-b311-c7c2006067a3" type="Dynamo.Nodes.DSFunction" nickname="==" x="2277.29231937662" y="796.366402727718" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="Operators" function="==@var[]..[],var[]..[]" />
-    <Dynamo.Nodes.DSFunction guid="4880c8c3-378d-48f0-9db1-449512f5948d" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="2437.42055189621" y="795.844108792591" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="4880c8c3-378d-48f0-9db1-449512f5948d" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="2443.24301365269" y="793.515124090001" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
     <Dynamo.Nodes.DSFunction guid="297842ae-2f4c-4457-a112-ae4d482f8283" type="Dynamo.Nodes.DSFunction" nickname="Curve.DivideEqually" x="3129.87455557271" y="96.3543795061515" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Curve.DivideEqually@int">
       <PortInfo index="1" default="True" />
     </Dynamo.Nodes.DSFunction>
@@ -161,7 +161,7 @@
   </Connectors>
   <Notes />
   <Annotations>
-    <Dynamo.Models.AnnotationModel guid="03d0a371-5489-48a1-81d3-ce1462780a60" annotationText="this is where we generate the workplane for the model line" left="1410.34036404391" top="555.150325128309" width="1964.66113822932" height="590.138036325921" fontSize="14" InitialTop="585.150325128309" InitialHeight="570.118023891465" TextblockHeight="20" backgrouund="#FFD8D8D8">
+    <Dynamo.Models.AnnotationModel guid="03d0a371-5489-48a1-81d3-ce1462780a60" annotationText="this is where we generate the workplane for the model line" left="1410.34036404391" top="555.150325128309" width="1964.66113822933" height="590.138036325921" fontSize="14" InitialTop="585.150325128309" InitialHeight="570.118023891465" TextblockHeight="20" backgrouund="#FFD8D8D8">
       <Models ModelGuid="63bf5283-15e8-478b-897a-161b4c95b942" />
       <Models ModelGuid="ca5126d1-bfd4-4e6e-b8f9-e38adbc1842e" />
       <Models ModelGuid="807305ac-17cf-4a3f-8438-11e9d48fe45c" />

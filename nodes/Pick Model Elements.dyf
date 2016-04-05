@@ -1,0 +1,54 @@
+<Workspace Version="0.9.2.4472" X="-1503.87397498437" Y="-517.414637006108" zoom="1.545620359375" Name="Pick Model Elements" Description="This node offers a pick method for selecting elements in Revit." ID="affdb898-d7fc-43f3-9a38-f018ef2c2273" Category="Rhythm.Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="44705858-2541-4945-af65-b8ebd2b582dc" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1321.47203992132" y="649.326456662094" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">
+      <Script>#Sometimes a pick selection is better
+#Based on a node from Dimitar Venkov
+import clr
+
+clr.AddReference("RevitAPIUI")
+from  Autodesk.Revit.UI import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+sel1 = uidoc.Selection
+ot1 = Selection.ObjectType.Element
+el_ref = sel1.PickObjects(ot1, "Select model elements")
+typelist = list()
+idlist = list()
+for i in el_ref:
+	
+	try:
+		typelist.append(doc.GetElement(i.ElementId))
+	except:
+		typelist.apped(list())
+		
+
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="19fdfb98-fabf-45ab-8daa-c939f56a3f8f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1467.46654177904" y="650.492619942368" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bfadd6bb-c392-4ca6-9897-c87316c80940" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1060.9810908854" y="639.755123920589" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="//Use boolean to reset&#xD;&#xA;refresh:bool = true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="44705858-2541-4945-af65-b8ebd2b582dc" start_index="0" end="19fdfb98-fabf-45ab-8daa-c939f56a3f8f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bfadd6bb-c392-4ca6-9897-c87316c80940" start_index="0" end="44705858-2541-4945-af65-b8ebd2b582dc" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

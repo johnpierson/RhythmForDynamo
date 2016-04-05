@@ -1,0 +1,87 @@
+<Workspace Version="0.9.1.4062" X="37" Y="281" zoom="1" Name="Element.OverrideProjectionFIllColor" Description="This node overrides the fill color of the element in view." ID="23047dea-b3e1-413b-91c1-35306f702133" Category="Rhythm.Revit.Elements.Element.Actions">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="7e691eaa-c2d5-4ade-86ee-384216ed09d4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="896" y="227" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="2">
+      <Script># Created by DPSDesign, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+#create graphic overrides properties
+gSettings = Autodesk.Revit.DB.OverrideGraphicSettings()
+#deconstruct DS Color Object and convert to RevitAPI color
+dsColor = IN[1]
+colRed = dsColor.Red
+colGreen = dsColor.Green
+colBlue = dsColor.Blue
+color = Autodesk.Revit.DB.Color(colRed, colGreen, colBlue)
+#set Projection Line color
+gSettings.SetProjectionLineColor(color)
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#apply color override to elements in an input list
+for i in elements:
+	id = i.Id
+	doc.ActiveView.SetElementOverrides(id, gSettings)
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = IN[0]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="da173893-3d9d-4260-a426-e5324abaeae7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="624" y="228" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6ec8b0f7-bf09-406e-a1d0-92ff6637168d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1094.5" y="244.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b36d3936-1a2a-40ff-899f-f2e4d4df04af" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="457.5" y="246.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="61a33c14-e334-4146-9bfa-a90ec970f310" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="490.5" y="326.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="color" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="7e691eaa-c2d5-4ade-86ee-384216ed09d4" start_index="0" end="6ec8b0f7-bf09-406e-a1d0-92ff6637168d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="da173893-3d9d-4260-a426-e5324abaeae7" start_index="0" end="7e691eaa-c2d5-4ade-86ee-384216ed09d4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b36d3936-1a2a-40ff-899f-f2e4d4df04af" start_index="0" end="da173893-3d9d-4260-a426-e5324abaeae7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="61a33c14-e334-4146-9bfa-a90ec970f310" start_index="0" end="7e691eaa-c2d5-4ade-86ee-384216ed09d4" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
