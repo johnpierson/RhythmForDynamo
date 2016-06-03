@@ -1,0 +1,1142 @@
+700 0 4 0           
+19 Autodesk Revit 2016 19 ASM 221.0.0.1874 NT 24 Fri Jun 03 09:12:04 2016 
+25.399999999999999 9.9999999999999995e-007 1e-010 
+body $-1 -1 $-1 $4 $-1 $5 #
+body $-1 -1 $-1 $6 $-1 $7 #
+body $-1 -1 $-1 $8 $-1 $9 #
+body $-1 -1 $-1 $10 $-1 $11 #
+lump $-1 -1 $-1 $-1 $12 $0 #
+transform $-1 -1 1 0 0 0 1 0 0 0 1 404.67213114754344 460.52459016393345 1199.9999999999998 1 no_rotate no_reflect no_shear #
+lump $-1 -1 $-1 $-1 $13 $1 #
+transform $-1 -1 1 0 0 0 1 0 0 0 1 404.67213114754344 460.52459016393345 1199.9999999999998 1 no_rotate no_reflect no_shear #
+lump $-1 -1 $-1 $-1 $14 $2 #
+transform $-1 -1 1 0 0 0 1 0 0 0 1 404.67213114754344 460.52459016393345 1199.9999999999998 1 no_rotate no_reflect no_shear #
+lump $-1 -1 $-1 $-1 $15 $3 #
+transform $-1 -1 1 0 0 0 1 0 0 0 1 404.67213114754344 460.52459016393345 1199.9999999999998 1 no_rotate no_reflect no_shear #
+shell $-1 -1 $-1 $-1 $-1 $16 $-1 $4 #
+shell $-1 -1 $-1 $-1 $-1 $17 $-1 $6 #
+shell $-1 -1 $-1 $-1 $-1 $18 $-1 $8 #
+shell $-1 -1 $-1 $-1 $-1 $19 $-1 $10 #
+face $20 -1 $-1 $21 $22 $12 $-1 $23 forward single #
+face $24 -1 $-1 $25 $26 $13 $-1 $27 forward single #
+face $28 -1 $-1 $29 $30 $14 $-1 $31 forward single #
+face $32 -1 $-1 $33 $34 $15 $-1 $35 forward single #
+string_attrib-name_attrib-gen-attrib $-1 -1 $36 $-1 $16 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:195 #
+face $37 -1 $-1 $38 $39 $12 $-1 $40 forward single #
+loop $-1 -1 $-1 $-1 $41 $16 #
+plane-surface $-1 -1 $-1 3.8278688524588511 -2.0462706961455637 30.233853483212613 3.1448414973105938e-017 -0.23605178325712289 0.97174047750473602 0 -11.660885730056831 -2.8326213990854745 forward_v I I I I #
+string_attrib-name_attrib-gen-attrib $-1 -1 $42 $-1 $17 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:160 #
+face $43 -1 $-1 $44 $45 $13 $-1 $46 forward single #
+loop $-1 -1 $-1 $-1 $47 $17 #
+plane-surface $-1 -1 $-1 0.82786885245889763 19.587579420665772 12.647166192881851 2.1717784619953426e-015 0.99619469809174588 0.087155742747655363 0 -1.0458689129718641 11.954336377100949 forward_v I I I I #
+string_attrib-name_attrib-gen-attrib $-1 -1 $48 $-1 $18 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:125 #
+face $49 -1 $-1 $50 $51 $14 $-1 $52 forward single #
+loop $-1 -1 $-1 $-1 $53 $18 #
+plane-surface $-1 -1 $-1 -2.6721311475410925 7.4754098360657819 0 0 0 -1 11.999999999999998 -3.1974423109204515e-014 0 forward_v I I I I #
+string_attrib-name_attrib-gen-attrib $-1 -1 $54 $-1 $19 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:70 #
+face $55 -1 $-1 $56 $57 $15 $-1 $58 forward single #
+loop $-1 -1 $-1 $-1 $59 $19 #
+plane-surface $-1 -1 $-1 14.827868852458888 -0.52459016393445035 2.5812685322534886e-014 -1.6653345369377319e-015 -1 0 11.999999999999998 -1.998401444325278e-014 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $60 $20 $16 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $61 $-1 $21 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:193 #
+face $62 -1 $-1 $63 $64 $12 $-1 $65 forward single #
+loop $-1 -1 $-1 $-1 $66 $21 #
+cone-surface $-1 -1 $-1 3.8278688524589 -2.5734409516123025 23.931307051669954 0 0.97174047750473613 0.23605178325712217 -9.9920072216264073e-015 -1.4163106995427328 5.8304428650284139 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $67 $68 $69 $70 reversed $22 $-1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $71 $24 $17 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $72 $-1 $25 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:158 #
+face $73 -1 $-1 $74 $75 $13 $-1 $76 forward single #
+loop $-1 -1 $-1 $-1 $77 $25 #
+cone-surface $-1 -1 $-1 0.82786885245892139 16.424683840895224 14.378088360822382 0 0.08715574274765496 -0.99619469809174588 -4.8294701571194302e-015 2.9885840942752382 0.2614672282429637 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $78 $79 $80 $81 reversed $26 $-1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $82 $28 $18 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $83 $-1 $29 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:123 #
+face $84 -1 $-1 $85 $86 $14 $-1 $87 forward single #
+loop $-1 -1 $-1 $-1 $88 $29 #
+plane-surface $-1 -1 $-1 -2.6721311475410925 7.4754098360657819 0.49999999999998107 2.6645352591003765e-015 1 0 11.999999999999998 -3.1974423109204515e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $89 $90 $91 $92 reversed $30 $-1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $93 $32 $19 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $94 $-1 $33 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:68 #
+face $95 -1 $-1 $96 $97 $15 $-1 $98 forward single #
+loop $-1 -1 $-1 $-1 $99 $33 #
+plane-surface $-1 -1 $-1 14.827868852458902 7.4754098360657526 2.5812685322534886e-014 0 0 -1 11.999999999999998 -3.1974423109204445e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $100 $101 $102 $103 reversed $34 $-1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $104 $36 $16 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $105 $37 $21 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $106 $-1 $38 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:191 #
+face $107 -1 $-1 $108 $109 $12 $-1 $110 forward single #
+loop $-1 -1 $-1 $-1 $111 $38 #
+plane-surface $-1 -1 $-1 -2.1721311475411098 0.035992826189469411 21.661921843617645 -1 0 0 0 -11.660885730056835 -2.8326213990854585 forward_v I I I I #
+coedge $-1 -1 $-1 $112 $113 $114 $115 reversed $39 $-1 #
+coedge $-1 -1 $-1 $116 $41 $113 $117 reversed $22 $-1 #
+coedge $-1 -1 $-1 $41 $116 $118 $119 reversed $22 $-1 #
+coedge $-1 -1 $-1 $120 $114 $41 $70 forward $121 $-1 #
+edge $-1 -1 $-1 $122 0 $123 0.41666666666666996 $69 $124 forward @7 unknown #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $125 $42 $17 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $126 $43 $25 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $127 $-1 $44 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:156 #
+face $128 -1 $-1 $129 $130 $13 $-1 $131 forward single #
+loop $-1 -1 $-1 $-1 $132 $44 #
+plane-surface $-1 -1 $-1 -2.1721311475410832 8.7466141402331861 11.698704629165896 -1 4.2093841624753496e-017 3.6827339464214448e-018 0 -1.0458689129718561 11.954336377100949 forward_v I I I I #
+coedge $-1 -1 $-1 $133 $134 $135 $136 reversed $45 $-1 #
+coedge $-1 -1 $-1 $137 $47 $134 $138 reversed $26 $-1 #
+coedge $-1 -1 $-1 $47 $137 $139 $140 reversed $26 $-1 #
+coedge $-1 -1 $-1 $141 $135 $47 $81 forward $142 $-1 #
+edge $-1 -1 $-1 $143 0 $144 0.91666666666666796 $80 $145 forward @7 unknown #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $146 $48 $18 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $147 $49 $29 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $148 $-1 $50 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:121 #
+face $149 -1 $-1 $150 $151 $14 $-1 $152 forward single #
+loop $-1 -1 $-1 $-1 $153 $50 #
+plane-surface $-1 -1 $-1 -2.6721311475410943 6.4754098360657641 0.49999999999998107 0 0 1 11.999999999999998 -3.1974423109204515e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $154 $155 $156 $157 reversed $51 $-1 #
+coedge $-1 -1 $-1 $158 $53 $155 $159 reversed $30 $-1 #
+coedge $-1 -1 $-1 $53 $158 $160 $161 reversed $30 $-1 #
+coedge $-1 -1 $-1 $162 $156 $53 $92 forward $163 $-1 #
+edge $-1 -1 $-1 $164 0 $165 0.66666666666668362 $91 $166 forward @7 unknown #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $167 $54 $19 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $168 $55 $33 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $169 $-1 $56 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:66 #
+face $170 -1 $-1 $171 $172 $15 $-1 $173 forward single #
+loop $-1 -1 $-1 $-1 $174 $56 #
+plane-surface $-1 -1 $-1 14.827868852458902 7.4754098360657526 0.49999999999998107 2.664535259100371e-015 1 0 11.999999999999998 -3.1974423109204445e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $175 $176 $177 $178 reversed $57 $-1 #
+coedge $-1 -1 $-1 $179 $59 $176 $180 reversed $34 $-1 #
+coedge $-1 -1 $-1 $59 $179 $181 $182 reversed $34 $-1 #
+coedge $-1 -1 $-1 $183 $177 $59 $103 forward $184 $-1 #
+edge $-1 -1 $-1 $185 0 $186 0.041666666666664784 $102 $187 forward @7 unknown #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $188 $60 $16 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $189 $61 $21 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $190 $62 $38 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $191 $-1 $63 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:189 #
+face $192 -1 $-1 $193 $194 $12 $-1 $195 forward single #
+loop $-1 -1 $-1 $-1 $196 $63 #
+cone-surface $-1 -1 $-1 1.8278688524588966 -1.9074881288200018 21.189818277103402 0 0.97174047750473613 0.23605178325712217 -6.6613381477509385e-015 -0.94420713302848835 3.8869619100189445 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $197 $198 $199 $200 reversed $64 $-1 #
+coedge $-1 -1 $-1 $201 $66 $198 $202 reversed $39 $-1 #
+coedge $-1 -1 $-1 $66 $201 $67 $117 forward $39 $-1 #
+coedge $-1 -1 $-1 $69 $199 $66 $115 forward $121 $-1 #
+edge $-1 -1 $-1 $203 -1.5707963267948943 $122 -6.4763009769800832e-015 $114 $204 forward @7 unknown #
+coedge $-1 -1 $-1 $68 $67 $205 $206 reversed $22 $-1 #
+edge $-1 -1 $-1 $207 3.5961621736200072e-017 $122 0.1666666666666668 $113 $208 forward @7 tangent #
+coedge $-1 -1 $-1 $209 $210 $68 $119 forward $211 $-1 #
+edge $-1 -1 $-1 $123 0 $212 0.16666666666666677 $118 $213 forward @7 tangent #
+coedge $-1 -1 $-1 $214 $69 $210 $215 forward $121 $-1 #
+loop $-1 -1 $-1 $-1 $120 $216 #
+vertex $-1 -1 $-1 $70 $217 #
+vertex $-1 -1 $-1 $70 $218 #
+straight-curve $-1 -1 $-1 3.8278688524588511 -2.0462706961455637 30.233853483212613 11.999999999999998 0 0 F 0 F 0.41666666666666996 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $219 $71 $17 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $220 $72 $25 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $221 $73 $44 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $222 $-1 $74 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:154 #
+face $223 -1 $-1 $224 $225 $13 $-1 $226 forward single #
+loop $-1 -1 $-1 $-1 $227 $74 #
+cone-surface $-1 -1 $-1 3.8278688524589253 8.5723026547379195 13.691094025349393 0 0.08715574274765496 -0.99619469809174588 -9.3258734068513134e-015 5.9771681885504755 0.52293445648593007 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $228 $229 $230 $231 reversed $75 $-1 #
+coedge $-1 -1 $-1 $232 $77 $229 $233 reversed $45 $-1 #
+coedge $-1 -1 $-1 $77 $232 $78 $138 forward $45 $-1 #
+coedge $-1 -1 $-1 $80 $230 $77 $136 forward $142 $-1 #
+edge $-1 -1 $-1 $234 -1.570796326794895 $143 -6.3097675232863129e-015 $135 $235 forward @7 unknown #
+coedge $-1 -1 $-1 $79 $78 $236 $237 reversed $26 $-1 #
+edge $-1 -1 $-1 $238 0 $143 0.16666666666666688 $134 $239 forward @7 tangent #
+coedge $-1 -1 $-1 $240 $241 $79 $140 forward $242 $-1 #
+edge $-1 -1 $-1 $144 -2.5803283287134001e-017 $243 0.16666666666666677 $139 $244 forward @7 tangent #
+coedge $-1 -1 $-1 $245 $80 $241 $246 forward $142 $-1 #
+loop $-1 -1 $-1 $-1 $141 $247 #
+vertex $-1 -1 $-1 $81 $248 #
+vertex $-1 -1 $-1 $81 $249 #
+straight-curve $-1 -1 $-1 0.82786885245889763 19.587579420665772 12.647166192881851 11.999999999999998 -2.6160891634803653e-014 -2.9067657372004057e-015 F 0 F 0.91666666666666796 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $250 $82 $18 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $251 $83 $29 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $252 $84 $50 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $253 $-1 $85 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:119 #
+face $254 -1 $-1 $255 $256 $14 $-1 $257 forward single #
+loop $-1 -1 $-1 $-1 $258 $85 #
+plane-surface $-1 -1 $-1 -2.6721311475410943 6.4754098360657641 11.499999999999934 2.6645352591003765e-015 1 0 11.999999999999998 -3.1974423109204515e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $259 $260 $261 $262 reversed $86 $-1 #
+coedge $-1 -1 $-1 $263 $88 $260 $264 reversed $51 $-1 #
+coedge $-1 -1 $-1 $88 $263 $89 $159 forward $51 $-1 #
+coedge $-1 -1 $-1 $91 $261 $88 $157 forward $163 $-1 #
+edge $-1 -1 $-1 $265 0 $164 0.041666666666665096 $156 $266 forward @7 unknown #
+coedge $-1 -1 $-1 $90 $89 $267 $268 reversed $30 $-1 #
+edge $-1 -1 $-1 $269 0 $164 0.041666666666666671 $155 $270 forward @7 unknown #
+coedge $-1 -1 $-1 $271 $272 $90 $161 forward $273 $-1 #
+edge $-1 -1 $-1 $165 0 $274 0.041666666666666671 $160 $275 forward @7 unknown #
+coedge $-1 -1 $-1 $276 $91 $272 $277 forward $163 $-1 #
+loop $-1 -1 $-1 $-1 $162 $278 #
+vertex $-1 -1 $-1 $92 $279 #
+vertex $-1 -1 $-1 $92 $280 #
+straight-curve $-1 -1 $-1 -2.6721311475410925 7.4754098360657819 0 -2.0483614804333614e-014 -11.999999999999998 0 F 0 F 0.66666666666668362 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $281 $93 $19 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $282 $94 $33 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $283 $95 $56 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $284 $-1 $96 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:64 #
+face $285 -1 $-1 $286 $287 $15 $-1 $288 forward single #
+loop $-1 -1 $-1 $-1 $289 $96 #
+plane-surface $-1 -1 $-1 14.827868852458899 6.4754098360657348 0.49999999999998107 0 0 1 11.999999999999998 -3.1974423109204445e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $290 $291 $292 $293 reversed $97 $-1 #
+coedge $-1 -1 $-1 $294 $99 $291 $295 reversed $57 $-1 #
+coedge $-1 -1 $-1 $99 $294 $100 $180 forward $57 $-1 #
+coedge $-1 -1 $-1 $102 $292 $99 $178 forward $184 $-1 #
+edge $-1 -1 $-1 $296 0 $185 0.66666666666668362 $177 $297 forward @7 unknown #
+coedge $-1 -1 $-1 $101 $100 $298 $299 reversed $34 $-1 #
+edge $-1 -1 $-1 $300 0 $185 0.041666666666666824 $176 $301 forward @7 unknown #
+coedge $-1 -1 $-1 $302 $303 $101 $182 forward $304 $-1 #
+edge $-1 -1 $-1 $186 0 $305 0.041666666666666824 $181 $306 forward @7 unknown #
+coedge $-1 -1 $-1 $307 $102 $303 $308 forward $184 $-1 #
+loop $-1 -1 $-1 $-1 $183 $309 #
+vertex $-1 -1 $-1 $103 $310 #
+vertex $-1 -1 $-1 $103 $311 #
+straight-curve $-1 -1 $-1 14.827868852458888 -0.52459016393445035 2.5812685322534886e-014 0 0 11.999999999999998 F 0 F 0.041666666666664784 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $312 $104 $16 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $313 $105 $21 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $314 $106 $38 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $315 $107 $63 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $316 $-1 $108 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:187 #
+face $317 -1 $-1 $318 $319 $12 $-1 $320 forward single #
+loop $-1 -1 $-1 $-1 $321 $108 #
+plane-surface $-1 -1 $-1 10.827868852458941 0.98019995921795844 17.774959933598701 -4.8455674112207197e-018 0.23605178325712159 -0.97174047750473636 0 -11.660885730056835 -2.8326213990854585 forward_v I I I I #
+coedge $-1 -1 $-1 $322 $323 $324 $325 reversed $109 $-1 #
+coedge $-1 -1 $-1 $326 $111 $323 $327 reversed $64 $-1 #
+coedge $-1 -1 $-1 $111 $326 $112 $202 forward $64 $-1 #
+coedge $-1 -1 $-1 $114 $324 $111 $200 forward $121 $-1 #
+edge $-1 -1 $-1 $328 0 $203 0.23510124685470127 $199 $329 forward @7 unknown #
+coedge $-1 -1 $-1 $113 $112 $330 $331 reversed $39 $-1 #
+edge $-1 -1 $-1 $332 8.5468219688127378e-017 $203 0.16666666666666677 $198 $333 forward @7 tangent #
+vertex $-1 -1 $-1 $115 $334 #
+ellipse-curve $-1 -1 $-1 3.8278688524589 -0.62995999660283131 24.403410618184196 0 0.97174047750473613 0.23605178325712217 -9.9920072216264073e-015 -1.4163106995427328 5.8304428650284139 1 F -1.5707963267948943 F -6.4763009769800832e-015 #
+coedge $-1 -1 $-1 $330 $335 $116 $206 forward $336 $-1 #
+edge $-1 -1 $-1 $212 0 $207 0.41666666666666996 $205 $337 forward @7 unknown #
+vertex $-1 -1 $-1 $117 $338 #
+straight-curve $-1 -1 $-1 3.8278688524588138 -3.9897516511550366 29.761749916698367 0 11.660885730056831 2.8326213990854732 F 3.5961621736200072e-017 F 0.1666666666666668 #
+coedge $-1 -1 $-1 $339 $118 $335 $340 reversed $211 $-1 #
+coedge $-1 -1 $-1 $118 $339 $120 $215 reversed $211 $-1 #
+loop $-1 -1 $-1 $-1 $210 $341 #
+vertex $-1 -1 $-1 $206 $342 #
+straight-curve $-1 -1 $-1 8.8278688524588897 -2.0462706961455561 30.233853483212581 0 -11.660885730056831 -2.8326213990854736 F 0 F 0.16666666666666677 #
+coedge $-1 -1 $-1 $343 $120 $344 $345 forward $121 $-1 #
+edge $-1 -1 $-1 $123 -3.5060484676489447e-031 $346 1.5707963267948983 $120 $347 forward @7 unknown #
+face $348 -1 $-1 $-1 $121 $12 $-1 $349 forward single #
+point $-1 -1 $-1 3.8278688524588511 -2.0462706961455637 30.233853483212613 #
+point $-1 -1 $-1 8.8278688524588897 -2.0462706961455561 30.233853483212581 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $350 $125 $17 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $351 $126 $25 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $352 $127 $44 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $353 $128 $74 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $354 $-1 $129 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:152 #
+face $355 -1 $-1 $356 $357 $13 $-1 $358 forward single #
+loop $-1 -1 $-1 $-1 $359 $129 #
+plane-surface $-1 -1 $-1 8.8278688524589874 2.7694459516827519 11.175770172679968 -1.7485802886546972e-015 -0.99619469809174588 -0.087155742747655307 0 -1.0458689129718635 11.954336377100949 forward_v I I I I #
+coedge $-1 -1 $-1 $360 $361 $362 $363 reversed $130 $-1 #
+coedge $-1 -1 $-1 $364 $132 $361 $365 reversed $75 $-1 #
+coedge $-1 -1 $-1 $132 $364 $133 $233 forward $75 $-1 #
+coedge $-1 -1 $-1 $135 $362 $132 $231 forward $142 $-1 #
+edge $-1 -1 $-1 $366 2.9493287755492337e-016 $234 0.65686466721807524 $230 $367 forward @7 unknown #
+coedge $-1 -1 $-1 $134 $133 $368 $369 reversed $45 $-1 #
+edge $-1 -1 $-1 $370 7.3532609453446625e-018 $234 0.16666666666666699 $229 $371 forward @7 tangent #
+vertex $-1 -1 $-1 $136 $372 #
+ellipse-curve $-1 -1 $-1 0.82786885245892139 16.598995326390533 12.385698964638886 0 0.08715574274765496 -0.99619469809174588 -4.8294701571194302e-015 2.9885840942752382 0.2614672282429637 1 F -1.570796326794895 F -6.3097675232863129e-015 #
+coedge $-1 -1 $-1 $368 $373 $137 $237 forward $374 $-1 #
+edge $-1 -1 $-1 $243 0 $238 0.91666666666666796 $236 $375 forward @7 unknown #
+vertex $-1 -1 $-1 $138 $376 #
+straight-curve $-1 -1 $-1 0.82786885245887865 19.41326793517046 14.639555589065345 0 1.0458689129718484 -11.954336377100951 F 0 F 0.16666666666666688 #
+coedge $-1 -1 $-1 $377 $139 $373 $378 reversed $242 $-1 #
+coedge $-1 -1 $-1 $139 $377 $141 $246 reversed $242 $-1 #
+loop $-1 -1 $-1 $-1 $241 $379 #
+vertex $-1 -1 $-1 $237 $380 #
+straight-curve $-1 -1 $-1 11.827868852458911 19.587579420665776 12.647166192881851 0 -1.0458689129718484 11.954336377100951 F -2.5803283287134001e-017 F 0.16666666666666677 #
+coedge $-1 -1 $-1 $381 $141 $382 $383 forward $142 $-1 #
+edge $-1 -1 $-1 $144 -1.5558090075192183e-030 $384 1.5707963267948972 $141 $385 forward @7 unknown #
+face $386 -1 $-1 $-1 $142 $13 $-1 $387 forward single #
+point $-1 -1 $-1 0.82786885245889763 19.587579420665772 12.647166192881851 #
+point $-1 -1 $-1 11.827868852458911 19.587579420665779 12.647166192881851 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $388 $146 $18 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $389 $147 $29 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $390 $148 $50 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $391 $149 $85 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $392 $-1 $150 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:117 #
+face $393 -1 $-1 $394 $395 $14 $-1 $396 forward single #
+loop $-1 -1 $-1 $-1 $397 $150 #
+plane-surface $-1 -1 $-1 -2.6721311475410969 4.7972105737111042 13.500000000000053 1.020576214364215e-015 0.76604444311897812 0.64278760968653936 11.999999999999998 -1.5987211554602257e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $398 $399 $400 $401 reversed $151 $-1 #
+coedge $-1 -1 $-1 $402 $153 $399 $403 reversed $86 $-1 #
+coedge $-1 -1 $-1 $153 $402 $154 $264 forward $86 $-1 #
+coedge $-1 -1 $-1 $156 $400 $153 $262 forward $163 $-1 #
+edge $-1 -1 $-1 $404 0 $265 0.083333333333334828 $261 $405 forward @7 unknown #
+coedge $-1 -1 $-1 $155 $154 $406 $407 reversed $51 $-1 #
+edge $-1 -1 $-1 $408 0 $265 0.041666666666666671 $260 $409 forward @7 unknown #
+vertex $-1 -1 $-1 $157 $410 #
+straight-curve $-1 -1 $-1 -2.6721311475410925 7.4754098360657819 0.49999999999998107 0 0 -11.999999999999998 F 0 F 0.041666666666665096 #
+coedge $-1 -1 $-1 $406 $411 $158 $268 forward $412 $-1 #
+edge $-1 -1 $-1 $274 0 $269 0.66666666666668362 $267 $413 forward @7 unknown #
+vertex $-1 -1 $-1 $159 $414 #
+straight-curve $-1 -1 $-1 -2.1721311475410925 7.475409836065781 0 -11.999999999999998 3.1974423109204515e-014 0 F 0 F 0.041666666666666671 #
+coedge $-1 -1 $-1 $415 $160 $411 $416 reversed $273 $-1 #
+coedge $-1 -1 $-1 $160 $415 $162 $277 reversed $273 $-1 #
+loop $-1 -1 $-1 $-1 $272 $417 #
+vertex $-1 -1 $-1 $268 $418 #
+straight-curve $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0 11.999999999999998 -1.9984014443252821e-014 0 F 0 F 0.041666666666666671 #
+coedge $-1 -1 $-1 $419 $162 $420 $421 forward $163 $-1 #
+edge $-1 -1 $-1 $165 0 $422 0.041666666666666935 $162 $423 forward @7 unknown #
+face $424 -1 $-1 $-1 $163 $14 $-1 $425 forward single #
+point $-1 -1 $-1 -2.6721311475410925 7.4754098360657819 0 #
+point $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $426 $167 $19 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $427 $168 $33 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $428 $169 $56 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $429 $170 $96 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $430 $-1 $171 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:62 #
+face $431 -1 $-1 $432 $433 $15 $-1 $434 forward single #
+loop $-1 -1 $-1 $-1 $435 $171 #
+plane-surface $-1 -1 $-1 14.827868852458899 6.4754098360657348 11.499999999999954 2.664535259100371e-015 1 0 11.999999999999998 -3.1974423109204445e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $436 $437 $438 $439 reversed $172 $-1 #
+coedge $-1 -1 $-1 $440 $174 $437 $441 reversed $97 $-1 #
+coedge $-1 -1 $-1 $174 $440 $175 $295 forward $97 $-1 #
+coedge $-1 -1 $-1 $177 $438 $174 $293 forward $184 $-1 #
+edge $-1 -1 $-1 $442 0 $296 0.041666666666662945 $292 $443 forward @7 unknown #
+coedge $-1 -1 $-1 $176 $175 $444 $445 reversed $57 $-1 #
+edge $-1 -1 $-1 $446 0 $296 0.041666666666666671 $291 $447 forward @7 unknown #
+vertex $-1 -1 $-1 $178 $448 #
+straight-curve $-1 -1 $-1 14.827868852458902 7.4754098360657526 2.5812685322534886e-014 -1.9984014443252307e-014 -11.999999999999998 0 F 0 F 0.66666666666668362 #
+coedge $-1 -1 $-1 $444 $449 $179 $299 forward $450 $-1 #
+edge $-1 -1 $-1 $305 0 $300 0.041666666666664784 $298 $451 forward @7 unknown #
+vertex $-1 -1 $-1 $180 $452 #
+straight-curve $-1 -1 $-1 15.32786885245889 -0.52459016393445068 2.5812685322534886e-014 -11.999999999999998 0 0 F 0 F 0.041666666666666824 #
+coedge $-1 -1 $-1 $453 $181 $449 $454 reversed $304 $-1 #
+coedge $-1 -1 $-1 $181 $453 $183 $308 reversed $304 $-1 #
+loop $-1 -1 $-1 $-1 $303 $455 #
+vertex $-1 -1 $-1 $299 $456 #
+straight-curve $-1 -1 $-1 14.827868852458888 -0.52459016393445035 0.50000000000000311 11.999999999999998 -1.998401444325278e-014 0 F 0 F 0.041666666666666824 #
+coedge $-1 -1 $-1 $457 $183 $458 $459 forward $184 $-1 #
+edge $-1 -1 $-1 $186 0 $460 0.083333333333333329 $183 $461 forward @7 unknown #
+face $462 -1 $-1 $-1 $184 $15 $-1 $463 forward single #
+point $-1 -1 $-1 14.827868852458888 -0.5245901639344499 2.5812685322534886e-014 #
+point $-1 -1 $-1 14.827868852458888 -0.52459016393445035 0.50000000000000311 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $188 $16 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $464 $189 $21 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $465 $190 $38 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $466 $191 $63 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $467 $192 $108 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $468 $-1 $193 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:185 #
+face $469 -1 $-1 $341 $470 $12 $-1 $471 forward single #
+loop $-1 -1 $-1 $-1 $472 $193 #
+cone-surface $-1 -1 $-1 10.827868852458897 -1.9074881288200018 21.189818277103402 0 0.97174047750473613 0.23605178325712217 -6.6613381477509385e-015 -0.94420713302848835 3.8869619100189445 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $473 $474 $475 $476 reversed $194 $-1 #
+coedge $-1 -1 $-1 $477 $196 $474 $478 reversed $109 $-1 #
+coedge $-1 -1 $-1 $196 $477 $197 $327 forward $109 $-1 #
+coedge $-1 -1 $-1 $199 $475 $196 $325 forward $121 $-1 #
+edge $-1 -1 $-1 $479 -3.1415926535897838 $328 -1.570796326794895 $324 $480 forward @7 unknown #
+coedge $-1 -1 $-1 $198 $197 $481 $482 reversed $64 $-1 #
+edge $-1 -1 $-1 $483 3.7156728096148033e-018 $328 0.16666666666666666 $323 $484 forward @7 tangent #
+vertex $-1 -1 $-1 $200 $485 #
+straight-curve $-1 -1 $-1 -2.1721311475411098 0.035992826189469411 21.661921843617645 0 -2.8326213990854652 11.660885730056831 F 0 F 0.23510124685470127 #
+coedge $-1 -1 $-1 $481 $205 $201 $331 forward $336 $-1 #
+edge $-1 -1 $-1 $207 6.4763009769800832e-015 $332 1.570796326794901 $330 $486 forward @7 unknown #
+vertex $-1 -1 $-1 $202 $487 #
+straight-curve $-1 -1 $-1 -2.1721311475411098 -2.573440951612286 23.931307051669879 0 11.660885730056831 2.8326213990854736 F 8.5468219688127378e-017 F 0.16666666666666677 #
+point $-1 -1 $-1 -2.1721311475411098 -0.62995999660283164 24.4034106181842 #
+coedge $-1 -1 $-1 $205 $488 $209 $340 forward $336 $-1 #
+loop $-1 -1 $-1 $-1 $205 $489 #
+straight-curve $-1 -1 $-1 8.8278688524588897 -3.9897516511550362 29.761749916698367 -11.999999999999998 0 0 F 0 F 0.41666666666666996 #
+point $-1 -1 $-1 3.8278688524588511 -3.9897516511550362 29.761749916698367 #
+coedge $-1 -1 $-1 $210 $209 $490 $491 forward $211 $-1 #
+edge $-1 -1 $-1 $492 -1.5707963267948983 $212 3.5060484676489447e-031 $335 $493 forward @7 unknown #
+face $494 -1 $-1 $489 $211 $12 $-1 $495 forward single #
+point $-1 -1 $-1 8.8278688524588897 -3.9897516511550362 29.761749916698367 #
+coedge $-1 -1 $-1 $475 $214 $472 $496 forward $121 $-1 #
+coedge $-1 -1 $-1 $490 $497 $214 $345 reversed $470 $-1 #
+edge $-1 -1 $-1 $346 0 $498 0.23510124685469858 $214 $499 forward @7 unknown #
+vertex $-1 -1 $-1 $345 $500 #
+ellipse-curve $-1 -1 $-1 8.8278688524589004 -0.62995999660282354 24.403410618184168 0 0.97174047750473613 0.23605178325712217 -1.0658141036401501e-014 -1.4163106995427328 5.8304428650284139 1 F -3.5060484676489447e-031 F 1.5707963267948983 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $501 $-1 $216 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:162 #
+plane-surface $-1 -1 $-1 8.8278688524588897 -2.0462706961455561 30.233853483212581 0 0.97174047750473613 0.23605178325712217 11.999999999999998 0 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $219 $17 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $502 $220 $25 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $503 $221 $44 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $504 $222 $74 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $505 $223 $129 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $506 $-1 $224 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:150 #
+face $507 -1 $-1 $379 $508 $13 $-1 $509 forward single #
+loop $-1 -1 $-1 $-1 $510 $224 #
+cone-surface $-1 -1 $-1 8.8278688524589217 8.5723026547379195 13.691094025349393 0 0.08715574274765496 -0.99619469809174588 -1.0658141036401501e-014 5.9771681885504755 0.52293445648593007 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $511 $512 $513 $514 reversed $225 $-1 #
+coedge $-1 -1 $-1 $515 $227 $512 $516 reversed $130 $-1 #
+coedge $-1 -1 $-1 $227 $515 $228 $365 forward $130 $-1 #
+coedge $-1 -1 $-1 $230 $513 $227 $363 forward $142 $-1 #
+edge $-1 -1 $-1 $517 -3.14159265358979 $366 -1.5707963267949019 $362 $518 forward @7 unknown #
+coedge $-1 -1 $-1 $229 $228 $519 $520 reversed $75 $-1 #
+edge $-1 -1 $-1 $521 1.2346803573744739e-016 $366 0.16666666666666691 $361 $522 forward @7 tangent #
+vertex $-1 -1 $-1 $231 $523 #
+straight-curve $-1 -1 $-1 -2.1721311475410832 8.7466141402331861 11.698704629165896 0 11.954336377100949 1.0458689129718584 F 2.9493287755492337e-016 F 0.65686466721807524 #
+coedge $-1 -1 $-1 $519 $236 $232 $369 forward $374 $-1 #
+edge $-1 -1 $-1 $238 6.3097675232863129e-015 $370 1.570796326794901 $368 $524 forward @7 unknown #
+vertex $-1 -1 $-1 $233 $525 #
+straight-curve $-1 -1 $-1 -2.1721311475410832 16.424683840895185 14.378088360822376 0 1.0458689129718641 -11.954336377100949 F 7.3532609453446625e-018 F 0.16666666666666699 #
+point $-1 -1 $-1 -2.1721311475410832 16.598995326390533 12.385698964638884 #
+coedge $-1 -1 $-1 $236 $526 $240 $378 forward $374 $-1 #
+loop $-1 -1 $-1 $-1 $236 $527 #
+straight-curve $-1 -1 $-1 11.827868852458911 19.413267935170438 14.639555589065342 -11.999999999999998 2.6160891634803653e-014 2.9067657372004057e-015 F 0 F 0.91666666666666796 #
+point $-1 -1 $-1 0.82786885245889763 19.41326793517046 14.639555589065345 #
+coedge $-1 -1 $-1 $241 $240 $528 $529 forward $242 $-1 #
+edge $-1 -1 $-1 $530 -1.5707963267948983 $243 -5.669937756276018e-031 $373 $531 forward @7 unknown #
+face $532 -1 $-1 $527 $242 $13 $-1 $533 forward single #
+point $-1 -1 $-1 11.827868852458911 19.413267935170438 14.639555589065342 #
+coedge $-1 -1 $-1 $513 $245 $510 $534 forward $142 $-1 #
+coedge $-1 -1 $-1 $528 $535 $245 $383 reversed $508 $-1 #
+edge $-1 -1 $-1 $384 0 $536 0.65686466721807313 $245 $537 forward @7 unknown #
+vertex $-1 -1 $-1 $383 $538 #
+ellipse-curve $-1 -1 $-1 11.827868852458916 16.59899532639054 12.385698964638886 0 0.08715574274765496 -0.99619469809174588 -5.3290705182007506e-015 2.9885840942752382 0.2614672282429637 1 F -1.5558090075192183e-030 F 1.5707963267948972 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $539 $-1 $247 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:127 #
+plane-surface $-1 -1 $-1 11.827868852458911 19.587579420665779 12.647166192881851 0 0.08715574274765496 -0.99619469809174588 11.999999999999998 0 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $250 $18 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $540 $251 $29 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $541 $252 $50 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $542 $253 $85 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $543 $254 $150 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $544 $-1 $255 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:115 #
+face $545 -1 $-1 $546 $547 $14 $-1 $548 forward single #
+loop $-1 -1 $-1 $-1 $549 $255 #
+plane-surface $-1 -1 $-1 -2.6721311475411063 -0.52459016393465707 24.500000000000515 1.4991079603479876e-015 0.90018427354817865 0.43550921190778263 11.999999999999998 -1.9984014443252821e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $550 $551 $552 $553 reversed $256 $-1 #
+coedge $-1 -1 $-1 $554 $258 $551 $555 reversed $151 $-1 #
+coedge $-1 -1 $-1 $258 $554 $259 $403 forward $151 $-1 #
+coedge $-1 -1 $-1 $261 $552 $258 $401 forward $163 $-1 #
+edge $-1 -1 $-1 $556 0 $404 0.91666666666666297 $400 $557 forward @7 unknown #
+coedge $-1 -1 $-1 $260 $259 $558 $559 reversed $86 $-1 #
+edge $-1 -1 $-1 $560 0 $404 0.041666666666666671 $399 $561 forward @7 unknown #
+vertex $-1 -1 $-1 $262 $562 #
+straight-curve $-1 -1 $-1 -2.6721311475410943 6.4754098360657641 0.49999999999998107 1.9984014443252461e-014 11.999999999999998 0 F 0 F 0.083333333333334828 #
+coedge $-1 -1 $-1 $558 $267 $263 $407 forward $412 $-1 #
+edge $-1 -1 $-1 $269 0 $408 0.041666666666665096 $406 $563 forward @7 unknown #
+vertex $-1 -1 $-1 $264 $564 #
+straight-curve $-1 -1 $-1 -2.1721311475410925 7.475409836065781 0.49999999999998107 -11.999999999999998 3.1974423109204515e-014 0 F 0 F 0.041666666666666671 #
+point $-1 -1 $-1 -2.6721311475410925 7.4754098360657819 0.49999999999998107 #
+coedge $-1 -1 $-1 $267 $565 $271 $416 forward $412 $-1 #
+loop $-1 -1 $-1 $-1 $267 $566 #
+straight-curve $-1 -1 $-1 -2.1721311475411063 -0.52459016393442137 0 2.0483614804333614e-014 11.999999999999998 0 F 0 F 0.66666666666668362 #
+point $-1 -1 $-1 -2.1721311475410925 7.475409836065781 0 #
+coedge $-1 -1 $-1 $272 $271 $567 $568 forward $273 $-1 #
+edge $-1 -1 $-1 $569 0 $274 0.041666666666666935 $411 $570 forward @7 unknown #
+face $571 -1 $-1 $566 $273 $14 $-1 $572 forward single #
+point $-1 -1 $-1 -2.1721311475411063 -0.52459016393442137 0 #
+coedge $-1 -1 $-1 $573 $276 $574 $575 forward $163 $-1 #
+coedge $-1 -1 $-1 $567 $576 $276 $421 reversed $577 $-1 #
+edge $-1 -1 $-1 $422 0 $578 0.083333333333333259 $276 $579 forward @7 unknown #
+vertex $-1 -1 $-1 $421 $580 #
+straight-curve $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0 0 0 11.999999999999998 F 0 F 0.041666666666666935 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $581 $-1 $278 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:72 #
+plane-surface $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0 -1 1.6983687945253444e-015 0 0 0 11.999999999999998 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $281 $19 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $582 $282 $33 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $583 $283 $56 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $584 $284 $96 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $585 $285 $171 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $586 $-1 $286 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:60 #
+face $587 -1 $-1 $588 $589 $15 $-1 $590 forward single #
+loop $-1 -1 $-1 $-1 $591 $286 #
+plane-surface $-1 -1 $-1 14.827868852458897 4.7972105737111042 13.500000000000032 1.0205762143642116e-015 0.76604444311897724 0.64278760968654025 11.999999999999998 -1.5987211554602223e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $592 $593 $594 $595 reversed $287 $-1 #
+coedge $-1 -1 $-1 $596 $289 $593 $597 reversed $172 $-1 #
+coedge $-1 -1 $-1 $289 $596 $290 $441 forward $172 $-1 #
+coedge $-1 -1 $-1 $292 $594 $289 $439 forward $184 $-1 #
+edge $-1 -1 $-1 $598 0 $442 0.083333333333334828 $438 $599 forward @7 unknown #
+coedge $-1 -1 $-1 $291 $290 $600 $601 reversed $97 $-1 #
+edge $-1 -1 $-1 $602 0 $442 0.041666666666666671 $437 $603 forward @7 unknown #
+vertex $-1 -1 $-1 $293 $604 #
+straight-curve $-1 -1 $-1 14.827868852458902 7.4754098360657526 0.49999999999998107 0 0 -11.999999999999998 F 0 F 0.041666666666662945 #
+coedge $-1 -1 $-1 $600 $298 $294 $445 forward $450 $-1 #
+edge $-1 -1 $-1 $300 -4.6259292692714864e-017 $446 0.66666666666668362 $444 $605 forward @7 unknown #
+vertex $-1 -1 $-1 $295 $606 #
+straight-curve $-1 -1 $-1 15.327868852458902 7.4754098360657517 2.5812685322534886e-014 -11.999999999999998 3.1974423109204445e-014 0 F 0 F 0.041666666666666671 #
+point $-1 -1 $-1 14.827868852458902 7.4754098360657526 2.5812685322534886e-014 #
+coedge $-1 -1 $-1 $298 $607 $302 $454 forward $450 $-1 #
+loop $-1 -1 $-1 $-1 $298 $608 #
+straight-curve $-1 -1 $-1 15.32786885245889 -0.52459016393445124 0.50000000000000311 0 0 -11.999999999999998 F 0 F 0.041666666666664784 #
+point $-1 -1 $-1 15.32786885245889 -0.52459016393445124 2.5812685322534886e-014 #
+coedge $-1 -1 $-1 $303 $302 $609 $610 forward $304 $-1 #
+edge $-1 -1 $-1 $611 1.387778780781446e-017 $305 0.083333333333333329 $449 $612 forward @7 unknown #
+face $613 -1 $-1 $608 $304 $15 $-1 $614 forward single #
+point $-1 -1 $-1 15.32786885245889 -0.52459016393445124 0.50000000000000311 #
+coedge $-1 -1 $-1 $615 $307 $616 $617 forward $184 $-1 #
+coedge $-1 -1 $-1 $609 $618 $307 $459 reversed $619 $-1 #
+edge $-1 -1 $-1 $460 1.2564358726002758e-018 $620 0.92044675143228227 $307 $621 forward @7 unknown #
+vertex $-1 -1 $-1 $459 $622 #
+straight-curve $-1 -1 $-1 14.827868852458888 -0.52459016393445035 0.50000000000000311 3.1974423109204502e-014 11.999999999999998 0 F 0 F 0.083333333333333329 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $623 $-1 $309 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:17 #
+plane-surface $-1 -1 $-1 14.827868852458888 -0.52459016393445035 0.50000000000000311 -1 1.6983687945253472e-015 0 2.0380425534304162e-014 11.999999999999998 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $313 $21 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $624 $314 $38 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $625 $315 $63 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $626 $316 $108 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $627 $317 $193 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $628 $-1 $318 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:183 #
+loop $-1 -1 $-1 $-1 $344 $318 #
+plane-surface $-1 -1 $-1 14.827868852458888 -0.62995999660282387 24.403410618184168 1 0 0 0 -11.660885730056831 -2.8326213990854745 forward_v I I I I #
+coedge $-1 -1 $-1 $629 $630 $343 $496 reversed $319 $-1 #
+coedge $-1 -1 $-1 $631 $321 $630 $632 reversed $194 $-1 #
+coedge $-1 -1 $-1 $321 $631 $322 $478 forward $194 $-1 #
+coedge $-1 -1 $-1 $324 $343 $321 $476 forward $121 $-1 #
+edge $-1 -1 $-1 $633 0 $479 0.75000000000000644 $475 $634 forward @7 unknown #
+coedge $-1 -1 $-1 $323 $322 $635 $636 reversed $109 $-1 #
+edge $-1 -1 $-1 $637 5.3942432604300127e-017 $479 0.16666666666666674 $474 $638 forward @7 tangent #
+vertex $-1 -1 $-1 $325 $639 #
+ellipse-curve $-1 -1 $-1 1.8278688524588966 0.035992826189469085 21.661921843617645 0 0.97174047750473613 0.23605178325712217 -6.6613381477509385e-015 -0.94420713302848835 3.8869619100189445 1 F -3.1415926535897838 F -1.570796326794895 #
+coedge $-1 -1 $-1 $635 $330 $326 $482 forward $336 $-1 #
+edge $-1 -1 $-1 $332 3.0516431554132616e-015 $483 0.23510124685470102 $481 $640 forward @7 unknown #
+vertex $-1 -1 $-1 $327 $641 #
+straight-curve $-1 -1 $-1 -2.1721311475411094 -1.9074881288199972 21.189818277103377 0 11.660885730056833 2.832621399085459 F 3.7156728096148033e-018 F 0.16666666666666666 #
+point $-1 -1 $-1 -2.1721311475411098 0.035992826189469411 21.661921843617645 #
+ellipse-curve $-1 -1 $-1 3.8278688524589 -2.5734409516123038 23.931307051669954 0 -0.97174047750473613 -0.23605178325712217 -9.9920072216264073e-015 -1.4163106995427328 5.8304428650284139 1 F 6.4763009769800832e-015 F 1.570796326794901 #
+point $-1 -1 $-1 -2.1721311475411098 -2.5734409516122945 23.931307051669918 #
+coedge $-1 -1 $-1 $335 $642 $643 $644 forward $336 $-1 #
+face $645 -1 $-1 $216 $336 $12 $-1 $646 forward single #
+coedge $-1 -1 $-1 $643 $344 $339 $491 reversed $470 $-1 #
+edge $-1 -1 $-1 $492 0 $346 0.16666666666666674 $339 $647 forward @7 tangent #
+vertex $-1 -1 $-1 $491 $648 #
+ellipse-curve $-1 -1 $-1 8.8278688524589004 -2.5734409516122958 23.931307051669922 0 -0.97174047750473613 -0.23605178325712217 -1.0658141036401501e-014 -1.4163106995427328 5.8304428650284139 1 F -1.5707963267948983 F 3.5060484676489447e-031 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $649 $-1 $341 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:180 #
+cone-surface $-1 -1 $-1 8.8278688524589004 -2.5734409516122954 23.931307051669922 0 0.97174047750473613 0.23605178325712217 -1.0658141036401501e-014 -1.4163106995427328 5.8304428650284139 1 I I 0 1 11.999999999999998 forward I I I I #
+edge $-1 -1 $-1 $498 1.5707963267948983 $633 3.1415926535897838 $343 $650 forward @7 unknown #
+coedge $-1 -1 $-1 $344 $643 $629 $651 forward $470 $-1 #
+vertex $-1 -1 $-1 $496 $652 #
+straight-curve $-1 -1 $-1 14.827868852458888 -0.62995999660282387 24.403410618184168 0 2.8326213990854652 -11.660885730056831 F 0 F 0.23510124685469858 #
+point $-1 -1 $-1 14.827868852458888 -0.62995999660282387 24.403410618184168 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $653 $348 $216 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $351 $25 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $654 $352 $44 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $655 $353 $74 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $656 $354 $129 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $657 $355 $224 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $658 $-1 $356 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:148 #
+loop $-1 -1 $-1 $-1 $382 $356 #
+plane-surface $-1 -1 $-1 14.827868852458909 16.598995326390543 12.385698964638888 1 0 0 0 -1.0458689129718641 11.954336377100949 forward_v I I I I #
+coedge $-1 -1 $-1 $659 $660 $381 $534 reversed $357 $-1 #
+coedge $-1 -1 $-1 $661 $359 $660 $662 reversed $225 $-1 #
+coedge $-1 -1 $-1 $359 $661 $360 $516 forward $225 $-1 #
+coedge $-1 -1 $-1 $362 $381 $359 $514 forward $142 $-1 #
+edge $-1 -1 $-1 $663 0 $517 0.41666666666667262 $513 $664 forward @7 unknown #
+coedge $-1 -1 $-1 $361 $360 $665 $666 reversed $130 $-1 #
+edge $-1 -1 $-1 $667 -6.4508208217835939e-017 $517 0.16666666666666688 $512 $668 forward @7 tangent #
+vertex $-1 -1 $-1 $363 $669 #
+ellipse-curve $-1 -1 $-1 3.8278688524589253 8.7466141402332305 11.698704629165899 0 0.08715574274765496 -0.99619469809174588 -9.3258734068513134e-015 5.9771681885504755 0.52293445648593007 1 F -3.14159265358979 F -1.5707963267949019 #
+coedge $-1 -1 $-1 $665 $368 $364 $520 forward $374 $-1 #
+edge $-1 -1 $-1 $370 1.4746643877746167e-015 $521 0.65686466721807524 $519 $670 forward @7 unknown #
+vertex $-1 -1 $-1 $365 $671 #
+straight-curve $-1 -1 $-1 -2.1721311475410832 8.5723026547378396 13.691094025349386 0 1.0458689129718561 -11.954336377100949 F 1.2346803573744739e-016 F 0.16666666666666691 #
+point $-1 -1 $-1 -2.1721311475410832 8.7466141402331896 11.698704629165896 #
+ellipse-curve $-1 -1 $-1 0.82786885245892139 16.424683840895224 14.37808836082238 0 -0.08715574274765496 0.99619469809174588 -4.8294701571194302e-015 2.9885840942752382 0.2614672282429637 1 F 6.3097675232863129e-015 F 1.570796326794901 #
+point $-1 -1 $-1 -2.1721311475410832 16.424683840895206 14.378088360822378 #
+coedge $-1 -1 $-1 $373 $672 $673 $674 forward $374 $-1 #
+face $675 -1 $-1 $247 $374 $13 $-1 $676 forward single #
+coedge $-1 -1 $-1 $673 $382 $377 $529 reversed $508 $-1 #
+edge $-1 -1 $-1 $530 0 $384 0.16666666666666688 $377 $677 forward @7 tangent #
+vertex $-1 -1 $-1 $529 $678 #
+ellipse-curve $-1 -1 $-1 11.827868852458916 16.424683840895231 14.37808836082238 0 -0.08715574274765496 0.99619469809174588 -5.3290705182007506e-015 2.9885840942752382 0.2614672282429637 1 F -1.5707963267948983 F -5.669937756276018e-031 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $679 $-1 $379 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:145 #
+cone-surface $-1 -1 $-1 11.827868852458916 16.424683840895231 14.378088360822382 0 0.08715574274765496 -0.99619469809174588 -5.3290705182007506e-015 2.9885840942752382 0.2614672282429637 1 I I 0 1 11.999999999999998 forward I I I I #
+edge $-1 -1 $-1 $536 1.5707963267948997 $663 3.1415926535897842 $381 $680 forward @7 unknown #
+coedge $-1 -1 $-1 $382 $673 $659 $681 forward $508 $-1 #
+vertex $-1 -1 $-1 $534 $682 #
+straight-curve $-1 -1 $-1 14.827868852458909 16.598995326390543 12.385698964638888 0 -11.954336377100947 -1.0458689129718601 F 0 F 0.65686466721807313 #
+point $-1 -1 $-1 14.827868852458909 16.598995326390543 12.385698964638888 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $683 $386 $247 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $389 $29 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $684 $390 $50 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $685 $391 $85 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $686 $392 $150 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $687 $393 $255 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $688 $-1 $394 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:113 #
+face $689 -1 $-1 $690 $691 $14 $-1 $692 forward single #
+loop $-1 -1 $-1 $-1 $693 $394 #
+plane-surface $-1 -1 $-1 -2.6721311475411076 -1.3173676290479006 27.274721127897305 1.6012590380989924e-015 0.9615239476408346 0.27472112789733794 11.999999999999998 -1.9984014443252821e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $694 $695 $696 $697 reversed $395 $-1 #
+coedge $-1 -1 $-1 $698 $397 $695 $699 reversed $256 $-1 #
+coedge $-1 -1 $-1 $397 $698 $398 $555 forward $256 $-1 #
+coedge $-1 -1 $-1 $400 $696 $397 $553 forward $163 $-1 #
+edge $-1 -1 $-1 $700 0 $556 0.21756788155539278 $552 $701 forward @7 unknown #
+coedge $-1 -1 $-1 $399 $398 $702 $703 reversed $151 $-1 #
+edge $-1 -1 $-1 $704 0 $556 0.041666666666666671 $551 $705 forward @7 unknown #
+vertex $-1 -1 $-1 $401 $706 #
+straight-curve $-1 -1 $-1 -2.6721311475410943 6.4754098360657641 11.499999999999934 0 0 -11.999999999999998 F 0 F 0.91666666666666297 #
+coedge $-1 -1 $-1 $702 $406 $402 $559 forward $412 $-1 #
+edge $-1 -1 $-1 $408 0 $560 0.083333333333334828 $558 $707 forward @7 unknown #
+vertex $-1 -1 $-1 $403 $708 #
+straight-curve $-1 -1 $-1 -2.1721311475410943 6.4754098360657633 0.49999999999998085 -11.999999999999998 3.1974423109204515e-014 0 F 0 F 0.041666666666666671 #
+point $-1 -1 $-1 -2.6721311475410943 6.4754098360657641 0.49999999999998085 #
+straight-curve $-1 -1 $-1 -2.1721311475410925 7.475409836065781 0 0 0 11.999999999999998 F 0 F 0.041666666666665096 #
+point $-1 -1 $-1 -2.1721311475410925 7.475409836065781 0.49999999999998107 #
+coedge $-1 -1 $-1 $411 $709 $710 $711 forward $412 $-1 #
+face $712 -1 $-1 $278 $412 $14 $-1 $713 forward single #
+coedge $-1 -1 $-1 $710 $420 $415 $568 reversed $577 $-1 #
+edge $-1 -1 $-1 $569 0 $422 0.041666666666666671 $415 $714 forward @7 unknown #
+vertex $-1 -1 $-1 $568 $715 #
+straight-curve $-1 -1 $-1 -2.1721311475411063 -0.52459016393442093 0.50000000000000311 0 0 -11.999999999999998 F 0 F 0.041666666666666935 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $716 $-1 $417 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:100 #
+plane-surface $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0 -1.6653345369377352e-015 -1 0 11.999999999999998 -1.9984014443252821e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $717 $419 $718 $719 forward $163 $-1 #
+coedge $-1 -1 $-1 $720 $721 $419 $575 reversed $722 $-1 #
+edge $-1 -1 $-1 $578 0 $723 0.92044675143226851 $419 $724 forward @7 unknown #
+coedge $-1 -1 $-1 $420 $710 $720 $725 forward $577 $-1 #
+loop $-1 -1 $-1 $-1 $420 $726 #
+vertex $-1 -1 $-1 $575 $727 #
+straight-curve $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0.50000000000000311 1.9984014443252834e-014 11.999999999999998 0 F 0 F 0.083333333333333259 #
+point $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0.50000000000000311 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $728 $424 $278 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $427 $33 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $729 $428 $56 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $730 $429 $96 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $731 $430 $171 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $732 $431 $286 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $733 $-1 $432 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:58 #
+face $734 -1 $-1 $735 $736 $15 $-1 $737 forward single #
+loop $-1 -1 $-1 $-1 $738 $432 #
+plane-surface $-1 -1 $-1 14.827868852458888 -0.52459016393437263 24.499999999999893 1.4991079603479843e-015 0.90018427354817843 0.43550921190778308 11.999999999999998 -1.998401444325278e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $739 $740 $741 $742 reversed $433 $-1 #
+coedge $-1 -1 $-1 $743 $435 $740 $744 reversed $287 $-1 #
+coedge $-1 -1 $-1 $435 $743 $436 $597 forward $287 $-1 #
+coedge $-1 -1 $-1 $438 $741 $435 $595 forward $184 $-1 #
+edge $-1 -1 $-1 $745 0 $598 0.91666666666666463 $594 $746 forward @7 unknown #
+coedge $-1 -1 $-1 $437 $436 $747 $748 reversed $172 $-1 #
+edge $-1 -1 $-1 $749 0 $598 0.041666666666666824 $593 $750 forward @7 unknown #
+vertex $-1 -1 $-1 $439 $751 #
+straight-curve $-1 -1 $-1 14.827868852458899 6.4754098360657348 0.49999999999998107 3.1974423109203934e-014 11.999999999999998 0 F 0 F 0.083333333333334828 #
+coedge $-1 -1 $-1 $747 $444 $440 $601 forward $450 $-1 #
+edge $-1 -1 $-1 $446 0 $602 0.041666666666662945 $600 $752 forward @7 unknown #
+vertex $-1 -1 $-1 $441 $753 #
+straight-curve $-1 -1 $-1 15.327868852458902 7.4754098360657517 0.49999999999998107 -11.999999999999998 3.1974423109204445e-014 0 F 0 F 0.041666666666666671 #
+point $-1 -1 $-1 14.827868852458902 7.4754098360657526 0.49999999999998107 #
+straight-curve $-1 -1 $-1 15.32786885245889 -0.52459016393445068 2.5812685322534886e-014 1.9984014443252307e-014 11.999999999999998 0 F -4.6259292692714864e-017 F 0.66666666666668362 #
+point $-1 -1 $-1 15.327868852458902 7.4754098360657517 2.5812685322534886e-014 #
+coedge $-1 -1 $-1 $449 $754 $755 $756 forward $450 $-1 #
+face $757 -1 $-1 $309 $450 $15 $-1 $758 forward single #
+coedge $-1 -1 $-1 $755 $458 $453 $610 reversed $619 $-1 #
+edge $-1 -1 $-1 $611 0 $460 0.041666666666666671 $453 $759 forward @7 unknown #
+vertex $-1 -1 $-1 $610 $760 #
+straight-curve $-1 -1 $-1 15.327868852458892 0.4754098360655486 0.50000000000000311 -3.1974423109204502e-014 -11.999999999999998 0 F 1.387778780781446e-017 F 0.083333333333333329 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $761 $-1 $455 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:45 #
+plane-surface $-1 -1 $-1 14.827868852458888 -0.52459016393445035 0.50000000000000311 0 0 1 11.999999999999998 -1.998401444325278e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $762 $457 $763 $764 forward $184 $-1 #
+coedge $-1 -1 $-1 $765 $766 $457 $617 reversed $767 $-1 #
+edge $-1 -1 $-1 $620 8.7189524349090672e-018 $768 1.4148272371957895 $457 $769 forward @7 unknown #
+coedge $-1 -1 $-1 $458 $755 $765 $770 forward $619 $-1 #
+loop $-1 -1 $-1 $-1 $458 $771 #
+vertex $-1 -1 $-1 $617 $772 #
+straight-curve $-1 -1 $-1 14.827868852458892 0.47540983606554926 0.50000000000000311 0 1.0864289525102446 11.950718477612442 F 1.2564358726002758e-018 F 0.92044675143228227 #
+point $-1 -1 $-1 14.827868852458892 0.47540983606554943 0.50000000000000311 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $773 $462 $309 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $465 $38 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $774 $466 $63 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $775 $467 $108 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $776 $468 $193 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $777 $469 $318 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+coedge $-1 -1 $-1 $778 $472 $497 $651 reversed $319 $-1 #
+coedge $-1 -1 $-1 $472 $778 $473 $632 forward $319 $-1 #
+coedge $-1 -1 $-1 $474 $473 $779 $780 reversed $194 $-1 #
+edge $-1 -1 $-1 $781 8.9904054340500149e-018 $633 0.16666666666666666 $630 $782 forward @7 tangent #
+vertex $-1 -1 $-1 $476 $783 #
+straight-curve $-1 -1 $-1 10.827868852458941 0.98019995921795844 17.774959933598701 -11.999999999999998 0 0 F 0 F 0.75000000000000644 #
+coedge $-1 -1 $-1 $779 $481 $477 $636 forward $336 $-1 #
+edge $-1 -1 $-1 $483 1.570796326794895 $637 3.1415926535897838 $635 $784 forward @7 unknown #
+vertex $-1 -1 $-1 $478 $785 #
+straight-curve $-1 -1 $-1 1.82786885245889 -0.96328099579151483 17.302856367084459 0 11.660885730056835 2.8326213990854572 F 5.3942432604300127e-017 F 0.16666666666666674 #
+point $-1 -1 $-1 1.8278688524588647 0.98019995921795844 17.774959933598701 #
+straight-curve $-1 -1 $-1 -2.1721311475411098 -2.5734409516123034 23.931307051669954 0 2.8326213990854652 -11.660885730056831 F 3.0516431554132616e-015 F 0.23510124685470102 #
+point $-1 -1 $-1 -2.1721311475411098 -1.9074881288200032 21.189818277103402 #
+coedge $-1 -1 $-1 $488 $779 $778 $786 forward $336 $-1 #
+coedge $-1 -1 $-1 $497 $490 $488 $644 reversed $470 $-1 #
+edge $-1 -1 $-1 $787 2.4238431826788839e-015 $492 0.23510124685469827 $488 $788 forward @7 unknown #
+string_attrib-name_attrib-gen-attrib $-1 -1 $789 $-1 $489 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:171 #
+plane-surface $-1 -1 $-1 8.8278688524588897 -3.9897516511550282 29.761749916698335 0 -0.97174047750473613 -0.23605178325712217 -11.999999999999998 -0 -0 forward_v I I I I #
+straight-curve $-1 -1 $-1 14.827868852458888 -2.5734409516122958 23.931307051669922 0 11.660885730056831 2.8326213990854736 F 0 F 0.16666666666666674 #
+point $-1 -1 $-1 14.827868852458888 -2.5734409516122958 23.931307051669922 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $790 $494 $341 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+ellipse-curve $-1 -1 $-1 10.827868852458897 0.035992826189469085 21.661921843617645 0 0.97174047750473613 0.23605178325712217 -6.6613381477509385e-015 -0.94420713302848835 3.8869619100189445 1 F 1.5707963267948983 F 3.1415926535897838 #
+edge $-1 -1 $-1 $787 -1.7980810868100039e-017 $498 0.1666666666666666 $497 $791 forward @7 tangent #
+point $-1 -1 $-1 14.827868852458888 0.035992826189469411 21.661921843617645 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $792 $501 $216 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $503 $44 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $793 $504 $74 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $794 $505 $129 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $795 $506 $224 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $796 $507 $356 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+coedge $-1 -1 $-1 $797 $510 $535 $681 reversed $357 $-1 #
+coedge $-1 -1 $-1 $510 $797 $511 $662 forward $357 $-1 #
+coedge $-1 -1 $-1 $512 $511 $798 $799 reversed $225 $-1 #
+edge $-1 -1 $-1 $800 -2.5803283287134279e-017 $663 0.16666666666666699 $660 $801 forward @7 tangent #
+vertex $-1 -1 $-1 $514 $802 #
+straight-curve $-1 -1 $-1 8.8278688524589874 2.7694459516827519 11.175770172679968 -11.999999999999998 1.9184653865522422e-014 3.1974423109204036e-015 F 0 F 0.41666666666667262 #
+coedge $-1 -1 $-1 $798 $519 $515 $666 forward $374 $-1 #
+edge $-1 -1 $-1 $521 1.5707963267949021 $667 3.1415926535897962 $665 $803 forward @7 unknown #
+vertex $-1 -1 $-1 $516 $804 #
+straight-curve $-1 -1 $-1 3.8278688524589537 2.5951344661874498 13.168159568863464 0 1.0458689129718635 -11.954336377100949 F -6.4508208217835939e-017 F 0.16666666666666688 #
+point $-1 -1 $-1 3.8278688524589159 2.7694459516827599 11.17577017267997 #
+straight-curve $-1 -1 $-1 -2.1721311475410832 16.424683840895224 14.378088360822378 0 -11.954336377100949 -1.0458689129718586 F 1.4746643877746167e-015 F 0.65686466721807524 #
+point $-1 -1 $-1 -2.1721311475410832 8.5723026547378769 13.691094025349388 #
+coedge $-1 -1 $-1 $526 $798 $797 $805 forward $374 $-1 #
+coedge $-1 -1 $-1 $535 $528 $526 $674 reversed $508 $-1 #
+edge $-1 -1 $-1 $806 3.5778994555897825e-015 $530 0.65686466721807291 $526 $807 forward @7 unknown #
+string_attrib-name_attrib-gen-attrib $-1 -1 $808 $-1 $527 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:136 #
+plane-surface $-1 -1 $-1 11.827868852458911 19.41326793517047 14.639555589065345 0 -0.08715574274765496 0.99619469809174588 -11.999999999999998 -0 -0 forward_v I I I I #
+straight-curve $-1 -1 $-1 14.827868852458909 16.424683840895231 14.378088360822382 0 1.0458689129718641 -11.954336377100949 F 0 F 0.16666666666666688 #
+point $-1 -1 $-1 14.827868852458909 16.424683840895231 14.378088360822382 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $809 $532 $379 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+ellipse-curve $-1 -1 $-1 8.8278688524589217 8.7466141402332305 11.698704629165899 0 0.08715574274765496 -0.99619469809174588 -1.0658141036401501e-014 5.9771681885504755 0.52293445648593007 1 F 1.5707963267948997 F 3.1415926535897842 #
+edge $-1 -1 $-1 $806 1.2901641643567189e-017 $536 0.16666666666666688 $535 $810 forward @7 tangent #
+point $-1 -1 $-1 14.827868852458909 8.7466141402332234 11.698704629165899 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $811 $539 $247 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $541 $50 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $812 $542 $85 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $813 $543 $150 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $814 $544 $255 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $815 $545 $394 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $816 $-1 $546 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:111 #
+face $817 -1 $-1 $818 $819 $14 $-1 $820 forward single #
+loop $-1 -1 $-1 $-1 $821 $546 #
+cone-surface $-1 -1 $-1 -2.1721311475411094 -2.2788915766887361 26.999999999999975 -1 1.6983687945253444e-015 0 -1.6653345369377346e-015 -0.99999999999999967 -5.3290705182007506e-015 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $822 $823 $824 $825 reversed $547 $-1 #
+coedge $-1 -1 $-1 $826 $549 $823 $827 reversed $395 $-1 #
+coedge $-1 -1 $-1 $549 $826 $550 $699 forward $395 $-1 #
+coedge $-1 -1 $-1 $552 $824 $549 $697 forward $163 $-1 #
+edge $-1 -1 $-1 $828 8.05853924160628e-018 $700 1.0183100211843954 $696 $829 forward @7 unknown #
+coedge $-1 -1 $-1 $551 $550 $830 $831 reversed $256 $-1 #
+edge $-1 -1 $-1 $832 0 $700 0.041666666666666637 $695 $833 forward @7 unknown #
+vertex $-1 -1 $-1 $553 $834 #
+straight-curve $-1 -1 $-1 -2.6721311475410969 4.7972105737111042 13.500000000000053 1.3777778893916071e-014 7.7134513162384728 -9.1925333174277348 F 0 F 0.21756788155539278 #
+coedge $-1 -1 $-1 $830 $558 $554 $703 forward $412 $-1 #
+edge $-1 -1 $-1 $560 1.8503717077085944e-017 $704 0.91666666666666297 $702 $835 forward @7 unknown #
+vertex $-1 -1 $-1 $555 $836 #
+straight-curve $-1 -1 $-1 -2.1721311475410943 6.4754098360657633 11.499999999999934 -11.999999999999998 3.1974423109204515e-014 -3.1974423109204515e-014 F 0 F 0.041666666666666671 #
+point $-1 -1 $-1 -2.6721311475410943 6.4754098360657641 11.499999999999934 #
+straight-curve $-1 -1 $-1 -2.1721311475410925 7.475409836065781 0.49999999999998107 -1.9984014443252461e-014 -11.999999999999998 0 F 0 F 0.083333333333334828 #
+point $-1 -1 $-1 -2.1721311475410943 6.4754098360657633 0.49999999999998107 #
+coedge $-1 -1 $-1 $565 $837 $838 $839 forward $412 $-1 #
+coedge $-1 -1 $-1 $576 $567 $565 $711 reversed $577 $-1 #
+edge $-1 -1 $-1 $840 0 $569 0.083333333333333259 $565 $841 forward @7 unknown #
+string_attrib-name_attrib-gen-attrib $-1 -1 $842 $-1 $566 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:86 #
+plane-surface $-1 -1 $-1 -2.1721311475411063 -0.52459016393442093 0 1 -1.6983687945253444e-015 0 0 0 -11.999999999999998 forward_v I I I I #
+straight-curve $-1 -1 $-1 -2.1721311475411063 -0.52459016393442093 0.50000000000000311 -11.999999999999998 1.9984014443252821e-014 0 F 0 F 0.041666666666666671 #
+point $-1 -1 $-1 -2.1721311475411063 -0.52459016393442093 0.50000000000000311 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $843 $571 $417 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+coedge $-1 -1 $-1 $844 $573 $845 $846 forward $163 $-1 #
+coedge $-1 -1 $-1 $847 $848 $573 $719 reversed $849 $-1 #
+edge $-1 -1 $-1 $723 0 $850 1.4148272371958037 $573 $851 forward @7 unknown #
+coedge $-1 -1 $-1 $838 $574 $576 $725 reversed $722 $-1 #
+coedge $-1 -1 $-1 $574 $838 $847 $852 forward $722 $-1 #
+loop $-1 -1 $-1 $-1 $574 $853 #
+vertex $-1 -1 $-1 $719 $854 #
+straight-curve $-1 -1 $-1 -2.6721311475411045 0.47540983606557891 0.50000000000000311 1.8092676565443656e-015 1.0864289525102513 11.950718477612442 F 0 F 0.92044675143226851 #
+edge $-1 -1 $-1 $840 0 $578 0.041666666666666671 $576 $855 forward @7 unknown #
+face $856 -1 $-1 $417 $577 $14 $-1 $857 forward single #
+point $-1 -1 $-1 -2.6721311475411045 0.47540983606557891 0.50000000000000311 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $858 $581 $278 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $583 $56 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $859 $584 $96 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $860 $585 $171 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $861 $586 $286 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $862 $587 $432 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $863 $-1 $588 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:56 #
+face $864 -1 $-1 $865 $866 $15 $-1 $867 forward single #
+loop $-1 -1 $-1 $-1 $868 $588 #
+plane-surface $-1 -1 $-1 14.827868852458886 -1.3173676290479421 27.274721127897347 1.6012590380989686e-015 0.96152394764082216 0.27472112789738162 11.999999999999998 -1.998401444325278e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $869 $870 $871 $872 reversed $589 $-1 #
+coedge $-1 -1 $-1 $873 $591 $870 $874 reversed $433 $-1 #
+coedge $-1 -1 $-1 $591 $873 $592 $744 forward $433 $-1 #
+coedge $-1 -1 $-1 $594 $871 $591 $742 forward $184 $-1 #
+edge $-1 -1 $-1 $875 0 $745 0.21756788155538856 $741 $876 forward @7 unknown #
+coedge $-1 -1 $-1 $593 $592 $877 $878 reversed $287 $-1 #
+edge $-1 -1 $-1 $879 0 $745 0.041666666666666824 $740 $880 forward @7 unknown #
+vertex $-1 -1 $-1 $595 $881 #
+straight-curve $-1 -1 $-1 14.827868852458899 6.4754098360657348 11.499999999999954 0 0 -11.999999999999998 F 0 F 0.91666666666666463 #
+coedge $-1 -1 $-1 $877 $600 $596 $748 forward $450 $-1 #
+edge $-1 -1 $-1 $602 0 $749 0.083333333333334828 $747 $882 forward @7 unknown #
+vertex $-1 -1 $-1 $597 $883 #
+straight-curve $-1 -1 $-1 15.3278688524589 6.4754098360657339 0.49999999999998085 -11.999999999999998 3.1974423109204445e-014 0 F 0 F 0.041666666666666824 #
+point $-1 -1 $-1 14.827868852458899 6.4754098360657348 0.49999999999998085 #
+straight-curve $-1 -1 $-1 15.327868852458902 7.4754098360657517 2.5812685322534886e-014 0 0 11.999999999999998 F 0 F 0.041666666666662945 #
+point $-1 -1 $-1 15.327868852458902 7.4754098360657517 0.49999999999998107 #
+coedge $-1 -1 $-1 $607 $884 $885 $886 forward $450 $-1 #
+coedge $-1 -1 $-1 $618 $609 $607 $756 reversed $619 $-1 #
+edge $-1 -1 $-1 $887 -3.3504956602674023e-018 $611 0.92044675143228227 $607 $888 forward @7 unknown #
+string_attrib-name_attrib-gen-attrib $-1 -1 $889 $-1 $608 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:31 #
+plane-surface $-1 -1 $-1 15.32786885245889 -0.52459016393445124 0.50000000000000311 1 -1.6983687945253472e-015 0 -2.0380425534304162e-014 -11.999999999999998 0 forward_v I I I I #
+straight-curve $-1 -1 $-1 15.327868852458892 0.47540983606554843 0.50000000000000311 -11.999999999999998 1.998401444325278e-014 0 F 0 F 0.041666666666666671 #
+point $-1 -1 $-1 15.327868852458892 0.47540983606554843 0.50000000000000311 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $890 $613 $455 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+coedge $-1 -1 $-1 $891 $615 $892 $893 forward $184 $-1 #
+coedge $-1 -1 $-1 $894 $895 $615 $764 reversed $896 $-1 #
+edge $-1 -1 $-1 $768 0 $897 0.020474882270469345 $615 $898 forward @7 unknown #
+coedge $-1 -1 $-1 $885 $616 $618 $770 reversed $767 $-1 #
+coedge $-1 -1 $-1 $616 $885 $894 $899 forward $767 $-1 #
+loop $-1 -1 $-1 $-1 $616 $900 #
+vertex $-1 -1 $-1 $764 $901 #
+straight-curve $-1 -1 $-1 14.827868852458892 1.4754098360655816 11.500000000000126 -3.7665874518807359e-015 -2.8272003074580629 11.662201268264452 F 8.7189524349090672e-018 F 1.4148272371957895 #
+edge $-1 -1 $-1 $887 6.1629758220391449e-032 $620 0.041666666666666671 $618 $902 forward @7 unknown #
+face $903 -1 $-1 $455 $619 $15 $-1 $904 forward single #
+point $-1 -1 $-1 14.827868852458892 1.4754098360655812 11.500000000000126 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $905 $623 $309 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $625 $63 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $906 $626 $108 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $907 $627 $193 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $908 $628 $318 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+coedge $-1 -1 $-1 $630 $629 $642 $786 reversed $319 $-1 #
+coedge $-1 -1 $-1 $642 $635 $631 $780 forward $336 $-1 #
+edge $-1 -1 $-1 $637 0 $781 0.75000000000000644 $779 $909 forward @7 unknown #
+vertex $-1 -1 $-1 $632 $910 #
+straight-curve $-1 -1 $-1 10.827868852458941 -0.96328099579151427 17.302856367084459 0 11.660885730056831 2.8326213990854745 F 8.9904054340500149e-018 F 0.16666666666666666 #
+point $-1 -1 $-1 10.827868852458941 0.98019995921795844 17.774959933598701 #
+ellipse-curve $-1 -1 $-1 1.8278688524588966 -1.9074881288200027 21.189818277103402 0 -0.97174047750473613 -0.23605178325712217 -6.6613381477509385e-015 -0.94420713302848835 3.8869619100189445 1 F 1.570796326794895 F 3.1415926535897838 #
+point $-1 -1 $-1 1.8278688524588647 -0.96328099579151416 17.302856367084459 #
+edge $-1 -1 $-1 $781 -3.1415926535897838 $787 -1.570796326794891 $642 $911 forward @7 unknown #
+vertex $-1 -1 $-1 $651 $912 #
+straight-curve $-1 -1 $-1 14.827868852458888 -1.9074881288200032 21.189818277103402 0 -2.8326213990854656 11.660885730056831 F 2.4238431826788839e-015 F 0.23510124685469827 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $913 $645 $489 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $914 $649 $341 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+straight-curve $-1 -1 $-1 14.827868852458888 -1.9074881288200092 21.189818277103431 0 11.660885730056833 2.8326213990854598 F -1.7980810868100039e-017 F 0.1666666666666666 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $915 $653 $216 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $655 $74 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $916 $656 $129 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $917 $657 $224 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $918 $658 $356 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+coedge $-1 -1 $-1 $660 $659 $672 $805 reversed $357 $-1 #
+coedge $-1 -1 $-1 $672 $665 $661 $799 forward $374 $-1 #
+edge $-1 -1 $-1 $667 3.1086244689504399e-015 $800 0.41666666666667262 $798 $919 forward @7 unknown #
+vertex $-1 -1 $-1 $662 $920 #
+straight-curve $-1 -1 $-1 8.8278688524589892 2.5951344661874445 13.168159568863464 0 1.0458689129718595 -11.954336377100949 F -2.5803283287134279e-017 F 0.16666666666666699 #
+point $-1 -1 $-1 8.8278688524589874 2.7694459516827519 11.175770172679968 #
+ellipse-curve $-1 -1 $-1 3.8278688524589253 8.5723026547379195 13.691094025349393 0 -0.08715574274765496 0.99619469809174588 -9.3258734068513134e-015 5.9771681885504755 0.52293445648593007 1 F 1.5707963267949021 F 3.1415926535897962 #
+point $-1 -1 $-1 3.8278688524589533 2.5951344661874409 13.168159568863464 #
+edge $-1 -1 $-1 $800 -3.1415926535897842 $806 -1.5707963267948921 $672 $921 forward @7 unknown #
+vertex $-1 -1 $-1 $681 $922 #
+straight-curve $-1 -1 $-1 14.827868852458909 8.5723026547379142 13.691094025349392 0 11.954336377100947 1.0458689129718624 F 3.5778994555897825e-015 F 0.65686466721807291 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $923 $675 $527 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $924 $679 $379 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+straight-curve $-1 -1 $-1 14.827868852458909 8.5723026547379551 13.691094025349397 0 1.0458689129718635 -11.954336377100949 F 1.2901641643567189e-017 F 0.16666666666666688 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $925 $683 $247 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $685 $85 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $926 $686 $150 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $927 $687 $255 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $928 $688 $394 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $929 $689 $546 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $930 $-1 $690 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:109 #
+face $931 -1 $-1 $853 $849 $14 $-1 $932 forward single #
+loop $-1 -1 $-1 $-1 $845 $690 #
+plane-surface $-1 -1 $-1 -2.6721311475411094 -2.5245901639343713 27.999999999999964 2.8896170004800052e-029 2.1689463411008663e-014 1 11.999999999999998 -1.5987211554602257e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $933 $934 $844 $935 reversed $691 $-1 #
+coedge $-1 -1 $-1 $936 $693 $934 $937 reversed $547 $-1 #
+coedge $-1 -1 $-1 $693 $936 $694 $827 forward $547 $-1 #
+coedge $-1 -1 $-1 $696 $844 $693 $825 forward $163 $-1 #
+edge $-1 -1 $-1 $938 1.0166724051420574e-017 $828 0.24047946099043785 $824 $939 forward @7 unknown #
+coedge $-1 -1 $-1 $695 $694 $940 $941 reversed $395 $-1 #
+edge $-1 -1 $-1 $942 7.7037197775489478e-032 $828 0.041666666666666671 $823 $943 forward @7 unknown #
+vertex $-1 -1 $-1 $697 $944 #
+straight-curve $-1 -1 $-1 -2.6721311475411063 -0.52459016393465707 24.500000000000515 8.8311087118677697e-015 5.2261105428933918 -10.802211282578142 F 8.05853924160628e-018 F 1.0183100211843954 #
+coedge $-1 -1 $-1 $940 $702 $698 $831 forward $412 $-1 #
+edge $-1 -1 $-1 $704 0 $832 0.21756788155539272 $830 $945 forward @7 unknown #
+vertex $-1 -1 $-1 $699 $946 #
+straight-curve $-1 -1 $-1 -2.1721311475410974 4.7972105737111033 13.500000000000053 -11.999999999999998 1.5987211554602257e-014 0 F 0 F 0.041666666666666637 #
+point $-1 -1 $-1 -2.6721311475410969 4.7972105737111042 13.500000000000053 #
+straight-curve $-1 -1 $-1 -2.1721311475410943 6.4754098360657633 0.49999999999998085 0 0 11.999999999999998 F 1.8503717077085944e-017 F 0.91666666666666297 #
+point $-1 -1 $-1 -2.1721311475410943 6.4754098360657633 11.499999999999934 #
+coedge $-1 -1 $-1 $709 $947 $948 $949 forward $412 $-1 #
+coedge $-1 -1 $-1 $721 $720 $709 $839 reversed $722 $-1 #
+edge $-1 -1 $-1 $950 -0 $840 0.92044675143226851 $709 $951 forward @7 unknown #
+vertex $-1 -1 $-1 $725 $952 #
+straight-curve $-1 -1 $-1 -2.1721311475411045 0.47540983606557807 0.50000000000000311 -1.9984014443252834e-014 -11.999999999999998 0 F 0 F 0.083333333333333259 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $953 $712 $566 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $954 $716 $417 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+coedge $-1 -1 $-1 $824 $717 $821 $935 forward $163 $-1 #
+coedge $-1 -1 $-1 $955 $956 $717 $846 reversed $819 $-1 #
+edge $-1 -1 $-1 $850 3.7007434154171889e-017 $957 0.020474882270469716 $717 $958 forward @7 unknown #
+coedge $-1 -1 $-1 $948 $718 $721 $852 reversed $849 $-1 #
+coedge $-1 -1 $-1 $718 $948 $955 $959 forward $849 $-1 #
+loop $-1 -1 $-1 $-1 $718 $818 #
+vertex $-1 -1 $-1 $846 $960 #
+straight-curve $-1 -1 $-1 -2.6721311475411027 1.4754098360656018 11.499999999999961 -4.7082343148508733e-015 -2.8272003074580314 11.662201268264459 F 0 F 1.4148272371958037 #
+edge $-1 -1 $-1 $950 -3.081487911019579e-032 $723 0.041666666666666637 $721 $961 forward @7 unknown #
+face $962 -1 $-1 $726 $722 $14 $-1 $963 forward single #
+point $-1 -1 $-1 -2.6721311475411027 1.4754098360656018 11.499999999999961 #
+straight-curve $-1 -1 $-1 -2.1721311475411045 0.47540983606557807 0.50000000000000311 -11.999999999999998 1.9984014443252821e-014 0 F 0 F 0.041666666666666671 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $964 $-1 $726 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:103 #
+plane-surface $-1 -1 $-1 -2.6721311475411063 -0.52459016393442004 0.50000000000000311 0 0 1 11.999999999999998 -1.9984014443252821e-014 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $965 $728 $278 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $730 $96 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $966 $731 $171 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $967 $732 $286 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $968 $733 $432 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $969 $734 $588 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $970 $-1 $735 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:54 #
+face $971 -1 $-1 $900 $896 $15 $-1 $972 forward single #
+loop $-1 -1 $-1 $-1 $892 $735 #
+cone-surface $-1 -1 $-1 15.327868852458886 -2.2788915766887654 26.999999999999975 -1 1.6983687945253472e-015 0 -2.6645352591003753e-015 -0.99999999999999967 -5.3290705182007506e-015 1 I I 0 1 11.999999999999998 forward I I I I #
+coedge $-1 -1 $-1 $973 $974 $891 $975 reversed $736 $-1 #
+coedge $-1 -1 $-1 $976 $738 $974 $977 reversed $589 $-1 #
+coedge $-1 -1 $-1 $738 $976 $739 $874 forward $589 $-1 #
+coedge $-1 -1 $-1 $741 $891 $738 $872 forward $184 $-1 #
+edge $-1 -1 $-1 $978 2.0146348104015717e-017 $875 1.0183100211843399 $871 $979 forward @7 unknown #
+coedge $-1 -1 $-1 $740 $739 $980 $981 reversed $433 $-1 #
+edge $-1 -1 $-1 $982 9.8607613152626311e-032 $875 0.041666666666666671 $870 $983 forward @7 unknown #
+vertex $-1 -1 $-1 $742 $984 #
+straight-curve $-1 -1 $-1 14.827868852458897 4.7972105737111042 13.500000000000032 1.2246914572370071e-014 7.7134513162384843 -9.1925333174277242 F 0 F 0.21756788155538856 #
+coedge $-1 -1 $-1 $980 $747 $743 $878 forward $450 $-1 #
+edge $-1 -1 $-1 $749 1.8503717077085944e-017 $879 0.91666666666666463 $877 $985 forward @7 unknown #
+vertex $-1 -1 $-1 $744 $986 #
+straight-curve $-1 -1 $-1 15.3278688524589 6.4754098360657339 11.499999999999954 -11.999999999999998 3.1974423109204445e-014 0 F 0 F 0.041666666666666824 #
+point $-1 -1 $-1 14.827868852458899 6.4754098360657348 11.499999999999954 #
+straight-curve $-1 -1 $-1 15.327868852458902 7.4754098360657517 0.49999999999998107 -3.1974423109203934e-014 -11.999999999999998 0 F 0 F 0.083333333333334828 #
+point $-1 -1 $-1 15.3278688524589 6.4754098360657339 0.49999999999998107 #
+coedge $-1 -1 $-1 $754 $987 $988 $989 forward $450 $-1 #
+coedge $-1 -1 $-1 $766 $765 $754 $886 reversed $767 $-1 #
+edge $-1 -1 $-1 $990 0 $887 1.4148272371957895 $754 $991 forward @7 unknown #
+vertex $-1 -1 $-1 $770 $992 #
+straight-curve $-1 -1 $-1 15.327868852458892 1.4754098360655803 11.500000000000126 0 -1.0864289525102446 -11.950718477612442 F -3.3504956602674023e-018 F 0.92044675143228227 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $993 $757 $608 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $994 $761 $455 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+coedge $-1 -1 $-1 $871 $762 $868 $975 forward $184 $-1 #
+coedge $-1 -1 $-1 $995 $996 $762 $893 reversed $866 $-1 #
+edge $-1 -1 $-1 $897 1.5707963267949023 $997 2.8632929945846932 $762 $998 forward @7 unknown #
+coedge $-1 -1 $-1 $988 $763 $766 $899 reversed $896 $-1 #
+coedge $-1 -1 $-1 $763 $988 $995 $999 forward $896 $-1 #
+loop $-1 -1 $-1 $-1 $763 $865 #
+vertex $-1 -1 $-1 $893 $1000 #
+straight-curve $-1 -1 $-1 14.827868852458886 -2.5245901639343962 27.999999999999954 0 11.999999999999998 2.6027356093210853e-013 F 0 F 0.020474882270469345 #
+edge $-1 -1 $-1 $990 -4.9303806576313156e-032 $768 0.041666666666666671 $766 $1001 forward @7 unknown #
+face $1002 -1 $-1 $771 $767 $15 $-1 $1003 forward single #
+point $-1 -1 $-1 14.827868852458886 -2.5245901639343962 27.999999999999954 #
+straight-curve $-1 -1 $-1 15.327868852458892 1.4754098360655803 11.500000000000128 -11.999999999999998 1.998401444325278e-014 0 F 6.1629758220391449e-032 F 0.041666666666666671 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $1004 $-1 $771 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:48 #
+plane-surface $-1 -1 $-1 14.827868852458892 0.47540983606554926 0.50000000000000311 -1.6584953518323264e-015 -0.99589320646770374 0.09053574604252039 11.999999999999998 -1.998401444325278e-014 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1005 $773 $309 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $775 $108 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1006 $776 $193 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1007 $777 $318 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+straight-curve $-1 -1 $-1 1.8278688524588647 -0.96328099579151416 17.302856367084459 11.999999999999998 0 0 F 0 F 0.75000000000000644 #
+point $-1 -1 $-1 10.827868852458941 -0.96328099579151416 17.302856367084459 #
+ellipse-curve $-1 -1 $-1 10.827868852458897 -1.9074881288200027 21.189818277103402 0 -0.97174047750473613 -0.23605178325712217 -6.6613381477509385e-015 -0.94420713302848835 3.8869619100189445 1 F -3.1415926535897838 F -1.570796326794891 #
+point $-1 -1 $-1 14.827868852458888 -1.9074881288200094 21.189818277103431 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1008 $789 $489 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1009 $790 $341 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1010 $792 $216 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $794 $129 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1011 $795 $224 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1012 $796 $356 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+straight-curve $-1 -1 $-1 3.8278688524589159 2.5951344661874489 13.168159568863464 11.999999999999998 -1.9184653865522422e-014 0 F 3.1086244689504399e-015 F 0.41666666666667262 #
+point $-1 -1 $-1 8.8278688524589874 2.5951344661874409 13.168159568863464 #
+ellipse-curve $-1 -1 $-1 8.8278688524589217 8.5723026547379195 13.691094025349393 0 -0.08715574274765496 0.99619469809174588 -1.0658141036401501e-014 5.9771681885504755 0.52293445648593007 1 F -3.1415926535897842 F -1.5707963267948921 #
+point $-1 -1 $-1 14.827868852458909 8.5723026547379568 13.691094025349397 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1013 $808 $527 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947222 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1014 $809 $379 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1015 $811 $247 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $813 $150 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1016 $814 $255 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1017 $815 $394 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1018 $816 $546 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1019 $817 $690 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $1020 $-1 $818 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:107 #
+plane-surface $-1 -1 $-1 -2.6721311475411027 1.4754098360656018 11.499999999999961 -1.6184555457299887e-015 -0.97185010568870511 -0.23560002562150265 11.999999999999998 -1.9984014443252821e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $1021 $821 $956 $1022 reversed $691 $-1 #
+coedge $-1 -1 $-1 $821 $1021 $822 $937 forward $691 $-1 #
+edge $-1 -1 $-1 $957 1.5707963267949023 $938 2.8632929945847376 $844 $1023 forward @7 unknown #
+coedge $-1 -1 $-1 $823 $822 $1024 $1025 reversed $547 $-1 #
+edge $-1 -1 $-1 $1026 -3.081487911019579e-032 $938 0.041666666666666671 $934 $1027 forward @7 tangent #
+vertex $-1 -1 $-1 $825 $1028 #
+straight-curve $-1 -1 $-1 -2.6721311475411076 -1.3173676290479006 27.274721127897305 5.5400474704289307e-015 3.2966535347680566 -11.538287371690014 F 1.0166724051420574e-017 F 0.24047946099043785 #
+coedge $-1 -1 $-1 $1024 $830 $826 $941 forward $412 $-1 #
+edge $-1 -1 $-1 $832 3.223415696642512e-017 $942 1.0183100211843954 $940 $1029 forward @7 unknown #
+vertex $-1 -1 $-1 $827 $1030 #
+straight-curve $-1 -1 $-1 -2.1721311475411063 -0.5245901639346584 24.500000000000515 -11.999999999999998 1.9984014443252821e-014 0 F 7.7037197775489478e-032 F 0.041666666666666671 #
+point $-1 -1 $-1 -2.6721311475411063 -0.52459016393465685 24.500000000000515 #
+straight-curve $-1 -1 $-1 -2.1721311475410943 6.4754098360657633 11.499999999999934 -1.3777778893916073e-014 -7.713451316238471 9.1925333174277366 F 0 F 0.21756788155539272 #
+point $-1 -1 $-1 -2.1721311475410974 4.7972105737111033 13.500000000000053 #
+coedge $-1 -1 $-1 $837 $1031 $1032 $1033 forward $412 $-1 #
+coedge $-1 -1 $-1 $848 $847 $837 $949 reversed $849 $-1 #
+edge $-1 -1 $-1 $1034 0 $950 1.4148272371958037 $837 $1035 forward @7 unknown #
+vertex $-1 -1 $-1 $852 $1036 #
+straight-curve $-1 -1 $-1 -2.1721311475411031 1.4754098360656009 11.499999999999961 -1.8092676565443656e-015 -1.0864289525102513 -11.950718477612442 F -0 F 0.92044675143226851 #
+point $-1 -1 $-1 -2.1721311475411045 0.47540983606557807 0.50000000000000311 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1037 $842 $566 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1038 $843 $417 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+coedge $-1 -1 $-1 $1032 $845 $848 $959 reversed $819 $-1 #
+coedge $-1 -1 $-1 $845 $1032 $933 $1022 forward $819 $-1 #
+vertex $-1 -1 $-1 $935 $1039 #
+straight-curve $-1 -1 $-1 -2.6721311475411094 -2.5245901639343713 27.999999999999964 1.6267097558256496e-014 11.999999999999998 -2.6027356093210394e-013 F 3.7007434154171889e-017 F 0.020474882270469716 #
+edge $-1 -1 $-1 $1034 0 $850 0.041666666666666637 $848 $1040 forward @7 unknown #
+point $-1 -1 $-1 -2.6721311475411094 -2.5245901639343709 27.999999999999964 #
+straight-curve $-1 -1 $-1 -2.1721311475411031 1.4754098360656012 11.499999999999963 -11.999999999999998 1.9984014443252821e-014 0 F -3.081487911019579e-032 F 0.041666666666666637 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $1041 $-1 $853 keep keep_kept ignore copy @14 REVIT BREP TAG @106 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:105 #
+plane-surface $-1 -1 $-1 -2.6721311475411045 0.47540983606557891 0.50000000000000311 -1.6584953518323295e-015 -0.99589320646770363 0.090535746042520945 11.999999999999998 -1.9984014443252821e-014 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1042 $856 $726 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1043 $858 $278 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $860 $171 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1044 $861 $286 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1045 $862 $432 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1046 $863 $588 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1047 $864 $735 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $1048 $-1 $865 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:52 #
+plane-surface $-1 -1 $-1 14.827868852458886 -2.5245901639343962 27.999999999999954 -4.3344255007200759e-029 -2.1689463411009048e-014 1 11.999999999999998 -2.3980817331903334e-014 0 forward_v I I I I #
+coedge $-1 -1 $-1 $1049 $868 $996 $1050 reversed $736 $-1 #
+coedge $-1 -1 $-1 $868 $1049 $869 $977 forward $736 $-1 #
+edge $-1 -1 $-1 $997 5.0833620257110919e-018 $978 0.24047946099049844 $891 $1051 forward @7 unknown #
+coedge $-1 -1 $-1 $870 $869 $1052 $1053 reversed $589 $-1 #
+edge $-1 -1 $-1 $1054 -4.6222318665293589e-032 $978 0.041666666666666824 $974 $1055 forward @7 unknown #
+vertex $-1 -1 $-1 $872 $1056 #
+straight-curve $-1 -1 $-1 14.827868852458888 -0.52459016393437263 24.499999999999893 7.8498744105495551e-015 5.2261105428933972 -10.80221128257814 F 2.0146348104015717e-017 F 1.0183100211843399 #
+coedge $-1 -1 $-1 $1052 $877 $873 $981 forward $450 $-1 #
+edge $-1 -1 $-1 $879 0 $982 0.21756788155538856 $980 $1057 forward @7 unknown #
+vertex $-1 -1 $-1 $874 $1058 #
+straight-curve $-1 -1 $-1 15.327868852458897 4.7972105737111024 13.500000000000032 -11.999999999999998 1.5987211554602223e-014 0 F 9.8607613152626311e-032 F 0.041666666666666671 #
+point $-1 -1 $-1 14.827868852458897 4.7972105737111042 13.500000000000032 #
+straight-curve $-1 -1 $-1 15.3278688524589 6.4754098360657339 0.49999999999998085 0 0 11.999999999999998 F 1.8503717077085944e-017 F 0.91666666666666463 #
+point $-1 -1 $-1 15.3278688524589 6.4754098360657339 11.499999999999954 #
+coedge $-1 -1 $-1 $884 $1059 $1060 $1061 forward $450 $-1 #
+coedge $-1 -1 $-1 $895 $894 $884 $989 reversed $896 $-1 #
+edge $-1 -1 $-1 $1062 -1.9264113336533707e-029 $990 0.020474882270469345 $884 $1063 forward @7 unknown #
+vertex $-1 -1 $-1 $899 $1064 #
+straight-curve $-1 -1 $-1 15.327868852458886 -2.5245901639343975 27.999999999999954 3.7665874518807359e-015 2.8272003074580629 -11.662201268264452 F 0 F 1.4148272371957895 #
+point $-1 -1 $-1 15.327868852458892 1.4754098360655807 11.500000000000126 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1065 $889 $608 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1066 $890 $455 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+coedge $-1 -1 $-1 $1060 $892 $895 $999 reversed $866 $-1 #
+coedge $-1 -1 $-1 $892 $1060 $973 $1050 forward $866 $-1 #
+vertex $-1 -1 $-1 $975 $1067 #
+ellipse-curve $-1 -1 $-1 14.827868852458884 -2.2788915766887645 26.999999999999975 -1 1.6983687945253472e-015 0 -2.6645352591003753e-015 -0.99999999999999967 -5.3290705182007506e-015 1 F 1.5707963267949023 F 2.8632929945846932 #
+edge $-1 -1 $-1 $1062 0 $897 0.041666666666666671 $895 $1068 forward @7 tangent #
+point $-1 -1 $-1 14.827868852458886 -2.2788915766887641 27.999999999999961 #
+straight-curve $-1 -1 $-1 15.327868852458886 -2.5245901639343971 27.999999999999954 -11.999999999999998 1.5987211554602223e-014 0 F -4.9303806576313156e-032 F 0.041666666666666671 #
+string_attrib-name_attrib-gen-attrib $-1 -1 $1069 $-1 $900 keep keep_kept ignore copy @14 REVIT BREP TAG @105 114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7642:0:INSTANCE:114c7ccf-1e06-476b-8a91-bb31e78b768c-000e7633:50 #
+plane-surface $-1 -1 $-1 14.827868852458892 1.4754098360655816 11.500000000000126 -1.6184555457299844e-015 -0.97185010568870445 -0.23560002562150528 11.999999999999998 -1.998401444325278e-014 0 forward_v I I I I #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1070 $903 $771 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1071 $905 $309 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $907 $193 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1072 $908 $318 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1073 $913 $489 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1074 $914 $341 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $915 $216 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $917 $224 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1075 $918 $356 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1076 $923 $527 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1077 $924 $379 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $925 $247 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $927 $255 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1078 $928 $394 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1079 $929 $546 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1080 $930 $690 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1081 $931 $818 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+coedge $-1 -1 $-1 $934 $933 $1031 $1082 reversed $691 $-1 #
+edge $-1 -1 $-1 $1083 0 $957 0.041666666666666637 $956 $1084 forward @7 tangent #
+ellipse-curve $-1 -1 $-1 -2.6721311475411094 -2.2788915766887352 26.999999999999975 -1 1.6983687945253444e-015 0 -1.6653345369377346e-015 -0.99999999999999967 -5.3290705182007506e-015 1 F 1.5707963267949023 F 2.8632929945847376 #
+coedge $-1 -1 $-1 $1031 $940 $936 $1025 forward $412 $-1 #
+edge $-1 -1 $-1 $942 2.5416810128551434e-018 $1026 0.24047946099043785 $1024 $1085 forward @7 unknown #
+vertex $-1 -1 $-1 $937 $1086 #
+straight-curve $-1 -1 $-1 -2.1721311475411076 -1.3173676290479013 27.274721127897305 -11.999999999999998 1.9984014443252821e-014 0 F -3.081487911019579e-032 F 0.041666666666666671 #
+point $-1 -1 $-1 -2.6721311475411076 -1.3173676290479002 27.274721127897305 #
+straight-curve $-1 -1 $-1 -2.1721311475410974 4.7972105737111042 13.500000000000053 -8.8311087118677697e-015 -5.2261105428933918 10.802211282578142 F 3.223415696642512e-017 F 1.0183100211843954 #
+point $-1 -1 $-1 -2.1721311475411063 -0.52459016393465785 24.500000000000515 #
+coedge $-1 -1 $-1 $947 $1024 $1021 $1082 forward $412 $-1 #
+coedge $-1 -1 $-1 $956 $955 $947 $1033 reversed $819 $-1 #
+edge $-1 -1 $-1 $1083 1.9264113336533393e-029 $1034 0.020474882270469678 $947 $1087 forward @7 unknown #
+vertex $-1 -1 $-1 $959 $1088 #
+straight-curve $-1 -1 $-1 -2.1721311475411098 -2.5245901639343722 27.999999999999964 4.7082343148508733e-015 2.8272003074580314 -11.662201268264459 F 0 F 1.4148272371958037 #
+point $-1 -1 $-1 -2.1721311475411031 1.4754098360656009 11.499999999999961 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1089 $953 $566 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1090 $954 $417 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+point $-1 -1 $-1 -2.6721311475411089 -2.2788915766887348 27.999999999999961 #
+straight-curve $-1 -1 $-1 -2.1721311475411098 -2.5245901639343722 27.999999999999964 -11.999999999999998 1.5987211554602257e-014 0 F 0 F 0.041666666666666637 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1091 $962 $853 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1092 $964 $726 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $965 $278 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $967 $286 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1093 $968 $432 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1094 $969 $588 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1095 $970 $735 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1096 $971 $865 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+coedge $-1 -1 $-1 $974 $973 $1059 $1097 reversed $736 $-1 #
+edge $-1 -1 $-1 $1098 0 $997 0.041666666666666671 $996 $1099 forward @7 tangent #
+straight-curve $-1 -1 $-1 14.827868852458886 -1.3173676290479421 27.274721127897347 1.1080094940855059e-014 3.2966535347685797 -11.538287371689865 F 5.0833620257110919e-018 F 0.24047946099049844 #
+coedge $-1 -1 $-1 $1059 $980 $976 $1053 forward $450 $-1 #
+edge $-1 -1 $-1 $982 0 $1054 1.0183100211843399 $1052 $1100 forward @7 unknown #
+vertex $-1 -1 $-1 $977 $1101 #
+straight-curve $-1 -1 $-1 15.32786885245889 -0.52459016393437308 24.499999999999893 -11.999999999999998 1.998401444325278e-014 0 F -4.6222318665293589e-032 F 0.041666666666666824 #
+point $-1 -1 $-1 14.827868852458888 -0.52459016393437208 24.499999999999893 #
+straight-curve $-1 -1 $-1 15.3278688524589 6.4754098360657339 11.499999999999954 -1.2246914572370074e-014 -7.7134513162384817 9.1925333174277259 F 0 F 0.21756788155538856 #
+point $-1 -1 $-1 15.327868852458897 4.7972105737111033 13.500000000000032 #
+coedge $-1 -1 $-1 $987 $1052 $1049 $1097 forward $450 $-1 #
+coedge $-1 -1 $-1 $996 $995 $987 $1061 reversed $866 $-1 #
+edge $-1 -1 $-1 $1098 -2.8632929945846932 $1062 -1.5707963267949019 $987 $1102 forward @7 unknown #
+vertex $-1 -1 $-1 $999 $1103 #
+straight-curve $-1 -1 $-1 15.327868852458886 -2.2788915766887654 27.999999999999961 0 -11.999999999999998 -2.6027356093210853e-013 F -1.9264113336533707e-029 F 0.020474882270469345 #
+point $-1 -1 $-1 15.327868852458886 -2.5245901639343975 27.999999999999954 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1104 $993 $608 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1105 $994 $455 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+point $-1 -1 $-1 14.827868852458886 -1.3173676290479419 27.274721127897347 #
+straight-curve $-1 -1 $-1 15.327868852458886 -2.2788915766887654 27.999999999999961 -11.999999999999998 1.5987211554602223e-014 0 F 0 F 0.041666666666666671 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1106 $1002 $900 keep keep_kept ignore copy @25 REVIT MATERIAL OVERRIDDEN 0 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1107 $1004 $771 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1005 $309 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1007 $318 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1108 $1008 $489 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1009 $341 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1012 $356 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1109 $1013 $527 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1014 $379 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1017 $394 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1110 $1018 $546 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1111 $1019 $690 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1112 $1020 $818 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+edge $-1 -1 $-1 $1026 -2.8632929945847376 $1083 -1.5707963267949019 $1031 $1113 forward @7 unknown #
+vertex $-1 -1 $-1 $1022 $1114 #
+straight-curve $-1 -1 $-1 -2.1721311475411094 -2.2788915766887361 27.999999999999961 -11.999999999999998 1.5987211554602257e-014 0 F 0 F 0.041666666666666637 #
+straight-curve $-1 -1 $-1 -2.1721311475411063 -0.52459016393465774 24.500000000000515 -5.5400474704289307e-015 -3.2966535347680566 11.538287371690014 F 2.5416810128551434e-018 F 0.24047946099043785 #
+point $-1 -1 $-1 -2.1721311475411076 -1.3173676290479015 27.274721127897305 #
+straight-curve $-1 -1 $-1 -2.1721311475411094 -2.2788915766887361 27.999999999999961 -1.6267097558256518e-014 -11.999999999999998 2.6027356093210429e-013 F 1.9264113336533393e-029 F 0.020474882270469678 #
+point $-1 -1 $-1 -2.1721311475411098 -2.5245901639343722 27.999999999999964 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1115 $1037 $566 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1038 $417 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1116 $1041 $853 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1117 $1042 $726 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1045 $432 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1118 $1046 $588 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1119 $1047 $735 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1120 $1048 $865 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+edge $-1 -1 $-1 $1054 1.0166724051422184e-017 $1098 0.24047946099049844 $1059 $1121 forward @7 unknown #
+vertex $-1 -1 $-1 $1050 $1122 #
+straight-curve $-1 -1 $-1 15.327868852458886 -1.3173676290479428 27.274721127897347 -11.999999999999998 1.998401444325278e-014 0 F 0 F 0.041666666666666671 #
+straight-curve $-1 -1 $-1 15.327868852458897 4.7972105737111033 13.500000000000032 -7.8498744105495551e-015 -5.2261105428933972 10.80221128257814 F 0 F 1.0183100211843399 #
+point $-1 -1 $-1 15.32786885245889 -0.52459016393437341 24.499999999999893 #
+ellipse-curve $-1 -1 $-1 15.327868852458886 -2.2788915766887654 26.999999999999975 1 -1.6983687945253472e-015 0 -2.6645352591003753e-015 -0.99999999999999967 -5.3290705182007506e-015 1 F -2.8632929945846932 F -1.5707963267949019 #
+point $-1 -1 $-1 15.327868852458886 -2.2788915766887654 27.999999999999972 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1123 $1065 $608 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1066 $455 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1124 $1069 $900 keep keep_kept ignore copy @17 REVIT MATERIAL ID 947223 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1125 $1070 $771 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1073 $489 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1076 $527 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1079 $546 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1126 $1080 $690 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1127 $1081 $818 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+ellipse-curve $-1 -1 $-1 -2.1721311475411094 -2.2788915766887361 26.999999999999975 1 -1.6983687945253444e-015 0 -1.6653345369377346e-015 -0.99999999999999967 -5.3290705182007506e-015 1 F -2.8632929945847376 F -1.5707963267949019 #
+point $-1 -1 $-1 -2.1721311475411094 -2.2788915766887361 27.999999999999972 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1089 $566 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1128 $1091 $853 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1129 $1092 $726 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1094 $588 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1130 $1095 $735 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1131 $1096 $865 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+straight-curve $-1 -1 $-1 15.32786885245889 -0.52459016393437297 24.499999999999893 -1.1080094940855059e-014 -3.2966535347685797 11.538287371689865 F 1.0166724051422184e-017 F 0.24047946099049844 #
+point $-1 -1 $-1 15.327868852458886 -1.3173676290479428 27.274721127897347 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1104 $608 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1132 $1106 $900 keep keep_kept ignore copy @20 REVIT SUBCATEGORY ID -1 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1133 $1107 $771 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1111 $690 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1134 $1112 $818 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1135 $1116 $853 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1117 $726 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1119 $735 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1136 $1120 $865 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $1137 $1124 $900 keep keep_kept ignore copy @17 REVIT CATEGORY ID -2000080 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1125 $771 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1127 $818 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1128 $853 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1131 $865 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+integer_attrib-name_attrib-gen-attrib $-1 -1 $-1 $1132 $900 keep keep_kept ignore copy @16 REVIT ELEMENT ID 947778 #
+End-of-ACIS-data 
