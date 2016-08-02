@@ -1,10 +1,10 @@
-<Workspace Version="0.8.0.950" X="212.367573575548" Y="-205.573731840847" zoom="1.51051845643135" Name="Element.Room" ID="9fbd2e61-8a81-42d2-8f52-87757782b093" Description="This node takes the input of all elements of category and reports back the associated room per element. Currently tested with casework, furniture and plumbing fixtures." Category="Rhythm.Revit.Elements.Element.Query">
+<Workspace Version="1.0.0.1180" X="212.367573575548" Y="-205.573731840847" zoom="1.51051845643135" Name="Element.Room" Description="This node takes the input of all elements of category and reports back the associated room per element. Currently tested with casework, furniture and plumbing fixtures." ID="9fbd2e61-8a81-42d2-8f52-87757782b093" Category="Rhythm.Revit.Elements.Element.Query">
   <NamespaceResolutionMap />
   <Elements>
-    <Dynamo.Nodes.Output guid="a0b99e7e-7d88-42fb-90dc-3f5ad9cd900d" type="Dynamo.Nodes.Output" nickname="Output" x="652" y="390.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <Symbol value="Room(s)" />
-    </Dynamo.Nodes.Output>
-    <DSIronPythonNode.PythonNode guid="14507a9f-e991-4c81-b81b-1acdd46bbc5e" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="491" y="390.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a0b99e7e-7d88-42fb-90dc-3f5ad9cd900d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="652" y="390.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="room" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="14507a9f-e991-4c81-b81b-1acdd46bbc5e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="491" y="390.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
       <Script>import clr
 # Import RevitAPI
 clr.AddReference("RevitAPI")
@@ -50,14 +50,21 @@ TransactionManager.Instance.TransactionTaskDone()
 
 #Assign your output to the OUT variable
 OUT = Room</Script>
-    </DSIronPythonNode.PythonNode>
-    <Dynamo.Nodes.Symbol guid="b3174f3f-7fc1-42fc-a154-f13e263dc762" type="Dynamo.Nodes.Symbol" nickname="Input" x="325" y="390.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <Symbol value="Element(s)" />
-    </Dynamo.Nodes.Symbol>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b3174f3f-7fc1-42fc-a154-f13e263dc762" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="64.1624059127103" y="401.092389607606" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="8bd890ce-08e5-4d93-9957-011f5f18d63f" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="197" y="421" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
   </Elements>
   <Connectors>
-    <Dynamo.Models.ConnectorModel start="14507a9f-e991-4c81-b81b-1acdd46bbc5e" start_index="0" end="a0b99e7e-7d88-42fb-90dc-3f5ad9cd900d" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="b3174f3f-7fc1-42fc-a154-f13e263dc762" start_index="0" end="14507a9f-e991-4c81-b81b-1acdd46bbc5e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="14507a9f-e991-4c81-b81b-1acdd46bbc5e" start_index="0" end="a0b99e7e-7d88-42fb-90dc-3f5ad9cd900d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b3174f3f-7fc1-42fc-a154-f13e263dc762" start_index="0" end="8bd890ce-08e5-4d93-9957-011f5f18d63f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8bd890ce-08e5-4d93-9957-011f5f18d63f" start_index="0" end="14507a9f-e991-4c81-b81b-1acdd46bbc5e" end_index="0" portType="0" />
   </Connectors>
   <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>

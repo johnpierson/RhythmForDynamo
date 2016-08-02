@@ -1,0 +1,51 @@
+<Workspace Version="1.0.0.1180" X="-789.106684543736" Y="-237.514135529158" zoom="1.33823125" Name="Gmail.ComposeEmail" Description="This node will compose a new email. Useful for notifications regarding a graph concluding. Uses pythons built-in SMTP Library." ID="48593edc-5dc4-4cc3-a1dc-7db787192d84" Category="Rhythm.Core.Email">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="b299e896-d664-4954-97e9-30287c81ee15" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1412.69304032383" y="400.298699127716" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="4">
+      <Script>#created for Dynamo by john pierson
+#based on http://naelshiab.com/tutorial-send-email-python/
+import clr
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+# Import smtplib for the actual sending function
+import smtplib
+username = IN[0]
+password = IN[1]
+
+recipient = IN[3]
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(username, password)
+ 
+msg = IN[2]
+server.sendmail(username, recipient, msg)
+server.quit()</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5dba4b86-ee36-401b-a3d7-952a8bd5e461" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="830.834478345951" y="403.340790315575" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//provide Gmail username with @gmail.com extension&#xD;&#xA;username : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="69c51f97-af04-405f-b727-7c6c16c43825" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="578.455094770606" y="482.363668857051" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//purely to send the email with the python SMTP library. I don't want your info, python does (to login).&#xD;&#xA;password : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="abeb3ecc-f120-4db0-b1d4-386281a7479a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="930.412202333294" y="583.99034959702" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="message : string= &quot;placeholder message&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ad18ab69-1e4c-4254-b37a-8aeb34781517" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="862.219188574471" y="716.440637595333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="recipient : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5dba4b86-ee36-401b-a3d7-952a8bd5e461" start_index="0" end="b299e896-d664-4954-97e9-30287c81ee15" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="69c51f97-af04-405f-b727-7c6c16c43825" start_index="0" end="b299e896-d664-4954-97e9-30287c81ee15" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="abeb3ecc-f120-4db0-b1d4-386281a7479a" start_index="0" end="b299e896-d664-4954-97e9-30287c81ee15" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ad18ab69-1e4c-4254-b37a-8aeb34781517" start_index="0" end="b299e896-d664-4954-97e9-30287c81ee15" end_index="3" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

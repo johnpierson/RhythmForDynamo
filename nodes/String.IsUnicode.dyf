@@ -1,0 +1,71 @@
+<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="String.IsUnicode" Description="Determines if input string is a unicode character." ID="b300a85e-7fe8-4a94-ac9c-22acb4772953" Category="Rhythm.Core.String">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="b89b4b0f-99a7-4b4d-a085-dac06ebbf034" type="PythonNodeModels.PythonNode" nickname="Python Script" x="838.939788143116" y="447.822904664402" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#Created by DPS Design, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+items = UnwrapElement(IN[0])
+TransactionManager.Instance.EnsureInTransaction(doc)
+#apply lineweight override to elements in an input list
+typelist = list()
+for i in items:
+	try:
+		typelist.append(i.isunicode())
+	except:
+		typelist.append(list())
+
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="53d51f27-25f5-4853-9cd8-bf3731d4d7d1" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="559" y="463" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="dda001e5-51a9-4c76-8fb3-9e83008511ef" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="394" y="455" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8eaea398-4d0f-4782-bea6-c714949ac7d4" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1052" y="454" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="mask" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b89b4b0f-99a7-4b4d-a085-dac06ebbf034" start_index="0" end="8eaea398-4d0f-4782-bea6-c714949ac7d4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="53d51f27-25f5-4853-9cd8-bf3731d4d7d1" start_index="0" end="b89b4b0f-99a7-4b4d-a085-dac06ebbf034" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="dda001e5-51a9-4c76-8fb3-9e83008511ef" start_index="0" end="53d51f27-25f5-4853-9cd8-bf3731d4d7d1" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

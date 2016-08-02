@@ -1,0 +1,200 @@
+<Workspace Version="0.9.0.3067" X="-216.672036841197" Y="236.738548406068" zoom="1.130842140625" Name="Collector.TagTypes" Description="This node collects the tag types in the model." ID="0b5c3d7a-5e19-4a85-9bd5-516fed20dfc9" Category="Rhythm.Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="dbed218b-3a78-4211-bdc1-cd57c81c3851" type="Dynamo.Nodes.DSFunction" nickname="List.UniqueItems" x="1113.1713677658" y="314.689522164241" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <PythonNodeModels.PythonNode guid="eb27accb-99c7-4684-83d3-d9ec3a491dc4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="926.38664013917" y="315.217210566214" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#All credit for this python script goes to Andreas Dieckmann
+#Download his clockwork package
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+items = UnwrapElement(IN[0])
+typelist = list()
+for item in items:
+	try:
+		typelist.append(doc.GetElement(item.GetTypeId()))
+	except:
+		typelist.append(list())
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <DSRevitNodesUI.ElementsOfCategory guid="e28c01fa-4c6b-434a-9bb3-48340f6c05be" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="509" y="315.217210566214" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <DSRevitNodesUI.Categories guid="c4ce179f-9551-4733-a118-62fa95864eda" type="DSRevitNodesUI.Categories" nickname="Categories" x="250" y="315.217210566214" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="914:WallTags" />
+    <Dynamo.Nodes.DSFunction guid="cf9c6e28-a5fc-45b5-bdb3-0ffe91f3b7e5" type="Dynamo.Nodes.DSFunction" nickname="List.UniqueItems" x="1099.41257690185" y="194.046400324472" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <PythonNodeModels.PythonNode guid="3ced2aad-a77c-4477-aa8b-1793576eac85" type="PythonNodeModels.PythonNode" nickname="Python Script" x="912.627849275218" y="194.574088726446" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#All credit for this python script goes to Andreas Dieckmann
+#Download his clockwork package
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+items = UnwrapElement(IN[0])
+typelist = list()
+for item in items:
+	try:
+		typelist.append(doc.GetElement(item.GetTypeId()))
+	except:
+		typelist.append(list())
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <DSRevitNodesUI.Categories guid="d12aceb5-7d70-4833-b9c4-772aad154654" type="DSRevitNodesUI.Categories" nickname="Categories" x="236.241209136048" y="194.574088726446" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="926:WindowTags" />
+    <DSRevitNodesUI.ElementsOfCategory guid="605ae289-220c-4440-a7b2-59eafc66910d" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="495.241209136048" y="194.574088726446" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <PythonNodeModels.PythonNode guid="395abe63-3003-4397-918e-d407a3a9ac8f" type="PythonNodeModels.PythonNode" nickname="Python Script" x="931.954822114649" y="70.2145590127416" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#All credit for this python script goes to Andreas Dieckmann
+#Download his clockwork package
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+items = UnwrapElement(IN[0])
+typelist = list()
+for item in items:
+	try:
+		typelist.append(doc.GetElement(item.GetTypeId()))
+	except:
+		typelist.append(list())
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <DSRevitNodesUI.Categories guid="8316baae-fe06-4ad2-bbfe-b131b8ea9548" type="DSRevitNodesUI.Categories" nickname="Categories" x="255.568181975479" y="69.2145590127416" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="218:DoorTags" />
+    <Dynamo.Nodes.DSFunction guid="3a680f34-34d1-469e-975b-5bd781c6bee6" type="Dynamo.Nodes.DSFunction" nickname="List.UniqueItems" x="1118.73954974127" y="68.6868706107686" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <DSRevitNodesUI.ElementsOfCategory guid="09598b16-e797-4486-8323-db49930c3159" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="500.419434395948" y="69.2145590127416" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <DSRevitNodesUI.Categories guid="303665c4-194d-4454-a8d2-db1afdc310b9" type="DSRevitNodesUI.Categories" nickname="Categories" x="239.722034253764" y="-42.4723115980266" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="728:RoomTags" />
+    <Dynamo.Nodes.DSFunction guid="faa9ea57-abe5-4dde-848f-871b66d09535" type="Dynamo.Nodes.DSFunction" nickname="List.UniqueItems" x="1102.89340201956" y="-43" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <PythonNodeModels.PythonNode guid="3fae718a-b8a1-48f8-aea6-89c763bb4f0e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="916.108674392934" y="-42.4723115980266" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#All credit for this python script goes to Andreas Dieckmann
+#Download his clockwork package
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+items = UnwrapElement(IN[0])
+typelist = list()
+for item in items:
+	try:
+		typelist.append(doc.GetElement(item.GetTypeId()))
+	except:
+		typelist.append(list())
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <DSRevitNodesUI.ElementsOfCategory guid="61f6cd6a-0d10-4607-bd86-7f9bf57cd9e1" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="498.722034253764" y="-42.4723115980266" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.Output guid="6bf005cf-1710-4021-b144-55c84c784aba" type="Dynamo.Nodes.Output" nickname="Output" x="1282.5" y="-39.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Room Tag Types" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="ed22cdc8-35b7-478d-92cc-b7fad5ab2dbe" type="Dynamo.Nodes.Output" nickname="Output" x="1295.5" y="104" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Door Tag Types" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="ca57a0eb-d772-4875-96b5-f3f9dd72f180" type="Dynamo.Nodes.Output" nickname="Output" x="1279.5" y="221" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Window Tag Types" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="759c11ca-8b22-4cae-ab70-8a7782ea01d8" type="Dynamo.Nodes.Output" nickname="Output" x="1292" y="329" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Wall Tag Types" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="ac016a93-a0ee-4cb3-80b3-96af0b70d1fb" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="727" y="-46" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="93676d3e-7f00-4d02-9ae6-cdc80b266e40" />
+      <Name value="Rhythm.Toggle" />
+      <Description value="Toggle that offers two outputs. Created for Dynamo 0.8.1 because of changes to the &quot;IF&quot; node" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="boolean" />
+      </Inputs>
+      <Outputs>
+        <Output value="in" />
+        <Output value="out" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="3422ce7b-1ac9-4b8f-9f3b-3df883d5ea4d" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="734" y="90" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="93676d3e-7f00-4d02-9ae6-cdc80b266e40" />
+      <Name value="Rhythm.Toggle" />
+      <Description value="Toggle that offers two outputs. Created for Dynamo 0.8.1 because of changes to the &quot;IF&quot; node" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="boolean" />
+      </Inputs>
+      <Outputs>
+        <Output value="in" />
+        <Output value="out" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="78393a63-54bd-4561-b8e7-7c07e1d5536c" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="732" y="200" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="93676d3e-7f00-4d02-9ae6-cdc80b266e40" />
+      <Name value="Rhythm.Toggle" />
+      <Description value="Toggle that offers two outputs. Created for Dynamo 0.8.1 because of changes to the &quot;IF&quot; node" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="boolean" />
+      </Inputs>
+      <Outputs>
+        <Output value="in" />
+        <Output value="out" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="36d4a745-95d5-4b82-87bf-ec7fe5b77f44" type="Dynamo.Nodes.Function" nickname="Rhythm.Toggle" x="750" y="316" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="93676d3e-7f00-4d02-9ae6-cdc80b266e40" />
+      <Name value="Rhythm.Toggle" />
+      <Description value="Toggle that offers two outputs. Created for Dynamo 0.8.1 because of changes to the &quot;IF&quot; node" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="boolean" />
+      </Inputs>
+      <Outputs>
+        <Output value="in" />
+        <Output value="out" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Symbol guid="c5ec612a-9991-48ff-bd4c-35ddaebd38c2" type="Dynamo.Nodes.Symbol" nickname="Input" x="247" y="456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="RunMe : bool = false" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="dbed218b-3a78-4211-bdc1-cd57c81c3851" start_index="0" end="759c11ca-8b22-4cae-ab70-8a7782ea01d8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="eb27accb-99c7-4684-83d3-d9ec3a491dc4" start_index="0" end="dbed218b-3a78-4211-bdc1-cd57c81c3851" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e28c01fa-4c6b-434a-9bb3-48340f6c05be" start_index="0" end="36d4a745-95d5-4b82-87bf-ec7fe5b77f44" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c4ce179f-9551-4733-a118-62fa95864eda" start_index="0" end="e28c01fa-4c6b-434a-9bb3-48340f6c05be" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cf9c6e28-a5fc-45b5-bdb3-0ffe91f3b7e5" start_index="0" end="ca57a0eb-d772-4875-96b5-f3f9dd72f180" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3ced2aad-a77c-4477-aa8b-1793576eac85" start_index="0" end="cf9c6e28-a5fc-45b5-bdb3-0ffe91f3b7e5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d12aceb5-7d70-4833-b9c4-772aad154654" start_index="0" end="605ae289-220c-4440-a7b2-59eafc66910d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="605ae289-220c-4440-a7b2-59eafc66910d" start_index="0" end="78393a63-54bd-4561-b8e7-7c07e1d5536c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="395abe63-3003-4397-918e-d407a3a9ac8f" start_index="0" end="3a680f34-34d1-469e-975b-5bd781c6bee6" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8316baae-fe06-4ad2-bbfe-b131b8ea9548" start_index="0" end="09598b16-e797-4486-8323-db49930c3159" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3a680f34-34d1-469e-975b-5bd781c6bee6" start_index="0" end="ed22cdc8-35b7-478d-92cc-b7fad5ab2dbe" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="09598b16-e797-4486-8323-db49930c3159" start_index="0" end="3422ce7b-1ac9-4b8f-9f3b-3df883d5ea4d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="303665c4-194d-4454-a8d2-db1afdc310b9" start_index="0" end="61f6cd6a-0d10-4607-bd86-7f9bf57cd9e1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="faa9ea57-abe5-4dde-848f-871b66d09535" start_index="0" end="6bf005cf-1710-4021-b144-55c84c784aba" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3fae718a-b8a1-48f8-aea6-89c763bb4f0e" start_index="0" end="faa9ea57-abe5-4dde-848f-871b66d09535" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="61f6cd6a-0d10-4607-bd86-7f9bf57cd9e1" start_index="0" end="ac016a93-a0ee-4cb3-80b3-96af0b70d1fb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ac016a93-a0ee-4cb3-80b3-96af0b70d1fb" start_index="0" end="3fae718a-b8a1-48f8-aea6-89c763bb4f0e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3422ce7b-1ac9-4b8f-9f3b-3df883d5ea4d" start_index="0" end="395abe63-3003-4397-918e-d407a3a9ac8f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="78393a63-54bd-4561-b8e7-7c07e1d5536c" start_index="0" end="3ced2aad-a77c-4477-aa8b-1793576eac85" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="36d4a745-95d5-4b82-87bf-ec7fe5b77f44" start_index="0" end="eb27accb-99c7-4684-83d3-d9ec3a491dc4" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c5ec612a-9991-48ff-bd4c-35ddaebd38c2" start_index="0" end="36d4a745-95d5-4b82-87bf-ec7fe5b77f44" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c5ec612a-9991-48ff-bd4c-35ddaebd38c2" start_index="0" end="78393a63-54bd-4561-b8e7-7c07e1d5536c" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c5ec612a-9991-48ff-bd4c-35ddaebd38c2" start_index="0" end="3422ce7b-1ac9-4b8f-9f3b-3df883d5ea4d" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c5ec612a-9991-48ff-bd4c-35ddaebd38c2" start_index="0" end="ac016a93-a0ee-4cb3-80b3-96af0b70d1fb" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

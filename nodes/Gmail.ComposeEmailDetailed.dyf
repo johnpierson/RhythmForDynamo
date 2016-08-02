@@ -1,0 +1,68 @@
+<Workspace Version="1.0.0.1180" X="-241.760343847717" Y="-361.029704712491" zoom="1.30764135636719" Name="Gmail.ComposeEmailDetailed" Description="This will compose a detailed email with subject and message." ID="c82f3f56-c159-4875-b623-e89149a1f458" Category="Rhythm.Core.Email">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="c59d0cfb-9628-48f0-8586-c1da46d9cba0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1176.00923068721" y="379.530255581589" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="5">
+      <Script>#created for Dynamo by john pierson
+#based on http://naelshiab.com/tutorial-send-email-python/
+import clr
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+# Import smtplib for the actual sending function
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+ 
+username = IN[0]
+recipient = IN[1]
+subject = IN[2]
+message = IN[3]
+password = IN[4]
+ 
+fromaddr = username
+toaddr = recipient
+msg = MIMEMultipart()
+msg['From'] = fromaddr
+msg['To'] = toaddr
+msg['Subject'] = subject
+ 
+body = message
+msg.attach(MIMEText(body, 'plain'))
+ 
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(fromaddr, password)
+text = msg.as_string()
+server.sendmail(fromaddr, toaddr, text)
+server.quit()</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="42b14249-d7f2-42cd-8889-98a6e5c0a2e9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="497.379383575345" y="352.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//provide Gmail username with @gmail.com extension&#xD;&#xA;username : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="795c1235-5628-4d09-bf00-549994ef563b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="245" y="431.522878541476" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//purely to send the email with the python SMTP library. I don't want your info, python does (to login).&#xD;&#xA;password : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="98033fea-0548-488e-8583-0424e3d64c41" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="596.957107562688" y="533.149559281445" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="message : string= &quot;placeholder message&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b643bda5-adbc-4e5f-b0ce-c510d8837e68" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="601.545521634165" y="641.742025639725" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="subject : string= &quot;placeholder subject&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="689ecc9e-7cfc-4ce3-bcee-0fec717189e8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="590.839222134052" y="736.569249783576" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="recipient : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="42b14249-d7f2-42cd-8889-98a6e5c0a2e9" start_index="0" end="c59d0cfb-9628-48f0-8586-c1da46d9cba0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="795c1235-5628-4d09-bf00-549994ef563b" start_index="0" end="c59d0cfb-9628-48f0-8586-c1da46d9cba0" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="98033fea-0548-488e-8583-0424e3d64c41" start_index="0" end="c59d0cfb-9628-48f0-8586-c1da46d9cba0" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b643bda5-adbc-4e5f-b0ce-c510d8837e68" start_index="0" end="c59d0cfb-9628-48f0-8586-c1da46d9cba0" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="689ecc9e-7cfc-4ce3-bcee-0fec717189e8" start_index="0" end="c59d0cfb-9628-48f0-8586-c1da46d9cba0" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

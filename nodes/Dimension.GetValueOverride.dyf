@@ -1,0 +1,50 @@
+<Workspace Version="1.0.0.1180" X="-273.5375" Y="62.32" zoom="0.8425" Name="Dimension.GetValueOverride" Description="This will provide the value override of the dimension string. If it is not overriden, it will be empty." ID="7d60357a-1847-4368-a0eb-9ca56b3b28a9" Category="Rhythm.Revit.Elements.Dimension">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="0cc76653-fea4-4bf8-a36a-57424d2faa18" type="PythonNodeModels.PythonNode" nickname="Python Script" x="753" y="173" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+items = UnwrapElement(IN[0])
+elementlist = list()
+TransactionManager.Instance.EnsureInTransaction(doc)
+for item in items:
+	try:
+		elementlist.append(item.ValueOverride)
+	except:
+		elementlist.append(list())
+TransactionManager.Instance.TransactionTaskDone()
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e07c6cc2-2299-4743-921d-61de9897d563" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="892.269052936669" y="174.621122233874" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="valueOverride" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="505271f0-ca4b-4f83-b767-eed58ff55670" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="519" y="173" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="edfb5311-0807-4944-8aa6-bead55a399e1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="382" y="172" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dimension" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="0cc76653-fea4-4bf8-a36a-57424d2faa18" start_index="0" end="e07c6cc2-2299-4743-921d-61de9897d563" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="505271f0-ca4b-4f83-b767-eed58ff55670" start_index="0" end="0cc76653-fea4-4bf8-a36a-57424d2faa18" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="edfb5311-0807-4944-8aa6-bead55a399e1" start_index="0" end="505271f0-ca4b-4f83-b767-eed58ff55670" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="43.7433624267578" eyeY="2.85342073440552" eyeZ="26.7160778045654" lookX="4.31669282913208" lookY="-4.67641735076904" lookZ="-20.8640155792236" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

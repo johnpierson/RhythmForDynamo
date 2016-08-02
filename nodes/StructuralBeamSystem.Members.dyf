@@ -1,0 +1,44 @@
+<Workspace Version="1.0.0.1180" X="-940.701233362304" Y="-722.315630015625" zoom="1.545620359375" Name="StructuralBeamSystem.Members" Description="Thist will collect the members of the ebeam system." ID="d676fd2f-7f90-49f3-9464-fd3980757c95" Category="Rhythm.Revit.Elements.StructuralBeamSystem">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="2876cc1b-4056-401b-8553-a5ec08c2bed9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1066.23572692673" y="751.49911427485" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+groups = UnwrapElement(IN[0])
+elementlist = list()
+for item in groups:
+	try:
+		memberlist = list()
+		for member in item.GetBeamIds():
+			memberlist.append(item.Document.GetElement(member))
+		elementlist.append(memberlist)
+	except:
+		elementlist.append(list())
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2bb6d7cd-9530-4506-828b-7bad634acfc7" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="565.922432411543" y="750.064932170288" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="structuralBeamSystem" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e93bec45-155e-40f7-ae81-bce8b86068ff" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1245.90829933231" y="759.769773277625" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="members" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="26adbddf-6660-4e84-8c2c-9202387e3038" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="789.642269093752" y="749.890196991392" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="2876cc1b-4056-401b-8553-a5ec08c2bed9" start_index="0" end="e93bec45-155e-40f7-ae81-bce8b86068ff" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2bb6d7cd-9530-4506-828b-7bad634acfc7" start_index="0" end="26adbddf-6660-4e84-8c2c-9202387e3038" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="26adbddf-6660-4e84-8c2c-9202387e3038" start_index="0" end="2876cc1b-4056-401b-8553-a5ec08c2bed9" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-63.9034252261153" eyeY="15.1026954983225" eyeZ="-21.8041438082741" lookX="58.9034252261153" lookY="-4.10269549832249" lookZ="13.8041438082741" upX="-0.14391038436411" upY="0.989015863361921" upZ="-0.0337257066739376" />
+  </Cameras>
+</Workspace>

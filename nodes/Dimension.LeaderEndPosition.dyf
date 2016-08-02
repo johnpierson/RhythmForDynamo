@@ -1,0 +1,50 @@
+<Workspace Version="1.0.0.1180" X="-734.865" Y="-134.385" zoom="1.1575" Name="Dimension.LeaderEndPosition" Description="This will return the leader end postion as a point." ID="cd8e2f11-a88b-4b49-a748-ca0e89deb1ac" Category="Rhythm.Revit.Elements.Dimension">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="33bca27e-5a33-43b1-8fb8-17c416b3787c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="987.499999999999" y="319.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+items = UnwrapElement(IN[0])
+elementlist = list()
+TransactionManager.Instance.EnsureInTransaction(doc)
+for item in items:
+	try:
+		elementlist.append(item.LeaderEndPosition.ToPoint())
+	except:
+		elementlist.append(list())
+TransactionManager.Instance.TransactionTaskDone()
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6ef24005-e390-40d7-8dfb-ebd026cf09b8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1128.5" y="322.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="leaderEndPostion" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="baf51db3-dc0b-457e-9ca9-3be5a8cea75e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="753.5" y="319.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6485fa1c-0191-40ea-8577-a3088d8ba778" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="599.5" y="313.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dimension" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="33bca27e-5a33-43b1-8fb8-17c416b3787c" start_index="0" end="6ef24005-e390-40d7-8dfb-ebd026cf09b8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="baf51db3-dc0b-457e-9ca9-3be5a8cea75e" start_index="0" end="33bca27e-5a33-43b1-8fb8-17c416b3787c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6485fa1c-0191-40ea-8577-a3088d8ba778" start_index="0" end="baf51db3-dc0b-457e-9ca9-3be5a8cea75e" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

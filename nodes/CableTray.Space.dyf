@@ -1,0 +1,137 @@
+<Workspace Version="1.0.0.1180" X="-326.02587222209" Y="99.0647049563597" zoom="0.765829392851548" Name="CableTray.Space" Description="This node will determine the space a cable tray's center falls within." ID="566514b8-7c6f-48eb-a75a-0b75766383e6" Category="Rhythm.Revit.Elements.CableTray.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7c17dc4e-4bf3-4bfb-8a0d-86cbd5d5bc58" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="649.932595529647" y="437.624550499348" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="cableTray" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="37e8b379-e997-45f6-af5a-576bec28eef6" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2192" y="350" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="space" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="68ec31ab-70ae-49a1-bd61-2da37b1dc50c" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Output.Clean" x="1996.65216597777" y="346.419107310066" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="4176dc53-ab69-4804-beb4-e006bece065c" />
+      <Name value="Output.Clean" />
+      <Description value="This will return a single value or list from one input." />
+      <Inputs>
+        <Input value="input" />
+      </Inputs>
+      <Outputs>
+        <Output value="result" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="84ed3fe9-0ab5-44c9-a1ad-2d6660435fab" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FilterByBoolMask" x="1841.89948655682" y="346.419107310066" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="597f6062-fc38-4a4b-a926-e422f4af71ee" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="1703.19675603521" y="426.511060362122" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]" />
+    <PythonNodeModels.PythonNode guid="c827f023-e9ee-4b7f-9242-0548d50c3e1c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1568.04538380741" y="429.872226079923" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+rooms = UnwrapElement(IN[0])
+points = [x.ToXyz() for x in IN[1]]
+roomlist = list()
+for point in points:
+	booleans = list()
+	for room in rooms:
+		try:
+			if room.IsPointInSpace(point):
+				booleans.append(True)
+			else:
+				booleans.append(False)
+		except:
+			booleans.append(False)
+	roomlist.append(booleans)
+OUT = roomlist</Script>
+    </PythonNodeModels.PythonNode>
+    <DSRevitNodesUI.ElementsOfCategory guid="d6dcfd72-4585-4ca3-adda-550fd5c81656" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="1343.84022542001" y="346.419107310066" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2cedc576-7c08-4348-8779-29db7a3d2c07" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Curve.PointAtParameter" x="1352.0422666498" y="430.730468211135" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Curve.PointAtParameter@double">
+      <PortInfo index="1" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="7e733b8f-ee99-433a-942f-d4adb38225cd" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1201.16082556606" y="430.730468211135" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="line[2];&#xA;0.5;" ShouldFocus="false" />
+    <DSRevitNodesUI.Categories guid="2bf73ca3-463c-438a-8f45-45c348f6a31c" type="DSRevitNodesUI.Categories" nickname="Categories" x="1142.14361109679" y="346.419107310066" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="411:MEPSpaces" />
+    <PythonNodeModels.PythonNode guid="80a41065-3416-4a0d-baf1-8e8dd3478f7d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1045.8935293263" y="434.401316380481" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+items = UnwrapElement(IN[0])
+pointlist = list()
+curvepointlist = list()
+ispoint = list()
+iscurve = list()
+curves = list()
+haslocation = list()
+
+for item in items:
+	try:
+		# points and text notes
+		pointlist.append(item.Coord.ToPoint())
+		ispoint.append(True)
+		iscurve.append(False)
+		haslocation.append(True)
+	except:
+		try:
+			loc = item.Location
+			if loc.ToString() == 'Autodesk.Revit.DB.LocationCurve':
+				# line-based elements (e.g. walls)
+				curvepoints = (loc.Curve.GetEndPoint(0).ToPoint(),loc.Curve.GetEndPoint(1).ToPoint())
+				curvepointlist.append(curvepoints)
+				curves.append(loc.Curve.ToProtoType())
+				ispoint.append(False)
+				iscurve.append(True)
+				haslocation.append(True)
+			elif loc.ToString() == 'Autodesk.Revit.DB.LocationPoint':
+				# point-based elements
+				pointlist.append(loc.Point.ToPoint())
+				ispoint.append(True)
+				iscurve.append(False)
+				haslocation.append(True)
+			else:
+				ispoint.append(False)
+				iscurve.append(False)
+				haslocation.append(False)
+		except:
+			try:
+				# curves
+				curvepoints = (item.GetEndPoint(0).ToPoint(),item.GetEndPoint(1).ToPoint())
+				curvepointlist.append(curvepoints)
+				curves.append(item.ToProtoType())
+				ispoint.append(False)
+				iscurve.append(True)
+				haslocation.append(True)
+			except:
+				ispoint.append(False)
+				iscurve.append(False)
+				haslocation.append(False)
+OUT = (pointlist,curvepointlist,curves,ispoint,iscurve,haslocation)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="d946d48b-c106-48cd-b55e-4fc1417f5743" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="820.567041217932" y="435.65092143267" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="7c17dc4e-4bf3-4bfb-8a0d-86cbd5d5bc58" start_index="0" end="d946d48b-c106-48cd-b55e-4fc1417f5743" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="68ec31ab-70ae-49a1-bd61-2da37b1dc50c" start_index="0" end="37e8b379-e997-45f6-af5a-576bec28eef6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="84ed3fe9-0ab5-44c9-a1ad-2d6660435fab" start_index="0" end="68ec31ab-70ae-49a1-bd61-2da37b1dc50c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="597f6062-fc38-4a4b-a926-e422f4af71ee" start_index="0" end="84ed3fe9-0ab5-44c9-a1ad-2d6660435fab" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c827f023-e9ee-4b7f-9242-0548d50c3e1c" start_index="0" end="597f6062-fc38-4a4b-a926-e422f4af71ee" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d6dcfd72-4585-4ca3-adda-550fd5c81656" start_index="0" end="84ed3fe9-0ab5-44c9-a1ad-2d6660435fab" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d6dcfd72-4585-4ca3-adda-550fd5c81656" start_index="0" end="c827f023-e9ee-4b7f-9242-0548d50c3e1c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2cedc576-7c08-4348-8779-29db7a3d2c07" start_index="0" end="c827f023-e9ee-4b7f-9242-0548d50c3e1c" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7e733b8f-ee99-433a-942f-d4adb38225cd" start_index="0" end="2cedc576-7c08-4348-8779-29db7a3d2c07" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7e733b8f-ee99-433a-942f-d4adb38225cd" start_index="1" end="2cedc576-7c08-4348-8779-29db7a3d2c07" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2bf73ca3-463c-438a-8f45-45c348f6a31c" start_index="0" end="d6dcfd72-4585-4ca3-adda-550fd5c81656" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="80a41065-3416-4a0d-baf1-8e8dd3478f7d" start_index="0" end="7e733b8f-ee99-433a-942f-d4adb38225cd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d946d48b-c106-48cd-b55e-4fc1417f5743" start_index="0" end="80a41065-3416-4a0d-baf1-8e8dd3478f7d" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

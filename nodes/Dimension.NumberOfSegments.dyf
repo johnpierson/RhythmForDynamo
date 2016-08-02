@@ -1,0 +1,50 @@
+<Workspace Version="1.0.0.1180" X="-335" Y="-38" zoom="1" Name="Dimension.NumberOfSegments" Description="This will return the number of segments a dimension has. If it is a single dimension, this will return zero." ID="e5997136-949d-4da4-a022-bfefa6f40936" Category="Rhythm.Revit.Elements.Dimension">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="930ba3f3-9cad-4ef9-beab-55f00b13041a" type="PythonNodeModels.PythonNode" nickname="Python Script" x="970.5" y="314.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+items = UnwrapElement(IN[0])
+elementlist = list()
+TransactionManager.Instance.EnsureInTransaction(doc)
+for item in items:
+	try:
+		elementlist.append(item.NumberOfSegments)
+	except:
+		elementlist.append(list())
+TransactionManager.Instance.TransactionTaskDone()
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b69c6db0-5d14-4894-a563-c27d0828d53b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1109.76905293667" y="316.121122233874" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="numberOfSegments" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a433613a-0410-499c-84ec-c03cb18e4f98" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="736.5" y="314.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0d428a17-71ff-4503-ba0b-83abb0a63eed" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="599.5" y="313.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dimension" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="930ba3f3-9cad-4ef9-beab-55f00b13041a" start_index="0" end="b69c6db0-5d14-4894-a563-c27d0828d53b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a433613a-0410-499c-84ec-c03cb18e4f98" start_index="0" end="930ba3f3-9cad-4ef9-beab-55f00b13041a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0d428a17-71ff-4503-ba0b-83abb0a63eed" start_index="0" end="a433613a-0410-499c-84ec-c03cb18e4f98" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

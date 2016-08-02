@@ -1,0 +1,71 @@
+<Workspace Version="1.0.0.1180" X="-215.76215" Y="46.0365294411447" zoom="1.33823125" Name="SpaceTag.Host" Description="This obtains the MEP space associated with a given MEP space tag." ID="210f2671-dce1-407b-931c-4f4ec13d3cbf" Category="Rhythm.Revit.Elements.Annotation">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="57e296a9-26c9-489a-828b-9449822b1ed7" type="PythonNodeModels.PythonNode" nickname="Python Script" x="868" y="251.868034766039" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#Created by DPS Design, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+items = UnwrapElement(IN[0])
+TransactionManager.Instance.EnsureInTransaction(doc)
+#apply lineweight override to elements in an input list
+typelist = list()
+for i in items:
+	try:
+		typelist.append(i.Space)
+	except:
+		typelist.append(list())
+
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="879fbf4a-4c89-48b8-9fad-dba376f9ace0" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="632.483941022899" y="251.868034766039" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="9a3b2ec1-6aa8-4b3a-874f-7739722ff9e6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="492.263313982542" y="251.868034766039" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="SpaceTag" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c090d5f5-7e22-4898-8203-73376e89b48a" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1001.89122769327" y="251.868034766039" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="space" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="57e296a9-26c9-489a-828b-9449822b1ed7" start_index="0" end="c090d5f5-7e22-4898-8203-73376e89b48a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="879fbf4a-4c89-48b8-9fad-dba376f9ace0" start_index="0" end="57e296a9-26c9-489a-828b-9449822b1ed7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9a3b2ec1-6aa8-4b3a-874f-7739722ff9e6" start_index="0" end="879fbf4a-4c89-48b8-9fad-dba376f9ace0" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

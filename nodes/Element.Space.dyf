@@ -1,7 +1,7 @@
-<Workspace Version="0.9.0.3067" X="0" Y="0" zoom="1" Name="Element.Space" Description="This will retrieve the space in which an element is contained. (if available)" ID="931755f2-b24d-4250-87c7-38100c6991c9" Category="Rhythm.Revit.Elements.Element">
+<Workspace Version="1.0.0.1180" X="-122.10148125" Y="-156.861018588013" zoom="1.33823125" Name="Element.Space" Description="This will retrieve the space in which an element is contained. (if available)" ID="931755f2-b24d-4250-87c7-38100c6991c9" Category="Rhythm.Revit.Elements.Element.Query">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="03cc33cf-4f78-43fe-b1b8-dc95f357c4e6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="759" y="410.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+    <PythonNodeModels.PythonNode guid="03cc33cf-4f78-43fe-b1b8-dc95f357c4e6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="759" y="410.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
       <Script>import clr
 # Import RevitAPI
 clr.AddReference("RevitAPI")
@@ -48,18 +48,18 @@ TransactionManager.Instance.TransactionTaskDone()
 #Assign your output to the OUT variable
 OUT = Space</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Nodes.CodeBlockNodeModel guid="093a4377-7a4b-4070-a57c-c7e9d87d9c18" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="454" y="422.218333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="Flatten({item});" ShouldFocus="false" />
-    <Dynamo.Nodes.Symbol guid="7b7a8724-651c-40bf-9327-acd55d33d695" type="Dynamo.Nodes.Symbol" nickname="Input" x="328" y="454" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="093a4377-7a4b-4070-a57c-c7e9d87d9c18" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="454" y="422.218333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7b7a8724-651c-40bf-9327-acd55d33d695" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="328" y="454" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="element" />
-    </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.Output guid="15eb491d-15c9-437f-9668-65cf74bebb4b" type="Dynamo.Nodes.Output" nickname="Output" x="789" y="506" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="15eb491d-15c9-437f-9668-65cf74bebb4b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="789" y="506" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <Symbol value="space" />
-    </Dynamo.Nodes.Output>
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
-    <Dynamo.Models.ConnectorModel start="03cc33cf-4f78-43fe-b1b8-dc95f357c4e6" start_index="0" end="15eb491d-15c9-437f-9668-65cf74bebb4b" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="093a4377-7a4b-4070-a57c-c7e9d87d9c18" start_index="0" end="03cc33cf-4f78-43fe-b1b8-dc95f357c4e6" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="7b7a8724-651c-40bf-9327-acd55d33d695" start_index="0" end="093a4377-7a4b-4070-a57c-c7e9d87d9c18" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="03cc33cf-4f78-43fe-b1b8-dc95f357c4e6" start_index="0" end="15eb491d-15c9-437f-9668-65cf74bebb4b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="093a4377-7a4b-4070-a57c-c7e9d87d9c18" start_index="0" end="03cc33cf-4f78-43fe-b1b8-dc95f357c4e6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7b7a8724-651c-40bf-9327-acd55d33d695" start_index="0" end="093a4377-7a4b-4070-a57c-c7e9d87d9c18" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
