@@ -1,0 +1,115 @@
+<Workspace Version="1.1.0.2065" X="-1324.14044279645" Y="-1203.81926983382" zoom="1.78359936238281" Name="CurtainGrid.ByElement" Description="Gets the curtain grids by the host element. Seperates into U and V" ID="6da0684e-535d-4541-9579-d657f00e0df1" Category="Rhythm.Revit.Elements.CurtainGrid">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="5f1691ba-a965-4de8-a08a-fd169a8c7bad" type="PythonNodeModels.PythonNode" nickname="Python Script" x="693.220702035898" y="862.482951901847" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+items = UnwrapElement(IN[0])
+
+elementlist = list()
+unmatched = list()
+for item in items:
+	try: 
+		elementlist.append(doc.GetElement(item).ToDSType(True))
+	except:
+		unmatched.append(item)
+OUT = (elementlist, unmatched)</Script>
+    </PythonNodeModels.PythonNode>
+    <PythonNodeModels.PythonNode guid="c425f32d-faa6-4888-a495-144c327d155c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="697.57257870302" y="946.567593806348" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+items = UnwrapElement(IN[0])
+
+elementlist = list()
+unmatched = list()
+for item in items:
+	try: 
+		elementlist.append(doc.GetElement(item).ToDSType(True))
+	except:
+		unmatched.append(item)
+OUT = (elementlist, unmatched)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="7f7fbe1b-6844-44ab-bd61-37fedfa56d3a" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="561.990006463805" y="859.643111656053" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];" ShouldFocus="false" />
+    <PythonNodeModels.PythonNode guid="8ae06eda-3faa-4e66-aa40-4e7ec59e7349" type="PythonNodeModels.PythonNode" nickname="Python Script" x="419.538033112111" y="860.505767520843" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+import Autodesk
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+walls = UnwrapElement(IN[0])
+
+#apply lineweight override to elements in an input list
+curtainGrid = walls.CurtainGrid
+
+#Assign your output to the OUT variable
+OUT = (curtainGrid.GetUGridLineIds()), (curtainGrid.GetVGridLineIds())
+
+
+
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="872cfd91-5cf3-485d-a0f1-455a062cf3f1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="241.724936602617" y="859.957287596639" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="hostingElement" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="1f72b206-128d-4896-888e-53518b66dc85" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="839.853122112089" y="857.347383498379" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="seq[0];" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="93ed8370-c2a6-46f8-8495-bd8133e696af" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="855.444459406207" y="940.610466006484" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="seq[0];" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c57b4519-72a2-4011-b847-cd5cc8247d00" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1287.33656564337" y="896.409398487792" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="curtainGrid[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="812c3776-07f8-4a51-97af-5b82a5f5dbcf" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1039.64366732654" y="879.971922112552" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{u,v};" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5f1691ba-a965-4de8-a08a-fd169a8c7bad" start_index="0" end="1f72b206-128d-4896-888e-53518b66dc85" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c425f32d-faa6-4888-a495-144c327d155c" start_index="0" end="93ed8370-c2a6-46f8-8495-bd8133e696af" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7f7fbe1b-6844-44ab-bd61-37fedfa56d3a" start_index="0" end="5f1691ba-a965-4de8-a08a-fd169a8c7bad" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7f7fbe1b-6844-44ab-bd61-37fedfa56d3a" start_index="1" end="c425f32d-faa6-4888-a495-144c327d155c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8ae06eda-3faa-4e66-aa40-4e7ec59e7349" start_index="0" end="7f7fbe1b-6844-44ab-bd61-37fedfa56d3a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="872cfd91-5cf3-485d-a0f1-455a062cf3f1" start_index="0" end="8ae06eda-3faa-4e66-aa40-4e7ec59e7349" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1f72b206-128d-4896-888e-53518b66dc85" start_index="0" end="812c3776-07f8-4a51-97af-5b82a5f5dbcf" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="93ed8370-c2a6-46f8-8495-bd8133e696af" start_index="0" end="812c3776-07f8-4a51-97af-5b82a5f5dbcf" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="812c3776-07f8-4a51-97af-5b82a5f5dbcf" start_index="0" end="c57b4519-72a2-4011-b847-cd5cc8247d00" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-46.0059354955074" eyeY="125.122658237003" eyeZ="309.700600933091" lookX="110.619385406627" lookY="-110.134835751407" lookZ="-292.910059856027" upX="0.0430565941289089" upY="0.992546151641322" upZ="-0.114009940636859" />
+  </Cameras>
+</Workspace>

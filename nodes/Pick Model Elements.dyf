@@ -1,9 +1,11 @@
-<Workspace Version="0.9.2.4472" X="-1503.87397498437" Y="-517.414637006108" zoom="1.545620359375" Name="Pick Model Elements" Description="This node offers a pick method for selecting elements in Revit." ID="affdb898-d7fc-43f3-9a38-f018ef2c2273" Category="Rhythm.Revit.Selection">
+<Workspace Version="1.2.0.2690" X="-1503.87397498437" Y="-517.414637006108" zoom="1.545620359375" Name="Pick Model Elements" Description="This node offers a pick method for selecting elements in Revit." ID="affdb898-d7fc-43f3-9a38-f018ef2c2273" Category="Rhythm.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="44705858-2541-4945-af65-b8ebd2b582dc" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1321.47203992132" y="649.326456662094" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">
+    <PythonNodeModels.PythonNode guid="44705858-2541-4945-af65-b8ebd2b582dc" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1321.47203992132" y="649.326456662094" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
       <Script>#Sometimes a pick selection is better
 #Based on a node from Dimitar Venkov
+#adapted by john pierson for rhythm
 import clr
 
 clr.AddReference("RevitAPIUI")
@@ -34,10 +36,11 @@ for i in el_ref:
 
 OUT = typelist</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="19fdfb98-fabf-45ab-8daa-c939f56a3f8f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1467.46654177904" y="650.492619942368" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="19fdfb98-fabf-45ab-8daa-c939f56a3f8f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1467.46654177904" y="650.492619942368" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="element" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bfadd6bb-c392-4ca6-9897-c87316c80940" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1060.9810908854" y="639.755123920589" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bfadd6bb-c392-4ca6-9897-c87316c80940" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1060.9810908854" y="639.755123920589" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="//Use boolean to reset&#xD;&#xA;refresh:bool = true" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
   </Elements>

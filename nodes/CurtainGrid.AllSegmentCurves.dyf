@@ -1,0 +1,64 @@
+<Workspace Version="1.1.0.2065" X="-3436.99725244782" Y="-883.506916610496" zoom="1.21016545340189" Name="CurtainGrid.AllSegmentCurves" Description="This will return the vertical and horizontal curtain grid segments regardless if hidden or not. Groups by U and V." ID="8051ceab-2f1a-4cca-b9cb-29a3f23f2784" Category="Rhythm.Revit.Elements.CurtainGrid">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a13da433-bc9c-43e3-be52-310b0fc0f4a3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="2850.17796119474" y="979.747444455379" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="curtainGrid" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d25cbee4-01f5-4860-bff4-2408e70e4423" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="3959.41231653085" y="1001.63519224707" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="allSegmentCurves" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="ca291672-80b5-4583-ab9c-a346e3a5f03d" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="3078.17796119474" y="983.960777788713" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <PythonNodeModels.PythonNode guid="09662fd9-375b-4d29-9ce9-3a37e7d81cdb" type="PythonNodeModels.PythonNode" nickname="Python Script" x="3385.17796119474" y="979.747444455379" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+import Autodesk
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+items = UnwrapElement(IN[0])
+
+#apply API method to list
+typelist = list()
+for i in items:
+	try:
+		typelist.append(i.AllSegmentCurves.ToProtoType())
+	except:
+		typelist.append(list())
+
+
+#Assign your output to the OUT variable
+OUT = typelist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="32fcdce2-cb62-45cc-8319-1e148493a8c6" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="PolyCurve.Curves" x="3557.36254108564" y="982.102830046491" isVisible="false" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.PolyCurve.Curves" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c868625d-7241-4d9c-ad08-e1e7bcb4ce24" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Count" x="3055.77823433348" y="1143.23782150723" isVisible="true" isUpstreamVisible="true" lacing="Longest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Count@var[]..[]" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ed6166d5-195c-48ca-9f81-94ee54ce0d0f" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.Chop" x="3746.59286439082" y="1116.79515624188" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.Chop@var[]..[],int[]" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="a13da433-bc9c-43e3-be52-310b0fc0f4a3" start_index="0" end="ca291672-80b5-4583-ab9c-a346e3a5f03d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a13da433-bc9c-43e3-be52-310b0fc0f4a3" start_index="0" end="c868625d-7241-4d9c-ad08-e1e7bcb4ce24" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ca291672-80b5-4583-ab9c-a346e3a5f03d" start_index="0" end="09662fd9-375b-4d29-9ce9-3a37e7d81cdb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="09662fd9-375b-4d29-9ce9-3a37e7d81cdb" start_index="0" end="32fcdce2-cb62-45cc-8319-1e148493a8c6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="32fcdce2-cb62-45cc-8319-1e148493a8c6" start_index="0" end="ed6166d5-195c-48ca-9f81-94ee54ce0d0f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c868625d-7241-4d9c-ad08-e1e7bcb4ce24" start_index="0" end="ed6166d5-195c-48ca-9f81-94ee54ce0d0f" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ed6166d5-195c-48ca-9f81-94ee54ce0d0f" start_index="0" end="d25cbee4-01f5-4860-bff4-2408e70e4423" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-31.0782914596038" eyeY="188.103119196707" eyeZ="122.323791071316" lookX="72.9840197102908" lookY="-107.69885975429" lookZ="-136.175284756543" upX="0.180774769316409" upY="0.923879532511288" upZ="-0.337293777270387" />
+  </Cameras>
+</Workspace>

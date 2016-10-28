@@ -1,0 +1,66 @@
+<Workspace Version="1.1.0.2065" X="-4028.12903607073" Y="83.0382426514963" zoom="1.83541648937758" Name="CurtainGrid.RemoveSegmentsFunction" Description="Function to apply to remove segments node" ID="261ad8bd-9a81-4729-98ba-e9a0b91596bb" Category="Rhythm.Revit.Elements.CurtainGrid">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d33dfccd-3401-42d8-849b-1c3e91a08610" type="PythonNodeModels.PythonNode" nickname="Python Script" x="2523.28641841153" y="117.203456543717" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>#Created by DPS Design, dpsdesign.org
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#apply lineweight override to elements in an input list
+for i in elements:
+	i.RemoveSegment(IN[1])
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = IN[0]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="8ffba5ea-0d04-4752-9777-16d57c2563f2" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="2359.48486900178" y="113.505210633495" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="31407e27-60dc-4981-9732-68360d2e3ef5" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="2375.56545041108" y="175.405971959616" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="curve" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="8ffba5ea-0d04-4752-9777-16d57c2563f2" start_index="0" end="d33dfccd-3401-42d8-849b-1c3e91a08610" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="31407e27-60dc-4981-9732-68360d2e3ef5" start_index="0" end="d33dfccd-3401-42d8-849b-1c3e91a08610" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>
