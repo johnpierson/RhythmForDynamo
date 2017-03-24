@@ -1,0 +1,43 @@
+<Workspace Version="1.2.1.3083" X="-369.738661514579" Y="-191.672884705724" zoom="1.33823125" Name="UI.FilePath" Description="Provides a file path option for use with Dynamo Player." ID="61522a6e-3ead-4e83-93eb-06c4bcdf7f5b" Category="Rhythm.Revit.UI">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="70ef5c7a-21f8-4f32-90af-88dc2b9a90e3" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1214.37008864079" y="418.582593061822" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>##based off of code from http://onecore.net/ironpython-using-textbox-widget.htm
+##also made possible thanks to the awesome work of Dimitar Venkov, without his examples I wouldn't be able to do any of this.
+##built for Dynamo by john pierson
+import clr
+import sys
+import System
+clr.AddReference('System.Windows.Forms')
+clr.AddReference('System.Drawing')
+clr.AddReference('System')
+
+from System.Drawing import Point, Font
+from System.Windows.Forms import OpenFileDialog
+
+openDialog = OpenFileDialog()
+openDialog.Multiselect = True
+openDialog.Filter = "All files|*.*"
+openDialog.ShowDialog()
+OUT = openDialog.FileNames</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7a9dec53-2c77-43a9-8868-615cb58422f8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="821.219188574471" y="389.494099020629" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="refresh : bool =false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="201f4c8b-d027-4da1-8b0b-0ca36383278c" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1365.78686345471" y="411.493069456959" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="&gt;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="70ef5c7a-21f8-4f32-90af-88dc2b9a90e3" start_index="0" end="201f4c8b-d027-4da1-8b0b-0ca36383278c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7a9dec53-2c77-43a9-8868-615cb58422f8" start_index="0" end="70ef5c7a-21f8-4f32-90af-88dc2b9a90e3" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-41.6697474392299" eyeY="110.592791640682" eyeZ="123.183221685352" lookX="41.6697474392299" lookY="-110.592791640682" lookZ="-123.183221685352" upX="0.150436170398587" upY="0.882947592858927" upZ="-0.444716209396997" />
+  </Cameras>
+</Workspace>

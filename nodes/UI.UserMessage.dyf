@@ -1,8 +1,12 @@
-<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="UI.UserMessage" Description="This will display a user message once. Until it is either toggled or changed." ID="5ea06446-a2fc-4f4d-b762-6e1c6a0f4df9" Category="Rhythm.Revit.UI">
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="UI.UserMessage" Description="This will display a user message once. Until it is either toggled or changed." ID="5ea06446-a2fc-4f4d-b762-6e1c6a0f4df9" Category="Rhythm.Revit.UI">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="26378cf9-8015-4505-9ddd-3036b9fe0471" type="PythonNodeModels.PythonNode" nickname="Python Script" x="520.67718650076" y="343" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="2">
-      <Script>import clr
+    <PythonNodeModels.PythonNode guid="26378cf9-8015-4505-9ddd-3036b9fe0471" type="PythonNodeModels.PythonNode" nickname="Python Script" x="520.67718650076" y="343" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
+import clr
 import msvcrt
 
 clr.AddReference("RevitAPIUI")
@@ -25,13 +29,14 @@ TaskDialog.Show('User Text',IN[1],button)
 		
 OUT = IN[1]</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="8dee01c3-4303-47d0-a2fa-9dc36956e055" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="255" y="325" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="8dee01c3-4303-47d0-a2fa-9dc36956e055" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="255" y="325" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="refresh : bool = false" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2736f590-ea3a-495e-9748-142d32132f59" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="134" y="415" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2736f590-ea3a-495e-9748-142d32132f59" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="134" y="415" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="userMessage : string = &quot;no message&quot;" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a77a3994-84be-40db-87eb-92ecf6ca988d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="669" y="345" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a77a3994-84be-40db-87eb-92ecf6ca988d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="669" y="345" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="message" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
@@ -44,6 +49,6 @@ OUT = IN[1]</Script>
   <Annotations />
   <Presets />
   <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+    <Camera Name="Background Preview" eyeX="-41.6697474392299" eyeY="110.592791640682" eyeZ="123.183221685352" lookX="41.6697474392299" lookY="-110.592791640682" lookZ="-123.183221685352" upX="0.150436170398587" upY="0.882947592858927" upZ="-0.444716209396997" />
   </Cameras>
 </Workspace>

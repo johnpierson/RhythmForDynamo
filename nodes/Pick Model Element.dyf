@@ -1,0 +1,67 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Pick Model Element" Description="This offers a single selection of a model element. Created for Dynamo Player usage." ID="9f550081-f503-4e21-b30d-71f41d410784" Category="Rhythm.Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="7c978bbb-3919-4f9a-8db0-d7c3cfe1c8c7" type="PythonNodeModels.PythonNode" nickname="Python Script" x="634.349280903664" y="352.592774698157" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
+#Based on a node from Dimitar Venkov
+#adapted by john pierson for rhythm
+import clr
+
+clr.AddReference("RevitAPIUI")
+from  Autodesk.Revit.UI import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+#Custom flatten definition to manage lists in here
+def flatten(*args):
+    for x in args:
+        if hasattr(x, '__iter__'):
+            for y in flatten(*x):
+                yield y
+        else:
+            yield x
+
+sel1 = uidoc.Selection
+ot1 = Selection.ObjectType.Element
+el_refs = sel1.PickObject(ot1, "Select model elements")
+typelist = list()
+idlist = list()
+el_ref = flatten(el_refs)
+for i in el_ref:
+
+	try:
+		typelist.append(doc.GetElement(i.ElementId))
+	except:
+		typelist.apped(list())
+		
+
+OUT = typelist[-1]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fdf6aa0c-b64a-4246-bb8b-7d4712e0a7c4" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="379.5" y="349" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Use boolean to reset&#xD;&#xA;refresh:bool = true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="15169c87-b57f-4894-9978-4c0c59eb86f4" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="777" y="354" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="7c978bbb-3919-4f9a-8db0-d7c3cfe1c8c7" start_index="0" end="15169c87-b57f-4894-9978-4c0c59eb86f4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fdf6aa0c-b64a-4246-bb8b-7d4712e0a7c4" start_index="0" end="7c978bbb-3919-4f9a-8db0-d7c3cfe1c8c7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-41.6697474392299" eyeY="110.592791640682" eyeZ="123.183221685352" lookX="41.6697474392299" lookY="-110.592791640682" lookZ="-123.183221685352" upX="0.150436170398587" upY="0.882947592858927" upZ="-0.444716209396997" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,155 @@
+<Workspace Version="1.2.1.3083" X="-134.869673191145" Y="-186.01276875" zoom="1.33823125" Name="Rhythm.IntegerSlider" Description="Provides an integer slider for the dynamo player. Has min, max and description." ID="e0a8c593-d251-40fb-b4c8-aa1b70f4f457" Category="Rhythm.Core.Input">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="fbc64117-e180-4454-b4ec-66712b394325" type="PythonNodeModels.PythonNode" nickname="slider - working" x="945.951515488639" y="311" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="5">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <Script>#Based on the code generously provided at http://zetcode.com/tutorials/ironpythontutorial/controlsII/
+#Made for Dynamo by John Pierson
+import clr
+clr.AddReference("System.Windows.Forms")
+clr.AddReference("System.Drawing")
+
+from System.Windows.Forms import Application, Form, StatusBar
+from System.Windows.Forms import RadioButton, GroupBox, Label, Button, AnchorStyles, DockStyle, PictureBox, PictureBoxSizeMode, TextBox
+from System.Windows.Forms import TrackBar, TickStyle
+from System.Drawing import Size, Point, Font, Color, Image
+
+pathToFile = IN[0]
+amount = []
+
+class IForm(Form):
+
+	def __init__(self):
+
+		self.Text = IN[1]
+
+		image = Image.FromFile(pathToFile)
+		pictureBox = PictureBox()
+		pictureBox.Size = Size(300,110)
+		pictureBox.Location = Point(95,0)
+		pictureBox.Image = image
+		#pictureBox.Dock = DockStyle.Top
+        
+		self.Output1 = []
+		self.Font = Font("Arial",12)
+		self.BackColor = Color.White
+		
+		lb0 = Label()
+		lb0.Parent = self
+		lb0.Text = str('select value below')
+		lb0.Location = Point(115, 125)
+		lb0.AutoSize = True
+		lb0.MaximumSize = Size(400,0)
+		lb0.ForeColor = Color.RoyalBlue
+		lb0.Font = Font("Arial",18)
+		
+		tb = TrackBar()
+		tb.Font = Font("Arial Narrow",12)
+		tb.TickStyle = TickStyle.BottomRight
+		tb.SetRange(IN[2], IN[3])
+		tb.ValueChanged += self.OnChanged
+		tb.Location = Point(20,200)
+		tb.Width = 350
+		#tb.Dock = DockStyle.Bottom
+		
+		
+		lb1 = Label()
+		lb1.Parent = self
+		lb1.Text = str(IN[2])
+		lb1.Location = Point(0, 200)
+		lb1.Height = 15
+		lb1.Width = 45
+		
+		lb2 = Label()
+		lb2.Parent = self
+		lb2.Text = str(IN[3])
+		lb2.Location = Point(375, 200)
+		lb2.Height = 15
+		lb2.Width = 45
+		
+		
+		btn1 = Button()
+		btn1.Text = "Accept"
+		btn1.Parent = self
+		btn1.Location = Point(175, 175)
+		btn1.Click += self.close
+		
+		self.statusbar = StatusBar()
+		self.statusbar.Parent = self
+		
+		self.Controls.Add(pictureBox)
+		self.Controls.Add(tb)
+		self.Controls.Add(lb1)
+		self.Controls.Add(lb2)
+		self.Controls.Add(lb0)
+		self.CenterToScreen()
+		self.AutoSize = True
+
+	def OnChanged(self, sender, event):
+		val = sender.Value
+		self.statusbar.Text = str(sender.Value)
+		amount.append(val)
+
+	def close(self, sender, event):
+		self.Close()
+		
+form = IForm()
+Application.Run(form)
+
+OUT = amount[-1]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="50992995-ebac-4243-8b83-5c6f19944fd3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="448.962495466875" y="343.132170729087" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="windowTitle : string = &quot;Rhythm Integer Slider&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="79e26f56-4969-498e-bd76-7c813bb98f4f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="452.69877049408" y="409" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="minValue" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="733ebefd-85b9-4525-b2ed-0a3683a008e6" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1156" y="304" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="int" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="85a0aa38-e81b-48d1-ac29-a9992962d308" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="455.69877049408" y="482" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="maxValue : int = 100" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="28156631-7eb7-420d-b94b-6966f3582f52" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="459.69877049408" y="547" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="refresh : bool=false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="1412a483-e5da-4f7d-b577-736881bde884" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="+" x="692.549082289642" y="174.762431999744" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Operators" function="+@var[]..[],var[]..[]">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.StringInput guid="3b3ba493-8f4a-450f-9ced-b74c5be9731c" type="CoreNodeModels.Input.StringInput" nickname="String" x="449.750125915192" y="189.036048614622" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>\Dynamo\Dynamo Revit\1.2\packages\Rhythm\extra\rhythm-logo-smaller.png</System.String>
+      <System.String value="\Dynamo\Dynamo Revit\1.2\packages\Rhythm\extra\rhythm-logo-smaller.png" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="76a47ef5-a324-4cd9-a0fb-2e48442f6bea" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="OS.CurrentUserAppData" x="465.921590429632" y="67.2624920020363" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="true">
+      <ID value="d1db465b-6930-495e-b87d-edb4f6803665" />
+      <Name value="OS.CurrentUserAppData" />
+      <Description value="This retrieves the current user's appdata location" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="fbc64117-e180-4454-b4ec-66712b394325" start_index="0" end="733ebefd-85b9-4525-b2ed-0a3683a008e6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="50992995-ebac-4243-8b83-5c6f19944fd3" start_index="0" end="fbc64117-e180-4454-b4ec-66712b394325" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="79e26f56-4969-498e-bd76-7c813bb98f4f" start_index="0" end="fbc64117-e180-4454-b4ec-66712b394325" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="85a0aa38-e81b-48d1-ac29-a9992962d308" start_index="0" end="fbc64117-e180-4454-b4ec-66712b394325" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="28156631-7eb7-420d-b94b-6966f3582f52" start_index="0" end="fbc64117-e180-4454-b4ec-66712b394325" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1412a483-e5da-4f7d-b577-736881bde884" start_index="0" end="fbc64117-e180-4454-b4ec-66712b394325" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3b3ba493-8f4a-450f-9ced-b74c5be9731c" start_index="0" end="1412a483-e5da-4f7d-b577-736881bde884" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="76a47ef5-a324-4cd9-a0fb-2e48442f6bea" start_index="0" end="1412a483-e5da-4f7d-b577-736881bde884" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

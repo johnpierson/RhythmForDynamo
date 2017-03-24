@@ -1,8 +1,10 @@
-<Workspace Version="0.9.0.3067" X="-1812.93787179323" Y="665.234628912583" zoom="1.99980151612264" Name="Group.UngroupElements" Description="This will ungroup the input groups and output their elements. Use with care!" ID="fb0642a6-3b48-46a8-bd96-706a28539580" Category="Rhythm.Revit.Elements.Group">
+<Workspace Version="1.2.1.3083" X="-1812.93787179323" Y="665.234628912583" zoom="1.99980151612264" Name="Group.UngroupElements" Description="This will ungroup the input groups and output their elements. Use with care!" ID="fb0642a6-3b48-46a8-bd96-706a28539580" Category="Rhythm.Revit.Elements.Group">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="0af60033-ffb1-400f-b399-a22eaf6a3ba7" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1198.56347366768" y="-196.778833796991" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
-      <Script>#Created by DPS Design, dpsdesign.org
+    <PythonNodeModels.PythonNode guid="0af60033-ffb1-400f-b399-a22eaf6a3ba7" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1198.56347366768" y="-196.778833796991" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
 import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
@@ -49,8 +51,11 @@ TransactionManager.Instance.TransactionTaskDone()
 #Assign your output to the OUT variable
 OUT = typelist</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Nodes.CodeBlockNodeModel guid="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="958.058231389046" y="-194.417903548646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="Flatten({item});" ShouldFocus="false" />
-    <PythonNodeModels.PythonNode guid="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1204.51605247643" y="-32.8903330440123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="958.058231389046" y="-194.417903548646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <PythonNodeModels.PythonNode guid="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1204.51605247643" y="-32.8903330440123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
       <Script>import clr
 clr.AddReference('RevitAPI')
 from Autodesk.Revit.DB import *
@@ -76,27 +81,28 @@ for item in groups:
 		elementlist.append(list())
 OUT = elementlist</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Nodes.Symbol guid="425b3e95-9eee-4c93-9b4d-4b645d4839e3" type="Dynamo.Nodes.Symbol" nickname="Input" x="844.052701323043" y="-180.135191421913" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="425b3e95-9eee-4c93-9b4d-4b645d4839e3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="844.052701323043" y="-180.135191421913" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="groups" />
-    </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.Output guid="89bcefb0-9b75-4472-99c6-c95e6c383dd1" type="Dynamo.Nodes.Output" nickname="Output" x="1419.60982072739" y="-190.636233565694" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="89bcefb0-9b75-4472-99c6-c95e6c383dd1" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1419.60982072739" y="-190.636233565694" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="element" />
-    </Dynamo.Nodes.Output>
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
-    <Dynamo.Models.ConnectorModel start="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" start_index="0" end="0af60033-ffb1-400f-b399-a22eaf6a3ba7" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" start_index="0" end="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" start_index="0" end="89bcefb0-9b75-4472-99c6-c95e6c383dd1" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="425b3e95-9eee-4c93-9b4d-4b645d4839e3" start_index="0" end="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" start_index="0" end="0af60033-ffb1-400f-b399-a22eaf6a3ba7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" start_index="0" end="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" start_index="0" end="89bcefb0-9b75-4472-99c6-c95e6c383dd1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="425b3e95-9eee-4c93-9b4d-4b645d4839e3" start_index="0" end="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations>
-    <Dynamo.Models.AnnotationModel guid="1ba08407-0905-4c47-bc6c-a610ef267c9f" annotationText="Thanks to Andreas for this script&#xD;&#xA;Download clockwork for more" left="1194.51605247643" top="-109.890333044012" width="144" height="145" fontSize="14" InitialTop="-32.8903330440123" InitialHeight="98" TextblockHeight="67" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="1ba08407-0905-4c47-bc6c-a610ef267c9f" annotationText="Thanks to Andreas for this script&#xD;&#xA;Download clockwork for more" left="1194.51605247643" top="-109.890333044012" width="142" height="145" fontSize="14" InitialTop="-32.8903330440123" InitialHeight="98" TextblockHeight="67" backgrouund="#FFC1D676">
       <Models ModelGuid="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" />
-    </Dynamo.Models.AnnotationModel>
+    </Dynamo.Graph.Annotations.AnnotationModel>
   </Annotations>
   <Presets />
   <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+    <Camera Name="Background Preview" eyeX="-41.6697474392299" eyeY="110.592791640682" eyeZ="123.183221685352" lookX="41.6697474392299" lookY="-110.592791640682" lookZ="-123.183221685352" upX="0.150436170398587" upY="0.882947592858927" upZ="-0.444716209396997" />
   </Cameras>
 </Workspace>

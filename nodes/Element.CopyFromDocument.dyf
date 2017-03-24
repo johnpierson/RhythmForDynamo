@@ -1,0 +1,88 @@
+<Workspace Version="1.2.0.2690" X="-251.857039308855" Y="-160.268054441145" zoom="1.33823125" Name="Element.CopyFromDocument" Description="This node allows you to copy elements from a specific document to your current document." ID="68f435be-b2a1-475d-8b66-34bd1eaba35e" Category="Rhythm.Revit.Elements.Element">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e3216568-2265-4e18-89cf-c3571443b4fd" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="87.5" y="448.25" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//The elements to be copied&#xD;&#xA;elements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="2bfccd59-b9b2-430d-9d4e-024da006e408" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1173.5" y="477.25" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Based on a node originally from Dimitar Venkov
+import clr
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+doc1 = DocumentManager.Instance.CurrentDBDocument
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitAPI")
+from Autodesk.Revit.DB import *
+
+from System.Collections.Generic import*
+
+
+ele = List[ElementId](IN[0])
+link1 = IN[1]
+
+try:
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	newId = ElementTransformUtils.CopyElements(link1, ele, doc1, None, CopyPasteOptions() )
+	TransactionManager.Instance.TransactionTaskDone()
+	res1 = [doc.GetElement(newId[i]).ToDSType(False) for i in xrange(len(newId) )]
+except: 	
+	res1 = 'The process failed. If you are copying from more than one document, change the lacing to longest.'
+
+OUT = res1</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="745be42f-b66d-4e3a-98f1-6c7ac85acbb7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="442.5" y="452.463333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="58154449-9401-4454-a867-bb5f34d8d30c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="744.5" y="532.25" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//The document you are copying from.&#xD;&#xA;document" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2b6a97c7-1f19-44e5-bfa4-b2bfd6ea4123" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1395.5" y="477.25" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="copied" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="a31ec2a9-d207-4fa5-9297-939b3358f1fd" type="PythonNodeModels.PythonNode" nickname="Python Script" x="744.5" y="448.25" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+items = UnwrapElement(IN[0])
+elementlist = list()
+booleans = list()
+for item in items:
+	try:
+		elementlist.append(item.Id)
+	except:
+		elementlist.append(None)
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e3216568-2265-4e18-89cf-c3571443b4fd" start_index="0" end="745be42f-b66d-4e3a-98f1-6c7ac85acbb7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2bfccd59-b9b2-430d-9d4e-024da006e408" start_index="0" end="2b6a97c7-1f19-44e5-bfa4-b2bfd6ea4123" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="745be42f-b66d-4e3a-98f1-6c7ac85acbb7" start_index="0" end="a31ec2a9-d207-4fa5-9297-939b3358f1fd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="58154449-9401-4454-a867-bb5f34d8d30c" start_index="0" end="2bfccd59-b9b2-430d-9d4e-024da006e408" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a31ec2a9-d207-4fa5-9297-939b3358f1fd" start_index="0" end="2bfccd59-b9b2-430d-9d4e-024da006e408" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

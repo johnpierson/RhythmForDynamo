@@ -1,12 +1,15 @@
-<Workspace Version="0.9.2.4472" X="-277.68785625" Y="-118.224798191145" zoom="1.33823125" Name="Isolated Pick Model Elements" Description="Pick model elements in desired order of a desired category." ID="9b8026bf-215d-42e9-abed-09f280bc5ab1" Category="Rhythm.Revit.Selection">
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Isolated Pick Model Elements" Description="This allows a multiple selection of elements of specified category." ID="9dba20d5-ee3a-4fad-ae88-9b859fff9cb7" Category="Rhythm.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="f27cc8ab-fc92-496a-9180-c060b3cd97e7" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1015.67718650076" y="331" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="2">
-      <Script>#Isolated Pick Selection
-#Thanks to Dimitar and Troy Gates for Guidance
-#and this blog http://pythoncvc.net/?p=116
+    <PythonNodeModels.PythonNode guid="39383be9-f43a-49c2-b423-a6dbac345bda" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1123.2768838658" y="353.012371778627" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
+#Sometimes a pick selection is better
+#Based on a node from Dimitar Venkov
+
 import clr
-import msvcrt
 
 clr.AddReference("RevitAPIUI")
 from  Autodesk.Revit.UI import *
@@ -20,10 +23,10 @@ uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
 clr.AddReference("RevitNodes")
 import Revit
 clr.ImportExtensions(Revit.Elements)
-TaskDialog.Show('Isolated Selection','Pick ' + (IN[1].lower()) + ' in desired order, then press ESC to finish')
+TaskDialog.Show('Isolated Selection','Pick elements of category, ' + (IN[1].lower()) + '. Press finish to complete.')
+
 sel1 = uidoc.Selection
 obt1 = Selection.ObjectType.Element
-
 class CustomISelectionFilter(Selection.ISelectionFilter):
 	def __init__(self, nom_categorie):
 		self.nom_categorie = nom_categorie
@@ -34,36 +37,44 @@ class CustomISelectionFilter(Selection.ISelectionFilter):
 			return False
 	def AllowReference(self, ref, point):
 		return true
-msg1 = 'Pick '+ IN[1] +' in desired order then press ESC to finish.'
-out1 = []
-flag = True
-
-while flag:
-	try:
-		el1 = doc.GetElement(sel1.PickObject(obt1,CustomISelectionFilter(IN[1]), msg1).ElementId)
-		out1.append(el1.ToDSType(True))
-	except:
-		flag = False
 		
-		OUT = out1</Script>
+el_ref = sel1.PickObjects(obt1, CustomISelectionFilter(IN[1]), 'Pick elements of category, ' + (IN[1].lower()) + ' Press finish to complete.')
+typelist = list()
+idlist = list()
+for i in el_ref:
+	
+	try:
+		typelist.append(doc.GetElement(i.ElementId))
+	except:
+		typelist.apped(list())
+		
+
+OUT = typelist</Script>
     </PythonNodeModels.PythonNode>
-    <CoreNodeModels.FromObject guid="63ecb608-15b3-4188-a063-b7e9719a3140" type="CoreNodeModels.FromObject" nickname="String from Object" x="818.356586496694" y="416.12126286768" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="779e94f7-8cb7-44e4-936a-6ac91a6425c9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="595.988609031511" y="274.769009466787" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
-      <Symbol value="//toggle to reset selection&#xD;&#xA;refresh : bool = false" />
+    <CoreNodeModels.FromObject guid="eea510e1-622d-4c6a-bf7d-1f421c038c72" type="CoreNodeModels.FromObject" nickname="String from Object" x="906.276883865796" y="407.012371778627" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.FromObject>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0995d374-1e34-4027-bd14-c1e6d1f40c60" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="776.276883865796" y="303.012371778627" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="refresh : bool =false" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a300839e-5f5b-4c85-93cd-e54f05845f2a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="599.065263384038" y="502.323345229866" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
-      <Symbol value="Category " />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="9abb2dc0-66b1-494f-8fc6-8d11631c4695" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="708.276883865796" y="407.012371778627" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Category" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d87e5922-70e9-4593-abb9-2de8f020721f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1347.2768838658" y="352.012371778627" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="elements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="63ecb608-15b3-4188-a063-b7e9719a3140" start_index="0" end="f27cc8ab-fc92-496a-9180-c060b3cd97e7" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="779e94f7-8cb7-44e4-936a-6ac91a6425c9" start_index="0" end="f27cc8ab-fc92-496a-9180-c060b3cd97e7" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="a300839e-5f5b-4c85-93cd-e54f05845f2a" start_index="0" end="63ecb608-15b3-4188-a063-b7e9719a3140" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="39383be9-f43a-49c2-b423-a6dbac345bda" start_index="0" end="d87e5922-70e9-4593-abb9-2de8f020721f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="eea510e1-622d-4c6a-bf7d-1f421c038c72" start_index="0" end="39383be9-f43a-49c2-b423-a6dbac345bda" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0995d374-1e34-4027-bd14-c1e6d1f40c60" start_index="0" end="39383be9-f43a-49c2-b423-a6dbac345bda" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9abb2dc0-66b1-494f-8fc6-8d11631c4695" start_index="0" end="eea510e1-622d-4c6a-bf7d-1f421c038c72" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
   <Presets />
   <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+    <Camera Name="Background Preview" eyeX="-41.6697474392299" eyeY="110.592791640682" eyeZ="123.183221685352" lookX="41.6697474392299" lookY="-110.592791640682" lookZ="-123.183221685352" upX="0.150436170398587" upY="0.882947592858927" upZ="-0.444716209396997" />
   </Cameras>
 </Workspace>

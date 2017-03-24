@@ -1,0 +1,48 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="PostableCommand.ReplicateWindow" Description="Does what is says. Creates another instance of the same window you have open." ID="212c2c3f-e681-4ef6-ba6b-7917b8224f94" Category="Rhythm.Revit.Application.PostableCommand">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="57fc993e-364b-4977-9363-b09bad52d3a5" type="PythonNodeModels.PythonNode" nickname="Python Script" x="812.5" y="399.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc =  DocumentManager.Instance.CurrentDBDocument
+uidoc = DocumentManager.Instance.CurrentUIDocument
+app = DocumentManager.Instance.CurrentUIApplication.Application
+uiapp = DocumentManager.Instance.CurrentUIApplication
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitAPI")
+from Autodesk.Revit.DB import *
+clr.AddReference("RevitAPIUI")
+from Autodesk.Revit.UI import *
+
+pCmd = RevitCommandId.LookupPostableCommandId(PostableCommand.ReplicateWindow)
+OUT = uiapp.PostCommand(pCmd)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e04196f1-e6a3-424d-bffc-d7f162a7b08d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="499.5" y="399.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="refresh : bool = false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4eb9d7c5-c3b2-42f8-804b-12daedaa826b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1034.5" y="399.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="57fc993e-364b-4977-9363-b09bad52d3a5" start_index="0" end="4eb9d7c5-c3b2-42f8-804b-12daedaa826b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e04196f1-e6a3-424d-bffc-d7f162a7b08d" start_index="0" end="57fc993e-364b-4977-9363-b09bad52d3a5" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-32.0781707763672" eyeY="34.1363372802734" eyeZ="-67.9418411254883" lookX="27.0781688690186" lookY="-23.1363372802734" lookZ="59.9418449401855" upX="0.0501715876162052" upY="0.992546141147614" upZ="0.111062802374363" />
+  </Cameras>
+</Workspace>

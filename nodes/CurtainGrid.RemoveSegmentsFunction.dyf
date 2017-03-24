@@ -1,8 +1,11 @@
-<Workspace Version="1.1.0.2065" X="-4028.12903607073" Y="83.0382426514963" zoom="1.83541648937758" Name="CurtainGrid.RemoveSegmentsFunction" Description="Function to apply to remove segments node" ID="261ad8bd-9a81-4729-98ba-e9a0b91596bb" Category="Rhythm.Revit.Elements.CurtainGrid">
+<Workspace Version="1.2.1.3083" X="-4028.12903607073" Y="83.0382426514963" zoom="1.83541648937758" Name="CurtainGrid.RemoveSegmentsFunction" Description="Function to apply to remove segments node" ID="261ad8bd-9a81-4729-98ba-e9a0b91596bb" Category="Rhythm.Revit.Elements.CurtainGrid">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="d33dfccd-3401-42d8-849b-1c3e91a08610" type="PythonNodeModels.PythonNode" nickname="Python Script" x="2523.28641841153" y="117.203456543717" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
-      <Script>#Created by DPS Design, dpsdesign.org
+    <PythonNodeModels.PythonNode guid="d33dfccd-3401-42d8-849b-1c3e91a08610" type="PythonNodeModels.PythonNode" nickname="Python Script" x="2523.83125387846" y="117.203456543717" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
 import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
@@ -63,4 +66,7 @@ OUT = IN[0]</Script>
   <Notes />
   <Annotations />
   <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>
