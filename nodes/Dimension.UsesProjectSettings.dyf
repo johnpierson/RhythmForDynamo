@@ -1,0 +1,122 @@
+<Workspace Version="1.3.0.875" X="-91.4333176700864" Y="-2.44062763228942" zoom="0.97676875" ScaleFactor="1" Name="Dimension.UsesProjectSettings" Description="This will determine if a dimension uses project settings." ID="236bc336-4175-4d87-a180-7450de856358" Category="Rhythm.Revit.Elements.Dimension">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Dimension" resolvedName="Revit.Elements.Dimension" assemblyName="RevitNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="bc8de63f-b105-41b5-b873-4eb1fd6bdbd9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="770.42463824933" y="394.474594165712" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+#Custom flatten definition to manage lists in here
+def flatten(*args):
+    for x in args:
+        if hasattr(x, '__iter__'):
+            for y in flatten(*x):
+                yield y
+        else:
+            yield x
+            
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap all elements to use with API
+dims = UnwrapElement(IN[0])
+TransactionManager.Instance.EnsureInTransaction(doc)
+#apply lineweight override to elements in an input list
+formatOptions = list()
+valueList = list()
+colorList = list()
+for i in dims:
+	try:
+		formatOptions.append(i.GetUnitsFormatOptions())		
+	except:
+		formatOptions.append(list())
+
+
+for i in formatOptions:
+	
+	try:
+		i.DisplayUnits
+		valueList.append(True)
+	except:
+		valueList.append(False)
+
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = valueList</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="861dc36a-c2fe-44ea-a2e4-3cf98ee29a7b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Element.Type" x="471.929730041015" y="393.479295954552" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="96bd9050-f2eb-4b52-8cd3-630825d2db2f" />
+      <Name value="Element.Type" />
+      <Description value="This retrieves the element type of the given elements. (if available) Similar to others available but no python here." />
+      <Inputs>
+        <Input value="element" />
+      </Inputs>
+      <Outputs>
+        <Output value="elementType" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6f1cc995-97af-495b-add2-9d4ddee3b094" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="108.964703948695" y="328.061916018801" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dimension" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6ad3fac7-e5bc-415a-ba35-4028185e0559" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1248.43604760092" y="298.372186489678" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="usesProjectSettings" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f4c889c5-9c23-4e84-9fb2-a132d0246240" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FilterByBoolMask" x="986.347400723136" y="323.966780911336" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b79459c4-6b8d-478a-b8de-6996842d47cc" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1247.41226382405" y="392.56029396138" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="overriddenSettings" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="b7bf7c05-9eab-41cf-9706-9d3553330f8f" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="246.151730048782" y="332.157051126267" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="bc8de63f-b105-41b5-b873-4eb1fd6bdbd9" start_index="0" end="f4c889c5-9c23-4e84-9fb2-a132d0246240" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="861dc36a-c2fe-44ea-a2e4-3cf98ee29a7b" start_index="0" end="bc8de63f-b105-41b5-b873-4eb1fd6bdbd9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6f1cc995-97af-495b-add2-9d4ddee3b094" start_index="0" end="b7bf7c05-9eab-41cf-9706-9d3553330f8f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f4c889c5-9c23-4e84-9fb2-a132d0246240" start_index="0" end="b79459c4-6b8d-478a-b8de-6996842d47cc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f4c889c5-9c23-4e84-9fb2-a132d0246240" start_index="1" end="6ad3fac7-e5bc-415a-ba35-4028185e0559" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b7bf7c05-9eab-41cf-9706-9d3553330f8f" start_index="0" end="861dc36a-c2fe-44ea-a2e4-3cf98ee29a7b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b7bf7c05-9eab-41cf-9706-9d3553330f8f" start_index="0" end="f4c889c5-9c23-4e84-9fb2-a132d0246240" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

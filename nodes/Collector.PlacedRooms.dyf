@@ -1,0 +1,61 @@
+<Workspace Version="1.3.0.875" X="-188.576898191145" Y="-115.6750875" zoom="1.33823125" ScaleFactor="1" Name="Collector.PlacedRooms" Description="This will collect placed rooms in current file." ID="e620b7b6-640d-435e-982a-15fc1eeb8bdb" Category="Rhythm.Revit.Collector">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Document" resolvedName="Revit.Application.Document" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="Document.Current" resolvedName="Revit.Application.Document" assemblyName="RevitNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="595a6415-e29b-406a-a479-a5067bf4abdd" type="PythonNodeModels.PythonNode" nickname="Python Script" x="673.868449725597" y="334.625052885569" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+collector = FilteredElementCollector(doc)
+rooms = collector.OfCategory(BuiltInCategory.OST_Rooms).ToElements()
+
+roomInstances = []
+for i in rooms:
+	if i.Area != 0:
+		roomInstances.append(i)
+
+OUT = roomInstances</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b31f28b1-e410-4847-8b46-e1aef5ec1982" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="286.629757144847" y="401.033145429835" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="toggle : bool = false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="bf326d80-b43a-4c77-85e9-38535c0fc0f7" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="838.103951160268" y="333.78019494015" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="rooms" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="595a6415-e29b-406a-a479-a5067bf4abdd" start_index="0" end="bf326d80-b43a-4c77-85e9-38535c0fc0f7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b31f28b1-e410-4847-8b46-e1aef5ec1982" start_index="0" end="595a6415-e29b-406a-a479-a5067bf4abdd" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>
