@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rhythm</name>
+    </assembly>
+    <members>
+        <member name="M:RevitElements.Document.CopyElementsFromDocument(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.Instance,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will copy the given elements from the given document into the active document.
+            </summary>
+            <param name="sourceDocument">The document to copy from.</param>
+            <param name="sourceInstance">The instance of the link to copy from.</param>
+            <param name="elements">The elements to copy.</param>
+            <returns name="newElements">The copied elements.</returns>
+            <search>
+            copy
+            </search>
+        </member>
+        <member name="M:RevitElements.FamilyInstance.Room(Revit.Elements.Element)">
+            <summary>
+            This node will report the room the family instance resides in, (if available).
+            </summary>
+            <param name="instance">The family instance to obtain room info from.</param>
+            <returns name="Room">The room in which the instance is located (during the last phase of the project).</returns>
+            <search>
+            room, rhythm,element.room
+            </search>
+        </member>
+        <member name="M:RevitElements.FamilyInstance.Space(Revit.Elements.Element)">
+            <summary>
+            This node will report the space the family instance resides in, (if available).
+            </summary>
+            <param name="instance">The family instance to obtain space info from.</param>
+            <returns name="Space">The space in which the instance is located (during the last phase of the project).</returns>
+            <search>
+            space, rhythm,element.space
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainGrid.FullCurve(Autodesk.Revit.DB.CurtainGridLine)">
+            <summary>
+            This node will retrieve the geometric curve from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="fullCurve">The full geometric curve</returns>
+            <search>
+            curtaingrid, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainWall.AddGrid(Autodesk.Revit.DB.CurtainGrid,Autodesk.DesignScript.Geometry.Point,System.Boolean)">
+            <summary>
+            This node will add a gridline at the specified place on the curtain wall grid.
+            </summary>
+            <param name="curtainGrid">The curtain grid to add a gridline to.</param>
+            <param name="locationPoint">XYZ location to place grid</param>
+            <param name="isUGridline">Is this gridline horizontal?</param>
+            <returns name="curtainGridLine">The new gridline</returns>
+            <search>
+            curtainwall, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainWall.GetCurtainGrid(Revit.Elements.Wall)">
+            <summary>
+            This node will retrieve the curtain grid for the input curtain wall.
+            </summary>
+            <param name="curtainWall">The curtain wall to retrieve grid from.</param>
+            <returns name="curtainGrid">The overall curtain grid</returns>
+            <search>
+            curtainwall, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.BeamSystem.Members(Revit.Elements.Element)">
+            <summary>
+            Obtains the individual beams within a beam system.
+            </summary>
+            <param name="BeamSystem">The beam system to get information from.</param>
+            <returns name="members">The individual members.</returns>
+            <search>
+            structural, beamsystem
+            </search>
+        </member>
+        <member name="M:RevitElements.BeamSystem.DropBeamSystem(Revit.Elements.Element)">
+            <summary>
+            Drops the beam system.
+            </summary>
+            <param name="beamSystem">The beam system to drop.</param>
+            <returns name="members">The individual members.</returns>
+            <search>
+            structural, beamsystem
+            </search>
+        </member>
+        <member name="M:RevitElements.RoomTag.TaggedRoom(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the room that a tag is tagging.
+            </summary>
+            <param name="roomTag">The room tag to retrieve elements from.</param>
+            <returns name="room">The room that is tagged.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.View.ConvertToIndependent(Revit.Elements.Element)">
+            <summary>
+            This node will convert a dependent view to an independent.
+            </summary>
+            <param name="dependentView">The view to convert to independent.</param>
+            <returns name="independentView">The overidden view.</returns>
+            <search>
+            view, dependent,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.View.GetCropRegionElement(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the crop region element from the view.
+            </summary>
+            <param name="view">The view to obtain the crop region element from.</param>
+            <returns name="cropRegionElement">The crop region as an element.</returns>
+            <search>
+            crop region,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.View.SetElementProjectionLineweight(Revit.Elements.Element,Revit.Elements.Element,System.Int32)">
+            <summary>
+            This node will override the given element's projection lineweight in given view.
+            </summary>
+            <param name="view">The view to set the overrides in.</param>
+            <param name="element">The element to override.</param>
+            <param name="lineweight">The lineweight to use.</param>
+            <returns name="element">The crop region as an element.</returns>
+            <search>
+            crop region,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.View.GetFilterVisibility(Revit.Elements.Element,Revit.Elements.Element)">
+            <summary>
+            This node will supply the visibility of the given filter in given view.
+            </summary>
+            <param name="view">The view to obtain filter visibility from.</param>
+            <param name="viewFilter">The view filter.</param>
+            <returns name="bool">The visibility value.</returns>
+            <search>
+            view, dependent,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.ViewSection.OverrideCrop(Revit.Elements.Element,System.Int32)">
+            <summary>
+            This node will override the crop region of the given section view based on the pen weight provided.
+            Slower but more reliable version that uses transaction rollback to isolated the crop region element.
+            </summary>
+            <param name="viewSection">The plan view to rotate</param>
+            <param name="lineWeight">The lineweight to override to, (1-16)</param>
+            <returns name="viewSection">The overidden view.</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.ViewSection.OverrideCropVersion2(Revit.Elements.Element,System.Int32)">
+            <summary>
+            This node will override the crop region of the given section view based on the pen weight provided. 
+            This is the faster version that works with interior elevations.
+            </summary>
+            <param name="viewSection">The plan view to rotate</param>
+            <param name="lineWeight">The lineweight to override to, (1-16)</param>
+            <returns name="viewSection">The overidden view.</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Sheet.GetViewportsAndViews(Revit.Elements.Views.Sheet)">
+            <summary>
+            This node will obtain viewports, views and schedules from a given sheet.
+            </summary>
+            <param name="sheet">The sheet to get viewports from.</param>
+            <returns name="viewports">The viewports on the sheet.</returns>
+            <returns name="views">The views on the sheet.</returns>
+            <returns name="schedules">The schedules on the sheet.</returns>
+            <search>
+            viewport, schedules,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Sheet.Create(Revit.Elements.FamilyType)">
+            <summary>
+            Creates a new sheet.
+            </summary>
+            <param name="titleblock">The titleblock to use.</param>
+            <returns name="Sheet">The newly created sheet.</returns>
+            <search>
+            sheet,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.ViewPlan.GetOutline(Revit.Elements.Element)">
+            <summary>
+            This node will get the bounds of the view in paper space (in feet).
+            </summary>
+            <param name="view">The view to get outline from.</param>
+            <returns name="outline">The bounds of the view in paper space (in feet).</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.ViewPlan.GetCropBox(Revit.Elements.Element)">
+            <summary>
+            This node will get the bounds of the view in paper space (in feet).
+            </summary>
+            <param name="viewPlan">The plan view to get outline from.</param>
+            <returns name="cropBox">The cropBox.</returns>
+            <returns name="cropBoxCurves">The curves of the crop region.</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.ViewPlan.Rotate(Revit.Elements.Element,Revit.Elements.ModelCurve,System.Double)">
+            <summary>
+            This node will attempt to rotate a plan view into a 3D view. Use at your own risk!
+            </summary>
+            <param name="viewPlan">The plan view to rotate</param>
+            <param name="rotationLine">The line to rotate along.</param>
+            <param name="inputAngle">The plan view to get outline from.</param>
+            <returns name="cropBox">The cropBox.</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Viewport.Create(Revit.Elements.Views.Sheet,Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This node will place the given view on the given sheet, if possible. For floor plan views: They cannot be on any other sheets. This is how Revit is.
+            </summary>
+            <param name="sheet">The sheet to place views on.</param>
+            <param name="view">The view to place.</param>
+            <param name="location">The location of the view.</param>
+            <returns name="Result">The result</returns>
+            <search>
+            viewport, addview,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Viewport.LocationData(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the given information from the provided viewport.
+            </summary>
+            <param name="viewport">Viewport to obtain data from.</param>
+            <returns name="bBox">The bounding box of the viewport.</returns>
+            <returns name="boxCenter">The center of the viewport.</returns>
+            <returns name="boxOutline">The outline of the viewport.</returns>
+            <returns name="labelOutline">The label outline of the viewport.</returns>
+            <search>
+            viewport, location,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Viewport.GetView(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the given information from the provided viewport.
+            </summary>
+            <param name="viewport">Viewport to obtain data from.</param>
+            <returns name="view">The view that belongs to the viewport.</returns>
+            <search>
+            viewport, location,rhythm
+            </search>
+        </member>
+    </members>
+</doc>
