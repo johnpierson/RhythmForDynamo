@@ -5,10 +5,10 @@ Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org
 If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager.
 
 ## Current Version
-Rhythm is currently built against the latest Dynamo stable build. At this time that is 1.2.0.
+Rhythm is currently built against the latest Dynamo stable build. At this time that is 1.3.0.
 
 ## Contributors
-This package is currently managed by author of http://sixtysecondrevit.blogspot.com.
+This package is currently managed by author of http://sixtysecondrevit.com.
 
 ## Updates
 Since there is not currently an update notification process on Dynamo's package manager, I post notifications for updates on [twitter](https://twitter.com/60secondrevit)
