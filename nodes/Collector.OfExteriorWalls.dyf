@@ -1,0 +1,62 @@
+<Workspace Version="1.3.1.1736" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Collector.OfExteriorWalls" Description="This node will collect all exterior (function) walls." ID="e73fda8d-5a74-4855-99f7-4b08711c4941" Category="Rhythm.Revit.Collector">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="67e909d2-6cee-42a5-894b-b0a7b2c05eb8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1354" y="269" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="exteriorWalls" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="5f679dec-ce77-4f08-a529-290afda0781d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1122" y="240" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+collector = FilteredElementCollector(doc)
+walls = collector.OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToElements()
+
+interiorWalls = []
+for i in walls:
+
+	if i.WallType.get_Parameter(BuiltInParameter.FUNCTION_PARAM).AsValueString() == "Exterior":
+		interiorWalls.append(i)
+
+OUT = interiorWalls</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4a168445-f1fc-4fb4-89b8-04e4c74d5eea" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="866" y="241" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="toggle : bool =false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5f679dec-ce77-4f08-a529-290afda0781d" start_index="0" end="67e909d2-6cee-42a5-894b-b0a7b2c05eb8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4a168445-f1fc-4fb4-89b8-04e4c74d5eea" start_index="0" end="5f679dec-ce77-4f08-a529-290afda0781d" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

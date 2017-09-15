@@ -1,0 +1,62 @@
+<Workspace Version="1.3.1.1736" X="-139" Y="2" zoom="1" ScaleFactor="1" Name="Collector.OfInteriorWalls" Description="This node collects interior (function) walls," ID="73cf66f9-47d1-4267-8569-59485b72b90d" Category="Rhythm.Revit.Collector">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d4f1ba65-948f-4aad-a66e-c0360b523de2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="477" y="192" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2017, john pierson
+# @60secondrevit, http://sixtysecondrevit.com
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+collector = FilteredElementCollector(doc)
+walls = collector.OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToElements()
+
+interiorWalls = []
+for i in walls:
+
+	if i.WallType.get_Parameter(BuiltInParameter.FUNCTION_PARAM).AsValueString() == "Interior":
+		interiorWalls.append(i)
+
+OUT = interiorWalls</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="df22fc82-babe-4606-a634-2fa97e80b552" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="221" y="193" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="toggle : bool =false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="baf2086c-f7b4-456e-bce9-ba782e4831c2" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="709" y="221" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="interiorWalls" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="d4f1ba65-948f-4aad-a66e-c0360b523de2" start_index="0" end="baf2086c-f7b4-456e-bce9-ba782e4831c2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="df22fc82-babe-4606-a634-2fa97e80b552" start_index="0" end="d4f1ba65-948f-4aad-a66e-c0360b523de2" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -4,9 +4,81 @@
         <name>Rhythm</name>
     </assembly>
     <members>
-        <member name="M:RevitElements.Document.CopyElementsFromDocument(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.Instance,System.Collections.Generic.List{Revit.Elements.Element})">
+        <member name="M:RevitElements.Application.OpenDocumentFile(System.String)">
             <summary>
-            This node will copy the given elements from the given document into the active document.
+            This node will open the given file in the background.
+            </summary>
+            <param name="filePath">The file to obtain document from.</param>
+            <returns name="Document">The document.</returns>
+            <search>
+            Application.OpenDocumentFile, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Application.CloseDocument(Autodesk.Revit.DB.Document,System.Boolean)">
+            <summary>
+            This node will close the given document with the option to save.
+            </summary>
+            <param name="document">The document to close.</param>
+            <param name="save">Do you want to save?</param>
+            <returns name="result">Did it work?</returns>
+            <search>
+            Application.CloseDocument, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainGridLine.FullCurve(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric curve from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="fullCurve">The full geometric curve</returns>
+            <search>
+            CurtainGridLine.FullCurve, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainGridLine.AllSegmentCurves(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric curve segments from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="AllSegmentCurves">The segments that make up the curtain grid.</returns>
+            <search>
+            CurtainGridLine.FullCurve, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainGridLine.RemoveSegment(Revit.Elements.Element,System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve})">
+            <summary>
+            This node will remove the given curve segments from the curtain grid line.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to remove segments from.</param>
+            <param name="curves">The curves that represent the grid segment to remove.</param>
+            <returns name="curtainGridLine">The curtain grid that wsa supplied.</returns>
+            <search>
+            CurtainGriLine.RemoveSegment, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Dimension.GetCurve(Revit.Elements.Dimension)">
+            <summary>
+            This node will convert the given elements to part.
+            </summary>
+            <param name="dimension">The dimension to obtain the curve from.</param>
+            <returns name="dimensionLine">The curve representing the dimension.</returns>
+            <search>
+            Dimension.GetCurve, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainPanel.IsolateInView(System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will isolate the given curtain wall panels in the active view. 
+            </summary>
+            <param name="curtainPanels">The curtain panels to isolate.</param>
+            <returns name="curtainPanels">The isolated curtain panels.</returns>
+            <search>
+            copy
+            </search>
+        </member>
+        <member name="M:RevitElements.Document.CopyElementsFromLinkedDocument(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.Instance,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will copy the given elements from the given linked document into the active document.
             </summary>
             <param name="sourceDocument">The document to copy from.</param>
             <param name="sourceInstance">The instance of the link to copy from.</param>
@@ -16,7 +88,97 @@
             copy
             </search>
         </member>
-        <member name="M:RevitElements.FamilyInstance.Room(Revit.Elements.Element)">
+        <member name="M:RevitElements.Document.CopyElementsFromDocument(Autodesk.Revit.DB.Document,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will copy the given elements from the given document into the active document.
+            </summary>
+            <param name="sourceDocument">The document to copy from.</param>
+            <param name="elements">The elements to copy.</param>
+            <returns name="newElements">The copied elements.</returns>
+            <search>
+            copy
+            </search>
+        </member>
+        <member name="M:RevitElements.Parts.DivideParts(Revit.Elements.Element,System.Collections.Generic.List{Revit.Elements.ReferencePlane})">
+            <summary>
+            This node will divide the given parts by reference planes.
+            </summary>
+            <param name="part">The part to divide.</param>
+            <param name="referencePlane">The reference plane to use for the division.</param>
+            <returns name="Parts">The created parts from the given element.</returns>
+            <search>
+            Parts.DivideParts, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Parts.GetSourceElement(Revit.Elements.Element)">
+            <summary>
+            Gets the collection of elements from which the parts were created.
+            </summary>
+            <param name="part">The part to get the element from.</param>
+            <returns name="sourceElement">The created parts from the given element.</returns>
+            <search>
+            Parts.GetSourceElement, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Element.CreateParts(Revit.Elements.Element)">
+            <summary>
+            This node will convert the given elements to part.
+            </summary>
+            <param name="element">The element to convert to parts.</param>
+            <returns name="Parts">The created parts from the given element.</returns>
+            <search>
+            Element.CreateParts, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Element.GetParameterValueByNameTypeOrInstance(Revit.Elements.Element,System.String)">
+            <summary>
+            This node will get the parameter as instance or type.
+            </summary>
+            <param name="element">The element to get parameter from.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns name="value">The parameter value.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Element.SetParameterByNameTypeOrInstance(Revit.Elements.Element,System.String,System.Object)">
+            <summary>
+            Set one of the element's parameters. Instance if it is instance or type if type.
+            </summary>
+            <param name="element">The element to set parameter to.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="value">The value to set.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Element.SetParameterByNameInDocument(Autodesk.Revit.DB.Document,Revit.Elements.Element,System.String,System.Object)">
+            <summary>
+            Set one of the element's parameters in a given document.
+            </summary>
+            <param name="document">The document to set it in.</param>
+            <param name="element">The element to set parameter to.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="value">The value to set.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Element.GetParameterByNameInDocument(Autodesk.Revit.DB.Document,Revit.Elements.Element,System.String)">
+            <summary>
+            Get one of the element's parameters in a given document.
+            </summary>
+            <param name="document">The document to set it in.</param>
+            <param name="element">The element to set parameter to.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns name="val">The element's parameter.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.FamilyInstance.Room(System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
             This node will report the room the family instance resides in, (if available).
             </summary>
@@ -26,7 +188,7 @@
             room, rhythm,element.room
             </search>
         </member>
-        <member name="M:RevitElements.FamilyInstance.Space(Revit.Elements.Element)">
+        <member name="M:RevitElements.FamilyInstance.Space(System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
             This node will report the space the family instance resides in, (if available).
             </summary>
@@ -36,17 +198,19 @@
             space, rhythm,element.space
             </search>
         </member>
-        <member name="M:RevitElements.CurtainGrid.FullCurve(Autodesk.Revit.DB.CurtainGridLine)">
+        <member name="M:RevitElements.CurtainGrid.ByWallElement(Revit.Elements.Wall)">
             <summary>
             This node will retrieve the geometric curve from the curtain wall.
             </summary>
-            <param name="curtainGridLine">The curtain gridline to get data from.</param>
-            <returns name="fullCurve">The full geometric curve</returns>
+            <param name="curtainWall">The curtain gridline to get data from.</param>
+            <returns name="curtainGrid">The full geometric curve</returns>
+            <returns name="uGrids">The grids in the U direction, (horizontal).</returns>
+            <returns name="vGrids">The grids in the V direction, (vertical).</returns>
             <search>
             curtaingrid, rhythm
             </search>
         </member>
-        <member name="M:RevitElements.CurtainWall.AddGrid(Autodesk.Revit.DB.CurtainGrid,Autodesk.DesignScript.Geometry.Point,System.Boolean)">
+        <member name="M:RevitElements.CurtainGrid.AddGridLineByPoint(Autodesk.Revit.DB.CurtainGrid,Autodesk.DesignScript.Geometry.Point,System.Boolean)">
             <summary>
             This node will add a gridline at the specified place on the curtain wall grid.
             </summary>
@@ -54,16 +218,6 @@
             <param name="locationPoint">XYZ location to place grid</param>
             <param name="isUGridline">Is this gridline horizontal?</param>
             <returns name="curtainGridLine">The new gridline</returns>
-            <search>
-            curtainwall, rhythm
-            </search>
-        </member>
-        <member name="M:RevitElements.CurtainWall.GetCurtainGrid(Revit.Elements.Wall)">
-            <summary>
-            This node will retrieve the curtain grid for the input curtain wall.
-            </summary>
-            <param name="curtainWall">The curtain wall to retrieve grid from.</param>
-            <returns name="curtainGrid">The overall curtain grid</returns>
             <search>
             curtainwall, rhythm
             </search>
@@ -94,6 +248,26 @@
             </summary>
             <param name="roomTag">The room tag to retrieve elements from.</param>
             <returns name="room">The room that is tagged.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.RoomTag.CenterOnRoomLocation(Revit.Elements.Element)">
+            <summary>
+            This node will set the room tag to the same as the room location.
+            </summary>
+            <param name="roomTag">The room tag to set.</param>
+            <returns name="room">The room tag.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.RoomTag.CenterRoom(Revit.Elements.Room)">
+            <summary>
+            This node will center the room.
+            </summary>
+            <param name="room">The room to center.</param>
+            <returns name="room">The room.</returns>
             <search>
             roomtag, rhythm
             </search>
@@ -137,6 +311,18 @@
             <param name="view">The view to obtain filter visibility from.</param>
             <param name="viewFilter">The view filter.</param>
             <returns name="bool">The visibility value.</returns>
+            <search>
+            view, dependent,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.View3D.SetSectionBox(Revit.Elements.Element,Autodesk.DesignScript.Geometry.BoundingBox)">
+            <summary>
+            This node will set the given 3d view's section box.
+            </summary>
+            <param name="view3D">The 3D view to set the section box for.</param>
+            <param name="bBox">The boudning box to use.</param>
+            <returns name="success">The views that worked.</returns>
+            <returns name="failed">The views that failed.</returns>
             <search>
             view, dependent,rhythm
             </search>
@@ -234,15 +420,24 @@
         </member>
         <member name="M:RevitElements.Viewport.LocationData(Revit.Elements.Element)">
             <summary>
-            This node will obtain the given information from the provided viewport.
+            This node will obtain the box location data from the provided viewport.
             </summary>
             <param name="viewport">Viewport to obtain data from.</param>
             <returns name="bBox">The bounding box of the viewport.</returns>
             <returns name="boxCenter">The center of the viewport.</returns>
             <returns name="boxOutline">The outline of the viewport.</returns>
+            <search>
+            viewport, Viewport.LocationData,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Viewport.LabelOutline(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the outline of the Viewport title if one is used. This is the label outline.
+            </summary>
+            <param name="viewport">Viewport to obtain data from.</param>
             <returns name="labelOutline">The label outline of the viewport.</returns>
             <search>
-            viewport, location,rhythm
+            viewport, Viewport.LavelOutline, rhythm
             </search>
         </member>
         <member name="M:RevitElements.Viewport.GetView(Revit.Elements.Element)">
@@ -253,6 +448,17 @@
             <returns name="view">The view that belongs to the viewport.</returns>
             <search>
             viewport, location,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Viewport.SetLocationBasedOnOther(Revit.Elements.Element,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will obtain the given information from the provided viewport.
+            </summary>
+            <param name="parentViewport">Viewport to obtain location from.</param>
+            <param name="childViewports">Viewports to set to location collected.</param>
+            <returns name="childViewports">The viewports you moved.</returns>
+            <search>
+            viewport
             </search>
         </member>
     </members>
