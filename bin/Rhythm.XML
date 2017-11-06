@@ -4,6 +4,106 @@
         <name>Rhythm</name>
     </assembly>
     <members>
+        <member name="M:Rhythm.FamilyUpgradeForm.#ctor(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Set up progress bar form and immediately display it modelessly.
+            </summary>
+            <param name="caption">Form caption</param>
+            <param name="format">Progress message string</param>
+            <param name="toolTitle">Name of the tool.</param>
+            <param name="max">Number of elements to process</param>
+        </member>
+        <member name="F:Rhythm.FamilyUpgradeForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Rhythm.FamilyUpgradeForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Rhythm.FamilyUpgradeForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Properties.Resources.loading">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Properties.Resources.loading2">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Properties.Resources.loading3">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Properties.Resources.loading4">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="M:Rhythm.DefaultProgressForm.#ctor(System.String,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            Set up progress bar form and immediately display it modelessly.
+            </summary>
+            <param name="caption">Form caption</param>
+            <param name="format">Progress message string</param>
+            <param name="toolTitle">Name of the tool.</param>
+            <param name="loadingImage">The loading image.</param>
+            <param name="max">Number of elements to process</param>
+        </member>
+        <member name="F:Rhythm.DefaultProgressForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Rhythm.DefaultProgressForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Rhythm.DefaultProgressForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Tools.Batch.UpgradeFamilies(System.String)">
+            <summary>
+            This tool with batch upgrade all the Revit families in a directory and delete the backup files that are generated.
+            </summary>
+            <param name="directoryPath">The directory to read for ALL families. Including subdirectories.</param>
+            <returns name="Succesfully Upgraded">Files that were upgraded.</returns>
+            <returns name="Not So Succesfully Upgraded">Files that were not upgraded.</returns>
+            <search>
+            Application.OpenDocumentFile, rhythm
+            </search>
+        </member>
         <member name="M:RevitElements.Application.OpenDocumentFile(System.String)">
             <summary>
             This node will open the given file in the background.
@@ -53,7 +153,27 @@
             <param name="curves">The curves that represent the grid segment to remove.</param>
             <returns name="curtainGridLine">The curtain grid that wsa supplied.</returns>
             <search>
-            CurtainGriLine.RemoveSegment, rhythm
+            CurtainGridLine.RemoveSegment, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainGridLine.ExistingSegmentCurves(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric existing curve segments from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="existingSegmentCurves">The segments that make up the curtain grid.</returns>
+            <search>
+            CurtainGridLine.ExistingSegmentCurves, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.CurtainGridLine.SkippedSegmentCurves(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric skipped curve segments from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="skippedSegmentCurves">The segments that make up the curtain grid.</returns>
+            <search>
+            CurtainGridLine.SkippedSegmentCurves, rhythm
             </search>
         </member>
         <member name="M:RevitElements.Dimension.GetCurve(Revit.Elements.Dimension)">
@@ -66,6 +186,50 @@
             Dimension.GetCurve, rhythm
             </search>
         </member>
+        <member name="M:RevitElements.Dimension.Segments(System.Collections.Generic.List{Revit.Elements.Dimension})">
+            <summary>
+            This node will return the segments comprising the multi segment dimension.
+            </summary>
+            <param name="dimension">Multi segment dimension.</param>
+            <returns name="segmentArray">The individual members.</returns>
+            <search>
+            dimension.Segments
+            </search>
+        </member>
+        <member name="M:RevitElements.Dimension.SetAboveValue(Revit.Elements.Dimension,System.String)">
+            <summary>
+            This node will try to set the above value for the dimensions.
+            </summary>
+            <param name="dimension">Dimension to set</param>
+            <param name="aboveValue">Value to set.</param>
+            <returns name="set">Succesfully set.</returns>
+            <returns name="notSet">Not so succesfully set.</returns>
+            <search>
+            dimension.SetAboveValue
+            </search>
+        </member>
+        <member name="M:RevitElements.Dimension.SetBelowValue(Revit.Elements.Dimension,System.String)">
+            <summary>
+            This node will try to set the below value for the dimensions.
+            </summary>
+            <param name="dimension">Dimension to set</param>
+            <param name="belowValue">Value to set.</param>
+            <returns name="set">Succesfully set.</returns>
+            <returns name="notSet">Not so succesfully set.</returns>
+            <search>
+            dimension.SetBelowValue
+            </search>
+        </member>
+        <member name="M:RevitElements.Dimension.GetReferenceElements(Revit.Elements.Dimension)">
+            <summary>
+            This node will retrieve the reference elements of the dimension. Will not work with multi segment dimensions.
+            </summary>
+            <param name="dimension">Dimension to get elements from.</param>
+            <returns name="referenceElements">The reference elements.</returns>
+            <search>
+            dimension.GetReferenceElements
+            </search>
+        </member>
         <member name="M:RevitElements.CurtainPanel.IsolateInView(System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
             This node will isolate the given curtain wall panels in the active view. 
@@ -76,7 +240,62 @@
             copy
             </search>
         </member>
-        <member name="M:RevitElements.Document.CopyElementsFromLinkedDocument(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.Instance,System.Collections.Generic.List{Revit.Elements.Element})">
+        <member name="M:RevitElements.ElevationMarker.CreateElevationMarker(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point},System.Int32,Revit.Elements.Element)">
+            <summary>
+            This node will create an empty elevation marker at the given points. 
+            </summary>
+            <param name="location">The location of the view.</param>
+            <param name="scaleFactor">The scale factor of the view in integer value. E.g. "96"</param>
+            <param name="viewFamilyType">The view family type you wish to use.</param>
+            <returns name="elevationMarker">The created elevation marker.</returns>
+            <search>
+            viewport, addview,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.ElevationMarker.CreateElevationByMarkerIndex(System.Collections.Generic.List{Revit.Elements.Element},Revit.Elements.Element,System.Int32)">
+            <summary>
+            This node will add evelations on each side of the marker choseb. Typically 0-3. 
+            </summary>
+            <param name="elevationMarker">The marker to host elevations on.</param>
+            <param name="planView">Plan view to do this stuff to.</param>
+            <param name="index">This is where the view appears.</param>
+            <returns name="Result">The result</returns>
+            <search>
+            viewport, addview,rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.RevitLink.GetDocument(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the selected link's document.
+            </summary>
+            <param name="linkInstance">The link to get document from.</param>
+            <returns name="Document">The document.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Room.CenterRoom(System.Collections.Generic.List{Revit.Elements.Room})">
+            <summary>
+            This node will center the room.
+            </summary>
+            <param name="room">The room to center.</param>
+            <returns name="room">The room.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Room.IntersectingElementsInRoom(Revit.Elements.Room,Revit.Elements.Category)">
+            <summary>
+            This node will center the room.
+            </summary>
+            <param name="room">The room to center.</param>
+            <param name="category">The room to center.</param>
+            <returns name="elements">The room.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Document.CopyElementsFromLinkedDocument(Autodesk.Revit.DB.Document,Revit.Elements.Element,System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
             This node will copy the given elements from the given linked document into the active document.
             </summary>
@@ -122,7 +341,7 @@
         </member>
         <member name="M:RevitElements.Element.CreateParts(Revit.Elements.Element)">
             <summary>
-            This node will convert the given elements to part.
+            This node will convert the given elements to parts.
             </summary>
             <param name="element">The element to convert to parts.</param>
             <returns name="Parts">The created parts from the given element.</returns>
@@ -178,6 +397,42 @@
              rhythm
             </search>
         </member>
+        <member name="M:RevitElements.Element.GetIntersectingElementsOfCategory(Revit.Elements.Element,Revit.Elements.Category)">
+            <summary>
+            This will take a given element and category and grab the intersecting elements of that category.
+            </summary>
+            <param name="element">The element to run intersections against.</param>
+            <param name="category">The category to check.</param>
+            <returns name="elements">The intersecting elements.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Element.GetParameterValueByNameCaSeiNSeNSiTiVe(Revit.Elements.Element,System.String)">
+            <summary>
+            This node will get a parameter value by search string, regardless of case of the search string. 
+            Note: If the parameter name appears multiple times it will retrieve the first one that it finds.
+            </summary>
+            <param name="element">The element to get parameter from.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns name="value">The parameter value.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:RevitElements.Element.SetParameterValueByNameCaSeiNSeNSiTiVe(Revit.Elements.Element,System.String,System.Object)">
+            <summary>
+            This node will set a parameter value by search string, regardless of case of the search string. 
+            Note: If the parameter name appears multiple times it will retrieve the first one that it finds.
+            </summary>
+            <param name="element">The element to get parameter from.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="value">The parameter value.</param>
+            <returns name="element">The element that had parameters set.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
         <member name="M:RevitElements.FamilyInstance.Room(System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
             This node will report the room the family instance resides in, (if available).
@@ -200,10 +455,10 @@
         </member>
         <member name="M:RevitElements.CurtainGrid.ByWallElement(Revit.Elements.Wall)">
             <summary>
-            This node will retrieve the geometric curve from the curtain wall.
+            This node will retrieve the curtain grid and U/V Gridlines from the given wall
             </summary>
             <param name="curtainWall">The curtain gridline to get data from.</param>
-            <returns name="curtainGrid">The full geometric curve</returns>
+            <returns name="curtainGrid">The internal curtain grid.</returns>
             <returns name="uGrids">The grids in the U direction, (horizontal).</returns>
             <returns name="vGrids">The grids in the V direction, (vertical).</returns>
             <search>
@@ -242,7 +497,7 @@
             structural, beamsystem
             </search>
         </member>
-        <member name="M:RevitElements.RoomTag.TaggedRoom(Revit.Elements.Element)">
+        <member name="M:RevitElements.RoomTag.TaggedRoom(System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
             This node will retrieve the room that a tag is tagging.
             </summary>
@@ -252,22 +507,12 @@
             roomtag, rhythm
             </search>
         </member>
-        <member name="M:RevitElements.RoomTag.CenterOnRoomLocation(Revit.Elements.Element)">
+        <member name="M:RevitElements.RoomTag.CenterOnRoomLocation(System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
             This node will set the room tag to the same as the room location.
             </summary>
             <param name="roomTag">The room tag to set.</param>
-            <returns name="room">The room tag.</returns>
-            <search>
-            roomtag, rhythm
-            </search>
-        </member>
-        <member name="M:RevitElements.RoomTag.CenterRoom(Revit.Elements.Room)">
-            <summary>
-            This node will center the room.
-            </summary>
-            <param name="room">The room to center.</param>
-            <returns name="room">The room.</returns>
+            <returns name="roomTag">The room tag.</returns>
             <search>
             roomtag, rhythm
             </search>
@@ -408,7 +653,7 @@
         </member>
         <member name="M:RevitElements.Viewport.Create(Revit.Elements.Views.Sheet,Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
             <summary>
-            This node will place the given view on the given sheet, if possible. For floor plan views: They cannot be on any other sheets. This is how Revit is.
+            This node will place the given view on the given sheet, if possible. For floor plan views: They cannot be on any other sheets. Now supports schedules! 
             </summary>
             <param name="sheet">The sheet to place views on.</param>
             <param name="view">The view to place.</param>
@@ -442,9 +687,9 @@
         </member>
         <member name="M:RevitElements.Viewport.GetView(Revit.Elements.Element)">
             <summary>
-            This node will obtain the given information from the provided viewport.
+            This node will obtain the view from the given viewport.
             </summary>
-            <param name="viewport">Viewport to obtain data from.</param>
+            <param name="viewport">Viewport to obtain view from.</param>
             <returns name="view">The view that belongs to the viewport.</returns>
             <search>
             viewport, location,rhythm
@@ -452,13 +697,71 @@
         </member>
         <member name="M:RevitElements.Viewport.SetLocationBasedOnOther(Revit.Elements.Element,System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>
-            This node will obtain the given information from the provided viewport.
+            This node will set the child viewports box center given the parent viewport.
             </summary>
-            <param name="parentViewport">Viewport to obtain location from.</param>
+            <param name="parentViewport">Viewport to get location from.</param>
             <param name="childViewports">Viewports to set to location collected.</param>
             <returns name="childViewports">The viewports you moved.</returns>
             <search>
             viewport
+            </search>
+        </member>
+        <member name="M:Animate.Element.AnimateNumericParameter(System.Collections.Generic.List{Revit.Elements.Element},System.String,System.Double,System.Double,System.Int32,System.String,Revit.Elements.Element)">
+            <summary>
+            Animate a numeric parameter of an element. This will export images of the parameter, then revert the element back to where it was. Also adds text to comments to prevent infinite loops.Clear this comment for subsequent runs.
+            Inspired by the Bad Monkeys Team.
+            </summary>
+            <param name="element">The element to set parameter to.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="startValue">The value to set.</param>
+            <param name="endValue">The value to set.</param>
+            <param name="iterations">The number of images.</param>
+            <param name="directoryPath">Where to save the images.</param>
+            <param name="view">The view to export from.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:Animate.Element.AnimateColor(System.Collections.Generic.List{Revit.Elements.Element},DSCore.Color,DSCore.Color,System.Int32,System.String,Revit.Elements.Element)">
+            <summary>
+            Animate the color of an element. This will export images of the element, then revert the element back to where it was.
+            Inspired by the Bad Monkeys team.
+            </summary>
+            <param name="element">The element to set color to.</param>
+            <param name="startColor">The start color.</param>
+            <param name="endColor">The end color.</param>
+            <param name="iterations">Numnber of images.</param>
+            <param name="directoryPath">Where to save the images.</param>
+            <param name="view">View to export from.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:Animate.Element.AnimateTransparency(System.Collections.Generic.List{Revit.Elements.Element},System.Int32,System.Int32,System.Int32,System.String,Revit.Elements.Element)">
+            <summary>
+            Animate the transparency of an element. This will export images of the element, then revert the element back to where it was.
+            Inspired by the Bad Monkeys team.
+            </summary>
+            <param name="element">The element to set transparency to.</param>
+            <param name="startPercentage">The transparency start percent.</param>
+            <param name="endPercentage">The transparency end percent.</param>
+            <param name="iterations">Numnber of images.</param>
+            <param name="directoryPath">Where to save the images.</param>
+            <param name="view">View to export from.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:Utilities.Utilities.CheckVersion">
+            <summary>
+            This node will check if your Rhythm package is up to date.
+            </summary>
+            <returns name="Result">Up to date or not.</returns>
+            <search>
+            rhythm
             </search>
         </member>
     </members>
