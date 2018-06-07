@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-79.4872444685475" Y="-132.317734594261" zoom="0.931811528498331" Name="UI.ColorPicker" Description="This node allows the user to choose a color via the Revit API color selection dialog." ID="b730bbbe-8c54-4ce0-bbfb-2ab4d1ece3ae" Category="Rhythm.Revit.UI">
+<Workspace Version="1.3.2.2480" X="-79.4872444685475" Y="-132.317734594261" zoom="0.931811528498331" ScaleFactor="1" Name="UI.ColorPicker" Description="This node allows the user to choose a color via the Revit API color selection dialog. For Revit 2017 +" ID="b730bbbe-8c54-4ce0-bbfb-2ab4d1ece3ae" Category="Rhythm.Revit.UI">
   <NamespaceResolutionMap>
     <ClassMap partialName="DSCore.Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>
@@ -75,7 +75,4 @@ OUT = userColor,flatten(rlist,glist,blist)
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-41.6697474392299" eyeY="110.592791640682" eyeZ="123.183221685352" lookX="41.6697474392299" lookY="-110.592791640682" lookZ="-123.183221685352" upX="0.150436170398587" upY="0.882947592858927" upZ="-0.444716209396997" />
-  </Cameras>
 </Workspace>

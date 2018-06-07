@@ -32,7 +32,7 @@ OUT = elementlist</Script>
     <Dynamo.Nodes.Symbol guid="0f691290-1f3e-4618-b1f6-9cbc5210bff5" type="Dynamo.Nodes.Symbol" nickname="Input" x="1827.58725019128" y="695.258093904027" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
       <Symbol value="var[]..[]" />
     </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.CodeBlockNodeModel guid="8c7f3023-9f9c-4418-b252-07190aeed828" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1945.62672176722" y="694.015059683927" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="8c7f3023-9f9c-4418-b252-07190aeed828" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1945.62672176722" y="694.015059683927" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false" />
     <Dynamo.Nodes.DSFunction guid="1ae40a40-d7f5-4301-b9c6-e05f62bfc046" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="2316.01729489157" y="693.0261294339" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
   </Elements>
   <Connectors>

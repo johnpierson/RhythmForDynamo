@@ -1,0 +1,269 @@
+ John Pierson
+	
+38f6dbb
+	
+README.md edited online with Bitbucket
+
+	
+6 minutes ago
+	
+John Pierson
+	
+844c06c
+	
+Added node icons, cleanup of old nodes, removal of some UI nodes, possible last release before 2.0
+
+	
+48 minutes ago
+	
+John Pierson
+	
+51696fe
+	
+Added category filter node. FamilyInstance.FromRoom
+
+	
+2018-05-24
+	
+John Pierson
+	
+ebe7392
+	
+Finish up FamilyInstance.ByRoom
+
+	
+2018-05-07
+	
+John Pierson
+	
+6c32f4d
+	
+Additions to GenericModel.FromRoom
+
+	
+2018-05-07
+	
+John Pierson
+	
+26fb030
+	
+GenericModel.FromRoom additions
+
+	
+2018-05-07
+	
+John Pierson
+	
+cc2f9b6
+	
+Fixes and additions for version 2018.4.20
+
+	
+2018-04-20
+	
+John Pierson
+	
+aa458e9
+	
+Dimension fixes to allow functionaility for multi-segment
+
+	
+2018-04-19
+	
+John Pierson
+	
+9b792e7
+	
+ElementFilters and such
+
+	
+2018-04-18
+	
+John Pierson
+	
+ca018ca
+	
+View changes and additions
+
+	
+2018-03-21
+	
+John Pierson
+	
+f0e1d7c
+	
+Version 2016 fixes
+
+	
+2018-03-19
+	
+John Pierson
+	
+4a4c265
+	
+Readme image and fixes
+
+	
+2018-03-19
+	
+John Pierson
+	
+661c483
+	
+Modified ReadMe
+
+	
+2018-03-19
+	
+John Pierson
+	
+4281cc1
+	
+Reupload node images
+
+	
+2018-03-19
+	
+John Pierson
+	
+d13fe5f M
+	
+Merge branch 'master' of https://bitbucket.org/j0hnp/rhythm_for_dynamo
+
+	
+2018-03-19
+	
+John Pierson
+	
+64beb58
+	
+Upload of UI changes
+
+	
+2018-03-19
+	
+John Pierson
+	
+dff6d68
+	
+README.md created online with Bitbucket
+
+	
+2018-03-19
+	
+John Pierson
+	
+82adae3
+	
+Fixed the not loading in Revit 2016 issue
+
+	
+2018-03-15
+	
+John Pierson
+	
+82c2bd2
+	
+Lots of cleanup
+
+	
+2018-03-13
+	
+John Pierson
+	
+b07a406
+	
+Workset visibility addition and Element.IsHiddenInView
+
+	
+2018-03-09
+	
+John Pierson
+	
+1b5f31d
+	
+IsHidden Method
+
+	
+2018-03-06
+	
+John Pierson
+	
+ce8b7ba
+	
+New version
+
+	
+2018-03-02
+	
+John Pierson
+	
+9fb92b2
+	
+family instance
+
+	
+2018-03-02
+	
+John Pierson
+	
+3602739
+	
+FamilyInstance addition
+
+	
+2018-03-02
+	
+John Pierson
+	
+ce90420
+	
+sheet packing finishes
+
+	
+2018-02-26
+	
+John Pierson
+	
+0cf0c15
+	
+tag addition, view packer
+
+	
+2018-02-23
+	
+John Pierson
+	
+3563ef5
+	
+Wall class addition
+
+	
+2018-02-22
+	
+John Pierson
+	
+5055b03
+	
+Elevation marker fix, and tag addition
+
+	
+2018-02-20
+	
+John Pierson
+	
+ae11aec
+	
+General changes for publish of version 2018.02.19
+
+	
+2018-02-19
+	
+John Pierson
+	
+180c526
+	
+Revised application node for detach and audit
+
+	
+2018-02-16 

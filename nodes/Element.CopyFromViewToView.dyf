@@ -67,7 +67,7 @@ for item in items:
 		elementlist.append(None)
 OUT = elementlist</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="9ea373bb-5919-4526-bf07-b13a065fbffb" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="968" y="337.990066629" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="9ea373bb-5919-4526-bf07-b13a065fbffb" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="968" y="337.990066629" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false">
       <PortInfo index="0" default="False" />
     </Dynamo.Graph.Nodes.CodeBlockNodeModel>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7076c5d8-22d3-4a26-a1a7-d6df0e524100" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="531" y="336" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

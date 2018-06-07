@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Rhythm</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Rhythm.Revit.Application">
+      <category>Rhythm.Revit.Application</category>
+    </namespace>
+    <namespace name="Rhythm.Revit.Elements">
+      <category>Rhythm.Revit.Elements</category>
+    </namespace>
+	<namespace name="Rhythm.Revit.ElementFilter">
+      <category>Rhythm.Revit.ElementFilter</category>
+    </namespace>
+	<namespace name="Rhythm.Revit.Selection">
+      <category>Rhythm.Revit.Selection</category>
+    </namespace>
+    <namespace name="Rhythm.Revit.Tools">
+      <category>Rhythm.Revit.Tools</category>
+    </namespace>
+    <namespace name="Rhythm.Revit.View">
+      <category>Rhythm.Revit.View</category>
+    </namespace>
+    <namespace name="Rhythm.Revit.Views">
+      <category>Rhythm.Revit.Views</category>
+    </namespace>
+	 <namespace name="Rhythm.Revit.Ribbon">
+      <category>Rhythm.Revit.Ribbon</category>
+    </namespace>
+  </namespaces>
+</doc>

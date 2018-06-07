@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-384.217622274225" Y="149.950477614563" zoom="0.620250220907472" Name="Select Grids By Curve" Description="This will select Revit grids by the input Revit curve," ID="6071cd6f-d469-4a5a-ba65-630b5c619cfb" Category="Rhythm.Revit.Selection">
+<Workspace Version="1.3.2.2480" X="-384.217622274225" Y="149.950477614563" zoom="0.620250220907472" ScaleFactor="1" Name="Select Grids By Curve" Description="This will select Revit grids by the input Revit curve," ID="6071cd6f-d469-4a5a-ba65-630b5c619cfb" Category="Rhythm.Revit.Selection.Selection">
   <NamespaceResolutionMap>
     <ClassMap partialName="Math" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>
@@ -77,7 +77,7 @@
     <DSRevitNodesUI.ElementsOfCategory guid="6132f970-c958-4839-81b3-d06163abde79" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="-598.998221092268" y="350.348945875756" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
     </DSRevitNodesUI.ElementsOfCategory>
-    <DSRevitNodesUI.Categories guid="3f69b80d-b60c-4489-8c63-a43066ef8d14" type="DSRevitNodesUI.Categories" nickname="Categories" x="-799.998221092269" y="350.348945875756" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="219:Grids" />
+    <DSRevitNodesUI.Categories guid="3f69b80d-b60c-4489-8c63-a43066ef8d14" type="DSRevitNodesUI.Categories" nickname="Categories" x="-799.998221092269" y="350.348945875756" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="231:Grids" />
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="af759d10-eff6-4284-b8b7-55a1128fac23" start_index="0" end="4f92d6d7-eb31-4b53-88b7-1e5122bde84e" end_index="0" portType="0" />
@@ -110,7 +110,4 @@
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
 </Workspace>

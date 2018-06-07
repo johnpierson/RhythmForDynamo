@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Isolated Pick Model Elements" Description="This allows a multiple selection of elements of specified category." ID="9dba20d5-ee3a-4fad-ae88-9b859fff9cb7" Category="Rhythm.Revit.Selection">
+<Workspace Version="1.3.2.2480" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Isolated Pick Model Elements" Description="This allows a multiple selection of elements of specified category." ID="9dba20d5-ee3a-4fad-ae88-9b859fff9cb7" Category="Rhythm.Revit.Selection.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="39383be9-f43a-49c2-b423-a6dbac345bda" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1123.2768838658" y="353.012371778627" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
@@ -74,7 +74,4 @@ OUT = typelist</Script>
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-41.6697474392299" eyeY="110.592791640682" eyeZ="123.183221685352" lookX="41.6697474392299" lookY="-110.592791640682" lookZ="-123.183221685352" upX="0.150436170398587" upY="0.882947592858927" upZ="-0.444716209396997" />
-  </Cameras>
 </Workspace>

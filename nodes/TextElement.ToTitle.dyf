@@ -56,7 +56,7 @@ OUT = IN[0]</Script>
     <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="13cbf476-e162-45ee-ba76-a315d23507a5" nickname="Input" x="94" y="-2.1316282072803E-14" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
       <Symbol value="Text Element(s)" />
     </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.CodeBlockNodeModel type="Dynamo.Nodes.CodeBlockNodeModel" guid="450ff4e4-65ba-414e-826c-b33258209886" nickname="Code Block" x="243.709943837011" y="-2.1316282072803E-14" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel type="Dynamo.Nodes.CodeBlockNodeModel" guid="450ff4e4-65ba-414e-826c-b33258209886" nickname="Code Block" x="243.709943837011" y="-2.1316282072803E-14" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false" />
   </Elements>
   <Connectors>
     <Dynamo.Models.ConnectorModel start="5344c0c4-e66e-4034-a8a3-34ae6990d90c" start_index="0" end="1d8108b1-d3c8-4b0b-ad08-c1e2b866813b" end_index="0" portType="0" />

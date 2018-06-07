@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="308.69418125" Y="179.6179625" zoom="1.33823125" Name="Element.OverrideProjectionLineColor" Description="This node overrides the projection line color with the input color value. Useful for annotation." ID="69e20e68-f912-41db-ac95-bbb3e89882a9" Category="Rhythm.Revit.Elements.Element.Actions">
+<Workspace Version="1.3.2.2480" X="308.69418125" Y="179.6179625" zoom="1.33823125" ScaleFactor="1" Name="Element.OverrideProjectionLineColor" Description="This node overrides the projection line color with the input color value. Useful for annotation." ID="69e20e68-f912-41db-ac95-bbb3e89882a9" Category="Rhythm.Revit.Elements.Element.Actions">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="6d6f6ae7-5d24-43f0-9315-212543da1c99" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="-1" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
@@ -74,7 +74,7 @@ OUT = IN[0]</Script>
       <PortInfo index="0" default="False" />
       <Symbol value="element" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="8a3297c7-d537-415e-8e1d-7289d5477d7e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-1" y="3.21833333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="8a3297c7-d537-415e-8e1d-7289d5477d7e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-1" y="3.21833333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false">
       <PortInfo index="0" default="False" />
     </Dynamo.Graph.Nodes.CodeBlockNodeModel>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="82d2e753-417f-4078-bf8f-58c2b635d2ca" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="26" y="144" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="color[0];" ShouldFocus="false">
@@ -91,7 +91,4 @@ OUT = IN[0]</Script>
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
 </Workspace>

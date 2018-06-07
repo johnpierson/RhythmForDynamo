@@ -31,7 +31,7 @@ OUT = elementlist</Script>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="6ef24005-e390-40d7-8dfb-ebd026cf09b8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1128.5" y="322.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <Symbol value="leaderEndPostion" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="baf51db3-dc0b-457e-9ca9-3be5a8cea75e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="753.5" y="319.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="baf51db3-dc0b-457e-9ca9-3be5a8cea75e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="753.5" y="319.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false" />
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6485fa1c-0191-40ea-8577-a3088d8ba778" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="599.5" y="313.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="dimension" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>

@@ -69,7 +69,7 @@ OUT = IN[0]</Script>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="61b2ee22-3c39-4960-a425-6a5b3ac6292a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="421.651970450206" y="498.629926125514" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="number : int" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a2f92e56-e020-44bd-9e49-2f662384b0e1" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="361.800467964527" y="427.322668602139" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a2f92e56-e020-44bd-9e49-2f662384b0e1" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="361.800467964527" y="427.322668602139" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false">
       <PortInfo index="0" default="False" />
     </Dynamo.Graph.Nodes.CodeBlockNodeModel>
   </Elements>

@@ -49,7 +49,7 @@ TransactionManager.Instance.TransactionTaskDone()
 #Assign your output to the OUT variable
 OUT = typelist</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="6f98d8bf-9e96-476c-aa16-23aa95695e2a" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="252.822894168467" y="584.667386609071" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="6f98d8bf-9e96-476c-aa16-23aa95695e2a" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="252.822894168467" y="584.667386609071" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false" />
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="cb0d5465-8fc0-4e0f-9c6a-5fb1310b0bb1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-151.95464362851" y="584.667386609071" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <Symbol value="//String to be converted to Title Case.&#xD;&#xA;str : string" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>

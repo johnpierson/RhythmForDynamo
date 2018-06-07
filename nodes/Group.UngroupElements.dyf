@@ -51,7 +51,7 @@ TransactionManager.Instance.TransactionTaskDone()
 #Assign your output to the OUT variable
 OUT = typelist</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="958.058231389046" y="-194.417903548646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="73e98317-6ca2-40e8-8ed7-98550ceb3ad7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="958.058231389046" y="-194.417903548646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="DSCore.List.Flatten({item},-1);" ShouldFocus="false">
       <PortInfo index="0" default="False" />
     </Dynamo.Graph.Nodes.CodeBlockNodeModel>
     <PythonNodeModels.PythonNode guid="f2556a2c-a2f8-4cd5-95b1-d44a8c056080" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1204.51605247643" y="-32.8903330440123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
