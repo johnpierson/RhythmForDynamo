@@ -1,4 +1,3 @@
-[![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social?style=flat-square)](https://twitter.com/60secondrevit)
 ![Image](rhythmForDynamo1.png)
 
 Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org) visual programming environment. The idea is this package helps users maintain Rhythm in Revit with Dynamo. It primarily consists of out of the box Dynamo nodes used in clever ways as they apply to the Revit environment.
