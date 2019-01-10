@@ -22,4 +22,6 @@ Luke Johnson (whatrevitwants) recently invited several Dynamo developers to co-a
 ## Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/sixtysecondrevit/RhythmForDynamo/pulls).
 
+[![](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LWDXXR74LC6U6&currency_code=USD&source=url)
+
 ## Thank you!
