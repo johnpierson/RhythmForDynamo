@@ -17,7 +17,7 @@ Since there is not currently an update notification process on Dynamo's package 
 [![](https://img.shields.io/twitter/follow/60secondrevit.svg?label=Follow&style=social)](https://twitter.com/60secondrevit)
 
 ## Examples
-Luke Johnson (whatrevitwants) recently invited several Dynamo developers to co-author a site that can serve as an encyclopedia of nodes. Examples for Rhythm can be found at that site [here](https://dynamonodes.com/2017/12/10/rhythm-node-index/).
+Examples will be available on the [wiki](https://github.com/johnpierson/RhythmForDynamo/wiki) soon,
 
 ## Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/sixtysecondrevit/RhythmForDynamo/pulls).
