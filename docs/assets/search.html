@@ -1,0 +1,29 @@
+---
+layout: page
+title: Search
+menu: false
+search: false
+permalink: /search
+---
+{% if site.search != false %}
+  <div id="search-container">
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="search">
+        <label class="mdl-textfield__label" for="search">Keywords...</label>
+      </div>
+    </form>
+    <ul class="demo-list-item mdl-list" id="results"></ul>
+  </div>
+  <script src="{{ '/assets/simple-jekyll-search.min.js' | absolute_url }}"></script>
+  <script>
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search'),
+    resultsContainer: document.getElementById('results'),
+    json: "{{ '/assets/search.json' | absolute_url }}",
+    searchResultTemplate: '<li class="mdl-list__item"><a href="{url}"><span class="mdl-list__item-primary-content">{title}</span></a></li>'
+  })
+  </script>
+{% else %}
+  <p>Search is disabled.</p>
+{% endif %}

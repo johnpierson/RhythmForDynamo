@@ -1,0 +1,14 @@
+---
+layout: null
+---
+{% if site.search != false %}
+[
+  {% for node in site.pages %}{% if node.title and node.content and node.search != false %}
+    {
+      "title"    : "{{ node.title | escape }}",
+      "url"      : "{{ node.url | absolute_url }}",
+      "content"  : {{ node.content | newlines_to_br | strip_html | jsonify }}
+    },
+    {% endif %}{% endfor %}{}
+]
+{% endif %}
