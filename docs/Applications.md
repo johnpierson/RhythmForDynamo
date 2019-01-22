@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Features
+title: Applications
 weight: 1
 ---
 
