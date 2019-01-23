@@ -1,6 +1,7 @@
 ---
 title: Applications.CloseDocument
-parent: Applications
+parent: Application
+grand_parent: Revit
 nav_order: 1
 ---
 
