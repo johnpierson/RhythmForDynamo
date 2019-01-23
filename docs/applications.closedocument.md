@@ -5,16 +5,16 @@ grand_parent: Application
 nav_order: 1
 ---
 
-### Applications.CloseDocument
+## Applications.CloseDocument
 
 ![Application.CloseDocument.png](https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/docs/img/Application/Application.CloseDocument.png)
 
-#### Description:
+### Description:
 This node closes the given background opened Revit document.
 
-#### Inputs:
+### Inputs:
 document : Autodesk.Revit.DB.Document
 save : bool
 
-#### Outputs
+### Outputs
 result : result
