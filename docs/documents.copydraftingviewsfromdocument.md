@@ -1,5 +1,5 @@
 ---
-title: Applications.OpenDocumentFile
+title: Documents.CopyDraftingViewsFromDocument
 parent: Application
 grand_parent: Revit
 nav_order: 1
