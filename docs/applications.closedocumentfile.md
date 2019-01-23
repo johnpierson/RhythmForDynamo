@@ -8,7 +8,7 @@ published: true
 
 ### Applications.CloseDocumentFile
 
-![Application.CloseDocument.png]({{site.baseurl}}/docs/Application.CloseDocument.png)
+![Application.CloseDocument.png](https://github.com/johnpierson/RhythmForDynamo/blob/master/docs/img/Application.CloseDocument.png)
 
 
 #### Description:
