@@ -7,7 +7,7 @@ nav_order: 1
 
 ## Documents.CopyDraftingViewsFromDocument
 
-![Documents.CopyDraftingViewsFromDocument.png](https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/docs/img/Application/Documents.CopyDraftingViewsFromDocument.png)
+![Documents.CopyDraftingViewsFromDocument.png](https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/docs/img/Documents/Documents.CopyDraftingViewsFromDocument.png)
 
 ### Description:
 This node will copy the given drafting views and their contents from the given document into the active document.
