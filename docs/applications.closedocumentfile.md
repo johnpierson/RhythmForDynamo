@@ -11,7 +11,7 @@ nav_order: 1
 
 
 #### Description:
-This node close the given Revit document.
+This node closes the given Revit document.
 
 #### Inputs:
 document : Autodesk.Revit.DB.Document
