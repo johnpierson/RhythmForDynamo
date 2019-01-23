@@ -1,6 +1,7 @@
 ---
 title: Applications
 parent: Application
+has_children: true
 grand_parent: Revit
 nav_order: 1
 ---
