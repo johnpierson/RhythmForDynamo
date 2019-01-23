@@ -2,7 +2,22 @@
 
 This page aims to be the documentation for the Rhythm package. Nodes are organized by their same hierarcgy from Dynamo. Previously this content was documented elsewhere, but the decision was made to move it all to one repo for simplicity.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<button class="btn js-toggle-dark-mode">Preview dark color scheme</button>
+
+<script>
+const toggleDarkMode = document.querySelector('.js-toggle-dark-mode')
+const cssFile = document.querySelector('[rel="stylesheet"]')
+const originalCssRef = cssFile.getAttribute('href')
+const darkModeCssRef = originalCssRef.replace('just-the-docs.css', 'dark-mode-preview.css')
+
+addEvent(toggleDarkMode, 'click', function(){
+  if (cssFile.getAttribute('href') === originalCssRef) {
+    cssFile.setAttribute('href', darkModeCssRef)
+  } else {
+    cssFile.setAttribute('href', originalCssRef)
+  }
+})
+</script>
 
 ### Markdown
 
