@@ -1,0 +1,16 @@
+{
+  "name": "just-the-docs",
+  "version": "0.2.1",
+  "description": "A Jekyll theme for documentation",
+  "repository": "pmarsceill/just-the-docs",
+  "license": "MIT",
+  "bugs": "https://github.com/pmarsceill/just-the-docs/issues",
+  "devDependencies": {
+    "stylelint": "^9.9.0",
+    "stylelint-config-primer": "^3.0.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "stylelint '**/*.scss'"
+  }
+}
