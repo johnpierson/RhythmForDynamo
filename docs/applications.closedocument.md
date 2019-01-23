@@ -7,7 +7,7 @@ nav_order: 1
 
 ### Applications.CloseDocument
 
-![Application.CloseDocument.png](https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/docs/img/Application.CloseDocument.png)
+![Application.CloseDocument.png](https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/docs/img/Application/Application.CloseDocument.png)
 
 #### Description:
 This node closes the given background opened Revit document.
