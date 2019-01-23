@@ -3,7 +3,6 @@ title: Applications.CloseDocumentFile
 parent: Applications
 grand_parent: Application
 nav_order: 1
-published: true
 ---
 
 ### Applications.CloseDocumentFile
