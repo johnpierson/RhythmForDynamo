@@ -1,7 +1,6 @@
 ---
 title: Applications.CloseDocument
 parent: Applications
-grand_parent: Application
 nav_order: 1
 ---
 
