@@ -1,7 +1,7 @@
 ---
 title: Applications.OpenDocumentFile
-parent: Applications
-grand_parent: Application
+parent: Application
+grand_parent: Revit
 nav_order: 1
 ---
 
