@@ -8,7 +8,8 @@ published: true
 
 ### Applications.CloseDocumentFile
 
-![](https://github.com/johnpierson/RhythmForDynamo/tree/master/docs/img/Application.CloseDocument.png)
+![Application.CloseDocument.png]({{site.baseurl}}/docs/Application.CloseDocument.png)
+
 
 #### Description:
 This node close the given Revit document.
