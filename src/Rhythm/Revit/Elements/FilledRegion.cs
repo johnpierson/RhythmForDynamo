@@ -21,7 +21,7 @@ namespace Rhythm.Revit.Elements
         private FilledRegions() { }
 
         /// <summary>
-        /// This will create a filled region with multiple loops. 
+        /// This will create a filled region with multiple loops. Based on code from https://forum.dynamobim.com/t/filled-region-with-hole-in-the-middle-like-a-donut/22838/3
         /// </summary>
         /// <param name="filledRegionType"></param>
         /// <param name="view"></param>
@@ -55,7 +55,7 @@ namespace Rhythm.Revit.Elements
             //return the newly created revit element
             return filledRegion.ToDSType(true);
         }
-
+        // this sort curves algorithm is from https://thebuildingcoder.typepad.com/blog/2013/03/sort-and-orient-curves-to-form-a-contiguous-loop.html
         private static void SortCurves(List<Curve> curves)
         {
             double _inch = 1.0 / 12.0;
