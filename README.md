@@ -2,7 +2,7 @@
 
 
 
-Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org) visual programming environment. The idea is this package helps users maintain Rhythm in Revit with Dynamo. It primarily consists of out of the box Dynamo nodes used in clever ways as they apply to the Revit environment.
+Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org) visual programming environment. The idea is this package helps users maintain Rhythm in Revit with Dynamo. Rhythm started out as mostly out of the box Dynamo nodes used in clever ways as they apply to the Revit environment. Over time, this has changed and Rhythm is now primary a C# ZeroTouch package that adds additional functionality to Dynamo for Revit.
 
 If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager.
 
