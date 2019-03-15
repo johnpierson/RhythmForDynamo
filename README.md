@@ -9,6 +9,9 @@ If you appreciate the work put into this free package, please vote in support of
 ## Current Version
 Rhythm is currently built against the latest Dynamo stable build. At this time that is 2.0.1.
 
+## Known Issues
+- Nodes that interact with background opened documents take some more consideration. This includes running Dynamo graphs that use them in manual run mode and often times closing and opening dynamo after the process is complete. The reason this happens is Dynamo has limited document switching capability and we are exploiting this with those nodes. (Included Nodes: Applications.OpenDocumentFile, Applications.CloseDocument)
+
 ## Contributors
 This package is currently managed by author of http://sixtysecondrevit.com.
 
