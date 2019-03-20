@@ -1,23 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Events;
-using Autodesk.Revit.UI;
-using Autodesk.Revit.UI.Events;
-using Dynamo.Applications;
-using Dynamo.Applications.ViewModel;
-using Dynamo.Controls;
-using Dynamo.Graph;
-using Dynamo.Graph.Connectors;
-using Dynamo.Graph.Nodes;
-using Dynamo.Graph.Workspaces;
-using Dynamo.Models;
-using Dynamo.ViewModels;
 using RevitServices.Persistence;
 using Rhythm.Utilities;
-using Object = DSCore.Object;
 
 namespace Rhythm.Revit.Application
 {

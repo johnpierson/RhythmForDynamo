@@ -1,8 +1,5 @@
-﻿using System;
-using Autodesk.DesignScript.Runtime;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Revit.Elements;
@@ -10,7 +7,6 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Rhythm.Utilities;
-using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 
 namespace Rhythm.Revit.Application
 {
