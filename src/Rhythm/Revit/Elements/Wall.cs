@@ -4,6 +4,7 @@ using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 using Revit.Elements;
 using RevitServices.Transactions;
+using Element = Autodesk.Revit.DB.Element;
 
 namespace Rhythm.Revit.Elements
 {
@@ -16,8 +17,7 @@ namespace Rhythm.Revit.Elements
         { }
 
         /// <summary>
-        /// This node will try to check if the walls profile has been modified using logic outlined here,
-        /// http://thebuildingcoder.typepad.com/blog/2010/11/access-to-sketch-and-sketch-plane.html
+        /// This node will try to check if the walls profile has been modified using the dependent elements method available in Revit 2018.1+
         /// </summary>
         /// <param name="wall">The walls to check.</param>
         /// <returns name="bool">The result.</returns>
@@ -29,24 +29,20 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             Autodesk.Revit.DB.Wall internalWall = (Autodesk.Revit.DB.Wall )wall.InternalElement;
 
-            Transaction trans = new Transaction(doc, "check wall");
-            TransactionManager.Instance.ForceCloseTransaction();
-            trans.Start();
-            ICollection<ElementId> ids = doc.Delete(internalWall.Id);
-            trans.RollBack();
+            //dependent elements method (available in Revit 2018.1 +)
+            Autodesk.Revit.DB.ElementFilter elemFilter = new ElementIsElementTypeFilter(true);
+            IList<ElementId> elemIds = internalWall.GetDependentElements(elemFilter);
 
-            List<global::Autodesk.Revit.DB.Element> a = new List<global::Autodesk.Revit.DB.Element>(
-                ids.Select(id => doc.GetElement(id)));
+            //get the elements
+            List<Autodesk.Revit.DB.Element> elems = new List<Element>(elemIds.Select(e => doc.GetElement(e)));
 
-            a.Where(e => e is Autodesk.Revit.DB.Sketch || e is Autodesk.Revit.DB.SketchPlane).ToArray();
+            //find out if any of the elements are of sketch type
+            var sketchElems = elems.Where(e => e is Autodesk.Revit.DB.Sketch || e is Autodesk.Revit.DB.SketchPlane).ToList();
 
-            bool result = a.Count > 1;
-
-            return result;
+            return sketchElems.Count > 1;
         }
         /// <summary>
-        /// This node will try to check if the walls profile has been modified using logic outlined here,
-        /// http://thebuildingcoder.typepad.com/blog/2010/11/access-to-sketch-and-sketch-plane.html
+        /// This node will try to check if the walls profile has been modified using the dependent elements method available in Revit 2018.1+
         /// </summary>
         /// <param name="wall">The walls to check.</param>
         /// <returns name="modelCurves">The result.</returns>
@@ -56,18 +52,16 @@ namespace Rhythm.Revit.Elements
         public static global::Revit.Elements.Element[] EditedProfile(global::Revit.Elements.Element wall)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Autodesk.Revit.DB.Element internalElement = wall.InternalElement;
+            Autodesk.Revit.DB.Element internalWall = wall.InternalElement;
 
-            Transaction trans = new Transaction(doc, "check element");
-            TransactionManager.Instance.ForceCloseTransaction();
-            trans.Start();
-            ICollection<ElementId> ids = doc.Delete(internalElement.Id);
-            trans.RollBack();
+            //dependent elements method (available in Revit 2018.1 +)
+            Autodesk.Revit.DB.ElementFilter elemFilter = new ElementIsElementTypeFilter(true);
+            IList<ElementId> elemIds = internalWall.GetDependentElements(elemFilter);
 
-            List<global::Autodesk.Revit.DB.Element> internalWallElements = new List<global::Autodesk.Revit.DB.Element>(
-                ids.Select(id => doc.GetElement(id)));
+            //get the elements
+            List<Autodesk.Revit.DB.Element> elems = new List<Element>(elemIds.Select(e => doc.GetElement(e)));
 
-            global::Autodesk.Revit.DB.Element[] internalCurves = internalWallElements.Where(e => e is Autodesk.Revit.DB.ModelCurve).ToArray();
+            global::Autodesk.Revit.DB.Element[] internalCurves = elems.Where(e => e is Autodesk.Revit.DB.ModelCurve).ToArray();
 
             global::Revit.Elements.Element[] modelCurves = internalCurves.Select(e => e.ToDSType(true)).ToArray();
 
