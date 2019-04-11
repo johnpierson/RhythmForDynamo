@@ -1,4 +1,5 @@
-﻿using Autodesk.Revit.DB;
+﻿using System;
+using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 
 namespace Rhythm.Revit.Worksharing
@@ -18,7 +19,16 @@ namespace Rhythm.Revit.Worksharing
         /// <returns name="creatorName">The username of the creator.</returns>
         public static string Creator(global::Revit.Elements.Element element)
         {
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document doc;
+            try
+            {
+                doc = element.InternalElement.Document;
+            }
+            catch (Exception)
+            {
+                doc = DocumentManager.Instance.CurrentDBDocument;
+            }
+            
 
             WorksharingTooltipInfo tooltipInfo = WorksharingUtils.GetWorksharingTooltipInfo(doc, element.InternalElement.Id);
           
@@ -31,7 +41,15 @@ namespace Rhythm.Revit.Worksharing
         /// <returns name="lastChangedBy">The username of the person who last changed the element.</returns>
         public static string LastChangedBy(global::Revit.Elements.Element element)
         {
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document doc;
+            try
+            {
+                doc = element.InternalElement.Document;
+            }
+            catch (Exception)
+            {
+                doc = DocumentManager.Instance.CurrentDBDocument;
+            }
 
             WorksharingTooltipInfo tooltipInfo = WorksharingUtils.GetWorksharingTooltipInfo(doc, element.InternalElement.Id);
 
