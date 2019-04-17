@@ -3,11 +3,6 @@
   - Dynamo File Name: 
   
   
-* **I'm submitting a ...**
-  - [ ] bug report
-  - [ ] feature request
-
-
 * **Do you want to request a *feature* or report a *bug*?**
 
 
