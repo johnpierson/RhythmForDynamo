@@ -28,6 +28,9 @@ If you're interested in contributing to Rhythm, just submit a [pull request](htt
 ## Donate
 The only reason this section is here is because I've been asked about this, so here is an option if you feel so inclined to do so. 🤗 [![](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LWDXXR74LC6U6&currency_code=USD&source=url)
 
+## Installation
+Rhythm is available through Dynamo's built-in package manager. This provides the simplest installation for most users. If you are interested in manual install, there are some fabulous resources out there describing how to build your own Dynamo package.
+
 ## Thank you!
 
 ## What is with all the removals of DYFs?!!
