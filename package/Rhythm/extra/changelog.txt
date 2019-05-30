@@ -1,0 +1,7 @@
+20180830: [General] cleanup in preperation for last release for 1.3.3. [Additions] Hostobject nodes. Worksharing nodes to check element creator's and who last updated. [Removals] All Framing at Reference Level.dyf, All Pipes at Reference Level.dyf, Collector.DuctsBySystem.dyf, Collector.PipesBySystem.dyf, Rhythm.RenumberGridsByCurve.dyf, Rhythm.Toggle.dyfSelect Grids By Curve.dyf, OS.CurrentUser.dyf, OS.CurrentUserAppData.dyf, PostableCommand.Default3DView.dyf, PostableCommand.CloseHiddenWindows.dyf
+201897: [General] This release marks the first version of Rhythm that is fully compatible with Dynamo 2.0.1 and up. Changes include the revision of the UI nodes for outputs to work as expected, and only returning a dictionary when absolutely necessary.
+2018919: [General] Fixing namespace conflicts with OOTB. This means that Element was renamed to Elements and Category to Categories and so on. [Removals] Most DYFs have been removed. Sorry, but they are too hard to manage between 1.3.x and 2.0.x.
+2018124: [Changes] Revised Sheet.GetViewportsAndViews to accept a document input.
+2019121: [Additions] Added leader tools for text notes and added Mullion class back.
+201943: [Additions] Added a view extension for Dynamo 2.0 that labels Rhythm nodes on placement. [Changes] Revised Wall profile nodes to be less destructive
+2019425: [Changes] Revised the document nodes to return Autodesk.Revit.DB.Document. Also made the view extension force manual run mode on close document placement.

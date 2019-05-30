@@ -1,0 +1,4 @@
+﻿<ViewExtensionDefinition>
+  <AssemblyPath>..\bin\RhythmViewExtension.dll</AssemblyPath>
+  <TypeName>RhythmViewExtension.RhythmViewExtension</TypeName>
+</ViewExtensionDefinition>
