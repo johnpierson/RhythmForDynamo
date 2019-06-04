@@ -29,11 +29,11 @@ namespace Rhythm.Revit.Elements
 
             //nested this in a try catch because I want false if this fails for any reason, instead of nulls. 
             try
-            {
+            {   
                 return fec.OfClass(typeof(ViewPlan))
-                    .Cast<ViewPlan>().Any(v => v.GenLevel.Id.IntegerValue.Equals(level.Id));
+                    .Cast<ViewPlan>().Where(v => !v.IsTemplate).Any(v => v.GenLevel.Id.IntegerValue.Equals(level.Id));
             }
-            catch (Exception)
+            catch (Exception e )
             {
                 return false;
             }
