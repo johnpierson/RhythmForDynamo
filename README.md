@@ -1,6 +1,8 @@
 ![Image](!Documentation/Logo/RhythmLogo.png)
 
 
+<a href="https://www.buymeacoffee.com/j0hnp" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
 
 Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org) visual programming environment. The idea is this package helps users maintain Rhythm in Revit with Dynamo. Rhythm started out as mostly out of the box Dynamo nodes used in clever ways as they apply to the Revit environment. Over time, this has changed and Rhythm is now primary a C# ZeroTouch package that adds additional functionality to Dynamo for Revit.
 
@@ -24,9 +26,6 @@ Examples will be available on the [wiki](https://github.com/johnpierson/RhythmFo
 
 ## Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/sixtysecondrevit/RhythmForDynamo/pulls).
-
-## Donate
-The only reason this section is here is because I've been asked about this, so here is an option if you feel so inclined to do so. 🤗 [![](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=LWDXXR74LC6U6&currency_code=USD&source=url)
 
 ## Installation
 Rhythm is available through Dynamo's built-in package manager. This provides the simplest installation for most users. If you are interested in manual install, there are some fabulous resources out there describing how to build your own Dynamo package.
