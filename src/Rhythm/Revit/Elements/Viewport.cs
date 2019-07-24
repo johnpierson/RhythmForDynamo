@@ -74,7 +74,6 @@ namespace Rhythm.Revit.Elements
         [MultiReturn(new[] { "bBox", "boxCenter", "boxOutline" })]
         public static Dictionary<string, object> LocationData(global::Revit.Elements.Element viewport)
         {
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //obtain the element id from the sheet
             Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
             //obtain the box center of the viewport
@@ -84,15 +83,18 @@ namespace Rhythm.Revit.Elements
                 Autodesk.DesignScript.Geometry.Point.ByCoordinates(boxCenterInternal.X, boxCenterInternal.Y, 0);
             //this obtains the box outline
             var boxOutline = internalViewport.GetBoxOutline();
+            //temporary geometry
             var bBox = BoundingBox.ByCorners(boxOutline.MaximumPoint.ToPoint(), boxOutline.MinimumPoint.ToPoint());
             var boxCuboid = Cuboid.ByCorners(boxOutline.MaximumPoint.ToPoint(), boxOutline.MinimumPoint.ToPoint());
             //create plane that corresponds to sheet plane
             Plane boxPlane = Plane.ByOriginNormal(boxOutline.MaximumPoint.ToPoint(), Vector.ZAxis());
             var boxSurface = boxCuboid.Intersect(boxPlane);
             List<Autodesk.DesignScript.Geometry.Curve[]> boxCurves = new List<Autodesk.DesignScript.Geometry.Curve[]>();
-            foreach (Surface surf in boxSurface)
+            foreach (var geometry in boxSurface)
             {
+                var surf = (Surface) geometry;
                 boxCurves.Add(surf.PerimeterCurves());
+                surf.Dispose();
             }
             List<Autodesk.DesignScript.Geometry.Curve> boxSheetCurves = new List<Autodesk.DesignScript.Geometry.Curve>();
             //pull the curves onto a plane at 0,0,0
@@ -101,8 +103,13 @@ namespace Rhythm.Revit.Elements
                 foreach (Autodesk.DesignScript.Geometry.Curve c in curve)
                 {
                     boxSheetCurves.Add(c.PullOntoPlane(Plane.XY()));
+                    c.Dispose();
                 }
             }
+
+            //dispose of temporary geometries         
+            boxCuboid.Dispose();
+            boxPlane.Dispose();
             //returns the outputs
             var outInfo = new Dictionary<string, object>
                 {
