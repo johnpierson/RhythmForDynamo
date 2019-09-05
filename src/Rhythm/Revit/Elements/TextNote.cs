@@ -78,7 +78,5 @@ namespace Rhythm.Revit.Elements
 
             return internalNote.GetLeaders().ToList();
         }
-
-
     }
 }
