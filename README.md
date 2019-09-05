@@ -1,11 +1,15 @@
-![Image](!Documentation/Logo/RhythmLogo.png)
+<h1 align="center">
+  <br>
+  <img src="!Documentation/Logo/RhythmLogo.png" alt="Rhythm" width="500">
+  <br>
+  Rhythm
+  <br>
+</h1>
+
+<h4 align="center">A collection of custom nodes for <a href="http://dynamobim.org/" target="_blank">Dynamo</a>.</h4>
 
 
-
-
-Rhythm is a collection of custom nodes for the [Dynamo](http://www.dynamobim.org) visual programming environment. The idea is this package helps users maintain Rhythm in Revit with Dynamo. Rhythm started out as mostly out of the box Dynamo nodes used in clever ways as they apply to the Revit environment. Over time, this has changed and Rhythm is now primary a C# ZeroTouch package that adds additional functionality to Dynamo for Revit.
-
-If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager.
+If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager or see section #3.50 below.
 
 ## Current Version
 Rhythm is currently built against the latest Dynamo stable build. At this time that is 2.0.1.
