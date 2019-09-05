@@ -213,7 +213,6 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="viewport">The viewport to set.</param>
         /// <param name="point">The point to use.</param>
-        /// <returns name="childViewports">The viewports you moved.</returns>
         /// <search>
         /// viewport
         /// </search>
@@ -224,6 +223,20 @@ namespace Rhythm.Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(doc);
             internalViewport.SetBoxCenter(point.ToRevitType());
             TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// This node will retrieve the viewport's box center.
+        /// </summary>
+        /// <param name="viewport">The viewport to set.</param>
+        /// <returns name="boxCenter">The viewport's box center as a point.</returns>
+        /// <search>
+        /// viewport
+        /// </search>
+        public static Point BoxCenter(global::Revit.Elements.Element viewport)
+        {
+            Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
+            return internalViewport.GetBoxCenter().ToPoint();
         }
     }
 }
