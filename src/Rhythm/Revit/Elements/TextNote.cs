@@ -27,7 +27,7 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.TextNote internalNote = (Autodesk.Revit.DB.TextNote)textNote.InternalElement;
 
             //Get the text from the text box
-            //we obtain formated text and modify the caps instead of the string. Preserves formatting. - John
+            //we obtain formatted text and modify the caps instead of the string. Preserves formatting.
             FormattedText formattedText = internalNote.GetFormattedText();
             formattedText.SetAllCapsStatus(true);
             //Change all the text to upper case and reassign to the text box
