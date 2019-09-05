@@ -7,6 +7,7 @@ using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
 using Plane = Autodesk.DesignScript.Geometry.Plane;
+using Point = Autodesk.DesignScript.Geometry.Point;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Rhythm.Revit.Elements
@@ -92,7 +93,7 @@ namespace Rhythm.Revit.Elements
             List<Autodesk.DesignScript.Geometry.Curve[]> boxCurves = new List<Autodesk.DesignScript.Geometry.Curve[]>();
             foreach (var geometry in boxSurface)
             {
-                var surf = (Surface) geometry;
+                var surf = (Surface)geometry;
                 boxCurves.Add(surf.PerimeterCurves());
                 surf.Dispose();
             }
@@ -205,6 +206,24 @@ namespace Rhythm.Revit.Elements
             }
 
             return childViewports;
+        }
+
+        /// <summary>
+        /// This node will set the viewport's box center given the point.
+        /// </summary>
+        /// <param name="viewport">The viewport to set.</param>
+        /// <param name="point">The point to use.</param>
+        /// <returns name="childViewports">The viewports you moved.</returns>
+        /// <search>
+        /// viewport
+        /// </search>
+        public static void SetBoxCenter(global::Revit.Elements.Element viewport, Point point)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalViewport.SetBoxCenter(point.ToRevitType());
+            TransactionManager.Instance.TransactionTaskDone();
         }
     }
 }
