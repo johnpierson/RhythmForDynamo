@@ -5,3 +5,5 @@
 2019121: [Additions] Added leader tools for text notes and added Mullion class back.
 201943: [Additions] Added a view extension for Dynamo 2.0 that labels Rhythm nodes on placement. [Changes] Revised Wall profile nodes to be less destructive
 2019425: [Changes] Revised the document nodes to return Autodesk.Revit.DB.Document. Also made the view extension force manual run mode on close document placement.
+201963: [Additions] Addition of Dimension.Properties replacements, Dimensions.Accuracy, Dimensions.Color, Dimensions.DisplayUnits.
+2019724: [Revisions] Revised Viewport.LocationData to dispose of the temporary geometry.
