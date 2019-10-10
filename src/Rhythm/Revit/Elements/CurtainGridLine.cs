@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Autodesk.DesignScript.Geometry;
 using RevitServices.Persistence;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
@@ -98,6 +100,37 @@ namespace Rhythm.Revit.Elements
             var skippedSegmentCurves = internalCurtainGridline.SkippedSegmentCurves.ToProtoType();
 
             return skippedSegmentCurves;
+        }
+
+        /// <summary>
+        /// This node will attempt to set the location of the given grid line to the given point.
+        /// NOTE: This will "translate" the grid line parallel to where it is initially. We cannot move a U grid to a V grid and so forth.
+        /// </summary>
+        /// <param name="curtainGridLine">The curtain grid line to try to set.</param>
+        /// <param name="newLocation"></param>
+        /// <returns name="curtainGridLine">The translated curtain grid line. (Returns null if failed)</returns>
+        public static object SetLocation(global::Revit.Elements.Element curtainGridLine, Point newLocation)
+        {
+            //the current document
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            //cast the grid line to the internal Autodesk.Revit.DB representation
+            Autodesk.Revit.DB.CurtainGridLine internalCurtainGridline = (Autodesk.Revit.DB.CurtainGridLine)curtainGridLine.InternalElement;
+            //obtains the grid line's full curve and closest point on it's curve to calculate the vector with
+            var fullCurve = internalCurtainGridline.FullCurve.ToProtoType();
+            var firstPoint = fullCurve.ClosestPointTo(newLocation);
+            var vec = Vector.ByTwoPoints(firstPoint, newLocation);
+            try
+            {
+                //start our transaction
+                TransactionManager.Instance.EnsureInTransaction(doc);
+                internalCurtainGridline.Location.Move(vec.ToRevitType());
+                TransactionManager.Instance.TransactionTaskDone();
+                return curtainGridLine;
+            }
+            catch (Exception)
+            {
+                return null;
+            } 
         }
     }
 }
