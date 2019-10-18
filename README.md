@@ -7,7 +7,7 @@
 <h3 align="center">A collection of custom nodes for <a href="http://dynamobim.org/" target="_blank">Dynamo</a>.</h4>
 
 
-If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager. (https://github.com/johnpierson/RhythmForDynamo/blob/master/README.md#350) below.
+If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager. 
 
  _If you feel so inclined, here is a method to donate to this open source project_
 
