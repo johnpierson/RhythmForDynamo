@@ -120,7 +120,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="point">The point to select area(s) at.</param>
         /// <param name="areaHeight">A manually input area height. Default value is 10.</param>
-        /// <returns name="area">The solid.</returns>
+        /// <returns name="area">The area.</returns>
         /// <search>
         /// Area.GetAreaAtPoint
         /// </search>

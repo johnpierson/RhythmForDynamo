@@ -115,6 +115,15 @@ namespace Rhythm.Helpers
         }
 
         /// <summary>
+        /// Send the given string to the clipboard
+        /// </summary>
+        /// <param name="str"></param>
+        public static void SendToClipboard(string str)
+        {
+            Clipboard.SetText(str);
+        }
+
+        /// <summary>
         /// Returns the current windows user.
         /// </summary>
         /// <param name="refresh">Optional toggle to refresh the node</param>

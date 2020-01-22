@@ -54,7 +54,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="curtainGridLine">The curtain gridline to remove segments from.</param>
         /// <param name="curves">The curves that represent the grid segment to remove.</param>
-        /// <returns name="curtainGridLine">The curtain grid that wsa supplied.</returns>
+        /// <returns name="curtainGridLine">The curtain grid that was supplied.</returns>
         /// <search>
         /// CurtainGridLine.RemoveSegment, rhythm
         /// </search>

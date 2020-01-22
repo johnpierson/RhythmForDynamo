@@ -30,9 +30,10 @@ namespace Rhythm.Revit.Elements
         /// </search>
         //this is the node sheet.viewports
         [MultiReturn(new[] { "viewports","views","schedules"})]
-        public static Dictionary<string, object> GetViewportsAndViews(global::Revit.Elements.Views.Sheet sheet, [DefaultArgument("Rhythm.Revit.Elements.Sheet.CurrentDocument()")] Autodesk.Revit.DB.Document doc)
+        public static Dictionary<string, object> GetViewportsAndViews(global::Revit.Elements.Views.Sheet sheet)
         {
             Autodesk.Revit.DB.ViewSheet viewSheet = (Autodesk.Revit.DB.ViewSheet) sheet.InternalElement;
+            Autodesk.Revit.DB.Document doc = viewSheet.Document;
             //obtains the viewports from the given sheet
             var viewportIds = viewSheet.GetAllViewports();
             List<global::Revit.Elements.Element> viewports = new List<global::Revit.Elements.Element>(viewportIds.Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
@@ -44,7 +45,7 @@ namespace Rhythm.Revit.Elements
             var schedulesInternal = scheduleCollector.ToElements();
             List<global::Revit.Elements.Element> schedules = new List<global::Revit.Elements.Element>(schedulesInternal.Select(s => s.ToDSType(true)).ToArray());
 
-            //returns the outputs7
+            //returns the outputs
             var outInfo = new Dictionary<string, object>
                 {
                     { "viewports",viewports },
