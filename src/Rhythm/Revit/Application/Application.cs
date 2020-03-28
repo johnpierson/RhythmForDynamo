@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Autodesk.Revit.DB;
+using Dynamo.Applications;
+using Dynamo.Applications.ViewModel;
 using RevitServices.Persistence;
-using Rhythm.Utilities;
 
 namespace Rhythm.Revit.Application
 {
@@ -13,52 +14,36 @@ namespace Rhythm.Revit.Application
     {
         private Applications()
         { }
+
+
         /// <summary>
         /// This node will open the given file in the background.
         /// </summary>
         /// <param name="filePath">The file to obtain document from.</param>
         /// <param name="audit">Choose whether or not to audit the file upon opening. (Will run slower with this)</param>
         /// <param name="detachFromCentral">Choose whether or not to detach from central upon opening. Only for RVT files. </param>
-        /// <returns name="document">The document object. Primarily for use with other Rhythm nodes.</returns>
+        /// <param name="preserveWorksets">Choose whether or not to preserve worksets upon opening. Only for RVT files. </param>
+        /// <returns name="document">The document object. If the file path is blank this returns the current document.</returns>
         /// <search>
         /// Application.OpenDocumentFile, rhythm
         /// </search>
-        public static string OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false)
+        public static object OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true)
         {
             var uiapp = DocumentManager.Instance.CurrentUIApplication;
             var app = uiapp.Application;
-            Document doc;
-            string docTitle = string.Empty;
             //instantiate open options for user to pick to audit or not
             OpenOptions openOpts = new OpenOptions();
             openOpts.Audit = audit;
-            TransmittedModelOptions tOpt = TransmittedModelOptions.SaveAsNewCentral;
-            if (detachFromCentral == false)
-            {
-                openOpts.DetachFromCentralOption = DetachFromCentralOption.DoNotDetach;
-            }
-            else
-            {
-                openOpts.DetachFromCentralOption = DetachFromCentralOption.DetachAndPreserveWorksets;
-            }
-            
+            //TransmittedModelOptions tOpt = TransmittedModelOptions.SaveAsNewCentral;
+            openOpts.DetachFromCentralOption = detachFromCentral == false ? DetachFromCentralOption.DoNotDetach : preserveWorksets == true ? DetachFromCentralOption.DetachAndPreserveWorksets : DetachFromCentralOption.DetachAndDiscardWorksets;
+
             //convert string to model path for open
             ModelPath modelPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(filePath);
 
-            try
-            {
-                docTitle = DocumentUtils.OpenDocument(modelPath, openOpts);
-            }
-            catch (Exception)
-            {
-                //nothing
-            }
+            var document = app.OpenDocumentFile(modelPath, openOpts);
 
-            return docTitle;
+            return document;
         }
-
-        
-
 
         /// <summary>
         /// This node will close the given document with the option to save.
@@ -69,19 +54,19 @@ namespace Rhythm.Revit.Application
         /// <search>
         /// Application.CloseDocument, rhythm
         /// </search>
-        public static string CloseDocument(object document, bool save)
+        public static string CloseDocument(Autodesk.Revit.DB.Document document, bool save)
         {
-            Document doc = DocumentUtils.RetrieveDocument(document);
 
             string result;
             try
             {
-                doc.Close(save);
+
+                document.Close(save);
                 result = "closed";
             }
             catch (Exception)
             {
-                result = "Error, it appears this file cannot be found in the background opened document list.";
+                result = "can't close the file. It has either been closed already or another weird error.";
             }
 
             return result;
@@ -91,11 +76,11 @@ namespace Rhythm.Revit.Application
         /// </summary>
         /// <param name="runIt">Do you want to save?</param>
         /// <returns name="documents">The documents that are currently open.</returns>
-        public static List<string> GetOpenDocuments(bool runIt)
+        public static List<Autodesk.Revit.DB.Document> GetOpenDocuments(bool runIt)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
-            List<string> docNames = new List<string>();
+            List<Autodesk.Revit.DB.Document> documents = new List<Autodesk.Revit.DB.Document>();
 
             var uiApp = DocumentManager.Instance.CurrentUIApplication;
             var app = uiApp.Application;
@@ -106,7 +91,7 @@ namespace Rhythm.Revit.Application
                 {
                     try
                     {
-                        docNames.Add(DocumentUtils.ConvertDocument(doc));
+                        documents.Add(d);
                     }
                     catch (Exception)
                     {
@@ -115,7 +100,9 @@ namespace Rhythm.Revit.Application
                 }
             }
 
-            return docNames;
+            return documents;
         }
+
+
     }
 }
