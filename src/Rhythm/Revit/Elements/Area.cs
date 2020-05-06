@@ -109,7 +109,6 @@ namespace Rhythm.Revit.Elements
                 solid = solid.DifferenceAll(solidCollection);
             }
 
-
             return solid;
         }
 
