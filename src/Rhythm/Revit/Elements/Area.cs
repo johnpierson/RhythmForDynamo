@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
+using Rhythm.Utilities;
+using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Solid = Autodesk.DesignScript.Geometry.Solid;
 
@@ -16,6 +19,38 @@ namespace Rhythm.Revit.Elements
     {
         private Areas()
         {
+        }
+
+        /// <summary>
+        /// This will report whether or not the area contains the given point.
+        /// </summary>
+        /// <param name="area">The area to check.</param>
+        /// <param name="point">The point to check.</param>
+        /// <returns></returns>
+        public static bool ContainsPoint(global::Revit.Elements.Element area, Point point)
+        {
+            Autodesk.Revit.DB.Area internalArea = area.InternalElement as Autodesk.Revit.DB.Area;
+            if (internalArea.Area == 0)
+            {
+                return false;
+            }
+            XYZ xyz = point.ToXyz();
+            return internalArea.AreaContains(xyz);
+        }
+
+        /// <summary>
+        /// This will return the area at the given point.
+        /// </summary>
+        /// <param name="point">The point to check.</param>
+        /// <returns name="area">The area found at the point (if available).</returns>
+        public static List<global::Revit.Elements.Element> AreaAtPoint(Point point)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            //collect the areas to do some cool stuff
+            var area = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Areas).Cast<Area>().Select(a => a.ToDSType(true)).ToList();
+
+            return area.Where(a => ContainsPoint(a,point)).ToList();
         }
 
         /// <summary>
