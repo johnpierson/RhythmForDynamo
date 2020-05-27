@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 using Autodesk.Revit.UI;
 using RevitServices.Persistence;
 
@@ -69,6 +64,14 @@ namespace Rhythm.Revit.Helpers
             ElementBinder.IsEnabled = toggle;
             return toggle;
         }
-       
+
+        /// <summary>
+        /// Returns the current Revit version
+        /// </summary>
+        /// <returns></returns>
+        public static string CurrentRevitVersion()
+        {
+            return DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+        }
     }
 }

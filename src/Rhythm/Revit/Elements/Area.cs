@@ -20,6 +20,18 @@ namespace Rhythm.Revit.Elements
         private Areas()
         {
         }
+        /// <summary>
+        /// Get the input area's scheme.
+        /// </summary>
+        /// <param name="area">The area to check.</param>
+        /// <returns name="areaScheme"></returns>
+        public static global::Revit.Elements.Element AreaScheme(global::Revit.Elements.Element area)
+        {
+            Autodesk.Revit.DB.Area internalArea = area.InternalElement as Autodesk.Revit.DB.Area;
+          
+            return internalArea.AreaScheme.ToDSType(true);
+        }
+
 
         /// <summary>
         /// This will report whether or not the area contains the given point.
