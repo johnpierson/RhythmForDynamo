@@ -1,4 +1,5 @@
-﻿using Revit.Elements;
+﻿using Dynamo.Graph.Nodes;
+using Revit.Elements;
 
 namespace Rhythm.Revit.Elements
 {
@@ -16,6 +17,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="areaTag"></param>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static global::Revit.Elements.Element TaggedArea(global::Revit.Elements.Element areaTag)
         {
             Autodesk.Revit.DB.AreaTag areaTagInternal = areaTag.InternalElement as Autodesk.Revit.DB.AreaTag;

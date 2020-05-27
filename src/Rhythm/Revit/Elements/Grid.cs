@@ -1,5 +1,6 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
+using Dynamo.Graph.Nodes;
 
 namespace Rhythm.Revit.Elements
 {
@@ -21,6 +22,7 @@ namespace Rhythm.Revit.Elements
         /// grid.getleaderends
         /// </search>
         [MultiReturn(new[] { "leaderEnd0", "leaderEnd1" })]
+        [NodeCategory("Query")]
         public static Dictionary<string, object>GetLeaderEnds(global::Revit.Elements.Element grid, global::Revit.Elements.Views.View view)
         {
             //convert to internal representation

@@ -2,6 +2,7 @@
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
@@ -10,6 +11,7 @@ using Rhythm.Utilities;
 
 namespace Rhythm.Revit.Application
 {
+
     /// <summary>
     /// Wrapper class for document nodes.
     /// </summary>
@@ -17,6 +19,7 @@ namespace Rhythm.Revit.Application
     {
         private Documents()
         { }
+
         /// <summary>
         /// This node will copy the given elements from the given linked document into the active document.
         /// </summary>
@@ -27,11 +30,11 @@ namespace Rhythm.Revit.Application
         /// <search>
         /// copy
         /// </search>
-        public static List<global::Revit.Elements.Element> CopyElementsFromLinkedDocument(object sourceDocument,
+        [NodeCategory("Actions")]
+        public static List<global::Revit.Elements.Element> CopyElementsFromLinkedDocument(Autodesk.Revit.DB.Document sourceDocument,
             global::Revit.Elements.Element sourceInstance, List<global::Revit.Elements.Element> elements)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Document sourceDoc = DocumentUtils.RetrieveDocument(sourceDocument);
             //converts elements to ids in a collection
             ICollection<ElementId> idCollection = new List<ElementId>();
 
@@ -47,7 +50,7 @@ namespace Rhythm.Revit.Application
             Transform transform = Transform.CreateTranslation(Vector.XAxis().ToRevitType());
             //commits the transaction
             TransactionManager.Instance.EnsureInTransaction(doc);
-            ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElements(sourceDoc, idCollection, doc, internalInstance.GetTransform(), copyOpts);
+            ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElements(sourceDocument, idCollection, doc, internalInstance.GetTransform(), copyOpts);
             TransactionManager.Instance.TransactionTaskDone();
             //create a new list for the new elements
             List<global::Revit.Elements.Element> newElements = new List<global::Revit.Elements.Element>();
@@ -69,10 +72,10 @@ namespace Rhythm.Revit.Application
         /// <search>
         /// copy
         /// </search>
-        public static List<global::Revit.Elements.Element> CopyElementsFromDocument(object sourceDocument, List<global::Revit.Elements.Element> elements)
+        [NodeCategory("Actions")]
+        public static List<global::Revit.Elements.Element> CopyElementsFromDocument(Autodesk.Revit.DB.Document sourceDocument, List<global::Revit.Elements.Element> elements)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Document sourceDoc = DocumentUtils.RetrieveDocument(sourceDocument);
             //converts elements to ids in a collection
             ICollection<ElementId> idCollection = new List<ElementId>();
             foreach (global::Revit.Elements.Element element in elements)
@@ -85,7 +88,7 @@ namespace Rhythm.Revit.Application
             Transform transform = Transform.CreateTranslation(Vector.XAxis().ToRevitType());
             //commits the transaction
             TransactionManager.Instance.EnsureInTransaction(doc);
-            ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElements(sourceDoc, idCollection, doc, transform, copyOpts);
+            ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElements(sourceDocument, idCollection, doc, transform, copyOpts);
             TransactionManager.Instance.TransactionTaskDone();
             //create a new list for the new elements
             List<global::Revit.Elements.Element> newElements = new List<global::Revit.Elements.Element>();
@@ -94,10 +97,9 @@ namespace Rhythm.Revit.Application
             {
                 newElements.Add(doc.GetElement(id).ToDSType(true));
             }
-
+            
             return newElements;
         }
-
         /// <summary>
         /// This node will set the starting view of the document, given the view element.
         /// </summary>
@@ -107,24 +109,21 @@ namespace Rhythm.Revit.Application
         /// <search>
         /// startingView
         /// </search>
-        public static string SetStartingView(object sourceDocument, global::Revit.Elements.Element view)
+        [NodeCategory("Actions")]
+        public static string SetStartingView(Autodesk.Revit.DB.Document sourceDocument, global::Revit.Elements.Element view)
         {
-            string result = null;
-            Document sourceDoc = DocumentUtils.RetrieveDocument(sourceDocument);
             try
             {
-                TransactionManager.Instance.EnsureInTransaction(sourceDoc);
-                StartingViewSettings.GetStartingViewSettings(sourceDoc).ViewId = view.InternalElement.Id;
+                TransactionManager.Instance.EnsureInTransaction(sourceDocument);
+                StartingViewSettings.GetStartingViewSettings(sourceDocument).ViewId = view.InternalElement.Id;
                 TransactionManager.Instance.TransactionTaskDone();
-                result = "Success";
+                return "Success";
             }
             catch
             {
-                result = "Failure";
+                return "Failure";
             }
-            return result;
         }
-
         /// <summary>
         /// This node will copy the given drafting views and their contents from the given document into the active document.
         /// </summary>
@@ -134,12 +133,11 @@ namespace Rhythm.Revit.Application
         /// <search>
         /// copy
         /// </search>
-        public static List<global::Revit.Elements.Element> CopyDraftingViewsFromDocument(object sourceDocument, List<global::Revit.Elements.Element> draftingViews)
+        [NodeCategory("Actions")]
+        public static List<global::Revit.Elements.Element> CopyDraftingViewsFromDocument(Autodesk.Revit.DB.Document sourceDocument, List<global::Revit.Elements.Element> draftingViews)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-
-            Document sourceDoc = DocumentUtils.RetrieveDocument(sourceDocument);
-
+            
             //converts elements to ids in a collection
             ICollection<ElementId> idCollection = new List<ElementId>();
 
@@ -150,14 +148,10 @@ namespace Rhythm.Revit.Application
 
             TransactionManager.Instance.ForceCloseTransaction();
             List<View> newDraftingViews =
-                ViewUtils.DuplicateDraftingViews(sourceDoc, idCollection, doc);
+                ViewUtils.DuplicateDraftingViews(sourceDocument, idCollection, doc);
             List<global::Revit.Elements.Element> vList = new List<global::Revit.Elements.Element>(newDraftingViews.Select(v => v.ToDSType(true)));
 
             return vList;
         }
-
-        
     }
-
-
 }

@@ -1,6 +1,12 @@
 ﻿using System.Collections.Generic;
+using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
+using Revit.Elements;
 using Revit.GeometryConversion;
+using RevitServices.Persistence;
+using RevitServices.Transactions;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 
 namespace Rhythm.Revit.Elements
@@ -21,6 +27,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// referenceplane,referenceplane.getcurvesinview
         /// </search>
+        [NodeCategory("Query")]
         public static List<Curve> GetCurvesInView(List<global::Revit.Elements.Element> referencePlane, global::Revit.Elements.Views.View view)
         {
             List<Curve> curveList = new List<Curve>();
@@ -36,6 +43,38 @@ namespace Rhythm.Revit.Elements
                 }          
             }          
             return curveList;
+        }
+
+        /// <summary>
+        /// This will create a reference plane by the given curve and the selected direction. True for plan view and false for a section parallel to the line.
+        /// </summary>
+        /// <param name="curve">The curve to use.</param>
+        /// <param name="drawInPlan">Choose whether or not to draw in plan or a section view of the curve, (looking at it).</param>
+        /// <returns></returns>
+        [NodeCategory("Create")]
+        public static global::Revit.Elements.Element ByLine(Curve curve, bool drawInPlan = true)
+        {
+            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Vector normal = Vector.ZAxis();
+            if (!drawInPlan)
+            {
+                normal = curve.NormalAtParameter(0.5);
+            }
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            var refPlane = doc.Create.NewReferencePlane(curve.StartPoint.ToRevitType(),curve.EndPoint.ToRevitType(),normal.ToRevitType(),doc.ActiveView);
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return refPlane.ToDSType(true);
+        }
+        /// <summary>
+        ///     Get Null
+        /// </summary>
+        /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
+        public static object XAxis()
+        {
+            return Vector.XAxis();
         }
     }
 }

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Dynamo.Graph.Nodes;
 using Dimension = Autodesk.Revit.DB.Dimension;
 using Line = Autodesk.DesignScript.Geometry.Line;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -29,6 +30,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Dimension.GetCurve, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static List<Autodesk.DesignScript.Geometry.Line> GetCurve(global::Revit.Elements.Dimension dimension)
         {
             //convert to internal dimension
@@ -87,6 +89,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.Segments
         /// </search>
+        [NodeCategory("Query")]
         public static List<Autodesk.Revit.DB.DimensionSegmentArray> Segments(List<global::Revit.Elements.Dimension> dimension)
         {
             List<Autodesk.Revit.DB.DimensionSegmentArray> segmentArray = new List<Autodesk.Revit.DB.DimensionSegmentArray>(dimension.Select(d => ((Autodesk.Revit.DB.Dimension)d.InternalElement).Segments).ToArray());
@@ -102,6 +105,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.IsOverriden
         /// </search>
+        [NodeCategory("Query")]
         public static bool IsOverriden(global::Revit.Elements.Dimension dimension)
         {
             List<bool> listReturn = new List<bool>();
@@ -128,6 +132,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.Properties, Dimension.DisplayUnits
         /// </search>
+        [NodeCategory("Query")]
         public static string DisplayUnits(global::Revit.Elements.Dimension dimension)
         {
             Dimension dim = dimension.InternalElement as Dimension;
@@ -149,6 +154,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.Properties, Dimension.DisplayUnits
         /// </search>
+        [NodeCategory("Query")]
         public static object Accuracy(global::Revit.Elements.Dimension dimension)
         {
             Dimension dim = dimension.InternalElement as Dimension;
@@ -171,6 +177,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.Properties, Dimension.Color
         /// </search>
+        [NodeCategory("Query")]
         public static DSCore.Color Color(global::Revit.Elements.Dimension dimension)
         {
             Dimension dim = dimension.InternalElement as Dimension;
@@ -193,13 +200,14 @@ namespace Rhythm.Revit.Elements
         /// dimension.SetAboveValue
         /// </search>
         [MultiReturn(new[] { "set", "notSet" })]
+        [NodeCategory("Actions")]
         public static Dictionary<string, object> SetAboveValue(global::Revit.Elements.Dimension dimension, List<string> aboveValue)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //convert to internal dimension
             Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
-            List<Autodesk.Revit.DB.Dimension> internalDimensionList = new List<Autodesk.Revit.DB.Dimension>();
-            internalDimensionList.Add(internalDimension);
+            List<Autodesk.Revit.DB.Dimension> internalDimensionList =
+                new List<Autodesk.Revit.DB.Dimension> {internalDimension};
             //lists to output success or not success
             List<global::Revit.Elements.Element> set = new List<global::Revit.Elements.Element>();
             List<global::Revit.Elements.Element> notSet = new List<global::Revit.Elements.Element>();
@@ -298,13 +306,14 @@ namespace Rhythm.Revit.Elements
         /// dimension.SetBelowValue
         /// </search>
         [MultiReturn(new[] { "set", "notSet" })]
+        [NodeCategory("Actions")]
         public static Dictionary<string, object> SetBelowValue(global::Revit.Elements.Dimension dimension, List<string> belowValue)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //convert to internal dimension
             Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
-            List<Autodesk.Revit.DB.Dimension> internalDimensionList = new List<Autodesk.Revit.DB.Dimension>();
-            internalDimensionList.Add(internalDimension);
+            List<Autodesk.Revit.DB.Dimension> internalDimensionList =
+                new List<Autodesk.Revit.DB.Dimension> {internalDimension};
             //lists to output success or not success
             List<global::Revit.Elements.Element> set = new List<global::Revit.Elements.Element>();
             List<global::Revit.Elements.Element> notSet = new List<global::Revit.Elements.Element>();
@@ -399,6 +408,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.GetReferenceElements
         /// </search>
+        [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> GetReferenceElements(global::Revit.Elements.Dimension dimension)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -430,6 +440,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Dimension.CenterTextOnLine
         /// </search>
+        [NodeCategory("Actions")]
         public static void CenterTextOnLine(global::Revit.Elements.Dimension dimension)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -494,13 +505,14 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.SetTextLocation
         /// </search>
+        [NodeCategory("Actions")]
         public static void SetTextLocation(global::Revit.Elements.Dimension dimension, List<Autodesk.DesignScript.Geometry.Point> locationPoint)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //convert to internal dimension
             Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
-            List<Autodesk.Revit.DB.Dimension> internalDimensionList = new List<Autodesk.Revit.DB.Dimension>();
-            internalDimensionList.Add(internalDimension);
+            List<Autodesk.Revit.DB.Dimension> internalDimensionList =
+                new List<Autodesk.Revit.DB.Dimension> {internalDimension};
 
             if (internalDimension.NumberOfSegments > 1) //set the multi segment ones
             {
@@ -574,6 +586,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.Segments
         /// </search>
+        [NodeCategory("Query")]
         public static List<int> NumberOfSegments(List<global::Revit.Elements.Dimension> dimension)
         {
             List<int> numberOfSegments = new List<int>(dimension.Select(d => ((Autodesk.Revit.DB.Dimension)d.InternalElement).NumberOfSegments).ToArray());
@@ -589,6 +602,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.Origin
         /// </search>
+        [NodeCategory("Query")]
         public static List<Point> Origin(global::Revit.Elements.Dimension dimension)
         {
             //List<Point> origin = new List<Point>(dimension.Select(d => ((Autodesk.Revit.DB.Dimension)d.InternalElement).Origin.ToPoint()).ToArray());
@@ -619,6 +633,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.TextPosition
         /// </search>
+        [NodeCategory("Query")]
         public static List<Point> TextPosition(global::Revit.Elements.Dimension dimension)
         {
             //List<Point> textPosition = new List<Point>(dimension.Select(d => ((Autodesk.Revit.DB.Dimension)d.InternalElement).TextPosition.ToPoint()).ToArray());
@@ -649,6 +664,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.TextPosition
         /// </search>
+        [NodeCategory("Query")]
         public static List<string> ValueString(global::Revit.Elements.Dimension dimension)
         {
             Autodesk.Revit.DB.Dimension internalDimension = dimension.InternalElement as Autodesk.Revit.DB.Dimension;
@@ -675,6 +691,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="dimension">The dimension to retrieve values from.</param>
         /// <returns name="aboveValue">The above value for the dimension.</returns>
+        [NodeCategory("Query")]
         public static List<string> AboveValue(global::Revit.Elements.Dimension dimension)
         {
             Autodesk.Revit.DB.Dimension internalDimension = dimension.InternalElement as Autodesk.Revit.DB.Dimension;
@@ -698,6 +715,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="dimension">The dimension to retrieve values from.</param>
         /// <returns name="belowValue">The below value for the dimension.</returns>
+        [NodeCategory("Query")]
         public static List<string> BelowValue(global::Revit.Elements.Dimension dimension)
         {
             Autodesk.Revit.DB.Dimension internalDimension = dimension.InternalElement as Autodesk.Revit.DB.Dimension;
@@ -721,6 +739,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="dimension">The dimension to retrieve values from.</param>
         /// <returns name="realValueString">The real string value for the dimension.</returns>
+        [NodeCategory("Query")]
         public static List<string> DisplayValueString(global::Revit.Elements.Dimension dimension)
         {
             //the current document

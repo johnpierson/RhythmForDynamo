@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -20,6 +21,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// copy
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> IsolateInView(List<global::Revit.Elements.Element> curtainPanels)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;

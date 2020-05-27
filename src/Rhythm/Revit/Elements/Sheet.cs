@@ -1,7 +1,9 @@
-﻿using Autodesk.DesignScript.Runtime;
+﻿using System;
+using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using RevitServices.Transactions;
@@ -21,7 +23,6 @@ namespace Rhythm.Revit.Elements
         /// This node will obtain viewports, views and schedules from a given sheet.
         /// </summary>
         /// <param name="sheet">The sheet to get viewports from.</param>
-        /// <param name="doc">The document to use. If left blank the current document will be used.</param>
         /// <returns name="viewports">The viewports on the sheet.</returns>
         /// <returns name="views">The views on the sheet.</returns>
         /// <returns name="schedules">The schedules on the sheet.</returns>
@@ -29,31 +30,69 @@ namespace Rhythm.Revit.Elements
         /// viewport, schedules,rhythm
         /// </search>
         //this is the node sheet.viewports
-        [MultiReturn(new[] { "viewports","views","schedules"})]
+        [MultiReturn(new[] {"viewports", "views", "schedules"})]
+        [NodeCategory("Query")]
         public static Dictionary<string, object> GetViewportsAndViews(global::Revit.Elements.Views.Sheet sheet)
         {
             Autodesk.Revit.DB.ViewSheet viewSheet = (Autodesk.Revit.DB.ViewSheet) sheet.InternalElement;
             Autodesk.Revit.DB.Document doc = viewSheet.Document;
             //obtains the viewports from the given sheet
             var viewportIds = viewSheet.GetAllViewports();
-            List<global::Revit.Elements.Element> viewports = new List<global::Revit.Elements.Element>(viewportIds.Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
+            List<global::Revit.Elements.Element> viewports = new List<global::Revit.Elements.Element>();
+            //attempt to add views to output
+            try
+            {
+                viewports.AddRange(viewportIds.Select(id => doc.GetElement(id).ToDSType(true)));
+            }
+            catch (Exception)
+            {
+                //suppress
+            }
+
             //obtains the views from the given sheet
-            List<global::Revit.Elements.Element> views = new List<global::Revit.Elements.Element>(viewports.Select(v => doc.GetElement(((Autodesk.Revit.DB.Viewport)v.InternalElement).ViewId).ToDSType(true)).ToArray());
+            List<object> views = new List<object>();
+            //attempt to add views to output
+            try
+            {
+                views.AddRange(viewports.Select(v =>
+                    doc.GetElement(((Autodesk.Revit.DB.Viewport) v.InternalElement).ViewId).ToDSType(true)));
+            }
+            catch (Exception)
+            {
+                //suppress
+            }
+
             //obtains the schedules from the sheet
-            FilteredElementCollector scheduleCollector =
-                new FilteredElementCollector(doc, viewSheet.Id).OfCategory(BuiltInCategory.OST_ScheduleGraphics);
-            var schedulesInternal = scheduleCollector.ToElements();
-            List<global::Revit.Elements.Element> schedules = new List<global::Revit.Elements.Element>(schedulesInternal.Select(s => s.ToDSType(true)).ToArray());
+            var scheduleCollector =
+                new FilteredElementCollector(doc, viewSheet.Id).OfCategory(BuiltInCategory.OST_ScheduleGraphics)
+                    .ToElements();
+            List<object> schedules = new List<object>();
+            //attempt to add schedules to output
+            try
+            {
+                schedules.AddRange(scheduleCollector.Select(s => s.ToDSType(true)));
+            }
+            catch (Exception)
+            {
+                //suppress
+            }
+
+
 
             //returns the outputs
             var outInfo = new Dictionary<string, object>
-                {
-                    { "viewports",viewports },
-                    { "views",views },
-                    { "schedules",schedules }
-                };
+            {
+                {"viewports", viewports},
+                {"views", views},
+                {"schedules", schedules}
+            };
             return outInfo;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]
         public static Autodesk.Revit.DB.Document CurrentDocument()
         {
@@ -68,6 +107,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// sheet,rhythm
         /// </search>
+        [NodeCategory("Create")]
         public static global::Revit.Elements.Element Create(global::Revit.Elements.FamilyType titleblock)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -79,6 +119,7 @@ namespace Rhythm.Revit.Elements
 
             return result;
         }
+
         /// <summary>
         /// This node will grab the titleblock from the given sheet.
         /// </summary>
@@ -87,18 +128,22 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// sheet, sheets, titleblock
         /// </search>
+        [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> Titleblock(global::Revit.Elements.Views.Sheet viewSheet)
         {
             var viewId = viewSheet.InternalElement.Id;
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            FilteredElementCollector elements = new FilteredElementCollector(doc, viewId).OfCategory(BuiltInCategory.OST_TitleBlocks);
+            FilteredElementCollector elements =
+                new FilteredElementCollector(doc, viewId).OfCategory(BuiltInCategory.OST_TitleBlocks);
             //grabs the elements from the collection
             var elementCollection = elements.ToElements();
             //generates a list to convert to a usable type in Dynamo
-            List<global::Revit.Elements.Element> ttblList = new List<global::Revit.Elements.Element>(elementCollection.Select(e => e.ToDSType(true)).ToArray());
- 
+            List<global::Revit.Elements.Element> ttblList =
+                new List<global::Revit.Elements.Element>(elementCollection.Select(e => e.ToDSType(true)).ToArray());
+
             return ttblList;
         }
+
 
     }
 }

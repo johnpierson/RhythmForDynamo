@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using Revit.GeometryConversion;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 
@@ -19,6 +20,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="hostObject">The host object to retrieve exterior faces for.</param>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static IEnumerable<List<Surface>> ExteriorSurface(global::Revit.Elements.Element hostObject)
         {
             Autodesk.Revit.DB.HostObject internalHost = hostObject.InternalElement as Autodesk.Revit.DB.HostObject;
@@ -35,6 +37,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="hostObject">The host object to retrieve interior faces for.</param>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static IEnumerable<List<Surface>> InteriorSurface(global::Revit.Elements.Element hostObject)
         {
             Autodesk.Revit.DB.HostObject internalHost = hostObject.InternalElement as Autodesk.Revit.DB.HostObject;
@@ -51,6 +54,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="hostObject">The host object to retrieve top faces for.</param>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static IEnumerable<List<Surface>> TopSurface(global::Revit.Elements.Element hostObject)
         {
             Autodesk.Revit.DB.HostObject internalHost = hostObject.InternalElement as Autodesk.Revit.DB.HostObject;
@@ -67,6 +71,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="hostObject">The host object to retrieve bottom faces for.</param>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static IEnumerable<List<Surface>> BottomSurface(global::Revit.Elements.Element hostObject)
         {
             Autodesk.Revit.DB.HostObject internalHost = hostObject.InternalElement as Autodesk.Revit.DB.HostObject;

@@ -1,6 +1,7 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
 using System.Linq;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
@@ -27,6 +28,7 @@ namespace Rhythm.Revit.Elements
         /// curtaingrid, rhythm
         /// </search>
         [MultiReturn(new[] { "curtainGrid" , "uGrids" , "vGrids" })]
+        [NodeCategory("Create")]
         public static Dictionary<string, object> ByWallElement(global::Revit.Elements.Wall curtainWall)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -58,6 +60,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// curtaingrid, rhythm
         /// </search>
+        [NodeCategory("Create")]
         public static List<Autodesk.Revit.DB.CurtainGrid> ByCurtainSystem(global::Revit.Elements.CurtainSystem curtainSystem)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -83,6 +86,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// curtaingrid, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> UGrids(Autodesk.Revit.DB.CurtainGrid curtainGrid)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -101,6 +105,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// curtaingrid, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> VGrids(Autodesk.Revit.DB.CurtainGrid curtainGrid)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -122,6 +127,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// curtainwall, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> AddGridLineByPoint(Autodesk.Revit.DB.CurtainGrid curtainGrid, Autodesk.DesignScript.Geometry.Point locationPoint, bool isUGridline)
         {
 

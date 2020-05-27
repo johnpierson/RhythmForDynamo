@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Dynamo.Graph.Nodes;
 
 namespace Rhythm.Revit.Elements
 {
@@ -10,13 +11,14 @@ namespace Rhythm.Revit.Elements
         private DimensionTypes()
         { }
         /// <summary>
-        /// Dtermine if the given dimension type uses project (default) settings.
+        /// Determine if the given dimension type uses project (default) settings.
         /// </summary>
         /// <param name="dimensionType">The dimension type the unit format options from.</param>
         /// <returns name="bool">A boolean mask to filter with.</returns>
         /// <search>
         /// dimensiontype
         /// </search>
+        [NodeCategory("Query")]
         public static List<bool> UsesProjectSettings(List<global::Revit.Elements.DimensionType> dimensionType)
         {
             //declare new list to append results to

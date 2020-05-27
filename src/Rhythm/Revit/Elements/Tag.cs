@@ -2,6 +2,8 @@
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
+using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using Revit.GeometryConversion;
 using Point = Autodesk.DesignScript.Geometry.Point;
 
@@ -23,6 +25,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [NodeCategory("Query")]
         public static List<Point> GetHeadPosition(List<global::Revit.Elements.Tag> tag)
         {
             //declare a list for the points
@@ -50,6 +53,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [NodeCategory("Query")]
         public static List<Point> GetLeaderEnd(List<global::Revit.Elements.Tag> tag)
         {
             //declare a list for the points
@@ -77,6 +81,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [NodeCategory("Query")]
         public static List<Point> GetLeaderElbow(List<global::Revit.Elements.Tag> tag)
         {
             //declare a list for the points
@@ -104,6 +109,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [NodeCategory("Actions")]
         public static void SetLeaderEndPosition(global::Revit.Elements.Tag tag, Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -120,6 +126,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [NodeCategory("Actions")]
         public static void SetHeadPosition(global::Revit.Elements.Tag tag, Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -136,6 +143,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [NodeCategory("Actions")]
         public static void SetLeaderElbowPosition(global::Revit.Elements.Tag tag, Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -143,6 +151,25 @@ namespace Rhythm.Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(doc);
             internalTag.LeaderElbow = location.ToXyz();
             TransactionManager.Instance.TransactionTaskDone();
+        }
+        /// <summary>
+        /// This will return the tag's text value
+        /// </summary>
+        /// <param name="tag">The tag to get text of.</param>
+        [NodeCategory("Query")]
+        public static string TagText(global::Revit.Elements.Element tag)
+        {
+            var internalTag = tag.InternalElement;
+            string internalType = internalTag.GetType().BaseType.Name;
+
+            if (internalType.Equals("SpatialElementTag"))
+            {
+                Autodesk.Revit.DB.SpatialElementTag spatialTag = internalTag as Autodesk.Revit.DB.SpatialElementTag;
+                return spatialTag.TagText;
+            }
+
+            IndependentTag independentTag = internalTag as IndependentTag;
+            return independentTag.TagText;
         }
     }
 }

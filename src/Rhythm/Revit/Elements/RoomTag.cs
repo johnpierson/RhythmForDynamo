@@ -1,6 +1,6 @@
-﻿using Autodesk.DesignScript.Runtime;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using RevitServices.Transactions;
@@ -22,6 +22,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// roomtag, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> TaggedRoom(List<global::Revit.Elements.Element> roomTag)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -43,12 +44,17 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// roomtag, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> CenterOnRoomLocation(List<global::Revit.Elements.Element> roomTag)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
             foreach (var tag in roomTag)
             {
+                if (tag.InternalElement is Autodesk.Revit.DB.FamilyInstance)
+                {
+                    continue;
+                }
                 Autodesk.Revit.DB.Architecture.RoomTag internalRoomTag =
                     (Autodesk.Revit.DB.Architecture.RoomTag) tag.InternalElement;
                 Autodesk.DesignScript.Geometry.Point roomLocation =
@@ -57,6 +63,7 @@ namespace Rhythm.Revit.Elements
                 TransactionManager.Instance.EnsureInTransaction(doc);
                 tag.SetLocation(roomLocation);
                 TransactionManager.Instance.TransactionTaskDone();
+                roomLocation.Dispose();
             }
             return roomTag;
         }

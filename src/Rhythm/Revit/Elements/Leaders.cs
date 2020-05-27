@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -25,6 +21,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="leader">The leader to get the elbow position of</param>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static Point GetLeaderElbow(Leader leader)
         {
             try
@@ -33,7 +30,7 @@ namespace Rhythm.Revit.Elements
             }
             catch
             {
-               return null;
+                return null;
             }
         }
         /// <summary>
@@ -41,6 +38,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="leader">The leader to get the end position of</param>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static Point GetLeaderEnd(Leader leader)
         {
             try
@@ -58,7 +56,8 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="leader">The leader to set the end position of.</param>
         /// <param name="location">The new location for the leader end.</param>
-        public static void SetLeaderEndPosition(Leader leader,Point location)
+        [NodeCategory("Actions")]
+        public static void SetLeaderEndPosition(Leader leader, Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
@@ -70,6 +69,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="leader">The leader to set the elbow position of.</param>
         /// <param name="location">The new location for the leader elbow.</param>
+        [NodeCategory("Actions")]
         public static void SetLeaderElbowPosition(Leader leader, Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;

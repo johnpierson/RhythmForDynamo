@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 
 namespace Rhythm.Revit.Elements
@@ -22,6 +23,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Level.HasView
         /// </search>
+        [NodeCategory("Query")]
         public static bool HasView(global::Revit.Elements.Level level)
         {
             Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -33,7 +35,7 @@ namespace Rhythm.Revit.Elements
                 return fec.OfClass(typeof(ViewPlan))
                     .Cast<ViewPlan>().Where(v => !v.IsTemplate).Any(v => v.GenLevel.Id.IntegerValue.Equals(level.Id));
             }
-            catch (Exception e )
+            catch (Exception)
             {
                 return false;
             }

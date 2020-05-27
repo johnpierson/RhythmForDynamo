@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
@@ -17,7 +18,7 @@ namespace Rhythm.Revit.Elements
     public class Rooms
     {
         private Rooms()
-        { } 
+        { }
         /// <summary>
         /// This node will center the room.
         /// </summary>
@@ -26,6 +27,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// roomtag, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Room> CenterRoom(List<global::Revit.Elements.Room> room)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -69,6 +71,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// roomtag, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static global::Revit.Elements.Room CenterRoom2(global::Revit.Elements.Room room)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -112,6 +115,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// roomtag, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> IntersectingElementsInRoom(global::Revit.Elements.Room room, global::Revit.Elements.Category category)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -157,6 +161,7 @@ namespace Rhythm.Revit.Elements
         /// <param name="room"></param>
         /// <param name="curve"></param>
         /// <returns></returns>
+        [NodeCategory("Actions")]
         public static List<Curve> IntersectWithCurve(global::Revit.Elements.Room room, Curve curve)
         {
             List<Curve>curveList = null;

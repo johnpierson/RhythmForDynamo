@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autodesk.DesignScript.Geometry;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
@@ -25,6 +26,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// CurtainGridLine.FullCurve, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static object FullCurve(global::Revit.Elements.Element curtainGridLine)
         {
             Autodesk.Revit.DB.CurtainGridLine internalCurtainGridline = (Autodesk.Revit.DB.CurtainGridLine)curtainGridLine.InternalElement;
@@ -41,6 +43,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// CurtainGridLine.FullCurve, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static object AllSegmentCurves(global::Revit.Elements.Element curtainGridLine)
         {
             Autodesk.Revit.DB.CurtainGridLine internalCurtainGridline = (Autodesk.Revit.DB.CurtainGridLine)curtainGridLine.InternalElement;
@@ -58,6 +61,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// CurtainGridLine.RemoveSegment, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static global::Revit.Elements.Element RemoveSegment(global::Revit.Elements.Element curtainGridLine, List<Curve> curves)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -79,6 +83,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// CurtainGridLine.ExistingSegmentCurves, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static object ExistingSegmentCurves(global::Revit.Elements.Element curtainGridLine)
         {
             Autodesk.Revit.DB.CurtainGridLine internalCurtainGridline = (Autodesk.Revit.DB.CurtainGridLine)curtainGridLine.InternalElement;
@@ -94,6 +99,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// CurtainGridLine.SkippedSegmentCurves, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static object SkippedSegmentCurves(global::Revit.Elements.Element curtainGridLine)
         {
             Autodesk.Revit.DB.CurtainGridLine internalCurtainGridline = (Autodesk.Revit.DB.CurtainGridLine)curtainGridLine.InternalElement;
@@ -109,6 +115,7 @@ namespace Rhythm.Revit.Elements
         /// <param name="curtainGridLine">The curtain grid line to try to set.</param>
         /// <param name="newLocation"></param>
         /// <returns name="curtainGridLine">The translated curtain grid line. (Returns null if failed)</returns>
+        [NodeCategory("Actions")]
         public static object SetLocation(global::Revit.Elements.Element curtainGridLine, Point newLocation)
         {
             //the current document

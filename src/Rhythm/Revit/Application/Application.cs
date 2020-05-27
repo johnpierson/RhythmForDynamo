@@ -1,8 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Autodesk.Revit.DB;
-using Dynamo.Applications;
-using Dynamo.Applications.ViewModel;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 
 namespace Rhythm.Revit.Application
@@ -14,8 +13,6 @@ namespace Rhythm.Revit.Application
     {
         private Applications()
         { }
-
-
         /// <summary>
         /// This node will open the given file in the background.
         /// </summary>
@@ -23,19 +20,32 @@ namespace Rhythm.Revit.Application
         /// <param name="audit">Choose whether or not to audit the file upon opening. (Will run slower with this)</param>
         /// <param name="detachFromCentral">Choose whether or not to detach from central upon opening. Only for RVT files. </param>
         /// <param name="preserveWorksets">Choose whether or not to preserve worksets upon opening. Only for RVT files. </param>
+        /// <param name="closeAllWorksets">Choose if you want to close all worksets upon opening. Defaulted to false.</param>
         /// <returns name="document">The document object. If the file path is blank this returns the current document.</returns>
         /// <search>
         /// Application.OpenDocumentFile, rhythm
         /// </search>
-        public static object OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true)
+        [NodeCategory("Create")]
+        public static object OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true, bool closeAllWorksets = false)
         {
             var uiapp = DocumentManager.Instance.CurrentUIApplication;
             var app = uiapp.Application;
             //instantiate open options for user to pick to audit or not
-            OpenOptions openOpts = new OpenOptions();
-            openOpts.Audit = audit;
+            OpenOptions openOpts = new OpenOptions
+            {
+                Audit = audit,
+                DetachFromCentralOption = detachFromCentral == false ? DetachFromCentralOption.DoNotDetach :
+                    preserveWorksets == true ? DetachFromCentralOption.DetachAndPreserveWorksets :
+                    DetachFromCentralOption.DetachAndDiscardWorksets
+            };
             //TransmittedModelOptions tOpt = TransmittedModelOptions.SaveAsNewCentral;
-            openOpts.DetachFromCentralOption = detachFromCentral == false ? DetachFromCentralOption.DoNotDetach : preserveWorksets == true ? DetachFromCentralOption.DetachAndPreserveWorksets : DetachFromCentralOption.DetachAndDiscardWorksets;
+            //option to close all worksets
+            WorksetConfiguration worksetConfiguration = new WorksetConfiguration(WorksetConfigurationOption.OpenAllWorksets);
+            if (closeAllWorksets)
+            {
+                worksetConfiguration = new WorksetConfiguration(WorksetConfigurationOption.CloseAllWorksets);
+            }
+            openOpts.SetOpenWorksetsConfiguration(worksetConfiguration);
 
             //convert string to model path for open
             ModelPath modelPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(filePath);
@@ -54,28 +64,25 @@ namespace Rhythm.Revit.Application
         /// <search>
         /// Application.CloseDocument, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static string CloseDocument(Autodesk.Revit.DB.Document document, bool save)
         {
-
-            string result;
             try
             {
-
                 document.Close(save);
-                result = "closed";
+                return "closed";
             }
             catch (Exception)
             {
-                result = "can't close the file. It has either been closed already or another weird error.";
+                return "can't close the file. It has either been closed already or another weird error.";
             }
-
-            return result;
         }
         /// <summary>
         /// This node provides access to all of the open documents in revit.
         /// </summary>
         /// <param name="runIt">Do you want to save?</param>
         /// <returns name="documents">The documents that are currently open.</returns>
+        [NodeCategory("Query")]
         public static List<Autodesk.Revit.DB.Document> GetOpenDocuments(bool runIt)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -87,22 +94,17 @@ namespace Rhythm.Revit.Application
 
             foreach (Document d in app.Documents)
             {
-                if (d.Title != doc.Title)
+                if (d.Title == doc.Title) continue;
+                try
                 {
-                    try
-                    {
-                        documents.Add(d);
-                    }
-                    catch (Exception)
-                    {
-                        //nothing
-                    }
+                    documents.Add(d);
+                }
+                catch (Exception)
+                {
+                    //nothing
                 }
             }
-
             return documents;
         }
-
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dynamo.Graph.Nodes;
 using Rhythm.Utilities;
 using Element = Revit.Elements.Element;
 
@@ -25,6 +26,7 @@ namespace Rhythm.Revit.ElementFilter
         /// <search>
         /// ElementFilter,Filter.ByName
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> ByName(List<global::Revit.Elements.Element> elements, string value, string filterMethod)
         {
             List<string> potentialFilterMethod = new List<string>(new string[] { "Contains", "DoesNotContain", "StartsWith", "DoesNotStartWith", "EndsWith", "DoesNotEndWith", "Equals", "DoesNotEqual","==","!=" });
@@ -38,42 +40,38 @@ namespace Rhythm.Revit.ElementFilter
             }
             int minIndex = values.IndexOf(values.Min());
             filterMethodToUse = potentialFilterMethod[minIndex];
-            //scenarios there is probably a better way to do this.
-            switch (filterMethodToUse)
+            //scenarios
+            if (filterMethodToUse == "Contains")
             {
-                case "Contains":
-                    filteredElements = new List<Element>(elements.Where(e => e.Name.Contains(value)).ToArray());
-                    break;
-                case "DoesNotContain":
-                    filteredElements = new List<Element>(elements.Where(e => !e.Name.Contains(value)).ToArray());
-                    break;
-                case "StartsWith":
-                    filteredElements = new List<Element>(elements.Where(e => e.Name.StartsWith(value)).ToArray());
-                    break;
-                case "DoesNotStartWith":
-                    filteredElements = new List<Element>(elements.Where(e => !e.Name.StartsWith(value)).ToArray());
-                    break;
-                case "EndsWith":
-                    filteredElements = new List<Element>(elements.Where(e => e.Name.EndsWith(value)).ToArray());
-                    break;
-                case "DoesNotEndWith":
-                    filteredElements = new List<Element>(elements.Where(e => !e.Name.EndsWith(value)).ToArray());
-                    break;
-                case "Equals":
-                    filteredElements = new List<Element>(elements.Where(e => e.Name.Equals(value)).ToArray());
-                    break;
-                case "==":
-                    filteredElements = new List<Element>(elements.Where(e => e.Name.Equals(value)).ToArray());
-                    break;
-                case "DoesNotEqual":
-                    filteredElements = new List<Element>(elements.Where(e => !e.Name.Equals(value)).ToArray());
-                    break;
-                case "!=":
-                    filteredElements = new List<Element>(elements.Where(e => !e.Name.Equals(value)).ToArray());
-                    break;
-                default:
-                    filteredElements = elements;
-                    break;
+                filteredElements = new List<Element>(elements.Where(e => e.Name.Contains(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotContain")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.Name.Contains(value)).ToArray());
+            }
+            if (filterMethodToUse == "StartsWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.Name.StartsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotStartWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.Name.StartsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "EndsWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.Name.EndsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotEndWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.Name.EndsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "Equals" || filterMethodToUse == "==")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.Name.Equals(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotEqual" || filterMethodToUse == "!=")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.Name.Equals(value)).ToArray());
             }
 
             return filteredElements;
@@ -90,6 +88,7 @@ namespace Rhythm.Revit.ElementFilter
         /// <search>
         /// ElementFilter,Filter.ByName
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> ByParameterStringValue(List<global::Revit.Elements.Element> elements, string parameterName, string value, string filterMethod)
         {
             List<string> potentialFilterMethod = new List<string>(new string[] { "Contains", "DoesNotContain", "StartsWith", "DoesNotStartWith", "EndsWith", "DoesNotEndWith", "Equals", "DoesNotEqual","==","!=" });
@@ -103,44 +102,39 @@ namespace Rhythm.Revit.ElementFilter
             }
             int minIndex = values.IndexOf(values.Min());
             filterMethodToUse = potentialFilterMethod[minIndex];
-            //scenarios there is probably a better way to do this.
-            switch (filterMethodToUse)
+            //scenarios
+            if (filterMethodToUse == "Contains")
             {
-                case "Contains":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().Contains(value)).ToArray());
-                    break;
-                case "DoesNotContain":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().Contains(value)).ToArray());
-                    break;
-                case "StartsWith":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().StartsWith(value)).ToArray());
-                    break;
-                case "DoesNotStartWith":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().StartsWith(value)).ToArray());
-                    break;
-                case "EndsWith":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().EndsWith(value)).ToArray());
-                    break;
-                case "DoesNotEndWith":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().EndsWith(value)).ToArray());
-                    break;
-                case "Equals":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().Equals(value)).ToArray());
-                    break;
-                case "==":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().Equals(value)).ToArray());
-                    break;
-                case "DoesNotEqual":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().Equals(value)).ToArray());
-                    break;
-                case "!=":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().Equals(value)).ToArray());
-                    break;
-                default:
-                    filteredElements = elements;
-                    break;
+                filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().Contains(value)).ToArray());
             }
-
+            if (filterMethodToUse == "DoesNotContain")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().Contains(value)).ToArray());
+            }
+            if (filterMethodToUse == "StartsWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().StartsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotStartWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().StartsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "EndsWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().EndsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotEndWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().EndsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "Equals" || filterMethodToUse == "==")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.GetParameterValueByName(parameterName).ToString().Equals(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotEqual" || filterMethodToUse == "!=")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetParameterValueByName(parameterName).ToString().Equals(value)).ToArray());
+            }
 
             return filteredElements;
         }
@@ -156,6 +150,7 @@ namespace Rhythm.Revit.ElementFilter
         /// <search>
         /// ElementFilter,Filter.ByName
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> ByParameterNumericValue(List<global::Revit.Elements.Element> elements, string parameterName, double value, string filterMethod)
         {
             List<string> potentialFilterMethod = new List<string>(new string[] { "GreaterThan", "GreaterThanOrEqualTo", "LessThan", "LessThanOrEqualTo", ">", ">=", "<", "<=","EqualTo","==","NotEqualTo","!=" });
@@ -209,6 +204,7 @@ namespace Rhythm.Revit.ElementFilter
         /// <search>
         /// ElementFilter,Filter.ByName
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> ByCategory(List<global::Revit.Elements.Element> elements, object category, string filterMethod)
         {
             List<string> potentialFilterMethod = new List<string>(new string[] { "Contains", "DoesNotContain", "StartsWith", "DoesNotStartWith", "EndsWith", "DoesNotEndWith", "Equals", "DoesNotEqual","==","!=" });
@@ -233,43 +229,40 @@ namespace Rhythm.Revit.ElementFilter
                 global::Revit.Elements.Category cat = (global::Revit.Elements.Category)category;
                 value = cat.Name;
             }
-            //scenarios there is probably a better way to do this.
-            switch (filterMethodToUse)
+
+            //scenarios
+            if (filterMethodToUse == "Contains")
             {
-                case "Contains":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.Contains(value)).ToArray());
-                    break;
-                case "DoesNotContain":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.Contains(value)).ToArray());
-                    break;
-                case "StartsWith":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.StartsWith(value)).ToArray());
-                    break;
-                case "DoesNotStartWith":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.StartsWith(value)).ToArray());
-                    break;
-                case "EndsWith":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.EndsWith(value)).ToArray());
-                    break;
-                case "DoesNotEndWith":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.EndsWith(value)).ToArray());
-                    break;
-                case "Equals":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.Equals(value)).ToArray());
-                    break;
-                case "==":
-                    filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.Equals(value)).ToArray());
-                    break;
-                case "DoesNotEqual":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.Equals(value)).ToArray());
-                    break;
-                case "!=":
-                    filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.Equals(value)).ToArray());
-                    break;
-                default:
-                    filteredElements = elements;
-                    break;
-            }    
+                filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.Contains(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotContain")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.Contains(value)).ToArray());
+            }
+            if (filterMethodToUse == "StartsWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.StartsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotStartWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.StartsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "EndsWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.EndsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotEndWith")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.EndsWith(value)).ToArray());
+            }
+            if (filterMethodToUse == "Equals" || filterMethodToUse == "==")
+            {
+                filteredElements = new List<Element>(elements.Where(e => e.GetCategory.Name.Equals(value)).ToArray());
+            }
+            if (filterMethodToUse == "DoesNotEqual" || filterMethodToUse == "!=")
+            {
+                filteredElements = new List<Element>(elements.Where(e => !e.GetCategory.Name.Equals(value)).ToArray());
+            }
 
             return filteredElements;
         }

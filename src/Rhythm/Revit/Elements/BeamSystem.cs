@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Dynamo.Graph.Nodes;
 using Revit.Elements;
 using RevitServices.Persistence;
 
@@ -20,6 +21,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// structural, beamsystem
         /// </search>
+        [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> Members(global::Revit.Elements.Element BeamSystem)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -40,6 +42,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// structural, beamsystem
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> DropBeamSystem(global::Revit.Elements.Element beamSystem)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;

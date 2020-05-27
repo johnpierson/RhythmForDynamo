@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -21,6 +22,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// textnote, toupper, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static global::Revit.Elements.Element ToUpper(global::Revit.Elements.Element textNote)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -46,13 +48,14 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// textnote, tolower, rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static global::Revit.Elements.Element ToLower(global::Revit.Elements.Element textNote)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             Autodesk.Revit.DB.TextNote internalNote = (Autodesk.Revit.DB.TextNote)textNote.InternalElement;
 
             //Get the text from the text box
-            //we obtain formated text and modify the caps instead of the string. Preserves formatting. - John
+            //we obtain formatted text and modify the caps instead of the string. Preserves formatting.
             FormattedText formattedText = internalNote.GetFormattedText();
             formattedText.SetAllCapsStatus(false);
             //Change all the text to upper case and reassign to the text box
@@ -71,6 +74,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// textnote, getleaders, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static List<Leader> GetLeaders(global::Revit.Elements.Element textNote)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;

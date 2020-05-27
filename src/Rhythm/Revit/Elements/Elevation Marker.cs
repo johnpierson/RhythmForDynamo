@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
@@ -26,6 +27,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, addview,rhythm
         /// </search>
+        [NodeCategory("Create")]
         public static List<global::Revit.Elements.Element> CreateElevationMarker(List<Autodesk.DesignScript.Geometry.Point> location, int scaleFactor, global::Revit.Elements.Element viewFamilyType )
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -42,7 +44,7 @@ namespace Rhythm.Revit.Elements
         }
 
         /// <summary>
-        /// This node will add evelations on each side of the marker chosen. Typically 0-3. 
+        /// This node will add elevations on each side of the marker chosen. Typically 0-3. 
         /// </summary>
         /// <param name="elevationMarker">The marker to host elevations on.</param>
         /// <param name="planView">Plan view to do this stuff to.</param>
@@ -51,7 +53,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, addview,rhythm
         /// </search>
-
+        [NodeCategory("Create")]
         public static List<global::Revit.Elements.Element> CreateElevationByMarkerIndex(global::Revit.Elements.Element elevationMarker, global::Revit.Elements.Element planView, List<int> index)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;

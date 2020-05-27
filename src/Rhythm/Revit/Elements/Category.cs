@@ -1,6 +1,7 @@
 ﻿using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 
 namespace Rhythm.Revit.Elements
@@ -20,6 +21,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Categories.ProjectionLineweight
         /// </search>
+        [NodeCategory("Query")]
         public static List<int?> ProjectionLineweight(List<global::Revit.Elements.Category> category)
         {
             //obtains the current document for later use
@@ -46,6 +48,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Categories.CutLineweight
         /// </search>
+        [NodeCategory("Query")]
         public static List<int?> CutLineweight(List<global::Revit.Elements.Category> category)
         {
             //obtains the current document for later use
@@ -73,6 +76,7 @@ namespace Rhythm.Revit.Elements
         /// Categories.LineColor
         /// </search>
         [MultiReturn(new[] { "lineColorString", "lineColor" })]
+        [NodeCategory("Query")]
         public static Dictionary<string, object> LineColor(List<global::Revit.Elements.Category> category)
         {
             //obtains the current document for later use
@@ -108,6 +112,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Categories.LinePattern
         /// </search>
+        [NodeCategory("Query")]
         public static List<string> LinePattern(List<global::Revit.Elements.Category> category)
         {
             //obtains the current document for later use
@@ -146,6 +151,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Categories.MaterialName
         /// </search>
+        [NodeCategory("Query")]
         public static List<string> Material(List<global::Revit.Elements.Category> category)
         {
             //obtains the current document for later use

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
-using RevitServices.Transactions;
 using Element = Autodesk.Revit.DB.Element;
 using Line = Autodesk.Revit.DB.Line;
 
@@ -27,6 +26,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// profile, wall
         /// </search>
+        [NodeCategory("Query")]
         public static bool HasEditedProfile(global::Revit.Elements.Element wall)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -50,6 +50,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// profile, wall
         /// </search>
+        [NodeCategory("Query")]
         public static global::Revit.Elements.Element[] EditedProfile(global::Revit.Elements.Element wall)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -76,6 +77,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="wall">The wall to calculate facing from.</param>
         /// <returns name="facingDirection">The estimated facing direction.</returns>
+        [NodeCategory("Query")]
         public static string Direction(global::Revit.Elements.Element wall)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;

@@ -1,7 +1,9 @@
-﻿using Autodesk.DesignScript.Runtime;
+﻿using System;
+using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
@@ -29,37 +31,51 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, addview,rhythm
         /// </search>
-        public static global::Revit.Elements.Element Create(global::Revit.Elements.Views.Sheet sheet, global::Revit.Elements.Element view, Autodesk.DesignScript.Geometry.Point location)
+        [NodeCategory("Create")]
+        public static object Create(global::Revit.Elements.Views.Sheet sheet, global::Revit.Elements.Element view, Autodesk.DesignScript.Geometry.Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //obtain the element id from the sheet
             ElementId sheetId = new ElementId(sheet.Id);
-            global::Revit.Elements.Element result = null;
+            Autodesk.Revit.DB.Element result = null;
+            //change the dynamo point to a revit point
+            var revitPoint = location.ToRevitType(true);
+            //obtain the element id from the view
+            ElementId viewId = new ElementId(view.Id);
 
-            if (view.InternalElement.ToString() == "Autodesk.Revit.DB.ViewSchedule")
+           
+
+            try
             {
-                //obtain the element id from the view
-                ElementId viewId = new ElementId(view.Id);
-                //chane the dynamo point to a revit point
-                var revitPoint = location.ToRevitType(true);
                 //start the transaction to place views
                 TransactionManager.Instance.EnsureInTransaction(doc);
-                result = Autodesk.Revit.DB.ScheduleSheetInstance.Create(doc, sheetId, viewId, revitPoint).ToDSType(true);
-                TransactionManager.Instance.TransactionTaskDone();
-            }
-            else
-            {
-                //obtain the element id from the view
-                ElementId viewId = new ElementId(view.Id);
-                //chane the dynamo point to a revit point
-                var revitPoint = location.ToRevitType(true);
-                //start the transaction to place views
-                TransactionManager.Instance.EnsureInTransaction(doc);
-                result = Autodesk.Revit.DB.Viewport.Create(doc, sheetId, viewId, revitPoint).ToDSType(true);
-                TransactionManager.Instance.TransactionTaskDone();
-            }
+                if (view.InternalElement.ToString() == "Autodesk.Revit.DB.ViewSchedule")
+                {
+                    result = Autodesk.Revit.DB.ScheduleSheetInstance.Create(doc, sheetId, viewId, revitPoint);
+                }
+                else
+                {
+                    result = Autodesk.Revit.DB.Viewport.Create(doc, sheetId, viewId, revitPoint);  
+                }
 
-            return result;
+                TransactionManager.Instance.TransactionTaskDone();
+
+                return result.ToDSType(true);
+            }
+            catch (Exception e)
+            {
+                if (!Autodesk.Revit.DB.Viewport.CanAddViewToSheet(doc, sheetId, viewId))
+                {
+                    return "Error: View " + view.Id + " cannot be added to the sheet because it is already on another sheet.";
+                }
+                if (result == null)
+                {
+                    return "Error: View " + view.Id + " cannot be added to the sheet because it is empty.";
+                }
+
+                return "Error: View " + view.Id + e.Message;
+            }
+          
         }
         /// <summary>
         /// This node will obtain the box location data from the provided viewport.
@@ -73,6 +89,7 @@ namespace Rhythm.Revit.Elements
         /// </search>
         //this is the node Viewport.LocationData
         [MultiReturn(new[] { "bBox", "boxCenter", "boxOutline" })]
+        [NodeCategory("Query")]
         public static Dictionary<string, object> LocationData(global::Revit.Elements.Element viewport)
         {
             //obtain the element id from the sheet
@@ -129,6 +146,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, Viewport.LabelOutline, rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static List<Autodesk.DesignScript.Geometry.Curve> LabelOutline(global::Revit.Elements.Element viewport)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -167,6 +185,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, location,rhythm
         /// </search>
+        [NodeCategory("Query")]
         public static global::Revit.Elements.Element GetView(global::Revit.Elements.Element viewport)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -186,6 +205,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport
         /// </search>
+        [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> SetLocationBasedOnOther(global::Revit.Elements.Element parentViewport, List<global::Revit.Elements.Element> childViewports)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -216,6 +236,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport
         /// </search>
+        [NodeCategory("Actions")]
         public static void SetBoxCenter(global::Revit.Elements.Element viewport, Point point)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -233,6 +254,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport
         /// </search>
+        [NodeCategory("Query")]
         public static Point BoxCenter(global::Revit.Elements.Element viewport)
         {
             Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;

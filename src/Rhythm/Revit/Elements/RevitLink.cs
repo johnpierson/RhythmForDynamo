@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 
 namespace Rhythm.Revit.Elements
 {
@@ -18,6 +19,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         ///  rhythm
         /// </search>
+        [NodeCategory("Actions")]
         public static Autodesk.Revit.DB.Document GetDocument(global::Revit.Elements.Element linkInstance)
         {
             RevitLinkInstance internalLink = (RevitLinkInstance) linkInstance.InternalElement;

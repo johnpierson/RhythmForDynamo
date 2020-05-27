@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
@@ -27,6 +25,7 @@ namespace Rhythm.Revit.Elements
         /// <param name="view"></param>
         /// <param name="curvesToUse"></param>
         /// <returns></returns>
+        [NodeCategory("Create")]
         public static global::Revit.Elements.Element ByMultipleLoops(global::Revit.Elements.FilledRegionType filledRegionType, global::Revit.Elements.Views.View view, List<List<Curve>> curvesToUse)
         {
             //the current document

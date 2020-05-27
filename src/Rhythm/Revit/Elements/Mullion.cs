@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Mullion = Revit.Elements.Mullion;
 
@@ -26,6 +23,7 @@ namespace Rhythm.Revit.Elements
         /// <returns name="horizontal">The horizontal mullions.</returns>
         /// <returns name="vertical">The vertical mullions.</returns>
         [MultiReturn(new[] { "horizontal", "vertical" })]
+        [NodeCategory("Query")]
         public static Dictionary<string,object>ByDirection(global::Revit.Elements.Wall hostingElement)
         {
             //obtains the current document for later use
