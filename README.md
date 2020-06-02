@@ -10,9 +10,10 @@
    <img src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg">
 </p>
 
+---
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/johnpierson/RhythmForDynamo/graphs/commit-activity)
 [![GitHub license](https://img.shields.io/github/license/johnpierson/RhythmForDynamo)](https://github.com/johnpierson/RhythmForDynamo/blob/master/LICENSE)
-
 
 If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager. 
 
