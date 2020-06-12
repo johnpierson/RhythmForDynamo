@@ -72,9 +72,20 @@ namespace Rhythm.Revit.Application
                 document.Close(save);
                 return "closed";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return "can't close the file. It has either been closed already or another weird error.";
+                //not tested yet
+                try
+                {
+                    var uiapp = DocumentManager.Instance.CurrentUIApplication;
+                    UISave uISave = new UISave();
+                    uISave.ShowOverwriteWarning(false);
+                    uiapp.Application.Application.UIdocument.SaveAs(uISave);
+                }
+                catch (Exception exw)
+                {
+                    return exw.Message;
+                }
             }
         }
         /// <summary>
