@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
@@ -105,6 +105,26 @@ namespace Rhythm.Revit.Application
                 }
             }
             return documents;
+        }
+
+        /// <summary>
+        /// This node will save the Revit document to another path.
+        /// </summary>
+        /// <param name="document">A valid Revit Document.</param>
+        /// <param name="filePath">The file path to save the document.</param>
+        /// <returns name="result">A string message whether the save as was successful or a failure.</returns>
+        [NodeCategory("Action")]
+        public static string SaveAs(Revit.Application.Document document, string filePath)
+        {
+            try
+            {
+                document.SaveAs(filePath);
+                return "Successful Save";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }
