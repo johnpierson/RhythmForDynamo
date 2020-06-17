@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
@@ -72,20 +72,9 @@ namespace Rhythm.Revit.Application
                 document.Close(save);
                 return "closed";
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                //not tested yet
-                try
-                {
-                    var uiapp = DocumentManager.Instance.CurrentUIApplication;
-                    UISave uISave = new UISave();
-                    uISave.ShowOverwriteWarning(false);
-                    uiapp.Application.Application.UIdocument.SaveAs(uISave);
-                }
-                catch (Exception exw)
-                {
-                    return exw.Message;
-                }
+                return e.Message;
             }
         }
         /// <summary>
