@@ -118,7 +118,7 @@ namespace Rhythm.Revit.Application
         {
             try
             {
-                Document.SaveAs(FilePath);
+                document.SaveAs(filePath);
                 return "Successful Save";
             }
             catch (Exception ex)
