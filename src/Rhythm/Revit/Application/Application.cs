@@ -72,9 +72,9 @@ namespace Rhythm.Revit.Application
                 document.Close(save);
                 return "closed";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "can't close the file. It has either been closed already or another weird error.";
+                return e.Message;
             }
         }
         /// <summary>

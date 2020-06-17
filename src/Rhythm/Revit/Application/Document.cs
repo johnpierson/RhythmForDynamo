@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
@@ -152,6 +153,25 @@ namespace Rhythm.Revit.Application
             List<global::Revit.Elements.Element> vList = new List<global::Revit.Elements.Element>(newDraftingViews.Select(v => v.ToDSType(true)));
 
             return vList;
+        }
+        /// <summary>
+        /// This node will save the Revit document to another path.
+        /// </summary>
+        /// <param name="document">A valid Revit Document.</param>
+        /// <param name="filePath">The file path to save the document.</param>
+        /// <returns name="result">A string message whether the save as was successful or a failure.</returns>
+        [NodeCategory("Action")]
+        public static string SaveAs(Autodesk.Revit.DB.Document document, string filePath)
+        {
+            try
+            {
+                document.SaveAs(filePath);
+                return "Successful Save";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }
