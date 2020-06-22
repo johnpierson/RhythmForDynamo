@@ -7,7 +7,6 @@ using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using Rhythm.Utilities;
-using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Solid = Autodesk.DesignScript.Geometry.Solid;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Autodesk.Revit.UI;
+using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 
 namespace Rhythm.Revit.Helpers
@@ -17,6 +18,7 @@ namespace Rhythm.Revit.Helpers
         /// </summary>
         /// <param name="caption">The caption for the window title.</param>
         /// <param name="message">The message to give the user.</param>
+        [NodeCategory("Create")]
         public static void SimpleUserMessage(string caption, string message)
         {
             TaskDialog td = new TaskDialog(caption)
@@ -28,12 +30,12 @@ namespace Rhythm.Revit.Helpers
         }
         /// <summary>
         /// This provides a user message with the option to cancel the process downstream. If no is selected the node will return null.
-        /// This node was inspired by the work of Matt Nelson, William Wong and Kyle Morin on http://stockroom.mattbenimble.com/.
         /// </summary>
         /// <param name="caption">The caption for the window title.</param>
         /// <param name="message">The message to give the user.</param>
         /// <param name="obj">The object to passthrough.</param>
         /// <returns name = "result">The object.</returns>
+        [NodeCategory("Create")]
         public static object UserMessage(string caption, string message, List<object> obj)
         {
             object result = new List<string>();
@@ -52,13 +54,14 @@ namespace Rhythm.Revit.Helpers
             return result;
         }
 
-        
+
 
         /// <summary>
         /// This allows you to turn off element binding in the DYN.
         /// </summary>
         /// <param name="toggle"></param>
         /// <returns></returns>
+        [NodeCategory("Actions")]
         public static bool ToggleElementBinder(bool toggle)
         {
             ElementBinder.IsEnabled = toggle;
@@ -69,6 +72,7 @@ namespace Rhythm.Revit.Helpers
         /// Returns the current Revit version
         /// </summary>
         /// <returns></returns>
+        [NodeCategory("Query")]
         public static string CurrentRevitVersion()
         {
             return DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;

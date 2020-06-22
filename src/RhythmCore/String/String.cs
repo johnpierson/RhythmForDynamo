@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
+using Dynamo.Graph.Nodes;
 using Humanizer;
 
 namespace Rhythm.String
@@ -20,6 +21,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
+        [NodeCategory("Actions")]
         public static string ToTitle(string str)
         {
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
@@ -34,6 +36,7 @@ namespace Rhythm.String
         /// <param name="str">The string to convert to quantity.</param>
         /// <param name="quantity">The amount of things.</param>
         /// <returns name="quantityString">The formatted quantity.</returns>
+        [NodeCategory("Actions")]
         public static string ToQuantity(string str, int quantity)
         {
             return str.ToQuantity(quantity);
@@ -47,6 +50,7 @@ namespace Rhythm.String
         /// <param name="length">The target length of the string.</param>
         /// <param name="truncationString">The characters to fill in the string with.</param>
         /// <returns name="truncatedString">The truncated string.</returns>
+        [NodeCategory("Actions")]
         public static string Truncate(string str, int length, string truncationString = "…")
         {
             return str.Truncate(length, truncationString);
@@ -58,6 +62,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str">The string to pluralize.</param>
         /// <returns name="pluralString">The string in it's plural form.</returns>
+        [NodeCategory("Actions")]
         public static string Pluralize(string str)
         {
             return str.Pluralize();
@@ -68,6 +73,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str">The string to singularize.</param>
         /// <returns name="singularString">The string in it's singular form.</returns>
+        [NodeCategory("Actions")]
         public static string Singularize(string str)
         {
             return str.Singularize();
@@ -78,6 +84,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str">The string to titleize.</param>
         /// <returns name="str">The string in it's title form.</returns>
+        [NodeCategory("Actions")]
         public static string Titleize(string str)
         {
             return str.Titleize();
@@ -88,6 +95,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str">The string to Pascalize.</param>
         /// <returns name="str">The string in it's pascal case form.</returns>
+        [NodeCategory("Actions")]
         public static string Pascalize(string str)
         {
             return str.Pascalize();
@@ -98,6 +106,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str">The string to Camelize.</param>
         /// <returns name="str">The string in it's camel case form.</returns>
+        [NodeCategory("Actions")]
         public static string Camelize(string str)
         {
             return str.Camelize();
@@ -108,6 +117,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str">The string to convert to underscore separated.</param>
         /// <returns name="str">The resulting words separated with underscores.</returns>
+        [NodeCategory("Actions")]
         public static string Underscore(string str)
         {
             return str.Underscore();
@@ -118,6 +128,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str">The string to convert to dash separated.</param>
         /// <returns name="str">The resulting words separated with dashes.</returns>
+        [NodeCategory("Actions")]
         public static string Dasherize(string str)
         {
             return str.Underscore().Dasherize();
@@ -129,6 +140,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="obj">The string to human understandable form.</param>
         /// <returns name="str">The humanized string.</returns>
+        [NodeCategory("Actions")]
         public static string Humanize(object obj)
         {
             if (obj is DateTime date)
@@ -152,6 +164,7 @@ namespace Rhythm.String
         /// <param name="str">The string to format.</param>
         /// <param name="args">The params (objects)</param>
         /// <returns name="str">The formatted string.</returns>
+        [NodeCategory("Actions")]
         public static string FormatWith(string str, object[] args)
         {
             return str.FormatWith(args);
@@ -163,6 +176,7 @@ namespace Rhythm.String
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
+        [NodeCategory("Actions")]
         public static string MOcKtExt(string str)
         {
             string newString = string.Empty;
