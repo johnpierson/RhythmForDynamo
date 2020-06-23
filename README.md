@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="!Documentation/Logo/RhythmLogo.png" alt="Rhythm" width="500">
+  <img src="!Documentation/Logo/RhythmLogo.png" alt="Rhythm" width="350">
   <br>
 </h1>
 
@@ -38,7 +38,7 @@ Rhythm consists of several sub-libraries. These are describe a bit more in detai
 - Nodes that interact with background opened documents take some more consideration. This includes running Dynamo graphs that use them in manual run mode and often times closing and opening dynamo after the process is complete. The reason this happens is Dynamo has limited document switching capability and we are exploiting this with those nodes. (Included Nodes: Applications.OpenDocumentFile, Applications.CloseDocument)
 
 ## Contributors
-This package is currently managed by author of http://sixtysecondrevit.com.
+This package is primarily managed by the author of http://sixtysecondrevit.com and by [People Like You™](https://github.com/johnpierson/RhythmForDynamo/graphs/contributors).
 
 ## Updates
 Since there is not currently an update notification process on Dynamo's package manager, I post notifications for updates on twitter.
