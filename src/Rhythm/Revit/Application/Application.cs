@@ -26,6 +26,7 @@ namespace Rhythm.Revit.Application
         /// Application.OpenDocumentFile, rhythm
         /// </search>
         [NodeCategory("Create")]
+        [Obsolete("This node will be completely removed in future versions of Rhythm")]
         public static object OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true, bool closeAllWorksets = false)
         {
             var uiapp = DocumentManager.Instance.CurrentUIApplication;
@@ -65,6 +66,7 @@ namespace Rhythm.Revit.Application
         /// Application.CloseDocument, rhythm
         /// </search>
         [NodeCategory("Actions")]
+        //[Obsolete("This node will be completely removed in future versions of Rhythm")]
         public static string CloseDocument(Autodesk.Revit.DB.Document document, bool save)
         {
             try
@@ -83,6 +85,7 @@ namespace Rhythm.Revit.Application
         /// <param name="runIt">Do you want to save?</param>
         /// <returns name="documents">The documents that are currently open.</returns>
         [NodeCategory("Query")]
+        //[Obsolete("This node will be completely removed in future versions of Rhythm")]
         public static List<Autodesk.Revit.DB.Document> GetOpenDocuments(bool runIt)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
