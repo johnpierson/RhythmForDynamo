@@ -27,7 +27,7 @@ namespace Rhythm.Revit.ElementFilter
         /// <param name="filterMethod">The method to filter by. This includes Contains, DoesNotContain, StartsWith, DoesNotStartWith, EndsWith, DoesNotEndWith, Equals, DoesNotEqual</param>
         /// <param name="ignoreCase">Ignore the case?</param>
         /// <returns name="elements">The filtered elements.</returns>
-        /// <returns name="names">The filtered elements.</returns>
+        /// <returns name="names">The filtered elements' names.</returns>
         /// <search>
         /// ElementFilter,Filter.ByName
         /// </search>
