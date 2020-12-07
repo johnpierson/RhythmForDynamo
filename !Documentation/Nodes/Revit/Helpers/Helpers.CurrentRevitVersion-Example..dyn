@@ -1,0 +1,74 @@
+{
+  "Uuid": "6499299e-5a30-4e35-9d97-ddd2bc55ded3",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Helpers.CurrentRevitVersion-Example.",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.Revit.Helpers.Helpers.CurrentRevitVersion",
+      "Id": "6f382ce7936743b0ad9a792119e1338d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6af8022df70b4e95ae8edb04809299b6",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the current Revit version\n\nHelpers.CurrentRevitVersion ( ): string"
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.4.12684",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "ʳʰʸᵗʰᵐ|Helpers.CurrentRevitVersion",
+        "Id": "6f382ce7936743b0ad9a792119e1338d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 791.272976921869,
+        "Y": 490.222217332151
+      }
+    ],
+    "Annotations": [],
+    "X": -1917.305500985487,
+    "Y": -1175.3284486205368,
+    "Zoom": 3.1422407832240093
+  }
+}

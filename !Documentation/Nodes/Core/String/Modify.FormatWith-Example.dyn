@@ -1,0 +1,308 @@
+{
+  "Uuid": "3809f56d-59bd-4d09-877f-63dec59f11ed",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Modify.FormatWith-Example",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.String.Modify.FormatWith@string,var[]",
+      "Id": "628c2fcefc684538acca9163870695af",
+      "Inputs": [
+        {
+          "Id": "8c7072d5f44c45a7bf0fab6082ba340d",
+          "Name": "str",
+          "Description": "The string to format.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "66232f3cda9f4708bc807c94148cd067",
+          "Name": "args",
+          "Description": "The params (objects)\n\nvar[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3545dfb0965c43cda2b653330f7c1de4",
+          "Name": "str",
+          "Description": "The formatted string.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Format input string with arguments. Made possible with Humanizer (https://github.com/Humanizr/Humanizer)\n\nModify.FormatWith (str: string, args: var[]): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Hello {0} from dynamo.\nToday is {1}\";",
+      "Id": "944059fd505441aca9fc1d8f5660e356",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "97293163ad3046cd95c3411da4312816",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.Helpers.System.CurrentUserName@bool",
+      "Id": "7b73607c8930466eaf1ae32983014e95",
+      "Inputs": [
+        {
+          "Id": "2a5e7a84d06942cfbea3d88589df440d",
+          "Name": "refresh",
+          "Description": "Optional toggle to refresh the node\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9bd6be67ec3b497db441cf7a233117ce",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the current windows user.\n\nSystem.CurrentUserName (refresh: bool = true): string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "9daa73f977e34bd19c07d23864091211",
+      "Inputs": [
+        {
+          "Id": "a5eabe4225cb4eeeb4543e26c82a37fb",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "83600986cb5e42a5b42bbf8254526ea0",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dc1ac361abed4b299dcc2c02a8c0e38d",
+          "Name": "list",
+          "Description": "A list (type: var[]..[])",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "0c7fa9ad303e482b8b2cfc6ec06f614c",
+      "Inputs": [
+        {
+          "Id": "04137a54a7564b569258116eed909127",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "25e208fda2f0467e9fa04bac71179f46",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.DateTime.Now",
+      "Id": "83c6c5112e474fc3b5328f6bdb1b2679",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "79a1a8d156504fcdb598c38457d02bd1",
+          "Name": "dateTime",
+          "Description": "DateTime",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The current system date and time.\n\nDateTime.Now: var"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3545dfb0965c43cda2b653330f7c1de4",
+      "End": "04137a54a7564b569258116eed909127",
+      "Id": "a284c4d747c946ccb3747bb8873cdee7"
+    },
+    {
+      "Start": "97293163ad3046cd95c3411da4312816",
+      "End": "8c7072d5f44c45a7bf0fab6082ba340d",
+      "Id": "6d55f7191c0d4af7a462bb3f2fc5a165"
+    },
+    {
+      "Start": "9bd6be67ec3b497db441cf7a233117ce",
+      "End": "a5eabe4225cb4eeeb4543e26c82a37fb",
+      "Id": "01eb4d178e6a4afcaefbe2ce9289d29f"
+    },
+    {
+      "Start": "dc1ac361abed4b299dcc2c02a8c0e38d",
+      "End": "66232f3cda9f4708bc807c94148cd067",
+      "Id": "dfd4edfcbd834cb792e5a86db69db60d"
+    },
+    {
+      "Start": "79a1a8d156504fcdb598c38457d02bd1",
+      "End": "83600986cb5e42a5b42bbf8254526ea0",
+      "Id": "0b820302940548c58d854aecfb17d198"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.9.0.3137",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Modify.FormatWith",
+        "Id": "628c2fcefc684538acca9163870695af",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1055.0,
+        "Y": 324.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "944059fd505441aca9fc1d8f5660e356",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 676.0,
+        "Y": 329.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "System.CurrentUserName",
+        "Id": "7b73607c8930466eaf1ae32983014e95",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 510.0,
+        "Y": 453.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "9daa73f977e34bd19c07d23864091211",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 776.0,
+        "Y": 453.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "0c7fa9ad303e482b8b2cfc6ec06f614c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1050.0,
+        "Y": 457.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DateTime.Now",
+        "Id": "83c6c5112e474fc3b5328f6bdb1b2679",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 594.0,
+        "Y": 542.0
+      }
+    ],
+    "Annotations": [],
+    "X": -337.8639062499999,
+    "Y": -208.02691249999998,
+    "Zoom": 1.33823125
+  }
+}

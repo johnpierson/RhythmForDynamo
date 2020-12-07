@@ -1,0 +1,121 @@
+{
+  "Uuid": "0d7acecc-2fa8-434d-8f9c-c450fea45d8c",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Modify.ToTitle-Example",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.String.Modify.ToTitle@string",
+      "Id": "b2fe0b73e0f54174a16d51d143c99753",
+      "Inputs": [
+        {
+          "Id": "f61d158193bd419eb9b1cdc0f50a92bd",
+          "Name": "str",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c4e2e04b21c24da8be0c6d06036cd3d9",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Converts the input string to a title case.\n\nModify.ToTitle (str: string): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"hello how are you\";",
+      "Id": "e764c0b643fa4f8ca30bbe409bb6cb3a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "15193350a55c4e7a85c9bffafe365a49",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "15193350a55c4e7a85c9bffafe365a49",
+      "End": "f61d158193bd419eb9b1cdc0f50a92bd",
+      "Id": "e164c702aeef4f3ca8836ee99856bf2c"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.9.0.3137",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Modify.ToTitle",
+        "Id": "b2fe0b73e0f54174a16d51d143c99753",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 716.0,
+        "Y": 347.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "e764c0b643fa4f8ca30bbe409bb6cb3a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 463.0,
+        "Y": 347.0
+      }
+    ],
+    "Annotations": [],
+    "X": -599.81159187229071,
+    "Y": -284.68190906255171,
+    "Zoom": 2.0566802683342771
+  }
+}
