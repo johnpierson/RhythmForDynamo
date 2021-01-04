@@ -1,0 +1,318 @@
+{
+  "Uuid": "d11b71d1-ba2f-46a5-a50e-3d6beb4ee659",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Selection.Pick-Example",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.Revit.Selection.Selection.Pick@bool,var[],bool",
+      "Id": "b7f1cb02ae144427bff7d01644c6c03d",
+      "Inputs": [
+        {
+          "Id": "8aeef308195e4abeae161f033ff9b7ec",
+          "Name": "runIt",
+          "Description": "Allows you to tell the node to \"run\". Also allows you to refresh selection.\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fb32ec9bff804e1b807a0c1751feab5d",
+          "Name": "category",
+          "Description": "The category or categories to isolate to. (leave blank if you want to be able to pick anything)\n\nvar[]\nDefault value : Rhythm.Revit.Selection.Selection.GetNull()",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4f940f7958804b059b062e0d3035ce4e",
+          "Name": "singleSelection",
+          "Description": "Optional input for a single item selection. Default to multiple.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "367dd1f941264aac83129bd8b768f5c3",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sometimes a pick selection is nicer. 😁\n\nSelection.Pick (runIt: bool, category: var[] = Rhythm.Revit.Selection.Selection.GetNull(), singleSelection: bool = false): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "813d202f8d374593a071045e225b5fd0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "02f86685b59e42ffa3b1173fb804ce8f",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 659,
+      "SelectedString": "OST_Walls",
+      "NodeType": "ExtensionNode",
+      "Id": "f9f251eecb01496c84496d916da70852",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f1e8667fd4fe44abbf9a8df9a21bb716",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 182,
+      "SelectedString": "OST_Doors",
+      "NodeType": "ExtensionNode",
+      "Id": "24dfd4c57fd6441386a7bbb91d9b5c94",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e5f27ae7149d4941a323b14183b78fca",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Grids\";",
+      "Id": "42b64ec3a3f44c5e833e0c0ea2059ef0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fce6cfa4d2914e128df1b6bc90a8206d",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "7fbdc408f3694676ac4ac3e724d2c057",
+      "Inputs": [
+        {
+          "Id": "a1e743f0595945e0aed39c7d79b756c6",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e3b539d0ff054446a9439cb3d1f380bc",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d41c4abbd4be4e2c83b94f717907f9dc",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7f7bc5d493554a1d9442d0c575315759",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "02f86685b59e42ffa3b1173fb804ce8f",
+      "End": "8aeef308195e4abeae161f033ff9b7ec",
+      "Id": "46783a7142e041ab88621c12fc65af78"
+    },
+    {
+      "Start": "f1e8667fd4fe44abbf9a8df9a21bb716",
+      "End": "a1e743f0595945e0aed39c7d79b756c6",
+      "Id": "e833f288c7784bf880b73b413ec43b03"
+    },
+    {
+      "Start": "e5f27ae7149d4941a323b14183b78fca",
+      "End": "e3b539d0ff054446a9439cb3d1f380bc",
+      "Id": "68e0c64d1e2f40e9b11384ad93fe6024"
+    },
+    {
+      "Start": "fce6cfa4d2914e128df1b6bc90a8206d",
+      "End": "d41c4abbd4be4e2c83b94f717907f9dc",
+      "Id": "8b919856838343d6bb1cdf013c639902"
+    },
+    {
+      "Start": "7f7bc5d493554a1d9442d0c575315759",
+      "End": "fb32ec9bff804e1b807a0c1751feab5d",
+      "Id": "33b1f517577d42a582ca2db8035a97ca"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Rhythm",
+      "Version": "2020.9.8",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "b7f1cb02ae144427bff7d01644c6c03d"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.8786",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "ʳʰʸᵗʰᵐ|Selection.Pick",
+        "Id": "b7f1cb02ae144427bff7d01644c6c03d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 729.0,
+        "Y": 246.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "813d202f8d374593a071045e225b5fd0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 468.0,
+        "Y": 169.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "f9f251eecb01496c84496d916da70852",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 225.0,
+        "Y": 296.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "24dfd4c57fd6441386a7bbb91d9b5c94",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 225.0,
+        "Y": 404.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "42b64ec3a3f44c5e833e0c0ea2059ef0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 295.0,
+        "Y": 496.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "7fbdc408f3694676ac4ac3e724d2c057",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 476.0,
+        "Y": 395.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
