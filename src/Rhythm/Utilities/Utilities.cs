@@ -1,8 +1,157 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 
 namespace Rhythm.Utilities
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
+    public class CommandHelpers
+    {
+        /// <summary>
+        /// This allows for runtime loading of commands specific to a Revit version. This is nice because we can have Revit 2021 DLLs and more.
+        /// </summary>
+        /// <param name="dllName"></param>
+        /// <param name="commandName"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>      
+        public static object InvokeNode(string dllName, string commandName, object[] args)
+        {
+            var assemblyPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace("bin", "extra"), dllName);
+            byte[] assemblyBytes = File.ReadAllBytes(assemblyPath);
+            Assembly assembly = Assembly.Load(assemblyBytes);
+            IEnumerable<Type> types = GetTypesSafely(assembly);
+
+          
+            foreach (Type objType in types)
+            {
+                if (objType.IsClass)
+                {
+                    if (objType.Name.Equals(commandName.Split('.')[0]))
+                    {
+                        object baseObject = Activator.CreateInstance(objType);
+
+                        return objType.InvokeMember(commandName.Split('.')[1],
+                            BindingFlags.Default | BindingFlags.InvokeMethod, null, baseObject, args);
+                    }
+                }
+            }
+            return null;
+        }
+       
+        private static IEnumerable<Type> GetTypesSafely(Assembly assembly)
+        {
+            try
+            {
+                return assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                return ex.Types.Where(x => x != null);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
+    public static class ConvexHullUtilities
+    {
+        #region Misc
+        const double _inch = 1.0 / 12.0;
+        const double _sixteenth = _inch / 16.0;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="selector"></param>
+        /// <typeparam name="tsource"></typeparam>
+        /// <typeparam name="tkey"></typeparam>
+        /// <returns></returns>
+        public static tsource MinBy<tsource, tkey>(
+            this IEnumerable<tsource> source,
+            Func<tsource, tkey> selector)
+        {
+            return source.MinBy(selector, Comparer<tkey>.Default);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="selector"></param>
+        /// <param name="comparer"></param>
+        /// <typeparam name="tsource"></typeparam>
+        /// <typeparam name="tkey"></typeparam>
+        /// <returns></returns>
+        public static tsource MinBy<tsource, tkey>(
+            this IEnumerable<tsource> source,
+            Func<tsource, tkey> selector,
+            IComparer<tkey> comparer)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+            if (comparer == null) throw new ArgumentNullException(nameof(comparer));
+            using (IEnumerator<tsource> sourceIterator = source.GetEnumerator())
+            {
+                if (!sourceIterator.MoveNext())
+                    throw new InvalidOperationException("Sequence was empty");
+                tsource min = sourceIterator.Current;
+                tkey minKey = selector(min);
+                while (sourceIterator.MoveNext())
+                {
+                    tsource candidate = sourceIterator.Current;
+                    tkey candidateProjected = selector(candidate);
+                    if (comparer.Compare(candidateProjected, minKey) < 0)
+                    {
+                        min = candidate;
+                        minKey = candidateProjected;
+                    }
+                }
+                return min;
+            }
+        }
+        #endregion
+        #region Convex Hull
+        /// <summary>
+        /// Return the convex hull of a list of points 
+        /// using the Jarvis march or Gift wrapping:
+        /// https://en.wikipedia.org/wiki/Gift_wrapping_algorithm
+        /// Written by Maxence.
+        /// </summary>
+        public static List<XYZ> ConvexHull(List<XYZ> points)
+        {
+            if (points == null) throw new ArgumentNullException(nameof(points));
+            XYZ startPoint = points.MinBy(p => p.X);
+            var convexHullPoints = new List<XYZ>();
+            XYZ walkingPoint = startPoint;
+            XYZ refVector = XYZ.BasisY.Negate();
+            do
+            {
+                convexHullPoints.Add(walkingPoint);
+                XYZ wp = walkingPoint;
+                XYZ rv = refVector;
+                walkingPoint = points.MinBy(p =>
+                {
+                    double angle = (p - wp).AngleOnPlaneTo(rv, XYZ.BasisZ);
+                    if (angle < 1e-10) angle = 2 * Math.PI;
+                    return angle;
+                });
+                refVector = wp - walkingPoint;
+            } while (walkingPoint != startPoint);
+            convexHullPoints.Reverse();
+            return convexHullPoints;
+        }
+        #endregion // Convex Hull
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -57,7 +206,5 @@ namespace Rhythm.Utilities
 
     }
     
-
-
 }
 
