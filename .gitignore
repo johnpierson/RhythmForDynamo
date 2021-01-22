@@ -302,3 +302,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+src/Rhythm/Utilities/ViewUtils.cs
