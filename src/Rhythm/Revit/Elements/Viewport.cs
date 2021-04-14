@@ -260,5 +260,53 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
             return internalViewport.GetBoxCenter().ToPoint();
         }
+
+        /// <summary>
+        /// Set a viewport's title length.
+        /// </summary>
+        /// <param name="viewport">The target viewport.</param>
+        /// <param name="length">The length to set it to.</param>
+        [NodeCategory("Actions")]
+        public static object SetViewTitleLength(global::Revit.Elements.Element viewport, double length)
+        {
+            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+            //check if it is Revit 2022
+            if (!versionNumber.Contains("2022"))
+            {
+                throw new Exception(@"This node only works in Revit 2022 as that is when this API was added. ¯\_(ツ)_/¯");
+            }
+            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Viewport.SetViewTitleLength", new object[] { viewport, length});
+        }
+        /// <summary>
+        /// Set a viewport's title location (relative to the boundary of the view).
+        /// </summary>
+        /// <param name="viewport">The target viewport.</param>
+        /// <param name="location">The location to set it to.</param>
+        [NodeCategory("Actions")]
+        public static object SetViewTitleLocation(global::Revit.Elements.Element viewport, Point location)
+        {
+            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+            //check if it is Revit 2022
+            if (!versionNumber.Contains("2022"))
+            {
+                throw new Exception(@"This node only works in Revit 2022 as that is when this API was added. ¯\_(ツ)_/¯");
+            }
+            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Viewport.SetViewTitleLocation", new object[] { viewport, location });
+        }
+        /// <summary>
+        /// Get a viewport's title location (relative to the boundary of the view).
+        /// </summary>
+        /// <param name="viewport">The target viewport.</param>
+        [NodeCategory("Actions")]
+        public static object GetViewTitleLocation(global::Revit.Elements.Element viewport)
+        {
+            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+            //check if it is Revit 2022
+            if (!versionNumber.Contains("2022"))
+            {
+                throw new Exception(@"This node only works in Revit 2022 as that is when this API was added. ¯\_(ツ)_/¯");
+            }
+            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Viewport.GetViewTitleLocation", new object[] { viewport});
+        }
     }
 }

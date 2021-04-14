@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using Autodesk.DesignScript.Geometry;
+﻿using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Mechanical;
 using Revit.Elements;
 using RevitServices.Transactions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Floor = Revit.Elements.Floor;
 using FloorType = Autodesk.Revit.DB.FloorType;
@@ -25,6 +21,7 @@ namespace Rhythm.Revit.Elements
         private Group()
         {
         }
+
         /// <summary>
         /// Get Null
         /// </summary>
@@ -34,6 +31,7 @@ namespace Rhythm.Revit.Elements
         {
             return null;
         }
+
         /// <summary>
         /// This node is a pretty neat group creator, that allows for you to pick an origin at creation time.
         /// </summary>
@@ -88,13 +86,13 @@ namespace Rhythm.Revit.Elements
 
             //make a big ol circle to force the origin and add it to a curve list. We also use the group's z origin to fix what the user inputs.
             var bigCircle = Circle.ByCenterPointRadius(Point.ByCoordinates(origin.X, origin.Y, bottomPoint.Z), radius);
-            
+
             List<Curve> floorSketch = new List<Curve>();
             floorSketch.AddRange(Polygon.RegularPolygon(bigCircle, 10).Curves());
 
             TransactionManager.Instance.EnsureInTransaction(doc);
             //create the big floor (temporary), based on the type
-            var newFloor = Floor.ByOutlineTypeAndLevel(floorSketch.ToArray(), newFloorType, closestLevel);
+            var newFloor = global::Revit.Elements.Floor.ByOutlineTypeAndLevel(floorSketch.ToArray(), newFloorType, closestLevel);
             TransactionManager.Instance.TransactionTaskDone();
 
             //dispose of the geometry so dynamo will calm down
@@ -128,5 +126,4 @@ namespace Rhythm.Revit.Elements
             return specificOriginGroup.ToDSType(true);
         }
     }
-
 }

@@ -104,6 +104,10 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Notifications">
+      <HintPath>..\..\..\..\..\Desktop\Dynamo_2.6.0\Notifications.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
       <Private>False</Private>
@@ -126,26 +130,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=3.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.8.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RhythmViewExtension.cs" />
@@ -161,9 +145,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)bin\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.5\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.5\packages\Rhythm\bin" /Y /I
+    <PostBuildEvent>xcopy "$(ProjectDir)bin\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.6\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
 </Project>

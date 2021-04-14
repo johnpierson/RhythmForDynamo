@@ -55,6 +55,5 @@ namespace Rhythm.Revit.Worksharing
 
             return tooltipInfo.LastChangedBy;
         }
-
     }
 }

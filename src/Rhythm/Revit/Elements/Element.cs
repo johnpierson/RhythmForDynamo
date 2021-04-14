@@ -1,15 +1,15 @@
-﻿using Autodesk.DesignScript.Runtime;
+﻿using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using Revit.Elements;
+using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using Rhythm.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Geometry;
-using Dynamo.Graph.Nodes;
-using Rhythm.Utilities;
-using Revit.GeometryConversion;
 using Solid = Autodesk.Revit.DB.Solid;
 
 namespace Rhythm.Revit.Elements
@@ -22,6 +22,7 @@ namespace Rhythm.Revit.Elements
         private Elements()
         {
         }
+
         /// <summary>
         /// Get Null
         /// </summary>
@@ -31,6 +32,7 @@ namespace Rhythm.Revit.Elements
         {
             return null;
         }
+
         /// <summary>
         /// This node will convert the given elements to parts.
         /// </summary>
@@ -81,19 +83,10 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Element internalElement = element.InternalElement;
             Autodesk.Revit.DB.Document doc = internalElement.Document;
             //declare variable to assign
-            object paramValue;
             //looks up the parameter to see if it exists
             var result = internalElement.LookupParameter(parameterName);
             //if parameter exists as instance obtain it, otherwise try for type
-            if (result != null)
-            {
-                paramValue = element.GetParameterValueByName(parameterName);
-            }
-            else
-            {
-                paramValue =
-                    doc.GetElement(internalElement.GetTypeId()).ToDSType(true).GetParameterValueByName(parameterName);
-            }
+            var paramValue = result != null ? element.GetParameterValueByName(parameterName) : doc.GetElement(internalElement.GetTypeId()).ToDSType(true).GetParameterValueByName(parameterName);
 
             return paramValue;
         }
@@ -115,25 +108,24 @@ namespace Rhythm.Revit.Elements
             //create a list to hold the element ids and add them to it
             Autodesk.Revit.DB.Element internalElement = element.InternalElement;
             Autodesk.Revit.DB.Document doc = internalElement.Document;
-            //declare variable to assign
-            object paramValue;
+
             //looks up the parameter to see if it exists
             var result = internalElement.LookupParameter(parameterName);
             //if parameter exists as instance obtain it, otherwise try for type
             if (result != null)
             {
-                paramValue = element.SetParameterByName(parameterName, value);
+                element.SetParameterByName(parameterName, value);
             }
             else
             {
-                paramValue = doc.GetElement(internalElement.GetTypeId())
+                doc.GetElement(internalElement.GetTypeId())
                     .ToDSType(true)
                     .SetParameterByName(parameterName, value);
             }
 
             return element;
         }
-       
+
         /// <summary>
         /// This will take a given element and category and grab the intersecting elements of that category.
         /// </summary>
@@ -168,8 +160,9 @@ namespace Rhythm.Revit.Elements
 
             return intersectingElements;
         }
+
         /// <summary>
-        /// This node will get a parameter value by search string, regardless of case of the search string. Also accounts for misspellings. 
+        /// This node will get a parameter value by search string, regardless of case of the search string. Also accounts for misspellings.
         /// Note: If the parameter name appears multiple times it will retrieve the first one that it finds.
         /// </summary>
         /// <param name="element">The element to get parameter from.</param>
@@ -194,7 +187,7 @@ namespace Rhythm.Revit.Elements
             //score the match in the parameter list
             foreach (var param in elementParams)
             {
-                values.Add(StringComparisonUtilities.Compute(parameterName, param.Name));                
+                values.Add(StringComparisonUtilities.Compute(parameterName, param.Name));
             }
             //get the closest matching parameter name
             int minIndex = values.IndexOf(values.Min());
@@ -207,7 +200,7 @@ namespace Rhythm.Revit.Elements
         }
 
         /// <summary>
-        /// This node will set a parameter value by search string, regardless of case of the search string. Also accounts for misspellings. 
+        /// This node will set a parameter value by search string, regardless of case of the search string. Also accounts for misspellings.
         /// Note: If the parameter name appears multiple times it will retrieve the first one that it finds.
         /// </summary>
         /// <param name="element">The element to get parameter from.</param>
@@ -318,7 +311,6 @@ namespace Rhythm.Revit.Elements
             return intersectingElements;
         }
 
-
         /// <summary>
         /// This node will report whether or not the given element is hidden in given views.
         /// </summary>
@@ -332,7 +324,6 @@ namespace Rhythm.Revit.Elements
         public static List<bool> IsHiddenInView(List<global::Revit.Elements.Element> element,
             global::Revit.Elements.Views.View view)
         {
-
             List<bool> boolList = new List<bool>();
 
             foreach (global::Revit.Elements.Element e in element)
@@ -342,9 +333,10 @@ namespace Rhythm.Revit.Elements
 
                 boolList.Add(internalElement.IsHidden(internalView));
             }
-            
+
             return boolList;
         }
+
         /// <summary>
         /// This node will report what elements depend on the input element. Useful for determining safe deletion.(Available Revit 2018.1+).
         /// </summary>
@@ -366,6 +358,7 @@ namespace Rhythm.Revit.Elements
 
             return elems;
         }
+
         /// <summary>
         /// This node will report what elements depend on the input element. Useful for determining safe deletion.(Available Revit 2018.1+).
         /// </summary>
@@ -390,6 +383,7 @@ namespace Rhythm.Revit.Elements
 
             return elems;
         }
+
         /// <summary>
         /// This node will report what elements are joined to the input element.
         /// </summary>
@@ -411,6 +405,7 @@ namespace Rhythm.Revit.Elements
 
             return elems;
         }
+
         /// <summary>
         /// This node will change the pinned status of an element.
         /// </summary>
@@ -427,7 +422,7 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Document doc = element.InternalElement.Document;
             TransactionManager.Instance.EnsureInTransaction(doc);
             element.InternalElement.Pinned = status;
-            TransactionManager.Instance.TransactionTaskDone();  
+            TransactionManager.Instance.TransactionTaskDone();
 
             return element;
         }
@@ -474,7 +469,6 @@ namespace Rhythm.Revit.Elements
                 .Where(x => x.ViewType == ViewType.AreaPlan && !x.IsTemplate)
                 .ToList();
 
-
             //collect the areas to do some cool stuff
             FilteredElementCollector areaColl = new FilteredElementCollector(doc);
             IList<Autodesk.Revit.DB.Element> areas = areaColl.OfCategory(BuiltInCategory.OST_Areas).ToElements();
@@ -486,8 +480,7 @@ namespace Rhythm.Revit.Elements
                 if (bBox.Contains(ptLocation) && area.LevelId.IntegerValue == internalElement.LevelId.IntegerValue)
                 {
                     areaLocations.Add(area.ToDSType(true));
-                    
-                }     
+                }
             }
 
             global::Revit.Elements.Element elem = areaLocations.First(a => a.GetLocation().DistanceTo(ptLocation) == areaLocations.Min(e => e.GetLocation().DistanceTo(ptLocation)));
@@ -509,7 +502,7 @@ namespace Rhythm.Revit.Elements
 
         private static IEnumerable<Autodesk.Revit.DB.View> FindAllViewsThatCanDisplayElements(Autodesk.Revit.DB.Document doc)
         {
-            ElementMulticlassFilter filter= new ElementMulticlassFilter(new List<Type> {typeof( View3D ),typeof( ViewPlan ),typeof( ViewSection ) });
+            ElementMulticlassFilter filter = new ElementMulticlassFilter(new List<Type> { typeof(View3D), typeof(ViewPlan), typeof(ViewSection) });
 
             return new FilteredElementCollector(doc).WherePasses(filter).Cast<View>().Where(v => !v.IsTemplate);
         }
@@ -533,6 +526,3 @@ namespace Rhythm.Revit.Elements
         }
     }
 }
-
-
-

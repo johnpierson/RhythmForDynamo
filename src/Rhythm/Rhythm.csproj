@@ -1,0 +1,1172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{759820AB-EEF9-4A96-97FC-70BD131CBBFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rhythm</RootNamespace>
+    <AssemblyName>RhythmRevit</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\RhythmRevit.xml</DocumentationFile>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\RhythmRevit.xml</DocumentationFile>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\RhythmRevit.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AdWindows">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AdWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DesignScriptBuiltin, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DesignScriptBuiltin.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>..\..\..\..\..\Desktop\Dynamo_2.6.0\DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DSIronPython, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DSIronPython.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoApplications, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoApplications.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCore, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoCore.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoInstallDetective, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoInstallDetective.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoServices, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.5.0.7432\lib\net47\DynamoServices.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoShapeManager, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoShapeManager.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUnits, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.5.0.7432\lib\net47\DynamoUnits.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\DynamoUtilities.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoCore, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\ProtoCore.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoGeometry, Version=2.5.0.5835, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.5.0.7432\lib\net47\ProtoGeometry.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI, Version=21.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI, Version=21.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitNodes">
+      <HintPath>..\..\..\..\..\Desktop\Dynamo_2.6.0\Revit\RevitNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitServices">
+      <HintPath>..\..\..\..\..\Desktop\Dynamo_2.6.0\Revit\RevitServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VMDataBridge, Version=2.5.0.7432, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.5.0.7432\lib\net47\VMDataBridge.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Geometry\Tessellation\ConvexHull.cs" />
+    <Compile Include="Revit\ElementFilter\ElementFilter.cs" />
+    <Compile Include="Revit\Elements\Area.cs" />
+    <Compile Include="Revit\Elements\AreaTag.cs" />
+    <Compile Include="Revit\Elements\FilledRegion.cs" />
+    <Compile Include="Revit\Elements\Ceiling.cs" />
+    <Compile Include="Revit\Elements\Floor.cs" />
+    <Compile Include="Revit\Elements\Grid.cs" />
+    <Compile Include="Revit\Elements\Group.cs" />
+    <Compile Include="Revit\Elements\HostObject.cs" />
+    <Compile Include="Revit\Elements\Leaders.cs" />
+    <Compile Include="Revit\Elements\Level.cs" />
+    <Compile Include="Revit\Elements\Mullion.cs" />
+    <Compile Include="Revit\Elements\RevitLinkType.cs" />
+    <Compile Include="Revit\Ribbon\RibbonTab.cs" />
+    <Compile Include="Revit\Ribbon\Modifiers.cs" />
+    <Compile Include="Revit\Elements\Category.cs" />
+    <Compile Include="Revit\Elements\Wall.cs" />
+    <Compile Include="Revit\Elements\Tag.cs" />
+    <Compile Include="Revit\Elements\Roof.cs" />
+    <Compile Include="Forms\FamilyUpgradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FamilyUpgradeForm.Designer.cs">
+      <DependentUpon>FamilyUpgradeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefaultProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefaultProgressForm.Designer.cs">
+      <DependentUpon>DefaultProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Revit\Selection\Collector.cs" />
+    <Compile Include="Revit\Selection\Selection.cs" />
+    <Compile Include="Revit\Tools\Batch.cs" />
+    <Compile Include="Revit\Application\Application.cs" />
+    <Compile Include="Revit\Elements\CurtainGridLine.cs" />
+    <Compile Include="Revit\Elements\Dimension.cs" />
+    <Compile Include="Revit\Elements\CurtainPanel.cs" />
+    <Compile Include="Revit\Tools\Animate.cs" />
+    <Compile Include="Revit\Elements\Elevation Marker.cs" />
+    <Compile Include="Revit\Elements\RevitLink.cs" />
+    <Compile Include="Revit\Elements\Room.cs" />
+    <Compile Include="Revit\Elements\DimensionType.cs" />
+    <Compile Include="Revit\Elements\ReferencePlane.cs" />
+    <Compile Include="Revit\Helpers\Helpers.cs" />
+    <Compile Include="Revit\Views\CygonRectanglePacker.cs" />
+    <Compile Include="Revit\Views\OutOfSpaceException.cs" />
+    <Compile Include="Revit\Views\RectanglePacker.cs" />
+    <Compile Include="Revit\Views\Sheet.cs" />
+    <Compile Include="Revit\Worksharing\Element.cs" />
+    <Compile Include="Revit\Application\Document.cs" />
+    <Compile Include="Revit\Elements\Parts.cs" />
+    <Compile Include="Revit\Elements\Element.cs" />
+    <Compile Include="Revit\Elements\FamilyInstance.cs" />
+    <Compile Include="Revit\Elements\CurtainGrid.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Revit\Elements\BeamSystem.cs" />
+    <Compile Include="Revit\Elements\RoomTag.cs" />
+    <Compile Include="Revit\Elements\TextNote.cs" />
+    <Compile Include="Revit\Views\View.cs" />
+    <Compile Include="Revit\Views\View3D.cs" />
+    <Compile Include="Revit\Views\ViewSection.cs" />
+    <Compile Include="Revit\Elements\Sheet.cs" />
+    <Compile Include="Revit\Views\ViewPlan.cs" />
+    <Compile Include="Revit\Elements\Viewport.cs" />
+    <Compile Include="Utilities\DocumentUtils.cs" />
+    <Compile Include="Utilities\PointInPolyExtensions.cs" />
+    <Compile Include="Utilities\PointInPoly.cs" />
+    <Compile Include="Utilities\ViewUtils.cs" />
+    <Compile Include="Utilities\Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\FamilyUpgradeForm.resx">
+      <DependentUpon>FamilyUpgradeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefaultProgressForm.resx">
+      <DependentUpon>DefaultProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rhythm.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByCategory.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByCategory.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByName.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByName.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByParameterNumericValue.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByParameterNumericValue.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByParameterStringValue.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.ElementFilter.ElementFilter.ByParameterStringValue.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.BeamSystem.DropBeamSystem.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.BeamSystem.DropBeamSystem.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.BeamSystem.Members.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.BeamSystem.Members.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.AddGridLineByPoint.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.AddGridLineByPoint.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.ByCurtainSystem.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.ByCurtainSystem.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.ByWallElement.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.ByWallElement.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.UGrids.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.UGrids.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.VGrids.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGrid.VGrids.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.AllSegmentCurves.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.AllSegmentCurves.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.ExistingSegmentCurves.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.ExistingSegmentCurves.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.FullCurve.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.FullCurve.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.RemoveSegment.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.RemoveSegment.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.SkippedSegmentCurves.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainGridLine.SkippedSegmentCurves.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.DimensionType.UsesProjectSettings.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.DimensionType.UsesProjectSettings.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.ElevationMarker.CreateElevationByMarkerIndex.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.ElevationMarker.CreateElevationByMarkerIndex.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.ElevationMarker.CreateElevationMarker.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.ElevationMarker.CreateElevationMarker.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Parts.DivideParts.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Parts.DivideParts.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Parts.GetSourceElement.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Parts.GetSourceElement.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.RevitLink.GetDocument.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.RevitLink.GetDocument.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.RoomTag.CenterOnRoomLocation.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.RoomTag.CenterOnRoomLocation.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.RoomTag.TaggedRoom.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.RoomTag.TaggedRoom.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Sheet.Create.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Sheet.Create.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Sheet.GetViewportsAndViews.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Sheet.GetViewportsAndViews.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Sheet.Titleblock.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Sheet.Titleblock.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.Create.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.Create.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.GetView.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.GetView.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.LabelOutline.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.LabelOutline.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.LocationData.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.LocationData.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.SetLocationBasedOnOther.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.SetLocationBasedOnOther.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.Modifiers.Rotate.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.Modifiers.Rotate.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.Modifiers.SetColor.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.Modifiers.SetColor.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.Modifiers.SetFont.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.Modifiers.SetFont.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.GetTabs.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.GetTabs.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.Name.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.Name.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.SetEnabled.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.SetEnabled.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.SetName.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.SetName.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.SetVisibility.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Ribbon.RibbonTab.SetVisibility.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Batch.UpgradeFamilies.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Batch.UpgradeFamilies.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Element.AnimateColor.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Element.AnimateColor.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Element.AnimateNumericParameter.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Element.AnimateNumericParameter.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Element.AnimateTransparency.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Tools.Element.AnimateTransparency.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.Sheet.PackViews.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.Sheet.PackViews.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.ConvertToIndependent.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.ConvertToIndependent.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.GetCropRegionElement.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.GetCropRegionElement.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.GetFilterVisibility.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.GetFilterVisibility.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.GetWorksetVisibility.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.GetWorksetVisibility.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.Origin.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.Origin.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.ParentView.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.ParentView.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.SetCropRegion.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.SetCropRegion.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.SetElementProjectionLineweight.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View.SetElementProjectionLineweight.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View3D.SetSectionBox.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.View3D.SetSectionBox.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewPlan.GetCropBox.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewPlan.GetCropBox.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewPlan.GetOutline.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewPlan.GetOutline.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewPlan.Rotate.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewPlan.Rotate.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewSection.LocationPoint.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewSection.LocationPoint.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewSection.OverrideCrop.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewSection.OverrideCrop.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewSection.OverrideCropVersion2.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Views.ViewSection.OverrideCropVersion2.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Selection.Collector.ElementsOfTypeInDocument.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Selection.Collector.ElementsOfTypeInDocument.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.SimpleUserMessage.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.SimpleUserMessage.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.UserMessage.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.UserMessage.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.ScreenshotMainWindow.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.ScreenshotMainWindow.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.Toggle.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.Toggle.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Selection.Collector.ElementsOfCategoryInDocument.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Selection.Collector.ElementsOfCategoryInDocument.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.CurrentUserTempFolder.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.CurrentUserTempFolder.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.CurrentUserDomainName.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Helpers.Helpers.CurrentUserDomainName.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.BottomSurface.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.BottomSurface.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.ExteriorSurface.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.ExteriorSurface.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.InteriorSurface.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.InteriorSurface.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.TopSurface.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.HostObject.TopSurface.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Selection.Collector.CurrentUserDomainName.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Selection.Collector.CurrentUserDomainName.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultCustomNode.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultCustomNode.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Applications.CloseDocument.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Applications.CloseDocument.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Applications.OpenDocumentFile.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Applications.OpenDocumentFile.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Documents.SetStartingView.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Documents.SetStartingView.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Areas.Boundaries.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Areas.Boundaries.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Areas.GetAreasAtPoint.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Areas.GetAreasAtPoint.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Areas.Solid.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Areas.Solid.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.CutLineweight.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.CutLineweight.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.LineColor.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.LineColor.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.LinePattern.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.LinePattern.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.Material.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.Material.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.ProjectionLineweight.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Categories.ProjectionLineweight.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainPanels.IsolateInView.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.CurtainPanels.IsolateInView.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.CenterTextOnLine.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.CenterTextOnLine.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.GetCurve.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.GetCurve.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.GetReferenceElements.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.GetReferenceElements.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.NumberOfSegments.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.NumberOfSegments.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.Origin.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.Origin.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.Segments.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.Segments.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.SetAboveValue.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.SetAboveValue.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.SetBelowValue.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.SetBelowValue.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.SetTextLocation.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.SetTextLocation.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.TextPosition.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.TextPosition.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.ValueString.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Dimensions.ValueString.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.AreaLocation.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.AreaLocation.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.CreateParts.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.CreateParts.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.DependentElements.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.DependentElements.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.DependentElementsOfCategory.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.DependentElementsOfCategory.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategory.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategory.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategoryLinkOption.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategoryLinkOption.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetNull.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetNull.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetParameterByNameInDocument.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetParameterByNameInDocument.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetParameterValueByNameCaSeiNSeNSiTiVe.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetParameterValueByNameCaSeiNSeNSiTiVe.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetParameterValueByNameTypeOrInstance.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.GetParameterValueByNameTypeOrInstance.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.IsHiddenInView.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.IsHiddenInView.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.JoinedElements.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.JoinedElements.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.SetParameterByNameTypeOrInstance.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.SetParameterByNameTypeOrInstance.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.SetParameterValueByNameCaSeiNSeNSiTiVe.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.SetParameterValueByNameCaSeiNSeNSiTiVe.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.SetPinnedStatus.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Elements.SetPinnedStatus.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.ByRoom.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.ByRoom.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.RetrieveNestedComponents.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.RetrieveNestedComponents.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.Room.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.Room.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.Space.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.FamilyInstances.Space.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Grids.GetLeaderEnds.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Grids.GetLeaderEnds.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.ReferencePlanes.GetCurvesInView.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.ReferencePlanes.GetCurvesInView.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Roofs.AddPoint.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Roofs.AddPoint.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Roofs.AddSplitLineWithElevation.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Roofs.AddSplitLineWithElevation.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Rooms.CenterRooms.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Rooms.CenterRooms.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Rooms.CenterRooms2.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Rooms.CenterRooms2.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Rooms.IntersectingElementsInRooms.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Rooms.IntersectingElementsInRooms.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.GetHeadPosition.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.GetHeadPosition.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.GetLeaderElbow.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.GetLeaderElbow.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.GetLeaderEnd.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.GetLeaderEnd.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.SetHeadPosition.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.SetHeadPosition.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.SetLeaderElbowPosition.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.SetLeaderElbowPosition.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.SetLeaderEndPosition.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Tags.SetLeaderEndPosition.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.TextNotes.ToLower.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.TextNotes.ToLower.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.TextNotes.ToUpper.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.TextNotes.ToUpper.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Walls.EditedProfile.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Walls.EditedProfile.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Walls.HasEditedProfile.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Walls.HasEditedProfile.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.About.About.AboutRhythm.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.About.About.AboutRhythm.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Documents.CopyElementsFromLinkedDocuments.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Documents.CopyElementsFromLinkedDocuments.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Documents.CopyElementsFromDocuments.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Application.Documents.CopyElementsFromDocuments.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.SetViewTitleLength.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.SetViewTitleLength.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.SetViewTitleLocation.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Viewport.SetViewTitleLocation.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Ceiling.ByCurveLoops.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Floor.ByCurveLoops.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Ceiling.ByCurveLoops.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.Floor.ByCurveLoops.Large.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
+
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.6\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.6\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.6\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+    <!-- Get System.Drawing.dll -->
+    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
+      <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
+    </GetReferenceAssemblyPaths>
+    <!-- Get assembly -->
+    <GetAssemblyIdentity AssemblyFiles="$(OutDir)$(TargetName).dll">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo" />
+    </GetAssemblyIdentity>
+    <!-- Generate customization dll -->
+    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)\Rhythm.resx" OutputResources="$(ProjectDir)\Resources\RhythmRevitImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)\Resources\RhythmRevitImages.resources" OutputAssembly="$(OutDir)RhythmRevit.customization.dll" Version="%(AssemblyInfo.Version)" />
+  </Target>
+</Project>

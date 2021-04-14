@@ -92,6 +92,30 @@ namespace Rhythm.Revit.Elements
         }
 
         /// <summary>
+        /// This node will report the space the family instance resides in, (if available).
+        /// </summary>
+        /// <param name="instance">The family instance to obtain space info from.</param>
+        /// <param name="phase">The phase to look in.</param>
+        /// <returns name="Space">The space in which the instance is located (during the last phase of the project).</returns>
+        /// <search>
+        /// space, rhythm,element.space
+        /// </search>
+        [NodeCategory("Query")]
+        public static global::Revit.Elements.Element SpaceInPhase(global::Revit.Elements.Element instance, global::Revit.Elements.Element phase)
+        {
+            var internalFamily = (Autodesk.Revit.DB.FamilyInstance)instance.InternalElement;
+            var internalPhase = phase.InternalElement as Autodesk.Revit.DB.Phase;
+            try
+            {
+                return internalFamily.get_Space(internalPhase).ToDSType(true);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// This node will find all deeply nested components in the given family instance.
         /// </summary>
         /// <param name="instance">The family instance to retrieve deep nested components from.</param>

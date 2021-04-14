@@ -31,6 +31,7 @@ namespace Rhythm.Revit.Elements
             //Get the text from the text box
             //we obtain formatted text and modify the caps instead of the string. Preserves formatting.
             FormattedText formattedText = internalNote.GetFormattedText();
+
             formattedText.SetAllCapsStatus(true);
             //Change all the text to upper case and reassign to the text box
             //using formatted text allows for the formatting to stay - John

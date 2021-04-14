@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Autodesk.DesignScript.Runtime;
 using RevitServices.Persistence;
 using adWin = Autodesk.Windows;
 
@@ -127,6 +129,33 @@ namespace Rhythm.Revit.Ribbon
             }
 
             return result;
+        }
+        /// <summary>
+        /// This will create a temporary tab that disappears on Revit shutdown.
+        /// </summary>
+        /// <param name="tabName">The new tab name.</param>
+        /// <returns name="name">The result..</returns>
+        /// <search>
+        /// Ribbon.RenameTab
+        /// </search>
+        [IsVisibleInDynamoLibrary(false)]
+        public static adWin.RibbonTab CreateTab(string tabName)
+        {
+            var uiapp = DocumentManager.Instance.CurrentUIApplication;
+            adWin.RibbonControl ribbon = adWin.ComponentManager.Ribbon;
+
+            uiapp.CreateRibbonTab(tabName);
+
+            return ribbon.Tabs.First(t => t.Name == tabName);
+        }
+        /// <summary>
+        /// This will get the tab's visibility status.
+        /// </summary>
+        /// <param name="tab">The original tab name.</param>
+        /// <returns name="name">The result..</returns>
+        public static bool Visibility(adWin.RibbonTab tab)
+        {
+            return tab.IsVisible;
         }
     }
 }

@@ -26,7 +26,6 @@ namespace Rhythm.Revit.Application
         /// Application.OpenDocumentFile, rhythm
         /// </search>
         [NodeCategory("Create")]
-        [Obsolete("This node will be completely removed in future versions of Rhythm")]
         public static object OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true, bool closeAllWorksets = false)
         {
             var uiapp = DocumentManager.Instance.CurrentUIApplication;

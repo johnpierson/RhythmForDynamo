@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Runtime;
 using Dynamo.Graph.Nodes;
 using Dynamo.Utilities;
 using Rhythm.Utilities;
@@ -27,13 +26,11 @@ namespace Rhythm.Revit.ElementFilter
         /// <param name="filterMethod">The method to filter by. This includes Contains, DoesNotContain, StartsWith, DoesNotStartWith, EndsWith, DoesNotEndWith, Equals, DoesNotEqual</param>
         /// <param name="ignoreCase">Ignore the case?</param>
         /// <returns name="elements">The filtered elements.</returns>
-        /// <returns name="names">The filtered elements' names.</returns>
         /// <search>
         /// ElementFilter,Filter.ByName
         /// </search>
-        [MultiReturn(new[] { "elements", "names" })]
         [NodeCategory("Actions")]
-        public static Dictionary<string, object> ByName(List<global::Revit.Elements.Element> elements, string value, string filterMethod, bool ignoreCase = false)
+        public static List<global::Revit.Elements.Element> ByName(List<global::Revit.Elements.Element> elements, string value, string filterMethod, bool ignoreCase = false)
         {
             var potentialFilterMethod = new[] { "Contains", "DoesNotContain", "StartsWith", "DoesNotStartWith", "EndsWith", "DoesNotEndWith", "Equals", "DoesNotEqual", "==", "!=" };
 
@@ -41,51 +38,30 @@ namespace Rhythm.Revit.ElementFilter
             int minIndex = values.IndexOf(values.Min());
             string filterMethodToUse = potentialFilterMethod[minIndex];
 
-            List<Element> filteredElements;
-            List<string> elementNames;
             //scenarios
             switch (filterMethodToUse)
             {
                 case "Contains":
-                    filteredElements = ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().Contains(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.Contains(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().Contains(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.Contains(value)).ToList();
                 case "DoesNotContain":
-                    filteredElements = ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().Contains(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.Contains(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().Contains(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.Contains(value)).ToList();
                 case "StartsWith":
-                    filteredElements =  ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().StartsWith(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.StartsWith(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().StartsWith(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.StartsWith(value)).ToList();
                 case "DoesNotStartWith":
-                    filteredElements =  ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().StartsWith(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.StartsWith(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().StartsWith(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.StartsWith(value)).ToList();
                 case "EndsWith":
-                    filteredElements =  ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().EndsWith(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.EndsWith(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().EndsWith(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.EndsWith(value)).ToList();
                 case "DoesNotEndWith":
-                    filteredElements =  ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().EndsWith(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.EndsWith(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().EndsWith(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.EndsWith(value)).ToList();
                 case "Equals":
                 case "==":
-                    filteredElements =  ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().Equals(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.Equals(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => e.InternalElement.Name.ToLower().Equals(value.ToLower())).ToList() : elements.Where(e => e.InternalElement.Name.Equals(value)).ToList();
                 case "DoesNotEqual":
                 case "!=":
-                    filteredElements =  ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().Equals(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.Equals(value)).ToList();
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return ignoreCase ? elements.Where(e => !e.InternalElement.Name.ToLower().Equals(value.ToLower())).ToList() : elements.Where(e => !e.InternalElement.Name.Equals(value)).ToList();
                 default:
-                    filteredElements =  elements;
-                    elementNames = filteredElements.Select(e => e.InternalElement.Name).ToList();
-                    break;
+                    return elements;
             }
-            return new Dictionary<string, object> { { "elements", filteredElements }, { "names", elementNames } };
         }
         /// <summary>
         /// Provides element filtering options by parameter string value. For the filter method, we are using something called "LevenshteinDistance". 

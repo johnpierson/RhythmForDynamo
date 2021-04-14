@@ -1,6 +1,7 @@
 ﻿using System.Windows.Media;
 using adWin = Autodesk.Windows;
 using Color = DSCore.Color;
+using AW = Autodesk.Windows;
 
 namespace Rhythm.Revit.Ribbon
 {
@@ -53,13 +54,12 @@ namespace Rhythm.Revit.Ribbon
 
             gradientBrush.GradientStops.Add(
                 new GradientStop(System.Windows.Media.Color.FromRgb(color.Red, color.Green, color.Blue), 1));
-
+            
             foreach (adWin.RibbonTab tab in ribbon.Tabs)
             {
                 foreach (adWin.RibbonPanel panel in tab.Panels)
                 {
                     panel.CustomPanelBackground = gradientBrush;
-                    panel.CustomPanelTitleBarBackground = gradientBrush;
                 }
             }
             return color;

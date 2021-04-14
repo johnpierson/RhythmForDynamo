@@ -32,5 +32,12 @@ namespace Rhythm.Revit.Elements
             internalViewport.LabelOffset = xyz;
             TransactionManager.Instance.TransactionTaskDone();
         }
+
+        public static Point GetViewTitleLocation(global::Revit.Elements.Element viewport)
+        {
+            var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+
+            return internalViewport.LabelOffset.ToPoint();
+        }
     }
 }

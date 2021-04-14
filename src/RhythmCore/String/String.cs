@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using Dynamo.Graph.Nodes;
 using Humanizer;
+using Markov;
 
 namespace Rhythm.String
 {
@@ -28,6 +30,31 @@ namespace Rhythm.String
             TextInfo textInfo = cultureInfo.TextInfo;
             
             return textInfo.ToTitleCase(str);
+        }
+        /// <summary>
+        /// Converts the input string to a title case.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        [NodeCategory("Actions")]
+        public static string ToSentence(string str)
+        {
+            if (str.Contains('.'))
+            {
+                var split = str.ToLower().Split('.');
+
+                return string.Join(".", split.Select(s => s.Transform(To.SentenceCase)).ToArray());
+            }
+
+            if (str.Contains('\r'))
+            {
+                var split = str.ToLower().Split('\r');
+
+                return string.Join("\r", split.Select(s => s.Transform(To.SentenceCase)).ToArray());
+            }
+
+
+            return str.Transform(To.SentenceCase);
         }
         /// <summary>
         /// This will attempt to return a quantity, given a string and count.
@@ -214,6 +241,5 @@ namespace Rhythm.String
 
             return newString;
         }
-
     }
 }

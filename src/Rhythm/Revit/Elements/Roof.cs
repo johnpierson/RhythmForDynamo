@@ -3,6 +3,9 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Autodesk.DesignScript.Geometry;
 using Dynamo.Graph.Nodes;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -86,6 +89,38 @@ namespace Rhythm.Revit.Elements
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Retrieve the footprint of any roof element
+        /// </summary>
+        /// <param name="roof">The roof to extract footprint for.</param>
+        /// <returns name="footprint">The roof footprint as a polygon</returns>
+        public static List<Curve> Footprint(global::Revit.Elements.Element roof)
+        {
+            List<Curve> curves = new List<Curve>();
+            Autodesk.Revit.DB.Element internalRoof = roof.InternalElement;
+
+            var minimumPoint = internalRoof.get_BoundingBox(null).Min;
+            var plane = Autodesk.Revit.DB.Plane.CreateByNormalAndOrigin(Autodesk.Revit.DB.XYZ.BasisZ, minimumPoint);
+
+            var geoElement = internalRoof.get_Geometry(new Autodesk.Revit.DB.Options());
+            foreach (var geoObj in geoElement)
+            {
+                if (geoObj is Autodesk.Revit.DB.Solid solid)
+                {
+                    var extrusionAnalyze = Autodesk.Revit.DB.ExtrusionAnalyzer.Create(solid, plane, Autodesk.Revit.DB.XYZ.BasisZ);
+                    var face = extrusionAnalyze.GetExtrusionBase();
+                    var outerCurves = face.GetEdgesAsCurveLoops().First();
+
+                    foreach (var c in outerCurves)
+                    {
+                        curves.Add(c.ToProtoType());
+                    }
+                }
+            }
+
+            return curves;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
@@ -182,6 +183,30 @@ namespace Rhythm.Revit.Elements
             }
 
             return curveList;
+        }
+        /// <summary>
+        /// This will return the approximate room dimensions. This is achieved by taking the longest edge and using that to derive the estimated shorter edge.
+        /// </summary>
+        /// <returns name="dim1">The first dimension. (not sorted as we simply get the longest edge)</returns>
+        /// <returns name="dim2">The second dimension. (not sorted as we simply get the longest edge)</returns>
+        [MultiReturn(new[] { "dim1", "dim2" })]
+        [NodeCategory("Query")]
+        public static Dictionary<string, double> ApproximateDimensions(global::Revit.Elements.Room room)
+        {
+            Autodesk.Revit.DB.Architecture.Room internalRoom =
+                room.InternalElement as Autodesk.Revit.DB.Architecture.Room;
+
+            var roomArea = internalRoom.get_Parameter(BuiltInParameter.ROOM_AREA).AsDouble();
+
+            var longestEdge = internalRoom.GetBoundarySegments(new SpatialElementBoundaryOptions())[0]
+                .Max(bound => bound.GetCurve().ApproximateLength);
+            //returns the outputs
+            var outInfo = new Dictionary<string, double>
+            {
+                {"dim1", longestEdge},
+                {"dim2", roomArea/longestEdge}
+            };
+            return outInfo;
         }
 
         ///// <summary>

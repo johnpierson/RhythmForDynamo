@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
+using Revit.GeometryConversion;
 using Element = Autodesk.Revit.DB.Element;
 using Line = Autodesk.Revit.DB.Line;
 
@@ -77,15 +79,23 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="wall">The wall to calculate facing from.</param>
         /// <returns name="facingDirection">The estimated facing direction.</returns>
+        /// <returns name="facingVector">The facing vector.</returns>
+        [MultiReturn(new[] { "facingDirection", "facingVector" })]
         [NodeCategory("Query")]
-        public static string Direction(global::Revit.Elements.Element wall)
+        public static Dictionary<string, object> Direction(global::Revit.Elements.Element wall)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             Autodesk.Revit.DB.Wall internalWall = wall.InternalElement as Autodesk.Revit.DB.Wall;
 
             XYZ wallDirection = GetWallDirection(internalWall);
 
-            return GetFacingDirection(wallDirection);
+            //returns the outputs
+            var outInfo = new Dictionary<string, object>
+            {
+                {"facingDirection", GetFacingDirection(wallDirection)},
+                {"facingVector", wallDirection.ToVector()}
+            };
+            return outInfo;
         }
 
 
