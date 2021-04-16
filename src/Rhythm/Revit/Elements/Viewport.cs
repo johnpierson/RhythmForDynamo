@@ -35,6 +35,10 @@ namespace Rhythm.Revit.Elements
         public static object Create(global::Revit.Elements.Views.Sheet sheet, global::Revit.Elements.Element view, Autodesk.DesignScript.Geometry.Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            //regenerate the document just to be safe
+            doc.Regenerate();
+
             //obtain the element id from the sheet
             ElementId sheetId = new ElementId(sheet.Id);
             Autodesk.Revit.DB.Element result = null;
@@ -42,8 +46,6 @@ namespace Rhythm.Revit.Elements
             var revitPoint = location.ToRevitType(true);
             //obtain the element id from the view
             ElementId viewId = new ElementId(view.Id);
-
-           
 
             try
             {
