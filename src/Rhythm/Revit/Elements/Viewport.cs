@@ -36,11 +36,8 @@ namespace Rhythm.Revit.Elements
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
-            //regenerate the document just to be safe
-            doc.Regenerate();
-
-            //obtain the element id from the sheet
-            ElementId sheetId = new ElementId(sheet.Id);
+           //obtain the element id from the sheet
+           ElementId sheetId = new ElementId(sheet.Id);
             Autodesk.Revit.DB.Element result = null;
             //change the dynamo point to a revit point
             var revitPoint = location.ToRevitType(true);
@@ -51,6 +48,7 @@ namespace Rhythm.Revit.Elements
             {
                 //start the transaction to place views
                 TransactionManager.Instance.EnsureInTransaction(doc);
+                doc.Regenerate();
                 if (view.InternalElement.ToString() == "Autodesk.Revit.DB.ViewSchedule")
                 {
                     result = Autodesk.Revit.DB.ScheduleSheetInstance.Create(doc, sheetId, viewId, revitPoint);
