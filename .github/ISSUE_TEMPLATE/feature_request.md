@@ -15,6 +15,3 @@ about: Suggest future improvements for Rhythm
 
 **Additional context**
 (Please fill in if applicable. Add any other context or screenshots about the feature request here.)
-
----
-_This Github template was made possible thanks to [Andreas Dieckmann](https://github.com/andydandy74)_
