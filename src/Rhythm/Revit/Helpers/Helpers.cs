@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Autodesk.Revit.UI;
 using Dynamo.Graph.Nodes;
+using DynamoServices;
+using Revit.Elements;
 using RevitServices.Persistence;
 
 namespace Rhythm.Revit.Helpers
@@ -67,6 +70,35 @@ namespace Rhythm.Revit.Helpers
             ElementBinder.IsEnabled = toggle;
             return toggle;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="runIt"></param>
+        public static void PurgeBindings(bool runIt = false)
+        {
+            if (!runIt) return;
+            var lifecycleManager = RevitServices.Persistence.ElementIDLifecycleManager<int>.GetInstance();
+
+            var ids = lifecycleManager.ToString().Split(new string[] { "Element ID ", ":" }, StringSplitOptions.None);
+
+            foreach (var stringId in ids)
+            {
+                try
+                {
+                    int intId = Convert.ToInt32(stringId.Trim());
+                    var currentElement = ElementSelector.ByElementId(intId, true);
+
+                    lifecycleManager.UnRegisterAssociation(intId, currentElement);
+                }
+                catch (Exception e)
+                {
+                    //
+                }
+            }
+
+        
+    }
 
         /// <summary>
         /// Returns the current Revit version

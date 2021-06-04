@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Dynamo.Controls;
+using Dynamo.Engine;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
@@ -34,14 +35,49 @@ namespace RhythmViewExtension
         private ViewLoadedParams loaded = null;
         public void Loaded(ViewLoadedParams p)
         {
+
+            //AddFlushMenu(p);
+
             ClearNotifications(p);
-             loaded = p;
+            loaded = p;
             view = p.DynamoWindow as DynamoView;
 
             p.CurrentWorkspaceChanged += POnCurrentWorkspaceChanged;
             p.CurrentWorkspaceModel.NodeAdded += CurrentWorkspaceModelOnNodeAdded;
         }
 
+        //private void AddFlushMenu(ViewLoadedParams p)
+        //{
+        //    var flushBindingsMenu = new MenuItem { Header = "Flush Bindings", ToolTip = "this will flush the bindings out of your current dynamo file and allow you to create new elements." };
+        //    flushBindingsMenu.Click += (sender, args) =>
+        //    {
+        //        //dynView.HomeSpace.RunSettings.RunType = RunType.Manual;
+        //        dynView.HomeSpace.EngineController.LiveRunnerRuntimeCore.RuntimeData.CallsiteCache.Clear();
+
+        //        var doc = DocumentManager.Instance.CurrentDBDocument;
+
+        //        var lifecycleManager = RevitServices.Persistence.ElementIDLifecycleManager<int>.GetInstance();
+
+        //        var ids = lifecycleManager.ToString().Split(new string[] {"Element ID ", ":"}, StringSplitOptions.None);
+
+        //        foreach (var stringId in ids)
+        //        {
+        //            try
+        //            {
+        //                int intId = Convert.ToInt32(stringId.Trim());
+        //                var currentElement = ElementSelector.ByElementId(intId, false);
+
+        //                lifecycleManager.UnRegisterAssociation(intId, currentElement);
+        //            }
+        //            catch (Exception e)
+        //            {
+        //                //
+        //            }
+        //        }
+
+        //    };
+        //    p.AddMenuItem(MenuBarType.Help,flushBindingsMenu);
+        //}
 
         private void POnCurrentWorkspaceChanged(IWorkspaceModel obj)
         {

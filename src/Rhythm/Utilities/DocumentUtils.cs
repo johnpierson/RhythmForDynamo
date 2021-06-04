@@ -21,17 +21,16 @@ namespace Rhythm.Utilities
         /// <summary>
         /// This converts orchid documents to Revit DB Documents
         /// </summary>
-        /// <param name="docObject"></param>
-        /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
-        public static Autodesk.Revit.DB.Document OrchidDocumentToDbDocument(object docObject)
+        /// <param name="orchidDocument">The Orchid document to convert to a Autodesk.Revit.DB.Document.</param>
+        /// <returns name="dbDocument">The Autodesk.Revit.DB.Document</returns>
+        public static Autodesk.Revit.DB.Document OrchidDocumentToDbDocument(object orchidDocument)
         {
             //find the orchid assembly
-            Assembly sourceAssembly = Assembly.GetAssembly(docObject.GetType());
+            Assembly sourceAssembly = Assembly.GetAssembly(orchidDocument.GetType());
             Type type = sourceAssembly.GetType("Orchid.RevitProject.Common.Document");
             //find the path of the document
             string path =  type.InvokeMember("Path", BindingFlags.Default | BindingFlags.InvokeMethod, null, null,
-                new object[] { docObject, true }).ToString();
+                new object[] { orchidDocument, true }).ToString();
 
             //revit db document
             Autodesk.Revit.DB.Document doc = null;
@@ -48,10 +47,9 @@ namespace Rhythm.Utilities
         /// <summary>
         /// This converts Revit DB Documents to orchid documents.
         /// </summary>
-        /// <param name="document"></param>
-        /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
-        public static object DbDocumentToOrchidDocument(Autodesk.Revit.DB.Document document)
+        /// <param name="dbDocument">The Autodesk.Revit.DB.Document to convert to Orchid Document</param>
+        /// <returns name="orchidDocument">The Orchid document</returns>
+        public static object DbDocumentToOrchidDocument(Autodesk.Revit.DB.Document dbDocument)
         {
 
             //find the orchid assembly
@@ -59,9 +57,7 @@ namespace Rhythm.Utilities
             Type type = assembly.GetType("Orchid.RevitProject.Common.Document");
             //find the path of the document
             return type.InvokeMember("BackgroundOpen", BindingFlags.Default | BindingFlags.InvokeMethod, null, null,
-                new object[] { document.PathName});
-
-           
+                new object[] { dbDocument.PathName});
         }
     }
 }

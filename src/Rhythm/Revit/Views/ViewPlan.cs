@@ -86,12 +86,12 @@ namespace Rhythm.Revit.Views
         /// <search>
         /// view, outline,rhythm
         /// </search>
-        public static object Rotate(global::Revit.Elements.Element viewPlan, global::Revit.Elements.ModelCurve rotationLine, double inputAngle)
+        public static object Rotate(global::Revit.Elements.Element viewPlan, global::Revit.Elements.Element rotationLine, double inputAngle)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)viewPlan.InternalElement;
             var viewBbox = internalView.CropBox;
-            Autodesk.Revit.DB.ModelCurve internalLine = (Autodesk.Revit.DB.ModelCurve)rotationLine.InternalElement;
+            Autodesk.Revit.DB.CurveElement internalLine = (Autodesk.Revit.DB.CurveElement)rotationLine.InternalElement;
 
             Autodesk.Revit.DB.Line rotationLineBound = Autodesk.Revit.DB.Line.CreateBound(internalLine.GeometryCurve.GetEndPoint(0), internalLine.GeometryCurve.GetEndPoint(1));
 
