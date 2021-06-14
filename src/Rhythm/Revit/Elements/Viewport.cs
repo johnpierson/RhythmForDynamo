@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
+using Nuclex.Game.Packing;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
+using Element = Revit.Elements.Element;
 using Plane = Autodesk.DesignScript.Geometry.Plane;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Rectangle = Autodesk.DesignScript.Geometry.Rectangle;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Rhythm.Revit.Elements
@@ -124,7 +127,7 @@ namespace Rhythm.Revit.Elements
                     c.Dispose();
                 }
             }
-
+            
             //dispose of temporary geometries         
             boxCuboid.Dispose();
             boxPlane.Dispose();
@@ -307,6 +310,77 @@ namespace Rhythm.Revit.Elements
                 throw new Exception(@"This node only works in Revit 2022 as that is when this API was added. ¯\_(ツ)_/¯");
             }
             return Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Viewport.GetViewTitleLocation", new object[] { viewport});
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="items"></param>
+        /// <returns name="viewportsThatFit">The viewports that fit in the titleblock container</returns>
+        /// <returns name="proposedLocations">The proposed locations</returns>
+        [MultiReturn(new[] { "viewportsThatFit", "proposedLocations" })]
+        public static Dictionary<string, object> PackViewports(Rectangle container,List<global::Revit.Elements.Element> viewports)
+        {
+            List<global::Revit.Elements.Element> viewportsThatFit = new List<global::Revit.Elements.Element>();
+            List<Point> points = new List<Point>();
+
+            var containerBbox = container.BoundingBox.ToRevitType();
+            var containerWidth = containerBbox.Max.X - containerBbox.Min.X;
+            var containerHeight = containerBbox.Max.X - containerBbox.Min.X;
+
+            CygonRectanglePacker packer = new CygonRectanglePacker(containerWidth, containerHeight);
+
+            foreach (var i in viewports)
+            {
+                Autodesk.Revit.DB.Viewport internalViewport = i.InternalElement as Autodesk.Revit.DB.Viewport;
+
+                List<Point> geoPoints = new List<Point>();
+
+                var labelOutline = internalViewport.GetLabelOutline();
+                geoPoints.Add(labelOutline.MinimumPoint.ToPoint());
+
+                var boxOutline = internalViewport.GetBoxOutline();
+                geoPoints.Add(boxOutline.MinimumPoint.ToPoint());
+                geoPoints.Add(boxOutline.MaximumPoint.ToPoint());
+
+                var bBox = BoundingBox.ByGeometry(geoPoints).ToRevitType();
+
+                var height = bBox.Max.Y - bBox.Min.Y;
+                var width = bBox.Max.X - bBox.Min.X;
+
+                Autodesk.Revit.DB.UV placement = null;
+
+                if (packer.TryPack(width, height, out placement))
+                {
+                    var bottomLeft = containerBbox.Min;
+                    double bottomLeftX;
+                    double bottomLeftY;
+
+                    if (bottomLeft != null)
+                    {
+                        bottomLeftX = bottomLeft.X;
+                        bottomLeftY = bottomLeft.Y;
+                    }
+                    else
+                    {
+                        bottomLeftX = 0;
+                        bottomLeftY = 0;
+                    }
+                    viewportsThatFit.Add(i);
+
+                    XYZ loc = new XYZ(placement.U + bottomLeftX + width / 2, placement.V + bottomLeftY + height / 2, 0);
+                    
+
+                    points.Add(loc.ToPoint());
+                }
+            }
+            //returns the outputs
+            var outInfo = new Dictionary<string, object>
+            {
+                {"viewportsThatFit", viewportsThatFit},
+                { "proposedLocations",points}
+            };
+            return outInfo;
         }
     }
 }
