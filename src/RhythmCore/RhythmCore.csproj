@@ -159,6 +159,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About\About.cs" />
+    <Compile Include="GenerativeDesign\CygonRectanglePacker.cs" />
+    <Compile Include="GenerativeDesign\GenerativeDesign.cs" />
+    <Compile Include="GenerativeDesign\OutOfSpaceException.cs" />
+    <Compile Include="GenerativeDesign\RectanglePacker.cs" />
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Math\MarkovChain.cs" />
     <Compile Include="Numbers\Numbers.cs" />
@@ -246,9 +250,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)bin\Release\RhythmCore.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmCore.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmCore.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
+    <PostBuildEvent>xcopy "$(ProjectDir)bin\Release\RhythmCore.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.10\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmCore.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.10\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmCore.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.10\packages\Rhythm\bin" /Y /I
 
 xcopy "$(ProjectDir)bin\Release\RhythmCore.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.6\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\Release\RhythmCore.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.6\packages\Rhythm\bin" /Y /I
