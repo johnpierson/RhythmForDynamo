@@ -31,7 +31,7 @@ namespace Rhythm.Revit.Selection
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
             if (document.GetType().ToString().Contains("Orchid"))
             {
-                doc = DocumentUtils.OrchidDocumentToDbDocument(document);
+                doc = Rhythm.Revit.Application.Documents.OrchidDocumentToDbDocument(document);
             }
             else
             {
@@ -61,7 +61,7 @@ namespace Rhythm.Revit.Selection
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
             if (document.GetType().ToString().Contains("Orchid"))
             {
-                doc = DocumentUtils.OrchidDocumentToDbDocument(document);
+                doc = Rhythm.Revit.Application.Documents.OrchidDocumentToDbDocument(document);
             }
             else
             {

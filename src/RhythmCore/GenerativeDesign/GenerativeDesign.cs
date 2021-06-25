@@ -36,6 +36,7 @@ namespace Rhythm.GenerativeDesign
 
             CygonRectanglePacker packer = new CygonRectanglePacker(containerWidth, containerHeight);
 
+            UV placement = null;
             for (int i = 0; i < viewportRectangles.Count; i++)
             {
                 var current = viewportRectangles[i];
@@ -47,8 +48,6 @@ namespace Rhythm.GenerativeDesign
 
                 var height = bBox.MaxPoint.Y - bBox.MinPoint.Y;
                 var width = bBox.MaxPoint.X - bBox.MinPoint.X;
-
-                UV placement = null;
 
                 if (packer.TryPack(width, height, out placement))
                 {

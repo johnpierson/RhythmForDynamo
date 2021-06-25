@@ -13,8 +13,14 @@
 	<namespace name="Rhythm.String">
       <category>Rhythm.String</category>
     </namespace>
+	<namespace name="Rhythm.Math">
+      <category>Rhythm.Math</category>
+    </namespace>
 	<namespace name="Rhythm.Numbers">
       <category>Rhythm.Numbers</category>
+    </namespace>
+	<namespace name="Rhythm.GenerativeDesign">
+      <category>Rhythm.GenerativeDesign</category>
     </namespace>
   </namespaces>
 </doc>
