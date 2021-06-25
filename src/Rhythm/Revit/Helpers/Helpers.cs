@@ -91,14 +91,14 @@ namespace Rhythm.Revit.Helpers
 
                     lifecycleManager.UnRegisterAssociation(intId, currentElement);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //
                 }
             }
 
-        
-    }
+
+        }
 
         /// <summary>
         /// Returns the current Revit version

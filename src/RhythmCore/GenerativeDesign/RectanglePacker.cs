@@ -55,9 +55,7 @@ namespace Nuclex.Game.Packing
         /// <returns>The location at which the rectangle has been placed</returns>
         public virtual UV Pack(double rectangleWidth, double rectangleHeight)
         {
-            UV point;
-
-            if (!TryPack(rectangleWidth, rectangleHeight, out point))
+            if (!TryPack(rectangleWidth, rectangleHeight, out var point))
                 throw new OutOfSpaceException("Rectangle does not fit in packing area");
 
             return point;
@@ -85,9 +83,9 @@ namespace Nuclex.Game.Packing
         }
 
         /// <summary>Maximum allowed width of the packing area</summary>
-        private double packingAreaWidth;
+        private readonly double packingAreaWidth;
         /// <summary>Maximum allowed height of the packing area</summary>
-        private double packingAreaHeight;
+        private readonly double packingAreaHeight;
 
     }
 

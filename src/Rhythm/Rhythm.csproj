@@ -153,14 +153,12 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPI, Version=21.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPIUI, Version=21.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitNodes">
@@ -275,7 +273,6 @@
     <Compile Include="Revit\Elements\Sheet.cs" />
     <Compile Include="Revit\Views\ViewPlan.cs" />
     <Compile Include="Revit\Elements\Viewport.cs" />
-    <Compile Include="Utilities\DocumentUtils.cs" />
     <Compile Include="Utilities\PointInPolyExtensions.cs" />
     <Compile Include="Utilities\PointInPoly.cs" />
     <Compile Include="Utilities\ViewUtils.cs" />

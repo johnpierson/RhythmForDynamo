@@ -78,8 +78,10 @@ namespace Rhythm.Revit.Views
         public static object GetCropRegionElement(global::Revit.Elements.Element view)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            List<Autodesk.Revit.DB.View> internalView = new List<Autodesk.Revit.DB.View>();
-            internalView.Add((Autodesk.Revit.DB.View)view.InternalElement);
+            List<Autodesk.Revit.DB.View> internalView = new List<Autodesk.Revit.DB.View>
+            {
+                (Autodesk.Revit.DB.View) view.InternalElement
+            };
 
             Autodesk.Revit.DB.Element cropBoxInternalElement = null;
             using (TransactionGroup tGroup = new TransactionGroup(doc))
@@ -328,18 +330,11 @@ namespace Rhythm.Revit.Views
         /// <param name="view">The view to check the filter on.</param>
         /// <param name="viewFilter"> The view filter to check.</param>
         /// <returns name="bool">Is it enabled?</returns>
-        public static object IsFilterEnabled(global::Revit.Elements.Views.View view,
+        public static bool IsFilterEnabled(global::Revit.Elements.Views.View view,
             global::Revit.Elements.Element viewFilter)
         {
-
-            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
-            //check if it is Revit 2021
-            if (!versionNumber.Contains("2021"))
-            {
-                throw new Exception(@"This node only works in Revit 2021 as that is when this API was added. ¯\_(ツ)_/¯");
-            }
-
-            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2021.dll", "View.IsFilterEnabled", new object[] { view, viewFilter });
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+            return internalView.GetIsFilterEnabled(viewFilter.InternalElement.Id);
         }
         /// <summary>
         /// Revit 2021 - This attempts to enable or disable a filter for a given view.
@@ -350,28 +345,20 @@ namespace Rhythm.Revit.Views
         /// <returns></returns>
         public static void ToggleFilterInView(global::Revit.Elements.Views.View view, global::Revit.Elements.Element viewFilter, bool toggle)
         {
-            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
-            //check if it is Revit 2021
-            if (!versionNumber.Contains("2021"))
-            {
-                throw new Exception(@"This node only works in Revit 2021 as that is when this API was added. ¯\_(ツ)_/¯");
-            }
-            Utilities.CommandHelpers.InvokeNode("RhythmRevit2021.dll", "View.ToggleFilterInView", new object[] { view, viewFilter, toggle });
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+            internalView.SetIsFilterEnabled(viewFilter.InternalElement.Id, toggle);
         }
         /// <summary>
         /// Revit 2021 - Returns the filters in order for the given view.
         /// </summary>
         /// <param name="view">The view to check the filter on.</param>
         /// <returns></returns>
-        public static object GetOrderedFilters(global::Revit.Elements.Views.View view)
+        public static List<global::Revit.Elements.Element> GetOrderedFilters(global::Revit.Elements.Views.View view)
         {
-            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
-            //check if it is Revit 2021
-            if (!versionNumber.Contains("2021"))
-            {
-                throw new Exception(@"This node only works in Revit 2021 as that is when this API was added. ¯\_(ツ)_/¯");
-            }
-            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2021.dll", "View.GetOrderedFilters", new object[] {view});
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+            Document doc = internalView.Document;
+
+            return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList();
         }
         #endregion
     }
