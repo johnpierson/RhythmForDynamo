@@ -22,5 +22,8 @@
 	<namespace name="Rhythm.GenerativeDesign">
       <category>Rhythm.GenerativeDesign</category>
     </namespace>
+		<namespace name="Rhythm.System">
+      <category>Rhythm.System</category>
+    </namespace>
   </namespaces>
 </doc>

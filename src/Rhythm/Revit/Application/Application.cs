@@ -126,14 +126,18 @@ namespace Rhythm.Revit.Application
             ModelPath modelPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(filePath);
 
             var document = app.OpenDocumentFile(modelPath, openOpts);
-
+            var workshared = document.IsWorkshared;
             try
             {
                 app.FailuresProcessing -= AppOnFailuresProcessing;
                 //do a save as
-                var worksharingOptions = new WorksharingSaveAsOptions { SaveAsCentral = true };
                 SaveAsOptions opts = new SaveAsOptions();
-                opts.SetWorksharingOptions(worksharingOptions);
+                if (workshared)
+                {
+                    var worksharingOptions = new WorksharingSaveAsOptions { SaveAsCentral = true };
+                    opts.SetWorksharingOptions(worksharingOptions);
+                }
+                
                 FileInfo originalInfo = new FileInfo(filePath);
                 string newPath = Path.Combine(originalInfo.DirectoryName,
                     DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber);

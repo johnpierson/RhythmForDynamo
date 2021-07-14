@@ -11,7 +11,10 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Element = Revit.Elements.Element;
+using Plane = Autodesk.DesignScript.Geometry.Plane;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Rectangle = Autodesk.DesignScript.Geometry.Rectangle;
+using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Rhythm.Revit.Views
 {
@@ -269,58 +272,62 @@ namespace Rhythm.Revit.Views
         /// </summary>
         /// <param name="view">The view to set the section box to.</param>
         /// <param name="bBox">The bounding box to use.</param>
-        /// <returns name="success">The views that worked.</returns>
-        /// <returns name="failed">The views that failed.</returns>
+        /// <returns name="result">The result of the operation.</returns>
         /// <search>
         /// cropregion, crop, rhythm
         /// </search>
-        [MultiReturn(new[] { "success", "failed" })]
-        public static Dictionary<string, object> SetCropRegion(global::Revit.Elements.Element view, BoundingBox bBox)
+        public static string SetCropRegion(global::Revit.Elements.Element view, BoundingBox bBox)
         {
             //the current document
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            //lists to append results to
-            List<object> success = new List<object>();
-            List<object> fail = new List<object>();
+
+            string result = string.Empty;
+
             //the internal revit view
             Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)view.InternalElement;
-            TransactionManager.Instance.ForceCloseTransaction();
-            Transaction trans = new Transaction(doc, "Set Cropbox");
-            trans.Start();
-            doc.Regenerate();
+
+            //get the views crop region shape and view plane
+            ViewCropRegionShapeManager cropRegionManager = internalView.GetCropRegionShapeManager();
+            var direction = internalView.ViewDirection.ToVector();
+            var origin = internalView.Origin.ToPoint();
+            var viewPlane = Plane.ByOriginNormal(origin, direction);
+
+            //ensure the bounding box is close
+            var originalCuboid = bBox.ToCuboid();
+            //var originalOrigin = CoordinateSystem.ByOrigin(originalCuboid.Centroid());
+            //var newOrigin = CoordinateSystem.ByOrigin(origin);
+
+            //var newCuboid = originalCuboid.Transform(originalOrigin, newOrigin);
+
+            Surface intersectingSurface;
+            //get surface, extract perimeter curves and make a curve loop
             try
             {
-                //get the views crop region shape
-                ViewCropRegionShapeManager cropRegionManager = internalView.GetCropRegionShapeManager();
-                //curveLoop list to use down the line
-                CurveLoop curveLoop = new CurveLoop();
-                //convert the Dynamo bounding box to a cuboid
-                Autodesk.DesignScript.Geometry.Geometry bBoxCuboid = (Autodesk.DesignScript.Geometry.Geometry)bBox.ToCuboid();
-                //obtain the view's plane for intersection tests, then run the intersection
-                Autodesk.DesignScript.Geometry.Plane viewPlane = Autodesk.DesignScript.Geometry.Plane.ByOriginNormal(bBox.ToCuboid().Centroid(), internalView.ViewDirection.ToVector());
-                Autodesk.DesignScript.Geometry.Surface intersectingSurface = (Autodesk.DesignScript.Geometry.Surface)bBoxCuboid.Intersect(viewPlane)[0];
-                //iterate through the curves and append for the crop region modification
-                foreach (Autodesk.DesignScript.Geometry.Curve c in intersectingSurface.PerimeterCurves())
-                {
-                    curveLoop.Append(c.ToRevitType());
-                }
-                cropRegionManager.SetCropShape(curveLoop);
-                trans.Commit();
-                success.Add(internalView.ToDSType(true));
+                intersectingSurface = (Autodesk.DesignScript.Geometry.Surface)originalCuboid.Intersect(viewPlane)[0];
+            }
+            catch (Exception)
+            {
+                throw new Exception("The input bounding box does not intersect the view plane.");
+            }
+            
+            var curves = intersectingSurface.PerimeterCurves();
+            var newCurveLoop = CurveLoop.Create(curves.Select(c => c.ToRevitType(true)).ToList());
+
+           //try to set the crop region
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            try
+            {
+                cropRegionManager.SetCropShape(newCurveLoop);
+                result = $"Crop Region Updated for: {view.Name}";
             }
             catch (Exception e)
             {
-                fail.Add(internalView.ToDSType(true));
-                trans.RollBack();
-                throw new Exception(e.Message);
+                result = $"Crop Region Not Updated for: {view.Name}. The Error Revit gave us is: {e.Message}.";
             }
 
-            var outInfo = new Dictionary<string, object>
-            {
-                {"success", success},
-                {"failed", fail }
-            };
-            return outInfo;
+            TransactionManager.Instance.TransactionTaskDone();
+            
+            return result;
         }
 
         #region Revit2021

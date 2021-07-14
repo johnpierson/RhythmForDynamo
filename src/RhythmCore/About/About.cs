@@ -19,7 +19,7 @@ namespace Rhythm.About
         /// <returns></returns>
         public static string AboutRhythm()
         {
-            string executingLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string executingLocation = global::System.Reflection.Assembly.GetExecutingAssembly().Location;
             string aboutRhythm = "Rhythm is a set of useful nodes to help your Revit project maintain a good rhythm with Dynamo.";
 
 
