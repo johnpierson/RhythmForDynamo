@@ -278,6 +278,8 @@ namespace Rhythm.Revit.Views
         /// </search>
         public static string SetCropRegion(global::Revit.Elements.Element view, BoundingBox bBox)
         {
+           
+            
             //the current document
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 

@@ -10,6 +10,7 @@ using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
 using Element = Revit.Elements.Element;
+using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Plane = Autodesk.DesignScript.Geometry.Plane;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Rectangle = Autodesk.DesignScript.Geometry.Rectangle;
@@ -25,6 +26,52 @@ namespace Rhythm.Revit.Elements
     {
         private Viewport()
         { }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewport"></param>
+        public static void AlignViewTitle(global::Revit.Elements.Element viewport)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            //cast the viewport to the internal Revit DB Type
+            Autodesk.Revit.DB.Viewport internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            
+            //get the original box center (for when we re-place the viewport)
+            var originalBoxCenter = internalViewport.GetBoxCenter();
+
+            var sheetId = internalViewport.SheetId;
+            var viewId = internalViewport.ViewId;
+
+            //force close dynamo's open transaction
+            TransactionManager.Instance.ForceCloseTransaction();
+
+            //use a transaction group to sequence the events into one
+            TransactionGroup tGroup = new TransactionGroup(doc, "Aligning Viewport");
+            tGroup.Start();
+
+            //delete the original viewport
+            using (Transaction deleteOriginalViewport = new Transaction(doc, "Deleting Original"))
+            {
+                deleteOriginalViewport.Start();
+                doc.Delete(internalViewport.Id);
+                deleteOriginalViewport.Commit();
+            }
+
+            //place the viewport again to get an aligned viewport title
+            using (Transaction replaceViewport = new Transaction(doc, "Placing Viewport with Aligned View Title"))
+            {
+                replaceViewport.Start();
+                Autodesk.Revit.DB.Viewport.Create(doc, sheetId, viewId, originalBoxCenter);
+                replaceViewport.Commit();
+            }
+
+            tGroup.Assimilate();
+
+        }
+
         /// <summary>
         /// This node will place the given view on the given sheet, if possible. For floor plan views: They cannot be on any other sheets. Now supports schedules! 
         /// </summary>
