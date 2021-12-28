@@ -1172,9 +1172,9 @@ xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\R
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
 
-xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.10\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.10\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.10\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I

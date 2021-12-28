@@ -63,7 +63,7 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
             //collect the areas to do some cool stuff
-            var area = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Areas).Cast<Area>().Select(a => a.ToDSType(true)).ToList();
+            var area = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Areas).Cast<Autodesk.Revit.DB.Area>().Select(a => a.ToDSType(true)).ToList();
 
             return area.Where(a => ContainsPoint(a,point)).ToList();
         }
