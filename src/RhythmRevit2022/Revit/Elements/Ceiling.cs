@@ -108,7 +108,7 @@ namespace Rhythm.Revit.Elements
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
 
-            return new FilteredElementCollector(doc).OfClass(typeof(CeilingType)).WhereElementIsElementType()
+            return new FilteredElementCollector(doc).OfClass(typeof(Autodesk.Revit.DB.CeilingType)).WhereElementIsElementType()
                 .FirstElement().ToDSType(true);
         }
 

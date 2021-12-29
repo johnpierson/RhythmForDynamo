@@ -15,6 +15,7 @@ using Point = Autodesk.DesignScript.Geometry.Point;
 
 namespace Rhythm.Revit.Elements
 {
+    // ReSharper disable PossibleInvalidOperationException
     /// <summary>
     /// Wrapper class for dimensions.
     /// </summary>
@@ -67,6 +68,7 @@ namespace Rhythm.Revit.Elements
                 var originPoint = internalDimension.Origin.ToPoint();
                 Autodesk.Revit.DB.Line dimCurve = (Autodesk.Revit.DB.Line)internalDimension.Curve;
                 var vector = dimCurve.Direction.ToVector();
+
                 var dimValue = internalDimension.Value.Value;
                 if (doc.DisplayUnitSystem.ToString() != "IMPERIAL")
                 {
@@ -135,6 +137,24 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static string DisplayUnits(global::Revit.Elements.Dimension dimension)
         {
+            string units = string.Empty;
+
+            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+
+            if (versionNumber.Contains("2022"))
+            {
+                units = Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Dimensions.DisplayUnits", new object[] { dimension }).ToString();
+            }
+            else
+            {
+                units = DisplayUnitInternal(dimension);
+            }
+
+            return units;
+        }
+
+        private static string DisplayUnitInternal(global::Revit.Elements.Dimension dimension)
+        {
             Dimension dim = dimension.InternalElement as Dimension;
             try
             {
@@ -143,7 +163,7 @@ namespace Rhythm.Revit.Elements
             catch (Exception)
             {
                 return "UseDefault";
-            } 
+            }
         }
 
         /// <summary>
@@ -659,7 +679,7 @@ namespace Rhythm.Revit.Elements
         /// This node will return the value (string) of the dimension. If the dimension is a multi-segment dimension, this will find all of the above values.
         /// This method returns what the dimension would be in it's non-rounded form. If you want the actual displayed string use Dimension.DisplayValueString in Rhythm.
         /// </summary>
-        /// <param name="dimension">The dimension to obatain value from.</param>
+        /// <param name="dimension">The dimension to obtain value from.</param>
         /// <returns name="valueString">The dimension value as a string.</returns>
         /// <search>
         /// dimension.TextPosition
@@ -768,8 +788,20 @@ namespace Rhythm.Revit.Elements
                 TransactionManager.Instance.EnsureInTransaction(doc);
                 Units ogUnits = doc.GetUnits();
                 Units newUnits = new Units(UnitSystem.Imperial);
-                newUnits.SetFormatOptions(internalDimension.DimensionType.UnitType,
-                    internalDimension.DimensionType.GetUnitsFormatOptions());
+
+                string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+
+                if (versionNumber.Contains("2022"))
+                {
+                    Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Dimensions.SetFormat",
+                        new object[] { dimension, newUnits });
+                }
+                else
+                {
+                    SetFormatInternal(newUnits, internalDimension);
+                }
+                
+
                 //set the document units and commit the change
                 doc.SetUnits(newUnits);
 
@@ -790,6 +822,12 @@ namespace Rhythm.Revit.Elements
             }
             //return the values you retrieved.
             return values;
+        }
+
+        private static void SetFormatInternal(Units units, Autodesk.Revit.DB.Dimension internalDimension)
+        {
+            units.SetFormatOptions(internalDimension.DimensionType.UnitType,
+                internalDimension.DimensionType.GetUnitsFormatOptions());
         }
 
     }
