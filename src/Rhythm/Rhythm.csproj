@@ -241,6 +241,8 @@
     <Compile Include="Revit\Elements\Level.cs" />
     <Compile Include="Revit\Elements\Mullion.cs" />
     <Compile Include="Revit\Elements\RevitLinkType.cs" />
+    <Compile Include="Revit\Elements\Space.cs" />
+    <Compile Include="Revit\Elements\SpaceTag.cs" />
     <Compile Include="Revit\Ribbon\RibbonTab.cs" />
     <Compile Include="Revit\Ribbon\Modifiers.cs" />
     <Compile Include="Revit\Elements\Category.cs" />

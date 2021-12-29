@@ -158,18 +158,36 @@ namespace Rhythm.Revit.Application
 
             return vList;
         }
+
         /// <summary>
         /// This node will save the Revit document to another path.
         /// </summary>
         /// <param name="document">A valid Revit Document.</param>
         /// <param name="filePath">The file path to save the document.</param>
+        /// <param name="previewViewId">Optional - If you want to specify the preview view for the thumbnail.</param>
         /// <returns name="result">A string message whether the save as was successful or a failure.</returns>
         [NodeCategory("Action")]
-        public static string SaveAs(Autodesk.Revit.DB.Document document, string filePath)
+        public static string SaveAs(Autodesk.Revit.DB.Document document, string filePath, int previewViewId = -1)
         {
+            SaveAsOptions opts = new SaveAsOptions();
+
+            if (previewViewId != -1)
+            {
+                try
+                {
+                    opts.PreviewViewId = new ElementId(previewViewId);
+                    
+                }
+                catch (Exception)
+                {
+                    //suppress
+                }
+            }
+
             try
             {
-                document.SaveAs(filePath);
+                opts.Compact = true;
+                document.SaveAs(filePath, opts);
                 return "Successful Save";
             }
             catch (Exception ex)

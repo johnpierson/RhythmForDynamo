@@ -82,6 +82,7 @@ namespace Rhythm.Revit.Elements
         /// <param name="tagType">The tag type to use. If null, the default one is used</param>
         /// <param name="tryUpdateExisting">Toggle to true to try and update existing room tags in the view.</param>
         /// <returns name="roomTag">The new or updated room tag.</returns>
+        [NodeCategory("Actions")]
         public static global::Revit.Elements.Element PlaceOrUpdate(global::Revit.Elements.Views.FloorPlanView view, global::Revit.Elements.Room room, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Point location, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] global::Revit.Elements.FamilyType tagType, bool tryUpdateExisting = false)
         {
             var internalRoom = room.InternalElement as Autodesk.Revit.DB.Architecture.Room;
