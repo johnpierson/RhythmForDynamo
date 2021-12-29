@@ -176,7 +176,6 @@ namespace Rhythm.Revit.Application
                 try
                 {
                     opts.PreviewViewId = new ElementId(previewViewId);
-                    
                 }
                 catch (Exception)
                 {

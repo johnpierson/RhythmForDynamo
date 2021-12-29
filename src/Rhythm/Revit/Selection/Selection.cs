@@ -11,7 +11,6 @@ using RevitServices.Persistence;
 using Category = Revit.Elements.Category;
 using Curve = Autodesk.Revit.DB.Curve;
 using Element = Autodesk.Revit.DB.Element;
-using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Grid = Autodesk.Revit.DB.Grid;
 using ModelCurve = Autodesk.Revit.DB.ModelCurve;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -78,14 +77,16 @@ namespace Rhythm.Revit.Selection
         {
             return null;
         }
+
         /// <summary>
         /// Sometimes a pick selection is nicer. 😁
         /// </summary>
         /// <param name="runIt">Allows you to tell the node to "run". Also allows you to refresh selection.</param>
         /// <param name="category">The category or categories to isolate to. (leave blank if you want to be able to pick anything)</param>
         /// <param name="singleSelection">Optional input for a single item selection. Default to multiple.</param>
+        /// <param name="ordered">Force an ordered selection using esc to finish.</param>
         /// <returns name="pickedElements"></returns>
-        public static object Pick(bool runIt, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] List<object> category, bool singleSelection = false)
+        public static object Pick(bool runIt, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] List<object> category, bool singleSelection = false, bool ordered = false)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
             var uiDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
@@ -97,7 +98,26 @@ namespace Rhythm.Revit.Selection
                     var reference = uiDoc.Selection.PickObject(ObjectType.Element);
                     return doc.GetElement(reference.ElementId).ToDSType(true);
                 }
+                if (ordered)
+                {
+                    List<global::Revit.Elements.Element> orderedList = new List<global::Revit.Elements.Element>();
+                    bool flag = true;
+                    while (flag)
+                    {
+                        try
+                        {
+                            var reference = uiDoc.Selection.PickObject(ObjectType.Element,
+                                "Pick elements in desired order and press ESC to finish selection");
+                            orderedList.Add(doc.GetElement(reference.ElementId).ToDSType(true));
+                        }
+                        catch (Exception)
+                        {
+                            flag = false;
+                        }
+                    }
 
+                    return orderedList;
+                }
                 var references = uiDoc.Selection.PickObjects(ObjectType.Element);
                 return references.Select(r => doc.GetElement(r.ElementId).ToDSType(true)).ToList();
             }
@@ -121,6 +141,27 @@ namespace Rhythm.Revit.Selection
                 {
                     var reference = uiDoc.Selection.PickObject(ObjectType.Element, new CategorySelectionFilter());
                     return doc.GetElement(reference.ElementId).ToDSType(true);
+                }
+
+                if (ordered)
+                {
+                    List<global::Revit.Elements.Element> orderedList = new List<global::Revit.Elements.Element>();
+                    bool flag = true;
+                    while (flag)
+                    {
+                        try
+                        {
+                            var reference = uiDoc.Selection.PickObject(ObjectType.Element, new CategorySelectionFilter(),
+                                "Pick elements in desired order and press ESC to finish selection");
+                            orderedList.Add(doc.GetElement(reference.ElementId).ToDSType(true));
+                        }
+                        catch (Exception)
+                        {
+                            flag = false;
+                        }
+                    }
+
+                    return orderedList;
                 }
                 var references = uiDoc.Selection.PickObjects(ObjectType.Element, new CategorySelectionFilter());
                 return references.Select(r => doc.GetElement(r.ElementId).ToDSType(true)).ToList();

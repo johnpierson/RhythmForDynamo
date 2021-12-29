@@ -11,15 +11,16 @@ namespace Rhythm.Revit.Elements
 {
     public class Viewport
     {
-        private Viewport()
-        {
-        }
+        //public Viewport(){}
 
         public static void SetViewTitleLength(global::Revit.Elements.Element viewport, double length)
         {
             var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            var doc = internalViewport.Document;
 
+            TransactionManager.Instance.EnsureInTransaction(doc);
             internalViewport.LabelLineLength = length;
+            TransactionManager.Instance.TransactionTaskDone();
         }
         public static void SetViewTitleLocation(global::Revit.Elements.Element viewport, Point location)
         {
