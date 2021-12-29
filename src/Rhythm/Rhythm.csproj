@@ -1163,7 +1163,10 @@
     <None Include="Resources\Rhythm.Revit.Elements.Floor.ByCurveLoops.Large.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\logo.png" />
+    <None Include="Resources\Rhythm.Revit.Elements.RoomTag.PlaceOrUpdate.Small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rhythm.Revit.Elements.RoomTag.PlaceOrUpdate.Large.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -1172,9 +1175,9 @@ xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\R
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
 
-xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Debug\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Debug\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\Debug\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I

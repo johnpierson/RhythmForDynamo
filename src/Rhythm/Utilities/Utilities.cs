@@ -12,6 +12,21 @@ namespace Rhythm.Utilities
     /// 
     /// </summary>
     [IsVisibleInDynamoLibrary(false)]
+    public class MiscUtils
+    {
+        /// <summary>
+        /// Get Null
+        /// </summary>
+        /// <returns></returns>
+        public static object GetNull()
+        {
+            return null;
+        }
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
     public class CommandHelpers
     {
         /// <summary>

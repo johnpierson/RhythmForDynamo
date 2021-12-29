@@ -92,26 +92,6 @@ namespace Rhythm.Revit.Elements
             return space;
         }
 
-        /// <summary>
-        /// Get reference plane from family by name.
-        /// </summary>
-        /// <param name="familyInstance"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static global::Revit.Elements.Element GetReferenceByName(
-            global::Revit.Elements.FamilyInstance familyInstance, string name)
-        {
-            var doc = familyInstance.InternalElement.Document;
-
-            var internalFamilyInstance = familyInstance.InternalElement as Autodesk.Revit.DB.FamilyInstance;
-            
-            var reference = internalFamilyInstance.GetReferenceByName(name);
-
-
-            var refPlane = doc.GetElement(reference.ElementId) as ReferencePlane;
-
-            return refPlane.ToDSType(true);
-        }
 
         /// <summary>
         /// This node will report the space the family instance resides in, (if available).

@@ -108,6 +108,25 @@ namespace Rhythm.Revit.Elements
         }
 
         /// <summary>
+        /// Return room tags for given room in given view
+        /// </summary>
+        /// <param name="room">The room to check.</param>
+        /// <param name="view">The view to check in.</param>
+        /// <returns name="roomTags">We return a list here because a room can have more than one tag. Whether or not it should, is a different conversation.</returns>
+        public static List<global::Revit.Elements.Element> RoomTagsInView(global::Revit.Elements.Room room,
+            global::Revit.Elements.Views.FloorPlanView view)
+        {
+            var internalRoom = room.InternalElement as Autodesk.Revit.DB.Architecture.Room;
+            var doc = internalRoom.Document;
+
+            ElementCategoryFilter roomTagFilter = new ElementCategoryFilter(BuiltInCategory.OST_RoomTags);
+            var roomTags = internalRoom.GetDependentElements(roomTagFilter).Select(id => doc.GetElement(id)).ToList();
+
+            return roomTags.Cast<Autodesk.Revit.DB.Architecture.RoomTag>()
+                .Where(rt => rt.View.Id.IntegerValue.Equals(view.Id)).Select(r => r.ToDSType(true)).ToList();
+        }
+
+        /// <summary>
         /// This node will center the room.
         /// </summary>
         /// <param name="room">The room to center.</param>

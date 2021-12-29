@@ -12,11 +12,13 @@ using Solid = Autodesk.DesignScript.Geometry.Solid;
 
 namespace Rhythm.Revit.Elements
 {
+    // ReSharper disable PossibleNullReferenceException
     /// <summary>
     /// Wrapper class for Area.
     /// </summary>
     public class Areas
     {
+        
         private Areas()
         {
         }
@@ -30,6 +32,7 @@ namespace Rhythm.Revit.Elements
         {
             Autodesk.Revit.DB.Area internalArea = area.InternalElement as Autodesk.Revit.DB.Area;
           
+            
             return internalArea.AreaScheme.ToDSType(true);
         }
 
