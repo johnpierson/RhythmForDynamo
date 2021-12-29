@@ -94,10 +94,8 @@ namespace Rhythm.Revit.Elements
             LinkElementId linkElementId = new LinkElementId(internalRoom.Id);
 
             Point locationPoint = location ?? room.Location;
-            
-            ;
 
-            Autodesk.Revit.DB.Architecture.RoomTag roomTag = null;
+            Autodesk.Revit.DB.Architecture.RoomTag roomTag;
 
             if (tryUpdateExisting && Rooms.RoomTagsInView(room, view).Any())
             {

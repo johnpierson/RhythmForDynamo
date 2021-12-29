@@ -85,7 +85,7 @@ namespace Rhythm.Revit.Selection
         /// <param name="category">The category or categories to isolate to. (leave blank if you want to be able to pick anything)</param>
         /// <param name="singleSelection">Optional input for a single item selection. Default to multiple.</param>
         /// <returns name="pickedElements"></returns>
-        public static object Pick(bool runIt,[DefaultArgument("Rhythm.Revit.Selection.Selection.GetNull()")]List<object> category, bool singleSelection = false)
+        public static object Pick(bool runIt, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] List<object> category, bool singleSelection = false)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
             var uiDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;

@@ -254,7 +254,7 @@ namespace Rhythm.Revit.Elements
         /// </search>
         [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> GetIntersectingElementsOfCategoryLinkOption(global::Revit.Elements.Element element,
-            global::Revit.Elements.Category category, [DefaultArgument("Rhythm.Revit.Elements.Element.GetNull()")]global::Revit.Elements.Element sourceInstance)
+            global::Revit.Elements.Category category, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] global::Revit.Elements.Element sourceInstance)
         {
             //the current document
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;

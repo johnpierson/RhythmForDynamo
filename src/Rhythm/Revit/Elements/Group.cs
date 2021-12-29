@@ -21,17 +21,6 @@ namespace Rhythm.Revit.Elements
         private Group()
         {
         }
-
-        /// <summary>
-        /// Get Null
-        /// </summary>
-        /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
-        public static object GetNull()
-        {
-            return null;
-        }
-
         /// <summary>
         /// This node is a pretty neat group creator, that allows for you to pick an origin at creation time.
         /// </summary>
@@ -40,7 +29,7 @@ namespace Rhythm.Revit.Elements
         /// <param name="origin">Optional origin. (Note: This node will fix whatever Z Value you input to match the group's Z value)</param>
         /// <returns name="newGroup">The new group</returns>
         public static global::Revit.Elements.Element ByElementsAndOrigin(
-                List<global::Revit.Elements.Element> elements, [DefaultArgument("Rhythm.Revit.Elements.Group.GetNull()")]string name, [DefaultArgument("Rhythm.Revit.Elements.Group.GetNull()")] Point origin)
+                List<global::Revit.Elements.Element> elements, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] string name, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Point origin)
         {
             Document doc = elements.First().InternalElement.Document;
 
