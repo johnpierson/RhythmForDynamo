@@ -55,17 +55,26 @@ namespace Rhythm.Revit.Elements
         public static global::Revit.Elements.Element ByLine(Curve curve, bool drawInPlan = true)
         {
             Document doc = DocumentManager.Instance.CurrentDBDocument;
+
             Vector normal = Vector.ZAxis();
             if (!drawInPlan)
             {
                 normal = curve.NormalAtParameter(0.5);
             }
 
+            Autodesk.Revit.DB.ReferencePlane referencePlane;
             TransactionManager.Instance.EnsureInTransaction(doc);
-            var refPlane = doc.Create.NewReferencePlane(curve.StartPoint.ToRevitType(),curve.EndPoint.ToRevitType(),normal.ToRevitType(),doc.ActiveView);
+            if (doc.IsFamilyDocument)
+            {
+                referencePlane = doc.FamilyCreate.NewReferencePlane(curve.StartPoint.ToRevitType(), curve.EndPoint.ToRevitType(), normal.ToRevitType(), doc.ActiveView);
+            }
+            else
+            {
+                referencePlane = doc.Create.NewReferencePlane(curve.StartPoint.ToRevitType(), curve.EndPoint.ToRevitType(), normal.ToRevitType(), doc.ActiveView);
+            }
             TransactionManager.Instance.TransactionTaskDone();
 
-            return refPlane.ToDSType(true);
+            return referencePlane.ToDSType(true);
         }
         /// <summary>
         ///     Get Null
