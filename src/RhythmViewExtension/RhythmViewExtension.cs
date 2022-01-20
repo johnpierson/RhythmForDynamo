@@ -14,6 +14,10 @@ namespace RhythmViewExtension
 {
     public class RhythmViewExtension : IViewExtension
     {
+        public string UniqueId => "5435824A-A3A1-4FC1-AF42-E5139041740F";//NOTE: If you are building your own view extension, you MUST change this.
+        public string Name => "Rhythm View Extension";//NOTE: If you are building your own view extension, you MUST change this.
+
+
         private readonly string _executingLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
         public void Dispose()
@@ -29,10 +33,6 @@ namespace RhythmViewExtension
         private ViewLoadedParams loaded = null;
         public void Loaded(ViewLoadedParams p)
         {
-
-            //AddFlushMenu(p);
-
-            ClearNotifications(p);
             loaded = p;
             view = p.DynamoWindow as DynamoView;
 
@@ -40,38 +40,6 @@ namespace RhythmViewExtension
             p.CurrentWorkspaceModel.NodeAdded += CurrentWorkspaceModelOnNodeAdded;
         }
 
-        //private void AddFlushMenu(ViewLoadedParams p)
-        //{
-        //    var flushBindingsMenu = new MenuItem { Header = "Flush Bindings", ToolTip = "this will flush the bindings out of your current dynamo file and allow you to create new elements." };
-        //    flushBindingsMenu.Click += (sender, args) =>
-        //    {
-        //        //dynView.HomeSpace.RunSettings.RunType = RunType.Manual;
-        //        dynView.HomeSpace.EngineController.LiveRunnerRuntimeCore.RuntimeData.CallsiteCache.Clear();
-
-        //        var doc = DocumentManager.Instance.CurrentDBDocument;
-
-        //        var lifecycleManager = RevitServices.Persistence.ElementIDLifecycleManager<int>.GetInstance();
-
-        //        var ids = lifecycleManager.ToString().Split(new string[] {"Element ID ", ":"}, StringSplitOptions.None);
-
-        //        foreach (var stringId in ids)
-        //        {
-        //            try
-        //            {
-        //                int intId = Convert.ToInt32(stringId.Trim());
-        //                var currentElement = ElementSelector.ByElementId(intId, false);
-
-        //                lifecycleManager.UnRegisterAssociation(intId, currentElement);
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                //
-        //            }
-        //        }
-
-        //    };
-        //    p.AddMenuItem(MenuBarType.Help,flushBindingsMenu);
-        //}
 
         private void POnCurrentWorkspaceChanged(IWorkspaceModel obj)
         {
@@ -98,9 +66,6 @@ namespace RhythmViewExtension
         {
         }
 
-        public string UniqueId => "5435824A-A3A1-4FC1-AF42-E5139041740F";//NOTE: If you are building your own view extension, you MUST change this.
-
-        public string Name => "Rhythm View Extension";//NOTE: If you are building your own view extension, you MUST change this.
 
         // ReSharper disable once InconsistentNaming
         public static DynamoViewModel dynView => view.DataContext as DynamoViewModel;
@@ -123,32 +88,6 @@ namespace RhythmViewExtension
                     }
                 }
             }
-        }
-
-        private void ClearNotifications(ViewLoadedParams p)
-        {
-            try
-            {
-                foreach (MenuItem m in p.dynamoMenu.Items)
-                {
-                    if (m.Items.Count == 2)
-                    {
-                        foreach (MenuItem i in m.Items)
-                        {
-                            if (i.Header.ToString().Contains("Dismiss"))
-                            {
-                                m.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                                i.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                //do nothing
-            }
-
         }
     }
 }

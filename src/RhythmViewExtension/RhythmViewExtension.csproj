@@ -153,6 +153,7 @@
   <ItemGroup>
     <Compile Include="RhythmViewExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\VersionUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -163,6 +164,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I

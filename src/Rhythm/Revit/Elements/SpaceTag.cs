@@ -32,7 +32,7 @@ namespace Rhythm.Revit.Elements
         /// <param name="tryUpdateExisting">Toggle to true to try and update existing space tags in the view.</param>
         /// <returns name="spaceTag">The new or updated space tag.</returns>
         [NodeCategory("Actions")]
-        public static global::Revit.Elements.Element PlaceOrUpdate(global::Revit.Elements.Views.FloorPlanView view, global::Revit.Elements.Space space, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Point location, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] global::Revit.Elements.FamilyType tagType, bool tryUpdateExisting = false)
+        public static global::Revit.Elements.Element PlaceOrUpdate(global::Revit.Elements.Views.FloorPlanView view, global::Revit.Elements.Element space, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Point location, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] global::Revit.Elements.FamilyType tagType, bool tryUpdateExisting = false)
         {
             var internalSpace = space.InternalElement as Autodesk.Revit.DB.Mechanical.Space;
 
@@ -40,7 +40,9 @@ namespace Rhythm.Revit.Elements
 
             var doc = internalSpace.Document;
 
-            Point locationPoint = location ?? space.Location;
+            var lp = internalSpace.Location as LocationPoint;
+
+            Point locationPoint = location ?? lp.Point.ToPoint();
 
             Autodesk.Revit.DB.Mechanical.SpaceTag spaceTag;
 

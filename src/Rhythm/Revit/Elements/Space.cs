@@ -22,7 +22,7 @@ namespace Rhythm.Revit.Elements
         /// <param name="space">The space to check.</param>
         /// <param name="view">The view to check in.</param>
         /// <returns name="spaceTags">We return a list here because a space can have more than one tag. Whether or not it should, is a different conversation.</returns>
-        public static List<global::Revit.Elements.Element> SpaceTagsInView(global::Revit.Elements.Space space,
+        public static List<global::Revit.Elements.Element> SpaceTagsInView(global::Revit.Elements.Element space,
             global::Revit.Elements.Views.FloorPlanView view)
         {
             var internalSpace = space.InternalElement as Autodesk.Revit.DB.Mechanical.Space;
