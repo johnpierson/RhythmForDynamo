@@ -1,3 +1,9 @@
+## 📢 Latest Announcements
+
+### `View3d.SetSectionBox` and `View.SetCropBox` has been removed. These nodes were becoming too difficult to support.
+
+---
+
 <h1 align="center">
   <br>
   <img src="!Documentation/Logo/RhythmLogo.png" alt="Rhythm" width="350">
