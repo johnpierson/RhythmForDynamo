@@ -32,7 +32,13 @@
 //        {
 //            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 //            Autodesk.Revit.DB.View3D internalView = (Autodesk.Revit.DB.View3D)view3D.InternalElement;
-//            BoundingBoxXYZ revitBoxXyz = bBox.ToRevitType();
+
+//            BoundingBoxXYZ revitBoxXyz = new BoundingBoxXYZ
+//            {
+//                Min = bBox.MinPoint.ToRevitType(),
+//                Max = bBox.MaxPoint.ToRevitType()
+//            };
+
 
 //            List<object> success = new List<object>();
 //            List<object> fail = new List<object>();

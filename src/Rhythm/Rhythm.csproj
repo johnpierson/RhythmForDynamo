@@ -1160,8 +1160,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Rhythm\bin" /Y /I
+    <PostBuildEvent>xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Rhythm\bin" /Y /I
 xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.0\packages\Rhythm\bin" /Y /I
 

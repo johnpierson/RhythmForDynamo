@@ -267,70 +267,68 @@ namespace Rhythm.Revit.Views
 
             return result;
         }
-        /// <summary>
-        /// This will attempt to set the view's crop region given a bounding box.
-        /// </summary>
-        /// <param name="view">The view to set the section box to.</param>
-        /// <param name="bBox">The bounding box to use.</param>
-        /// <returns name="result">The result of the operation.</returns>
-        /// <search>
-        /// cropregion, crop, rhythm
-        /// </search>
-        public static string SetCropRegion(global::Revit.Elements.Element view, BoundingBox bBox)
-        {
-           
+        ///// <summary>
+        ///// This will attempt to set the view's crop region given a bounding box.
+        ///// </summary>
+        ///// <param name="view">The view to set the section box to.</param>
+        ///// <param name="bBox">The bounding box to use.</param>
+        ///// <returns name="result">The result of the operation.</returns>
+        ///// <search>
+        ///// cropregion, crop, rhythm
+        ///// </search>
+        //public static string SetCropRegion(global::Revit.Elements.Element view, BoundingBox bBox)
+        //{
+        //    //the current document
+        //    Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+        //    string result = string.Empty;
+
+        //    //the internal revit view
+        //    Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)view.InternalElement;
+
+        //    //get the views crop region shape and view plane
+        //    ViewCropRegionShapeManager cropRegionManager = internalView.GetCropRegionShapeManager();
+        //    var direction = internalView.ViewDirection.ToVector();
+        //    var origin = internalView.Origin.ToPoint();
+        //    var viewPlane = Plane.ByOriginNormal(origin, direction);
+
+        //    //ensure the bounding box is close
+        //    var originalCuboid = bBox.ToCuboid();
+        //    //var originalOrigin = CoordinateSystem.ByOrigin(originalCuboid.Centroid());
+        //    //var newOrigin = CoordinateSystem.ByOrigin(origin);
+
+        //    //var newCuboid = originalCuboid.Transform(originalOrigin, newOrigin);
+
+        //    Surface intersectingSurface;
+        //    //get surface, extract perimeter curves and make a curve loop
+        //    try
+        //    {
+        //        intersectingSurface = (Autodesk.DesignScript.Geometry.Surface)originalCuboid.Intersect(viewPlane)[0];
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new Exception("The input bounding box does not intersect the view plane.");
+        //    }
             
-            //the current document
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+        //    var curves = intersectingSurface.PerimeterCurves();
+        //    var newCurveLoop = CurveLoop.Create(curves.Select(c => c.ToRevitType(true)).ToList());
 
-            string result = string.Empty;
+        //   //try to set the crop region
+        //    TransactionManager.Instance.EnsureInTransaction(doc);
+        //    try
+        //    {
+        //        cropRegionManager.SetCropShape(newCurveLoop);
+        //        result = $"Crop Region Updated for: {view.Name}";
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        result = $"Crop Region Not Updated for: {view.Name}. The Error Revit gave us is: {e.Message}.";
+        //    }
 
-            //the internal revit view
-            Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)view.InternalElement;
-
-            //get the views crop region shape and view plane
-            ViewCropRegionShapeManager cropRegionManager = internalView.GetCropRegionShapeManager();
-            var direction = internalView.ViewDirection.ToVector();
-            var origin = internalView.Origin.ToPoint();
-            var viewPlane = Plane.ByOriginNormal(origin, direction);
-
-            //ensure the bounding box is close
-            var originalCuboid = bBox.ToCuboid();
-            //var originalOrigin = CoordinateSystem.ByOrigin(originalCuboid.Centroid());
-            //var newOrigin = CoordinateSystem.ByOrigin(origin);
-
-            //var newCuboid = originalCuboid.Transform(originalOrigin, newOrigin);
-
-            Surface intersectingSurface;
-            //get surface, extract perimeter curves and make a curve loop
-            try
-            {
-                intersectingSurface = (Autodesk.DesignScript.Geometry.Surface)originalCuboid.Intersect(viewPlane)[0];
-            }
-            catch (Exception)
-            {
-                throw new Exception("The input bounding box does not intersect the view plane.");
-            }
+        //    TransactionManager.Instance.TransactionTaskDone();
             
-            var curves = intersectingSurface.PerimeterCurves();
-            var newCurveLoop = CurveLoop.Create(curves.Select(c => c.ToRevitType(true)).ToList());
-
-           //try to set the crop region
-            TransactionManager.Instance.EnsureInTransaction(doc);
-            try
-            {
-                cropRegionManager.SetCropShape(newCurveLoop);
-                result = $"Crop Region Updated for: {view.Name}";
-            }
-            catch (Exception e)
-            {
-                result = $"Crop Region Not Updated for: {view.Name}. The Error Revit gave us is: {e.Message}.";
-            }
-
-            TransactionManager.Instance.TransactionTaskDone();
-            
-            return result;
-        }
+        //    return result;
+        //}
 
         #region Revit2021
         /// <summary>
