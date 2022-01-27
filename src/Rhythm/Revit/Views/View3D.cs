@@ -30,6 +30,9 @@ namespace Rhythm.Revit.Views
         [MultiReturn(new[] { "success", "failed" })]
         public static Dictionary<string, object> SetSectionBox(global::Revit.Elements.Element view3D,BoundingBox bBox)
         {
+            // sometimes bounding boxes in Dynamo aren't "ready" and return as null. This hopefully helps with that.
+            if (bBox == null) return null;
+
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             Autodesk.Revit.DB.View3D internalView = (Autodesk.Revit.DB.View3D)view3D.InternalElement;
             BoundingBoxXYZ revitBoxXyz = bBox.ToRevitType();
