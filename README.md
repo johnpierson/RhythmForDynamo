@@ -1,6 +1,6 @@
 ## 📢 Latest Announcements
 
-### `View3d.SetSectionBox` and `View.SetCropBox` has been removed. These nodes were becoming too difficult to support.
+### `View3d.SetSectionBox` and `View.SetCropBox` have been removed. These nodes were becoming too difficult to support due to [persistent dynamo issues with bounding boxes](https://forum.dynamobim.com/t/problem-setting-crop-boxes-and-section-boxes-in-revit-2022/70045/29).
 
 ---
 
