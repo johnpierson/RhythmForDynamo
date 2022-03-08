@@ -42,7 +42,7 @@ namespace Rhythm.Revit.Elements
             if (internalDimension.NumberOfSegments > 1)
             {
                 Autodesk.Revit.DB.DimensionSegmentArray dimSegArray = internalDimension.Segments;
-                List<Autodesk.Revit.DB.DimensionSegment> dimSegments = new List<DimensionSegment>();
+                List<Autodesk.Revit.DB.DimensionSegment> dimSegments = new List<Autodesk.Revit.DB.DimensionSegment>();
                 foreach (Autodesk.Revit.DB.DimensionSegment seg in internalDimension.Segments)
                 {
                     dimSegments.Add(seg);
@@ -92,11 +92,18 @@ namespace Rhythm.Revit.Elements
         /// dimension.Segments
         /// </search>
         [NodeCategory("Query")]
-        public static List<Autodesk.Revit.DB.DimensionSegmentArray> Segments(List<global::Revit.Elements.Dimension> dimension)
+        public static List<Autodesk.Revit.DB.DimensionSegment> Segments(global::Revit.Elements.Dimension dimension)
         {
-            List<Autodesk.Revit.DB.DimensionSegmentArray> segmentArray = new List<Autodesk.Revit.DB.DimensionSegmentArray>(dimension.Select(d => ((Autodesk.Revit.DB.Dimension)d.InternalElement).Segments).ToArray());
+            Autodesk.Revit.DB.Dimension internalDimension = dimension.InternalElement as Autodesk.Revit.DB.Dimension;
 
-            return segmentArray;
+            List<Autodesk.Revit.DB.DimensionSegment> segments = new List<Autodesk.Revit.DB.DimensionSegment>();
+
+            foreach (Autodesk.Revit.DB.DimensionSegment seg in internalDimension.Segments)
+            {
+                segments.Add(seg);
+            }
+
+            return segments;
         }
 
         /// <summary>
@@ -236,8 +243,8 @@ namespace Rhythm.Revit.Elements
             {
                 if (internalDimension.NumberOfSegments > 1) //set the multi segment ones
                 {
-                    List<DimensionSegment> dimSegments = new List<DimensionSegment>();
-                    foreach (DimensionSegment seg in internalDimension.Segments)
+                    List<Autodesk.Revit.DB.DimensionSegment> dimSegments = new List<Autodesk.Revit.DB.DimensionSegment>();
+                    foreach (Autodesk.Revit.DB.DimensionSegment seg in internalDimension.Segments)
                     {
                         dimSegments.Add(seg);
                     }
@@ -342,8 +349,8 @@ namespace Rhythm.Revit.Elements
             {
                 if (internalDimension.NumberOfSegments > 1) //set the multi segment ones
                 {
-                    List<DimensionSegment> dimSegments = new List<DimensionSegment>();
-                    foreach (DimensionSegment seg in internalDimension.Segments)
+                    List<Autodesk.Revit.DB.DimensionSegment> dimSegments = new List<Autodesk.Revit.DB.DimensionSegment>();
+                    foreach (Autodesk.Revit.DB.DimensionSegment seg in internalDimension.Segments)
                     {
                         dimSegments.Add(seg);
                     }
@@ -536,8 +543,8 @@ namespace Rhythm.Revit.Elements
 
             if (internalDimension.NumberOfSegments > 1) //set the multi segment ones
             {
-                List<DimensionSegment> dimSegments = new List<DimensionSegment>();
-                foreach (DimensionSegment seg in internalDimension.Segments)
+                List<Autodesk.Revit.DB.DimensionSegment> dimSegments = new List<Autodesk.Revit.DB.DimensionSegment>();
+                foreach (Autodesk.Revit.DB.DimensionSegment seg in internalDimension.Segments)
                 {
                     dimSegments.Add(seg);
                 }
@@ -636,7 +643,7 @@ namespace Rhythm.Revit.Elements
             }
             else
             {
-                foreach (DimensionSegment segment in internalDimension.Segments)
+                foreach (Autodesk.Revit.DB.DimensionSegment segment in internalDimension.Segments)
                 {
                     values.Add(segment.Origin.ToPoint(true));
                 }
@@ -666,7 +673,7 @@ namespace Rhythm.Revit.Elements
             }
             else
             {
-                foreach (DimensionSegment segment in internalDimension.Segments)
+                foreach (Autodesk.Revit.DB.DimensionSegment segment in internalDimension.Segments)
                 {
                     values.Add(segment.TextPosition.ToPoint(true));
                 }
@@ -697,7 +704,7 @@ namespace Rhythm.Revit.Elements
             }
             else
             {
-                foreach (DimensionSegment segment in internalDimension.Segments)
+                foreach (Autodesk.Revit.DB.DimensionSegment segment in internalDimension.Segments)
                 {
                     values.Add(segment.ValueString);
                 }
@@ -723,7 +730,7 @@ namespace Rhythm.Revit.Elements
             }
             else
             {
-                foreach (DimensionSegment segment in internalDimension.Segments)
+                foreach (Autodesk.Revit.DB.DimensionSegment segment in internalDimension.Segments)
                 {
                     values.Add(segment.Above);
                 }
@@ -747,7 +754,7 @@ namespace Rhythm.Revit.Elements
             }
             else
             {
-                foreach (DimensionSegment segment in internalDimension.Segments)
+                foreach (Autodesk.Revit.DB.DimensionSegment segment in internalDimension.Segments)
                 {
                     values.Add(segment.Below);
                 }
@@ -777,7 +784,7 @@ namespace Rhythm.Revit.Elements
                 }
                 else
                 {
-                    foreach (DimensionSegment segment in internalDimension.Segments)
+                    foreach (Autodesk.Revit.DB.DimensionSegment segment in internalDimension.Segments)
                     {
                         values.Add(segment.ValueString);
                     }
@@ -812,7 +819,7 @@ namespace Rhythm.Revit.Elements
                 }
                 else
                 {
-                    foreach (DimensionSegment segment in internalDimension.Segments)
+                    foreach (Autodesk.Revit.DB.DimensionSegment segment in internalDimension.Segments)
                     {
                         values.Add(segment.ValueString);
                     }
@@ -823,6 +830,8 @@ namespace Rhythm.Revit.Elements
             //return the values you retrieved.
             return values;
         }
+
+
 
         private static void SetFormatInternal(Units units, Autodesk.Revit.DB.Dimension internalDimension)
         {
