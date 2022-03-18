@@ -64,6 +64,31 @@ namespace Rhythm.Revit.Elements
             }
             return room;
         }
+
+        /// <summary>
+        /// This node will report the room the family instance resides in, (if available).
+        /// </summary>
+        /// <param name="instance">The family instance to obtain room info from.</param>
+        /// <param name="phase">The room to look in.</param>
+        /// <returns name="Room">The room by phase in which the instance is located.</returns>
+        /// <search>
+        /// space, rhythm,element.space
+        /// </search>
+        [NodeCategory("Query")]
+        public static global::Revit.Elements.Element RoomInPhase(global::Revit.Elements.Element instance, global::Revit.Elements.Element phase)
+        {
+            var internalFamily = (Autodesk.Revit.DB.FamilyInstance)instance.InternalElement;
+            var internalPhase = phase.InternalElement as Autodesk.Revit.DB.Phase;
+            try
+            {
+                return internalFamily.get_Room(internalPhase).ToDSType(true);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// This node will report the space the family instance resides in, (if available).
         /// </summary>

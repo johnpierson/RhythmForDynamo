@@ -270,6 +270,7 @@
       <DependentUpon>DefaultProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Revit\Selection\Collector.cs" />
+    <Compile Include="Revit\Selection\ElementSelection.cs" />
     <Compile Include="Revit\Selection\Selection.cs" />
     <Compile Include="Revit\Tools\Batch.cs" />
     <Compile Include="Revit\Application\Application.cs" />
