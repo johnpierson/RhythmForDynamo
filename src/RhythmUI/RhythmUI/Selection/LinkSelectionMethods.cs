@@ -24,7 +24,7 @@ namespace RhythmUI
 {
     #region Nodes
     [IsDesignScriptCompatible]
-    [NodeCategory("Rhythm.Revit.Selection.Selection")]
+    [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
     [NodeDescription("This allows you to select an element from a link. Useful for Dynamo player and Generative Design.")]
     [NodeName("Select Element from Link")]
     public class SelectElementInLink : ElementFilterSelection<Element>
@@ -44,8 +44,29 @@ namespace RhythmUI
     }
 
     [IsDesignScriptCompatible]
-    [NodeCategory("Rhythm.Revit.Selection.Selection")]
-    [NodeDescription("This allows you to select an element from a link of a given cateogry. Useful for Dynamo player and Generative Design.")]
+    [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
+    [NodeDescription("This allows you to select multiple elements from links. Useful for Dynamo player and Generative Design.")]
+    [NodeName("Select Elements from Link")]
+    public class SelectElementsInLink : ElementFilterSelection<Element>
+    {
+        private const string Message = "Select Model Element";
+        private new const string Prefix = "Element";
+
+        public SelectElementsInLink() : base(SelectionType.Many, SelectionObjectType.None, SelectElementsInLink.Message, Prefix)
+        {
+        }
+
+        [JsonConstructor]
+        public SelectElementsInLink(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) :
+            base(SelectionType.Many, SelectionObjectType.None, SelectElementsInLink.Message, Prefix, selectionIdentifier, inPorts, outPorts)
+        {
+        }
+    }
+
+
+    [IsDesignScriptCompatible]
+    [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
+    [NodeDescription("This allows you to select an element from a link of a given category. Useful for Dynamo player and Generative Design.")]
     [NodeName("Select Element from Link of Category")]
     public class SelectElementInLinkOfCategory : ElementFilterSelection<Element>
     {
@@ -101,10 +122,67 @@ namespace RhythmUI
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
         }
-
     }
 
+    [IsDesignScriptCompatible]
+    [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
+    [NodeDescription("This allows you to select multiple elements from a link of a given category. Useful for Dynamo player and Generative Design.")]
+    [NodeName("Select Elements from Link of Category")]
+    public class SelectElementsInLinkOfCategory : ElementFilterSelection<Element>
+    {
+        private const string message = "Select Model Element";
+        private const string prefix = "Element";
 
+        internal CategoryElementSelectionFilter<Element> SelectionFilter { get; set; }
+
+        public DSRevitNodesUI.Categories DropDownNodeModel { get; set; }
+
+        private int selectedIndex;
+
+        [JsonProperty(PropertyName = "SelectedIndex")]
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value;
+                DropDownNodeModel.SelectedIndex = value;
+                if (value >= 0)
+                    SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
+
+            }
+        }
+
+        public SelectElementsInLinkOfCategory()
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix)
+        {
+            DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectedIndex = DropDownNodeModel.SelectedIndex;
+            SelectionFilter = new CategoryElementSelectionFilter<Element>();
+            base.Filter = SelectionFilter;
+        }
+
+        [JsonConstructor]
+        public SelectElementsInLinkOfCategory(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        {
+            DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectionFilter = new CategoryElementSelectionFilter<Element>();
+            base.Filter = SelectionFilter;
+        }
+    }
 
     #endregion
 
@@ -112,6 +190,7 @@ namespace RhythmUI
     {
         public CategoryDropDown() : base() { }
     }
+
     #region Node View Customization
     public class SelectElementInLinkOfCategoryNodeViewCustomization : INodeViewCustomization<SelectElementInLinkOfCategory>
     {
@@ -119,6 +198,33 @@ namespace RhythmUI
         public DelegateCommand SelectCommand { get; set; }
 
         public void CustomizeView(SelectElementInLinkOfCategory model, NodeView nodeView)
+        {
+            Model = model;
+            SelectCommand = new DelegateCommand(Model.Select);
+            Model.PropertyChanged += (s, e) =>
+            {
+                nodeView.Dispatcher.Invoke(new Action(() =>
+                {
+                    if (e.PropertyName == "CanSelect")
+                    {
+                        SelectCommand.RaiseCanExecuteChanged();
+                    }
+                }));
+            };
+            var comboControl = new ComboControl { DataContext = this };
+            nodeView.inputGrid.Children.Add(comboControl);
+        }
+
+        public void Dispose()
+        {
+        }
+    }
+    public class SelectElementsInLinkOfCategoryNodeViewCustomization : INodeViewCustomization<SelectElementsInLinkOfCategory>
+    {
+        public SelectElementsInLinkOfCategory Model { get; set; }
+        public DelegateCommand SelectCommand { get; set; }
+
+        public void CustomizeView(SelectElementsInLinkOfCategory model, NodeView nodeView)
         {
             Model = model;
             SelectCommand = new DelegateCommand(Model.Select);
@@ -237,7 +343,7 @@ namespace RhythmUI
                     return RequestElementSelection(selectionMessage, AsLogger());
 
                 case SelectionType.Many:
-                    return RequestElementSelection(selectionMessage, AsLogger());
+                    return RequestMultipleElementsSelection(selectionMessage, AsLogger());
             }
 
             return null;
@@ -278,6 +384,40 @@ namespace RhythmUI
             }
 
             return new[] { e }.Cast<T>();
+        }
+        private IEnumerable<T> RequestMultipleElementsSelection(string selectionMessage, ILogger logger)
+        {
+            var doc = DocumentManager.Instance.CurrentUIDocument;
+            Element e = null;
+            List<Reference> elementRefs = null;
+            var elements = new List<T>();
+
+            //var choices = doc.Selection;
+            //choices.SetElementIds(new Collection<ElementId>());
+
+            if (ElementFilter != null)
+            {
+                elementRefs = doc.Selection.PickObjects(ObjectType.LinkedElement, ElementFilter, selectionMessage).ToList();
+
+            }
+            else
+            {
+                elementRefs = doc.Selection.PickObjects(ObjectType.LinkedElement, selectionMessage).ToList();
+            }
+
+
+            if (elementRefs == null || !elementRefs.Any())
+                return null;
+
+
+            foreach (var elementRef in elementRefs)
+            {
+                RevitLinkInstance link = DocumentManager.Instance.CurrentDBDocument.GetElement(elementRef) as RevitLinkInstance;
+                e = link.GetLinkDocument().GetElement(elementRef.LinkedElementId);
+                elements.Add((T)e);
+            }
+
+            return elements;
         }
 
 
