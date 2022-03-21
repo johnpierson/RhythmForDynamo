@@ -68,6 +68,9 @@
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DesignScriptBuiltin.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>C:\Program Files\Autodesk\Revit 2022\AddIns\DynamoForRevit\DSCoreNodes.dll</HintPath>
+    </Reference>
     <Reference Include="DSCPython, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DSCPython.dll</HintPath>
       <Private>False</Private>
@@ -77,8 +80,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DSRevitNodesUI">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Revit\2\Revit_2018\nodes\DSRevitNodesUI.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>C:\Program Files\Autodesk\Revit 2022\AddIns\DynamoForRevit\Revit\nodes\DSRevitNodesUI.dll</HintPath>
     </Reference>
     <Reference Include="DynamoApplications, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoApplications.dll</HintPath>
@@ -201,7 +203,7 @@
     <Compile Include="IsolatedSelectModelElementsUINodeView.cs" />
     <Compile Include="ModelCategoriesCollect.cs" />
     <Compile Include="ModelCategories.cs" />
-    <Compile Include="Selection\SelectRoomInLink.cs" />
+    <Compile Include="Selection\LinkSelectionMethods.cs" />
     <Compile Include="Selection\SelectRoomInLinkNodeViewCustomization.cs" />
     <Compile Include="TitleBlocksUi.cs" />
     <Compile Include="Utilities\IElementSelectionFilter.cs" />
@@ -232,7 +234,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)bin\x64\Release\RhythmUI.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

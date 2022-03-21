@@ -10,7 +10,7 @@ namespace Rhythm.Revit.Selection
     public class ElementSelection
     {
         private ElementSelection(){}
-        public static global::Revit.Elements.Element InLinkDoc(string arg1, bool arg2 = true)
+        public static global::Revit.Elements.Element InLinkDoc(string docTitle, string uniqueId, bool isRevitOwned = true)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
 
@@ -18,9 +18,10 @@ namespace Rhythm.Revit.Selection
 
             foreach (var l in links)
             {
-                if (l.GetLinkDocument().GetElement(arg1) != null)
+                var linkDoc = l.GetLinkDocument();
+                if (linkDoc.Title.Equals(docTitle))
                 {
-                    return l.GetLinkDocument().GetElement(arg1).ToDSType(true);
+                    return l.GetLinkDocument().GetElement(uniqueId).ToDSType(true);
                 }
             }
 
