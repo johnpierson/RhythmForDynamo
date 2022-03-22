@@ -34,12 +34,14 @@ namespace RhythmUI
 
         public SelectElementInLink() : base(SelectionType.One, SelectionObjectType.None, SelectElementInLink.Message, Prefix)
         {
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
         }
 
         [JsonConstructor]
         public SelectElementInLink(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) :
             base(SelectionType.One, SelectionObjectType.None, SelectElementInLink.Message, Prefix, selectionIdentifier, inPorts, outPorts)
         {
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
         }
     }
 
@@ -54,12 +56,15 @@ namespace RhythmUI
 
         public SelectElementsInLink() : base(SelectionType.Many, SelectionObjectType.None, SelectElementsInLink.Message, Prefix)
         {
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transforms")));
         }
 
         [JsonConstructor]
         public SelectElementsInLink(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) :
             base(SelectionType.Many, SelectionObjectType.None, SelectElementsInLink.Message, Prefix, selectionIdentifier, inPorts, outPorts)
         {
+
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transforms")));
         }
     }
 
@@ -104,6 +109,8 @@ namespace RhythmUI
             SelectedIndex = DropDownNodeModel.SelectedIndex;
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
+
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
         }
 
         [JsonConstructor]
@@ -121,6 +128,8 @@ namespace RhythmUI
             DropDownNodeModel = new DSRevitNodesUI.Categories();
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
+
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
         }
     }
 
@@ -164,6 +173,8 @@ namespace RhythmUI
             SelectedIndex = DropDownNodeModel.SelectedIndex;
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
+
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
         }
 
         [JsonConstructor]
@@ -181,6 +192,8 @@ namespace RhythmUI
             DropDownNodeModel = new DSRevitNodesUI.Categories();
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
+            
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transforms")));
         }
     }
 
@@ -275,27 +288,39 @@ namespace RhythmUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(
             List<AssociativeNode> inputAstNodes)
         {
-            AssociativeNode node = null;
-            Func<string, string, bool, Revit.Elements.Element> func = ElementSelection.InLinkDoc;
+            AssociativeNode elementOutput = null;
+            AssociativeNode transformOutput = null;
+            Func<string, string,bool, bool, object> func = ElementSelection.InLinkDoc;
 
             var results = SelectionResults.ToList();
 
             if (SelectionResults == null || !results.Any())
             {
-                node = AstFactory.BuildNullNode();
+                elementOutput = AstFactory.BuildNullNode();
             }
             else if (results.Count == 1)
             {
                 var el = results.First();
 
-                node = AstFactory.BuildFunctionCall(
+                elementOutput = AstFactory.BuildFunctionCall(
                     func,
                     new List<AssociativeNode>
                     {
                         AstFactory.BuildStringNode(el.Document.Title),
                         AstFactory.BuildStringNode(el.UniqueId),
+                        AstFactory.BuildBooleanNode(true),
                         AstFactory.BuildBooleanNode(true)
                     });
+                transformOutput = AstFactory.BuildFunctionCall(
+                    func,
+                    new List<AssociativeNode>
+                    {
+                        AstFactory.BuildStringNode(el.Document.Title),
+                        AstFactory.BuildStringNode(el.UniqueId),
+                        AstFactory.BuildBooleanNode(false),
+                        AstFactory.BuildBooleanNode(true)
+                    });
+
             }
             else
             {
@@ -308,13 +333,27 @@ namespace RhythmUI
                                 {
                                     AstFactory.BuildStringNode(el.Document.Title),
                                     AstFactory.BuildStringNode(el.UniqueId),
+                                    AstFactory.BuildBooleanNode(true),
+                                    AstFactory.BuildBooleanNode(true)
+                                })).ToList();
+                var newInputs2 =
+                    results.Select(
+                        el =>
+                            AstFactory.BuildFunctionCall(
+                                func,
+                                new List<AssociativeNode>
+                                {
+                                    AstFactory.BuildStringNode(el.Document.Title),
+                                    AstFactory.BuildStringNode(el.UniqueId),
+                                    AstFactory.BuildBooleanNode(false),
                                     AstFactory.BuildBooleanNode(true)
                                 })).ToList();
 
-                node = AstFactory.BuildExprList(newInputs);
+                elementOutput = AstFactory.BuildExprList(newInputs);
+                transformOutput = AstFactory.BuildExprList(newInputs2);
             }
 
-            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), elementOutput), AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(1), transformOutput) };
         }
 
 
