@@ -43,7 +43,7 @@ namespace RhythmUI
         public SelectElementInLink(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) :
             base(SelectionType.One, SelectionObjectType.None, SelectElementInLink.Message, Prefix, selectionIdentifier, inPorts, outPorts)
         {
-            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
+            
         }
     }
 
@@ -66,7 +66,7 @@ namespace RhythmUI
             base(SelectionType.Many, SelectionObjectType.None, SelectElementsInLink.Message, Prefix, selectionIdentifier, inPorts, outPorts)
         {
 
-            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transforms")));
+           
         }
     }
 
@@ -131,7 +131,7 @@ namespace RhythmUI
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
 
-            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
+           
         }
     }
 
@@ -195,7 +195,7 @@ namespace RhythmUI
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
             
-            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transforms")));
+          
         }
     }
 
