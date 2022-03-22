@@ -70,73 +70,7 @@ namespace RhythmUI
         }
     }
 
-    [IsDesignScriptCompatible]
-    [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
-    [NodeDescription("This allows you to select an element from a link. Useful for Dynamo player and Generative Design.")]
-    [NodeName("Select Element from Link Category Input")]
-    public class SelectElementInLinkByCategoryInput : ElementFilterSelection<Element>
-    {
-        private const string Message = "Select Model Element";
-        private new const string Prefix = "Element";
-
-        internal CategoryElementSelectionFilter<Element> SelectionFilter { get; set; }
-
-        public SelectElementInLinkByCategoryInput() : base(SelectionType.One, SelectionObjectType.None, SelectElementInLinkByCategoryInput.Message, Prefix)
-        {
-
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("category", "the category")));
-            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
-
-            RegisterAllPorts();
-
-            PortConnected += OnPortConnected;
-        }
-
-        private void OnPortConnected(PortModel arg1, ConnectorModel arg2)
-        {
-            try
-            {
-                SelectionFilter = new CategoryElementSelectionFilter<Element>();
-                base.Filter = SelectionFilter;
-
-                var objectInput = arg2.Start.Owner.CachedValue.Data;
-                Revit.Elements.Category cat = null;
-
-                string objectType = objectInput.GetType().ToString();
-                switch (objectType)
-                {
-                    case "Revit.Elements.Category":
-                        cat = objectInput as Revit.Elements.Category;
-                        SelectionFilter.Category = (BuiltInCategory)cat.Id;
-                        break;
-                    case "System.String":
-                        string catName = objectInput as string;
-                        cat = Revit.Elements.Category.ByName(catName);
-                        SelectionFilter.Category = (BuiltInCategory)cat.Id;
-                        break;
-                    default:
-                        SelectionFilter = null;
-                        base.Filter = SelectionFilter;
-                        break;
-                }
-
-              
-            }
-            catch (Exception e)
-            {
-                SelectionFilter = null;
-                base.Filter = SelectionFilter;
-            }
-        }
-
-        [JsonConstructor]
-        public SelectElementInLinkByCategoryInput(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) :
-            base(SelectionType.One, SelectionObjectType.None, SelectElementInLinkByCategoryInput.Message, Prefix, selectionIdentifier, inPorts, outPorts)
-        {
-            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("transform", "the link instance transform")));
-        }
-    }
-
+    
     [IsDesignScriptCompatible]
     [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
     [NodeDescription("This allows you to select an element from a link of a given category. Useful for Dynamo player and Generative Design.")]
