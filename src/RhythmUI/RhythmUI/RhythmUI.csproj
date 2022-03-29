@@ -141,12 +141,12 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitNodes">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Revit\2\Revit_2018\RevitNodes.dll</HintPath>
+    <Reference Include="RevitNodes, Version=2.12.0.5740, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DynamoVisualProgramming.Revit.2.12.0.5740\lib\RevitNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitServices">
-      <HintPath>C:\Program Files\Dynamo\Dynamo Revit\2\Revit_2018\RevitServices.dll</HintPath>
+    <Reference Include="RevitServices, Version=2.12.0.5740, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DynamoVisualProgramming.Revit.2.12.0.5740\lib\RevitServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RhythmRevit">

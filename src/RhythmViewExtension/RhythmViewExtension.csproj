@@ -167,7 +167,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
 </Project>

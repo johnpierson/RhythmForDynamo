@@ -1,9 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.IO.Compression;
 
 namespace Rhythm.System
 {
+    /// <summary>
+    /// Wrapper class for system
+    /// </summary>
     public class System
     {
         private System() { }
@@ -26,5 +28,7 @@ namespace Rhythm.System
             }
             
         }
+
+        
     }
 }

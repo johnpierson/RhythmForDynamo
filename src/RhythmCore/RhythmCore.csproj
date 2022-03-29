@@ -282,13 +282,17 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 
-xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
-xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "C:\Users\johnpierson\AppData\Roaming\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
+
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
   </Target>

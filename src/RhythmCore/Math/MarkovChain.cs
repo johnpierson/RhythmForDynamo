@@ -8,11 +8,20 @@ using Markov;
 
 namespace Rhythm.Math
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MarkovChain
     {
         private MarkovChain()
         {
         }
+        /// <summary>
+        /// Prediction with a markov chain
+        /// </summary>
+        /// <param name="trainingData"></param>
+        /// <param name="previous"></param>
+        /// <returns></returns>
         [MultiReturn(new[] { "likelyNext", "otherOptions" })]
         public static Dictionary<string, object> PredictNext(string[] trainingData, string previous)
         {

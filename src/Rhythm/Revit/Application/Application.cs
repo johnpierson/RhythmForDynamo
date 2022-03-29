@@ -15,6 +15,13 @@ namespace Rhythm.Revit.Application
     {
         private Applications()
         { }
+
+
+        public static void UI()
+        {
+            
+        }
+
         /// <summary>
         /// This node will open the given file in the background.
         /// </summary>
@@ -73,6 +80,7 @@ namespace Rhythm.Revit.Application
             try
             {
                 document.Close(save);
+                document.Dispose();
                 return "closed";
             }
             catch (Exception e)
@@ -146,6 +154,8 @@ namespace Rhythm.Revit.Application
 
                 ModelPath newModelPath = new FilePath(Path.Combine(newPath,originalInfo.Name));
                 document.SaveAs(newModelPath, opts);
+
+                document.Dispose();
 
                 return "Upgraded, saved and closed";
             }

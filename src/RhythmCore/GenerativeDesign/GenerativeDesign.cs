@@ -9,6 +9,9 @@ using Nuclex.Game.Packing;
 
 namespace Rhythm.GenerativeDesign
 {
+    /// <summary>
+    /// Wrapper class for generative design
+    /// </summary>
     public class GenerativeDesign
     {
         private GenerativeDesign()
@@ -19,7 +22,8 @@ namespace Rhythm.GenerativeDesign
         /// 
         /// </summary>
         /// <param name="container"></param>
-        /// <param name="items"></param>
+        /// <param name="viewportRectangles"></param>
+        /// <param name="viewportIds"></param>
         /// <returns name="viewportsThatFit">The viewports that fit in the titleblock container</returns>
         /// <returns name="proposedLocations">The proposed locations</returns>
         /// <returns name="viewportRectangles">The rectangles</returns>
@@ -43,7 +47,7 @@ namespace Rhythm.GenerativeDesign
 
 
                 List<Point> geoPoints = new List<Point>();
-
+                
                 var bBox = BoundingBox.ByGeometry(current);
 
                 var height = bBox.MaxPoint.Y - bBox.MinPoint.Y;

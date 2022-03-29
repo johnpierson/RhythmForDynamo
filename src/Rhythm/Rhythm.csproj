@@ -164,12 +164,12 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitNodes">
-      <HintPath>C:\Program Files\Autodesk\Revit 2021\AddIns\DynamoForRevit\Revit\RevitNodes.dll</HintPath>
+    <Reference Include="RevitNodes, Version=2.12.0.5740, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.12.0.5740\lib\RevitNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitServices">
-      <HintPath>C:\Program Files\Autodesk\Revit 2021\AddIns\DynamoForRevit\Revit\RevitServices.dll</HintPath>
+    <Reference Include="RevitServices, Version=2.12.0.5740, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.12.0.5740\lib\RevitServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -220,6 +220,9 @@
       <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2021.1.4\lib\net48\UIFramework.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="UIFrameworkServices">
+      <HintPath>C:\Program Files\Autodesk\Revit 2022\UIFrameworkServices.dll</HintPath>
     </Reference>
     <Reference Include="VMDataBridge, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\VMDataBridge.dll</HintPath>
