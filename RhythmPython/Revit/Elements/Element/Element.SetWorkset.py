@@ -28,15 +28,12 @@ def SetWorkset(element,workset):
     param = element.get_Parameter(BuiltInParameter.ELEM_PARTITION_PARAM)
     
     # set based on type
-    try:
-        if workset.GetType() is GraphicsStyle:
-            param.Set(workset.Id)
-        elif workset.GetType() is ElementId:
-            param.Set(workset)
-    # if we were given an int, try to set that way
-    except:
-         param.Set(ElementId(workset))
-   
+    if isinstance(workset, GraphicsStyle):
+        param.Set(workset.Id.IntegerValue)
+    elif isinstance(workset, ElementId):
+        param.Set(workset.IntegerValue)
+    elif isinstance(workset, int):
+        param.Set(workset)      
     TransactionManager.Instance.TransactionTaskDone()
     return element
 
