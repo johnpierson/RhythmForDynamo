@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using CoreNodeModels.Input;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
+using Directory = System.IO.Directory;
 
 namespace RhythmViewExtension
 {
@@ -27,7 +31,7 @@ namespace RhythmViewExtension
 
         public void Startup(ViewStartupParams p)
         {
-            
+          
         }
 
         private ViewLoadedParams loaded = null;
@@ -70,24 +74,5 @@ namespace RhythmViewExtension
         // ReSharper disable once InconsistentNaming
         public static DynamoViewModel dynView => view.DataContext as DynamoViewModel;
 
-        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-        {
-            if (depObj != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T)child;
-                    }
-
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
-                }
-            }
-        }
     }
 }

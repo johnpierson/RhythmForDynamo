@@ -4,18 +4,13 @@ using System.Collections.Generic;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
-using Nuclex.Game.Packing;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
-using Element = Revit.Elements.Element;
-using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Plane = Autodesk.DesignScript.Geometry.Plane;
 using Point = Autodesk.DesignScript.Geometry.Point;
-using Rectangle = Autodesk.DesignScript.Geometry.Rectangle;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
-using UV = Autodesk.DesignScript.Geometry.UV;
 
 namespace Rhythm.Revit.Elements
 {
@@ -313,51 +308,54 @@ namespace Rhythm.Revit.Elements
         }
 
         /// <summary>
-        /// Set a viewport's title length.
+        /// Set a viewport's title length. Revit 2022+
         /// </summary>
         /// <param name="viewport">The target viewport.</param>
         /// <param name="length">The length to set it to.</param>
         [NodeCategory("Actions")]
-        public static object SetViewTitleLength(global::Revit.Elements.Element viewport, double length)
+        public static void SetViewTitleLength(global::Revit.Elements.Element viewport, double length)
         {
-            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
-            //check if it is Revit 2022
-            if (!versionNumber.Contains("2022"))
-            {
-                throw new Exception(@"This node only works in Revit 2022 as that is when this API was added. ¯\_(ツ)_/¯");
-            }
-            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Viewport.SetViewTitleLength", new object[] { viewport, length});
+
+
+            var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            var doc = internalViewport.Document;
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalViewport.LabelLineLength = length;
+            TransactionManager.Instance.TransactionTaskDone();
+
         }
         /// <summary>
-        /// Set a viewport's title location (relative to the boundary of the view).
+        /// Set a viewport's title location (relative to the boundary of the view) Revit 2022+.
         /// </summary>
         /// <param name="viewport">The target viewport.</param>
         /// <param name="location">The location to set it to.</param>
         [NodeCategory("Actions")]
-        public static object SetViewTitleLocation(global::Revit.Elements.Element viewport, Point location)
+        public static void SetViewTitleLocation(global::Revit.Elements.Element viewport, Point location)
         {
-            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
-            //check if it is Revit 2022
-            if (!versionNumber.Contains("2022"))
-            {
-                throw new Exception(@"This node only works in Revit 2022 as that is when this API was added. ¯\_(ツ)_/¯");
-            }
-            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Viewport.SetViewTitleLocation", new object[] { viewport, location });
+
+
+            var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            var doc = internalViewport.Document;
+
+            var xyz = location.ToXyz(true);
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalViewport.LabelOffset = xyz;
+            TransactionManager.Instance.TransactionTaskDone();
         }
         /// <summary>
-        /// Get a viewport's title location (relative to the boundary of the view).
+        /// Get a viewport's title location (relative to the boundary of the view) Revit 2022+.
         /// </summary>
         /// <param name="viewport">The target viewport.</param>
         [NodeCategory("Actions")]
-        public static object GetViewTitleLocation(global::Revit.Elements.Element viewport)
+        public static Point GetViewTitleLocation(global::Revit.Elements.Element viewport)
         {
-            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
-            //check if it is Revit 2022
-            if (!versionNumber.Contains("2022"))
-            {
-                throw new Exception(@"This node only works in Revit 2022 as that is when this API was added. ¯\_(ツ)_/¯");
-            }
-            return Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Viewport.GetViewTitleLocation", new object[] { viewport});
+
+
+            var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+
+            return internalViewport.LabelOffset.ToPoint();
         }
         
     }

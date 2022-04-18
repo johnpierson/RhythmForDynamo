@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
+using RevitServices.Transactions;
+using Category = Revit.Elements.Category;
 
 namespace Rhythm.Revit.Elements
 {
@@ -14,6 +16,54 @@ namespace Rhythm.Revit.Elements
         private Categories()
         {
         }
+
+        /// <summary>
+        /// Collects all surface pattern related categories for override.
+        /// </summary>
+        /// <param name="toggle">Run It?</param>
+        /// <returns></returns>
+        [MultiReturn(new[] { "surfacePatternCategories", "cutPatternCategories" })]
+        [NodeCategory("Action")]
+        public static Dictionary<string, object> CollectHatchPatternCategories(bool toggle = true)
+        {
+            //obtains the current document for later use
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            //list to store dynamo categories
+            List<global::Revit.Elements.Category> dynamoSurfacePatternCategories = new List<Category>();
+            List<global::Revit.Elements.Category> dynamoCutPatternCategories = new List<Category>();
+
+
+            foreach (Autodesk.Revit.DB.Category cat in doc.Settings.Categories)
+            {
+                foreach (Autodesk.Revit.DB.Category subcategory in cat.SubCategories)
+                {
+                    if (subcategory.Name.Contains("Surface Pattern"))
+                    {
+                        var dynamoSurfacePatternCategory = global::Revit.Elements.Category.ById(subcategory.Id.IntegerValue);
+                        dynamoSurfacePatternCategories.Add(dynamoSurfacePatternCategory);
+
+                    }
+
+                    if (subcategory.Name.Contains("Cut Pattern"))
+                    {
+                        var dynamoCutPatternCategory = global::Revit.Elements.Category.ById(subcategory.Id.IntegerValue);
+                        dynamoCutPatternCategories.Add(dynamoCutPatternCategory);
+
+                    }
+                }
+            }
+
+            //returns the outputs
+            var outInfo = new Dictionary<string, object>
+            {
+                {"surfacePatternCategories", dynamoSurfacePatternCategories},
+                {"cutPatternCategories", dynamoCutPatternCategories}
+            };
+            return outInfo;
+        }
+
+
         /// <summary>
         /// Get the category projection lineweight.
         /// </summary>
@@ -42,6 +92,34 @@ namespace Rhythm.Revit.Elements
         }
 
         /// <summary>
+        /// Set the category projection lineweight.
+        /// </summary>
+        /// <returns name="category">The category</returns>
+        /// <search>
+        /// Categories.ProjectionLineweight
+        /// </search>
+        [NodeCategory("Action")]
+        public static global::Revit.Elements.Category SetProjectionLineweight(global::Revit.Elements.Category category, int penWeight)
+        {
+            //obtains the current document for later use
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            //generate the category id from the input user viewable category
+            Autodesk.Revit.DB.ElementId categoryId = new ElementId(category.Id);
+            //obtain the internal Revit category from the id
+            Autodesk.Revit.DB.Category internalRevitCat = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalRevitCat.SetLineWeight(penWeight, GraphicsStyleType.Projection);
+            TransactionManager.Instance.TransactionTaskDone();
+
+            doc.Regenerate();
+            DocumentManager.Instance.CurrentUIDocument.RefreshActiveView();
+
+            return category;
+        }
+
+
+        /// <summary>
         /// Get the category cut lineweight.
         /// </summary>
         /// <returns name="categoryCutLineweight">The category projection lineweights.</returns>
@@ -65,6 +143,34 @@ namespace Rhythm.Revit.Elements
                 categoryCutLineweight.Add(internalRevitCat.GetLineWeight(GraphicsStyleType.Cut));
             }
             return categoryCutLineweight;
+        }
+        /// <summary>
+        /// Set the category cut lineweight.
+        /// </summary>
+        /// <returns name="category">The category</returns>
+        /// <search>
+        /// Categories.CutLineweight
+        /// </search>
+        [NodeCategory("Action")]
+        public static global::Revit.Elements.Category SetCutLineweight(global::Revit.Elements.Category category, int penWeight)
+        {
+            //obtains the current document for later use
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            
+            //generate the category id from the input user viewable category
+            Autodesk.Revit.DB.ElementId categoryId = new ElementId(category.Id);
+            //obtain the internal Revit category from the id
+            Autodesk.Revit.DB.Category internalRevitCat = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalRevitCat.SetLineWeight(penWeight, GraphicsStyleType.Cut);
+            TransactionManager.Instance.TransactionTaskDone();
+
+            doc.Regenerate();
+            DocumentManager.Instance.CurrentUIDocument.RefreshActiveView();
+
+
+            return category;
         }
 
         /// <summary>

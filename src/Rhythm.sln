@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmCore", "RhythmCore\Rh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmViewExtension", "RhythmViewExtension\RhythmViewExtension.csproj", "{7BF1699A-D5D7-4BD7-AEE3-65326BF3EA6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit2022", "RhythmRevit2022\RhythmRevit2022.csproj", "{10817393-77EA-499C-8D6F-0311F5C913B7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,14 +51,6 @@ Global
 		{7BF1699A-D5D7-4BD7-AEE3-65326BF3EA6F}.Release|Any CPU.Build.0 = Release|x64
 		{7BF1699A-D5D7-4BD7-AEE3-65326BF3EA6F}.Release|x64.ActiveCfg = Release|x64
 		{7BF1699A-D5D7-4BD7-AEE3-65326BF3EA6F}.Release|x64.Build.0 = Release|x64
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Debug|x64.Build.0 = Debug|Any CPU
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Release|Any CPU.ActiveCfg = Release|x64
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Release|Any CPU.Build.0 = Release|x64
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Release|x64.ActiveCfg = Release|x64
-		{10817393-77EA-499C-8D6F-0311F5C913B7}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

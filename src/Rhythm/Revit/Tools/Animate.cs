@@ -67,7 +67,7 @@ namespace Rhythm.Revit.Tools
                                 //autodesk.unit.unit:degrees-1.0.1
                                 string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
 
-                                paramType = versionNumber.Contains("2022") ? Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Parameters.GetUnitType", new object[] { parameter }).ToString() : parameter.DisplayUnitType.ToString();
+                                paramType = parameter.GetUnitTypeId().TypeId;
                                 
                                 if (paramType.ToLower().Contains("degrees"))
                                 {

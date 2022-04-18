@@ -18,11 +18,11 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\RhythmCore.xml</DocumentationFile>
+    <DocumentationFile>bin\x64\Debug\RhythmCore.xml</DocumentationFile>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -52,37 +52,44 @@
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>bin\x64\Release\RhythmCore.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DesignScriptBuiltin, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DesignScriptBuiltin.dll</HintPath>
+    <Reference Include="DesignScriptBuiltin, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DesignScriptBuiltin.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DSCPython, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DSCPython.dll</HintPath>
+    <Reference Include="DSCPython, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DSCPython.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DSIronPython, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DSIronPython.dll</HintPath>
+    <Reference Include="DynamoApplications, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoApplications.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoApplications, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoApplications.dll</HintPath>
+    <Reference Include="DynamoCore, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoCore.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoCore, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoCore.dll</HintPath>
+    <Reference Include="DynamoInstallDetective, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoInstallDetective.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoInstallDetective, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoInstallDetective.dll</HintPath>
+    <Reference Include="DynamoServices, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.13.1.3887\lib\net48\DynamoServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoServices, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.12.0.5650\lib\net48\DynamoServices.dll</HintPath>
+    <Reference Include="DynamoShapeManager, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoShapeManager.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoShapeManager, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoShapeManager.dll</HintPath>
+    <Reference Include="DynamoUnits, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.13.1.3887\lib\net48\DynamoUnits.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoUnits, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.0.5650\lib\net48\DynamoUnits.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoUtilities, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoUtilities.dll</HintPath>
+    <Reference Include="DynamoUtilities, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Humanizer, Version=2.7.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
       <HintPath>packages\Humanizer.Core.2.7.9\lib\netstandard2.0\Humanizer.dll</HintPath>
@@ -90,6 +97,7 @@
     </Reference>
     <Reference Include="Markov, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markov.2.0.0\lib\net35\Markov.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -121,20 +129,24 @@
     <Reference Include="PresentationFramework">
       <Private>False</Private>
     </Reference>
-    <Reference Include="ProtoCore, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\ProtoCore.dll</HintPath>
+    <Reference Include="ProtoCore, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\ProtoCore.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="ProtoGeometry, Version=2.12.0.5475, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.0.5650\lib\net48\ProtoGeometry.dll</HintPath>
+    <Reference Include="ProtoGeometry, Version=2.13.0.6925, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.13.1.3887\lib\net48\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Core">
       <Private>False</Private>
@@ -146,13 +158,16 @@
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">
       <Private>False</Private>
@@ -179,8 +194,9 @@
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
-    <Reference Include="VMDataBridge, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\VMDataBridge.dll</HintPath>
+    <Reference Include="VMDataBridge, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\VMDataBridge.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase">
       <Private>False</Private>
@@ -280,19 +296,23 @@
   <ItemGroup>
     <Folder Include="DateTime\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+    <PostBuildEvent>
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
 
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
   </Target>

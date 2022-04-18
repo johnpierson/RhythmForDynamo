@@ -146,32 +146,11 @@ namespace Rhythm.Revit.Elements
         {
             string units = string.Empty;
 
-            string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
-
-            if (versionNumber.Contains("2022"))
-            {
-                units = Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Dimensions.DisplayUnits", new object[] { dimension }).ToString();
-            }
-            else
-            {
-                units = DisplayUnitInternal(dimension);
-            }
-
-            return units;
-        }
-
-        private static string DisplayUnitInternal(global::Revit.Elements.Dimension dimension)
-        {
             Dimension dim = dimension.InternalElement as Dimension;
-            try
-            {
-                return dim.DimensionType.GetUnitsFormatOptions().DisplayUnits.ToString();
-            }
-            catch (Exception)
-            {
-                return "UseDefault";
-            }
+
+            return dim.DimensionType.GetUnitsFormatOptions().GetUnitTypeId().TypeId;
         }
+       
 
         /// <summary>
         /// This node will return the accuracy for the given dimension.
@@ -796,19 +775,8 @@ namespace Rhythm.Revit.Elements
                 Units ogUnits = doc.GetUnits();
                 Units newUnits = new Units(UnitSystem.Imperial);
 
-                string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
 
-                if (versionNumber.Contains("2022"))
-                {
-                    Utilities.CommandHelpers.InvokeNode("RhythmRevit2022.dll", "Dimensions.SetFormat",
-                        new object[] { dimension, newUnits });
-                }
-                else
-                {
-                    SetFormatInternal(newUnits, internalDimension);
-                }
-                
-
+                SetFormat(dimension, newUnits);
                 //set the document units and commit the change
                 doc.SetUnits(newUnits);
 
@@ -832,12 +800,19 @@ namespace Rhythm.Revit.Elements
         }
 
 
-
-        private static void SetFormatInternal(Units units, Autodesk.Revit.DB.Dimension internalDimension)
+        public static void SetFormat(global::Revit.Elements.Dimension dimension, Autodesk.Revit.DB.Units units)
         {
-            units.SetFormatOptions(internalDimension.DimensionType.UnitType,
+            Dimension internalDimension = dimension.InternalElement as Dimension;
+            ForgeTypeId typeId = new ForgeTypeId("autodesk.spec.aec:length-2.0.0");
+
+            units.SetFormatOptions(typeId,
                 internalDimension.DimensionType.GetUnitsFormatOptions());
         }
+        //private static void SetFormatInternal(Units units, Autodesk.Revit.DB.Dimension internalDimension)
+        //{
+        //    units.SetFormatOptions(internalDimension.DimensionType.UnitType,
+        //        internalDimension.DimensionType.GetUnitsFormatOptions());
+        //}
 
     }
 

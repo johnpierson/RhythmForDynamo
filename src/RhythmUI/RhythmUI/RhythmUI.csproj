@@ -66,29 +66,26 @@
     </Reference>
     <Reference Include="DesignScriptBuiltin, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DesignScriptBuiltin.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
       <HintPath>C:\Program Files\Autodesk\Revit 2022\AddIns\DynamoForRevit\DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DSCPython, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DSCPython.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DSIronPython, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DSIronPython.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DSRevitNodesUI">
       <HintPath>C:\Program Files\Autodesk\Revit 2022\AddIns\DynamoForRevit\Revit\nodes\DSRevitNodesUI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoApplications, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoApplications.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoCore.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.WpfUILibrary.2.12.0.5650\lib\net48\DynamoCoreWpf.dll</HintPath>
@@ -96,40 +93,35 @@
     </Reference>
     <Reference Include="DynamoInstallDetective, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoInstallDetective.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoRevitDS">
       <HintPath>C:\Program Files\Autodesk\Revit 2022\AddIns\DynamoForRevit\Revit\DynamoRevitDS.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.DynamoServices.2.12.0.5650\lib\net48\DynamoServices.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoShapeManager, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoShapeManager.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.0.5650\lib\net48\DynamoUnits.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\DynamoUtilities.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoCore, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\ProtoCore.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry, Version=2.12.0.5475, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.0.5650\lib\net48\ProtoGeometry.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI, Version=21.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\..\packages\Revit_All_Main_Versions_API_x64.2021.1.4\lib\net48\RevitAPI.dll</HintPath>
@@ -150,8 +142,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RhythmRevit">
-      <HintPath>..\..\Rhythm\bin\x64\Debug\RhythmRevit.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\Rhythm\bin\x64\Release\RhythmRevit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -189,7 +180,6 @@
     </Reference>
     <Reference Include="VMDataBridge, Version=2.12.0.5650, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.0.5650\lib\net48\VMDataBridge.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -231,11 +221,13 @@
   <ItemGroup>
     <Content Include="images\logo.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
