@@ -85,4 +85,57 @@ namespace Rhythm.GenerativeDesign
             return outInfo;
         }
     }
+    /// <summary>
+    /// Wrapper for random distribution. This section made possible with https://github.com/MarcoFazioRandom/Gaussian-Random under the MIT license
+    /// </summary>
+    public class RandomDistribution
+    {
+        private static bool hasSpare = false;
+        private static double spare;
+        private static Random ran = new Random();
+        private RandomDistribution(){}
+
+        //public RandomDistribution(int seed) : base(seed) { }
+
+        private static double NextGaussianStandard()
+        {
+            if (hasSpare)
+            {
+                hasSpare = false;
+                return spare;
+            }
+            else
+            {
+                double u, v, s;
+                do
+                {
+                    u = ran.NextDouble() * 2 - 1;
+                    v = ran.NextDouble() * 2 - 1;
+                    s = u * u + v * v;
+                } while (s > 1 || s == 0);
+                s = global::System.Math.Sqrt(-2 * global::System.Math.Log(s) / s);
+                spare = v * s;
+                hasSpare = true;
+                return u * s;
+            }
+        }
+
+        /// <summary>
+        /// Return a number in the range (-1, +1) with a Normal distributed probability using the Marsaglia polar method.
+        /// </summary>
+        /// <param name="standardDeviation"> 
+        /// It is a measure of the amount of variation or dispersion of the values.
+        /// </param>
+        /// <returns></returns>
+        public static double NextGaussian(double standardDeviation = 1)
+        {
+            double x;
+            do
+            {
+                x = NextGaussianStandard() * standardDeviation / 3;
+            } while (x < -1 || x > 1);
+            return x;
+        }
+    }
 }
+

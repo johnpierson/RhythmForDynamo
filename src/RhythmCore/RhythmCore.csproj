@@ -310,9 +310,9 @@ if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCor
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
 
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
   </Target>
