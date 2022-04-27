@@ -47,14 +47,14 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <returns name="ceilingType">The first (default) ceiling type.</returns>
         [NodeCategory("Query")]
-        public static global::Revit.Elements.CeilingType DefaultCeilingType()
+        public static global::Revit.Elements.Element DefaultCeilingType()
         {
 
 
             var doc = DocumentManager.Instance.CurrentDBDocument;
 
             return new FilteredElementCollector(doc).OfClass(typeof(Autodesk.Revit.DB.CeilingType)).WhereElementIsElementType()
-                .FirstElement().ToDSType(true) as global::Revit.Elements.CeilingType;
+                .FirstElement().ToDSType(true) as global::Revit.Elements.Element;
         }
 
         /// <summary>
