@@ -204,7 +204,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About\About.cs" />
-    <Compile Include="Image\Image.cs" />
     <Compile Include="System\System.cs" />
     <Compile Include="GenerativeDesign\CygonRectanglePacker.cs" />
     <Compile Include="GenerativeDesign\GenerativeDesign.cs" />
@@ -295,9 +294,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DateTime\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="images\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

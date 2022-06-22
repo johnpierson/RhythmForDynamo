@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using Revit.Elements;
@@ -49,8 +50,10 @@ namespace Rhythm.Revit.Application
             }
             Autodesk.Revit.DB.RevitLinkInstance internalInstance = (Autodesk.Revit.DB.RevitLinkInstance)sourceInstance.InternalElement;
 
-            //creates blank copy paste options
+            //creates copy paste options with type name handler
             CopyPasteOptions copyOpts = new CopyPasteOptions();
+            copyOpts.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
+
             //creates blank transform.
             Transform transform = Transform.CreateTranslation(Vector.XAxis().ToRevitType());
             //commits the transaction
@@ -89,12 +92,29 @@ namespace Rhythm.Revit.Application
             }
             //creates blank copy paste options
             CopyPasteOptions copyOpts = new CopyPasteOptions();
+            copyOpts.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
+
             //creates blank transform.
             Transform transform = Transform.CreateTranslation(Vector.XAxis().ToRevitType());
+
             //commits the transaction
-            TransactionManager.Instance.EnsureInTransaction(doc);
-            ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElements(sourceDocument, idCollection, doc, transform, copyOpts);
-            TransactionManager.Instance.TransactionTaskDone();
+            TransactionManager.Instance.ForceCloseTransaction();
+
+            ICollection<ElementId> newElementIds;
+
+            using (Transaction copyTransaction = new Transaction(doc,"Copying Elements"))
+            {
+                copyTransaction.Start();
+
+                //handle failures
+                FailureHandlingOptions failureOptions = copyTransaction.GetFailureHandlingOptions();
+                failureOptions.SetFailuresPreprocessor(new HidePasteDuplicateTypesPreprocessor());
+
+                newElementIds = ElementTransformUtils.CopyElements(sourceDocument, idCollection, doc, transform, copyOpts);
+
+                copyTransaction.Commit();
+            }
+
             //create a new list for the new elements
             List<global::Revit.Elements.Element> newElements = new List<global::Revit.Elements.Element>();
             //gets the new elements
@@ -235,5 +255,56 @@ namespace Rhythm.Revit.Application
             return type.InvokeMember("BackgroundOpen", BindingFlags.Default | BindingFlags.InvokeMethod, null, null,
                 new object[] { dbDocument.PathName });
         }
+    }
+    /// <summary>
+    /// A handler to accept duplicate types names created by the copy/paste operation.
+    /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
+    class HideAndAcceptDuplicateTypeNamesHandler : IDuplicateTypeNamesHandler
+    {
+        #region IDuplicateTypeNamesHandler Members
+
+        /// <summary>
+        /// Implementation of the IDuplicateTypeNameHandler
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public DuplicateTypeAction OnDuplicateTypeNamesFound(DuplicateTypeNamesHandlerArgs args)
+        {
+            // Always use duplicate destination types when asked
+            return DuplicateTypeAction.UseDestinationTypes;
+        }
+
+        #endregion
+    }
+    /// <summary>
+    /// A failure preprocessor to hide the warning about duplicate types being pasted.
+    /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
+    class HidePasteDuplicateTypesPreprocessor : IFailuresPreprocessor
+    {
+        #region IFailuresPreprocessor Members
+
+        /// <summary>
+        /// Implementation of the IFailuresPreprocessor.
+        /// </summary>
+        /// <param name="failuresAccessor"></param>
+        /// <returns></returns>
+        public FailureProcessingResult PreprocessFailures(FailuresAccessor failuresAccessor)
+        {
+            foreach (FailureMessageAccessor failure in failuresAccessor.GetFailureMessages())
+            {
+                // Delete any "Can't paste duplicate types.  Only non duplicate types will be pasted." warnings
+                if (failure.GetFailureDefinitionId() == BuiltInFailures.CopyPasteFailures.CannotCopyDuplicates)
+                {
+                    failuresAccessor.DeleteWarning(failure);
+                }
+            }
+
+            // Handle any other errors interactively
+            return FailureProcessingResult.Continue;
+        }
+
+        #endregion
     }
 }
