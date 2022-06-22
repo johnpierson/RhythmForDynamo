@@ -153,8 +153,16 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> RetrieveNestedComponents(global::Revit.Elements.FamilyInstance instance)
         {
+            //check if the element is from a linked document, if it is, this does not wok
+            if (instance.InternalElement.Document.IsLinked)
+            {
+                throw new Exception(@"This node does not work on linked elements. We need to iterate through the current document, and that is not possible with links. Sorry. 😥");
+            }
+
+
             //the current document
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document doc = instance.InternalElement.Document;
+
             //the internal family list to loop through
             List<Autodesk.Revit.DB.FamilyInstance> internalFamily =
                 new List<Autodesk.Revit.DB.FamilyInstance>
@@ -175,8 +183,9 @@ namespace Rhythm.Revit.Elements
                 {
                     foreach (ElementId subCom in internalFamily[i].GetSubComponentIds())
                     {
+                        var famDoc = internalFamily[i].Document;
                         Autodesk.Revit.DB.FamilyInstance internalFam =
-                            (Autodesk.Revit.DB.FamilyInstance)doc.GetElement(subCom);
+                            (Autodesk.Revit.DB.FamilyInstance)famDoc.GetElement(subCom);
 
                         internalFamily.Add(internalFam);
                         nestedList.Add(internalFam.ToDSType(true));
