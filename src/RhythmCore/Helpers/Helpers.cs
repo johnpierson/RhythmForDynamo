@@ -141,6 +141,17 @@ namespace Rhythm.Helpers
         {
             return Environment.UserName;
         }
+        /// <summary>
+        /// Returns the current computer name.
+        /// </summary>
+        /// <param name="refresh">Optional toggle to refresh the node</param>
+        /// <returns></returns>
+        [NodeCategory("Query")]
+        public static string MachineName(bool refresh = true)
+        {
+            return Environment.MachineName;
+        }
+
 
         /// <summary>
         /// This will move your mouse back and forth slowly while toggled true.
