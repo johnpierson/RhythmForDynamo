@@ -69,12 +69,31 @@ namespace Rhythm.Revit.Application
         /// </search>
         [NodeCategory("Actions")]
         //[Obsolete("This node will be completely removed in future versions of Rhythm")]
-        public static string CloseDocument(Autodesk.Revit.DB.Document document, bool save)
+        public static string CloseDocument(object document, bool save)
         {
+            Document dbDoc = null;
+
+            if (document is global::Revit.Application.Document dynamoDoc)
+            {
+                var docs = DocumentManager.Instance.CurrentUIApplication.Application.Documents;
+                foreach (Document d in docs)
+                {
+                    if (d.PathName.Equals(dynamoDoc.FilePath))
+                    {
+                        dbDoc = d;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                dbDoc = document as Document;
+            }
+
             try
             {
-                document.Close(save);
-                document.Dispose();
+                dbDoc.Close(save);
+                dbDoc.Dispose();
                 return "closed";
             }
             catch (Exception e)

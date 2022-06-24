@@ -1226,6 +1226,15 @@ if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRev
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.xml" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.12\packages\Rhythm\bin" /Y /I
 
+
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.xml" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.dll" "$(AppData)\Dynamo\Dynamo Core\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.xml" "$(AppData)\Dynamo\Dynamo Core\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmRevit.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.13\packages\Rhythm\bin" /Y /I
+
 if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmRevit.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmRevit.xml" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\x64\Debug\RhythmRevit.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I

@@ -271,7 +271,24 @@ namespace Rhythm.Revit.Application
 
             return dynamoDoc;
         }
+        /// <summary>
+        /// Convert a Dynamo document to the db kind. Enables use with OOTB nodes.
+        /// </summary>
+        /// <param name="dynamoDocument">The Dynamo document.</param>
+        /// <returns name="dynamoDocument">The converted document as Autodesk.Revit.DB.Document</returns>
+        public static Autodesk.Revit.DB.Document DynamoDocumentToDbDocument(global::Revit.Application.Document dynamoDocument)
+        {
+            var docs = DocumentManager.Instance.CurrentUIApplication.Application.Documents;
+            foreach (Document d in docs)
+            {
+                if (d.PathName.Equals(dynamoDocument.FilePath))
+                {
+                    return d;
+                }
+            }
 
+            return null;
+        }
     }
     /// <summary>
     /// A handler to accept duplicate types names created by the copy/paste operation.
