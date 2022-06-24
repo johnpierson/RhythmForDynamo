@@ -16,12 +16,6 @@ namespace Rhythm.Revit.Application
         private Applications()
         { }
 
-
-        public static void UI()
-        {
-            
-        }
-
         /// <summary>
         /// This node will open the given file in the background.
         /// </summary>

@@ -255,6 +255,23 @@ namespace Rhythm.Revit.Application
             return type.InvokeMember("BackgroundOpen", BindingFlags.Default | BindingFlags.InvokeMethod, null, null,
                 new object[] { dbDocument.PathName });
         }
+
+
+        /// <summary>
+        /// Convert a db document to the Dynamo kind. Enables use with OOTB nodes.
+        /// </summary>
+        /// <param name="dbDocument">The background opened DB document.</param>
+        /// <returns name="dynamoDocument">The converted document as Revit.Application.Document</returns>
+        public static global::Revit.Application.Document DbDocumentToDynamoDocument(Autodesk.Revit.DB.Document dbDocument)
+        {
+            ConstructorInfo ctor = typeof(global::Revit.Application.Document).GetConstructors
+                (BindingFlags.Instance | BindingFlags.NonPublic)[0];
+
+            global::Revit.Application.Document dynamoDoc = (global::Revit.Application.Document)ctor.Invoke(new object[] { dbDocument });
+
+            return dynamoDoc;
+        }
+
     }
     /// <summary>
     /// A handler to accept duplicate types names created by the copy/paste operation.
