@@ -1,0 +1,32 @@
+name: Tweet New Release
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on release
+  release:
+    types: [published]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+ latest-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Release
+        id: fetch-latest-release
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          owner: johnPierson
+          repo: MonocleForDynamo
+      - name: Consume 
+        run: |
+          echo ${{ steps.fetch-latest-release.outputs.release }}
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: "New Monocle Release: https://github.com/johnpierson/RhythmForDynamo/releases/tag/${{ steps.fetch-latest-release.outputs.release }}" 
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
