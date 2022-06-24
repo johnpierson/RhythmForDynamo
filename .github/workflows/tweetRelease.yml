@@ -19,7 +19,7 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           owner: johnPierson
-          repo: MonocleForDynamo
+          repo: RhythmForDynamo
       - name: Consume 
         run: |
           echo ${{ steps.fetch-latest-release.outputs.release }}
