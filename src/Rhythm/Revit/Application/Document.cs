@@ -278,18 +278,14 @@ namespace Rhythm.Revit.Application
         /// <returns name="dynamoDocument">The converted document as Autodesk.Revit.DB.Document</returns>
         public static Autodesk.Revit.DB.Document DynamoDocumentToDbDocument(global::Revit.Application.Document dynamoDocument)
         {
-            var docs = DocumentManager.Instance.CurrentUIApplication.Application.Documents;
-            foreach (Document d in docs)
-            {
-                if (d.PathName.Equals(dynamoDocument.FilePath))
-                {
-                    return d;
-                }
-            }
+            var property = typeof(global::Revit.Application.Document).GetProperty("InternalDocument",
+                BindingFlags.NonPublic | BindingFlags.Instance);
 
-            return null;
+            return property.GetValue(item) as rvtDocument;
         }
     }
+
+    #region EventHandlers
     /// <summary>
     /// A handler to accept duplicate types names created by the copy/paste operation.
     /// </summary>
@@ -341,4 +337,5 @@ namespace Rhythm.Revit.Application
 
         #endregion
     }
+    #endregion
 }

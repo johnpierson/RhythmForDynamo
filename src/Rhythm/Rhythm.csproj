@@ -338,6 +338,7 @@
     <Compile Include="Revit\Elements\Sheet.cs" />
     <Compile Include="Revit\Views\ViewPlan.cs" />
     <Compile Include="Revit\Elements\Viewport.cs" />
+    <Compile Include="Utilities\Converters.cs" />
     <Compile Include="Utilities\PointInPolyExtensions.cs" />
     <Compile Include="Utilities\PointInPoly.cs" />
     <Compile Include="Utilities\ViewUtils.cs" />
