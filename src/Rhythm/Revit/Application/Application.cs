@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
+using Rhythm.Utilities;
 
 namespace Rhythm.Revit.Application
 {
@@ -29,7 +31,7 @@ namespace Rhythm.Revit.Application
         /// Application.OpenDocumentFile, rhythm
         /// </search>
         [NodeCategory("Create")]
-        public static object OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true, bool closeAllWorksets = false)
+        public static global::Revit.Application.Document OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true, bool closeAllWorksets = false)
         {
             var uiapp = DocumentManager.Instance.CurrentUIApplication;
             var app = uiapp.Application;
@@ -55,7 +57,7 @@ namespace Rhythm.Revit.Application
 
             var document = app.OpenDocumentFile(modelPath, openOpts);
 
-            return document;
+            return document.ToDynamoType();
         }
 
         /// <summary>
@@ -75,15 +77,7 @@ namespace Rhythm.Revit.Application
 
             if (document is global::Revit.Application.Document dynamoDoc)
             {
-                var docs = DocumentManager.Instance.CurrentUIApplication.Application.Documents;
-                foreach (Document d in docs)
-                {
-                    if (d.PathName.Equals(dynamoDoc.FilePath))
-                    {
-                        dbDoc = d;
-                        break;
-                    }
-                }
+                dbDoc = dynamoDoc.ToRevitType();
             }
             else
             {
@@ -191,7 +185,7 @@ namespace Rhythm.Revit.Application
         /// <returns name="documents">The documents that are currently open.</returns>
         [NodeCategory("Query")]
         //[Obsolete("This node will be completely removed in future versions of Rhythm")]
-        public static List<Autodesk.Revit.DB.Document> GetOpenDocuments(bool runIt)
+        public static List<global::Revit.Application.Document> GetOpenDocuments(bool runIt)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
@@ -212,7 +206,7 @@ namespace Rhythm.Revit.Application
                     //nothing
                 }
             }
-            return documents;
+            return documents.Select(d => d.ToDynamoType()).ToList();
         }
 
         /// <summary>

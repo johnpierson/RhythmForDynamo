@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿/*
+ These converters were made possible thanks to @erfajo.
+Link to the provided converters here: https://forum.dynamobim.com/t/the-fusion-post-for-coders/78033
+ */
+using System.Linq;
 using System.Reflection;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
