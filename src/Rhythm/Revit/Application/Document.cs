@@ -269,6 +269,24 @@ namespace Rhythm.Revit.Application
                 return ex.Message;
             }
         }
+        /// <summary>
+        /// Convert a db document to the Dynamo kind.
+        /// </summary>
+        /// <param name="dbDocument">The background opened DB document.</param>
+        /// <returns name="dynamoDocument">The converted document as Revit.Application.Document</returns>
+        public static global::Revit.Application.Document DbDocumentToDynamoDocument(Autodesk.Revit.DB.Document dbDocument)
+        {
+            return dbDocument.ToDynamoType();
+        }
+        /// <summary>
+        /// Convert a Dynamo document to the db kind. 
+        /// </summary>
+        /// <param name="dynamoDocument">The Dynamo document.</param>
+        /// <returns name="dynamoDocument">The converted document as Autodesk.Revit.DB.Document</returns>
+        public static Autodesk.Revit.DB.Document DynamoDocumentToDbDocument(global::Revit.Application.Document dynamoDocument)
+        {
+            return dynamoDocument.ToRevitType();
+        }
     }
 
     #region EventHandlers
