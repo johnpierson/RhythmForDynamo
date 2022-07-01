@@ -12,8 +12,6 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Rhythm.Utilities;
-using Curve = Autodesk.DesignScript.Geometry.Curve;
-using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 
 namespace Rhythm.Revit.Application
 {
@@ -37,9 +35,20 @@ namespace Rhythm.Revit.Application
         /// copy
         /// </search>
         [NodeCategory("Actions")]
-        public static List<global::Revit.Elements.Element> CopyElementsFromLinkedDocument(Autodesk.Revit.DB.Document sourceDocument,
+        public static List<global::Revit.Elements.Element> CopyElementsFromLinkedDocument(object sourceDocument,
             global::Revit.Elements.Element sourceInstance, List<global::Revit.Elements.Element> elements)
         {
+            Document sourceDbDoc = null;
+
+            if (sourceDocument is global::Revit.Application.Document dynamoDoc)
+            {
+                sourceDbDoc = dynamoDoc.ToRevitType();
+            }
+            else
+            {
+                sourceDbDoc = sourceDocument as Document;
+            }
+
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //converts elements to ids in a collection
             ICollection<ElementId> idCollection = new List<ElementId>();
@@ -58,7 +67,7 @@ namespace Rhythm.Revit.Application
             Transform transform = Transform.CreateTranslation(Vector.XAxis().ToRevitType());
             //commits the transaction
             TransactionManager.Instance.EnsureInTransaction(doc);
-            ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElements(sourceDocument, idCollection, doc, internalInstance.GetTransform(), copyOpts);
+            ICollection<ElementId> newElementIds = ElementTransformUtils.CopyElements(sourceDbDoc, idCollection, doc, internalInstance.GetTransform(), copyOpts);
             TransactionManager.Instance.TransactionTaskDone();
             //create a new list for the new elements
             List<global::Revit.Elements.Element> newElements = new List<global::Revit.Elements.Element>();
@@ -81,8 +90,20 @@ namespace Rhythm.Revit.Application
         /// copy
         /// </search>
         [NodeCategory("Actions")]
-        public static List<global::Revit.Elements.Element> CopyElementsFromDocument(Autodesk.Revit.DB.Document sourceDocument, List<global::Revit.Elements.Element> elements)
+        public static List<global::Revit.Elements.Element> CopyElementsFromDocument(object sourceDocument, List<global::Revit.Elements.Element> elements)
         {
+            Document sourceDbDoc = null;
+
+            if (sourceDocument is global::Revit.Application.Document dynamoDoc)
+            {
+                sourceDbDoc = dynamoDoc.ToRevitType();
+            }
+            else
+            {
+                sourceDbDoc = sourceDocument as Document;
+            }
+
+
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //converts elements to ids in a collection
             ICollection<ElementId> idCollection = new List<ElementId>();
@@ -110,7 +131,7 @@ namespace Rhythm.Revit.Application
                 FailureHandlingOptions failureOptions = copyTransaction.GetFailureHandlingOptions();
                 failureOptions.SetFailuresPreprocessor(new HidePasteDuplicateTypesPreprocessor());
 
-                newElementIds = ElementTransformUtils.CopyElements(sourceDocument, idCollection, doc, transform, copyOpts);
+                newElementIds = ElementTransformUtils.CopyElements(sourceDbDoc, idCollection, doc, transform, copyOpts);
 
                 copyTransaction.Commit();
             }
@@ -135,12 +156,23 @@ namespace Rhythm.Revit.Application
         /// startingView
         /// </search>
         [NodeCategory("Actions")]
-        public static string SetStartingView(Autodesk.Revit.DB.Document sourceDocument, global::Revit.Elements.Element view)
+        public static string SetStartingView(object sourceDocument, global::Revit.Elements.Element view)
         {
+            Document dbDoc = null;
+
+            if (sourceDocument is global::Revit.Application.Document dynamoDoc)
+            {
+                dbDoc = dynamoDoc.ToRevitType();
+            }
+            else
+            {
+                dbDoc = sourceDocument as Document;
+            }
+
             try
             {
-                TransactionManager.Instance.EnsureInTransaction(sourceDocument);
-                StartingViewSettings.GetStartingViewSettings(sourceDocument).ViewId = view.InternalElement.Id;
+                TransactionManager.Instance.EnsureInTransaction(dbDoc);
+                StartingViewSettings.GetStartingViewSettings(dbDoc).ViewId = view.InternalElement.Id;
                 TransactionManager.Instance.TransactionTaskDone();
                 return "Success";
             }
@@ -159,8 +191,19 @@ namespace Rhythm.Revit.Application
         /// copy
         /// </search>
         [NodeCategory("Actions")]
-        public static List<global::Revit.Elements.Element> CopyDraftingViewsFromDocument(Autodesk.Revit.DB.Document sourceDocument, List<global::Revit.Elements.Element> draftingViews)
+        public static List<global::Revit.Elements.Element> CopyDraftingViewsFromDocument(object sourceDocument, List<global::Revit.Elements.Element> draftingViews)
         {
+            Document sourceDbDoc = null;
+
+            if (sourceDocument is global::Revit.Application.Document dynamoDoc)
+            {
+                sourceDbDoc = dynamoDoc.ToRevitType();
+            }
+            else
+            {
+                sourceDbDoc = sourceDocument as Document;
+            }
+
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             
             //converts elements to ids in a collection
@@ -173,7 +216,7 @@ namespace Rhythm.Revit.Application
 
             TransactionManager.Instance.ForceCloseTransaction();
             List<View> newDraftingViews =
-                ViewUtils.DuplicateDraftingViews(sourceDocument, idCollection, doc);
+                ViewUtils.DuplicateDraftingViews(sourceDbDoc, idCollection, doc);
             List<global::Revit.Elements.Element> vList = new List<global::Revit.Elements.Element>(newDraftingViews.Select(v => v.ToDSType(true)));
 
             return vList;
@@ -187,8 +230,20 @@ namespace Rhythm.Revit.Application
         /// <param name="previewViewId">Optional - If you want to specify the preview view for the thumbnail.</param>
         /// <returns name="result">A string message whether the save as was successful or a failure.</returns>
         [NodeCategory("Action")]
-        public static string SaveAs(Autodesk.Revit.DB.Document document, string filePath, int previewViewId = -1)
+        public static string SaveAs(object document, string filePath, int previewViewId = -1)
         {
+            Document dbDoc = null;
+
+            if (document is global::Revit.Application.Document dynamoDoc)
+            {
+                dbDoc = dynamoDoc.ToRevitType();
+            }
+            else
+            {
+                dbDoc = document as Document;
+            }
+
+
             SaveAsOptions opts = new SaveAsOptions();
 
             if (previewViewId != -1)
@@ -206,7 +261,7 @@ namespace Rhythm.Revit.Application
             try
             {
                 opts.Compact = true;
-                document.SaveAs(filePath, opts);
+                dbDoc.SaveAs(filePath, opts);
                 return "Successful Save";
             }
             catch (Exception ex)
@@ -215,81 +270,26 @@ namespace Rhythm.Revit.Application
             }
         }
         /// <summary>
-        /// This converts orchid documents to Revit DB Documents
-        /// </summary>
-        /// <param name="orchidDocument">The Orchid document to convert to a Autodesk.Revit.DB.Document.</param>
-        /// <returns name="dbDocument">The Autodesk.Revit.DB.Document</returns>
-        public static Autodesk.Revit.DB.Document OrchidDocumentToDbDocument(object orchidDocument)
-        {
-            //find the orchid assembly
-            Assembly sourceAssembly = Assembly.GetAssembly(orchidDocument.GetType());
-            Type type = sourceAssembly.GetType("Orchid.RevitProject.Common.Document");
-            //find the path of the document
-            string path = type.InvokeMember("Path", BindingFlags.Default | BindingFlags.InvokeMethod, null, null,
-                new object[] { orchidDocument, true }).ToString();
-
-            //revit db document
-            Autodesk.Revit.DB.Document doc = null;
-
-            foreach (Autodesk.Revit.DB.Document d in DocumentManager.Instance.CurrentUIApplication.Application.Documents)
-            {
-                if (d.PathName.Equals(path))
-                {
-                    doc = d;
-                }
-            }
-            return doc;
-        }
-        /// <summary>
-        /// This converts Revit DB Documents to orchid documents.
-        /// </summary>
-        /// <param name="dbDocument">The Autodesk.Revit.DB.Document to convert to Orchid Document</param>
-        /// <returns name="orchidDocument">The Orchid document</returns>
-        public static object DbDocumentToOrchidDocument(Autodesk.Revit.DB.Document dbDocument)
-        {
-
-            //find the orchid assembly
-            var assembly = AppDomain.CurrentDomain.GetAssemblies().First(a => a.FullName.Contains("OrchidRB") && !a.FullName.Contains("customization"));
-            Type type = assembly.GetType("Orchid.RevitProject.Common.Document");
-            //find the path of the document
-            return type.InvokeMember("BackgroundOpen", BindingFlags.Default | BindingFlags.InvokeMethod, null, null,
-                new object[] { dbDocument.PathName });
-        }
-
-
-        /// <summary>
-        /// Convert a db document to the Dynamo kind. Enables use with OOTB nodes.
+        /// Convert a db document to the Dynamo kind.
         /// </summary>
         /// <param name="dbDocument">The background opened DB document.</param>
         /// <returns name="dynamoDocument">The converted document as Revit.Application.Document</returns>
         public static global::Revit.Application.Document DbDocumentToDynamoDocument(Autodesk.Revit.DB.Document dbDocument)
         {
-            ConstructorInfo ctor = typeof(global::Revit.Application.Document).GetConstructors
-                (BindingFlags.Instance | BindingFlags.NonPublic)[0];
-
-            global::Revit.Application.Document dynamoDoc = (global::Revit.Application.Document)ctor.Invoke(new object[] { dbDocument });
-
-            return dynamoDoc;
+            return dbDocument.ToDynamoType();
         }
         /// <summary>
-        /// Convert a Dynamo document to the db kind. Enables use with OOTB nodes.
+        /// Convert a Dynamo document to the db kind. 
         /// </summary>
         /// <param name="dynamoDocument">The Dynamo document.</param>
         /// <returns name="dynamoDocument">The converted document as Autodesk.Revit.DB.Document</returns>
         public static Autodesk.Revit.DB.Document DynamoDocumentToDbDocument(global::Revit.Application.Document dynamoDocument)
         {
-            var docs = DocumentManager.Instance.CurrentUIApplication.Application.Documents;
-            foreach (Document d in docs)
-            {
-                if (d.PathName.Equals(dynamoDocument.FilePath))
-                {
-                    return d;
-                }
-            }
-
-            return null;
+            return dynamoDocument.ToRevitType();
         }
     }
+
+    #region EventHandlers
     /// <summary>
     /// A handler to accept duplicate types names created by the copy/paste operation.
     /// </summary>
@@ -341,4 +341,5 @@ namespace Rhythm.Revit.Application
 
         #endregion
     }
+    #endregion
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Dynamo.Graph.Nodes;
 using Dynamo.Utilities;
 using Rhythm.Utilities;
+using Convert = System.Convert;
 using Element = Revit.Elements.Element;
 
 namespace Rhythm.Revit.ElementFilter

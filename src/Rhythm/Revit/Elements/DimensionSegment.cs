@@ -69,6 +69,8 @@ namespace Rhythm.Revit.Elements
         }
 
 
+
+        #pragma warning disable CS1591
         public static string ValueString(Autodesk.Revit.DB.DimensionSegment segment)
         {
             return segment.ValueString;
@@ -93,5 +95,6 @@ namespace Rhythm.Revit.Elements
         {
             return segment.Suffix;
         }
+        #pragma warning restore CS1591
     }
 }

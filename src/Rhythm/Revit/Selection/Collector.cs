@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using Revit.Elements;
@@ -31,7 +32,13 @@ namespace Rhythm.Revit.Selection
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
             if (document.GetType().ToString().Contains("Orchid"))
             {
-                doc = Rhythm.Revit.Application.Documents.OrchidDocumentToDbDocument(document);
+                throw new Exception(
+                    "Orchid has recently been updated to return Revit.Application.Document, please update your Orchid to use this node.");
+            }
+
+            if (document is global::Revit.Application.Document dynamoDoc)
+            {
+                doc = dynamoDoc.ToRevitType();
             }
             else
             {
@@ -61,7 +68,12 @@ namespace Rhythm.Revit.Selection
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
             if (document.GetType().ToString().Contains("Orchid"))
             {
-                doc = Rhythm.Revit.Application.Documents.OrchidDocumentToDbDocument(document);
+                throw new Exception(
+                    "Orchid has recently been updated to return Revit.Application.Document, please update your Orchid to use this node.");
+            }
+            if (document is global::Revit.Application.Document dynamoDoc)
+            {
+                doc = dynamoDoc.ToRevitType();
             }
             else
             {
