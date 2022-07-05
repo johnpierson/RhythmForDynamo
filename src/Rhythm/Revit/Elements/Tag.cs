@@ -26,24 +26,26 @@ namespace Rhythm.Revit.Elements
         /// Tag, Tag.Location
         /// </search>
         [NodeCategory("Query")]
-        public static List<Point> GetHeadPosition(List<global::Revit.Elements.Tag> tag)
+        public static Point GetHeadPosition(global::Revit.Elements.Element tag)
         {
-            //declare a list for the points
-            List<Point> point = new List<Point>();
-            foreach (var t in tag)
+            var internalElement = tag.InternalElement;
+
+            if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
             {
-                var internalTag = (Autodesk.Revit.DB.IndependentTag)t.InternalElement;
-                try
-                {
-                    point.Add(internalTag.TagHeadPosition.ToPoint());
-                }
-                catch
-                {
-                    point.Add(null);
-                }
+                return internalTag.TagHeadPosition.ToPoint();
             }
 
-            return point;
+            if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)
+            {
+             return roomTag.TagHeadPosition.ToPoint();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Mechanical.SpaceTag spaceTag)
+            {
+                return spaceTag.TagHeadPosition.ToPoint();
+            }
+
+            return null;
         }
         /// <summary>
         /// The position of the leader end for a tag using free end leader behavior. 
@@ -54,24 +56,26 @@ namespace Rhythm.Revit.Elements
         /// Tag, Tag.Location
         /// </search>
         [NodeCategory("Query")]
-        public static List<Point> GetLeaderEnd(List<global::Revit.Elements.Tag> tag)
+        public static Point GetLeaderEnd(global::Revit.Elements.Tag tag)
         {
-            //declare a list for the points
-            List<Point> point = new List<Point>();
-            foreach (var t in tag)
+            var internalElement = tag.InternalElement;
+
+            if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
             {
-                var internalTag = (Autodesk.Revit.DB.IndependentTag)t.InternalElement;
-                try
-                {
-                    point.Add(internalTag.LeaderEnd.ToPoint());
-                }
-                catch
-                {
-                    point.Add(null);
-                }
+                return internalTag.LeaderEnd.ToPoint();
             }
 
-            return point;
+            if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)
+            {
+                return roomTag.LeaderEnd.ToPoint();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Mechanical.SpaceTag spaceTag)
+            {
+                return spaceTag.LeaderEnd.ToPoint();
+            }
+
+            return null;
         }
         /// <summary>
         /// The position of the elbow of the tag's leader.  
@@ -82,24 +86,26 @@ namespace Rhythm.Revit.Elements
         /// Tag, Tag.Location
         /// </search>
         [NodeCategory("Query")]
-        public static List<Point> GetLeaderElbow(List<global::Revit.Elements.Tag> tag)
+        public static Point GetLeaderElbow(global::Revit.Elements.Tag tag)
         {
-            //declare a list for the points
-            List<Point> point = new List<Point>();
-            foreach (var t in tag)
+            var internalElement = tag.InternalElement;
+
+            if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
             {
-                var internalTag = (Autodesk.Revit.DB.IndependentTag)t.InternalElement;
-                try
-                {
-                    point.Add(internalTag.LeaderElbow.ToPoint());
-                }
-                catch
-                {
-                    point.Add(null);
-                }
+                return internalTag.LeaderElbow.ToPoint();
             }
 
-            return point;
+            if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)
+            {
+                return roomTag.LeaderElbow.ToPoint();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Mechanical.SpaceTag spaceTag)
+            {
+                return spaceTag.LeaderElbow.ToPoint();
+            }
+
+            return null;
         }
         /// <summary>
         /// This will attempt to set the leader end position of the tag.
@@ -113,9 +119,23 @@ namespace Rhythm.Revit.Elements
         public static void SetLeaderEndPosition(global::Revit.Elements.Tag tag, Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Autodesk.Revit.DB.IndependentTag internalTag = (Autodesk.Revit.DB.IndependentTag)tag.InternalElement;
+            var internalElement = tag.InternalElement;
+
             TransactionManager.Instance.EnsureInTransaction(doc);
-            internalTag.LeaderEnd = location.ToXyz();
+            if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
+            {
+                internalTag.LeaderEnd = location.ToXyz();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)
+            {
+               roomTag.LeaderEnd = location.ToXyz();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Mechanical.SpaceTag spaceTag)
+            {
+               spaceTag.LeaderEnd = location.ToXyz();
+            }
             TransactionManager.Instance.TransactionTaskDone();
         }
         /// <summary>
@@ -129,10 +149,25 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Actions")]
         public static void SetHeadPosition(global::Revit.Elements.Tag tag, Point location)
         {
+
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Autodesk.Revit.DB.IndependentTag internalTag = (Autodesk.Revit.DB.IndependentTag)tag.InternalElement;
+            var internalElement = tag.InternalElement;
+
             TransactionManager.Instance.EnsureInTransaction(doc);
-            internalTag.TagHeadPosition = location.ToXyz();
+            if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
+            {
+                internalTag.TagHeadPosition = location.ToXyz();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)
+            {
+                roomTag.TagHeadPosition = location.ToXyz();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Mechanical.SpaceTag spaceTag)
+            {
+                spaceTag.TagHeadPosition = location.ToXyz();
+            }
             TransactionManager.Instance.TransactionTaskDone();
         }
         /// <summary>
@@ -147,9 +182,23 @@ namespace Rhythm.Revit.Elements
         public static void SetLeaderElbowPosition(global::Revit.Elements.Tag tag, Point location)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Autodesk.Revit.DB.IndependentTag internalTag = (Autodesk.Revit.DB.IndependentTag)tag.InternalElement;
+            var internalElement = tag.InternalElement;
+
             TransactionManager.Instance.EnsureInTransaction(doc);
-            internalTag.LeaderElbow = location.ToXyz();
+            if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
+            {
+                internalTag.LeaderElbow = location.ToXyz();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)
+            {
+                roomTag.LeaderElbow = location.ToXyz();
+            }
+
+            if (internalElement is Autodesk.Revit.DB.Mechanical.SpaceTag spaceTag)
+            {
+                spaceTag.LeaderElbow = location.ToXyz();
+            }
             TransactionManager.Instance.TransactionTaskDone();
         }
         /// <summary>
