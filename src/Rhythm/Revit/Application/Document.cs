@@ -6,6 +6,7 @@ using System.Reflection;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Structure;
 using Dynamo.Graph.Nodes;
 using Revit.Elements;
 using Revit.GeometryConversion;
@@ -244,7 +245,20 @@ namespace Rhythm.Revit.Application
             }
 
 
-            SaveAsOptions opts = new SaveAsOptions();
+            SaveAsOptions opts = new SaveAsOptions
+            {
+                Compact = true
+            };
+
+            //if it is workshared, save it as a central again
+            if (dbDoc.IsWorkshared)
+            {
+                WorksharingSaveAsOptions worksharingSaveAsOptions = new WorksharingSaveAsOptions
+                {
+                    SaveAsCentral = true
+                };
+                opts.SetWorksharingOptions(worksharingSaveAsOptions);
+            }
 
             if (previewViewId != -1)
             {
@@ -260,7 +274,6 @@ namespace Rhythm.Revit.Application
 
             try
             {
-                opts.Compact = true;
                 dbDoc.SaveAs(filePath, opts);
                 return "Successful Save";
             }
