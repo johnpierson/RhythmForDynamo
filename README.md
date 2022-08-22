@@ -46,6 +46,10 @@ Rhythm consists of several sub-libraries. These are describe a bit more in detai
 ## Contributors
 This package is primarily managed by the author of http://sixtysecondrevit.com with additional contributions from [People Like You™](https://github.com/johnpierson/RhythmForDynamo/graphs/contributors).
 
+## Special Thanks
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg"/>
+Thanks to Jetbrains for supplying an open-source license of Resharper for this library. More info about Jetbrains Open-Source & Resharper can be found <a href="https://www.jetbrains.com/community/opensource/?utm_campaign=opensource&utm_content=approved&utm_medium=email&utm_source=newsletter&utm_term=jblogo#support"> here</a>.
+
 ## Updates
 Since there is not currently an update notification process on Dynamo's package manager, I post notifications for updates on twitter.
 [![](https://img.shields.io/twitter/follow/60secondrevit.svg?label=Follow&style=social)](https://twitter.com/60secondrevit)
