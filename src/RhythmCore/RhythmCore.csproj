@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FF18955-6F89-46E2-BA59-21335E27D7C4}</ProjectGuid>
+    <ProjectGuid>{F0985186-FE96-4CD0-81DF-915E1982E224}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Rhythm</RootNamespace>
@@ -12,18 +12,16 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\x64\Debug\RhythmCore.xml</DocumentationFile>
-    <PlatformTarget>x64</PlatformTarget>
+    <DocumentationFile>bin\Debug\RhythmCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,87 +30,77 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>bin\Debug\RhythmCore.xml</DocumentationFile>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\x64\Release\RhythmCore.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\RhythmCore.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Analysis, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.DynamoCoreNodes.2.13.1.3887\lib\net48\Analysis.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DesignScriptBuiltin, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DesignScriptBuiltin.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DesignScriptBuiltin.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DSCoreNodes, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.DynamoCoreNodes.2.13.1.3887\lib\net48\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCPython, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DSCPython.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DSCPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoApplications, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoApplications.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoApplications.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoCore.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoInstallDetective, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoInstallDetective.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoInstallDetective.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.13.1.3887\lib\net48\DynamoServices.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.DynamoServices.2.13.1.3887\lib\net48\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoShapeManager, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoShapeManager.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoShapeManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.13.1.3887\lib\net48\DynamoUnits.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.ZeroTouchLibrary.2.13.1.3887\lib\net48\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoUtilities.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Humanizer, Version=2.7.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
-      <HintPath>packages\Humanizer.Core.2.7.9\lib\netstandard2.0\Humanizer.dll</HintPath>
+    <Reference Include="GeometryColor, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.DynamoCoreNodes.2.13.1.3887\lib\net48\GeometryColor.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.14.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>packages\Humanizer.Core.2.14.1\lib\netstandard2.0\Humanizer.dll</HintPath>
     </Reference>
     <Reference Include="Markov, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Markov.2.0.0\lib\net35\Markov.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\Markov.2.0.0\lib\net35\Markov.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -120,91 +108,61 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="PresentationCore">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="PresentationFramework">
+      <HintPath>packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoCore, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\ProtoCore.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry, Version=2.13.0.6925, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.13.1.3887\lib\net48\ProtoGeometry.dll</HintPath>
+      <HintPath>packages\DynamoVisualProgramming.ZeroTouchLibrary.2.13.1.3887\lib\net48\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
+      <HintPath>packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Windows.Forms">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.CSharp">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Data">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Xml">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
     <Reference Include="VMDataBridge, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\VMDataBridge.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="WindowsBase">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\VMDataBridge.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About\About.cs" />
-    <Compile Include="System\System.cs" />
     <Compile Include="GenerativeDesign\CygonRectanglePacker.cs" />
     <Compile Include="GenerativeDesign\GenerativeDesign.cs" />
     <Compile Include="GenerativeDesign\OutOfSpaceException.cs" />
@@ -214,115 +172,21 @@
     <Compile Include="Numbers\Numbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="String\String.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Rhythm.resx" />
+    <Compile Include="System\System.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Resources\Rhythm.About.About.AboutRhythm.Large.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.About.About.AboutRhythm.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.Helpers.Toggle.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.Helpers.Toggle.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.ImportExport.ScreenshotMainWindow.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.ImportExport.ScreenshotMainWindow.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserDomainName.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserDomainName.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserTempFolder.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserTempFolder.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.String.Modify.Mock.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.String.Modify.Mock.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.String.Modify.MOcKtExt.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.String.Modify.MOcKtExt.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.String.Modify.ToTitle.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.String.Modify.ToTitle.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.JiggleMouse.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.JiggleMouse.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.Helpers.ThisOrThat.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.Helpers.ThisOrThat.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserAppData.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserAppData.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserName.Large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Rhythm.Helpers.System.CurrentUserName.Small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DateTime\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
 
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Debug\RhythmCore.customization.dll" "$(AppData)\Dynamo\Dynamo Core\2.14\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-    <!-- Get System.Drawing.dll -->
-    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
-      <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
-    </GetReferenceAssemblyPaths>
-    <!-- Get assembly -->
-    <GetAssemblyIdentity AssemblyFiles="$(OutDir)$(TargetName).dll">
-      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo" />
-    </GetAssemblyIdentity>
-    <!-- Generate customization dll -->
-    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)\Rhythm.resx" OutputResources="$(ProjectDir)\Resources\RhythmCoreImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)\Resources\RhythmCoreImages.resources" OutputAssembly="$(OutDir)RhythmCore.customization.dll" Version="%(AssemblyInfo.Version)" />
-  </Target>
 </Project>

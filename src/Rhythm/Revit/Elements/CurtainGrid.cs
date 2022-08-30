@@ -20,7 +20,7 @@ namespace Rhythm.Revit.Elements
         /// <summary>
         /// This node will retrieve the curtain grid and U/V Gridlines from the given wall
         /// </summary>
-        /// <param name="curtainWall">The curtain gridline to get data from.</param>
+        /// <param name="curtainWall">The curtain wall to get data from.</param>
         /// <returns name="curtainGrid">The internal curtain grid.</returns>
         /// <returns name="uGrids">The grids in the U direction, (horizontal).</returns>
         /// <returns name="vGrids">The grids in the V direction, (vertical).</returns>
@@ -35,6 +35,41 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Wall internalWall = (Autodesk.Revit.DB.Wall)curtainWall.InternalElement;
             //obtains internal curtain grid
             Autodesk.Revit.DB.CurtainGrid internalCurtainGrid = internalWall.CurtainGrid;
+            //gets U Grid Ids
+            ICollection<Autodesk.Revit.DB.ElementId> uGridIds = internalCurtainGrid.GetUGridLineIds();
+            //make new list for U grids
+            List<global::Revit.Elements.Element> uGrids = new List<global::Revit.Elements.Element>(uGridIds.Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
+            //gets V Grid Ids
+            ICollection<Autodesk.Revit.DB.ElementId> vGridIds = internalCurtainGrid.GetVGridLineIds();
+            //make new list for V grids
+            List<global::Revit.Elements.Element> vGrids = new List<global::Revit.Elements.Element>(vGridIds.Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
+            //returns the outputs
+            var outInfo = new Dictionary<string, object>
+                {
+                    { "curtainGrid", internalCurtainGrid},
+                    { "uGrids", uGrids},
+                    { "vGrids", vGrids},
+                };
+            return outInfo;
+        }
+        /// <summary>
+        /// This node will retrieve the curtain grid and U/V Gridlines from the given wall
+        /// </summary>
+        /// <param name="slopedGlazing">The sloped glazing to get data from.</param>
+        /// <returns name="curtainGrid">The internal curtain grid.</returns>
+        /// <returns name="uGrids">The grids in the U direction, (horizontal).</returns>
+        /// <returns name="vGrids">The grids in the V direction, (vertical).</returns>
+        /// <search>
+        /// curtaingrid, rhythm
+        /// </search>
+        [MultiReturn(new[] { "curtainGrid", "uGrids", "vGrids" })]
+        [NodeCategory("Create")]
+        public static Dictionary<string, object> ByRoofElement(global::Revit.Elements.Roof curtainWall)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.FootPrintRoof internalRoof = (Autodesk.Revit.DB.FootPrintRoof)curtainWall.InternalElement;
+            //obtains internal curtain grid
+            Autodesk.Revit.DB.CurtainGrid internalCurtainGrid = internalRoof.CurtainGrids.GetEnumerator().Current as Autodesk.Revit.DB.CurtainGrid;
             //gets U Grid Ids
             ICollection<Autodesk.Revit.DB.ElementId> uGridIds = internalCurtainGrid.GetUGridLineIds();
             //make new list for U grids

@@ -5,7 +5,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Autodesk.DesignScript.Runtime;
 using Dynamo.Graph.Nodes;
 
 namespace Rhythm.Helpers
