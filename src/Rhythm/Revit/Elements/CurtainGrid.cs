@@ -64,20 +64,41 @@ namespace Rhythm.Revit.Elements
         /// </search>
         [MultiReturn(new[] { "curtainGrid", "uGrids", "vGrids" })]
         [NodeCategory("Create")]
-        public static Dictionary<string, object> ByRoofElement(global::Revit.Elements.Roof curtainWall)
+        public static Dictionary<string, object> ByRoofElement(global::Revit.Elements.Roof slopedGlazing)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Autodesk.Revit.DB.FootPrintRoof internalRoof = (Autodesk.Revit.DB.FootPrintRoof)curtainWall.InternalElement;
+            Autodesk.Revit.DB.FootPrintRoof internalRoof = (Autodesk.Revit.DB.FootPrintRoof)slopedGlazing.InternalElement;
             //obtains internal curtain grid
-            Autodesk.Revit.DB.CurtainGrid internalCurtainGrid = internalRoof.CurtainGrids.GetEnumerator().Current as Autodesk.Revit.DB.CurtainGrid;
+            Autodesk.Revit.DB.CurtainGrid internalCurtainGrid = null;
+            foreach (var cg in internalRoof.CurtainGrids)
+            {
+                if (cg is Autodesk.Revit.DB.CurtainGrid)
+                {
+                    internalCurtainGrid = cg as Autodesk.Revit.DB.CurtainGrid;
+                    break;
+                }
+            }
+
+            if (internalCurtainGrid == null) return null;
+
             //gets U Grid Ids
-            ICollection<Autodesk.Revit.DB.ElementId> uGridIds = internalCurtainGrid.GetUGridLineIds();
-            //make new list for U grids
-            List<global::Revit.Elements.Element> uGrids = new List<global::Revit.Elements.Element>(uGridIds.Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
+            List<global::Revit.Elements.Element> uGrids = new List<Element>();
+            if (internalCurtainGrid.NumULines > 0)
+            {
+                var uGridIds = internalCurtainGrid.GetUGridLineIds();
+                uGrids = new List<global::Revit.Elements.Element>(uGridIds
+                    .Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
+            }
+
             //gets V Grid Ids
-            ICollection<Autodesk.Revit.DB.ElementId> vGridIds = internalCurtainGrid.GetVGridLineIds();
-            //make new list for V grids
-            List<global::Revit.Elements.Element> vGrids = new List<global::Revit.Elements.Element>(vGridIds.Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
+            List<global::Revit.Elements.Element> vGrids = new List<Element>();
+            if (internalCurtainGrid.NumVLines > 0)
+            {
+                var vGridIds = internalCurtainGrid.GetVGridLineIds();
+                vGrids = new List<global::Revit.Elements.Element>(vGridIds
+                    .Select(id => doc.GetElement(id).ToDSType(true)).ToArray());
+            }
+
             //returns the outputs
             var outInfo = new Dictionary<string, object>
                 {
