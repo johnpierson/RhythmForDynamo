@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Dynamo.Graph.Nodes;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -122,5 +123,6 @@ namespace Rhythm.Revit.Elements
 
             return curves;
         }
+        
     }
 }

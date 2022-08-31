@@ -236,6 +236,7 @@
     <Compile Include="Revit\Elements\Room.cs" />
     <Compile Include="Revit\Elements\RoomTag.cs" />
     <Compile Include="Revit\Elements\Sheet.cs" />
+    <Compile Include="Revit\Elements\SlopedGlazing.cs" />
     <Compile Include="Revit\Elements\Space.cs" />
     <Compile Include="Revit\Elements\SpaceTag.cs" />
     <Compile Include="Revit\Elements\Tag.cs" />
