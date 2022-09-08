@@ -92,6 +92,9 @@
       <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.13.1.3887\lib\net48\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DynamoCoreWpf.resources">
+      <HintPath>C:\Users\johnpierson\Desktop\Autodesk\DynamoCoreRuntime2.13.1\en-US\DynamoCoreWpf.resources.dll</HintPath>
+    </Reference>
     <Reference Include="DynamoInstallDetective, Version=2.13.1.3887, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.13.1.3887\lib\net48\DynamoInstallDetective.dll</HintPath>
       <Private>False</Private>
@@ -216,9 +219,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="images\logo.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
