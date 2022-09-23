@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+    "last_update_timestamp": "2022-08-30T22:28:52.919Z",
+    "notifications": [
+        {
+            "title": "Dynamo knows everything. Dynamo sees everything.",
+            "link": "https://dynamobim.org/using-input-nodes-incorrectly-in-dynamo-player/",
+            "linkTitle": "Read More",
+            "longDescription": "In Revit 2023, we received a lot of improvements in Dynamo player. For a quick overview and a few other references…",
+            "created": "2022-08-30T18:45:29.942Z",
+            "thumbnail": "https://media.makeameme.org/created/i-see-everything-8879yt.jpg",
+            "priority": "high",
+            "type": "blog",
+            "scope": "public",
+            "source": "internal",
+            "status": true,
+            "isPinned": false,
+            "id": "093cc0fb95be4152"
+        }
+    ]
+}
