@@ -52,7 +52,7 @@ Thanks to Jetbrains for supplying an open-source license of Resharper for this l
 
 ## Updates
 Since there is not currently an update notification process on Dynamo's package manager, I post notifications for updates on twitter.
-[![](https://img.shields.io/twitter/follow/60secondrevit.svg?label=Follow&style=social)](https://twitter.com/60secondrevit)
+[![](https://img.shields.io/twitter/follow/johntpierson.svg?label=Follow&style=social)](https://twitter.com/johntpierson)
 
 ## Examples
 Examples will be available on the [wiki](https://github.com/johnpierson/RhythmForDynamo/wiki) soon,
