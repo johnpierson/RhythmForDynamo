@@ -187,6 +187,8 @@ if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.xm
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
 
-</PostBuildEvent>
+
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.dll" "$(AppData)\Dynamo\Dynamo Core\2.15\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmCore.xml" "$(AppData)\Dynamo\Dynamo Core\2.15\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
 </Project>

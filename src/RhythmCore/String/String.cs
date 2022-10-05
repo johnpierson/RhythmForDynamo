@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Dynamo.Graph.Nodes;
 using Humanizer;
@@ -16,6 +17,20 @@ namespace Rhythm.String
         {
         }
 
+        /// <summary>
+        /// This will run a regular expression on a a string. By default this removes all whitespace and special characters from a string
+        /// </summary>
+        /// <param name="stringToReplace">Your target string.</param>
+        /// <param name="regexString">The regular expression to use.</param>
+        /// <param name="replacement">What to replace with.</param>
+        /// <returns name="modifiedString">The finished product</returns>
+        [NodeCategory("Actions")]
+        public static string ParseRegularExpression(string stringToReplace, string regexString = @"[^a-zA-Z0-9]", string replacement = "")
+        {
+            string modifiedString = Regex.Replace(stringToReplace, @"[^a-zA-Z0-9]", "");
+
+            return modifiedString;
+        }
         /// <summary>
         /// Converts the input string to a title case.
         /// </summary>

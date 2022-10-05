@@ -34,7 +34,8 @@ namespace Rhythm.About
                 "\"You just can’t beat the person who never gives up.\" - Babe Ruth",
                 "\"Start where you are. Use what you have. Do what you can.\" - Arthur Ashe",
                 "\"If you can't explain it simply, you don't understand it well enough.\" - Albert Einstein",
-                "\"No work is ever wasted. If it’s not working, let go and move on – it’ll come back around to be useful later.\" - Pixar"
+                "\"No work is ever wasted. If it’s not working, let go and move on – it’ll come back around to be useful later.\" - Pixar",
+                "\"People will forget what you said, people will forget what you did, but people will never forget how you made them feel.\" - Maya Angelou"
             };
 
 
