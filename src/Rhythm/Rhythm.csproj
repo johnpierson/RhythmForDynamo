@@ -251,6 +251,7 @@
     <Compile Include="Revit\Selection\Selection.cs" />
     <Compile Include="Revit\Tools\Animate.cs" />
     <Compile Include="Revit\Tools\Batch.cs" />
+    <Compile Include="Revit\Tools\Tools.cs" />
     <Compile Include="Revit\Views\CygonRectanglePacker.cs" />
     <Compile Include="Revit\Views\OutOfSpaceException.cs" />
     <Compile Include="Revit\Views\RectanglePacker.cs" />
