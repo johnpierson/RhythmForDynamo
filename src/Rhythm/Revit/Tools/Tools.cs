@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Revit.Elements;
+using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using FamilyInstance = Revit.Elements.FamilyInstance;
 using Room = Autodesk.Revit.DB.Architecture.Room;
@@ -28,7 +29,7 @@ namespace Rhythm.Revit.Tools
         /// <param name="roomNameParameter">The name of your Name parameter, the sample has the parameter named as Room Name</param>
         /// <param name="roomNumberParameter">The name of your Number parameter, the sample has the parameter named as Room Number</param>
         /// <returns></returns>
-        public static global::Revit.Elements.FamilyInstance ThreeDeeRoomTags(global::Revit.Elements.Room room, global::Revit.Elements.FamilyType tagType, string roomNameParameter = "Room Name", string roomNumberParameter = "Room Number")
+        public static global::Revit.Elements.FamilyInstance ThreeDeeRoomTags(global::Revit.Elements.Room room, global::Revit.Elements.FamilyType tagType, string roomNameParameter = "Name", string roomNumberParameter = "Number")
         {
             Room internalRoom = room.InternalElement as Room;
 
@@ -36,10 +37,22 @@ namespace Rhythm.Revit.Tools
             {
                 return null;
             }
-
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document currentDoc = DocumentManager.Instance.CurrentDBDocument;
 
             var locationPoint = room.Location;
+
+            //check to see if it is from a link
+            Autodesk.Revit.DB.Document doc = internalRoom.Document;
+            if (doc.IsLinked)
+            {
+                RevitLinkInstance linkInstance = new FilteredElementCollector(currentDoc)
+                    .OfClass(typeof(RevitLinkInstance)).Cast<RevitLinkInstance>().FirstOrDefault(l => l.GetLinkDocument().Equals(doc));
+                if (linkInstance != null)
+                {
+                    var transform = linkInstance.GetTransform();
+                    locationPoint = transform.OfPoint(locationPoint.ToRevitType()).ToPoint();
+                }
+            }
 
             var newFamilyInstance = FamilyInstance.ByPoint(tagType, locationPoint);
 
@@ -72,7 +85,7 @@ namespace Rhythm.Revit.Tools
         /// <param name="spaceNameParameter">The name of your Name parameter, the sample has the parameter named as Space Name</param>
         /// <param name="spaceNumberParameter">The name of your Number parameter, the sample has the parameter named as Space Number</param>
         /// <returns></returns>
-        public static global::Revit.Elements.FamilyInstance ThreeDeeSpaceTags(global::Revit.Elements.Space space, global::Revit.Elements.FamilyType tagType, string spaceNameParameter = "Space Name", string spaceNumberParameter = "Space Number")
+        public static global::Revit.Elements.FamilyInstance ThreeDeeSpaceTags(global::Revit.Elements.Space space, global::Revit.Elements.FamilyType tagType, string spaceNameParameter = "Name", string spaceNumberParameter = "Number")
         {
             Autodesk.Revit.DB.Mechanical.Space internalSpace = space.InternalElement as Autodesk.Revit.DB.Mechanical.Space;
 
@@ -80,10 +93,22 @@ namespace Rhythm.Revit.Tools
             {
                 return null;
             }
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document currentDoc = DocumentManager.Instance.CurrentDBDocument;
 
             var locationPoint = space.Location;
 
+            //check to see if it is from a link
+            Autodesk.Revit.DB.Document doc = internalSpace.Document;
+            if (!doc.Title.Equals(currentDoc.Title))
+            {
+                RevitLinkInstance linkInstance = new FilteredElementCollector(currentDoc)
+                    .OfClass(typeof(RevitLinkInstance)).Cast<RevitLinkInstance>().FirstOrDefault(l => l.GetLinkDocument().Equals(doc));
+                if (linkInstance != null)
+                {
+                    var transform = linkInstance.GetTransform();
+                    locationPoint = transform.OfPoint(locationPoint.ToRevitType()).ToPoint();
+                }
+            }
             var newFamilyInstance = FamilyInstance.ByPoint(tagType, locationPoint);
 
             try
