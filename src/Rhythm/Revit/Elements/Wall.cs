@@ -137,6 +137,7 @@ namespace Rhythm.Revit.Elements
             //is to the left?
             string wallFacing = string.Empty;
 
+            //north checks
             if (Math.Abs(angleToNorth) < Math.PI / 4)
             {
                 //north
@@ -145,66 +146,65 @@ namespace Rhythm.Revit.Elements
                 //north east
                 if (Math.Abs(angleToEast) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "NE";
                 }
+                //north west
                 if (Math.Abs(angleToWest) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "NW";
                 }
             }
 
+            //south checks
             if (Math.Abs(angleToSouth) < Math.PI / 4)
             {
                 //south
                 wallFacing = "S";
 
-                //north east
+                //south east
                 if (Math.Abs(angleToEast) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "SE";
                 }
+                //south west
                 if (Math.Abs(angleToWest) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "SW";
                 }
             }
 
+            //east checks
             if (Math.Abs(angleToEast) < Math.PI / 4)
             {
-                //south
+                //east
                 wallFacing = "E";
 
                 //north east
-                if (Math.Abs(angleToEast) < Math.PI / 3)
+                if (Math.Abs(angleToNorth) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "NE";
                 }
-                if (Math.Abs(angleToWest) < Math.PI / 3)
+                //south east
+                if (Math.Abs(angleToSouth) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "SE";
                 }
             }
 
+            //west checks
             if (Math.Abs(angleToWest) < Math.PI / 4)
             {
-                //south
+                //west
                 wallFacing = "W";
 
-                //north east
-                if (Math.Abs(angleToEast) < Math.PI / 3)
+                //north west
+                if (Math.Abs(angleToNorth) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "NW";
                 }
-                if (Math.Abs(angleToWest) < Math.PI / 3)
+                //south west
+                if (Math.Abs(angleToSouth) < Math.PI / 3)
                 {
-                    //east
                     wallFacing = "SW";
                 }
             }

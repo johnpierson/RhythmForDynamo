@@ -7,6 +7,8 @@ using System.Reflection;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Newtonsoft.Json;
+using Revit.Elements;
+using RevitServices.Persistence;
 
 namespace Rhythm.Utilities
 {
@@ -31,6 +33,14 @@ namespace Rhythm.Utilities
     [IsVisibleInDynamoLibrary(false)]
     public class CommandHelpers
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static global::Revit.Elements.Views.View GetView()
+        {
+            return DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.ActiveView.ToDSType(true) as global::Revit.Elements.Views.View;
+        }
         /// <summary>
         /// This allows for runtime loading of commands specific to a Revit version. This is nice because we can have Revit 2021 DLLs and more.
         /// </summary>
