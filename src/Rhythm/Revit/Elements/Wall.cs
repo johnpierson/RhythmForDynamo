@@ -209,8 +209,68 @@ namespace Rhythm.Revit.Elements
                 }
             }
 
-
             return wallFacing;
+        }
+        private double WallAngle { get; set; }
+        private enum AngleDir
+        {
+            IsNorth,
+            IsSouth,
+            IsEast,
+            IsWest
+        }
+
+        private static double GetAngleValue(AngleDir direction, double dir, bool isToLeft)
+        {
+            double wallAngle = 0;
+
+            var degrees = dir * Math.PI;
+
+            switch (direction)
+            {
+                case AngleDir.IsNorth:
+                    if (isToLeft)
+                    {
+                        wallAngle = 360 - degrees;
+                    }
+                    else
+                    {
+                        wallAngle = degrees;
+                    }
+                    break;
+                case AngleDir.IsSouth:
+                    if (isToLeft)
+                    {
+                        wallAngle = 180 - degrees;
+                    }
+                    else
+                    {
+                        wallAngle = 180 + degrees;
+                    }
+                    break;
+                case AngleDir.IsEast:
+                    if (isToLeft)
+                    {
+                        wallAngle = 90 - degrees;
+                    }
+                    else
+                    {
+                        wallAngle = 90 + degrees;
+                    }
+                    break;
+                case AngleDir.IsWest:
+                    if (isToLeft)
+                    {
+                        wallAngle = 270 - degrees;
+                    }
+                    else
+                    {
+                        wallAngle = 270 + degrees;
+                    }
+                    break;
+            }
+
+            return wallAngle;
         }
     }
 }

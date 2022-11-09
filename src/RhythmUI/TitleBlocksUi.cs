@@ -15,14 +15,14 @@ namespace RhythmUI
     [NodeCategory("Rhythm.Revit.Selection.Selection")]
     [NodeDescription("Allows you to select a titleblock type from your Revit file.")]
     [IsDesignScriptCompatible]
-    public class TagTypes : RevitDropDownBase
+    public class TitleblockTypes : RevitDropDownBase
     {
         private const string noTitleblockTypes = "No titleblock types available in project.";
         private const string outputName = "titleblockType";
 
-        public TagTypes() : base(outputName) { }
+        public TitleblockTypes() : base(outputName) { }
         [JsonConstructor]
-        public TagTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
+        public TitleblockTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
         {
         }
         protected override SelectionState PopulateItemsCore(string currentSelection)
@@ -30,7 +30,7 @@ namespace RhythmUI
             Items.Clear();
             //find all sheets in the project
             var tagTypeCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            var elements = tagTypeCollector.OfClass(typeof(Family)).ToElements();
+            var elements = tagTypeCollector.OfClass(typeof(Family)).Cast<Family>().ToList();
             if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(noTitleblockTypes, null));
@@ -45,7 +45,7 @@ namespace RhythmUI
                     var fs = family.Document.GetElement(id);
                     if (fs.Category.Id.IntegerValue.Equals(-2000280))
                     {
-                        Items.Add(new DynamoDropDownItem(string.Format("{0}:{1}", family.Name, fs.Name), fs));
+                        Items.Add(new DynamoDropDownItem($"{family.Name}:{fs.Name}", fs));
                     }
                 }
             }
@@ -64,10 +64,10 @@ namespace RhythmUI
             }
             var node = AstFactory.BuildFunctionCall(
                 "Revit.Elements.ElementSelector",
-                "ByElementId",
+                "ByUniqueId",
                 new List<AssociativeNode>
                 {
-                    AstFactory.BuildIntNode(((FamilySymbol)Items[SelectedIndex].Item).Id.IntegerValue)
+                    AstFactory.BuildStringNode(((FamilySymbol)Items[SelectedIndex].Item).UniqueId)
                 });
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
