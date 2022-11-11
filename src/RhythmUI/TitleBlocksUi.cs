@@ -4,7 +4,6 @@ using Autodesk.Revit.DB;
 using CoreNodeModels;
 using DSRevitNodesUI;
 using Dynamo.Graph.Nodes;
-using Dynamo.Utilities;
 using Newtonsoft.Json;
 using ProtoCore.AST.AssociativeAST;
 using RevitServices.Persistence;
@@ -17,28 +16,28 @@ namespace RhythmUI
     [IsDesignScriptCompatible]
     public class TitleblockTypes : RevitDropDownBase
     {
-        private const string noTitleblockTypes = "No titleblock types available in project.";
-        private const string outputName = "titleblockType";
+        private const string NoTitleblockTypes = "No titleblock types available in project.";
 
-        public TitleblockTypes() : base(outputName) { }
+        public TitleblockTypes() : base("titleblockType") { }
+
         [JsonConstructor]
-        public TitleblockTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
+        public TitleblockTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("titleblockType", inPorts, outPorts)
         {
         }
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
             //find all sheets in the project
-            var tagTypeCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            var elements = tagTypeCollector.OfClass(typeof(Family)).Cast<Family>().ToList();
-            if (!elements.Any())
+            var allFamilies = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(Family)).Cast<Family>().ToList();
+
+            if (!allFamilies.Any())
             {
-                Items.Add(new DynamoDropDownItem(noTitleblockTypes, null));
+                Items.Add(new DynamoDropDownItem(NoTitleblockTypes, null));
                 SelectedIndex = 0;
                 return SelectionState.Done;
             }
 
-            foreach (Family family in elements)
+            foreach (Family family in allFamilies)
             {
                 foreach (var id in family.GetFamilySymbolIds())
                 {
@@ -51,14 +50,14 @@ namespace RhythmUI
             }
 
 
-            Items = ExtensionMethods.ToObservableCollection(Items.OrderBy(x => x.Name));
+            //Items = ExtensionMethods.ToObservableCollection(Items.OrderBy(x => x.Name));
+
+            SelectedIndex = 0;
             return SelectionState.Restore;
         }
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == noTitleblockTypes ||
-                SelectedIndex == -1)
+            if (Items.Count == 0 || Items[0].Name == NoTitleblockTypes || SelectedIndex == -1)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             }

@@ -47,35 +47,12 @@ namespace RhythmViewExtension
     MenuItem attachMenu = new MenuItem { Header = "attach" };
             attachMenu.Click += (sender, args) =>
             {
-                var revitServices = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName.Contains("RevitServices"));
-                IEnumerable<Type> types = GetTypesSafely(revitServices);
-
                 var rhythmRevit = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName.Contains("RhythmRevit,"));
                 Type t = rhythmRevit.GetType("Rhythm.Utilities.CommandHelpers");
-                var methodInfo = t.GetMethod("GetView");
+                var methodInfo = t.GetMethod("SwapDocument");
                 var o = Activator.CreateInstance(t);
 
-                foreach (Type objType in types)
-                {
-                    if (objType.IsClass)
-                    {
-                        if (objType.Name.Equals("DocumentManager"))
-                        {
-                            var constructor = objType.GetConstructors(
-                                BindingFlags.NonPublic | BindingFlags.Instance).FirstOrDefault();
-
-                            object baseObject = constructor.Invoke(new object[] { });
-
-                           
-                            var view = methodInfo.Invoke(o, null);
-
-                            object[] stuff = new[] { view };
-
-                            objType.InvokeMember("HandleDocumentActivation",
-                                BindingFlags.Default | BindingFlags.InvokeMethod, null, baseObject, stuff);
-                        }
-                    }
-                }
+                methodInfo.Invoke(o, null);
             };
 
             p.AddExtensionMenuItem(attachMenu);         

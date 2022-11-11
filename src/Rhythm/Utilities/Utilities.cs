@@ -6,9 +6,12 @@ using System.Net;
 using System.Reflection;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Dynamo.Applications.Models;
 using Newtonsoft.Json;
 using Revit.Elements;
 using RevitServices.Persistence;
+using RevitServices.Transactions;
+using Rhythm.Revit.Application;
 
 namespace Rhythm.Utilities
 {
@@ -37,9 +40,12 @@ namespace Rhythm.Utilities
         /// 
         /// </summary>
         /// <returns></returns>
-        public static global::Revit.Elements.Views.View GetView()
+        public static void SwapDocument()
         {
-            return DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.ActiveView.ToDSType(true) as global::Revit.Elements.Views.View;
+            var view = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.ActiveView;
+            DocumentManager.Instance.HandleDocumentActivation(view);
+            
+            Dynamo.Applications.DynamoRevit.RevitDynamoModel.OnRevitDocumentChanged();
         }
         /// <summary>
         /// This allows for runtime loading of commands specific to a Revit version. This is nice because we can have Revit 2021 DLLs and more.

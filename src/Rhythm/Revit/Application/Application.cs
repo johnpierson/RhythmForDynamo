@@ -5,6 +5,7 @@ using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Dynamo.Graph.Nodes;
+using Revit.Elements;
 using RevitServices.Persistence;
 using Rhythm.Utilities;
 
@@ -249,6 +250,12 @@ namespace Rhythm.Revit.Application
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        public static void SwapDocument()
+        {
+            var view = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.ActiveView;
+            DocumentManager.Instance.HandleDocumentActivation(view);
         }
     }
 }
