@@ -102,10 +102,16 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static object SkippedSegmentCurves(global::Revit.Elements.Element curtainGridLine)
         {
-            Autodesk.Revit.DB.CurtainGridLine internalCurtainGridline = (Autodesk.Revit.DB.CurtainGridLine)curtainGridLine.InternalElement;
-            var skippedSegmentCurves = internalCurtainGridline.SkippedSegmentCurves.ToProtoType();
+            List<Curve> skippedSegments = new List<Curve>();
 
-            return skippedSegmentCurves;
+            Autodesk.Revit.DB.CurtainGridLine internalCurtainGridline = (Autodesk.Revit.DB.CurtainGridLine)curtainGridLine.InternalElement;
+
+            foreach (global::Autodesk.Revit.DB.Curve curve in internalCurtainGridline.SkippedSegmentCurves)
+            {
+                skippedSegments.Add(curve.ToProtoType());
+            }
+
+            return skippedSegments;
         }
 
         /// <summary>
