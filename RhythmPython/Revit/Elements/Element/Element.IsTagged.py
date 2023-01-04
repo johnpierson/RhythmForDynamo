@@ -1,4 +1,4 @@
-__author__ = 'john pierson - sixtysecondrevit@gmail.com'
+__author__ = 'john pierson - designtechunraveled@gmail.com'
 __twitter__ = '@johntpierson'
 __github__ = '@johnpierson'
 __version__ ='1.0.0'
