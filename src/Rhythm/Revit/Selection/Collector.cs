@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using Revit.Elements;
+using RevitServices.Persistence;
 using Rhythm.Utilities;
 
 namespace Rhythm.Revit.Selection
@@ -89,6 +91,33 @@ namespace Rhythm.Revit.Selection
                     .Select(e => e.ToDSType(true)));
 
             return elems;
+        }
+
+        /// <summary>
+        /// Collect a detail or model group by a given name in the current model.
+        /// </summary>
+        /// <param name="name">The name of the group to find.</param>
+        /// <returns name="groupInstance">The group instance(s) found in the current model.</returns>
+        /// <search>
+        /// Collector.ModelGroupByName
+        /// </search>
+        [NodeCategory("Actions")]
+        public static List<global::Revit.Elements.Element> GroupByName(string name)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            List<BuiltInCategory> categories = new List<BuiltInCategory>
+            {
+                BuiltInCategory.OST_IOSModelGroups,
+                BuiltInCategory.OST_IOSDetailGroups
+            };
+
+            ElementMulticategoryFilter filter = new ElementMulticategoryFilter(categories);
+
+            var groups = new FilteredElementCollector(doc).WherePasses(filter).WhereElementIsNotElementType()
+                .Where(g => g.Name.Equals(name)).ToList();
+
+            return groups.Select(g => g.ToDSType(true)).ToList();
         }
     }
 }
