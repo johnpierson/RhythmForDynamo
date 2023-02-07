@@ -171,6 +171,7 @@
       <HintPath>packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -271,7 +272,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Forms\DefaultProgressForm.resx">
       <DependentUpon>DefaultProgressForm.cs</DependentUpon>
@@ -304,8 +304,8 @@ if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmRevit.x
 if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmRevit.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmRevit.xml" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
 
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmRevit.dll" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmRevit.xml" "$(AppData)\Dynamo\Dynamo Revit\2.13\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmRevit.dll" "$(AppData)\Dynamo\Dynamo Revit\2.16\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmRevit.xml" "$(AppData)\Dynamo\Dynamo Revit\2.16\packages\Rhythm\bin" /Y /I
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

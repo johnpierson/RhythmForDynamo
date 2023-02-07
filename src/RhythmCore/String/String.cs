@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Dynamo.Graph.Nodes;
@@ -11,6 +12,69 @@ namespace Rhythm.String
     /// <summary>
     /// Wrapper class for string modifiers
     /// </summary>
+    public class Inspect
+    {
+        private Inspect(){}
+
+        /// <summary>
+        /// Find the longest common substring between two strings.
+        /// </summary>
+        /// <param name="string1">First one to compare.</param>
+        /// <param name="string2">Second one to compare.</param>
+        /// <returns name="longestCommonSubstring">The longest common substring.</returns>
+        public static string LongestCommonSubstring(string string1, string string2)
+        {
+            var subStr = string.Empty;
+
+            if (string.IsNullOrEmpty(string1) || string.IsNullOrEmpty(string2))
+                return string.Empty;
+
+            int[,] num = new int[string1.Length, string2.Length];
+            int maxlen = 0;
+            int lastSubsBegin = 0;
+            StringBuilder subStrBuilder = new StringBuilder();
+
+            for (int i = 0; i < string1.Length; i++)
+            {
+                for (int j = 0; j < string2.Length; j++)
+                {
+                    if (string1[i] != string2[j])
+                    {
+                        num[i, j] = 0;
+                    }
+                    else
+                    {
+                        if ((i == 0) || (j == 0))
+                            num[i, j] = 1;
+                        else
+                            num[i, j] = 1 + num[i - 1, j - 1];
+
+                        if (num[i, j] > maxlen)
+                        {
+                            maxlen = num[i, j];
+
+                            int thisSubsBegin = i - num[i, j] + 1;
+
+                            if (lastSubsBegin == thisSubsBegin)
+                            {
+                                subStrBuilder.Append(string1[i]);
+                            }
+                            else
+                            {
+                                lastSubsBegin = thisSubsBegin;
+                                subStrBuilder.Length = 0;
+                                subStrBuilder.Append(string1.Substring(lastSubsBegin, (i + 1) - lastSubsBegin));
+                            }
+                        }
+                    }
+                }
+            }
+
+            subStr = subStrBuilder.ToString();
+
+            return subStr;
+        }
+    }
     public class Modify
     {
         private Modify()
