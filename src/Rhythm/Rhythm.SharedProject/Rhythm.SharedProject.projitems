@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>250a06fb-c9a3-43ee-9332-39ff0f3e7c88</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Rhythm.SharedProject</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Geometry\Tesselation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Geometry\Tesselation\ConvexHull.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Application\Application.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Application\Document.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\ElementFilter\ElementFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Area.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\AreaTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\BeamSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Ceiling.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\CurtainGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\CurtainGridLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\CurtainPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Dimension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\DimensionSegment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\DimensionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Element.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Elevation Marker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\FamilyInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\FilledRegion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Floor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Grid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Group.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\HostObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Leaders.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Level.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Mullion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Parts.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\ReferencePlane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\RevitLink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\RevitLinkType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Roof.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Room.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\RoomTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Sheet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\SlopedGlazing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Space.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\SpaceTag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Tag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\TextNote.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Viewport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Wall.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Helpers\Helpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Ribbon\Modifiers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Ribbon\RibbonTab.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Selection\Collector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Selection\ElementSelection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Selection\Selection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Tools\Animate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Tools\Batch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Tools\Tools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\CygonRectanglePacker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\OutOfSpaceException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\RectanglePacker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\Sheet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\View.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\View3D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\ViewPlan.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\ViewSection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Worksharing\Element.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Converters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\PointInPoly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\PointInPolyExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\Utilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ViewUtils.cs" />
+  </ItemGroup>
+</Project>

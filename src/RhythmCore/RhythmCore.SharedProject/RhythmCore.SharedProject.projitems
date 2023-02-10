@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>250a06fb-c9a3-43ee-9332-39ff0f3e7c88</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>RhythmCore.SharedProject</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)About\About.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GenerativeDesign\CygonRectanglePacker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GenerativeDesign\GenerativeDesign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GenerativeDesign\OutOfSpaceException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GenerativeDesign\RectanglePacker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Helpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Math\MarkovChain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Numbers\Numbers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)String\String.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\System.cs" />
+  </ItemGroup>
+</Project>
