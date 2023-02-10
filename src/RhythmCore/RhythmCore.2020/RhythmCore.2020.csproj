@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\RhythmCore.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DesignScriptBuiltin, Version=2.3.2.15696, Culture=neutral, processorArchitecture=MSIL">
