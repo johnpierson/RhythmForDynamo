@@ -215,6 +215,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblyInfo\AssemblyInfo-2022.cs">
+      <Link>AssemblyInfo-2022.cs</Link>
+    </Compile>
     <Compile Include="IsolatedSelectModelElements.xaml.cs">
       <DependentUpon>IsolatedSelectModelElements.xaml</DependentUpon>
     </Compile>
