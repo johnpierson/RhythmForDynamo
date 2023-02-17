@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if !Revit2020 && Revit2021
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,3 +27,4 @@ namespace RhythmUI.Selection
         }
     }
 }
+#endif

@@ -32,7 +32,8 @@
     <DefineConstants>TRACE;Revit2020</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\RhythmUI.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows, Version=4.0.0.6, Culture=neutral, processorArchitecture=MSIL">
@@ -193,4 +194,9 @@
   </ItemGroup>
   <Import Project="..\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.3\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.3\packages\Rhythm\bin" /Y /I
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

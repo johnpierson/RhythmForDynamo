@@ -31,10 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmCore.2020", "RhythmCo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AssemblyInfo", "AssemblyInfo", "{D2DF272D-5912-4EA8-A7E6-B116559AB7B9}"
 	ProjectSection(SolutionItems) = preProject
-		..\AssemblyInfo\AssemblyInfo-2020.cs = ..\AssemblyInfo\AssemblyInfo-2020.cs
-		..\AssemblyInfo\AssemblyInfo-2021.cs = ..\AssemblyInfo\AssemblyInfo-2021.cs
-		..\AssemblyInfo\AssemblyInfo-2022.cs = ..\AssemblyInfo\AssemblyInfo-2022.cs
-		..\AssemblyInfo\AssemblyInfo-2023.cs = ..\AssemblyInfo\AssemblyInfo-2023.cs
+		AssemblyInfo\AssemblyInfo-2020.cs = AssemblyInfo\AssemblyInfo-2020.cs
+		AssemblyInfo\AssemblyInfo-2021.cs = AssemblyInfo\AssemblyInfo-2021.cs
+		AssemblyInfo\AssemblyInfo-2022.cs = AssemblyInfo\AssemblyInfo-2022.cs
+		AssemblyInfo\AssemblyInfo-2023.cs = AssemblyInfo\AssemblyInfo-2023.cs
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmRevit.SharedProject", "Rhythm\Rhythm.SharedProject\RhythmRevit.SharedProject.shproj", "{250A06FB-C9A3-43EE-9332-39FF0F3E7C88}"

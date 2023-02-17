@@ -238,4 +238,9 @@
   </ItemGroup>
   <Import Project="..\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.12\packages\Rhythm\bin" /Y /I
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

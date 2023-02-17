@@ -85,6 +85,10 @@
       <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.6.2.15694\lib\net47\DynamoInstallDetective.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DynamoRevitDS, Version=2.16.1.6510, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Autodesk\Revit 2021\AddIns\DynamoForRevit\Revit\DynamoRevitDS.dll</HintPath>
+    </Reference>
     <Reference Include="DynamoServices, Version=2.6.2.15694, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DynamoVisualProgramming.DynamoServices.2.6.2.15694\lib\net47\DynamoServices.dll</HintPath>
       <Private>False</Private>
@@ -227,4 +231,9 @@
   </ItemGroup>
   <Import Project="..\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.6\packages\Rhythm\bin" /Y /I
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
