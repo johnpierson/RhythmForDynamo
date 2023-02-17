@@ -9,5 +9,24 @@
     <Import_RootNamespace>RhythmUI.SharedProject</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DesignOptionsUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IsolatedSelectModelElementsUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IsolatedSelectModelElementsUINodeView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LinksUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelCategories.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ModelCategoriesCollect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoofTypeUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ScopeBoxes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Selection\LinkSelectionMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Selection\SelectRoomInLinkNodeViewCustomization.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SheetsUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TitleBlocksUi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\IElementSelectionFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ILogicalCombinationFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\IReferenceSelectionFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\SelFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewFamilyTypeUI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewsUI.cs" />
   </ItemGroup>
 </Project>

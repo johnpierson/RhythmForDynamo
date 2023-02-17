@@ -34,51 +34,51 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows, Version=3.1.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2022.1.0\lib\net48\AdWindows.dll</HintPath>
+      <HintPath>..\..\packages\Revit_All_Main_Versions_API_x64.2022.0.0\lib\net48\AdWindows.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.12.1.8246\lib\net48\Analysis.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.12.1.8246\lib\net48\Analysis.dll</HintPath>
     </Reference>
     <Reference Include="DesignScriptBuiltin, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DesignScriptBuiltin.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DesignScriptBuiltin.dll</HintPath>
     </Reference>
     <Reference Include="DSCoreNodes, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.12.1.8246\lib\net48\DSCoreNodes.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.12.1.8246\lib\net48\DSCoreNodes.dll</HintPath>
     </Reference>
     <Reference Include="DSCPython, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DSCPython.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DSCPython.dll</HintPath>
     </Reference>
     <Reference Include="DSIronPython, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DSIronPython.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DSIronPython.dll</HintPath>
     </Reference>
     <Reference Include="DynamoApplications, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoApplications.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoApplications.dll</HintPath>
     </Reference>
     <Reference Include="DynamoCore, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoCore.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoCore.dll</HintPath>
     </Reference>
     <Reference Include="DynamoInstallDetective, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoInstallDetective.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoInstallDetective.dll</HintPath>
     </Reference>
     <Reference Include="DynamoRevitDS, Version=2.12.0.5740, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.12.0.5741\lib\DynamoRevitDS.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Revit.2.12.0.5741\lib\DynamoRevitDS.dll</HintPath>
     </Reference>
-    <Reference Include="DynamoServices, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.12.1.8246\lib\net48\DynamoServices.dll</HintPath>
+    <Reference Include="DynamoServices, Version=2.13.0.3485, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DynamoVisualProgramming.DynamoServices.2.13.0.3485\lib\net48\DynamoServices.dll</HintPath>
     </Reference>
     <Reference Include="DynamoShapeManager, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoShapeManager.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoShapeManager.dll</HintPath>
     </Reference>
     <Reference Include="DynamoUnits, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.1.8246\lib\net48\DynamoUnits.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.1.8246\lib\net48\DynamoUnits.dll</HintPath>
     </Reference>
     <Reference Include="DynamoUtilities, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoUtilities.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\DynamoUtilities.dll</HintPath>
     </Reference>
     <Reference Include="GeometryColor, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.12.1.8246\lib\net48\GeometryColor.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.DynamoCoreNodes.2.12.1.8246\lib\net48\GeometryColor.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -101,26 +101,26 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoCore, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\ProtoCore.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\ProtoCore.dll</HintPath>
     </Reference>
     <Reference Include="ProtoGeometry, Version=2.12.0.5475, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.1.8246\lib\net48\ProtoGeometry.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.ZeroTouchLibrary.2.12.1.8246\lib\net48\ProtoGeometry.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI, Version=22.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2022.1.0\lib\net48\RevitAPI.dll</HintPath>
+      <HintPath>..\..\packages\Revit_All_Main_Versions_API_x64.2022.0.0\lib\net48\RevitAPI.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI, Version=22.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2022.1.0\lib\net48\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\packages\Revit_All_Main_Versions_API_x64.2022.0.0\lib\net48\RevitAPIUI.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitNodes, Version=2.12.0.5740, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.12.0.5741\lib\RevitNodes.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Revit.2.12.0.5741\lib\RevitNodes.dll</HintPath>
     </Reference>
     <Reference Include="RevitServices, Version=2.12.0.5740, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.12.0.5741\lib\RevitServices.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Revit.2.12.0.5741\lib\RevitServices.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -154,12 +154,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UIFramework, Version=22.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2022.1.0\lib\net48\UIFramework.dll</HintPath>
+      <HintPath>..\..\packages\Revit_All_Main_Versions_API_x64.2022.0.0\lib\net48\UIFramework.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="VMDataBridge, Version=2.12.1.8246, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\VMDataBridge.dll</HintPath>
+      <HintPath>..\..\packages\DynamoVisualProgramming.Core.2.12.1.8246\lib\net48\VMDataBridge.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -192,6 +192,9 @@
     <EmbeddedResource Include="Forms\FamilyUpgradeForm.resx">
       <DependentUpon>FamilyUpgradeForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\logo.png" />
   </ItemGroup>
   <Import Project="..\Rhythm.SharedProject\Rhythm.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
