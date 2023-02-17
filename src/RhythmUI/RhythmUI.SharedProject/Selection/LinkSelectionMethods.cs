@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
@@ -19,7 +20,9 @@ using ProtoCore.AST.AssociativeAST;
 using RevitServices.Persistence;
 using Rhythm.Revit.Selection;
 using Element = Autodesk.Revit.DB.Element;
+#if !Revit2020
 using DSRevitNodesUI.Controls;
+#endif
 using Dynamo.Graph.Connectors;
 
 namespace RhythmUI
@@ -226,7 +229,13 @@ namespace RhythmUI
                     }
                 }));
             };
-            var comboControl = new ComboControl { DataContext = this };
+#if Revit2020 || Revit2021|| Revit2022
+            ComboBox comboControl = new ComboBox { DataContext = this };
+#endif
+#if Revit2023
+ var comboControl = new ComboControl { DataContext = this };
+#endif
+
             nodeView.inputGrid.Children.Add(comboControl);
         }
 
@@ -253,7 +262,12 @@ namespace RhythmUI
                     }
                 }));
             };
-            var comboControl = new ComboControl { DataContext = this };
+#if Revit2020 || Revit2020 || Revit2021|| Revit2022
+            ComboBox comboControl = new ComboBox { DataContext = this };
+#endif
+#if Revit2023
+ var comboControl = new ComboControl { DataContext = this };
+#endif
             nodeView.inputGrid.Children.Add(comboControl);
         }
 
@@ -261,9 +275,9 @@ namespace RhythmUI
         {
         }
     }
-    #endregion
+#endregion
 
-    #region Selection Helpers
+#region Selection Helpers
     public abstract class ElementFilterSelection<TSelection> : ElementSelection<TSelection>
             where TSelection : Element
     {
@@ -463,7 +477,7 @@ namespace RhythmUI
 
 
     }
-    #endregion
+#endregion
 
     [IsVisibleInDynamoLibrary(false)]
     internal class CategoryElementSelectionFilter<T> : ISelectionFilter

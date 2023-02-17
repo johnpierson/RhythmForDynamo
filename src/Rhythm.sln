@@ -53,6 +53,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2023", "RhythmUI\R
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RhythmUI", "RhythmUI", "{FD8AA02D-5E1F-432E-8955-94B260E6E75D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2022", "RhythmUI\RhythmUI.2022\RhythmUI.2022.csproj", "{A16778D2-0FAD-4F3B-AA81-E76AFC462CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2021", "RhythmUI\RhythmUI.2021\RhythmUI.2021.csproj", "{D32C49DD-F1D3-434D-AF65-EE404840327E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2020", "RhythmUI\RhythmUI.2020\RhythmUI.2020.csproj", "{C50E2CCB-11DD-42CA-9B9A-D8433197B245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +117,18 @@ Global
 		{FB60D4A7-962D-41F7-8D96-331DC7CCD88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB60D4A7-962D-41F7-8D96-331DC7CCD88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB60D4A7-962D-41F7-8D96-331DC7CCD88A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A16778D2-0FAD-4F3B-AA81-E76AFC462CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A16778D2-0FAD-4F3B-AA81-E76AFC462CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A16778D2-0FAD-4F3B-AA81-E76AFC462CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A16778D2-0FAD-4F3B-AA81-E76AFC462CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32C49DD-F1D3-434D-AF65-EE404840327E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32C49DD-F1D3-434D-AF65-EE404840327E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32C49DD-F1D3-434D-AF65-EE404840327E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32C49DD-F1D3-434D-AF65-EE404840327E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50E2CCB-11DD-42CA-9B9A-D8433197B245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50E2CCB-11DD-42CA-9B9A-D8433197B245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50E2CCB-11DD-42CA-9B9A-D8433197B245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50E2CCB-11DD-42CA-9B9A-D8433197B245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +151,9 @@ Global
 		{EBD22D30-D66D-4B85-BABA-DA45ED7FB6AF} = {F2A23823-0079-496A-9E0A-5C05A9E45BC0}
 		{6E0B60A0-B5AB-4859-84F9-0FB0E769B92F} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
 		{FB60D4A7-962D-41F7-8D96-331DC7CCD88A} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
+		{A16778D2-0FAD-4F3B-AA81-E76AFC462CB1} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
+		{D32C49DD-F1D3-434D-AF65-EE404840327E} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
+		{C50E2CCB-11DD-42CA-9B9A-D8433197B245} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2215E64B-BFBC-4EDF-9941-C57ADD301D03}
@@ -148,6 +169,9 @@ Global
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{5d01d839-5d66-43e9-990a-6449e12e2d6e}*SharedItemsImports = 4
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{618258ba-767b-482c-b57e-e5d54ab6e004}*SharedItemsImports = 4
 		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{6e0b60a0-b5ab-4859-84f9-0fb0e769b92f}*SharedItemsImports = 13
+		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{a16778d2-0fad-4f3b-aa81-e76afc462cb1}*SharedItemsImports = 4
+		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{c50e2ccb-11dd-42ca-9b9a-d8433197b245}*SharedItemsImports = 4
+		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{d32c49dd-f1d3-434d-af65-ee404840327e}*SharedItemsImports = 4
 		Rhythm\Rhythm.SharedProject\Rhythm.SharedProject.projitems*{e2f80cb6-f6d5-469b-9849-e59427baf495}*SharedItemsImports = 4
 		RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.projitems*{e3bd07ef-48d5-47af-966c-54c3deb43781}*SharedItemsImports = 4
 		Rhythm\Rhythm.SharedProject\Rhythm.SharedProject.projitems*{e7b6df12-c018-4b9e-9e5b-e511a1f3ee6e}*SharedItemsImports = 4
