@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)About\About.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BIMTrack\BIMTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BIMTrack\BIMTrackUser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenerativeDesign\CygonRectanglePacker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenerativeDesign\GenerativeDesign.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenerativeDesign\OutOfSpaceException.cs" />

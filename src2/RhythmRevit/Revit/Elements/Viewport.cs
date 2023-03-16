@@ -1,27 +1,185 @@
 ﻿using System;
-using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
-using RevitServices.Persistence;
+using DynamoUnits;
 using Revit.Elements;
 using Revit.GeometryConversion;
+using RevitServices.Persistence;
 using RevitServices.Transactions;
+using RhythmRevit_Compatibility;
 using Plane = Autodesk.DesignScript.Geometry.Plane;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 
-namespace Rhythm.Revit.Elements
+// ReSharper disable PossibleNullReferenceException
+
+namespace RhythmRevit.Revit.Elements
 {
-    /// <summary>
-    /// Wrapper class for viewports.
-    /// </summary>
+    #region ViewportInterface
+    [IsVisibleInDynamoLibrary(false)]
+    public class ViewportInterface : IViewport
+    {
+        private static IViewport _instance;
+        private IViewport _viewport;
+
+        public static IViewport Instance => _instance;
+
+        private readonly IList<IViewport> _viewportVersions = new List<IViewport>
+        {
+            new RhythmRevit_20_21.Viewport(),
+            new RhythmRevit_22_23.Viewport()
+        };
+
+        private ViewportInterface(Document document)
+        {
+            var application = document.Application;
+
+            var revitVersionNumber = Convert.ToInt16(application.VersionNumber);
+
+            _viewport = _viewportVersions.First(version => version.CompatibleVersions.Contains(revitVersionNumber));
+        }
+
+        static ViewportInterface()
+        {
+        }
+
+        public static void Initialize(Document document)
+        {
+            _instance = new ViewportInterface(document);
+
+        }
+        public int[] CompatibleVersions => _viewport.CompatibleVersions;
+        public void SetViewTitleLineLength(object viewport, double length) => _viewport.SetViewTitleLineLength(viewport, length);
+        public void SetViewTitleLocation(object viewport, object location) => _viewport.SetViewTitleLocation(viewport, location);
+        public double GetViewTitleLineLength(object viewport) => _viewport.GetViewTitleLineLength(viewport);
+        public object GetViewTitleLocation(object viewport) => _viewport.GetViewTitleLocation(viewport);
+    }
+    #endregion
+
     public class Viewport
     {
-        private Viewport()
-        { }
+        //wrapper class for viewports
+        private Viewport(){}
 
+        /// <summary>
+        /// Set a viewport's title length. Revit 2022+
+        /// </summary>
+        /// <param name="viewport">The target viewport.</param>
+        /// <param name="length">The length to set it to.</param>
+        [NodeCategory("Actions")]
+        public static void SetViewTitleLength(global::Revit.Elements.Viewport viewport, double length)
+        {
+            Autodesk.Revit.DB.Viewport internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            var doc = internalViewport.Document;
+
+            //initialize our compatibility interface
+            if (ViewportInterface.Instance is null) 
+            {
+                ViewportInterface.Initialize(doc);
+            }
+            
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            ViewportInterface.Instance.SetViewTitleLineLength(internalViewport, length);
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+        /// <summary>
+        /// Set a viewport's title location (relative to the boundary of the view) Revit 2022+.
+        /// </summary>
+        /// <param name="viewport">The target viewport.</param>
+        /// <param name="location">The location to set it to.</param>
+        [NodeCategory("Actions")]
+        public static void SetViewTitleLocation(global::Revit.Elements.Element viewport, Point location)
+        {
+            Autodesk.Revit.DB.Viewport internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            var doc = internalViewport.Document;
+
+            XYZ revitXyz = location.ToRevitType(true);
+
+
+            //initialize our compatibility interface
+            if (ViewportInterface.Instance is null)
+            {
+                ViewportInterface.Initialize(doc);
+            }
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            ViewportInterface.Instance.SetViewTitleLocation(internalViewport, revitXyz);
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+        /// <summary>
+        /// Get a viewport's title location (relative to the boundary of the view) Revit 2022+.
+        /// </summary>
+        /// <param name="viewport">The target viewport.</param>
+        [NodeCategory("Actions")]
+        public static Point GetViewTitleLocation(global::Revit.Elements.Element viewport)
+        {
+            Autodesk.Revit.DB.Viewport internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            var doc = internalViewport.Document;
+            //initialize our compatibility interface
+            if (ViewportInterface.Instance is null)
+            {
+                ViewportInterface.Initialize(doc);
+            }
+            XYZ revitPoint = ViewportInterface.Instance.GetViewTitleLocation(internalViewport) as XYZ;
+
+            return revitPoint.ToPoint();
+        }
+        /// <summary>
+        /// Get a viewport's title length Revit 2022+.
+        /// </summary>
+        /// <param name="viewport">The target viewport.</param>
+        [NodeCategory("Actions")]
+        public static double GetViewTitleLength(global::Revit.Elements.Element viewport)
+        {
+            Autodesk.Revit.DB.Viewport internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
+            var doc = internalViewport.Document;
+            //initialize our compatibility interface
+            if (ViewportInterface.Instance is null)
+            {
+                ViewportInterface.Initialize(doc);
+            }
+            return ViewportInterface.Instance.GetViewTitleLineLength(internalViewport);
+        }
+
+
+        /// <summary>
+        /// This node will set the viewport's box center given the point.
+        /// </summary>
+        /// <param name="viewport">The viewport to set.</param>
+        /// <param name="point">The point to use.</param>
+        /// <search>
+        /// viewport
+        /// </search>
+        [NodeCategory("Actions")]
+        public static void SetBoxCenter(global::Revit.Elements.Element viewport, Point point)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalViewport.SetBoxCenter(point.ToRevitType());
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// This node will retrieve the viewport's box center.
+        /// </summary>
+        /// <param name="viewport">The viewport to set.</param>
+        /// <returns name="boxCenter">The viewport's box center as a point.</returns>
+        /// <search>
+        /// viewport
+        /// </search>
+        [NodeCategory("Query")]
+        public static Point BoxCenter(global::Revit.Elements.Element viewport)
+        {
+            Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
+            return internalViewport.GetBoxCenter().ToPoint();
+        }
 
         /// <summary>
         /// 
@@ -33,7 +191,7 @@ namespace Rhythm.Revit.Elements
 
             //cast the viewport to the internal Revit DB Type
             Autodesk.Revit.DB.Viewport internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
-            
+
             //get the original box center (for when we re-place the viewport)
             var originalBoxCenter = internalViewport.GetBoxCenter();
 
@@ -82,8 +240,8 @@ namespace Rhythm.Revit.Elements
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
-           //obtain the element id from the sheet
-           ElementId sheetId = new ElementId(sheet.Id);
+            //obtain the element id from the sheet
+            ElementId sheetId = new ElementId(sheet.Id);
             Autodesk.Revit.DB.Element result = null;
             //change the dynamo point to a revit point
             var revitPoint = location.ToRevitType(true);
@@ -101,7 +259,7 @@ namespace Rhythm.Revit.Elements
                 }
                 else
                 {
-                    result = Autodesk.Revit.DB.Viewport.Create(doc, sheetId, viewId, revitPoint);  
+                    result = Autodesk.Revit.DB.Viewport.Create(doc, sheetId, viewId, revitPoint);
                 }
 
                 TransactionManager.Instance.TransactionTaskDone();
@@ -121,7 +279,7 @@ namespace Rhythm.Revit.Elements
 
                 return "Error: View " + view.Id + e.Message;
             }
-          
+
         }
         /// <summary>
         /// This node will obtain the box location data from the provided viewport.
@@ -170,7 +328,7 @@ namespace Rhythm.Revit.Elements
                     c.Dispose();
                 }
             }
-            
+
             //dispose of temporary geometries         
             boxCuboid.Dispose();
             boxPlane.Dispose();
@@ -273,89 +431,5 @@ namespace Rhythm.Revit.Elements
 
             return childViewports;
         }
-
-        /// <summary>
-        /// This node will set the viewport's box center given the point.
-        /// </summary>
-        /// <param name="viewport">The viewport to set.</param>
-        /// <param name="point">The point to use.</param>
-        /// <search>
-        /// viewport
-        /// </search>
-        [NodeCategory("Actions")]
-        public static void SetBoxCenter(global::Revit.Elements.Element viewport, Point point)
-        {
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
-            TransactionManager.Instance.EnsureInTransaction(doc);
-            internalViewport.SetBoxCenter(point.ToRevitType());
-            TransactionManager.Instance.TransactionTaskDone();
-        }
-
-        /// <summary>
-        /// This node will retrieve the viewport's box center.
-        /// </summary>
-        /// <param name="viewport">The viewport to set.</param>
-        /// <returns name="boxCenter">The viewport's box center as a point.</returns>
-        /// <search>
-        /// viewport
-        /// </search>
-        [NodeCategory("Query")]
-        public static Point BoxCenter(global::Revit.Elements.Element viewport)
-        {
-            Autodesk.Revit.DB.Viewport internalViewport = (Autodesk.Revit.DB.Viewport)viewport.InternalElement;
-            return internalViewport.GetBoxCenter().ToPoint();
-        }
-
-//#if Revit2022 || Revit2023
-        /// <summary>
-        /// Set a viewport's title length. Revit 2022+
-        /// </summary>
-        /// <param name="viewport">The target viewport.</param>
-        /// <param name="length">The length to set it to.</param>
-        [NodeCategory("Actions")]
-        public static void SetViewTitleLength(global::Revit.Elements.Element viewport, double length)
-        {
-
-
-            var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
-            var doc = internalViewport.Document;
-
-            TransactionManager.Instance.EnsureInTransaction(doc);
-            internalViewport.LabelLineLength = length;
-            TransactionManager.Instance.TransactionTaskDone();
-
-        }
-        /// <summary>
-        /// Set a viewport's title location (relative to the boundary of the view) Revit 2022+.
-        /// </summary>
-        /// <param name="viewport">The target viewport.</param>
-        /// <param name="location">The location to set it to.</param>
-        [NodeCategory("Actions")]
-        public static void SetViewTitleLocation(global::Revit.Elements.Element viewport, Point location)
-        {
-
-
-            var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
-            var doc = internalViewport.Document;
-
-            var xyz = location.ToXyz(true);
-
-            TransactionManager.Instance.EnsureInTransaction(doc);
-            internalViewport.LabelOffset = xyz;
-            TransactionManager.Instance.TransactionTaskDone();
-        }
-        /// <summary>
-        /// Get a viewport's title location (relative to the boundary of the view) Revit 2022+.
-        /// </summary>
-        /// <param name="viewport">The target viewport.</param>
-        [NodeCategory("Actions")]
-        public static Point GetViewTitleLocation(global::Revit.Elements.Element viewport)
-        {
-            var internalViewport = viewport.InternalElement as Autodesk.Revit.DB.Viewport;
-
-            return internalViewport.LabelOffset.ToPoint();
-        }
-#endif
     }
 }

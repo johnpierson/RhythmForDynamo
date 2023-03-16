@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.22_23", "RhythmRevit.22_23\RhythmRevit.22_23.csproj", "{982CBABE-5131-4011-A93D-435F5B6458E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.Compatibility", "RhythmRevit.Compatibility\RhythmRevit.Compatibility.csproj", "{687A681C-A17D-49E7-9BA5-7848F7A56EE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit", "RhythmRevit\RhythmRevit.csproj", "{54E897A8-BDDD-423B-98D9-49B82A89F207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.20_21", "RhythmRevit.20_21\RhythmRevit.20_21.csproj", "{84DE31A9-48F8-474D-8754-01C1A31D5393}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{982CBABE-5131-4011-A93D-435F5B6458E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982CBABE-5131-4011-A93D-435F5B6458E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982CBABE-5131-4011-A93D-435F5B6458E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982CBABE-5131-4011-A93D-435F5B6458E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{687A681C-A17D-49E7-9BA5-7848F7A56EE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{687A681C-A17D-49E7-9BA5-7848F7A56EE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{687A681C-A17D-49E7-9BA5-7848F7A56EE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{687A681C-A17D-49E7-9BA5-7848F7A56EE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E897A8-BDDD-423B-98D9-49B82A89F207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E897A8-BDDD-423B-98D9-49B82A89F207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E897A8-BDDD-423B-98D9-49B82A89F207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E897A8-BDDD-423B-98D9-49B82A89F207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84DE31A9-48F8-474D-8754-01C1A31D5393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84DE31A9-48F8-474D-8754-01C1A31D5393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84DE31A9-48F8-474D-8754-01C1A31D5393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84DE31A9-48F8-474D-8754-01C1A31D5393}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {804B428B-3464-4AEB-8B89-473FABFAF7EA}
+	EndGlobalSection
+EndGlobal
