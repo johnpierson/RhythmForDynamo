@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
-using Floor = Revit.Elements.Floor;
 using FloorType = Autodesk.Revit.DB.FloorType;
 using Point = Autodesk.DesignScript.Geometry.Point;
 
@@ -21,6 +20,7 @@ namespace Rhythm.Revit.Elements
         private Group()
         {
         }
+
         /// <summary>
         /// This node is a pretty neat group creator, that allows for you to pick an origin at creation time.
         /// </summary>
@@ -29,7 +29,9 @@ namespace Rhythm.Revit.Elements
         /// <param name="origin">Optional origin. (Note: This node will fix whatever Z Value you input to match the group's Z value)</param>
         /// <returns name="newGroup">The new group</returns>
         public static global::Revit.Elements.Element ByElementsAndOrigin(
-                List<global::Revit.Elements.Element> elements, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] string name, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Point origin)
+            List<global::Revit.Elements.Element> elements,
+            [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] string name,
+            [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Point origin)
         {
             Document doc = elements.First().InternalElement.Document;
 
@@ -62,16 +64,21 @@ namespace Rhythm.Revit.Elements
             var encompassBoundingBox = BoundingBox.ByGeometry(bBoxes);
             var bottomPoint = encompassBoundingBox.MinPoint;
             var topPoint = encompassBoundingBox.MaxPoint;
-            var radius = bottomPoint.DistanceTo(topPoint) * 10; //make the floor 10x the size of the bounding box. (hopefully works well)
+            var radius =
+                bottomPoint.DistanceTo(topPoint) *
+                10; //make the floor 10x the size of the bounding box. (hopefully works well)
 
             //find the closest level
-            var closestLevel = doc.GetElement(elements.First(e => e.InternalElement.LevelId != null).InternalElement.LevelId).ToDSType(false) as global::Revit.Elements.Level;
+            var closestLevel =
+                doc.GetElement(elements.First(e => e.InternalElement.LevelId != null).InternalElement.LevelId)
+                    .ToDSType(false) as global::Revit.Elements.Level;
 
             //find the first floor type and create a dispensable one
             var foundFloorType = new FilteredElementCollector(doc).OfClass(typeof(FloorType))
                 .WhereElementIsElementType().Cast<FloorType>().FirstOrDefault();
 
-            var newFloorType = foundFloorType.Duplicate("secretinternalfloor").ToDSType(false) as global::Revit.Elements.FloorType;
+            var newFloorType =
+                foundFloorType.Duplicate("secretinternalfloor").ToDSType(false) as global::Revit.Elements.FloorType;
 
             //make a big ol circle to force the origin and add it to a curve list. We also use the group's z origin to fix what the user inputs.
             var bigCircle = Circle.ByCenterPointRadius(Point.ByCoordinates(origin.X, origin.Y, bottomPoint.Z), radius);
@@ -81,7 +88,8 @@ namespace Rhythm.Revit.Elements
 
             TransactionManager.Instance.EnsureInTransaction(doc);
             //create the big floor (temporary), based on the type
-            var newFloor = global::Revit.Elements.Floor.ByOutlineTypeAndLevel(floorSketch.ToArray(), newFloorType, closestLevel);
+            var newFloor =
+                global::Revit.Elements.Floor.ByOutlineTypeAndLevel(floorSketch.ToArray(), newFloorType, closestLevel);
             TransactionManager.Instance.TransactionTaskDone();
 
             //dispose of the geometry so dynamo will calm down
@@ -115,4 +123,5 @@ namespace Rhythm.Revit.Elements
             return specificOriginGroup.ToDSType(true);
         }
     }
+
 }

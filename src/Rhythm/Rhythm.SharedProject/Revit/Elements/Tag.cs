@@ -63,7 +63,7 @@ namespace Rhythm.Revit.Elements
 
             if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
             {
-#if !Revit2023
+#if Revit2020 || Revit2021 || Revit2022 || Revit2023
                return internalTag.LeaderEnd.ToPoint();   
 #endif
 #if Revit2023
@@ -100,7 +100,7 @@ namespace Rhythm.Revit.Elements
 
             if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
             {
-#if !Revit2023
+#if Revit20242020 || Revit2021 || Revit2022 
                return internalTag.LeaderElbow.ToPoint();   
 #endif
 #if Revit2023
@@ -120,7 +120,7 @@ namespace Rhythm.Revit.Elements
 
             return null;
         }
-#if !Revit2023
+#if Revit2022 || Revit2022 || Revit2023
          /// <summary>
         /// This will attempt to set the leader end position of the tag.
         /// </summary>

@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\FilledRegion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Floor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Grid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\GroupType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Group.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\HostObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Leaders.cs" />
@@ -41,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Parts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\ReferencePlane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\RevitLink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\RevitLinkGraphicOverrides.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\RevitLinkType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Roof.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Elements\Room.cs" />

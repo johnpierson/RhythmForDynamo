@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AssemblyInfo", "AssemblyInf
 		AssemblyInfo\AssemblyInfo-2021.cs = AssemblyInfo\AssemblyInfo-2021.cs
 		AssemblyInfo\AssemblyInfo-2022.cs = AssemblyInfo\AssemblyInfo-2022.cs
 		AssemblyInfo\AssemblyInfo-2023.cs = AssemblyInfo\AssemblyInfo-2023.cs
+		AssemblyInfo\AssemblyInfo-2024.cs = AssemblyInfo\AssemblyInfo-2024.cs
 	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmRevit.SharedProject", "Rhythm\Rhythm.SharedProject\RhythmRevit.SharedProject.shproj", "{250A06FB-C9A3-43EE-9332-39FF0F3E7C88}"
@@ -58,6 +59,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2021", "RhythmUI\RhythmUI.2021\RhythmUI.2021.csproj", "{D32C49DD-F1D3-434D-AF65-EE404840327E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2020", "RhythmUI\RhythmUI.2020\RhythmUI.2020.csproj", "{C50E2CCB-11DD-42CA-9B9A-D8433197B245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2024", "Rhythm\Rhythm.2024\RhythmRevit.2024.csproj", "{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +132,10 @@ Global
 		{C50E2CCB-11DD-42CA-9B9A-D8433197B245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C50E2CCB-11DD-42CA-9B9A-D8433197B245}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C50E2CCB-11DD-42CA-9B9A-D8433197B245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,11 +161,13 @@ Global
 		{A16778D2-0FAD-4F3B-AA81-E76AFC462CB1} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
 		{D32C49DD-F1D3-434D-AF65-EE404840327E} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
 		{C50E2CCB-11DD-42CA-9B9A-D8433197B245} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
+		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA} = {6C879D04-F9E8-4A7F-B3D1-4168876E8A10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2215E64B-BFBC-4EDF-9941-C57ADD301D03}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Rhythm\Rhythm.SharedProject\Rhythm.SharedProject.projitems*{041cce9f-11bf-48c5-8f07-6ad882e1f4ba}*SharedItemsImports = 4
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{0dce2095-be71-4db9-8d3c-705b6d730beb}*SharedItemsImports = 4
 		RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.projitems*{0f542624-c3bb-4ff7-9b41-5fe26df1796d}*SharedItemsImports = 4
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{23b3e2c2-5e42-416b-8dc2-51882e4cb30c}*SharedItemsImports = 4

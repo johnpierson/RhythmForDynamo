@@ -307,7 +307,7 @@ namespace Rhythm.Revit.Elements
             return internalViewport.GetBoxCenter().ToPoint();
         }
 
-//#if Revit2022 || Revit2023
+#if Revit2022 || Revit2023
         /// <summary>
         /// Set a viewport's title length. Revit 2022+
         /// </summary>
@@ -358,4 +358,5 @@ namespace Rhythm.Revit.Elements
         }
 #endif
     }
+
 }
