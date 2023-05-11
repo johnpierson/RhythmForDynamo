@@ -2,6 +2,7 @@ __author__ = 'john pierson - sup@johnp.lol'
 __twitter__ = '@johntpierson'
 __github__ = '@johnpierson'
 __version__ ='1.0.0'
+__python version__ ='IronPython 2.7'
 __license__ = 'BSD 3-Clause - https://tldrlegal.com/license/bsd-3-clause-license-(revised)'
 
 # import common language runtime 
