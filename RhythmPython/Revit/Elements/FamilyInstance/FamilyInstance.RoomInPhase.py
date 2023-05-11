@@ -1,5 +1,5 @@
-__author__ = 'john pierson - sixtysecondrevit@gmail.com'
-__twitter__ = '@60secondrevit'
+__author__ = 'john pierson - sup@johnp.lol'
+__twitter__ = '@johntpierson'
 __github__ = '@johnpierson'
 __version__ ='1.0.0'
 __license__ = 'BSD 3-Clause - https://tldrlegal.com/license/bsd-3-clause-license-(revised)'
