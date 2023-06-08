@@ -62,6 +62,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2020", "RhythmUI\R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2024", "Rhythm\Rhythm.2024\RhythmRevit.2024.csproj", "{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmCore.2024", "RhythmCore\RhythmCore.2024\RhythmCore.2024.csproj", "{23129642-A0F7-4E6F-AA04-37B5CE585932}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI.2024", "RhythmUI\RhythmUI.2024\RhythmUI.2024.csproj", "{705E5409-7605-4026-B91B-7055E04FA67B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmViewExtension.2024", "RhythmViewExtension\RhythmViewExtension.2024\RhythmViewExtension.2024.csproj", "{6258A8BF-553B-47E4-B50E-5262C7039BCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +142,18 @@ Global
 		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23129642-A0F7-4E6F-AA04-37B5CE585932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23129642-A0F7-4E6F-AA04-37B5CE585932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23129642-A0F7-4E6F-AA04-37B5CE585932}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23129642-A0F7-4E6F-AA04-37B5CE585932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705E5409-7605-4026-B91B-7055E04FA67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705E5409-7605-4026-B91B-7055E04FA67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705E5409-7605-4026-B91B-7055E04FA67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705E5409-7605-4026-B91B-7055E04FA67B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6258A8BF-553B-47E4-B50E-5262C7039BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6258A8BF-553B-47E4-B50E-5262C7039BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6258A8BF-553B-47E4-B50E-5262C7039BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6258A8BF-553B-47E4-B50E-5262C7039BCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,6 +180,9 @@ Global
 		{D32C49DD-F1D3-434D-AF65-EE404840327E} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
 		{C50E2CCB-11DD-42CA-9B9A-D8433197B245} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
 		{041CCE9F-11BF-48C5-8F07-6AD882E1F4BA} = {6C879D04-F9E8-4A7F-B3D1-4168876E8A10}
+		{23129642-A0F7-4E6F-AA04-37B5CE585932} = {EAA573D0-F799-46A7-A042-9B821456F7C0}
+		{705E5409-7605-4026-B91B-7055E04FA67B} = {FD8AA02D-5E1F-432E-8955-94B260E6E75D}
+		{6258A8BF-553B-47E4-B50E-5262C7039BCE} = {F2A23823-0079-496A-9E0A-5C05A9E45BC0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2215E64B-BFBC-4EDF-9941-C57ADD301D03}
@@ -170,6 +191,7 @@ Global
 		Rhythm\Rhythm.SharedProject\Rhythm.SharedProject.projitems*{041cce9f-11bf-48c5-8f07-6ad882e1f4ba}*SharedItemsImports = 4
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{0dce2095-be71-4db9-8d3c-705b6d730beb}*SharedItemsImports = 4
 		RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.projitems*{0f542624-c3bb-4ff7-9b41-5fe26df1796d}*SharedItemsImports = 4
+		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{23129642-a0f7-4e6f-aa04-37b5ce585932}*SharedItemsImports = 4
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{23b3e2c2-5e42-416b-8dc2-51882e4cb30c}*SharedItemsImports = 4
 		Rhythm\Rhythm.SharedProject\Rhythm.SharedProject.projitems*{250a06fb-c9a3-43ee-9332-39ff0f3e7c88}*SharedItemsImports = 13
 		RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.projitems*{476f9b52-5c5f-4ee7-98d4-6b4f30498889}*SharedItemsImports = 4
@@ -177,7 +199,9 @@ Global
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{57e4c816-ceea-45f6-8df2-6d742b12a066}*SharedItemsImports = 13
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{5d01d839-5d66-43e9-990a-6449e12e2d6e}*SharedItemsImports = 4
 		RhythmCore\RhythmCore.SharedProject\RhythmCore.SharedProject.projitems*{618258ba-767b-482c-b57e-e5d54ab6e004}*SharedItemsImports = 4
+		RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.projitems*{6258a8bf-553b-47e4-b50e-5262c7039bce}*SharedItemsImports = 4
 		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{6e0b60a0-b5ab-4859-84f9-0fb0e769b92f}*SharedItemsImports = 13
+		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{705e5409-7605-4026-b91b-7055e04fa67b}*SharedItemsImports = 4
 		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{a16778d2-0fad-4f3b-aa81-e76afc462cb1}*SharedItemsImports = 4
 		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{c50e2ccb-11dd-42ca-9b9a-d8433197b245}*SharedItemsImports = 4
 		RhythmUI\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems*{d32c49dd-f1d3-434d-af65-ee404840327e}*SharedItemsImports = 4

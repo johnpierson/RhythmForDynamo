@@ -24,7 +24,7 @@ namespace Rhythm.Revit.Tools
         /// Application.OpenDocumentFile, rhythm
         /// </search>
         //this is the node Application.OpenDocumentFile
-        [MultiReturn(new[] { "Succesfully Upgraded", "Not So Succesfully Upgraded" })]
+        [MultiReturn(new[] { "Successfully Upgraded", "Not So Successfully Upgraded" })]
         public static Dictionary<string, object> UpgradeFamilies(string directoryPath)
         {
             //get UIAPP and APP

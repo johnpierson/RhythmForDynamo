@@ -63,6 +63,10 @@ namespace Rhythm.Revit.Elements
             return new RevitLinkGraphicsSettings(graphics);
         }
 
+        public static string LinkVisibilityType(RevitLinkGraphicsSettings revitLinkGraphicsSettings)
+        {
+            return revitLinkGraphicsSettings.InternalRevitLinkGraphicsSettings.LinkVisibilityType.ToString();
+        }
         #endregion
 
     }

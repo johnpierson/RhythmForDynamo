@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB60D4A7-962D-41F7-8D96-331DC7CCD88A}</ProjectGuid>
+    <ProjectGuid>{705E5409-7605-4026-B91B-7055E04FA67B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RhythmUI</RootNamespace>
@@ -175,7 +175,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\AssemblyInfo\AssemblyInfo-2023.cs">
+    <Compile Include="..\..\AssemblyInfo\AssemblyInfo-2024.cs">
       <Link>AssemblyInfo-2023.cs</Link>
     </Compile>
     <Compile Include="IsolatedSelectModelElements.xaml.cs">
@@ -199,7 +199,7 @@
   <Import Project="..\RhythmUI.SharedProject\RhythmUI.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.17\packages\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.17\packages\Rhythm\bin" /Y /I</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Debug xcopy "$(ProjectDir)bin\Debug\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.16\packages\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmUI.dll" "$(AppData)\Dynamo\Dynamo Revit\2.16\packages\Rhythm\bin" /Y /I</PostBuildEvent>
   </PropertyGroup>
 </Project>
