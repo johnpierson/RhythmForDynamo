@@ -11,8 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DesignOptionsUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IsolatedSelectModelElementsUI.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IsolatedSelectModelElementsUINodeView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LinksUI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModelCategories.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ModelCategoriesCollect.cs" />

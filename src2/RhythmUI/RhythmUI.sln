@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit", "RhythmRevit.csproj", "{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI", "RhythmUI.csproj", "{682544B9-D61D-4260-B358-5F9063B34E1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9AD0950F-7743-4528-90DE-2A9F3C7BE0EB}
+		SolutionGuid = {0A40F70C-3F4B-49F5-A7CF-20BE8AB8012B}
 	EndGlobalSection
 EndGlobal
