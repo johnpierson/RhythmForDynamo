@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rhythm</RootNamespace>
+    <AssemblyName>RhythmRevit</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\RhythmRevit.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\RhythmRevit.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AdWindows, Version=5.0.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2024.0.0\lib\net48\AdWindows.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Analysis, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.DynamoCoreNodes.2.17.3.4871\lib\net48\Analysis.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DesignScriptBuiltin, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\DesignScriptBuiltin.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DSCoreNodes, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.DynamoCoreNodes.2.17.3.4871\lib\net48\DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DSCPython, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\DSCPython.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoApplications, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\DynamoApplications.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCore, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\DynamoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoInstallDetective, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\DynamoInstallDetective.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoServices, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.DynamoServices.2.17.3.4871\lib\netstandard2.0\DynamoServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoShapeManager, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\DynamoShapeManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUnits, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.ZeroTouchLibrary.2.17.3.4871\lib\net48\DynamoUnits.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GeometryColor, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.DynamoCoreNodes.2.17.3.4871\lib\net48\GeometryColor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ProtoCore, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoGeometry, Version=2.17.1.3967, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\DynamoVisualProgramming.ZeroTouchLibrary.2.17.3.4871\lib\net48\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI, Version=24.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2024.0.0\lib\net48\RevitAPI.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI, Version=24.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2024.0.0\lib\net48\RevitAPIUI.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitNodes">
+      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\RevitNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitServices">
+      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\RevitServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIFramework, Version=24.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Revit_All_Main_Versions_API_x64.2024.0.0\lib\net48\UIFramework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VMDataBridge, Version=2.17.3.4871, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\DynamoVisualProgramming.Core.2.17.3.4871\lib\net48\VMDataBridge.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\DefaultProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefaultProgressForm.designer.cs">
+      <DependentUpon>DefaultProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FamilyUpgradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FamilyUpgradeForm.designer.cs">
+      <DependentUpon>FamilyUpgradeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Geometry\Tessellation\ConvexHull.cs" />
+    <Compile Include="Revit\ElementFilter\ElementFilter.cs" />
+    <Compile Include="Revit\Application\Applications.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Revit\Application\Document.cs" />
+    <Compile Include="Revit\Elements\Area.cs" />
+    <Compile Include="Revit\Elements\AreaTag.cs" />
+    <Compile Include="Revit\Elements\BeamSystem.cs" />
+    <Compile Include="Revit\Elements\Category.cs" />
+    <Compile Include="Revit\Elements\Ceiling.cs" />
+    <Compile Include="Revit\Elements\CurtainGrid.cs" />
+    <Compile Include="Revit\Elements\CurtainGridLine.cs" />
+    <Compile Include="Revit\Elements\CurtainPanel.cs" />
+    <Compile Include="Revit\Elements\Dimension.cs" />
+    <Compile Include="Revit\Elements\DimensionSegment.cs" />
+    <Compile Include="Revit\Elements\DimensionType.cs" />
+    <Compile Include="Revit\Elements\Element.cs" />
+    <Compile Include="Revit\Elements\Elevation Marker.cs" />
+    <Compile Include="Revit\Elements\FamilyInstance.cs" />
+    <Compile Include="Revit\Elements\FilledRegion.cs" />
+    <Compile Include="Revit\Elements\Floor.cs" />
+    <Compile Include="Revit\Elements\Grid.cs" />
+    <Compile Include="Revit\Elements\Group.cs" />
+    <Compile Include="Revit\Elements\GroupType.cs" />
+    <Compile Include="Revit\Elements\HostObject.cs" />
+    <Compile Include="Revit\Elements\Leaders.cs" />
+    <Compile Include="Revit\Elements\Level.cs" />
+    <Compile Include="Revit\Elements\Mullion.cs" />
+    <Compile Include="Revit\Elements\Parts.cs" />
+    <Compile Include="Revit\Elements\ReferencePlane.cs" />
+    <Compile Include="Revit\Elements\RevitLink.cs" />
+    <Compile Include="Revit\Elements\RevitLinkGraphicOverrides.cs" />
+    <Compile Include="Revit\Elements\RevitLinkType.cs" />
+    <Compile Include="Revit\Elements\Roof.cs" />
+    <Compile Include="Revit\Elements\Room.cs" />
+    <Compile Include="Revit\Elements\RoomTag.cs" />
+    <Compile Include="Revit\Elements\Sheet.cs" />
+    <Compile Include="Revit\Elements\SlopedGlazing.cs" />
+    <Compile Include="Revit\Elements\Space.cs" />
+    <Compile Include="Revit\Elements\SpaceTag.cs" />
+    <Compile Include="Revit\Elements\Tag.cs" />
+    <Compile Include="Revit\Elements\TextNote.cs" />
+    <Compile Include="Revit\Elements\Viewport.cs" />
+    <Compile Include="Revit\Elements\Wall.cs" />
+    <Compile Include="Revit\Helpers\Helpers.cs" />
+    <Compile Include="Revit\Ribbon\Modifiers.cs" />
+    <Compile Include="Revit\Ribbon\RibbonTab.cs" />
+    <Compile Include="Revit\Selection\Collector.cs" />
+    <Compile Include="Revit\Selection\ElementSelection.cs" />
+    <Compile Include="Revit\Selection\Selection.cs" />
+    <Compile Include="Revit\Tools\Animate.cs" />
+    <Compile Include="Revit\Tools\Batch.cs" />
+    <Compile Include="Revit\Tools\Tools.cs" />
+    <Compile Include="Revit\Views\CygonRectanglePacker.cs" />
+    <Compile Include="Revit\Views\OutOfSpaceException.cs" />
+    <Compile Include="Revit\Views\RectanglePacker.cs" />
+    <Compile Include="Revit\Views\Sheet.cs" />
+    <Compile Include="Revit\Views\View.cs" />
+    <Compile Include="Revit\Views\View3D.cs" />
+    <Compile Include="Revit\Views\ViewPlan.cs" />
+    <Compile Include="Revit\Views\ViewSection.cs" />
+    <Compile Include="Revit\Worksharing\Element.cs" />
+    <Compile Include="Utilities\Converters.cs" />
+    <Compile Include="Utilities\PointInPoly.cs" />
+    <Compile Include="Utilities\PointInPolyExtensions.cs" />
+    <Compile Include="Utilities\Utilities.cs" />
+    <Compile Include="Utilities\ViewUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\DefaultProgressForm.resx">
+      <DependentUpon>DefaultProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FamilyUpgradeForm.resx">
+      <DependentUpon>FamilyUpgradeForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "$(ProjectDir)..\_release\Rhythm\bin" /Y /I
+if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "$(ProjectDir)..\_release\Rhythm\bin" /Y /I</PostBuildEvent>
+  </PropertyGroup>
+</Project>
