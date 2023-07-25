@@ -79,7 +79,7 @@ namespace RhythmViewExtension
             {
                 obj.Name = "ʳʰʸᵗʰᵐ|" + obj.Name;
             }
-            if (creationName.Contains("CloseDocument"))
+            if (creationName.Contains("CloseDocument") || creationName.Contains("UpgradeFamilies"))
             {
                 dynView.HomeSpace.RunSettings.RunType = RunType.Manual;
             }
