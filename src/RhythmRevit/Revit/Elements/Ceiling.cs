@@ -56,7 +56,7 @@ namespace Rhythm.Revit.Elements
                 .FirstElement().ToDSType(false) as global::Revit.Elements.Element;
         }
 
-#if Revit2022 || Revit2023
+
         /// <summary>
         /// Create a ceiling by multiple curve loops. Revit 2022+
         /// </summary>
@@ -133,7 +133,7 @@ namespace Rhythm.Revit.Elements
 
             return ceiling.ToDSType(false);
         }
-#endif
+
 
         internal class FailuresPreprocessor : IFailuresPreprocessor
         {

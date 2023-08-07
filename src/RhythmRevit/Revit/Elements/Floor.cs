@@ -43,7 +43,7 @@ namespace Rhythm.Revit.Elements
 
             return length.AlmostEquals(ceilingParam, 0.01);
         }
-#if Revit2022 || Revit2023
+
         /// <summary>
         /// Collect the first floor type available. Revit 2022+
         /// </summary>
@@ -51,8 +51,6 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static global::Revit.Elements.FloorType DefaultFloorType()
         {
-
-
             var doc = DocumentManager.Instance.CurrentDBDocument;
 
             var floorTypeInternal = doc.GetElement(Autodesk.Revit.DB.Floor.GetDefaultFloorType(doc, false));
@@ -128,7 +126,7 @@ namespace Rhythm.Revit.Elements
 
             return (global::Revit.Elements.Floor)floor.ToDSType(false);
         }
-#endif
+
 
 
         internal class FailuresPreprocessor : IFailuresPreprocessor

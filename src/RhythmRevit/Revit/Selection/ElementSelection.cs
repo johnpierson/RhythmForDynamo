@@ -12,7 +12,7 @@ namespace Rhythm.Revit.Selection
     public class ElementSelection
     {
         private ElementSelection(){}
-        public static object InLinkDoc(string docTitle, string uniqueId, bool returnElement, bool isRevitOwned = true )
+        public static object InLinkDoc(string docTitle, string uniqueId, bool returnElement, bool isRevitOwned = false )
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
 

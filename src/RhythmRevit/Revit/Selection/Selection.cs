@@ -4,16 +4,20 @@ using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
+using Rhythm.Utilities;
+using static Autodesk.Revit.DB.SpecTypeId;
 using Category = Revit.Elements.Category;
 using Curve = Autodesk.Revit.DB.Curve;
 using Element = Autodesk.Revit.DB.Element;
 using Grid = Autodesk.Revit.DB.Grid;
 using ModelCurve = Autodesk.Revit.DB.ModelCurve;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Reference = Autodesk.Revit.DB.Reference;
 
 namespace Rhythm.Revit.Selection
 {
@@ -22,8 +26,60 @@ namespace Rhythm.Revit.Selection
     /// </summary>
     public class Selection
     {
-        private Selection()
+        private Selection() { }
+
+        /// <summary>
+        /// Select stuff from a link. Useful for Dynamo player.
+        /// </summary>
+        /// <param name="refreshSelection">Reset the selection and reselect new things</param>
+        /// <param name="singleSelection">Enable single selection. False for multiple selection.</param>
+        /// <returns name="selectedElements">The selected elements.</returns>
+        /// <returns name="transform">If the link was moved this transform is needed to relocate the stuff.</returns>
+        [MultiReturn(new[] { "selectedElements", "transform" })]
+        public static Dictionary<string, object> FromLink(bool refreshSelection, bool singleSelection)
         {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            UIDocument uiDoc = DocumentManager.Instance.CurrentUIDocument;
+
+            Autodesk.Revit.UI.Selection.Selection sel = uiDoc.Selection;
+
+            List<global::Revit.Elements.Element> selection = new List<global::Revit.Elements.Element>();
+
+
+            if (singleSelection)
+            {
+                Reference reference = sel.PickObject(ObjectType.LinkedElement, "Please pick a model element from a link.");
+
+                RevitLinkInstance link = DocumentManager.Instance.CurrentDBDocument.GetElement(reference) as RevitLinkInstance;
+                var linkElement = link.GetLinkDocument().GetElement(reference.LinkedElementId);
+
+
+                selection.Add(linkElement.ToDSType(false));
+            }
+            else
+            {
+                IList<Reference> references = sel.PickObjects(ObjectType.LinkedElement, "Please pick some model elements from a link.");
+                foreach (var r in references)
+                {
+                    RevitLinkInstance link = DocumentManager.Instance.CurrentDBDocument.GetElement(r) as RevitLinkInstance;
+
+                    var linkElement = link.GetLinkDocument().GetElement(r.LinkedElementId);
+
+                    selection.Add(linkElement.ToDSType(false));
+                }
+            }
+
+            var internalFirstElement = selection.First().InternalElement;
+
+            var transform = ElementSelection.InLinkDoc(internalFirstElement.Document.Title, internalFirstElement.UniqueId, false) as CoordinateSystem;
+
+            //returns the outputs
+            var outInfo = new Dictionary<string, object>
+            {
+                { "selectedElements", selection},
+                { "transform", transform}
+            };
+            return outInfo;
         }
 
         /// <summary>
@@ -32,25 +88,25 @@ namespace Rhythm.Revit.Selection
         /// </summary>
         /// <param name="modelCurve">Revit model curve to select grids along.</param>
         /// <returns name="orderedGrids">The intersecting grids ordered from beginning to end of the line.</returns>
-        public static List<global::Revit.Elements.Grid>IntersectingGridsByModelCurve(global::Revit.Elements.ModelCurve modelCurve)
+        public static List<global::Revit.Elements.Grid> IntersectingGridsByModelCurve(global::Revit.Elements.ModelCurve modelCurve)
         {
             ModelCurve mCurve = modelCurve.InternalElement as ModelCurve;
 
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
-            List<global::Revit.Elements.Grid>intersectingGrids = new List<global::Revit.Elements.Grid>(); 
+            List<global::Revit.Elements.Grid> intersectingGrids = new List<global::Revit.Elements.Grid>();
 
             IList<Autodesk.Revit.DB.Element> grids = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Grids).WhereElementIsNotElementType().ToElements();
 
             foreach (var grid in grids)
             {
                 Grid g = grid as Grid;
-                Curve c = g.GetCurvesInView(DatumExtentType.ViewSpecific,doc.ActiveView).First();
+                Curve c = g.GetCurvesInView(DatumExtentType.ViewSpecific, doc.ActiveView).First();
                 Curve c2 = mCurve.GeometryCurve;
 
-                Point pt1 = Point.ByCoordinates(0,0,c.GetEndPoint(0).Z);
+                Point pt1 = Point.ByCoordinates(0, 0, c.GetEndPoint(0).Z);
                 Point pt2 = Point.ByCoordinates(0, 0, c2.GetEndPoint(0).Z);
-                XYZ vec = Vector.ByTwoPoints(pt2,pt1).ToRevitType();
+                XYZ vec = Vector.ByTwoPoints(pt2, pt1).ToRevitType();
 
                 var transformed = c2.CreateTransformed(Transform.CreateTranslation(vec));
 
@@ -63,7 +119,7 @@ namespace Rhythm.Revit.Selection
                 {
                     intersectingGrids.Add(g.ToDSType(false) as global::Revit.Elements.Grid);
                 }
-                
+
             }
 
             return intersectingGrids.OrderBy(g => g.Curve.DistanceTo(modelCurve.Curve.StartPoint)).ToList();

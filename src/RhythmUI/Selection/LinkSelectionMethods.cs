@@ -23,10 +23,10 @@ using Element = Autodesk.Revit.DB.Element;
 namespace RhythmUI
 {
     #region Nodes
-    [IsDesignScriptCompatible]
     [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
     [NodeDescription("This allows you to select an element from a link. Useful for Dynamo player and Generative Design.")]
     [NodeName("Select Element from Link")]
+    [Obsolete("This node will be completely removed in future versions of Rhythm. Please use the non-ui node Selection.FromLink from now on.")]
     public class SelectElementInLink : ElementFilterSelection<Element>
     {
         private const string Message = "Select Model Element";
@@ -49,6 +49,7 @@ namespace RhythmUI
     [NodeCategory("Rhythm.Revit.Selection.RevitLinkSelection")]
     [NodeDescription("This allows you to select multiple elements from links. Useful for Dynamo player and Generative Design.")]
     [NodeName("Select Elements from Link")]
+    [Obsolete("This node will be completely removed in future versions of Rhythm. Please use the non-ui node Selection.FromLink from now on.")]
     public class SelectElementsInLink : ElementFilterSelection<Element>
     {
         private const string Message = "Select Model Element";

@@ -8,6 +8,7 @@ using Dynamo.Graph.Nodes;
 using Revit.Elements;
 using RevitServices.Persistence;
 using Rhythm.Utilities;
+using Convert = Rhythm.Utilities.Convert;
 
 namespace Rhythm.Revit.Selection
 {
@@ -82,12 +83,11 @@ namespace Rhythm.Revit.Selection
                 doc = document as Document;
             }
 
-            //generate the category id from the input user viewable category
-            Autodesk.Revit.DB.ElementId categoryId = new ElementId(category.Id);
+            var filter = new ElementCategoryFilter(category.ToRevitType().BuiltInCategory);
 
             FilteredElementCollector coll = new FilteredElementCollector(doc);
             List<global::Revit.Elements.Element> elems =
-                new List<global::Revit.Elements.Element>(coll.OfCategoryId(categoryId).ToElements()
+                new List<global::Revit.Elements.Element>(coll.WhereElementIsNotElementType().WherePasses(filter).ToElements()
                     .Select(e => e.ToDSType(false)));
 
             return elems;

@@ -147,12 +147,9 @@ namespace Rhythm.Revit.Elements
 
             Dimension dim = dimension.InternalElement as Dimension;
 
-#if Revit2020
-            return dim.DimensionType.GetUnitsFormatOptions().DisplayUnits.ToString();
-#endif
-#if !Revit2020
- return dim.DimensionType.GetUnitsFormatOptions().GetUnitTypeId().TypeId;
-#endif
+
+
+            return dim.DimensionType.GetUnitsFormatOptions().GetUnitTypeId().TypeId;
 
         }
 
@@ -746,7 +743,7 @@ namespace Rhythm.Revit.Elements
             return values;
         }
 
-#if Revit2021 || Revit2022 || Revit2023 || Revit2024
+
         /// <summary>
         /// Retrieve the actual dimension display value. The built in RevitAPI method returns the string per the project setting. This returns it per the dimension setting.
         /// </summary>
@@ -817,12 +814,8 @@ namespace Rhythm.Revit.Elements
             units.SetFormatOptions(typeId,
                 internalDimension.DimensionType.GetUnitsFormatOptions());
         }
-#endif
 
-#if Revit2024
 
-        
-#endif
 
         //private static void SetFormatInternal(Units units, Autodesk.Revit.DB.Dimension internalDimension)
         //{

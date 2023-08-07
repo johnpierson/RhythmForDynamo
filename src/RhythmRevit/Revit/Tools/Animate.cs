@@ -67,13 +67,7 @@ namespace Rhythm.Revit.Tools
                                 //autodesk.unit.unit:degrees-1.0.1
                                 string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
 
-#if Revit2020
-                                paramType = parameter.DisplayUnitType.ToString();
-#endif
-#if Revit2021 || Revit2022 || Revit2023
-                                paramType = parameter.GetUnitTypeId().TypeId;               
-#endif
-
+                                paramType = parameter.GetUnitTypeId().TypeId;
 
                                 if (paramType.ToLower().Contains("degrees"))
                                 {
@@ -137,13 +131,17 @@ namespace Rhythm.Revit.Tools
             //create a new form!
             DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images", "Exporting image {0} of " + iterations.ToString(), "Animate Element Color", iterations + 1);
             //default indices for start and end color
-            List<double> defaultIndices = new List<double>();
-            defaultIndices.Add(0);
-            defaultIndices.Add(1);
+            List<double> defaultIndices = new List<double>
+            {
+                0,
+                1
+            };
             //the color list generated from start and end color
-            List<Color> colorList = new List<Color>();
-            colorList.Add(startColor);
-            colorList.Add(endColor);
+            List<Color> colorList = new List<Color>
+            {
+                startColor,
+                endColor
+            };
             //where to start
             double startValue = 0;
 

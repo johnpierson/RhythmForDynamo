@@ -36,3 +36,4 @@
 20230207: [IMPORTANT] This publish was primarily to override the temporary publish for Revit legacy support (2020 and older) v2023.2.1.
 20230412: [Fixes] Fix return dictionary for upgrade nodes.
 20230724:[Removals] Removed the isolated link selection node. [Fixes] Should be compatible from Revit 2021 - 2024
+20230807; [Fixes] Unhide the floor nodes.

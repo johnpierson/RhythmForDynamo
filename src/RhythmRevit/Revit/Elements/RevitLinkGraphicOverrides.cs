@@ -1,74 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Autodesk.Revit.DB;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
+//using Autodesk.Revit.DB;
 
-namespace Rhythm.Revit.Elements
-{
-#if Revit2024
-    /// <summary>
-    /// Override Graphic Settings
-    /// </summary>
-    public class RevitLinkGraphicsSettings
-    {
-        #region Internal Properties
+//namespace Rhythm.Revit.Elements
+//{
 
-        /// <summary>
-        /// Internal reference to the Revit Element
-        /// </summary>
-        internal Autodesk.Revit.DB.RevitLinkGraphicsSettings InternalRevitLinkGraphicsSettings
-        {
-            get; set;
-        }
+//    /// <summary>
+//    /// Override Graphic Settings
+//    /// </summary>
+//    public class RevitLinkGraphicsSettings
+//    {
+//        #region Internal Properties
 
-        /// <summary>
-        /// Reference to the Element
-        /// </summary>
-        internal RevitLinkGraphicsSettings(Autodesk.Revit.DB.RevitLinkGraphicsSettings internalRevitLinkGraphicsSettings)
-        {
-            this.InternalRevitLinkGraphicsSettings = internalRevitLinkGraphicsSettings;
-        }
+//        /// <summary>
+//        /// Internal reference to the Revit Element
+//        /// </summary>
+//        internal Autodesk.Revit.DB.RevitLinkGraphicsSettings InternalRevitLinkGraphicsSettings
+//        {
+//            get; set;
+//        }
 
-        #endregion
+//        /// <summary>
+//        /// Reference to the Element
+//        /// </summary>
+//        internal RevitLinkGraphicsSettings(Autodesk.Revit.DB.RevitLinkGraphicsSettings internalRevitLinkGraphicsSettings)
+//        {
+//            this.InternalRevitLinkGraphicsSettings = internalRevitLinkGraphicsSettings;
+//        }
 
-        #region Public static constructors
-        /// <summary>
-        /// Define link graphic settings by properties. (for now this is just the link visibility setting..)
-        /// </summary>
-        /// <param name="linkVisibility">Options = ByHostView, ByLinkView, Custom</param>
-        /// <returns></returns>
-        public static RevitLinkGraphicsSettings ByProperties(string linkVisibility = "ByHostView")
-        {
-            Autodesk.Revit.DB.RevitLinkGraphicsSettings graphics = new Autodesk.Revit.DB.RevitLinkGraphicsSettings();
+//        #endregion
 
-            string simpleString = linkVisibility.ToLower();
+//        #region Public static constructors
+//        /// <summary>
+//        /// Define link graphic settings by properties. (for now this is just the link visibility setting..)
+//        /// </summary>
+//        /// <param name="linkVisibility">Options = ByHostView, ByLinkView, Custom</param>
+//        /// <returns></returns>
+//        public static RevitLinkGraphicsSettings ByProperties(string linkVisibility = "ByHostView")
+//        {
+//            Autodesk.Revit.DB.RevitLinkGraphicsSettings graphics = new Autodesk.Revit.DB.RevitLinkGraphicsSettings();
 
-            switch (simpleString)
-            {
-                case "byhostview":
-                    graphics.LinkVisibilityType = LinkVisibility.ByHostView;
-                    break;
-                case "bylinkview":
-                    graphics.LinkVisibilityType = LinkVisibility.ByLinkView;
-                    break;
-                case "custom":
-                    graphics.LinkVisibilityType = LinkVisibility.Custom;
-                    break;
-                default:
-                    graphics.LinkVisibilityType = LinkVisibility.ByHostView;
-                    break;
-            }
+//            string simpleString = linkVisibility.ToLower();
+
+//            switch (simpleString)
+//            {
+//                case "byhostview":
+//                    graphics.LinkVisibilityType = LinkVisibility.ByHostView;
+//                    break;
+//                case "bylinkview":
+//                    graphics.LinkVisibilityType = LinkVisibility.ByLinkView;
+//                    break;
+//                case "custom":
+//                    graphics.LinkVisibilityType = LinkVisibility.Custom;
+//                    break;
+//                default:
+//                    graphics.LinkVisibilityType = LinkVisibility.ByHostView;
+//                    break;
+//            }
             
 
-            return new RevitLinkGraphicsSettings(graphics);
-        }
+//            return new RevitLinkGraphicsSettings(graphics);
+//        }
 
-        public static string LinkVisibilityType(RevitLinkGraphicsSettings revitLinkGraphicsSettings)
-        {
-            return revitLinkGraphicsSettings.InternalRevitLinkGraphicsSettings.LinkVisibilityType.ToString();
-        }
-        #endregion
+//        public static string LinkVisibilityType(RevitLinkGraphicsSettings revitLinkGraphicsSettings)
+//        {
+//            return revitLinkGraphicsSettings.InternalRevitLinkGraphicsSettings.LinkVisibilityType.ToString();
+//        }
+//        #endregion
 
-    }
-#endif
-}
+//    }
+
+//}

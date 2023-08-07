@@ -4,6 +4,7 @@ using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using Rhythm.Utilities;
 using Category = Revit.Elements.Category;
 
 namespace Rhythm.Revit.Elements
@@ -81,10 +82,8 @@ namespace Rhythm.Revit.Elements
             //iterates through each of the input items.
             foreach (global::Revit.Elements.Category c in category)
             {
-                //generate the category id from the input user viewable category
-                Autodesk.Revit.DB.ElementId categoryId = new ElementId(c.Id);
                 //obtain the internal Revit category from the id
-                Autodesk.Revit.DB.Category internalRevitCat = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+                Autodesk.Revit.DB.Category internalRevitCat = c.ToRevitType();
                 //get the projection lineweight
                 categoryProjectionLineweight.Add(internalRevitCat.GetLineWeight(GraphicsStyleType.Projection));
             }
@@ -103,10 +102,8 @@ namespace Rhythm.Revit.Elements
         {
             //obtains the current document for later use
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
-            //generate the category id from the input user viewable category
-            Autodesk.Revit.DB.ElementId categoryId = new ElementId(category.Id);
-            //obtain the internal Revit category from the id
-            Autodesk.Revit.DB.Category internalRevitCat = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+            //obtain the internal Revit category
+            Autodesk.Revit.DB.Category internalRevitCat = category.ToRevitType();
 
             TransactionManager.Instance.EnsureInTransaction(doc);
             internalRevitCat.SetLineWeight(penWeight, GraphicsStyleType.Projection);
@@ -136,10 +133,9 @@ namespace Rhythm.Revit.Elements
             //iterates through each of the input items.
             foreach (global::Revit.Elements.Category c in category)
             {
-                //generate the category id from the input user viewable category
-                Autodesk.Revit.DB.ElementId categoryId = new ElementId(c.Id);
-                //obtain the internal Revit category from the id
-                Autodesk.Revit.DB.Category internalRevitCat = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+
+                //obtain the internal Revit category
+                Autodesk.Revit.DB.Category internalRevitCat = c.ToRevitType();
                 categoryCutLineweight.Add(internalRevitCat.GetLineWeight(GraphicsStyleType.Cut));
             }
             return categoryCutLineweight;
@@ -157,10 +153,8 @@ namespace Rhythm.Revit.Elements
             //obtains the current document for later use
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             
-            //generate the category id from the input user viewable category
-            Autodesk.Revit.DB.ElementId categoryId = new ElementId(category.Id);
-            //obtain the internal Revit category from the id
-            Autodesk.Revit.DB.Category internalRevitCat = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+            //obtain the internal Revit category
+            Autodesk.Revit.DB.Category internalRevitCat = category.ToRevitType();
 
             TransactionManager.Instance.EnsureInTransaction(doc);
             internalRevitCat.SetLineWeight(penWeight, GraphicsStyleType.Cut);
@@ -194,10 +188,8 @@ namespace Rhythm.Revit.Elements
             //iterates through each of the input items.
             foreach (global::Revit.Elements.Category c in category)
             {
-                //generate the category id from the input user viewable category
-                Autodesk.Revit.DB.ElementId categoryId = new ElementId(c.Id);
-                //obtain the internal Revit category from the id
-                Autodesk.Revit.DB.Category internalRevitCat = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+                //obtain the internal Revit category
+                Autodesk.Revit.DB.Category internalRevitCat = c.ToRevitType();
                 //obtain the string representation of the color
                 lineColorString.Add(internalRevitCat.LineColor.Red.ToString() + ", " + internalRevitCat.LineColor.Green.ToString() + ", " + internalRevitCat.LineColor.Blue.ToString());
                 lineColor.Add(DSCore.Color.ByARGB(255, internalRevitCat.LineColor.Red, internalRevitCat.LineColor.Green, internalRevitCat.LineColor.Blue));
@@ -228,10 +220,8 @@ namespace Rhythm.Revit.Elements
             //iterates through each of the input items.
             foreach (global::Revit.Elements.Category cat in category)
             {
-                //generate the category id from the input user viewable category
-                Autodesk.Revit.DB.ElementId categoryId = new ElementId(cat.Id);
                 //obtain the internal Revit category from the id
-                Autodesk.Revit.DB.Category c = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+                Autodesk.Revit.DB.Category c = cat.ToRevitType();
                 //get the projection line pattern name
                 if (c.GetLinePatternId(GraphicsStyleType.Projection).ToString() == "-3000010")
                 {
@@ -267,10 +257,8 @@ namespace Rhythm.Revit.Elements
             //iterates through each of the input items.
             foreach (global::Revit.Elements.Category cat in category)
             {
-                //generate the category id from the input user viewable category
-                Autodesk.Revit.DB.ElementId categoryId = new ElementId(cat.Id);
-                //obtain the internal Revit category from the id
-                Autodesk.Revit.DB.Category c = Autodesk.Revit.DB.Category.GetCategory(doc, categoryId);
+                //obtain the internal Revit category
+                Autodesk.Revit.DB.Category c = cat.ToRevitType();
                 if (c.Material == null)
                 {
                     materialName.Add("none");
