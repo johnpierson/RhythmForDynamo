@@ -21,7 +21,7 @@ namespace RhythmExtension
         {
             get
             {
-                return "testExtension";
+                return "RhythmExtension";
             }
         }
 
@@ -41,7 +41,7 @@ namespace RhythmExtension
         {
             this.readyCalled = true;
 
-            sp.StartupParams.LibraryLoader.LoadNodeLibrary(Assembly.LoadFrom("C:\\Users\\johnpierson\\AppData\\Roaming\\Dynamo\\Dynamo Core\\2.17\\packages\\Rhythm\\bin\\RhythmCore.dll"));
+            
         }
 
 
@@ -52,7 +52,7 @@ namespace RhythmExtension
 
         public void Startup(StartupParams sp)
         {
-
+            sp.LibraryLoader.LoadNodeLibrary(Assembly.LoadFrom("C:\\Users\\johnpierson\\AppData\\Roaming\\Dynamo\\Dynamo Core\\2.17\\packages\\Rhythm\\bin\\RhythmCore.dll"));
         }
     }
 }
