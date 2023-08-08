@@ -24,10 +24,11 @@ clr.ImportExtensions(Revit.GeometryConversion)
 linkDoc = UnwrapElement(IN[0])
 category = UnwrapElement(IN[1])
 
+# build a filter to target your input category
 filter = ElementCategoryFilter(category.Id);
 
+# collect the elements
 elements = FilteredElementCollector(linkDoc).WhereElementIsNotElementType().WherePasses(filter).ToElements()
-
 
 # return the results
 OUT = elements
