@@ -17,13 +17,7 @@ namespace RhythmExtension
         public List<NodeModel> nodes = new List<NodeModel>();
         public bool readyCalled = false;
 
-        public string Name
-        {
-            get
-            {
-                return "RhythmExtension";
-            }
-        }
+        public string Name => "RhythmExtension";
 
         public string UniqueId => "CD7A123A-7121-4FA4-99D3-D941CD049EA5";
 
@@ -36,12 +30,10 @@ namespace RhythmExtension
         /// sometime after the DynamoModel is already built. ReadyParams provide access to references like the
         /// CurrentWorkspace.
         /// </summary>
-        /// <param name="sp"></param>
-        public void Ready(ReadyParams sp)
+        /// <param name="rp"></param>
+        public void Ready(ReadyParams rp)
         {
             this.readyCalled = true;
-
-            
         }
 
 
@@ -52,6 +44,8 @@ namespace RhythmExtension
 
         public void Startup(StartupParams sp)
         {
+            //TODO: make this check if Dynamo UI is loaded. If not load the library
+            var asses = AppDomain.CurrentDomain.GetAssemblies().ToList();
             sp.LibraryLoader.LoadNodeLibrary(Assembly.LoadFrom("C:\\Users\\johnpierson\\AppData\\Roaming\\Dynamo\\Dynamo Core\\2.17\\packages\\Rhythm\\bin\\RhythmCore.dll"));
         }
     }
