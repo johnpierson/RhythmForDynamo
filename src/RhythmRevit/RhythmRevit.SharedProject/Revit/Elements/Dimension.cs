@@ -73,7 +73,7 @@ namespace Rhythm.Revit.Elements
                 {
                     dimValue = internalDimension.Value.Value * 304.8;
                 }
-                
+
                 var startPoint =
                     (Autodesk.DesignScript.Geometry.Point)originPoint.Translate(vector.Reverse(), dimValue / 2);
                 var endPoint = (Autodesk.DesignScript.Geometry.Point)originPoint.Translate(vector, dimValue / 2);
@@ -145,8 +145,12 @@ namespace Rhythm.Revit.Elements
         {
             Dimension dim = dimension.InternalElement as Dimension;
 
+#if Revit2020
+            return dim.DimensionType.GetUnitsFormatOptions().DisplayUnits.ToString();
+#endif
+#if !Revit2020
             return dim.DimensionType.GetUnitsFormatOptions().GetUnitTypeId().TypeId;
-
+#endif
         }
 
 
@@ -170,7 +174,7 @@ namespace Rhythm.Revit.Elements
             {
                 return "UseDefault";
             }
-            
+
         }
 
         /// <summary>
@@ -190,7 +194,7 @@ namespace Rhythm.Revit.Elements
             //windows color from int
             System.Drawing.Color winColor = ColorTranslator.FromOle(colorInt);
             //return dynamo color
-            return DSCore.Color.ByARGB(winColor.A, winColor.R,winColor.G,winColor.B);
+            return DSCore.Color.ByARGB(winColor.A, winColor.R, winColor.G, winColor.B);
         }
 
         /// <summary>
@@ -211,7 +215,7 @@ namespace Rhythm.Revit.Elements
             //convert to internal dimension
             Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
             List<Autodesk.Revit.DB.Dimension> internalDimensionList =
-                new List<Autodesk.Revit.DB.Dimension> {internalDimension};
+                new List<Autodesk.Revit.DB.Dimension> { internalDimension };
             //lists to output success or not success
             List<global::Revit.Elements.Element> set = new List<global::Revit.Elements.Element>();
             List<global::Revit.Elements.Element> notSet = new List<global::Revit.Elements.Element>();
@@ -317,7 +321,7 @@ namespace Rhythm.Revit.Elements
             //convert to internal dimension
             Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
             List<Autodesk.Revit.DB.Dimension> internalDimensionList =
-                new List<Autodesk.Revit.DB.Dimension> {internalDimension};
+                new List<Autodesk.Revit.DB.Dimension> { internalDimension };
             //lists to output success or not success
             List<global::Revit.Elements.Element> set = new List<global::Revit.Elements.Element>();
             List<global::Revit.Elements.Element> notSet = new List<global::Revit.Elements.Element>();
@@ -516,7 +520,7 @@ namespace Rhythm.Revit.Elements
             //convert to internal dimension
             Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
             List<Autodesk.Revit.DB.Dimension> internalDimensionList =
-                new List<Autodesk.Revit.DB.Dimension> {internalDimension};
+                new List<Autodesk.Revit.DB.Dimension> { internalDimension };
 
             if (internalDimension.NumberOfSegments > 1) //set the multi segment ones
             {
@@ -808,10 +812,13 @@ namespace Rhythm.Revit.Elements
         {
             Dimension internalDimension = dimension.InternalElement as Dimension;
 
-            
+#if !Revit2020
+            ForgeTypeId typeId = new ForgeTypeId("autodesk.spec.aec:length-2.0.0");
 
-        ForgeTypeId typeId = new ForgeTypeId("autodesk.spec.aec:length-2.0.0");
-
+#endif
+#if Revit2020
+            UnitType typeId = UnitType.UT_Length;
+#endif
             units.SetFormatOptions(typeId,
                 internalDimension.DimensionType.GetUnitsFormatOptions());
         }

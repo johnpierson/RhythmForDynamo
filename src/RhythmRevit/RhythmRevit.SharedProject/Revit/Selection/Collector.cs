@@ -83,7 +83,7 @@ namespace Rhythm.Revit.Selection
                 doc = document as Document;
             }
 
-            var filter = new ElementCategoryFilter(category.ToRevitType().BuiltInCategory);
+            var filter = new ElementCategoryFilter(category.ToRevitType().Id);
 
             FilteredElementCollector coll = new FilteredElementCollector(doc);
             List<global::Revit.Elements.Element> elems =

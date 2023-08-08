@@ -316,7 +316,7 @@ namespace Rhythm.Revit.Views
         //    {
         //        throw new Exception("The input bounding box does not intersect the view plane.");
         //    }
-            
+
         //    var curves = intersectingSurface.PerimeterCurves();
         //    var newCurveLoop = CurveLoop.Create(curves.Select(c => c.ToRevitType(true)).ToList());
 
@@ -333,10 +333,11 @@ namespace Rhythm.Revit.Views
         //    }
 
         //    TransactionManager.Instance.TransactionTaskDone();
-            
+
         //    return result;
         //}
 
+#if !Revit2020
 
         /// <summary>
         /// Revit 2021 - Checks if a view filter is enabled in the given view.
@@ -374,6 +375,7 @@ namespace Rhythm.Revit.Views
 
             return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList();
         }
- 
+#endif
     }
+
 }

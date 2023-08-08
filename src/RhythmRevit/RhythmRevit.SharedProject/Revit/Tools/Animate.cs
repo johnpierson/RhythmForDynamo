@@ -17,6 +17,7 @@ namespace Rhythm.Revit.Tools
     {
         private Element()
         { }
+#if !Revit2020
         /// <summary>
         /// Animate a numeric parameter of an element. This will export images of the parameter, then revert the element back to where it was. Also adds text to comments to prevent infinite loops.Clear this comment for subsequent runs.
         /// Inspired by the Bad Monkeys Team.
@@ -65,7 +66,10 @@ namespace Rhythm.Revit.Tools
                                 //autodesk.unit.unit:degrees-1.0.1
                                 string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
 
-                                paramType = parameter.GetUnitTypeId().TypeId;
+
+                          paramType = parameter.GetUnitTypeId().TypeId;        
+
+
 
                                 if (paramType.ToLower().Contains("degrees"))
                                 {
@@ -106,6 +110,7 @@ namespace Rhythm.Revit.Tools
 
             return runResult;
         }
+#endif
         /// <summary>
         /// Animate the color of an element. This will export images of the element, then revert the element back to where it was.
         /// Inspired by the Bad Monkeys team.

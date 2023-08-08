@@ -9,6 +9,7 @@
     <Import_RootNamespace>RhythmRevit</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Forms\DefaultProgressForm.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Forms\DefaultProgressForm.designer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Forms\FamilyUpgradeForm.cs" />

@@ -14,7 +14,7 @@ namespace Rhythm.Revit.Elements
         private GroupTypes()
         {
         }
-
+#if Revit2024
         /// <summary>
         /// Reload a group type from a given location. Note: This will override group types in the current file!
         /// </summary>
@@ -54,7 +54,7 @@ namespace Rhythm.Revit.Elements
             }
            
         }
+#endif
 
-     
     }
 }

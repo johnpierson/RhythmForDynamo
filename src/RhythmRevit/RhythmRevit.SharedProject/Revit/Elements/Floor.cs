@@ -15,6 +15,7 @@ using Level = Revit.Elements.Level;
 
 namespace Rhythm.Revit.Elements
 {
+#if Revit2022 || Revit2023 || Revit2024
     /// <summary>
     /// Wrapper class for floors
     /// </summary>
@@ -137,4 +138,5 @@ namespace Rhythm.Revit.Elements
             }
         }
     }
+#endif
 }

@@ -66,20 +66,6 @@ namespace Rhythm.Utilities
 
             return internalCat;
         }
-
-        internal static rvtCategory ToRevitType(
-            this dynCategory item, rvtDocument document)
-        {
-            var internalCat = typeof(dynCategory).GetProperty("InternalCategory", BindingFlags.Public |
-                BindingFlags.NonPublic |
-                BindingFlags.Instance).GetValue(item) as rvtCategory;
-
-            return internalCat;
-        }
         #endregion Category converters
-
-
-
-
     }
 }

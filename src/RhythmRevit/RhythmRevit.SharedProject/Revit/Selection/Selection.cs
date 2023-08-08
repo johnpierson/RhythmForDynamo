@@ -10,7 +10,9 @@ using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using Rhythm.Utilities;
+#if !Revit2020
 using static Autodesk.Revit.DB.SpecTypeId;
+#endif
 using Category = Revit.Elements.Category;
 using Curve = Autodesk.Revit.DB.Curve;
 using Element = Autodesk.Revit.DB.Element;
@@ -36,9 +38,10 @@ namespace Rhythm.Revit.Selection
         /// <returns name="selectedElements">The selected elements.</returns>
         /// <returns name="transform">If the link was moved this transform is needed to relocate the stuff.</returns>
         [MultiReturn(new[] { "selectedElements", "transform" })]
+#pragma warning disable IDE0060 // Remove unused parameter
         public static Dictionary<string, object> FromLink(bool refreshSelection, bool singleSelection)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             UIDocument uiDoc = DocumentManager.Instance.CurrentUIDocument;
 
             Autodesk.Revit.UI.Selection.Selection sel = uiDoc.Selection;
@@ -142,7 +145,9 @@ namespace Rhythm.Revit.Selection
         /// <param name="singleSelection">Optional input for a single item selection. Default to multiple.</param>
         /// <param name="ordered">Force an ordered selection using esc to finish.</param>
         /// <returns name="pickedElements"></returns>
+#pragma warning disable IDE0060 // Remove unused parameter
         public static object Pick(bool runIt, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] List<object> category, bool singleSelection = false, bool ordered = false)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
             var uiDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;

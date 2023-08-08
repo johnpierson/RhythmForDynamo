@@ -59,11 +59,18 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static object GetLeaderEnd(global::Revit.Elements.Tag tag)
         {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             var internalElement = tag.InternalElement;
 
             if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
             {
-                return internalTag.GetTaggedReferences().Select(r => internalTag.GetLeaderEnd(r).ToPoint()).ToList();
+#if Revit2020 || Revit2021
+                return internalTag.LeaderEnd.ToPoint();
+
+#endif
+#if Revit2022 || Revit2023 || Revit2024
+                                return internalTag.GetTaggedReferences().Select(r => internalTag.GetLeaderEnd(r).ToPoint()).ToList();
+#endif
             }
 
             if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)
@@ -93,7 +100,14 @@ namespace Rhythm.Revit.Elements
 
             if (internalElement is Autodesk.Revit.DB.IndependentTag internalTag)
             {
+#if Revit2020 || Revit2021
+                return internalTag.LeaderElbow.ToPoint();
+
+#endif
+#if Revit2022 || Revit2023 || Revit2024
                 return internalTag.GetTaggedReferences().Select(r => internalTag.GetLeaderElbow(r).ToPoint()).ToList();
+
+#endif
             }
 
             if (internalElement is Autodesk.Revit.DB.Architecture.RoomTag roomTag)

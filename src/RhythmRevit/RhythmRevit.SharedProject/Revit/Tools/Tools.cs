@@ -76,8 +76,8 @@ namespace Rhythm.Revit.Tools
             
             return newFamilyInstance;
         }
-
-     /// <summary>
+#if !Revit2020
+        /// <summary>
         /// Create 3d space tags given the input spaces!
         /// </summary>
         /// <param name="space">The spaces to place 3d space tags on.</param>
@@ -131,7 +131,7 @@ namespace Rhythm.Revit.Tools
 
             return newFamilyInstance;
         }   
-
+#endif
 
     }
 }
