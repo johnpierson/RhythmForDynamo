@@ -26,7 +26,8 @@ namespace RhythmViewExtension
 
         public void Startup(ViewStartupParams p)
         {
-
+            var stuff = Global.PackageBinFolder;
+            var otherStuff = Global.PackageExtraFolder;
         }
 
         private ViewLoadedParams loaded = null;
@@ -34,9 +35,6 @@ namespace RhythmViewExtension
         {
             loaded = p;
             view = p.DynamoWindow as DynamoView;
-
-            //load the pertinent Rhythm library if it isn't loaded yet.
-            //p.ViewStartupParams.LibraryLoader.LoadNodeLibrary();
 
             //Subscribe to node placed events for renaming stuff
             p.CurrentWorkspaceChanged += POnCurrentWorkspaceChanged;

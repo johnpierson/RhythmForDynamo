@@ -3,15 +3,15 @@
   <PropertyGroup>
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>df686d11-c6d3-4698-9834-1637e9537b33</SharedGUID>
+    <SharedGUID>8352c8d4-124a-400b-a6b1-de3e3c6f43b3</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>RhythmViewExtension</Import_RootNamespace>
+    <Import_RootNamespace>RhythmExtension</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Global.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RhythmViewExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utilities\VersionUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RhythmExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Rhythm_ExtensionDefinition.xml" />
   </ItemGroup>
 </Project>
