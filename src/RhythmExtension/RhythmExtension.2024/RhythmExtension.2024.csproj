@@ -78,9 +78,6 @@
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoInstallDetective.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoRevitDS">
-      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\DynamoRevitDS.dll</HintPath>
-    </Reference>
     <Reference Include="DynamoServices, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.18.1.5096\lib\netstandard2.0\DynamoServices.dll</HintPath>
       <Private>False</Private>

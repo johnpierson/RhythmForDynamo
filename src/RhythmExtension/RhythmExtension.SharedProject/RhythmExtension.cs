@@ -1,17 +1,8 @@
 ﻿using Dynamo.Extensions;
-using Dynamo.Graph.Nodes;
-using Dynamo.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using Dynamo.Applications;
-using Dynamo.Interfaces;
-using Dynamo.Engine;
-using System.Runtime.InteropServices;
-using Dynamo.Applications.Models;
 
 namespace RhythmExtension
 {
@@ -39,8 +30,6 @@ namespace RhythmExtension
         public void Ready(ReadyParams rp)
         {
             this.readyCalled = true;
-
-           
         }
 
 
@@ -50,19 +39,31 @@ namespace RhythmExtension
 
         public void Startup(StartupParams sp)
         {
-            RevitDynamoModel dynamoModel = DynamoRevit.RevitDynamoModel;
-
-            if (dynamoModel != null)
+            if (!File.Exists(Global.RhythmRevitDll))
             {
-                var version = dynamoModel.Context;
+                var revitApi = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().Name.Equals(("RevitAPI")));
 
-                LoadPackage(version.Replace("Revit ", ""));
+                if (revitApi != null)
+                {
+                    var version = revitApi.GetName().Version.Major;
+                    try
+                    {
+                        FirstRunSetup(sp, $"{version}");
+                    }
+                    catch (Exception)
+                    {
+                       //suppress, this didn't work
+                    }
+                   
+                }
             }
         }
-
-        internal void LoadPackage(string version)
+        /// <summary>
+        /// We get here because someone is missing the freakin DLLs
+        /// </summary>
+        /// <param name="version"></param>
+        private void FirstRunSetup(StartupParams sp,string version)
         {
-            
             // Get resource name
             var resourceName = Global.EmbeddedLibraries.FirstOrDefault(x => x.Contains(version));
             if (resourceName == null)
@@ -76,10 +77,16 @@ namespace RhythmExtension
                 var bytes = new byte[stream.Length];
                 stream.Read(bytes, 0, bytes.Length);
 
-                File.WriteAllBytes(Path.Combine(Global.PackageBinFolder,"RhythmRevit.dll"), bytes);
-
-                //AppDomain.CurrentDomain.Load(bytes);
+                File.WriteAllBytes(Global.RhythmRevitDll, bytes);
             }
+
+            var assembly = Assembly.Load(Global.RhythmRevitDll);
+
+            sp.LibraryLoader.LoadNodeLibrary(assembly);
+
+
+            //rewrite the json
+            File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
         }
 
     }

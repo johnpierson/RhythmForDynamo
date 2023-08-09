@@ -16,10 +16,10 @@
     <Content Include="$(MSBuildThisFileDirectory)Rhythm_ExtensionDefinition.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2020\RhythmRevit.dll" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2021\RhythmRevit.dll" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2022\RhythmRevit.dll" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2023\RhythmRevit.dll" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2024\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\20\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\21\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\22\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\23\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\24\RhythmRevit.dll" />
   </ItemGroup>
 </Project>
