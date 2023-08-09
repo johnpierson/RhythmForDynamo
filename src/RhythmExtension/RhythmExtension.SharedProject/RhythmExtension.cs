@@ -3,9 +3,15 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Dynamo.Applications;
+using Dynamo.Interfaces;
+using Dynamo.Engine;
+using System.Runtime.InteropServices;
+using Dynamo.Applications.Models;
 
 namespace RhythmExtension
 {
@@ -14,9 +20,8 @@ namespace RhythmExtension
     /// </summary>
     public class Extension : IExtension
     {
-        public List<NodeModel> nodes = new List<NodeModel>();
         public bool readyCalled = false;
-
+        
         public string Name => "RhythmExtension";
 
         public string UniqueId => "CD7A123A-7121-4FA4-99D3-D941CD049EA5";
@@ -34,19 +39,48 @@ namespace RhythmExtension
         public void Ready(ReadyParams rp)
         {
             this.readyCalled = true;
+
+           
         }
 
 
         public void Shutdown()
         {
-
         }
 
         public void Startup(StartupParams sp)
         {
-            //TODO: make this check if Dynamo UI is loaded. If not load the library
-            var asses = AppDomain.CurrentDomain.GetAssemblies().ToList();
-            sp.LibraryLoader.LoadNodeLibrary(Assembly.LoadFrom("C:\\Users\\johnpierson\\AppData\\Roaming\\Dynamo\\Dynamo Core\\2.17\\packages\\Rhythm\\bin\\RhythmCore.dll"));
+            RevitDynamoModel dynamoModel = DynamoRevit.RevitDynamoModel;
+
+            if (dynamoModel != null)
+            {
+                var version = dynamoModel.Context;
+
+                LoadPackage(version.Replace("Revit ", ""));
+            }
         }
+
+        internal void LoadPackage(string version)
+        {
+            
+            // Get resource name
+            var resourceName = Global.EmbeddedLibraries.FirstOrDefault(x => x.Contains(version));
+            if (resourceName == null)
+            {
+                return;
+            }
+
+            // Load assembly from resource
+            using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(resourceName))
+            {
+                var bytes = new byte[stream.Length];
+                stream.Read(bytes, 0, bytes.Length);
+
+                File.WriteAllBytes(Path.Combine(Global.PackageBinFolder,"RhythmRevit.dll"), bytes);
+
+                //AppDomain.CurrentDomain.Load(bytes);
+            }
+        }
+
     }
 }

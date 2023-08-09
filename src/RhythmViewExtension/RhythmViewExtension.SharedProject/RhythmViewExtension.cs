@@ -35,10 +35,7 @@ namespace RhythmViewExtension
         {
             loaded = p;
             view = p.DynamoWindow as DynamoView;
-           
-            //load the pertinent Rhythm library if it isn't loaded yet.
-            //p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(Assembly.LoadFrom("C:\\Users\\johnpierson\\AppData\\Roaming\\Dynamo\\Dynamo Core\\2.17\\packages\\Rhythm\\bin\\RhythmCore.dll"));
-
+            
             //Subscribe to node placed events for renaming stuff
             p.CurrentWorkspaceChanged += POnCurrentWorkspaceChanged;
             p.CurrentWorkspaceModel.NodeAdded += CurrentWorkspaceModelOnNodeAdded;

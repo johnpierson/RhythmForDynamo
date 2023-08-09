@@ -24,6 +24,11 @@ namespace Rhythm.Revit.Helpers
         [NodeCategory("Create")]
         public static void SimpleUserMessage(string caption, string message)
         {
+#if Revit2020
+                     var num = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+            caption = $"{num}{caption}";
+#endif
+
             TaskDialog td = new TaskDialog(caption)
             {
                 TitleAutoPrefix = false,

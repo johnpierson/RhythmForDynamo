@@ -9,9 +9,17 @@
     <Import_RootNamespace>RhythmExtension</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Global.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RhythmExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Rhythm_ExtensionDefinition.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2020\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2021\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2022\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2023\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\2024\RhythmRevit.dll" />
   </ItemGroup>
 </Project>
