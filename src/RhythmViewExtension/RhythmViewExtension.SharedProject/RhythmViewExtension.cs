@@ -110,7 +110,7 @@ namespace RhythmViewExtension
 
                     var vm = new RhythmMessageBoxViewModel();
                     vm.UserMessage = $"Incompatible Rhythm version loaded. You have {fileInfo.FileDescription} loaded. " +
-                        $"We will try to fix this on the next Revit restart. But if you see this message again, you should reinstall from the package manager. Also, you made the dog sad. You monster. " +
+                        $"You should reinstall from the package manager. Also, you made the dog sad. You monster. " +
                         $"For more info, click the question mark button.";
                     vm.WrongVersionLoaded = true;
                     RhythmMessageBox messageBox =
