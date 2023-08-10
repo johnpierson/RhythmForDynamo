@@ -95,7 +95,7 @@ namespace RhythmViewExtension
                 p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(assembly);
 
                 //rewrite the json
-                File.WriteAllText(Global.PackageJson,Global.PackageJsonText);
+                File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
 
 
                 messageBox.Close();
@@ -107,8 +107,11 @@ namespace RhythmViewExtension
 
                 if (!fileInfo.FileDescription.EndsWith(version))
                 {
+
                     var vm = new RhythmMessageBoxViewModel();
-                    vm.UserMessage = $"Incompatible Rhythm version loaded. You have {fileInfo.FileDescription} loaded. Please reinstall from the package manager. Also, you made the dog sad. You monster. For more info, click the question mark button.";
+                    vm.UserMessage = $"Incompatible Rhythm version loaded. You have {fileInfo.FileDescription} loaded. " +
+                        $"We will try to fix this on the next Revit restart. But if you see this message again, you should reinstall from the package manager. Also, you made the dog sad. You monster. " +
+                        $"For more info, click the question mark button.";
                     vm.WrongVersionLoaded = true;
                     RhythmMessageBox messageBox =
                         new RhythmMessageBox()
@@ -120,6 +123,9 @@ namespace RhythmViewExtension
                         };
 
                     messageBox.Show();
+
+                    //rewrite the json without the DynamoRevit libraries being loaded TODO: Decide if it is too cruel to unload the DLL like this.
+                    //File.WriteAllText(Global.PackageJson, Global.PackageJsonTextWithoutRevitNodes);
                 }
             }
         }
