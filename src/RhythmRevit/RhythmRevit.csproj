@@ -6,7 +6,9 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <PlatformTarget>x64</PlatformTarget>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>MSB3277</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DocumentationFile>bin\Debug\RhythmRevit.xml</DocumentationFile>
@@ -45,8 +47,11 @@
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmRevit.dll" "$(ProjectDir)..\_release\Rhythm\bin" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\Release\RhythmRevit.xml" "$(ProjectDir)..\_release\Rhythm\bin" /Y /I</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="CopyFiles" AfterTargets="CoreBuild" Condition="$(Configuration.Contains('Release'))">
+    <ItemGroup>
+      <AssemblyFiles Include="$(TargetDir)RhythmRevit.dll" />
+      <AssemblyFiles Include="$(TargetDir)RhythmRevit.xml" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\_release\Rhythm\bin" />
+  </Target>
 </Project>
