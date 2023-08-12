@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>RhythmCore</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Rhythm.About">
+      <category>Rhythm.About</category>
+    </namespace>
+	<namespace name="Rhythm.Helpers">
+      <category>Rhythm.Helpers</category>
+    </namespace>
+	<namespace name="Rhythm.String">
+      <category>Rhythm.String</category>
+    </namespace>
+	<namespace name="Rhythm.Math">
+      <category>Rhythm.Math</category>
+    </namespace>
+	<namespace name="Rhythm.Numbers">
+      <category>Rhythm.Numbers</category>
+    </namespace>
+	<namespace name="Rhythm.GenerativeDesign">
+      <category>Rhythm.GenerativeDesign</category>
+    </namespace>
+		<namespace name="Rhythm.System">
+      <category>Rhythm.System</category>
+    </namespace>
+  </namespaces>
+</doc>

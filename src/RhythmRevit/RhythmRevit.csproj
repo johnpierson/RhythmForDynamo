@@ -158,6 +158,7 @@
             <AssemblyFiles Include="$(TargetDir)RhythmCore.dll" />
             <AssemblyFiles Include="$(TargetDir)RhythmViewExtension.dll" />
             <AssemblyFiles Include="$(TargetDir)*.xml" />
+            <AssemblyFiles Include="$(ProjectDir)..\_release\Rhythm\extra\*.xml" />
             <PgkDefinition Include="$(ProjectDir)..\_release\Rhythm\pkg.json"/>
             <ExtralFiles Include="$(ProjectDir)..\_release\Rhythm\extra\*.*"/>
             <!--            <XmlCustomization Include="$(SolutionDir)docs\*.xml"/>-->

@@ -11,6 +11,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI", "RhythmUI\Rhythm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmViewExtension", "RhythmViewExtension\RhythmViewExtension.csproj", "{A2F75C8F-5F87-461A-AA9E-436677763BB6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItem", "SolutionItem", "{6EF733CB-A768-4D17-94A6-52223448A084}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{6E0545C7-367E-4F87-ACFA-495C8E34B0B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{E0B328DD-84AC-42E9-A2B0-CC3312AD5A4D}"
+	ProjectSection(SolutionItems) = preProject
+		_release\Rhythm\pkg.json = _release\Rhythm\pkg.json
+		_release\Rhythm\extra\Rhythm_ViewExtensionDefinition.xml = _release\Rhythm\extra\Rhythm_ViewExtensionDefinition.xml
+		_release\Rhythm\extra\Rhythm_ExtensionDefinition.xml = _release\Rhythm\extra\Rhythm_ExtensionDefinition.xml
+		_release\Rhythm\extra\RhythmCore_DynamoCustomization.xml = _release\Rhythm\extra\RhythmCore_DynamoCustomization.xml
+		_release\Rhythm\extra\RhythmRevit_DynamoCustomization.xml = _release\Rhythm\extra\RhythmRevit_DynamoCustomization.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug R20|Any CPU = Debug R20|Any CPU
@@ -131,5 +144,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4478FE1D-3AC1-498B-949E-DAC465FC6EDA}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E0545C7-367E-4F87-ACFA-495C8E34B0B4} = {6EF733CB-A768-4D17-94A6-52223448A084}
+		{E0B328DD-84AC-42E9-A2B0-CC3312AD5A4D} = {6EF733CB-A768-4D17-94A6-52223448A084}
 	EndGlobalSection
 EndGlobal
