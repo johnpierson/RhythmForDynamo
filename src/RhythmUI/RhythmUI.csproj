@@ -167,10 +167,12 @@
   <ItemGroup>
     <ProjectReference Include="..\RhythmRevit\RhythmRevit.csproj" />
   </ItemGroup>
-  <Target Name="CopyFiles" AfterTargets="CoreBuild" Condition="$(Configuration.Contains('Release'))">
+  <Target Name="CopyFiles" AfterTargets="CoreBuild">
     <ItemGroup>
-      <AssemblyFiles Include="$(TargetDir)RhythmUI.dll" />
+      <AssemblyFiles Include="$(TargetDir)RhythmUI.dll"/>
+      <AssemblyFiles Include="$(TargetDir)RhythmUI.xml"/>
     </ItemGroup>
+    <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(FolderPackages)bin"/>
     <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\_release\Rhythm\bin" />
   </Target>
 </Project>
