@@ -27,7 +27,7 @@
         <DefineConstants>$(DefineConstants);R20</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R21'))">
-        <DynamoVersion>2.6</DynamoVersion>
+        <DynamoVersion>2.17</DynamoVersion>
         <DynamoOutput>2.6</DynamoOutput>
         <RevitVersion>2021</RevitVersion>
         <DebugSymbols>true</DebugSymbols>

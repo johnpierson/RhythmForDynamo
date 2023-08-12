@@ -33,7 +33,7 @@
     <DefineConstants>$(DefineConstants);R21</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Release R21'))">
-    <DynamoVersion>2.6</DynamoVersion>
+    <DynamoVersion>2.17</DynamoVersion>
     <DynamoOutput>2.6</DynamoOutput>
     <RevitVersion>2021</RevitVersion>
     <DefineConstants>$(DefineConstants);R21</DefineConstants>
