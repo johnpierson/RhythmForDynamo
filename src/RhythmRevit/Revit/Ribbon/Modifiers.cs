@@ -22,7 +22,7 @@ namespace Rhythm.Revit.Ribbon
         {
 
             adWin.ComponentManager.Ribbon.RenderTransform
-                = new System.Windows.Media.RotateTransform(
+                = new global::System.Windows.Media.RotateTransform(
                     rotation);
 
             return rotation;
@@ -35,7 +35,7 @@ namespace Rhythm.Revit.Ribbon
         public static string SetFont(string fontName)
         {
             adWin.RibbonControl ribbon = adWin.ComponentManager.Ribbon;
-            ribbon.FontFamily = new System.Windows.Media
+            ribbon.FontFamily = new  global::System.Windows.Media
                 .FontFamily(fontName);
 
             return fontName;
@@ -50,10 +50,10 @@ namespace Rhythm.Revit.Ribbon
             adWin.RibbonControl ribbon = adWin.ComponentManager.Ribbon;
             LinearGradientBrush gradientBrush = new LinearGradientBrush();
             gradientBrush.GradientStops.Add(
-                new GradientStop(System.Windows.Media.Color.FromRgb(color.Red, color.Green, color.Blue), 0.0));
+                new GradientStop( global::System.Windows.Media.Color.FromRgb(color.Red, color.Green, color.Blue), 0.0));
 
             gradientBrush.GradientStops.Add(
-                new GradientStop(System.Windows.Media.Color.FromRgb(color.Red, color.Green, color.Blue), 1));
+                new GradientStop( global::System.Windows.Media.Color.FromRgb(color.Red, color.Green, color.Blue), 1));
 
             foreach (adWin.RibbonTab tab in ribbon.Tabs)
             {

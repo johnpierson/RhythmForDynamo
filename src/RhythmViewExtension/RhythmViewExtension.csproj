@@ -9,7 +9,9 @@
     <NoWarn>MSB3277</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Rhythm_ViewExtensionDefinition.xml" />
+    <Content Include="Rhythm_ViewExtensionDefinition.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="1.0" />
@@ -31,6 +33,7 @@
   <Target Name="CopyFiles" AfterTargets="CoreBuild" Condition="$(Configuration.Contains('Release'))">
     <ItemGroup>
       <AssemblyFiles Include="$(TargetDir)RhythmViewExtension.dll" />
+      <AssemblyFiles Include="$(TargetDir)*.xml" />
     </ItemGroup>
     <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\_release\Rhythm\bin" />
   </Target>

@@ -71,7 +71,7 @@ namespace Rhythm.Revit.Tools
 
                                 if (paramType.ToLower().Contains("degrees"))
                                 {
-                                    parameter.Set(startValue * System.Math.PI / 180.0);
+                                    parameter.Set(startValue * global::System.Math.PI / 180.0);
                                 }
                                 else
                                 {

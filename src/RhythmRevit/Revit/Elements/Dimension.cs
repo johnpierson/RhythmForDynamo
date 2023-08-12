@@ -192,7 +192,7 @@ namespace Rhythm.Revit.Elements
             //get the integer value of the color
             int colorInt = dim.DimensionType.get_Parameter(BuiltInParameter.LINE_COLOR).AsInteger();
             //windows color from int
-            System.Drawing.Color winColor = ColorTranslator.FromOle(colorInt);
+            global::System.Drawing.Color winColor = ColorTranslator.FromOle(colorInt);
             //return dynamo color
             return DSCore.Color.ByARGB(winColor.A, winColor.R,winColor.G,winColor.B);
         }
