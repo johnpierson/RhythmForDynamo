@@ -122,12 +122,12 @@
     <Reference Include="DynamoRevitDS">
       <HintPath>..\..\lib\$(RevitVersion)\DynamoRevitDS.dll</HintPath>
     </Reference>
-    <Reference Include="RevitNodes">
-      <HintPath>..\..\lib\$(RevitVersion)\RevitNodes.dll</HintPath>
-    </Reference>
-    <Reference Include="RevitServices">
-      <HintPath>..\..\lib\$(RevitVersion)\RevitServices.dll</HintPath>
-    </Reference>
+<!--    <Reference Include="RevitNodes">-->
+<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitNodes.dll</HintPath>-->
+<!--    </Reference>-->
+<!--    <Reference Include="RevitServices">-->
+<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitServices.dll</HintPath>-->
+<!--    </Reference>-->
   </ItemGroup>
 <!--  <ItemGroup>-->
 <!--    <Reference Include="DSRevitNodesUI">-->
