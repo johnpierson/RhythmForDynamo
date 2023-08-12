@@ -149,14 +149,15 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\RhythmCore\RhythmCore.csproj" />
+      <ProjectReference Include="..\RhythmViewExtension\RhythmViewExtension.csproj" />
     </ItemGroup>
     <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high"/>
         <ItemGroup>
             <AssemblyFiles Include="$(TargetDir)RhythmRevit.dll"/>
-            <AssemblyFiles Include="$(TargetDir)RhythmRevit.xml"/>
             <AssemblyFiles Include="$(TargetDir)RhythmCore.dll" />
-            <AssemblyFiles Include="$(TargetDir)RhythmCore.xml" />
+            <AssemblyFiles Include="$(TargetDir)RhythmViewExtension.dll" />
+            <AssemblyFiles Include="$(TargetDir)*.xml" />
             <PgkDefinition Include="$(ProjectDir)..\_release\Rhythm\pkg.json"/>
             <ExtralFiles Include="$(ProjectDir)..\_release\Rhythm\extra\*.*"/>
             <!--            <XmlCustomization Include="$(SolutionDir)docs\*.xml"/>-->
@@ -164,6 +165,7 @@
         </ItemGroup>
         <Message Text="Copying From $(TargetDir) To $(FolderPackages)" Importance="high"/>
         <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(FolderPackages)bin"/>
+        <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\_release\$(PackageName)\bin" />
         <Copy SourceFiles="@(XmlCustomization)" DestinationFolder="$(FolderPackages)bin"/>
         <Copy SourceFiles="@(PgkDefinition)" DestinationFolder="$(FolderPackages)"/>
         <Copy SourceFiles="@(ExtralFiles)" DestinationFolder="$(FolderPackages)extra"/>
