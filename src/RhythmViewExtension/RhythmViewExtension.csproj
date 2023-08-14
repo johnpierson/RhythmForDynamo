@@ -30,6 +30,9 @@
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild" Condition="$(Configuration.Contains('Release'))">
     <ItemGroup>
       <AssemblyFiles Include="$(TargetDir)RhythmViewExtension.dll" />
