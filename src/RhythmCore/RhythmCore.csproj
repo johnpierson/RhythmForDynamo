@@ -88,7 +88,8 @@
   <Target Name="CopyFiles" AfterTargets="CoreBuild" Condition="$(Configuration.Contains('Release'))">
     <ItemGroup>
       <AssemblyFiles Include="$(TargetDir)RhythmCore.dll" />
-      <AssemblyFiles Include="$(TargetDir)RhythmCore.xml" />
+      <AssemblyFiles Include="$(ProjectDir)..\_release\Rhythm\extra\*.xml" />
+      <AssemblyFiles Include="$(TargetDir)*.xml" />
     </ItemGroup>
     <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\_release\Rhythm\bin" />
   </Target>

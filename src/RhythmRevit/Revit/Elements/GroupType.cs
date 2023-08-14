@@ -15,6 +15,8 @@ namespace Rhythm.Revit.Elements
         {
         }
 
+#if R20 || R21 || R22 || R23
+#else
         /// <summary>
         /// Reload a group type from a given location. Note: This will override group types in the current file!
         /// </summary>
@@ -25,7 +27,8 @@ namespace Rhythm.Revit.Elements
         /// <param name="includeLevels">Include levels with this group type?></param>
         /// <returns name="groupType">The updated group type definition</returns>
         /// <exception cref="Exception"></exception>
-        public static global::Revit.Elements.Element ReloadGroupType(global::Revit.Elements.Group group, string reloadFrom, bool includeAttachedDetails = true, bool includeGrids = false, bool includeLevels = false)
+        public static global::Revit.Elements.Element ReloadGroupType(global::Revit.Elements.Group group, string reloadFrom, bool includeAttachedDetails
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               = true, bool includeGrids = false, bool includeLevels = false)
         {
             Autodesk.Revit.DB.Group internalGroup = group.InternalElement as Autodesk.Revit.DB.Group;
             Autodesk.Revit.DB.GroupType internalGroupType = internalGroup.GroupType;
@@ -54,7 +57,6 @@ namespace Rhythm.Revit.Elements
             }
            
         }
-
-     
+#endif
     }
 }
