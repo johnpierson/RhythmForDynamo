@@ -144,7 +144,6 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\RhythmCore\RhythmCore.csproj" />
-      <ProjectReference Include="..\RhythmViewExtension\RhythmViewExtension.csproj" />
     </ItemGroup>
     <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
