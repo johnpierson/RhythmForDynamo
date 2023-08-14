@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>df686d11-c6d3-4698-9834-1637e9537b33</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>RhythmViewExtension</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Global.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RhythmMessageBoxViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RhythmViewExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\VersionUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\20\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\21\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\22\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\23\RhythmRevit.dll" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Revit\24\RhythmRevit.dll" />
+  </ItemGroup>
+</Project>
