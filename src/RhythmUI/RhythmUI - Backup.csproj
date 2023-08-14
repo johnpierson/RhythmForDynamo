@@ -33,7 +33,7 @@
     <DefineConstants>$(DefineConstants);R21</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Release R21'))">
-    <DynamoVersion>2.17</DynamoVersion>
+    <DynamoVersion>2.6</DynamoVersion>
     <DynamoOutput>2.6</DynamoOutput>
     <RevitVersion>2021</RevitVersion>
     <DefineConstants>$(DefineConstants);R21</DefineConstants>
@@ -114,8 +114,18 @@
     <PackageTags>dynamo</PackageTags>
     <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\Rhythm\</FolderPackages>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <UserSecretsId>b4ccbdcc-3b82-414a-a303-fd5da5588b09</UserSecretsId>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DynamoRevitDS">
+      <HintPath>..\..\lib\$(RevitVersion)\DynamoRevitDS.dll</HintPath>
+    </Reference>
+<!--    <Reference Include="RevitNodes">-->
+<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitNodes.dll</HintPath>-->
+<!--    </Reference>-->
+<!--    <Reference Include="RevitServices">-->
+<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitServices.dll</HintPath>-->
+<!--    </Reference>-->
+  </ItemGroup>
 <!--  <ItemGroup>-->
 <!--    <Reference Include="DSRevitNodesUI">-->
 <!--      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\nodes\DSRevitNodesUI.dll</HintPath>-->
