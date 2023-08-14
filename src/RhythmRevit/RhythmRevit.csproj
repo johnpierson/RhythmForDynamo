@@ -95,8 +95,8 @@
         <DefineConstants>$(DefineConstants);R24</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
-        <DynamoVersion>2.17</DynamoVersion>
-        <DynamoOutput>2.17</DynamoOutput>
+        <DynamoVersion>2.18</DynamoVersion>
+        <DynamoOutput>2.18</DynamoOutput>
         <RevitVersion>2024.1</RevitVersion>
         <DefineConstants>$(DefineConstants);R24</DefineConstants>
     </PropertyGroup>
