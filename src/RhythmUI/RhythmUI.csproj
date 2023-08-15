@@ -114,9 +114,10 @@
     <PackageTags>dynamo</PackageTags>
     <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\Rhythm\</FolderPackages>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
   </PropertyGroup>
+
   <ItemGroup>
-   
     <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
     <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
     <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
@@ -124,6 +125,7 @@
     <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*"/>
     <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*"/>
     <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*"/>
+
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NUnit" Version="2.6.3" />
