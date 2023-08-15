@@ -10,7 +10,11 @@ using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using Rhythm.Utilities;
+
+#if R20
+#else
 using static Autodesk.Revit.DB.SpecTypeId;
+#endif
 using Category = Revit.Elements.Category;
 using Curve = Autodesk.Revit.DB.Curve;
 using Element = Autodesk.Revit.DB.Element;

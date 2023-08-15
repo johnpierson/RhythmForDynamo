@@ -16,8 +16,12 @@ namespace Rhythm.Revit.Tools
     public class Element
     {
         private Element()
-        { }
-        /// <summary>
+        {
+        }
+
+#if R20
+#else
+/// <summary>
         /// Animate a numeric parameter of an element. This will export images of the parameter, then revert the element back to where it was. Also adds text to comments to prevent infinite loops.Clear this comment for subsequent runs.
         /// Inspired by the Bad Monkeys Team.
         /// </summary>
@@ -39,7 +43,8 @@ namespace Rhythm.Revit.Tools
             Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)view.InternalElement;
             object runResult = null;
             //create a new form!
-            DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images", "Exporting image {0} of " + iterations.ToString(), "Animate Numeric Parameter", iterations);
+            DefaultProgressForm statusBar =
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         new DefaultProgressForm("Exporting Images", "Exporting image {0} of " + iterations.ToString(), "Animate Numeric Parameter", iterations);
 
             //this finds the number to increment by
             double d = (endValue - startValue) / (iterations - 1);
@@ -65,7 +70,8 @@ namespace Rhythm.Revit.Tools
                                 string paramType = string.Empty;
 
                                 //autodesk.unit.unit:degrees-1.0.1
-                                string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
+                                string versionNumber =
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
 
                                 paramType = parameter.GetUnitTypeId().TypeId;
 
@@ -109,6 +115,8 @@ namespace Rhythm.Revit.Tools
 
             return runResult;
         }
+#endif
+
         /// <summary>
         /// Animate the color of an element. This will export images of the element, then revert the element back to where it was.
         /// Inspired by the Bad Monkeys team.
@@ -123,13 +131,15 @@ namespace Rhythm.Revit.Tools
         /// <search>
         ///  rhythm
         /// </search>
-        public static object AnimateColor(List<global::Revit.Elements.Element> element, Color startColor, Color endColor, int iterations, string directoryPath, global::Revit.Elements.Element view)
+        public static object AnimateColor(List<global::Revit.Elements.Element> element, Color startColor,
+            Color endColor, int iterations, string directoryPath, global::Revit.Elements.Element view)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             UIDocument uiDocument = new UIDocument(doc);
-            Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)view.InternalElement;
+            Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View) view.InternalElement;
             //create a new form!
-            DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images", "Exporting image {0} of " + iterations.ToString(), "Animate Element Color", iterations + 1);
+            DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images",
+                "Exporting image {0} of " + iterations.ToString(), "Animate Element Color", iterations + 1);
             //default indices for start and end color
             List<double> defaultIndices = new List<double>
             {
@@ -166,7 +176,8 @@ namespace Rhythm.Revit.Tools
                             dscolor.Blue);
                         //solid fill id
                         FilteredElementCollector fillPatternCollector = new FilteredElementCollector(doc);
-                        Autodesk.Revit.DB.Element solidFill = fillPatternCollector.OfClass(typeof(FillPatternElement)).ToElements().FirstOrDefault(x => x.Name.ToLower() == "solid fill");
+                        Autodesk.Revit.DB.Element solidFill = fillPatternCollector.OfClass(typeof(FillPatternElement))
+                            .ToElements().FirstOrDefault(x => x.Name.ToLower() == "solid fill");
 
                         ElementId pattId = new ElementId(20);
                         //set the overrides to the graphic settings
@@ -177,6 +188,7 @@ namespace Rhythm.Revit.Tools
                             //apply the changes to view
                             internalView.SetElementOverrides(e.InternalElement.Id, ogs);
                         }
+
                         t2.Commit();
 
                         uiDocument.RefreshActiveView();
@@ -194,8 +206,10 @@ namespace Rhythm.Revit.Tools
                         statusBar.Increment();
                     }
                 }
+
                 transactionGroup.RollBack();
             }
+
             statusBar.Close();
 
             return element;
@@ -215,13 +229,15 @@ namespace Rhythm.Revit.Tools
         /// <search>
         ///  rhythm
         /// </search>
-        public static object AnimateTransparency(List<global::Revit.Elements.Element> element, int startPercentage, int endPercentage, int iterations, string directoryPath, global::Revit.Elements.Element view)
+        public static object AnimateTransparency(List<global::Revit.Elements.Element> element, int startPercentage,
+            int endPercentage, int iterations, string directoryPath, global::Revit.Elements.Element view)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             UIDocument uiDocument = new UIDocument(doc);
-            Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)view.InternalElement;
+            Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View) view.InternalElement;
             //create a new form!
-            DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images", "Exporting image {0} of " + iterations.ToString(), "Animate Element Transparency", iterations + 1);
+            DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images",
+                "Exporting image {0} of " + iterations.ToString(), "Animate Element Transparency", iterations + 1);
             double d = (endPercentage - startPercentage) / (iterations - 1.0);
             int incrementor = Convert.ToInt32(d);
 
@@ -249,6 +265,7 @@ namespace Rhythm.Revit.Tools
                             //apply the changes to view
                             internalView.SetElementOverrides(e.InternalElement.Id, ogs);
                         }
+
                         t2.Commit();
 
                         uiDocument.RefreshActiveView();
@@ -266,8 +283,10 @@ namespace Rhythm.Revit.Tools
                         statusBar.Increment();
                     }
                 }
+
                 transactionGroup.RollBack();
             }
+
             statusBar.Close();
 
             return element;

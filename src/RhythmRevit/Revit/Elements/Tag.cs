@@ -48,7 +48,9 @@ namespace Rhythm.Revit.Elements
 
             return null;
         }
-        /// <summary>
+#if R20 || R21
+#else
+ /// <summary>
         /// The position of the leader end for a tag using free end leader behavior. 
         /// </summary>
         /// <param name="tag">The tag to get leader end position from.</param>
@@ -108,6 +110,8 @@ namespace Rhythm.Revit.Elements
 
             return null;
         }
+#endif
+       
 
       
        

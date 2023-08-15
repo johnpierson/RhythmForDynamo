@@ -22,7 +22,9 @@ namespace Rhythm.Revit.Elements
     public class Dimensions
     {
         private Dimensions()
-        { }
+        {
+        }
+
         /// <summary>
         /// This node will get the dimension's line.
         /// </summary>
@@ -35,7 +37,7 @@ namespace Rhythm.Revit.Elements
         public static List<Autodesk.DesignScript.Geometry.Line> GetCurve(global::Revit.Elements.Dimension dimension)
         {
             //convert to internal dimension
-            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
+            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension) dimension.InternalElement;
             Document doc = internalDimension.Document;
             List<Autodesk.DesignScript.Geometry.Line> dimensionLine = new List<Line>();
 
@@ -46,26 +48,28 @@ namespace Rhythm.Revit.Elements
                 {
                     dimSegments.Add(seg);
                 }
+
                 foreach (Autodesk.Revit.DB.DimensionSegment s in dimSegments)
                 {
                     var originPoint = s.Origin.ToPoint();
-                    Autodesk.Revit.DB.Line dimCurve = (Autodesk.Revit.DB.Line)internalDimension.Curve;
+                    Autodesk.Revit.DB.Line dimCurve = (Autodesk.Revit.DB.Line) internalDimension.Curve;
                     var vector = dimCurve.Direction.ToVector();
                     var dimValue = s.Value.Value;
                     if (doc.DisplayUnitSystem.ToString() != "IMPERIAL")
                     {
                         dimValue = s.Value.Value * 304.8;
                     }
+
                     var startPoint =
-                        (Autodesk.DesignScript.Geometry.Point)originPoint.Translate(vector.Reverse(), dimValue / 2);
-                    var endPoint = (Autodesk.DesignScript.Geometry.Point)originPoint.Translate(vector, dimValue / 2);
+                        (Autodesk.DesignScript.Geometry.Point) originPoint.Translate(vector.Reverse(), dimValue / 2);
+                    var endPoint = (Autodesk.DesignScript.Geometry.Point) originPoint.Translate(vector, dimValue / 2);
                     dimensionLine.Add(Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(startPoint, endPoint));
                 }
             }
             else
             {
                 var originPoint = internalDimension.Origin.ToPoint();
-                Autodesk.Revit.DB.Line dimCurve = (Autodesk.Revit.DB.Line)internalDimension.Curve;
+                Autodesk.Revit.DB.Line dimCurve = (Autodesk.Revit.DB.Line) internalDimension.Curve;
                 var vector = dimCurve.Direction.ToVector();
 
                 var dimValue = internalDimension.Value.Value;
@@ -73,12 +77,13 @@ namespace Rhythm.Revit.Elements
                 {
                     dimValue = internalDimension.Value.Value * 304.8;
                 }
-                
+
                 var startPoint =
-                    (Autodesk.DesignScript.Geometry.Point)originPoint.Translate(vector.Reverse(), dimValue / 2);
-                var endPoint = (Autodesk.DesignScript.Geometry.Point)originPoint.Translate(vector, dimValue / 2);
+                    (Autodesk.DesignScript.Geometry.Point) originPoint.Translate(vector.Reverse(), dimValue / 2);
+                var endPoint = (Autodesk.DesignScript.Geometry.Point) originPoint.Translate(vector, dimValue / 2);
                 dimensionLine.Add(Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(startPoint, endPoint));
             }
+
             return dimensionLine;
         }
 
@@ -132,7 +137,9 @@ namespace Rhythm.Revit.Elements
             return listReturn.Contains(true);
         }
 
-        /// <summary>
+#if R20
+#else
+/// <summary>
         /// This node will return the display unit type for the given dimension.
         /// </summary>
         /// <param name="dimension">The dimension.</param>
@@ -152,6 +159,7 @@ namespace Rhythm.Revit.Elements
             return dim.DimensionType.GetUnitsFormatOptions().GetUnitTypeId().TypeId;
 
         }
+#endif
 
 
         /// <summary>
@@ -174,7 +182,6 @@ namespace Rhythm.Revit.Elements
             {
                 return "UseDefault";
             }
-            
         }
 
         /// <summary>
@@ -194,7 +201,7 @@ namespace Rhythm.Revit.Elements
             //windows color from int
             global::System.Drawing.Color winColor = ColorTranslator.FromOle(colorInt);
             //return dynamo color
-            return DSCore.Color.ByARGB(winColor.A, winColor.R,winColor.G,winColor.B);
+            return DSCore.Color.ByARGB(winColor.A, winColor.R, winColor.G, winColor.B);
         }
 
         /// <summary>
@@ -207,13 +214,14 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.SetAboveValue
         /// </search>
-        [MultiReturn(new[] { "set", "notSet" })]
+        [MultiReturn(new[] {"set", "notSet"})]
         [NodeCategory("Actions")]
-        public static Dictionary<string, object> SetAboveValue(global::Revit.Elements.Dimension dimension, List<string> aboveValue)
+        public static Dictionary<string, object> SetAboveValue(global::Revit.Elements.Dimension dimension,
+            List<string> aboveValue)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //convert to internal dimension
-            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
+            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension) dimension.InternalElement;
             List<Autodesk.Revit.DB.Dimension> internalDimensionList =
                 new List<Autodesk.Revit.DB.Dimension> {internalDimension};
             //lists to output success or not success
@@ -224,11 +232,13 @@ namespace Rhythm.Revit.Elements
             {
                 if (internalDimension.NumberOfSegments > 1) //set the multi segment ones
                 {
-                    List<Autodesk.Revit.DB.DimensionSegment> dimSegments = new List<Autodesk.Revit.DB.DimensionSegment>();
+                    List<Autodesk.Revit.DB.DimensionSegment> dimSegments =
+                        new List<Autodesk.Revit.DB.DimensionSegment>();
                     foreach (Autodesk.Revit.DB.DimensionSegment seg in internalDimension.Segments)
                     {
                         dimSegments.Add(seg);
                     }
+
                     //check if lists are even
                     bool cond = aboveValue.Count < 2 && dimSegments.Count > 1;
                     IEnumerable<string> repeatedSequence = Enumerable.Repeat(aboveValue.First(), dimSegments.Count);
@@ -242,6 +252,7 @@ namespace Rhythm.Revit.Elements
                             dimSegments[count].Above = repeatedSequence.ElementAt(count);
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -254,6 +265,7 @@ namespace Rhythm.Revit.Elements
                             dimSegments[count].Above = aboveValue[count];
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -262,7 +274,8 @@ namespace Rhythm.Revit.Elements
                 {
                     //check if lists are even
                     bool cond = aboveValue.Count < 2 && internalDimensionList.Count > 1;
-                    IEnumerable<string> repeatedSequence = Enumerable.Repeat(aboveValue.First(), internalDimensionList.Count);
+                    IEnumerable<string> repeatedSequence =
+                        Enumerable.Repeat(aboveValue.First(), internalDimensionList.Count);
 
                     if (cond)
                     {
@@ -273,6 +286,7 @@ namespace Rhythm.Revit.Elements
                             internalDimensionList[count].Above = repeatedSequence.ElementAt(count);
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -285,6 +299,7 @@ namespace Rhythm.Revit.Elements
                             internalDimensionList[count].Above = aboveValue[count];
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -294,12 +309,13 @@ namespace Rhythm.Revit.Elements
             {
                 notSet.Add(dimension);
             }
+
             //returns the outputs
             var outInfo = new Dictionary<string, object>
-                {
-                    { "set", set},
-                    { "notSet", notSet}
-                };
+            {
+                {"set", set},
+                {"notSet", notSet}
+            };
             return outInfo;
         }
 
@@ -313,13 +329,14 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.SetBelowValue
         /// </search>
-        [MultiReturn(new[] { "set", "notSet" })]
+        [MultiReturn(new[] {"set", "notSet"})]
         [NodeCategory("Actions")]
-        public static Dictionary<string, object> SetBelowValue(global::Revit.Elements.Dimension dimension, List<string> belowValue)
+        public static Dictionary<string, object> SetBelowValue(global::Revit.Elements.Dimension dimension,
+            List<string> belowValue)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //convert to internal dimension
-            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
+            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension) dimension.InternalElement;
             List<Autodesk.Revit.DB.Dimension> internalDimensionList =
                 new List<Autodesk.Revit.DB.Dimension> {internalDimension};
             //lists to output success or not success
@@ -330,11 +347,13 @@ namespace Rhythm.Revit.Elements
             {
                 if (internalDimension.NumberOfSegments > 1) //set the multi segment ones
                 {
-                    List<Autodesk.Revit.DB.DimensionSegment> dimSegments = new List<Autodesk.Revit.DB.DimensionSegment>();
+                    List<Autodesk.Revit.DB.DimensionSegment> dimSegments =
+                        new List<Autodesk.Revit.DB.DimensionSegment>();
                     foreach (Autodesk.Revit.DB.DimensionSegment seg in internalDimension.Segments)
                     {
                         dimSegments.Add(seg);
                     }
+
                     //check if lists are even
                     bool cond = belowValue.Count < 2 && dimSegments.Count > 1;
                     IEnumerable<string> repeatedSequence = Enumerable.Repeat(belowValue.First(), dimSegments.Count);
@@ -347,6 +366,7 @@ namespace Rhythm.Revit.Elements
                             dimSegments[count].Below = repeatedSequence.ElementAt(count);
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -359,6 +379,7 @@ namespace Rhythm.Revit.Elements
                             dimSegments[count].Below = belowValue[count];
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -367,7 +388,8 @@ namespace Rhythm.Revit.Elements
                 {
                     //check if lists are even
                     bool cond = belowValue.Count < 2 && internalDimensionList.Count > 1;
-                    IEnumerable<string> repeatedSequence = Enumerable.Repeat(belowValue.First(), internalDimensionList.Count);
+                    IEnumerable<string> repeatedSequence =
+                        Enumerable.Repeat(belowValue.First(), internalDimensionList.Count);
 
                     if (cond)
                     {
@@ -378,6 +400,7 @@ namespace Rhythm.Revit.Elements
                             internalDimensionList[count].Below = repeatedSequence.ElementAt(count);
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -390,6 +413,7 @@ namespace Rhythm.Revit.Elements
                             internalDimensionList[count].Below = belowValue[count];
                             count++;
                         }
+
                         TransactionManager.Instance.TransactionTaskDone();
                         set.Add(dimension);
                     }
@@ -399,12 +423,13 @@ namespace Rhythm.Revit.Elements
             {
                 notSet.Add(dimension);
             }
+
             //returns the outputs
             var outInfo = new Dictionary<string, object>
-                {
-                    { "set", set},
-                    { "notSet", notSet}
-                };
+            {
+                {"set", set},
+                {"notSet", notSet}
+            };
             return outInfo;
         }
 
@@ -417,11 +442,12 @@ namespace Rhythm.Revit.Elements
         /// dimension.GetReferenceElements
         /// </search>
         [NodeCategory("Query")]
-        public static List<global::Revit.Elements.Element> GetReferenceElements(global::Revit.Elements.Dimension dimension)
+        public static List<global::Revit.Elements.Element> GetReferenceElements(
+            global::Revit.Elements.Dimension dimension)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //convert to internal dimension
-            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
+            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension) dimension.InternalElement;
             //lists to output success or not success
             List<global::Revit.Elements.Element> referenceElements = new List<global::Revit.Elements.Element>();
             try
@@ -437,6 +463,7 @@ namespace Rhythm.Revit.Elements
             {
                 referenceElements.Add(null);
             }
+
             return referenceElements;
         }
 
@@ -453,11 +480,12 @@ namespace Rhythm.Revit.Elements
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
-            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
-            Autodesk.Revit.DB.View ownerView = (Autodesk.Revit.DB.View)doc.GetElement(internalDimension.OwnerViewId);
+            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension) dimension.InternalElement;
+            Autodesk.Revit.DB.View ownerView = (Autodesk.Revit.DB.View) doc.GetElement(internalDimension.OwnerViewId);
             //calculate offset distance from the view scale and the text size.
             int viewScaleFactor = ownerView.Scale;
-            double textHeight = (double)internalDimension.DimensionType.get_Parameter(BuiltInParameter.TEXT_SIZE).AsDouble();
+            double textHeight =
+                (double) internalDimension.DimensionType.get_Parameter(BuiltInParameter.TEXT_SIZE).AsDouble();
             double offsetAmount = ((textHeight + 0.002604) / 2) * viewScaleFactor;
             List<Line> dimCurve = GetCurve(dimension);
 
@@ -477,6 +505,7 @@ namespace Rhythm.Revit.Elements
                     {
                         offsetAmount = -offsetAmount;
                     }
+
                     XYZ pointEnd = point + (offsetAmount) * cross;
 
                     TransactionManager.Instance.EnsureInTransaction(doc);
@@ -496,13 +525,13 @@ namespace Rhythm.Revit.Elements
                 {
                     offsetAmount = -offsetAmount;
                 }
+
                 XYZ pointEnd = point + (offsetAmount) * cross;
 
                 TransactionManager.Instance.EnsureInTransaction(doc);
                 internalDimension.TextPosition = pointEnd;
                 TransactionManager.Instance.TransactionTaskDone();
             }
-
         }
 
         /// <summary>
@@ -514,11 +543,12 @@ namespace Rhythm.Revit.Elements
         /// dimension.SetTextLocation
         /// </search>
         [NodeCategory("Actions")]
-        public static void SetTextLocation(global::Revit.Elements.Dimension dimension, List<Autodesk.DesignScript.Geometry.Point> locationPoint)
+        public static void SetTextLocation(global::Revit.Elements.Dimension dimension,
+            List<Autodesk.DesignScript.Geometry.Point> locationPoint)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //convert to internal dimension
-            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
+            Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension) dimension.InternalElement;
             List<Autodesk.Revit.DB.Dimension> internalDimensionList =
                 new List<Autodesk.Revit.DB.Dimension> {internalDimension};
 
@@ -529,9 +559,11 @@ namespace Rhythm.Revit.Elements
                 {
                     dimSegments.Add(seg);
                 }
+
                 //check if lists are even
                 bool cond = locationPoint.Count < 2 && dimSegments.Count > 1;
-                IEnumerable<Autodesk.DesignScript.Geometry.Point> repeatedSequence = Enumerable.Repeat(locationPoint.First(), dimSegments.Count);
+                IEnumerable<Autodesk.DesignScript.Geometry.Point> repeatedSequence =
+                    Enumerable.Repeat(locationPoint.First(), dimSegments.Count);
                 if (cond)
                 {
                     int count = 0;
@@ -541,6 +573,7 @@ namespace Rhythm.Revit.Elements
                         dimSegments[count].TextPosition = repeatedSequence.ElementAt(count).ToXyz();
                         count++;
                     }
+
                     TransactionManager.Instance.TransactionTaskDone();
                 }
                 else
@@ -552,6 +585,7 @@ namespace Rhythm.Revit.Elements
                         dimSegments[count].TextPosition = locationPoint[count].ToXyz();
                         count++;
                     }
+
                     TransactionManager.Instance.TransactionTaskDone();
                 }
             }
@@ -559,7 +593,8 @@ namespace Rhythm.Revit.Elements
             {
                 //check if lists are even
                 bool cond = locationPoint.Count < 2 && internalDimensionList.Count > 1;
-                IEnumerable<Autodesk.DesignScript.Geometry.Point> repeatedSequence = Enumerable.Repeat(locationPoint.First(), internalDimensionList.Count);
+                IEnumerable<Autodesk.DesignScript.Geometry.Point> repeatedSequence =
+                    Enumerable.Repeat(locationPoint.First(), internalDimensionList.Count);
 
                 if (cond)
                 {
@@ -570,6 +605,7 @@ namespace Rhythm.Revit.Elements
                         internalDimensionList[count].TextPosition = repeatedSequence.ElementAt(count).ToXyz();
                         count++;
                     }
+
                     TransactionManager.Instance.TransactionTaskDone();
                 }
                 else
@@ -581,6 +617,7 @@ namespace Rhythm.Revit.Elements
                         internalDimensionList[count].TextPosition = locationPoint[count].ToXyz();
                         count++;
                     }
+
                     TransactionManager.Instance.TransactionTaskDone();
                 }
             }
@@ -597,7 +634,8 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static List<int> NumberOfSegments(List<global::Revit.Elements.Dimension> dimension)
         {
-            List<int> numberOfSegments = new List<int>(dimension.Select(d => ((Autodesk.Revit.DB.Dimension)d.InternalElement).NumberOfSegments).ToArray());
+            List<int> numberOfSegments = new List<int>(dimension
+                .Select(d => ((Autodesk.Revit.DB.Dimension) d.InternalElement).NumberOfSegments).ToArray());
 
             return numberOfSegments;
         }
@@ -716,8 +754,10 @@ namespace Rhythm.Revit.Elements
                     values.Add(segment.Above);
                 }
             }
+
             return values;
         }
+
         /// <summary>
         /// Retrieve the dimension below value. If the dimension is a multi-segment dimension, this will find all of the below values.
         /// </summary>
@@ -740,11 +780,16 @@ namespace Rhythm.Revit.Elements
                     values.Add(segment.Below);
                 }
             }
+
             return values;
         }
 
 
-        /// <summary>
+        
+
+#if R20
+#else
+/// <summary>
         /// Retrieve the actual dimension display value. The built in RevitAPI method returns the string per the project setting. This returns it per the dimension setting.
         /// </summary>
         /// <param name="dimension">The dimension to retrieve values from.</param>
@@ -796,33 +841,31 @@ namespace Rhythm.Revit.Elements
                         values.Add(segment.ValueString);
                     }
                 }
+
                 doc.SetUnits(ogUnits);
                 TransactionManager.Instance.TransactionTaskDone();
             }
+
             //return the values you retrieved.
             return values;
         }
-
-        public static void SetFormat(global::Revit.Elements.Dimension dimension, Autodesk.Revit.DB.Units units)
+        public static void SetFormat(global::Revit.Elements.Dimension dimension, Units units)
         {
             Dimension internalDimension = dimension.InternalElement as Dimension;
 
-            
 
-        ForgeTypeId typeId = new ForgeTypeId("autodesk.spec.aec:length-2.0.0");
+            ForgeTypeId typeId = new ForgeTypeId("autodesk.spec.aec:length-2.0.0");
 
             units.SetFormatOptions(typeId,
                 internalDimension.DimensionType.GetUnitsFormatOptions());
         }
 
-
+#endif
 
         //private static void SetFormatInternal(Units units, Autodesk.Revit.DB.Dimension internalDimension)
         //{
         //    units.SetFormatOptions(internalDimension.DimensionType.UnitType,
         //        internalDimension.DimensionType.GetUnitsFormatOptions());
         //}
-
     }
-
 }

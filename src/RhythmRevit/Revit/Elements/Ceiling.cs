@@ -11,6 +11,7 @@ using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Level = Revit.Elements.Level;
+
 // ReSharper disable UnusedMember.Local
 
 namespace Rhythm.Revit.Elements
@@ -21,7 +22,9 @@ namespace Rhythm.Revit.Elements
     [RegisterForTrace]
     public class Ceiling
     {
-        private Ceiling() { }
+        private Ceiling()
+        {
+        }
 
         private static bool VerifyEdit(Autodesk.Revit.DB.Ceiling ceilingElem, List<List<Curve>> curves)
         {
@@ -42,6 +45,7 @@ namespace Rhythm.Revit.Elements
 
             return length.AlmostEquals(ceilingParam, 0.01);
         }
+
         /// <summary>
         /// Collect the first ceiling type available. Revit 2022+
         /// </summary>
@@ -49,15 +53,17 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static global::Revit.Elements.Element DefaultCeilingType()
         {
-
             var doc = DocumentManager.Instance.CurrentDBDocument;
 
-            return new FilteredElementCollector(doc).OfClass(typeof(Autodesk.Revit.DB.CeilingType)).WhereElementIsElementType()
+            return new FilteredElementCollector(doc).OfClass(typeof(Autodesk.Revit.DB.CeilingType))
+                .WhereElementIsElementType()
                 .FirstElement().ToDSType(false) as global::Revit.Elements.Element;
         }
 
 
-        /// <summary>
+#if R20
+#else
+/// <summary>
         /// Create a ceiling by multiple curve loops. Revit 2022+
         /// </summary>
         /// <param name="curves">The input curves as a list of lists.</param>
@@ -65,7 +71,8 @@ namespace Rhythm.Revit.Elements
         /// <param name="level">The level to host on.</param>
         /// <returns name="ceiling">The newly created ceiling.</returns>
         [NodeCategory("Actions")]
-        public static global::Revit.Elements.Element ByCurveLoops(List<List<Curve>> curves, global::Revit.Elements.Element ceilingType, Level level)
+        public static global::Revit.Elements.Element ByCurveLoops(List<List<Curve>> curves,
+            global::Revit.Elements.Element ceilingType, Level level)
         {
             string versionNumber = DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber;
 
@@ -117,14 +124,18 @@ namespace Rhythm.Revit.Elements
                             doc.Create.NewModelCurve(c.ToRevitType(true), sketch.SketchPlane);
                         }
                     }
+
                     transaction.Commit();
                 }
+
                 sketchEditScope.Commit(new FailuresPreprocessor());
 
                 successfullyUsedExistingCeiling = true;
             }
 
-            var ceiling = successfullyUsedExistingCeiling ? ceilingElem : Autodesk.Revit.DB.Ceiling.Create(doc, curveLoops, ceilingTypeId, levelId);
+            var ceiling = successfullyUsedExistingCeiling
+                ? ceilingElem
+                : Autodesk.Revit.DB.Ceiling.Create(doc, curveLoops, ceilingTypeId, levelId);
 
             TransactionManager.Instance.TransactionTaskDone();
 
@@ -133,6 +144,8 @@ namespace Rhythm.Revit.Elements
 
             return ceiling.ToDSType(false);
         }
+#endif
+        
 
 
         internal class FailuresPreprocessor : IFailuresPreprocessor
