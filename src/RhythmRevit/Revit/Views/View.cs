@@ -330,7 +330,8 @@ namespace Rhythm.Revit.Views
         //    return result;
         //}
 
-
+#if R20
+#else
         /// <summary>
         /// Revit 2021 - Checks if a view filter is enabled in the given view.
         /// </summary>
@@ -367,6 +368,9 @@ namespace Rhythm.Revit.Views
 
             return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList();
         }
+#endif
+
+        
  
     }
 }

@@ -15,7 +15,9 @@ namespace Rhythm.Revit.Selection
     public class Collector
     {
         private Collector()
-        { }
+        {
+        }
+
         /// <summary>
         /// This node will collect all elements of type from given document.
         /// </summary>
@@ -26,7 +28,7 @@ namespace Rhythm.Revit.Selection
         /// All Elements of Type in Document
         /// </search>
         [NodeCategory("Actions")]
-        public static List<global::Revit.Elements.Element> ElementsOfTypeInDocument(object document, Type elementType )
+        public static List<global::Revit.Elements.Element> ElementsOfTypeInDocument(object document, Type elementType)
         {
             Document doc = null;
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
@@ -52,7 +54,10 @@ namespace Rhythm.Revit.Selection
 
             return elems;
         }
-        /// <summary>
+
+#if R20 || R21 || R22
+#else
+ /// <summary>
         /// This node will collect all elements of the given category from given document.
         /// </summary>
         /// <param name="document">The document to collect from.</param>
@@ -62,7 +67,8 @@ namespace Rhythm.Revit.Selection
         /// All Elements of Category in Document
         /// </search>
         [NodeCategory("Actions")]
-        public static List<global::Revit.Elements.Element> ElementsOfCategoryInDocument(object document, global::Revit.Elements.Category category)
+        public static List<global::Revit.Elements.Element> ElementsOfCategoryInDocument(object document,
+            global::Revit.Elements.Category category)
         {
             Document doc = null;
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
@@ -71,6 +77,7 @@ namespace Rhythm.Revit.Selection
                 throw new Exception(
                     "Orchid has recently been updated to return Revit.Application.Document, please update your Orchid to use this node.");
             }
+
             if (document is global::Revit.Application.Document dynamoDoc)
             {
                 doc = dynamoDoc.ToRevitType();
@@ -84,11 +91,14 @@ namespace Rhythm.Revit.Selection
 
             FilteredElementCollector coll = new FilteredElementCollector(doc);
             List<global::Revit.Elements.Element> elems =
-                new List<global::Revit.Elements.Element>(coll.WhereElementIsNotElementType().WherePasses(filter).ToElements()
+                new List<global::Revit.Elements.Element>(coll.WhereElementIsNotElementType().WherePasses(filter)
+                    .ToElements()
                     .Select(e => e.ToDSType(false)));
 
             return elems;
         }
+#endif
+       
 
         /// <summary>
         /// Collect a detail or model group by a given name in the current model.

@@ -116,36 +116,8 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="DSRevitNodesUI">
-      <HintPath>..\..\lib\$(RevitVersion)\DSRevitNodesUI.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoRevitDS">
-      <HintPath>..\..\lib\$(RevitVersion)\DynamoRevitDS.dll</HintPath>
-    </Reference>
-<!--    <Reference Include="RevitNodes">-->
-<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitNodes.dll</HintPath>-->
-<!--    </Reference>-->
-<!--    <Reference Include="RevitServices">-->
-<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitServices.dll</HintPath>-->
-<!--    </Reference>-->
-  </ItemGroup>
-<!--  <ItemGroup>-->
-<!--    <Reference Include="DSRevitNodesUI">-->
-<!--      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\nodes\DSRevitNodesUI.dll</HintPath>-->
-<!--    </Reference>-->
-<!--    <Reference Include="DynamoRevitDS">-->
-<!--      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\DynamoRevitDS.dll</HintPath>-->
-<!--    </Reference>-->
-<!--    <Reference Include="RevitNodes">-->
-<!--      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\RevitNodes.dll</HintPath>-->
-<!--    </Reference>-->
-<!--    <Reference Include="RevitServices">-->
-<!--      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\RevitServices.dll</HintPath>-->
-<!--    </Reference>-->
-<!--  </ItemGroup>-->
-  <ItemGroup>
-   
     <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
     <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
     <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
@@ -176,7 +148,6 @@
       <AssemblyFiles Include="$(TargetDir)RhythmUI.xml"/>
     </ItemGroup>
     <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(FolderPackages)bin"/>
-
     <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\_release\Rhythm\bin" />
   </Target>
 </Project>

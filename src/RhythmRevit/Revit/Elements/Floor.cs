@@ -21,7 +21,9 @@ namespace Rhythm.Revit.Elements
     [RegisterForTrace]
     public class Floor
     {
-        private Floor() { }
+        private Floor()
+        {
+        }
 
         private static bool VerifyEdit(Autodesk.Revit.DB.Floor floorElem, List<List<Curve>> curves)
         {
@@ -44,7 +46,9 @@ namespace Rhythm.Revit.Elements
             return length.AlmostEquals(ceilingParam, 0.01);
         }
 
-        /// <summary>
+#if R20
+#else
+ /// <summary>
         /// Collect the first floor type available. Revit 2022+
         /// </summary>
         /// <returns name="floorType">The first (default) floor type.</returns>
@@ -55,7 +59,7 @@ namespace Rhythm.Revit.Elements
 
             var floorTypeInternal = doc.GetElement(Autodesk.Revit.DB.Floor.GetDefaultFloorType(doc, false));
 
-            return (global::Revit.Elements.FloorType)floorTypeInternal.ToDSType(false) as FloorType;
+            return (global::Revit.Elements.FloorType) floorTypeInternal.ToDSType(false) as FloorType;
         }
 
         /// <summary>
@@ -67,9 +71,9 @@ namespace Rhythm.Revit.Elements
         /// <returns name="floor">The new floor.</returns>
         /// <exception cref="Exception"></exception>
         [NodeCategory("Actions")]
-        public static global::Revit.Elements.Floor ByCurveLoops(List<List<Curve>> curves, FloorType floorType, Level level)
+        public static global::Revit.Elements.Floor ByCurveLoops(List<List<Curve>> curves, FloorType floorType,
+            Level level)
         {
-
             //the current document and our data
             var doc = DocumentManager.Instance.CurrentDBDocument;
             var floorTypeId = floorType.InternalElement.Id;
@@ -102,12 +106,12 @@ namespace Rhythm.Revit.Elements
                 {
                     transaction.Start();
                     foreach (CurveArray curveArray in sketch.Profile)
-                        foreach (Autodesk.Revit.DB.Curve curve in curveArray)
-                            doc.Delete(curve.Reference.ElementId);
+                    foreach (Autodesk.Revit.DB.Curve curve in curveArray)
+                        doc.Delete(curve.Reference.ElementId);
 
                     foreach (var curveList in curves)
-                        foreach (var c in curveList)
-                            doc.Create.NewModelCurve(c.ToRevitType(), sketch.SketchPlane);
+                    foreach (var c in curveList)
+                        doc.Create.NewModelCurve(c.ToRevitType(), sketch.SketchPlane);
                     transaction.Commit();
                 }
 
@@ -124,9 +128,11 @@ namespace Rhythm.Revit.Elements
             // delete the element stored in trace and add this new one
             ElementBinder.CleanupAndSetElementForTrace(doc, floor);
 
-            return (global::Revit.Elements.Floor)floor.ToDSType(false);
+            return (global::Revit.Elements.Floor) floor.ToDSType(false);
         }
+#endif
 
+       
 
 
         internal class FailuresPreprocessor : IFailuresPreprocessor

@@ -306,8 +306,9 @@ namespace Rhythm.Revit.Elements
             return internalViewport.GetBoxCenter().ToPoint();
         }
 
-
-        /// <summary>
+#if R20 || R21
+#else
+/// <summary>
         /// Set a viewport's title length. Revit 2022+
         /// </summary>
         /// <param name="viewport">The target viewport.</param>
@@ -355,6 +356,10 @@ namespace Rhythm.Revit.Elements
 
             return internalViewport.LabelOffset.ToPoint();
         }
+#endif
+
+
+        
 
     }
 
