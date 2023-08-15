@@ -114,8 +114,22 @@
     <PackageTags>dynamo</PackageTags>
     <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\Rhythm\</FolderPackages>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <UserSecretsId>b4ccbdcc-3b82-414a-a303-fd5da5588b09</UserSecretsId>
+
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DSRevitNodesUI">
+      <HintPath>..\..\lib\$(RevitVersion)\DSRevitNodesUI.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoRevitDS">
+      <HintPath>..\..\lib\$(RevitVersion)\DynamoRevitDS.dll</HintPath>
+    </Reference>
+<!--    <Reference Include="RevitNodes">-->
+<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitNodes.dll</HintPath>-->
+<!--    </Reference>-->
+<!--    <Reference Include="RevitServices">-->
+<!--      <HintPath>..\..\lib\$(RevitVersion)\RevitServices.dll</HintPath>-->
+<!--    </Reference>-->
+  </ItemGroup>
 <!--  <ItemGroup>-->
 <!--    <Reference Include="DSRevitNodesUI">-->
 <!--      <HintPath>C:\Program Files\Autodesk\Revit 2024\AddIns\DynamoForRevit\Revit\nodes\DSRevitNodesUI.dll</HintPath>-->
@@ -134,11 +148,12 @@
    
     <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
     <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
-    <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
-    <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
-    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
-    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
+    <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
+    <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*"/>
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*"/>
+    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*"/>
+    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*"/>
+
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NUnit" Version="2.6.3" />
@@ -157,10 +172,11 @@
   </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild">
     <ItemGroup>
-      <AssemblyFiles Include="$(TargetDir)RhythmUI.dll" />
-      <AssemblyFiles Include="$(TargetDir)RhythmUI.xml" />
+      <AssemblyFiles Include="$(TargetDir)RhythmUI.dll"/>
+      <AssemblyFiles Include="$(TargetDir)RhythmUI.xml"/>
     </ItemGroup>
-    <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(FolderPackages)bin" />
+    <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(FolderPackages)bin"/>
+
     <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\_release\Rhythm\bin" />
   </Target>
 </Project>
