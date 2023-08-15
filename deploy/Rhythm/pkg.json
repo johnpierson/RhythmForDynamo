@@ -1,0 +1,32 @@
+{
+  "license": "BSD 3-Clause",
+  "file_hash": null,
+  "name": "Rhythm",
+  "version": "2023.9.1",
+  "description": "Rhythm is a set of nodes to help your Revit project maintain a good rhythm with Dynamo. Rhythm is fully open-source and authored by John Pierson (@johntpierson) of Design Tech Unraveled (designtechunraveled.com). \n\nSupported Revit versions are 2021-2024, with supported Dynamo versions being 2.6.x - 2.18.x",
+  "group": "Breaking CAD",
+  "keywords": [
+    "documentation",
+    "dimension",
+    "curtainwall",
+    "open",
+    "document",
+    "copy",
+    "unopened",
+    "background",
+    "sketch"
+  ],
+  "dependencies": [],
+  "host_dependencies": [],
+  "contents": "",
+  "engine_version": "2.12.0.5740",
+  "engine": "dynamo",
+  "engine_metadata": "",
+  "site_url": "https://designtechunraveled.com/",
+  "repository_url": "https://github.com/johnpierson/RhythmForDynamo",
+  "contains_binaries": true,
+  "node_libraries": [
+    "RhythmCore, Version=2022.11.1.0, Culture=neutral, PublicKeyToken=null",
+    "RhythmRevit, Version=2023.9.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

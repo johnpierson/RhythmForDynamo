@@ -8,8 +8,10 @@
         <UseWPF>true</UseWPF>
         <PlatformTarget>x64</PlatformTarget>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
         <Configurations>Debug R24;;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
         <Configurations>$(Configurations);Release R24;Release R20;Release R21;Release R22;Release R23;</Configurations>
+
         <NoWarn>MSB3277</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
@@ -27,7 +29,9 @@
         <DefineConstants>$(DefineConstants);R20</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R21'))">
+
         <DynamoVersion>2.17</DynamoVersion>
+
         <DynamoOutput>2.6</DynamoOutput>
         <RevitVersion>2021</RevitVersion>
         <DebugSymbols>true</DebugSymbols>
@@ -55,6 +59,7 @@
         <DefineConstants>$(DefineConstants);R22</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R23'))">
+
         <DynamoVersion>2.16</DynamoVersion>
         <DynamoOutput>2.16</DynamoOutput>
         <RevitVersion>2023</RevitVersion>
@@ -62,16 +67,20 @@
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
     </PropertyGroup>
+
     <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
+
         <DynamoVersion>2.16</DynamoVersion>
         <DynamoOutput>2.16</DynamoOutput>
         <RevitVersion>2023</RevitVersion>
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
+
         <DynamoVersion>2.18</DynamoVersion>
         <DynamoOutput>2.18</DynamoOutput>
         <RevitVersion>2024.1</RevitVersion>
+
         <DefineConstants>$(DefineConstants);R24</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
@@ -93,6 +102,7 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
     <ItemGroup>
+
         <Reference Include="System.Windows"/>
     </ItemGroup>
     <ItemGroup>
@@ -124,10 +134,12 @@
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high"/>
         <ItemGroup>
             <AssemblyFiles Include="$(TargetDir)RhythmRevit.dll"/>
+
             <AssemblyFiles Include="$(TargetDir)RhythmCore.dll" />
             <AssemblyFiles Include="$(TargetDir)RhythmViewExtension.dll" />
             <AssemblyFiles Include="$(TargetDir)*.xml" />
             <AssemblyFiles Include="$(ProjectDir)..\_release\Rhythm\extra\*.xml" />
+
             <PgkDefinition Include="$(ProjectDir)..\_release\Rhythm\pkg.json"/>
             <ExtralFiles Include="$(ProjectDir)..\_release\Rhythm\extra\*.*"/>
             <!--            <XmlCustomization Include="$(SolutionDir)docs\*.xml"/>-->
@@ -141,5 +153,6 @@
         <Copy SourceFiles="@(ExtralFiles)" DestinationFolder="$(FolderPackages)extra"/>
 <!--        <Copy SourceFiles="@(DyfFiles)" DestinationFolder="$(FolderPackages)dyf"/>-->
         <Message Text="Copied Completed" Importance="high"/>
+
     </Target>
 </Project>

@@ -1,0 +1,2761 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RhythmRevit</name>
+    </assembly>
+    <members>
+        <member name="M:Rhythm.DefaultProgressForm.#ctor(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Set up progress bar form and immediately display it modelessly.
+            </summary>
+            <param name="caption">Form caption</param>
+            <param name="format">Progress message string</param>
+            <param name="toolTitle">Name of the tool.</param>
+            <param name="max">Number of elements to process</param>
+        </member>
+        <member name="F:Rhythm.DefaultProgressForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Rhythm.DefaultProgressForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Rhythm.DefaultProgressForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Rhythm.FamilyUpgradeForm.#ctor(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Set up progress bar form and immediately display it modelessly.
+            </summary>
+            <param name="caption">Form caption</param>
+            <param name="format">Progress message string</param>
+            <param name="toolTitle">Name of the tool.</param>
+            <param name="max">Number of elements to process</param>
+        </member>
+        <member name="F:Rhythm.FamilyUpgradeForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Rhythm.FamilyUpgradeForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Rhythm.FamilyUpgradeForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Geometry.Tessellation.ConvexHull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Geometry.Tessellation.ConvexHull.FromPoints(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point})">
+            <summary>
+            Generates a convex hull from given points.
+            </summary>
+            <param name="points"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Application.Applications">
+            <summary>
+            Wrapper class for application level nodes.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.OpenDocumentFile(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            This node will open the given file in the background.
+            </summary>
+            <param name="filePath">The file to obtain document from.</param>
+            <param name="audit">Choose whether or not to audit the file upon opening. (Will run slower with this)</param>
+            <param name="detachFromCentral">Choose whether or not to detach from central upon opening. Only for RVT files. </param>
+            <param name="preserveWorksets">Choose whether or not to preserve worksets upon opening. Only for RVT files. </param>
+            <param name="closeAllWorksets">Choose if you want to close all worksets upon opening. Defaulted to false.</param>
+            <returns name="document">The document object. If the file path is blank this returns the current document.</returns>
+            <search>
+            Application.OpenDocumentFile, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.CloseDocument(System.Object,System.Boolean)">
+            <summary>
+            This node will close the given document with the option to save.
+            </summary>
+            <param name="document">The background opened document object, (preferably this is the title as obtained with Applications.OpenDocumentFile from Rhythm).</param>
+            <param name="save">Do you want to save?</param>
+            <returns name="result">Did it work?</returns>
+            <search>
+            Application.CloseDocument, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.UpgradeFile(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            This will try to open a file in the current version with various options.
+            </summary>
+            <param name="filePath">The file to obtain document from.</param>
+            <param name="audit">Choose whether or not to audit the file upon opening. (Will run slower with this)</param>
+            <param name="detachFromCentral">Choose whether or not to detach from central upon opening. Only for RVT files. </param>
+            <param name="preserveWorksets">Choose whether or not to preserve worksets upon opening. Only for RVT files. </param>
+            <param name="closeAllWorksets">Choose if you want to close all worksets upon opening. Defaulted to false.</param>
+            <param name="unloadAllLinks">Choose if you want unload all links?</param>
+            <returns name="result">Did it work?</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.GetOpenDocuments(System.Boolean)">
+            <summary>
+            This node provides access to all of the open documents in revit.
+            </summary>
+            <param name="runIt">Do you want to save?</param>
+            <returns name="documents">The documents that are currently open.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.UnloadRevitLinks(System.String)">
+            <summary>
+            Unload revit links for given file path.
+            </summary>
+            <param name="modelPath">The path to the Revit file</param>
+            <returns name="success">Was it successful?></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.SwapDocument">
+            <summary>
+            Not implemented
+            </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Application.Documents">
+            <summary>
+            Wrapper class for document nodes.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Documents.CopyElementsFromLinkedDocument(System.Object,Revit.Elements.Element,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will copy the given elements from the given linked document into the active document.
+            </summary>
+            <param name="sourceDocument">The background opened document object, (preferably this is the title as obtained with Applications.OpenDocumentFile from Rhythm).</param>
+            <param name="sourceInstance">The instance of the link to copy from.</param>
+            <param name="elements">The elements to copy.</param>
+            <returns name="newElements">The copied elements.</returns>
+            <search>
+            copy
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Documents.CopyElementsFromDocument(System.Object,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will copy the given elements from the given document into the active document.
+            </summary>
+            <param name="sourceDocument">The background opened document object, (preferably this is the title as obtained with Applications.OpenDocumentFile from Rhythm).</param>
+            <param name="elements">The elements to copy.</param>
+            <returns name="newElements">The copied elements.</returns>
+            <search>
+            copy
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Documents.SetStartingView(System.Object,Revit.Elements.Element)">
+            <summary>
+            This node will set the starting view of the document, given the view element.
+            </summary>
+            <param name="sourceDocument">The background opened document object, (preferably this is the title as obtained with Applications.OpenDocumentFile from Rhythm).</param>
+            <param name="view">The view to set.</param>
+            <returns name="result">The result.</returns>
+            <search>
+            startingView
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Documents.CopyDraftingViewsFromDocument(System.Object,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will copy the given drafting views and their contents from the given document into the active document.
+            </summary>
+            <param name="sourceDocument">The background opened document object, (preferably this is the title as obtained with Applications.OpenDocumentFile from Rhythm).</param>
+            <param name="draftingViews">The drafting views to copy.</param>
+            <returns name="newDraftingViews">The copied drafting views with their elements.</returns>
+            <search>
+            copy
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Documents.SaveAs(System.Object,System.String,System.Int32)">
+            <summary>
+            This node will save the Revit document to another path.
+            </summary>
+            <param name="document">A valid Revit Document.</param>
+            <param name="filePath">The file path to save the document.</param>
+            <param name="previewViewId">Optional - If you want to specify the preview view for the thumbnail.</param>
+            <returns name="result">A string message whether the save as was successful or a failure.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Documents.DbDocumentToDynamoDocument(Autodesk.Revit.DB.Document)">
+            <summary>
+            Convert a db document to the Dynamo kind.
+            </summary>
+            <param name="dbDocument">The background opened DB document.</param>
+            <returns name="dynamoDocument">The converted document as Revit.Application.Document</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Documents.DynamoDocumentToDbDocument(Revit.Application.Document)">
+            <summary>
+            Convert a Dynamo document to the db kind. 
+            </summary>
+            <param name="dynamoDocument">The Dynamo document.</param>
+            <returns name="dynamoDocument">The converted document as Autodesk.Revit.DB.Document</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Application.HideAndAcceptDuplicateTypeNamesHandler">
+            <summary>
+            A handler to accept duplicate types names created by the copy/paste operation.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.HideAndAcceptDuplicateTypeNamesHandler.OnDuplicateTypeNamesFound(Autodesk.Revit.DB.DuplicateTypeNamesHandlerArgs)">
+            <summary>
+            Implementation of the IDuplicateTypeNameHandler
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Application.HidePasteDuplicateTypesPreprocessor">
+            <summary>
+            A failure preprocessor to hide the warning about duplicate types being pasted.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.HidePasteDuplicateTypesPreprocessor.PreprocessFailures(Autodesk.Revit.DB.FailuresAccessor)">
+            <summary>
+            Implementation of the IFailuresPreprocessor.
+            </summary>
+            <param name="failuresAccessor"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.ElementFilter.ElementFilter">
+            <summary>
+            Wrapper class for ElementFilter.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.ElementFilter.ElementFilter.ByName(System.Collections.Generic.List{Revit.Elements.Element},System.String,System.String,System.Boolean)">
+            <summary>
+            Provides element filtering options by name. For the filter method, we are using something called "LevenshteinDistance". 
+            This was introduced to me here, http://dynamobim.org/fuzzy-string-matching/.
+            </summary>
+            <param name="elements">The elements to filter.</param>
+            <param name="value">The value to filter by.</param>
+            <param name="filterMethod">The method to filter by. This includes Contains, DoesNotContain, StartsWith, DoesNotStartWith, EndsWith, DoesNotEndWith, Equals, DoesNotEqual</param>
+            <param name="ignoreCase">Ignore the case?</param>
+            <returns name="elements">The filtered elements.</returns>
+            <search>
+            ElementFilter,Filter.ByName
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.ElementFilter.ElementFilter.ByParameterStringValue(System.Collections.Generic.List{Revit.Elements.Element},System.String,System.String,System.String)">
+            <summary>
+            Provides element filtering options by parameter string value. For the filter method, we are using something called "LevenshteinDistance". 
+            This was introduced to me here, http://dynamobim.org/fuzzy-string-matching/.
+            </summary>
+            <param name="elements">The elements to filter.</param>
+            <param name="parameterName">The parameter name to filter against..</param>
+            <param name="value">The value to filter by.</param>
+            <param name="filterMethod">The method to filter by. This includes Contains, DoesNotContain, StartsWith, DoesNotStartWith, EndsWith, DoesNotEndWith, Equals, DoesNotEqual</param>
+            <returns name="elements">The filtered elements.</returns>
+            <search>
+            ElementFilter,Filter.ByName
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.ElementFilter.ElementFilter.ByParameterNumericValue(System.Collections.Generic.List{Revit.Elements.Element},System.String,System.Double,System.String)">
+            <summary>
+            Provides element filtering options by parameter numeric value. For the filter method, we are using something called "LevenshteinDistance". 
+            This was introduced to me here, http://dynamobim.org/fuzzy-string-matching/.
+            </summary>
+            <param name="elements">The elements to filter.</param>
+            <param name="parameterName">The parameter name to filter against..</param>
+            <param name="value">The value to filter by.</param>
+            <param name="filterMethod">The method to filter by. This includes GreaterThan, GreaterThanOrEqualTo, LessThan, LessThanOrEqualTo, EqualTo, NotEqualTo</param>
+            <returns name="elements">The filtered elements.</returns>
+            <search>
+            ElementFilter,Filter.ByName
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.ElementFilter.ElementFilter.ByCategory(System.Collections.Generic.List{Revit.Elements.Element},System.Object,System.String)">
+            <summary>
+            Provides element filtering options by category. For the filter method, we are using something called "LevenshteinDistance". 
+            This was introduced to me here, http://dynamobim.org/fuzzy-string-matching/.
+            </summary>
+            <param name="elements">The elements to filter.</param>
+            <param name="category">The value to filter by.</param>
+            <param name="filterMethod">The method to filter by. This includes Contains, DoesNotContain, StartsWith, DoesNotStartWith, EndsWith, DoesNotEndWith, Equals, DoesNotEqual</param>
+            <returns name="elements">The filtered elements.</returns>
+            <search>
+            ElementFilter,Filter.ByName
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Areas">
+            <summary>
+            Wrapper class for Area.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Areas.AreaScheme(Revit.Elements.Element)">
+            <summary>
+            Get the input area's scheme.
+            </summary>
+            <param name="area">The area to check.</param>
+            <returns name="areaScheme"></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Areas.ContainsPoint(Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This will report whether or not the area contains the given point.
+            </summary>
+            <param name="area">The area to check.</param>
+            <param name="point">The point to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Areas.AreaAtPoint(Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This will return the area at the given point.
+            </summary>
+            <param name="point">The point to check.</param>
+            <returns name="area">The area found at the point (if available).</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Areas.Boundaries(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the area's boundaries. The first list is typically the outermost boundaries.
+            </summary>
+            <param name="area">The area to extract curves from.</param>
+            <returns name="boundaries">The boundaries.</returns>
+            <search>
+            Area.Boundaries
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Areas.Solid(Revit.Elements.Element,System.Double)">
+            <summary>
+            This node will retrieve the area's solid geometry.
+            </summary>
+            <param name="area">The area to extract solid from.</param>
+            <param name="areaHeight">A manually input area height. Default value is 10.</param>
+            <returns name="solid">The solid.</returns>
+            <search>
+            Area.Boundaries
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Areas.GetAreaAtPoint(Autodesk.DesignScript.Geometry.Point,System.Double)">
+            <summary>
+            *BETA* This node will retrieve the area(s) at the given point.
+            This is a VERY SLOW method using solid intersection tests. You have been warned....
+            </summary>
+            <param name="point">The point to select area(s) at.</param>
+            <param name="areaHeight">A manually input area height. Default value is 10.</param>
+            <returns name="area">The area.</returns>
+            <search>
+            Area.GetAreaAtPoint
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Areas.OuterBoundary(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the area's outermost boundary.
+            </summary>
+            <param name="area">The area to extract outermost boundary from.</param>
+            <returns name="polygon">The outermost polygon.</returns>
+            <search>
+            Area.OuterBoundary
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.AreaTag">
+            <summary>
+            Wrapper class for area tags
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.AreaTag.TaggedArea(Revit.Elements.Element)">
+            <summary>
+            Retrieves the area that is tagged by the given area tag.
+            </summary>
+            <param name="areaTag"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.BeamSystem">
+            <summary>
+            Wrapper class for beam systems.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.BeamSystem.Members(Revit.Elements.Element)">
+            <summary>
+            Obtains the individual beams within a beam system.
+            </summary>
+            <param name="BeamSystem">The beam system to get information from.</param>
+            <returns name="members">The individual members.</returns>
+            <search>
+            structural, beamsystem
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.BeamSystem.DropBeamSystem(Revit.Elements.Element)">
+            <summary>
+            Drops the beam system.
+            </summary>
+            <param name="beamSystem">The beam system to drop.</param>
+            <returns name="members">The individual members.</returns>
+            <search>
+            structural, beamsystem
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Categories">
+            <summary>
+            Wrapper class for categories.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.CollectHatchPatternCategories(System.Boolean)">
+            <summary>
+            Collects all surface pattern related categories for override.
+            </summary>
+            <param name="toggle">Run It?</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.ProjectionLineweight(System.Collections.Generic.List{Revit.Elements.Category})">
+            <summary>
+            Get the category projection lineweight.
+            </summary>
+            <returns name="categoryProjectionLineweight">The category projection lineweights.</returns>
+            <search>
+            Categories.ProjectionLineweight
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.SetProjectionLineweight(Revit.Elements.Category,System.Int32)">
+            <summary>
+            Set the category projection lineweight.
+            </summary>
+            <returns name="category">The category</returns>
+            <search>
+            Categories.ProjectionLineweight
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.CutLineweight(System.Collections.Generic.List{Revit.Elements.Category})">
+            <summary>
+            Get the category cut lineweight.
+            </summary>
+            <returns name="categoryCutLineweight">The category projection lineweights.</returns>
+            <search>
+            Categories.CutLineweight
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.SetCutLineweight(Revit.Elements.Category,System.Int32)">
+            <summary>
+            Set the category cut lineweight.
+            </summary>
+            <returns name="category">The category</returns>
+            <search>
+            Categories.CutLineweight
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.LineColor(System.Collections.Generic.List{Revit.Elements.Category})">
+            <summary>
+            Get the category line color as RGB string..
+            </summary>
+            <returns name="lineColorString">The category line color as a string.</returns>
+            <returns name="lineColor">The category line color as a usable Dynamo color.</returns>
+            <search>
+            Categories.LineColor
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.LinePattern(System.Collections.Generic.List{Revit.Elements.Category})">
+            <summary>
+            Get the category line pattern.
+            </summary>
+            <returns name="linePattern">The category projection line pattern.</returns>
+            <search>
+            Categories.LinePattern
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Categories.Material(System.Collections.Generic.List{Revit.Elements.Category})">
+            <summary>
+            Get the category material and name.
+            </summary>
+            <returns name="materialName">The category material name.</returns>
+            <search>
+            Categories.MaterialName
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Ceiling">
+            <summary>
+            Wrapper class for floors
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Ceiling.DefaultCeilingType">
+            <summary>
+            Collect the first ceiling type available. Revit 2022+
+            </summary>
+            <returns name="ceilingType">The first (default) ceiling type.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Ceiling.ByCurveLoops(System.Collections.Generic.List{System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve}},Revit.Elements.Element,Revit.Elements.Level)">
+            <summary>
+            Create a ceiling by multiple curve loops. Revit 2022+
+            </summary>
+            <param name="curves">The input curves as a list of lists.</param>
+            <param name="ceilingType">Ceiling type to use.</param>
+            <param name="level">The level to host on.</param>
+            <returns name="ceiling">The newly created ceiling.</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.CurtainGrid">
+            <summary>
+            Wrapper class for curtain grids.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGrid.ByWallElement(Revit.Elements.Wall)">
+            <summary>
+            This node will retrieve the curtain grid and U/V Gridlines from the given wall
+            </summary>
+            <param name="curtainWall">The curtain wall to get data from.</param>
+            <returns name="curtainGrid">The internal curtain grid.</returns>
+            <returns name="uGrids">The grids in the U direction, (horizontal).</returns>
+            <returns name="vGrids">The grids in the V direction, (vertical).</returns>
+            <search>
+            curtaingrid, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGrid.ByRoofElement(Revit.Elements.Roof)">
+            <summary>
+            This node will retrieve the curtain grid and U/V Gridlines from the given wall
+            </summary>
+            <param name="slopedGlazing">The sloped glazing to get data from.</param>
+            <returns name="curtainGrid">The internal curtain grid.</returns>
+            <returns name="uGrids">The grids in the U direction, (horizontal).</returns>
+            <returns name="vGrids">The grids in the V direction, (vertical).</returns>
+            <search>
+            curtaingrid, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGrid.ByCurtainSystem(Revit.Elements.CurtainSystem)">
+            <summary>
+            This node will retrieve the curtain grid per face from the curtain system.
+            </summary>
+            <param name="curtainSystem">The curtain system to get data from.</param>
+            <returns name="curtainGrid">The internal curtain grid.</returns>
+            <search>
+            curtaingrid, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGrid.UGrids(Autodesk.Revit.DB.CurtainGrid)">
+            <summary>
+            This node will retrieve the U gridlines from the curtain grid
+            </summary>
+            <param name="curtainGrid">The curtain grid to get data from.</param>
+            <returns name="UGrids">The grids in the U direction, (horizontal).</returns>
+            <search>
+            curtaingrid, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGrid.VGrids(Autodesk.Revit.DB.CurtainGrid)">
+            <summary>
+            This node will retrieve the V gridlines from the curtain grid
+            </summary>
+            <param name="curtainGrid">The curtain grid to get data from.</param>
+            <returns name="VGrids">The grids in the V direction, (horizontal).</returns>
+            <search>
+            curtaingrid, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGrid.AddGridLineByPoint(Autodesk.Revit.DB.CurtainGrid,Autodesk.DesignScript.Geometry.Point,System.Boolean)">
+            <summary>
+            This node will add a gridline at the specified place on the curtain wall grid.
+            </summary>
+            <param name="curtainGrid">The curtain grid to add a gridline to.</param>
+            <param name="locationPoint">XYZ location to place grid</param>
+            <param name="isUGridline">Is this gridline horizontal?</param>
+            <returns name="curtainGridLine">The new gridline</returns>
+            <search>
+            curtainwall, rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.CurtainGridLine">
+            <summary>
+            Wrapper class for curtain gridlines.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGridLine.FullCurve(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric curve from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="fullCurve">The full geometric curve</returns>
+            <search>
+            CurtainGridLine.FullCurve, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGridLine.AllSegmentCurves(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric curve segments from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="AllSegmentCurves">The segments that make up the curtain grid.</returns>
+            <search>
+            CurtainGridLine.FullCurve, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGridLine.RemoveSegment(Revit.Elements.Element,System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve})">
+            <summary>
+            This node will remove the given curve segments from the curtain grid line.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to remove segments from.</param>
+            <param name="curves">The curves that represent the grid segment to remove.</param>
+            <returns name="curtainGridLine">The curtain grid that was supplied.</returns>
+            <search>
+            CurtainGridLine.RemoveSegment, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGridLine.ExistingSegmentCurves(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric existing curve segments from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="existingSegmentCurves">The segments that make up the curtain grid.</returns>
+            <search>
+            CurtainGridLine.ExistingSegmentCurves, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGridLine.SkippedSegmentCurves(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the geometric skipped curve segments from the curtain wall.
+            </summary>
+            <param name="curtainGridLine">The curtain gridline to get data from.</param>
+            <returns name="skippedSegmentCurves">The segments that make up the curtain grid.</returns>
+            <search>
+            CurtainGridLine.SkippedSegmentCurves, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainGridLine.SetLocation(Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This node will attempt to set the location of the given grid line to the given point.
+            NOTE: This will "translate" the grid line parallel to where it is initially. We cannot move a U grid to a V grid and so forth.
+            </summary>
+            <param name="curtainGridLine">The curtain grid line to try to set.</param>
+            <param name="newLocation"></param>
+            <returns name="curtainGridLine">The translated curtain grid line. (Returns null if failed)</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.CurtainPanels">
+            <summary>
+            Wrapper class for curtain panels.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.CurtainPanels.IsolateInView(System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will isolate the given curtain wall panels in the active view. 
+            </summary>
+            <param name="curtainPanels">The curtain panels to isolate.</param>
+            <returns name="curtainPanels">The isolated curtain panels.</returns>
+            <search>
+            copy
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Dimensions">
+            <summary>
+            Wrapper class for dimensions.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.GetCurve(Revit.Elements.Dimension)">
+            <summary>
+            This node will get the dimension's line.
+            </summary>
+            <param name="dimension">The dimension to obtain the curve from.</param>
+            <returns name="dimensionLine">The curve representing the dimension.</returns>
+            <search>
+            Dimension.GetCurve, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.Segments(Revit.Elements.Dimension)">
+            <summary>
+            This node will return the segments comprising the multi segment dimension.
+            </summary>
+            <param name="dimension">Multi segment dimension.</param>
+            <returns name="segmentArray">The individual members.</returns>
+            <search>
+            dimension.Segments
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.IsOverriden(Revit.Elements.Dimension)">
+            <summary>
+            This node will check if the dimension has any overrides in it of text.
+            </summary>
+            <param name="dimension"> The dimension to check</param>
+            <returns name="result">True = overridden with text, False = not so overridden.</returns>
+            <search>
+            dimension.IsOverriden
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.DisplayUnits(Revit.Elements.Dimension)">
+            <summary>
+            This node will return the display unit type for the given dimension.
+            </summary>
+            <param name="dimension">The dimension.</param>
+            <returns name="displayUnits">The display unit type.</returns>
+            <search>
+            dimension.Properties, Dimension.DisplayUnits
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.Accuracy(Revit.Elements.Dimension)">
+            <summary>
+            This node will return the accuracy for the given dimension.
+            </summary>
+            <param name="dimension">The dimension.</param>
+            <returns name="accuracy">The accuracy.</returns>
+            <search>
+            dimension.Properties, Dimension.DisplayUnits
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.Color(Revit.Elements.Dimension)">
+            <summary>
+            This node will return the color for the given dimension.
+            </summary>
+            <param name="dimension">The dimension.</param>
+            <returns name="color">The color.</returns>
+            <search>
+            dimension.Properties, Dimension.Color
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.SetAboveValue(Revit.Elements.Dimension,System.Collections.Generic.List{System.String})">
+            <summary>
+            This node will try to set the above value for the dimensions. This will work for either single segment dimensions or all segments of a multi-segment dimension.
+            </summary>
+            <param name="dimension">Dimension to set</param>
+            <param name="aboveValue">Value to set.</param>
+            <returns name="set">Successfully set.</returns>
+            <returns name="notSet">Not so successfully set.</returns>
+            <search>
+            dimension.SetAboveValue
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.SetBelowValue(Revit.Elements.Dimension,System.Collections.Generic.List{System.String})">
+            <summary>
+            This node will try to set the below value for the dimensions. This will work for either single segment dimensions or all segments of a multi-segment dimension.
+            </summary>
+            <param name="dimension">Dimension to set</param>
+            <param name="belowValue">Value to set.</param>
+            <returns name="set">Successfully set.</returns>
+            <returns name="notSet">Not so successfully set.</returns>
+            <search>
+            dimension.SetBelowValue
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.GetReferenceElements(Revit.Elements.Dimension)">
+            <summary>
+            This node will retrieve the reference elements of the dimension. Will not work with multi segment dimensions.
+            </summary>
+            <param name="dimension">Dimension to get elements from.</param>
+            <returns name="referenceElements">The reference elements.</returns>
+            <search>
+            dimension.GetReferenceElements
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.CenterTextOnLine(Revit.Elements.Dimension)">
+            <summary>
+            *BETA* This node will center the dimension's text on the line.
+            </summary>
+            <param name="dimension">The dimension to center text on line for.</param>
+            <returns name="dimension">The dimension.</returns>
+            <search>
+            Dimension.CenterTextOnLine
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.SetTextLocation(Revit.Elements.Dimension,System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point})">
+            <summary>
+            This node will try to set the text location for the given dimensions. This will work for either single segment dimensions or all segments of a multi-segment dimension.
+            </summary>
+            <param name="dimension">Dimension to set</param>
+            <param name="locationPoint">Value to set.</param>
+            <search>
+            dimension.SetTextLocation
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.NumberOfSegments(System.Collections.Generic.List{Revit.Elements.Dimension})">
+            <summary>
+            This node will return the number of segments comprising the multi segment dimension.
+            </summary>
+            <param name="dimension">Multi segment dimension.</param>
+            <returns name="numberOfSegments">The amount of segments.</returns>
+            <search>
+            dimension.Segments
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.Origin(Revit.Elements.Dimension)">
+            <summary>
+            This node will return the origin of the dimension. If it is a multi-segment dimension it will output all of the pieces.
+            </summary>
+            <param name="dimension">The dimension.</param>
+            <returns name="origin">The dimension origin.</returns>
+            <search>
+            dimension.Origin
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.TextPosition(Revit.Elements.Dimension)">
+            <summary>
+            This node will return the text position of the dimension. If it is a multi-segment dimension it will output all of the pieces.
+            </summary>
+            <param name="dimension">The dimension.</param>
+            <returns name="texPosition">The dimension text position.</returns>
+            <search>
+            dimension.TextPosition
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.ValueString(Revit.Elements.Dimension)">
+            <summary>
+            This node will return the value (string) of the dimension. If the dimension is a multi-segment dimension, this will find all of the above values.
+            This method returns what the dimension would be in it's non-rounded form. If you want the actual displayed string use Dimension.DisplayValueString in Rhythm.
+            </summary>
+            <param name="dimension">The dimension to obtain value from.</param>
+            <returns name="valueString">The dimension value as a string.</returns>
+            <search>
+            dimension.TextPosition
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.AboveValue(Revit.Elements.Dimension)">
+            <summary>
+            Retrieve the dimension above value. If the dimension is a multi-segment dimension, this will find all of the above values.
+            </summary>
+            <param name="dimension">The dimension to retrieve values from.</param>
+            <returns name="aboveValue">The above value for the dimension.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.BelowValue(Revit.Elements.Dimension)">
+            <summary>
+            Retrieve the dimension below value. If the dimension is a multi-segment dimension, this will find all of the below values.
+            </summary>
+            <param name="dimension">The dimension to retrieve values from.</param>
+            <returns name="belowValue">The below value for the dimension.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.DisplayValueString(Revit.Elements.Dimension)">
+            <summary>
+            Retrieve the actual dimension display value. The built in RevitAPI method returns the string per the project setting. This returns it per the dimension setting.
+            </summary>
+            <param name="dimension">The dimension to retrieve values from.</param>
+            <returns name="realValueString">The real string value for the dimension.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Dimensions.SetFormat(Revit.Elements.Dimension,Autodesk.Revit.DB.Units)">
+            <summary>
+            
+            </summary>
+            <param name="dimension"></param>
+            <param name="units"></param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.DimensionSegment.QueryData(Autodesk.Revit.DB.DimensionSegment)">
+            <summary>
+            Get the data from the dimension segment
+            </summary>
+            <param name="segment">The dimension segment to check.</param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.DimensionSegment.SetData(Autodesk.Revit.DB.DimensionSegment,System.String,System.String,System.String,System.String)">
+            <summary>
+            Set the data given the inputs.
+            </summary>
+            <param name="segment">The dimension segment</param>
+            <param name="above">Above value (optional)</param>
+            <param name="below">Below value (optional)</param>
+            <param name="prefix">Prefix value (optional)</param>
+            <param name="suffix">Suffix value (optional)</param>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.DimensionTypes">
+            <summary>
+            Wrapper class for dimension type.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.DimensionTypes.UsesProjectSettings(System.Collections.Generic.List{Revit.Elements.DimensionType})">
+            <summary>
+            Determine if the given dimension type uses project (default) settings.
+            </summary>
+            <param name="dimensionType">The dimension type the unit format options from.</param>
+            <returns name="bool">A boolean mask to filter with.</returns>
+            <search>
+            dimensiontype
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Elements">
+            <summary>
+            Wrapper class for Element.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.GetNull">
+            <summary>
+            Get Null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.CreateParts(Revit.Elements.Element)">
+            <summary>
+            This node will convert the given elements to parts.
+            </summary>
+            <param name="element">The element to convert to parts.</param>
+            <returns name="Parts">The created parts from the given element.</returns>
+            <search>
+            Element.CreateParts
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.GetParameterValueByNameTypeOrInstance(Revit.Elements.Element,System.String)">
+            <summary>
+            This node will get the parameter as instance or type.
+            </summary>
+            <param name="element">The element to get parameter from.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns name="value">The parameter value.</returns>
+            <search>
+             TypeOrInstance
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.SetParameterByNameTypeOrInstance(Revit.Elements.Element,System.String,System.Object)">
+            <summary>
+            Set one of the element's parameters. Instance if it is instance or type if type.
+            </summary>
+            <param name="element">The element to set parameter to.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="value">The value to set.</param>
+            <returns name="element">The element.</returns>
+            <search>
+            TypeOrInstance
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategory(Revit.Elements.Element,Revit.Elements.Category)">
+            <summary>
+            This will take a given element and category and grab the intersecting elements of that category.
+            </summary>
+            <param name="element">The element to run intersections against.</param>
+            <param name="category">The category to check.</param>
+            <returns name="elements">The intersecting elements.</returns>
+            <search>
+             IntersectingElements
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.GetParameterValueByNameCaSeiNSeNSiTiVe(Revit.Elements.Element,System.String)">
+            <summary>
+            This node will get a parameter value by search string, regardless of case of the search string. Also accounts for misspellings.
+            Note: If the parameter name appears multiple times it will retrieve the first one that it finds.
+            </summary>
+            <param name="element">The element to get parameter from.</param>
+            <param name="parameterName">The parameter name.</param>
+            <returns name="value">The parameter value.</returns>
+            <search>
+            CaseInsensitive
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.SetParameterValueByNameCaSeiNSeNSiTiVe(Revit.Elements.Element,System.String,System.Object)">
+            <summary>
+            This node will set a parameter value by search string, regardless of case of the search string. Also accounts for misspellings.
+            Note: If the parameter name appears multiple times it will retrieve the first one that it finds.
+            </summary>
+            <param name="element">The element to get parameter from.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="value">The parameter value.</param>
+            <returns name="element">The element that had parameters set.</returns>
+            <search>
+             CaseInsensitive
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategoryLinkOption(Revit.Elements.Element,Revit.Elements.Category,Revit.Elements.Element)">
+            <summary>
+            This will take a given element and category and grab the intersecting elements of that category.
+            </summary>
+            <param name="element">The element to run intersections against.</param>
+            <param name="sourceInstance">Use this input if the elements are from a link! If they are not, leave it blank.</param>
+            <param name="category">The category to check.</param>
+            <returns name="elements">The intersecting elements.</returns>
+            <search>
+             IntersectingElements
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.IsHiddenInView(System.Collections.Generic.List{Revit.Elements.Element},Revit.Elements.Views.View)">
+            <summary>
+            This node will report whether or not the given element is hidden in given views.
+            </summary>
+            <param name="element">The element to check.</param>
+            <param name="view">The views to check in.</param>
+            <returns name="bool">Is it hidden?</returns>
+            <search>
+             IsVisible
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.DependentElements(Revit.Elements.Element)">
+            <summary>
+            This node will report what elements depend on the input element. Useful for determining safe deletion.(Available Revit 2018.1+).
+            </summary>
+            <param name="element">The element to check.</param>
+            <returns name="dependentElements">The dependent elements.</returns>
+            <search>
+             DependentElements
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.DependentElementsOfCategory(Revit.Elements.Element,Revit.Elements.Category)">
+            <summary>
+            This node will report what elements depend on the input element. Useful for determining safe deletion.(Available Revit 2018.1+).
+            </summary>
+            <param name="element">The element to check.</param>
+            <param name="category">The category to use to filter the elements.</param>
+            <returns name="dependentElements">The dependent elements.</returns>
+            <search>
+             DependentElements
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.JoinedElements(Revit.Elements.Element)">
+            <summary>
+            This node will report what elements are joined to the input element.
+            </summary>
+            <param name="element">The element to check.</param>
+            <returns name="joinedElements">The joined elements.</returns>
+            <search>
+             Element.GetJoinedElements,JoinedElements
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.SetPinnedStatus(Revit.Elements.Element,System.Boolean)">
+            <summary>
+            This node will change the pinned status of an element.
+            </summary>
+            <param name="element">The element to change the status of.</param>
+            <param name="status">The pinned status. True = pinned, False = not pinned.</param>
+            <returns name="element">The elements.</returns>
+            <search>
+             Element.SetPinnedStatus
+            </search>
+            works with background docs
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.AreaLocation(Revit.Elements.Element)">
+            <summary>
+            *BETA* - This node will retrieve the closest area that an element resides in.
+            This uses bounding boxes which encompass the whole geometry, so we take the closest one.
+            This means that there is potential that we grab the wrong one..
+            </summary>
+            <param name="element">The element to find the closest area location for.</param>
+            <returns name="area">The closest area.</returns>
+            <search>
+            Element.AreaLocation
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.ViewFinder(Revit.Elements.Element)">
+            <summary>
+            This finds all the views an element appears in. Note: "Appears in" means that if it appears when you do a category collector, that counts.
+            </summary>
+            <param name="element">The element to analyze.</param>
+            <returns name="views">The views this element appears in.</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.ElevationMarker">
+            <summary>
+            Wrapper class for elevation markers.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.ElevationMarker.CreateElevationMarker(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point},System.Int32,Revit.Elements.Element)">
+            <summary>
+            This node will create an empty elevation marker at the given points. 
+            </summary>
+            <param name="location">The location of the view.</param>
+            <param name="scaleFactor">The scale factor of the view in integer value. E.g. "96"</param>
+            <param name="viewFamilyType">The view family type you wish to use.</param>
+            <returns name="elevationMarker">The created elevation marker.</returns>
+            <search>
+            viewport, addview,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.ElevationMarker.CreateElevationByMarkerIndex(Revit.Elements.Element,Revit.Elements.Element,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            This node will add elevations on each side of the marker chosen. Typically 0-3. 
+            </summary>
+            <param name="elevationMarker">The marker to host elevations on.</param>
+            <param name="planView">Plan view to do this stuff to.</param>
+            <param name="index">This is where the view appears.</param>
+            <returns name="Result">The result</returns>
+            <search>
+            viewport, addview,rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.FamilyInstances">
+            <summary>
+            Wrapper class for FamilyInstance.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.Room(System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will report the room the family instance resides in, (if available).
+            </summary>
+            <param name="instance">The family instance to obtain room info from.</param>
+            <returns name="Room">The room in which the instance is located (during the last phase of the project).</returns>
+            <search>
+            room, rhythm,element.room
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.RoomInPhase(Revit.Elements.Element,Revit.Elements.Element)">
+            <summary>
+            This node will report the room the family instance resides in, (if available).
+            </summary>
+            <param name="instance">The family instance to obtain room info from.</param>
+            <param name="phase">The room to look in.</param>
+            <returns name="Room">The room by phase in which the instance is located.</returns>
+            <search>
+            space, rhythm,element.space
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.Space(System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will report the space the family instance resides in, (if available).
+            </summary>
+            <param name="instance">The family instance to obtain space info from.</param>
+            <returns name="Space">The space in which the instance is located (during the last phase of the project).</returns>
+            <search>
+            space, rhythm,element.space
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.SpaceInPhase(Revit.Elements.Element,Revit.Elements.Element)">
+            <summary>
+            This node will report the space the family instance resides in, (if available).
+            </summary>
+            <param name="instance">The family instance to obtain space info from.</param>
+            <param name="phase">The phase to look in.</param>
+            <returns name="Space">The space in which the instance is located (during the last phase of the project).</returns>
+            <search>
+            space, rhythm,element.space
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.RetrieveNestedComponents(Revit.Elements.FamilyInstance)">
+            <summary>
+            This node will find all deeply nested components in the given family instance.
+            </summary>
+            <param name="instance">The family instance to retrieve deep nested components from.</param>
+            <returns name="nestedComponents">The nested components.</returns>
+            <search>
+            nested,
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.ByRoom(System.String,Revit.Elements.Room,System.String,Revit.Elements.Category,System.String)">
+            <summary>
+            This node will create and place a generic model family instance at all the room locations given the room element. This will close all family documents so keep that in mind!
+            </summary>
+            <param name="familyTemplatePath">The family template to use.</param>
+            <param name="room">The room to convert to generic model.</param>
+            <param name="materialName">The material to assign to the solid. *Note - The material has to exist in the family template to work. If it does not exist nothing will be assigned.</param>
+            <param name="category">The category to assign to the family. *Note - this needs to be a category that works for families. (Doors, Generic Models, etc.)</param>
+            <param name="subcategory">The subcategory to assign to the solid. *Note - this needs to exist in the family template, if it does not, nothing will be changed in this regard.</param>
+            <returns name="familyInstance">The family instances that were placed.</returns>
+            <search>
+            space, rhythm,element.space
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.FilledRegions">
+            <summary>
+            Wrapper class for filled regions
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FilledRegions.ByMultipleLoops(Revit.Elements.FilledRegionType,Revit.Elements.Views.View,System.Collections.Generic.List{System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve}})">
+            <summary>
+            This will create a filled region with multiple loops. Based on code from https://forum.dynamobim.com/t/filled-region-with-hole-in-the-middle-like-a-donut/22838/3
+            </summary>
+            <param name="filledRegionType"></param>
+            <param name="view"></param>
+            <param name="curvesToUse"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Floor">
+            <summary>
+            Wrapper class for floors
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Floor.DefaultFloorType">
+            <summary>
+            Collect the first floor type available. Revit 2022+
+            </summary>
+            <returns name="floorType">The first (default) floor type.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Floor.ByCurveLoops(System.Collections.Generic.List{System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve}},Revit.Elements.FloorType,Revit.Elements.Level)">
+            <summary>
+            Create a floor with multiple loops. Revit 2022+
+            </summary>
+            <param name="curves">The input curves as a list of lists.</param>
+            <param name="floorType">Floor type to use.</param>
+            <param name="level">The level to host on.</param>
+            <returns name="floor">The new floor.</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Grids">
+            <summary>
+            Wrapper class for grids.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Grids.GetLeaderEnds(Revit.Elements.Element,Revit.Elements.Views.View)">
+            <summary>
+            This node will get the underlying curve of the reference plane in a given view.
+            </summary>
+            <param name="grid">The grid to get leader ends from.</param>
+            <param name="view">The view to use.</param>
+            <returns name="leaderEnd0">The leader at end 0 (if available).</returns>
+            <returns name="leaderEnd1">The leader at end 1 (if available).</returns>
+            <search>
+            grid.getleaderends
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Group">
+            <summary>
+            Wrapper class for groups
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Group.ByElementsAndOrigin(System.Collections.Generic.List{Revit.Elements.Element},System.String,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This node is a pretty neat group creator, that allows for you to pick an origin at creation time.
+            </summary>
+            <param name="elements">The elements to group</param>
+            <param name="name">Optional Name</param>
+            <param name="origin">Optional origin. (Note: This node will fix whatever Z Value you input to match the group's Z value)</param>
+            <returns name="newGroup">The new group</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.GroupTypes">
+            <summary>
+            Wrapper class for group types
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.GroupTypes.ReloadGroupType(Revit.Elements.Group,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Reload a group type from a given location. Note: This will override group types in the current file!
+            </summary>
+            <param name="group">The group to reload the type for</param>
+            <param name="reloadFrom">Location path</param>
+            <param name="includeAttachedDetails">Include attached details with this group type?</param>
+            <param name="includeGrids">Include grids with this group type?</param>
+            <param name="includeLevels">Include levels with this group type?></param>
+            <returns name="groupType">The updated group type definition</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.HostObject">
+            <summary>
+            Wrapper class for host objects.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.HostObject.ExteriorSurface(Revit.Elements.Element)">
+            <summary>
+            This node will return the exterior face or faces for the input host object. This particular method works for walls.
+            </summary>
+            <param name="hostObject">The host object to retrieve exterior faces for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.HostObject.InteriorSurface(Revit.Elements.Element)">
+            <summary>
+            This node will return the interior face or faces for the input host object. This particular method works for walls.
+            </summary>
+            <param name="hostObject">The host object to retrieve interior faces for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.HostObject.TopSurface(Revit.Elements.Element)">
+            <summary>
+            This node will return the bottom face or faces for the input host object. This particular method works for ceilings, roofs, or floors.
+            </summary>
+            <param name="hostObject">The host object to retrieve top faces for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.HostObject.BottomSurface(Revit.Elements.Element)">
+            <summary>
+            This node will return the bottom face or faces for the input host object. This particular method works for ceilings, roofs, or floors.
+            </summary>
+            <param name="hostObject">The host object to retrieve bottom faces for.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Leaders">
+            <summary>
+            Wrapper for leaders
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Leaders.GetLeaderElbow(Autodesk.Revit.DB.Leader)">
+            <summary>
+            This will get the position of the leader's elbow. Note: Obtain the leader element from the text note with TextNote.GetLeaders
+            </summary>
+            <param name="leader">The leader to get the elbow position of</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Leaders.GetLeaderEnd(Autodesk.Revit.DB.Leader)">
+            <summary>
+            This will get the position of the leader's end. Note: Obtain the leader element from the text note with TextNote.GetLeaders
+            </summary>
+            <param name="leader">The leader to get the end position of</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Leaders.SetLeaderEndPosition(Autodesk.Revit.DB.Leader,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This will set a leader's end position. Note: Obtain the leader element from the text note with TextNote.GetLeaders
+            </summary>
+            <param name="leader">The leader to set the end position of.</param>
+            <param name="location">The new location for the leader end.</param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Leaders.SetLeaderElbowPosition(Autodesk.Revit.DB.Leader,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This will set a leader's elbow position. Note: Obtain the leader element from the text note with TextNote.GetLeaders
+            </summary>
+            <param name="leader">The leader to set the elbow position of.</param>
+            <param name="location">The new location for the leader elbow.</param>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Levels">
+            <summary>
+            Wrapper class for levels. We make this plural because ya know Dynamo has a crashing issue with namespaces pre 2.1.0
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Levels.HasView(Revit.Elements.Level)">
+            <summary>
+            Check to see if the level has a view created for it.😎 
+            </summary>
+            <param name="level">The level to check.</param>
+            <returns name="result">Does it have a level?</returns>
+            <search>
+            Level.HasView
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Mullions">
+            <summary>
+            Wrapper class for mullions.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Mullions.ByDirection(Revit.Elements.Wall)">
+            <summary>
+            This node will retrieve the mullions from the curtain wall grouped by direction.
+            </summary>
+            <param name="hostingElement">The wall that contains the mullions.</param>
+            <returns name="horizontal">The horizontal mullions.</returns>
+            <returns name="vertical">The vertical mullions.</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Parts">
+            <summary>
+            Wrapper class for Parts.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Parts.DivideParts(Revit.Elements.Element,System.Collections.Generic.List{Revit.Elements.ReferencePlane})">
+            <summary>
+            This node will divide the given parts by reference planes.
+            </summary>
+            <param name="part">The part to divide.</param>
+            <param name="referencePlane">The reference plane to use for the division.</param>
+            <returns name="Parts">The created parts from the given element.</returns>
+            <search>
+            Parts.DivideParts, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Parts.GetSourceElement(Revit.Elements.Element)">
+            <summary>
+            Gets the collection of elements from which the parts were created.
+            </summary>
+            <param name="part">The part to get the element from.</param>
+            <returns name="sourceElement">The created parts from the given element.</returns>
+            <search>
+            Parts.GetSourceElement, rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.ReferencePlanes">
+            <summary>
+            Wrapper class for reference planes.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.ReferencePlanes.GetCurvesInView(System.Collections.Generic.List{Revit.Elements.Element},Revit.Elements.Views.View)">
+            <summary>
+            This node will get the underlying curve of the reference plane in a given view.
+            </summary>
+            <param name="referencePlane">The reference plane to get curves from.</param>
+            <param name="view">The view to obtain the curves in.</param>
+            <returns name="curve">The room that is tagged.</returns>
+            <search>
+            referenceplane,referenceplane.getcurvesinview
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.ReferencePlanes.ByLine(Autodesk.DesignScript.Geometry.Curve,System.Boolean)">
+            <summary>
+            This will create a reference plane by the given curve and the selected direction. True for plan view and false for a section parallel to the line.
+            </summary>
+            <param name="curve">The curve to use.</param>
+            <param name="drawInPlan">Choose whether or not to draw in plan or a section view of the curve, (looking at it).</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.ReferencePlanes.XAxis">
+            <summary>
+                Get Null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.RevitLink">
+            <summary>
+            Wrapper class for revit links.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.RevitLink.GetDocument(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the selected link's document.
+            </summary>
+            <param name="linkInstance">The link to get document from.</param>
+            <returns name="Document">The document.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.RevitLinkType">
+            <summary>
+            Wrappers for elements
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.RevitLinkType.ReloadFrom(Revit.Elements.Element,System.String)">
+            <summary>
+            Reload link from another path.
+            </summary>
+            <param name="revitLinkType"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Roofs">
+            <summary>
+            Wrapper class for roofs.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Roofs.AddSplitLineWithElevation(Revit.Elements.Element,Autodesk.DesignScript.Geometry.Curve,System.Double)">
+            <summary>
+            This node will add a split line to the given roof with supplied line and elevation.
+            </summary>
+            <param name="roof">The roof to split.</param>
+            <param name="curve">The geometry curve to use.</param>
+            <param name="elevation">The elevation to go to.</param>
+            <returns name="result">The result..</returns>
+            <search>
+            Element.CreateParts, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Roofs.AddPoint(Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This node will add a point to the given roof.
+            </summary>
+            <param name="roof">The roof to add shape editing points to.</param>
+            <param name="point">The points to add.</param>
+            <returns name="result">The result..</returns>
+            <search>
+            Roof.AddPoint, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Roofs.Footprint(Revit.Elements.Element)">
+            <summary>
+            Retrieve the footprint of any roof element
+            </summary>
+            <param name="roof">The roof to extract footprint for.</param>
+            <returns name="footprint">The roof footprint as a polygon</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Rooms">
+            <summary>
+            Wrapper class for rooms.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Rooms.CenterRoom(System.Collections.Generic.List{Revit.Elements.Room})">
+            <summary>
+            This node will center the room.
+            </summary>
+            <param name="room">The room to center.</param>
+            <returns name="room">The room.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Rooms.CenterRoom2(Revit.Elements.Room)">
+            <summary>
+            This node will center the room.
+            </summary>
+            <param name="room">The room to center.</param>
+            <returns name="room">The room.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Rooms.RoomTagsInView(Revit.Elements.Room,Revit.Elements.Views.FloorPlanView)">
+            <summary>
+            Return room tags for given room in given view
+            </summary>
+            <param name="room">The room to check.</param>
+            <param name="view">The view to check in.</param>
+            <returns name="roomTags">We return a list here because a room can have more than one tag. Whether or not it should, is a different conversation.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Rooms.IntersectingElementsInRoom(Revit.Elements.Room,Revit.Elements.Category)">
+            <summary>
+            This node will center the room.
+            </summary>
+            <param name="room">The room to center.</param>
+            <param name="category">The room to center.</param>
+            <returns name="elements">The room.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Rooms.IntersectWithCurve(Revit.Elements.Room,Autodesk.DesignScript.Geometry.Curve)">
+            <summary>
+            Provides a more stable method of intersecting a curve with a room element for room renumbering workflows.
+            </summary>
+            <param name="room"></param>
+            <param name="curve"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Rooms.ApproximateDimensions(Revit.Elements.Room)">
+            <summary>
+            This will return the approximate room dimensions. This is achieved by taking the longest edge and using that to derive the estimated shorter edge.
+            </summary>
+            <returns name="dim1">The first dimension. (not sorted as we simply get the longest edge)</returns>
+            <returns name="dim2">The second dimension. (not sorted as we simply get the longest edge)</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.RoomTag">
+            <summary>
+            Wrapper class for room tags.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.RoomTag.TaggedRoom(System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will retrieve the room that a tag is tagging.
+            </summary>
+            <param name="roomTag">The room tag to retrieve elements from.</param>
+            <returns name="room">The room that is tagged.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.RoomTag.CenterOnRoomLocation(System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will set the room tag to the same as the room location.
+            </summary>
+            <param name="roomTag">The room tag to set.</param>
+            <returns name="roomTag">The room tag.</returns>
+            <search>
+            roomtag, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.RoomTag.PlaceOrUpdate(Revit.Elements.Views.FloorPlanView,Revit.Elements.Room,Autodesk.DesignScript.Geometry.Point,Revit.Elements.FamilyType,System.Boolean)">
+            <summary>
+            Place or update an existing room tag.
+            </summary>
+            <param name="view">Tags are view specific. This is the specific view to use.</param>
+            <param name="room">The room to be tagged.</param>
+            <param name="location">The location to place the tag. If null, this will place on room origin.</param>
+            <param name="tagType">The tag type to use. If null, the default one is used</param>
+            <param name="tryUpdateExisting">Toggle to true to try and update existing room tags in the view.</param>
+            <returns name="roomTag">The new or updated room tag.</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Sheet">
+            <summary>
+            Wrapper class for sheets.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Sheet.GetViewportsAndViews(Revit.Elements.Views.Sheet)">
+            <summary>
+            This node will obtain viewports, views and schedules from a given sheet.
+            </summary>
+            <param name="sheet">The sheet to get viewports from.</param>
+            <returns name="viewports">The viewports on the sheet.</returns>
+            <returns name="views">The views on the sheet.</returns>
+            <returns name="schedules">The schedules on the sheet.</returns>
+            <search>
+            viewport, schedules,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Sheet.CurrentDocument">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Sheet.Create(Revit.Elements.FamilyType)">
+            <summary>
+            Creates a new sheet.
+            </summary>
+            <param name="titleblock">The titleblock to use.</param>
+            <returns name="Sheet">The newly created sheet.</returns>
+            <search>
+            sheet,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Sheet.Titleblock(Revit.Elements.Views.Sheet)">
+            <summary>
+            This node will grab the titleblock from the given sheet.
+            </summary>
+            <param name="viewSheet">The sheet to get titleblock from.</param>
+            <returns name="titleblock">The sheet's titleblock.</returns>
+            <search>
+            sheet, sheets, titleblock
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.SlopedGlazing">
+            <summary>
+            Wrapper class for sloped glazing
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.SlopedGlazing.SetAnglesAndOffsets(Revit.Elements.Roof,System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Set the offset parameters
+            </summary>
+            <param name="slopedGlazing"></param>
+            <param name="angle1">Value between -89 and 89</param>
+            <param name="angle2">Value between -89 and 89</param>
+            <param name="offset1">Value to offset side 1 by</param>
+            <param name="offset2">Value to offset side 2 by</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Spaces">
+            <summary>
+            Wrapper class for spaces
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Spaces.SpaceTagsInView(Revit.Elements.Element,Revit.Elements.Views.FloorPlanView)">
+            <summary>
+            Return space tags for given space in given view
+            </summary>
+            <param name="space">The space to check.</param>
+            <param name="view">The view to check in.</param>
+            <returns name="spaceTags">We return a list here because a space can have more than one tag. Whether or not it should, is a different conversation.</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.SpaceTag">
+            <summary>
+            Wrapper class for space tags
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.SpaceTag.PlaceOrUpdate(Revit.Elements.Views.FloorPlanView,Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point,Revit.Elements.FamilyType,System.Boolean)">
+            <summary>
+            Place or update an existing space tag.
+            </summary>
+            <param name="view">Tags are view specific. This is the specific view to use.</param>
+            <param name="space">The space to be tagged.</param>
+            <param name="location">The location to place the tag. If null, this will place on space origin.</param>
+            <param name="tagType">The tag type to use. If null, the default one is used</param>
+            <param name="tryUpdateExisting">Toggle to true to try and update existing space tags in the view.</param>
+            <returns name="spaceTag">The new or updated space tag.</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Tags">
+            <summary>
+            Wrapper class for tag.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Tags.GetHeadPosition(Revit.Elements.Element)">
+            <summary>
+            The position of the head of tag in model coordinates (if available).
+            </summary>
+            <param name="tag">The tag to get head position from.</param>
+            <returns name="point">The tag's head position as a point.</returns>
+            <search>
+            Tag, Tag.Location
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Tags.GetLeaderEnd(Revit.Elements.Tag)">
+            <summary>
+            The position of the leader end for a tag using free end leader behavior. 
+            </summary>
+            <param name="tag">The tag to get leader end position from.</param>
+            <returns name="point">The tag's leader end position as a point.</returns>
+            <search>
+            Tag, Tag.Location
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Tags.GetLeaderElbow(Revit.Elements.Tag)">
+            <summary>
+            The position of the elbow of the tag's leader.  
+            </summary>
+            <param name="tag">The tag to get leader elbow position from.</param>
+            <returns name="point">The tag's leader elbow position as a point.</returns>
+            <search>
+            Tag, Tag.Location
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Tags.SetHeadPosition(Revit.Elements.Tag,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This will attempt to set the head position of the tag.
+            </summary>
+            <param name="tag">The tag to set head position of.</param>
+            <param name="location">The new location for the head.</param>
+            <search>
+            Tag, Tag.Location
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Tags.TagText(Revit.Elements.Element)">
+            <summary>
+            This will return the tag's text value
+            </summary>
+            <param name="tag">The tag to get text of.</param>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.TextNotes">
+            <summary>
+            Wrapper class for textnotes.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.TextNotes.ToUpper(Revit.Elements.Element)">
+            <summary>
+            This node will convert the text note to upper with formatting.
+            </summary>
+            <param name="textNote">The text note to convert.</param>
+            <returns name="textNote">The converted text note.</returns>
+            <search>
+            textnote, toupper, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.TextNotes.ToLower(Revit.Elements.Element)">
+            <summary>
+            This node will convert the text note to lower with formatting.
+            </summary>
+            <param name="textNote">The text note to convert.</param>
+            <returns name="textNote">The converted text note.</returns>
+            <search>
+            textnote, tolower, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.TextNotes.GetLeaders(Revit.Elements.Element)">
+            <summary>
+            This node will return all of the leaders associated with the text note.
+            </summary>
+            <param name="textNote">The text note to get leaders from.</param>
+            <returns name="leaders">The leaders..</returns>
+            <search>
+            textnote, getleaders, rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Viewport">
+            <summary>
+            Wrapper class for viewports.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.AlignViewTitle(Revit.Elements.Element)">
+            <summary>
+            
+            </summary>
+            <param name="viewport"></param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.Create(Revit.Elements.Views.Sheet,Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This node will place the given view on the given sheet, if possible. For floor plan views: They cannot be on any other sheets. Now supports schedules! 
+            </summary>
+            <param name="sheet">The sheet to place views on.</param>
+            <param name="view">The view to place.</param>
+            <param name="location">The location of the view.</param>
+            <returns name="Result">The result</returns>
+            <search>
+            viewport, addview,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.LocationData(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the box location data from the provided viewport.
+            </summary>
+            <param name="viewport">Viewport to obtain data from.</param>
+            <returns name="bBox">The bounding box of the viewport.</returns>
+            <returns name="boxCenter">The center of the viewport.</returns>
+            <returns name="boxOutline">The outline of the viewport.</returns>
+            <search>
+            viewport, Viewport.LocationData,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.LabelOutline(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the outline of the Viewport title if one is used. This is the label outline.
+            </summary>
+            <param name="viewport">Viewport to obtain data from.</param>
+            <returns name="labelOutline">The label outline of the viewport.</returns>
+            <search>
+            viewport, Viewport.LabelOutline, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.GetView(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the view from the given viewport.
+            </summary>
+            <param name="viewport">Viewport to obtain view from.</param>
+            <returns name="view">The view that belongs to the viewport.</returns>
+            <search>
+            viewport, location,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.SetLocationBasedOnOther(Revit.Elements.Element,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            This node will set the child viewports box center given the parent viewport.
+            </summary>
+            <param name="parentViewport">Viewport to get location from.</param>
+            <param name="childViewports">Viewports to set to location collected.</param>
+            <returns name="childViewports">The viewports you moved.</returns>
+            <search>
+            viewport
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.SetBoxCenter(Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            This node will set the viewport's box center given the point.
+            </summary>
+            <param name="viewport">The viewport to set.</param>
+            <param name="point">The point to use.</param>
+            <search>
+            viewport
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.BoxCenter(Revit.Elements.Element)">
+            <summary>
+            This node will retrieve the viewport's box center.
+            </summary>
+            <param name="viewport">The viewport to set.</param>
+            <returns name="boxCenter">The viewport's box center as a point.</returns>
+            <search>
+            viewport
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.SetViewTitleLength(Revit.Elements.Element,System.Double)">
+            <summary>
+            Set a viewport's title length. Revit 2022+
+            </summary>
+            <param name="viewport">The target viewport.</param>
+            <param name="length">The length to set it to.</param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.SetViewTitleLocation(Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            Set a viewport's title location (relative to the boundary of the view) Revit 2022+.
+            </summary>
+            <param name="viewport">The target viewport.</param>
+            <param name="location">The location to set it to.</param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Viewport.GetViewTitleLocation(Revit.Elements.Element)">
+            <summary>
+            Get a viewport's title location (relative to the boundary of the view) Revit 2022+.
+            </summary>
+            <param name="viewport">The target viewport.</param>
+        </member>
+        <member name="T:Rhythm.Revit.Elements.Walls">
+            <summary>
+            Wrapper class for walls.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Walls.HasEditedProfile(Revit.Elements.Element)">
+            <summary>
+            This node will try to check if the walls profile has been modified using the dependent elements method available in Revit 2018.1+
+            </summary>
+            <param name="wall">The walls to check.</param>
+            <returns name="bool">The result.</returns>
+            <search>
+            profile, wall
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Walls.EditedProfile(Revit.Elements.Element)">
+            <summary>
+            This node will try to check if the walls profile has been modified using the dependent elements method available in Revit 2018.1+
+            </summary>
+            <param name="wall">The walls to check.</param>
+            <returns name="modelCurves">The result.</returns>
+            <search>
+            profile, wall
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Walls.Direction(Revit.Elements.Element)">
+            <summary>
+            This will estimate the wall's facing direction. Credit for the logic in this node goes to CASE.
+            Without the open source tools provided by Don and the CASE team, this node would probably not exist.
+            https://github.com/rudderdon/case-apps/blob/master/2017/Case.Directionality/Case.Directionality/Data/clsExternalWalls.vb
+            </summary>
+            <param name="wall">The wall to calculate facing from.</param>
+            <returns name="facingDirection">The estimated facing direction.</returns>
+            <returns name="facingVector">The facing vector.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Walls.GetWallDirection(Autodesk.Revit.DB.Wall)">
+            https://github.com/rudderdon/case-apps/blob/master/2017/Case.Directionality/Case.Directionality/Data/clsExternalWalls.vb
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Walls.GetFacingDirection(Autodesk.Revit.DB.XYZ)">
+            https://github.com/rudderdon/case-apps/blob/master/2017/Case.Directionality/Case.Directionality/Data/clsExternalWalls.vb
+        </member>
+        <member name="T:Rhythm.Revit.Helpers.Helpers">
+            <summary>
+            Helpers Wrapper
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Helpers.Helpers.SimpleUserMessage(System.String,System.String)">
+            <summary>
+            This provides a simple user message.
+            </summary>
+            <param name="caption">The caption for the window title.</param>
+            <param name="message">The message to give the user.</param>
+        </member>
+        <member name="M:Rhythm.Revit.Helpers.Helpers.UserMessage(System.String,System.String,System.Collections.Generic.List{System.Object})">
+            <summary>
+            This provides a user message with the option to cancel the process downstream. If no is selected the node will return null.
+            </summary>
+            <param name="caption">The caption for the window title.</param>
+            <param name="message">The message to give the user.</param>
+            <param name="obj">The object to passthrough.</param>
+            <returns name = "result">The object.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Helpers.Helpers.ToggleElementBinder(System.Boolean)">
+            <summary>
+            This allows you to turn off element binding in the DYN.
+            </summary>
+            <param name="toggle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Helpers.Helpers.PurgeBindings(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="runIt"></param>
+        </member>
+        <member name="M:Rhythm.Revit.Helpers.Helpers.CurrentRevitVersion">
+            <summary>
+            Returns the current Revit version
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Ribbon.Modifiers">
+            <summary>
+            Wrapper class for ribbon stuff.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.Modifiers.Rotate(System.Int32)">
+            <summary>
+            This will rotate your ribbon. Seriously.
+            </summary>
+            <param name="rotation">The amount to rotate the ribbon.</param>
+            <returns name="rotation">The rotated amount.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.Modifiers.SetFont(System.String)">
+            <summary>
+            This will set the font on your ribbon.
+            </summary>
+            <param name="fontName">The font to use.</param>
+            <returns name="fontName">Thefont used.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.Modifiers.SetColor(DSCore.Color)">
+            <summary>
+            This will set the color of your ribbon.
+            </summary>
+            <param name="color">The color to use</param>
+            <returns name="color">The rotated amount.</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Ribbon.RibbonTab">
+            <summary>
+            Wrapper class for ribbon stuff.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.RibbonTab.SetName(Autodesk.Windows.RibbonTab,System.String)">
+            <summary>
+            This will rename a tab given a new name.
+            </summary>
+            <param name="tab">The tab.</param>
+            <param name="name">The new name.</param>
+            <returns name="result">The result..</returns>
+            <search>
+            Ribbon.RenameTab
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.RibbonTab.SetVisibility(Autodesk.Windows.RibbonTab,System.Boolean)">
+            <summary>
+            This will hide or show the given tab.
+            </summary>
+            <param name="tab">The tab to modify.</param>
+            <param name="toggle">True or false for tab visibility.</param>
+            <returns name="result">The result..</returns>
+            <search>
+            Ribbon.RenameTab
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.RibbonTab.SetEnabled(Autodesk.Windows.RibbonTab,System.Boolean)">
+            <summary>
+            This will enable or disable the given tab.
+            </summary>
+            <param name="tab">The tab name to modify.</param>
+            <param name="toggle">True or false for tab visibility.</param>
+            <returns name="result">The result..</returns>
+            <search>
+            Ribbon.RenameTab
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.RibbonTab.GetTabs(System.Boolean)">
+            <summary>
+            This will give you access to all tabs.
+            </summary>
+            <param name="toggle">True or false to refresh collection.</param>
+            <returns name="ribbonTabs">The ribbon tabs in the application.</returns>
+            <search>
+            Ribbon.RenameTab
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.RibbonTab.Name(Autodesk.Windows.RibbonTab)">
+            <summary>
+            This will get the tab's name.
+            </summary>
+            <param name="tab">The original tab name.</param>
+            <returns name="name">The result..</returns>
+            <search>
+            Ribbon.RenameTab
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.RibbonTab.CreateTab(System.String)">
+            <summary>
+            This will create a temporary tab that disappears on Revit shutdown.
+            </summary>
+            <param name="tabName">The new tab name.</param>
+            <returns name="name">The result..</returns>
+            <search>
+            Ribbon.RenameTab
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Ribbon.RibbonTab.Visibility(Autodesk.Windows.RibbonTab)">
+            <summary>
+            This will get the tab's visibility status.
+            </summary>
+            <param name="tab">The original tab name.</param>
+            <returns name="name">The result..</returns>
+        </member>
+        <member name="T:Rhythm.Revit.Selection.Collector">
+            <summary>
+            Wrapper class for collectors.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.Collector.ElementsOfTypeInDocument(System.Object,System.Type)">
+            <summary>
+            This node will collect all elements of type from given document.
+            </summary>
+            <param name="document">The document to collect from. Preferably the document title obtained from Applications.OpenDocumentFile.</param>
+            <param name="elementType">The element type to collect.</param>
+            <returns name="element">The elements.</returns>
+            <search>
+            All Elements of Type in Document
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.Collector.ElementsOfCategoryInDocument(System.Object,Revit.Elements.Category)">
+            <summary>
+            This node will collect all elements of the given category from given document.
+            </summary>
+            <param name="document">The document to collect from.</param>
+            <param name="category">The category to collect.</param>
+            <returns name="element">The elements.</returns>
+            <search>
+            All Elements of Category in Document
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.Collector.GroupByName(System.String)">
+            <summary>
+            Collect a detail or model group by a given name in the current model.
+            </summary>
+            <param name="name">The name of the group to find.</param>
+            <returns name="groupInstance">The group instance(s) found in the current model.</returns>
+            <search>
+            Collector.ModelGroupByName
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Selection.Selection">
+            <summary>
+            Wrapper class for selections.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.Selection.FromLink(System.Boolean,System.Boolean)">
+            <summary>
+            Select stuff from a link. Useful for Dynamo player.
+            </summary>
+            <param name="refreshSelection">Reset the selection and reselect new things</param>
+            <param name="singleSelection">Enable single selection. False for multiple selection.</param>
+            <returns name="selectedElements">The selected elements.</returns>
+            <returns name="transform">If the link was moved this transform is needed to relocate the stuff.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.Selection.IntersectingGridsByModelCurve(Revit.Elements.ModelCurve)">
+            <summary>
+            This node will select grids along a model curve element ordered based on the start of the model curve.
+            This works in the active view. So whatever plan representation your grids have, that is what is used.
+            </summary>
+            <param name="modelCurve">Revit model curve to select grids along.</param>
+            <returns name="orderedGrids">The intersecting grids ordered from beginning to end of the line.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.Selection.GetNull">
+            <summary>
+            Get Null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.Selection.Pick(System.Boolean,System.Collections.Generic.List{System.Object},System.Boolean,System.Boolean)">
+            <summary>
+            Sometimes a pick selection is nicer. 😁
+            </summary>
+            <param name="runIt">Allows you to tell the node to "run". Also allows you to refresh selection.</param>
+            <param name="category">The category or categories to isolate to. (leave blank if you want to be able to pick anything)</param>
+            <param name="singleSelection">Optional input for a single item selection. Default to multiple.</param>
+            <param name="ordered">Force an ordered selection using esc to finish.</param>
+            <returns name="pickedElements"></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.Element">
+            <summary>
+            Wrapper class for animators
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Element.AnimateNumericParameter(System.Collections.Generic.List{Revit.Elements.Element},System.String,System.Double,System.Double,System.Int32,System.String)">
+            <summary>
+            Animate a numeric parameter of an element. This will export images of the parameter, then revert the element back to where it was. Also adds text to comments to prevent infinite loops.Clear this comment for subsequent runs.
+            Inspired by the Bad Monkeys Team.
+            </summary>
+            <param name="element">The element to set parameter to.</param>
+            <param name="parameterName">The parameter name.</param>
+            <param name="startValue">The value to set.</param>
+            <param name="endValue">The value to set.</param>
+            <param name="iterations">The number of images.</param>
+            <param name="directoryPath">Where to save the images.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Element.AnimateColor(System.Collections.Generic.List{Revit.Elements.Element},DSCore.Color,DSCore.Color,System.Int32,System.String,Revit.Elements.Element)">
+            <summary>
+            Animate the color of an element. This will export images of the element, then revert the element back to where it was.
+            Inspired by the Bad Monkeys team.
+            </summary>
+            <param name="element">The element to set color to.</param>
+            <param name="startColor">The start color.</param>
+            <param name="endColor">The end color.</param>
+            <param name="iterations">Numnber of images.</param>
+            <param name="directoryPath">Where to save the images.</param>
+            <param name="view">View to export from.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Element.AnimateTransparency(System.Collections.Generic.List{Revit.Elements.Element},System.Int32,System.Int32,System.Int32,System.String,Revit.Elements.Element)">
+            <summary>
+            Animate the transparency of an element. This will export images of the element, then revert the element back to where it was.
+            Inspired by the Bad Monkeys team.
+            </summary>
+            <param name="element">The element to set transparency to.</param>
+            <param name="startPercentage">The transparency start percent.</param>
+            <param name="endPercentage">The transparency end percent.</param>
+            <param name="iterations">Numnber of images.</param>
+            <param name="directoryPath">Where to save the images.</param>
+            <param name="view">View to export from.</param>
+            <returns name="element">The element.</returns>
+            <search>
+             rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.Batch">
+            <summary>
+            Wrapper class for batchers.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Batch.UpgradeFamilies(System.String,System.String)">
+            <summary>
+            This tool with batch upgrade all the Revit families in a directory and delete the backup files that are generated.
+            </summary>
+            <param name="directoryPath">The directory to read for ALL families. Including subdirectories.</param>
+            <param name="suffix">Optional suffix to save the files as. Useful for read-only files.</param>
+            <returns name="Succesfully Upgraded">Files that were upgraded.</returns>
+            <returns name="Not So Succesfully Upgraded">Files that were not upgraded.</returns>
+            <search>
+            Application.OpenDocumentFile, rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.Tools">
+            <summary>
+            Wrapper class for tools
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeRoomTags(Revit.Elements.Room,Revit.Elements.FamilyType,System.String,System.String)">
+            <summary>
+            Create 3d room tags given the input rooms!
+            </summary>
+            <param name="room">The rooms to place 3d room tags on.</param>
+            <param name="tagType">The 3d room tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
+            <param name="roomNameParameter">The name of your Name parameter, the sample has the parameter named as Room Name</param>
+            <param name="roomNumberParameter">The name of your Number parameter, the sample has the parameter named as Room Number</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeSpaceTags(Revit.Elements.Space,Revit.Elements.FamilyType,System.String,System.String)">
+            <summary>
+            Create 3d space tags given the input spaces!
+            </summary>
+            <param name="space">The spaces to place 3d space tags on.</param>
+            <param name="tagType">The 3d space tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
+            <param name="spaceNameParameter">The name of your Name parameter, the sample has the parameter named as Space Name</param>
+            <param name="spaceNumberParameter">The name of your Number parameter, the sample has the parameter named as Space Number</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Views.Sheet">
+            <summary>
+            A Revit ViewSheet
+            </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Views.View">
+            <summary>
+            Wrapper class for view.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.Viewport(Revit.Elements.Element)">
+            <summary>
+            Retrieve the view's viewport(s) if there is one.
+            </summary>
+            <param name="view"></param>
+            <returns name="viewport"></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.ConvertToIndependent(Revit.Elements.Element)">
+            <summary>
+            This node will convert a dependent view to an independent.
+            </summary>
+            <param name="dependentView">The view to convert to independent.</param>
+            <returns name="independentView">The overidden view.</returns>
+            <search>
+            view, dependent,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.GetCropRegionElement(Revit.Elements.Element)">
+            <summary>
+            This node will obtain the crop region element from the view.
+            </summary>
+            <param name="view">The view to obtain the crop region element from.</param>
+            <returns name="cropRegionElement">The crop region as an element.</returns>
+            <search>
+            crop region,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.SetElementProjectionLineweight(Revit.Elements.Element,Revit.Elements.Element,System.Int32)">
+            <summary>
+            This node will override the given element's projection lineweight in given view.
+            </summary>
+            <param name="view">The view to set the overrides in.</param>
+            <param name="element">The element to override.</param>
+            <param name="lineweight">The lineweight to use.</param>
+            <returns name="element">The crop region as an element.</returns>
+            <search>
+            crop region,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.GetFilterVisibility(Revit.Elements.Element,Revit.Elements.Element)">
+            <summary>
+            This node will supply the visibility of the given filter in given view.
+            </summary>
+            <param name="view">The view to obtain filter visibility from.</param>
+            <param name="viewFilter">The view filter.</param>
+            <returns name="bool">The visibility value.</returns>
+            <search>
+            view, dependent,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.ParentView(Revit.Elements.Element)">
+            <summary>
+            Retrieve the input dependent view's parent, (if available).
+            </summary>
+            <param name="view">The view to get parent of.</param>
+            <returns name="parentView">The parent view.</returns>
+            <search>
+            dependent, parent, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.Origin(Revit.Elements.Element)">
+            <summary>
+            Retrieve the input view's origin, (if available).
+            </summary>
+            <param name="view">The view to get origin of.</param>
+            <returns name="origin">The origin of the view. Also, the origin of a plan view is not meaningful.</returns>
+            <search>
+            dependent, parent, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.GetWorksetVisibility(Revit.Elements.Element,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            This node will supply the visibility of the given workset in given view.
+            </summary>
+            <param name="view">The view to obtain workset visibility from.</param>
+            <param name="worksetId">The workset element id as int.</param>
+            <returns name="result">The workset visibility.</returns>
+            <search>
+            view, workset.Visible
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.IsFilterEnabled(Revit.Elements.Views.View,Revit.Elements.Element)">
+            <summary>
+            Revit 2021 - Checks if a view filter is enabled in the given view.
+            </summary>
+            <param name="view">The view to check the filter on.</param>
+            <param name="viewFilter"> The view filter to check.</param>
+            <returns name="bool">Is it enabled?</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.ToggleFilterInView(Revit.Elements.Views.View,Revit.Elements.Element,System.Boolean)">
+            <summary>
+            Revit 2021 - This attempts to enable or disable a filter for a given view.
+            </summary>
+            <param name="view">The view to check the filter on.</param>
+            <param name="viewFilter">The view filter to check.</param>
+            <param name="toggle">Toggle it to enabled or disabled.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.GetOrderedFilters(Revit.Elements.Views.View)">
+            <summary>
+            Revit 2021 - Returns the filters in order for the given view.
+            </summary>
+            <param name="view">The view to check the filter on.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Revit.Views.ViewPlan">
+            <summary>
+            Wrapper class for plans.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Views.ViewPlan.GetOutline(Revit.Elements.Element)">
+            <summary>
+            This node will get the bounds of the view in paper space (in feet).
+            </summary>
+            <param name="view">The view to get outline from.</param>
+            <returns name="outline">The bounds of the view in paper space (in feet).</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.ViewPlan.GetCropBox(Revit.Elements.Element)">
+            <summary>
+            This node will get the bounds of the view in paper space (in feet).
+            </summary>
+            <param name="viewPlan">The plan view to get outline from.</param>
+            <returns name="cropBox">The cropBox.</returns>
+            <returns name="cropBoxCurves">The curves of the crop region.</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.ViewPlan.Rotate(Revit.Elements.Element,Revit.Elements.Element,System.Double)">
+            <summary>
+            This node will attempt to rotate a plan view into a 3D view. Use at your own risk!
+            </summary>
+            <param name="viewPlan">The plan view to rotate</param>
+            <param name="rotationLine">The line to rotate along.</param>
+            <param name="inputAngle">The plan view to get outline from.</param>
+            <returns name="cropBox">The cropBox.</returns>
+            <search>
+            view, outline,rhythm
+            </search>
+        </member>
+        <member name="T:Rhythm.Revit.Views.ViewSection">
+            <summary>
+            Wrapper class for sections.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Views.ViewSection.OverrideCrop(Revit.Elements.Element,System.Int32)">
+            <summary>
+            This node will override the crop region of the given section view based on the pen weight provided.
+            Slower but more reliable version that uses transaction rollback to isolated the crop region element.
+            </summary>
+            <param name="viewSection">The plan view to rotate</param>
+            <param name="lineWeight">The line weight to override to, (1-16)</param>
+            <returns name="viewSection">The overridden view.</returns>
+            <search>
+            overridecrop
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.ViewSection.OverrideCropVersion2(Revit.Elements.Element,System.Int32)">
+            <summary>
+            This node will override the crop region of the given section view based on the pen weight provided. 
+            This is the faster version that works with interior elevations.
+            </summary>
+            <param name="viewSection">The plan view to rotate</param>
+            <param name="lineWeight">The lineweight to override to, (1-16)</param>
+            <returns name="viewSection">The overidden view.</returns>
+            <search>
+            overridecrop
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.ViewSection.LocationPoint(System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            Retrieve the input view's origin, (if available).
+            </summary>
+            <param name="view">The view to get origin of.</param>
+            <returns name="locationPoint">The origin of the view. Also, the origin of a plan view is not meaningful.</returns>
+            <search>
+            viewsection.locationpoint
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Views.ViewSection.CreateReferenceSection(Revit.Elements.Element,Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            Creates a reference section.
+            </summary>
+            <param name="parentView"></param>
+            <param name="viewToReference"></param>
+            <param name="headPoint"></param>
+            <param name="tailPoint"></param>
+        </member>
+        <member name="T:Rhythm.Revit.Worksharing.Element">
+            <summary>
+            Wrapper class for elements in workshared files.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Worksharing.Element.Creator(Revit.Elements.Element)">
+            <summary>
+            This node will output the username of the creator of the element if it is available. Keep in mind this only works with workshared documents!
+            </summary>
+            <param name="element">The element to check.</param>
+            <returns name="creatorName">The username of the creator.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Worksharing.Element.LastChangedBy(Revit.Elements.Element)">
+            <summary>
+            This node will output the username of the person who last changed the element if it is available. Keep in mind this only works with workshared documents!
+            </summary>
+            <param name="element">The element to check.</param>
+            <returns name="lastChangedBy">The username of the person who last changed the element.</returns>
+        </member>
+        <member name="T:Rhythm.Utilities.UVArray">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.UVArray.#ctor(System.Collections.Generic.List{Autodesk.Revit.DB.XYZ})">
+            <summary>
+            
+            </summary>
+            <param name="XYZArray"></param>
+        </member>
+        <member name="M:Rhythm.Utilities.UVArray.get_Item(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Rhythm.Utilities.UVArray.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Rhythm.Utilities.PointInPoly">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPoly.GetQuadrant(Autodesk.Revit.DB.UV,Autodesk.Revit.DB.UV)">
+            <summary>
+            Determine the quadrant of a polygon vertex 
+            relative to the test point.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPoly.X_intercept(Autodesk.Revit.DB.UV,Autodesk.Revit.DB.UV,System.Double)">
+            <summary>
+            Determine the X intercept of a polygon edge 
+            with a horizontal line at the Y value of the 
+            test point.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPoly.PolyGonContains(System.Collections.Generic.List{Autodesk.Revit.DB.XYZ},Autodesk.Revit.DB.XYZ)">
+            <summary>
+            
+            </summary>
+            <param name="xyZArray"></param>
+            <param name="p1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPoly.PolygonContains(Rhythm.Utilities.UVArray,Autodesk.Revit.DB.UV)">
+            <summary>
+            Determine whether given 2D point lies within 
+            the polygon.
+            
+            Written by Jeremy Tammik, Autodesk, 2009-09-23, 
+            based on code that I wrote back in 1996 in C++, 
+            which in turn was based on C code from the 
+            article "An Incremental Angle Point in Polygon 
+            Test" by Kevin Weiler, Autodesk, in "Graphics 
+            Gems IV", Academic Press, 1994.
+            
+            Copyright (C) 2009 by Jeremy Tammik. All 
+            rights reserved.
+            
+            This code may be freely used. Please preserve 
+            this comment.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Utilities.PointInPolyExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPolyExtensions.AddToPunten(System.Collections.Generic.List{Autodesk.Revit.DB.XYZ},Autodesk.Revit.DB.XYZ)">
+            <summary>
+            Add new point to list, unless already present.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPolyExtensions.MaakPuntArray(Autodesk.Revit.DB.Architecture.Room)">
+            <summary>
+            Return a list of boundary 
+            points for the given room.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPolyExtensions.MaakPuntArray(System.Collections.Generic.IList{System.Collections.Generic.IList{Autodesk.Revit.DB.BoundarySegment}})">
+            <summary>
+            Return a list of boundary points 
+            for the given boundary segments.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPolyExtensions.MaakPuntArray(Autodesk.Revit.DB.Area)">
+            <summary>
+            Return a list of boundary 
+            points for the given area.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPolyExtensions.AreaContains(Autodesk.Revit.DB.Area,Autodesk.Revit.DB.XYZ)">
+            <summary>
+            Check whether this area contains a given point.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPolyExtensions.RoomContains(Autodesk.Revit.DB.Architecture.Room,Autodesk.Revit.DB.XYZ)">
+            <summary>
+            Check whether this room contains a given point.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.PointInPolyExtensions.TOUV(Autodesk.Revit.DB.XYZ)">
+            <summary>
+            Project an XYZ point to a UV one in the 
+            XY plane by simply dropping the Z coordinate.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Utilities.MiscUtils">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.MiscUtils.GetNull">
+            <summary>
+            Get Null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Utilities.CommandHelpers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.CommandHelpers.InvokeNode(System.String,System.String,System.Object[])">
+            <summary>
+            This allows for runtime loading of commands specific to a Revit version. This is nice because we can have Revit 2021 DLLs and more.
+            </summary>
+            <param name="dllName"></param>
+            <param name="commandName"></param>
+            <param name="args"></param>
+            <returns></returns>      
+        </member>
+        <member name="T:Rhythm.Utilities.ConvexHullUtilities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.ConvexHullUtilities.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="selector"></param>
+            <typeparam name="tsource"></typeparam>
+            <typeparam name="tkey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Utilities.ConvexHullUtilities.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="selector"></param>
+            <param name="comparer"></param>
+            <typeparam name="tsource"></typeparam>
+            <typeparam name="tkey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Utilities.ConvexHullUtilities.ConvexHull(System.Collections.Generic.List{Autodesk.Revit.DB.XYZ})">
+            <summary>
+            Return the convex hull of a list of points 
+            using the Jarvis march or Gift wrapping:
+            https://en.wikipedia.org/wiki/Gift_wrapping_algorithm
+            Written by Maxence.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Utilities.StringComparisonUtilities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.StringComparisonUtilities.Compute(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="s"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Utilities.ViewUtils">
+            <summary>
+            Utilities that facilitate duplication of drafting views and schedules into another document.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.ViewUtils.DuplicateSchedules(Autodesk.Revit.DB.Document,System.Collections.Generic.IEnumerable{Autodesk.Revit.DB.ViewSchedule},Autodesk.Revit.DB.Document)">
+            <summary>
+            Utility to duplicate schedules from one document to another.
+            </summary>
+            <param name="fromDocument">The source document.</param>
+            <param name="views">The collection of schedule views.</param>
+            <param name="toDocument">The target document.</param>
+        </member>
+        <member name="M:Rhythm.Utilities.ViewUtils.DuplicateDraftingViews(Autodesk.Revit.DB.Document,System.Collections.Generic.ICollection{Autodesk.Revit.DB.ElementId},Autodesk.Revit.DB.Document)">
+            <summary>
+            Utility to duplicate drafting views and their contents from one document to another.
+            </summary>
+            <param name="fromDocument">The source document.</param>
+            <param name="viewIds">The collection of drafting views.</param>
+            <param name="toDocument">The target document.</param>
+            <returns>The number of drafting elements created in the copied views.</returns>
+        </member>
+        <member name="M:Rhythm.Utilities.ViewUtils.DuplicateElementsAcrossDocuments(Autodesk.Revit.DB.Document,System.Collections.Generic.ICollection{Autodesk.Revit.DB.ElementId},Autodesk.Revit.DB.Document,System.Boolean)">
+            <summary>
+            Duplicates a set of elements across documents.
+            </summary>
+            <param name="fromDocument">The source document.</param>
+            <param name="elementIds">Collection of view ids.</param>
+            <param name="toDocument">The target document.</param>
+            <param name="findMatchingElements">True to return a map of matching elements 
+            (matched by Name).  False to skip creation of this map.</param>
+            <returns>The map of matching elements, if findMatchingElements was true.</returns>
+        </member>
+        <member name="M:Rhythm.Utilities.ViewUtils.DuplicateDetailingAcrossViews(Autodesk.Revit.DB.View,Autodesk.Revit.DB.View)">
+            <summary>
+            Copies all view-specific elements from a source view to a target view.
+            </summary>
+            <remarks>
+            The source and target views do not have to be in the same document.
+            </remarks>
+            <param name="fromView">The source view.</param>
+            <param name="toView">The target view.</param>
+            <returns>The number of new elements created during the copy operation.</returns>
+        </member>
+        <member name="M:Rhythm.Utilities.ViewUtils.ViewConvertToElementId(Autodesk.Revit.DB.View)">
+            <summary>
+            Converter delegate for conversion of collections
+            </summary>
+            <param name="view">The view.</param>
+            <returns>The view's id.</returns>
+        </member>
+        <member name="T:Rhythm.Utilities.HideAndAcceptDuplicateTypeNamesHandler">
+            <summary>
+            A handler to accept duplicate types names created by the copy/paste operation.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.HideAndAcceptDuplicateTypeNamesHandler.OnDuplicateTypeNamesFound(Autodesk.Revit.DB.DuplicateTypeNamesHandlerArgs)">
+            <summary>
+            Implementation of the IDuplicateTypeNameHandler
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Utilities.HidePasteDuplicateTypesPreprocessor">
+            <summary>
+            A failure preprocessor to hide the warning about duplicate types being pasted.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.HidePasteDuplicateTypesPreprocessor.PreprocessFailures(Autodesk.Revit.DB.FailuresAccessor)">
+            <summary>
+            Implementation of the IFailuresPreprocessor.
+            </summary>
+            <param name="failuresAccessor"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker">
+            <summary>Packer using a custom algorithm by Markus 'Cygon' Ewald</summary>
+            <remarks>
+              <para>
+                Algorithm conceived by Markus Ewald (cygon at nuclex dot org), though
+                I'm quite sure I'm not the first one to come up with it :)
+              </para>
+              <para>
+                The algorithm always places rectangles as low as possible in the packing
+                area. So, for any new rectangle that is to be added, the packer has to
+                determine the X coordinate at which the rectangle can have the lowest
+                overall height without intersecting any other rectangles.
+              </para>
+              <para>
+                To quickly discover these locations, the packer uses a sophisticated
+                data structure that stores the upper silhouette of the packing area. When
+                a new rectangle needs to be added, only the silouette edges need to be
+                analyzed to find the position where the rectangle would achieve the lowest
+                placement possible in the packing area.
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer">
+            <summary>Compares the starting position of height slices</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Default">
+            <summary>Provides a default instance for the anchor rank comparer</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Compare(Autodesk.DesignScript.Geometry.UV,Autodesk.DesignScript.Geometry.UV)">
+            <summary>Compares the starting position of two height slices</summary>
+            <param name="left">Left slice start that will be compared</param>
+            <param name="right">Right slice start that will be compared</param>
+            <returns>The relation of the two slice starts ranks to each other</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.#ctor(System.Double,System.Double)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Maximum width of the packing area</param>
+            <param name="packingAreaHeight">Maximum height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.TryPack(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.tryFindBestPlacement(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
+            <summary>Finds the best position for a rectangle of the given dimensions</summary>
+            <param name="rectangleWidth">Width of the rectangle to find a position for</param>
+            <param name="rectangleHeight">Height of the rectangle to find a position for</param>
+            <param name="placement">Receives the best placement found for the rectangle</param>
+            <returns>True if a valid placement for the rectangle could be found</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.integrateRectangle(System.Double,System.Double,System.Double)">
+            <summary>Integrates a new rectangle into the height slice table</summary>
+            <param name="left">Position of the rectangle's left side</param>
+            <param name="width">Width of the rectangle</param>
+            <param name="bottom">Position of the rectangle's lower side</param>
+        </member>
+        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.heightSlices">
+            <summary>Stores the height silhouette of the rectangles</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.OutOfSpaceException">
+            <summary>Insufficient space left in packing area to contain a given object</summary>
+            <remarks>
+              An exception being sent to you from deep space. Erm, no, wait, it's an exception
+              that occurs when a packing algorithm runs out of space and is unable to fit
+              the object you tried to pack into the remaining packing area.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor">
+            <summary>Initializes the exception</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String)">
+            <summary>Initializes the exception with an error message</summary>
+            <param name="message">Error message describing the cause of the exception</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String,System.Exception)">
+            <summary>Initializes the exception as a followup exception</summary>
+            <param name="message">Error message describing the cause of the exception</param>
+            <param name="inner">Preceding exception that has caused this exception</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes the exception from its serialized state</summary>
+            <param name="info">Contains the serialized fields of the exception</param>
+            <param name="context">Additional environmental informations</param>
+        </member>
+        <member name="T:Nuclex.Game.Packing.RectanglePacker">
+            <summary>Base class for rectangle packing algorithms</summary>
+            <remarks>
+              <para>
+                By uniting all rectangle packers under this common base class, you can
+                easily switch between different algorithms to find the most efficient or
+                performant one for a given job.
+              </para>
+              <para>
+                An almost exhaustive list of packing algorithms can be found here:
+                http://www.csc.liv.ac.uk/~epa/surveyhtml.html
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.#ctor(System.Double,System.Double)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Width of the packing area</param>
+            <param name="packingAreaHeight">Height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.Pack(System.Double,System.Double)">
+            <summary>Allocates space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <returns>The location at which the rectangle has been placed</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.TryPack(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaWidth">
+            <summary>Maximum width the packing area is allowed to have</summary>
+        </member>
+        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaHeight">
+            <summary>Maximum height the packing area is allowed to have</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaWidth">
+            <summary>Maximum allowed width of the packing area</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaHeight">
+            <summary>Maximum allowed height of the packing area</summary>
+        </member>
+    </members>
+</doc>
