@@ -59,7 +59,6 @@
         <DefineConstants>$(DefineConstants);R22</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R23'))">
-
         <DynamoVersion>2.16</DynamoVersion>
         <DynamoOutput>2.16</DynamoOutput>
         <RevitVersion>2023</RevitVersion>
@@ -67,20 +66,16 @@
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
     </PropertyGroup>
-
     <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
-
         <DynamoVersion>2.16</DynamoVersion>
         <DynamoOutput>2.16</DynamoOutput>
         <RevitVersion>2023</RevitVersion>
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
-
         <DynamoVersion>2.18</DynamoVersion>
         <DynamoOutput>2.18</DynamoOutput>
         <RevitVersion>2024.1</RevitVersion>
-
         <DefineConstants>$(DefineConstants);R24</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">

@@ -90,25 +90,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
-    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
-    <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
-    <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*"/>
-    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*"/>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NUnit" Version="2.6.3" />
-    <PackageReference Include="Prism" Version="4.1.0.0" />
-    <PackageReference Include="CommonServiceLocator" Version="1.0" />
-    <PackageReference Include="System.Buffers" Version="4.5.1" />
-    <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.Memory" Version="4.5.4" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\RhythmRevit\RhythmRevit.csproj" />
     <ProjectReference Include="..\RhythmViewExtension\RhythmViewExtension.csproj" />
