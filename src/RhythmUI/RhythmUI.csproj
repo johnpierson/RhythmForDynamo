@@ -93,7 +93,6 @@
   
   <ItemGroup>
     <ProjectReference Include="..\RhythmRevit\RhythmRevit.csproj" />
-    <ProjectReference Include="..\RhythmViewExtension\RhythmViewExtension.csproj" />
   </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild">
     <ItemGroup>

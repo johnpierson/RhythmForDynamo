@@ -125,6 +125,18 @@
       <ProjectReference Include="..\RhythmCore\RhythmCore.csproj" />
       <ProjectReference Include="..\RhythmViewExtension\RhythmViewExtension.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="packages\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="packages\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Page Remove="packages\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="packages\**" />
+    </ItemGroup>
     <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high"/>
         <ItemGroup>
