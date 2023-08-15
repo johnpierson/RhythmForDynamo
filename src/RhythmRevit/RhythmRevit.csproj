@@ -8,8 +8,8 @@
         <UseWPF>true</UseWPF>
         <PlatformTarget>x64</PlatformTarget>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <Configurations>Debug R23.1;Debug R24;Debug R24.1;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
-        <Configurations>$(Configurations);Release R24.1;Release R24;Release R23.1;Release R20;Release R21;Release R22;Release R23;</Configurations>
+        <Configurations>Debug R23.1;Debug R24;;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
+        <Configurations>$(Configurations);Release R24;Release R23.1;Release R20;Release R21;Release R22;Release R23;</Configurations>
         <NoWarn>MSB3277</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
@@ -83,24 +83,12 @@
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
-        <DynamoVersion>2.16</DynamoVersion>
-        <DynamoOutput>2.17</DynamoOutput>
-        <RevitVersion>2024</RevitVersion>
-        <DefineConstants>$(DefineConstants);R24</DefineConstants>
-    </PropertyGroup>
-    <PropertyGroup Condition="$(Configuration.Contains('Debug R24.1'))">
         <DynamoVersion>2.18</DynamoVersion>
         <DynamoOutput>2.18</DynamoOutput>
-        <RevitVersion>2024</RevitVersion>
-        <DefineConstants>$(DefineConstants);R24</DefineConstants>
-    </PropertyGroup>
-    <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
-        <DynamoVersion>2.17</DynamoVersion>
-        <DynamoOutput>2.17</DynamoOutput>
         <RevitVersion>2024.1</RevitVersion>
         <DefineConstants>$(DefineConstants);R24</DefineConstants>
     </PropertyGroup>
-    <PropertyGroup Condition="$(Configuration.Contains('Release R24.1'))">
+    <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
         <DynamoVersion>2.18</DynamoVersion>
         <DynamoOutput>2.18</DynamoOutput>
         <RevitVersion>2024.1</RevitVersion>
@@ -119,12 +107,6 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="RevitNodes">
-            <HintPath>..\..\lib\$(RevitVersion)\RevitNodes.dll</HintPath>
-        </Reference>
-        <Reference Include="RevitServices">
-            <HintPath>..\..\lib\$(RevitVersion)\RevitServices.dll</HintPath>
-        </Reference>
         <Reference Include="System.Windows"/>
     </ItemGroup>
     <ItemGroup>
@@ -133,6 +115,7 @@
         <PackageReference Include="Chuongmep.Revit.Api.AdWindows" Version="$(RevitVersion).*"/>
         <PackageReference Include="CommonServiceLocator" Version="1.0"/>
         <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*"/>
+        <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*"/>
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*"/>
         <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*"/>
         <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="$(DynVersion).*"/>
