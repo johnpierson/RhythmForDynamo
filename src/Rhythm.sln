@@ -36,14 +36,12 @@ Global
 		Debug R20|Any CPU = Debug R20|Any CPU
 								Debug R21|Any CPU = Debug R21|Any CPU
 								Debug R22|Any CPU = Debug R22|Any CPU
-								Debug R23.1|Any CPU = Debug R23.1|Any CPU
 								Debug R23|Any CPU = Debug R23|Any CPU
 								Debug R24|Any CPU = Debug R24|Any CPU
 								Debug R24.1|Any CPU = Debug R24.1|Any CPU
 								Release R20|Any CPU = Release R20|Any CPU
 								Release R21|Any CPU = Release R21|Any CPU
 								Release R22|Any CPU = Release R22|Any CPU
-								Release R23.1|Any CPU = Release R23.1|Any CPU
 								Release R23|Any CPU = Release R23|Any CPU
 								Release R24|Any CPU = Release R24|Any CPU
 	EndGlobalSection

@@ -8,8 +8,8 @@
         <UseWPF>true</UseWPF>
         <PlatformTarget>x64</PlatformTarget>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <Configurations>Debug R23.1;Debug R24;;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
-        <Configurations>$(Configurations);Release R24;Release R23.1;Release R20;Release R21;Release R22;Release R23;</Configurations>
+        <Configurations>Debug R24;;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
+        <Configurations>$(Configurations);Release R24;Release R20;Release R21;Release R22;Release R23;</Configurations>
         <NoWarn>MSB3277</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
@@ -55,20 +55,6 @@
         <DefineConstants>$(DefineConstants);R22</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R23'))">
-        <DynamoVersion>2.13</DynamoVersion>
-        <DynamoOutput>2.13</DynamoOutput>
-        <RevitVersion>2023</RevitVersion>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <DefineConstants>$(DefineConstants);R23</DefineConstants>
-    </PropertyGroup>
-    <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
-        <DynamoVersion>2.13</DynamoVersion>
-        <DynamoOutput>2.13</DynamoOutput>
-        <RevitVersion>2023</RevitVersion>
-        <DefineConstants>$(DefineConstants);R23</DefineConstants>
-    </PropertyGroup>
-    <PropertyGroup Condition="$(Configuration.Contains('Debug R23.1'))">
         <DynamoVersion>2.16</DynamoVersion>
         <DynamoOutput>2.16</DynamoOutput>
         <RevitVersion>2023</RevitVersion>
@@ -76,7 +62,7 @@
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
     </PropertyGroup>
-    <PropertyGroup Condition="$(Configuration.Contains('Release R23.1'))">
+    <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
         <DynamoVersion>2.16</DynamoVersion>
         <DynamoOutput>2.16</DynamoOutput>
         <RevitVersion>2023</RevitVersion>
