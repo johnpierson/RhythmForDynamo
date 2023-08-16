@@ -7,10 +7,89 @@
     <UseWindowsForms>true</UseWindowsForms>
     <PlatformTarget>x64</PlatformTarget>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Configurations>Debug R24;;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
+    <Configurations>$(Configurations);Release R24;Release R20;Release R21;Release R22;Release R23;</Configurations>
     <NoWarn>MSB3277</NoWarn>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DocumentationFile>bin\Release\RhythmCore.xml</DocumentationFile>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
+    <DynamoVersion>2.3</DynamoVersion>
+    <DynamoOutput>2.3</DynamoOutput>
+    <RevitVersion>2020</RevitVersion>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>$(DefineConstants);R20</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Release R20'))">
+    <DynamoVersion>2.3</DynamoVersion>
+    <DynamoOutput>2.3</DynamoOutput>
+    <RevitVersion>2020</RevitVersion>
+    <DefineConstants>$(DefineConstants);R20</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R21'))">
+    <DynamoVersion>2.17</DynamoVersion>
+    <DynamoOutput>2.6</DynamoOutput>
+    <RevitVersion>2021</RevitVersion>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>$(DefineConstants);R21</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Release R21'))">
+    <DynamoVersion>2.6</DynamoVersion>
+    <DynamoOutput>2.6</DynamoOutput>
+    <RevitVersion>2021</RevitVersion>
+    <DefineConstants>$(DefineConstants);R21</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R22'))">
+    <DynamoVersion>2.12</DynamoVersion>
+    <DynamoOutput>2.12</DynamoOutput>
+    <RevitVersion>2022</RevitVersion>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>$(DefineConstants);R22</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Release R22'))">
+    <DynamoVersion>2.12</DynamoVersion>
+    <DynamoOutput>2.12</DynamoOutput>
+    <RevitVersion>2022</RevitVersion>
+    <DefineConstants>$(DefineConstants);R22</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R23'))">
+    <DynamoVersion>2.16</DynamoVersion>
+    <DynamoOutput>2.16</DynamoOutput>
+    <RevitVersion>2023</RevitVersion>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants>$(DefineConstants);R23</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
+    <DynamoVersion>2.16</DynamoVersion>
+    <DynamoOutput>2.16</DynamoOutput>
+    <RevitVersion>2023</RevitVersion>
+    <DefineConstants>$(DefineConstants);R23</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
+    <DynamoVersion>2.18</DynamoVersion>
+    <DynamoOutput>2.18</DynamoOutput>
+    <RevitVersion>2024.1</RevitVersion>
+    <DefineConstants>$(DefineConstants);R24</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
+    <DynamoVersion>2.18</DynamoVersion>
+    <DynamoOutput>2.18</DynamoOutput>
+    <RevitVersion>2024.1</RevitVersion>
+    <DefineConstants>$(DefineConstants);R24</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageName>RhythmCore</PackageName>
+    <DynVersion>$(DynamoVersion)</DynVersion>
+    <BuildOutput>$(DynamoOutput)</BuildOutput>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishTrimmed>true</PublishTrimmed>
+    <Copyright>BSD 3</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>dynamo</PackageTags>
+    <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\$(PackageName)\</FolderPackages>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.IO.Compression" />
@@ -20,9 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="1.0" />
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="2.17.3.4871" />
-    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="2.17.3.4871" />
-    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="2.17.3.4871" />
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
     <PackageReference Include="Humanizer" Version="2.14.1" />
     <PackageReference Include="Humanizer.Core" Version="2.14.1" />
     <PackageReference Include="Humanizer.Core.af" Version="2.14.1" />

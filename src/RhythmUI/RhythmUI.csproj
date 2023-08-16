@@ -88,11 +88,12 @@
     <PackageTags>dynamo</PackageTags>
     <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\Rhythm\</FolderPackages>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-
   </PropertyGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\RhythmRevit\RhythmRevit.csproj" />
+    <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
+    <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*"/>
   </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild">
     <ItemGroup>
