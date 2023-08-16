@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name : Change Directory
-        run: cd src
-      - name: Run Nuke Build
-        run: ./build.cmd --GitHubToken ${{ secrets.GITHUB_TOKEN }}
+      - name : Change Directory & Run Nuke Build
+        run: |
+          cd .\src
+          ./build.cmd --GitHubToken ${{ secrets.GITHUB_TOKEN }}
