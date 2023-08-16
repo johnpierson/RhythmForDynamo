@@ -43,6 +43,7 @@ namespace Rhythm.Revit.Elements
                              curve.ToRevitType(true).Length;
                 }
             }
+
             return length.AlmostEquals(ceilingParam, 0.01);
         }
 
