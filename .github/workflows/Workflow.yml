@@ -4,6 +4,7 @@ on:
     branches:
       - dev
       - master
+      - vcho
   pull_request:
     branches:
       - '!master'
