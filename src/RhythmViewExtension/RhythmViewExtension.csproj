@@ -97,7 +97,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+
     <ProjectReference Include="..\RhythmCore\RhythmCore.csproj" />
+
   </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild" Condition="$(Configuration.Contains('Release'))">
     <ItemGroup>

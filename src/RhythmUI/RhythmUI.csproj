@@ -90,6 +90,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
+
   <ItemGroup>
     <ProjectReference Include="..\RhythmRevit\RhythmRevit.csproj" />
     <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
