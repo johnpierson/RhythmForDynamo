@@ -105,17 +105,18 @@ class Build : NukeBuild
         .OnlyWhenStatic(()=>IsLocalBuild || GitRepository.IsOnMainOrMasterBranch())
         .Executes(() =>
         {
-            var configurations = Solution.GetConfigurations(InstallerConfiguration);
-            configurations.ForEach(configuration =>
-            {
-                MSBuild(s => s
-                    .SetTargets("Rebuild")
-                    .SetProcessToolPath(MsBuildPath.Value)
-                    .SetConfiguration(configuration)
-                    .SetVerbosity(MSBuildVerbosity.Minimal)
-                    .DisableNodeReuse()
-                    .EnableRestore());
-            });
+            //TODO
+            // var configurations = Solution.GetConfigurations(InstallerConfiguration);
+            // configurations.ForEach(configuration =>
+            // {
+            //     MSBuild(s => s
+            //         .SetTargets("Rebuild")
+            //         .SetProcessToolPath(MsBuildPath.Value)
+            //         .SetConfiguration(configuration)
+            //         .SetVerbosity(MSBuildVerbosity.Minimal)
+            //         .DisableNodeReuse()
+            //         .EnableRestore());
+            // });
         });
 
     Target PublishGitHubRelease => _ => _

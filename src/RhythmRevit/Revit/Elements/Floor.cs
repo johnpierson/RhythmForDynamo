@@ -46,7 +46,7 @@ namespace Rhythm.Revit.Elements
             return length.AlmostEquals(ceilingParam, 0.01);
         }
 
-#if R20
+#if R20 || R21
 #else
  /// <summary>
         /// Collect the first floor type available. Revit 2022+
