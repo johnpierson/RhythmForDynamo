@@ -102,7 +102,7 @@ class Build : NukeBuild
    
     Target CreateInstaller => _ => _
         .TriggeredBy(RestoreAndBuild)
-        .OnlyWhenStatic(()=>IsLocalBuild || GitRepository.IsOnMainOrMasterBranch())
+        .OnlyWhenStatic(()=>IsLocalBuild || GitRepository.IsOnDevelopBranch())
         .Executes(() =>
         {
             //TODO
@@ -123,7 +123,7 @@ class Build : NukeBuild
         .Requires(() => GitHubToken)
         .Requires(() => GitRepository)
         .Requires(() => GitVersion)
-        .OnlyWhenStatic(() => GitRepository.IsOnMainOrMasterBranch())
+        .OnlyWhenStatic(() => GitRepository.IsOnDevelopBranch())
         // .OnlyWhenStatic(() => IsServerBuild)
         .TriggeredBy(CreateInstaller)
         .Executes(() =>
