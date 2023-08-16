@@ -170,7 +170,12 @@ class Build : NukeBuild
             }
         }
 
-        if (stringVersion.Equals(string.Empty)) throw new ArgumentException("Could not determine product version from artifacts.");
+        if (stringVersion.Equals(string.Empty))
+        {
+            var today = DateTime.Today;
+
+            stringVersion = $"{today.Year}.{today.Month}.{today.Day}";
+        };
 
         return stringVersion;
     }
