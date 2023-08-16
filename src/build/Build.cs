@@ -102,7 +102,7 @@ class Build : NukeBuild
    
     Target CreateInstaller => _ => _
         .TriggeredBy(RestoreAndBuild)
-        .OnlyWhenStatic(()=>IsLocalBuild || GitRepository.IsOnDevelopBranch())
+        .OnlyWhenStatic(()=>IsLocalBuild || GitRepository.IsOnMainOrMasterBranch())
         .Executes(() =>
         {
             //TODO
