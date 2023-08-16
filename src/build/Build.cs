@@ -255,7 +255,7 @@ class Build : NukeBuild
             .Result;
 
         var message = gitHubTags.Last().Commit.Message;
-
+        Console.WriteLine(message);
         if (message.Contains("*v."))
         {
             var start = message.IndexOf("*v.");
