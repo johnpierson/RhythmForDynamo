@@ -22,8 +22,8 @@ namespace Rhythm.Utilities
           XYZ p1)
         {
             var p = XYZarray.Where(
-              c => global::System.Math.Abs(c.X - p1.X) < 0.001
-                && global::System.Math.Abs(c.Y - p1.Y) < 0.001)
+              c => Math.Abs(c.X - p1.X) < 0.001
+                && Math.Abs(c.Y - p1.Y) < 0.001)
               .FirstOrDefault();
 
             if (p == null)

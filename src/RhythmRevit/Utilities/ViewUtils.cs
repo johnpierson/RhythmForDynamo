@@ -112,29 +112,29 @@ namespace Rhythm.Utilities
             if (findMatchingElements)
             {
                 // Build a map from name -> source element
-                Dictionary<string, ElementId> nameToFromElementsMap = new Dictionary<string, ElementId>();
+                Dictionary<String, ElementId> nameToFromElementsMap = new Dictionary<string, ElementId>();
 
                 foreach (ElementId id in elementIds)
                 {
                     Element e = fromDocument.GetElement(id);
-                    global::System.String name = e.Name;
-                    if (!string.IsNullOrEmpty(name))
+                    String name = e.Name;
+                    if (!String.IsNullOrEmpty(name))
                         nameToFromElementsMap.Add(name, id);
                 }
 
                 // Build a map from name -> target element
-                Dictionary<string, ElementId> nameToToElementsMap = new Dictionary<string, ElementId>();
+                Dictionary<String, ElementId> nameToToElementsMap = new Dictionary<string, ElementId>();
 
                 foreach (ElementId id in copiedIds)
                 {
                     Element e = toDocument.GetElement(id);
-                    string name = e.Name;
-                    if (!string.IsNullOrEmpty(name))
+                    String name = e.Name;
+                    if (!String.IsNullOrEmpty(name))
                         nameToToElementsMap.Add(name, id);
                 }
 
                 // Merge to make source element -> target element map
-                foreach (string name in nameToFromElementsMap.Keys)
+                foreach (String name in nameToFromElementsMap.Keys)
                 {
                     if (nameToToElementsMap.TryGetValue(name, out var copiedId))
                     {

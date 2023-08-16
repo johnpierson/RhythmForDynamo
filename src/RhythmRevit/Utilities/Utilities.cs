@@ -159,7 +159,7 @@ namespace Rhythm.Utilities
                 walkingPoint = points.MinBy(p =>
                 {
                     double angle = (p - wp).AngleOnPlaneTo(rv, XYZ.BasisZ);
-                    if (angle < 1e-10) angle = 2 * global::System.Math.PI;
+                    if (angle < 1e-10) angle = 2 * Math.PI;
                     return angle;
                 });
                 refVector = wp - walkingPoint;
@@ -213,8 +213,8 @@ namespace Rhythm.Utilities
                     int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
 
                     // Step 6
-                    d[i, j] = global::System.Math.Min(
-                        global::System.Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                    d[i, j] = Math.Min(
+                        Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
                         d[i - 1, j - 1] + cost);
                 }
             }
