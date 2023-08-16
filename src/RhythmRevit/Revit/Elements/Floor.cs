@@ -26,7 +26,6 @@ namespace Rhythm.Revit.Elements
         private Floor()
         {
         }
-
         private static bool VerifyEdit(Autodesk.Revit.DB.Floor floorElem, List<List<Curve>> curves)
         {
             if (floorElem == null)
