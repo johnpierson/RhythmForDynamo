@@ -13,6 +13,8 @@ using Curve = Autodesk.DesignScript.Geometry.Curve;
 using FloorType = Revit.Elements.FloorType;
 using Level = Revit.Elements.Level;
 
+#if R20 || R21 || R22
+#else
 namespace Rhythm.Revit.Elements
 {
     /// <summary>
@@ -47,7 +49,7 @@ namespace Rhythm.Revit.Elements
         }
 
 
-#if  !R20 || R21
+
 
  /// <summary>
         /// Collect the first floor type available. Revit 2022+
@@ -131,7 +133,7 @@ namespace Rhythm.Revit.Elements
 
             return (global::Revit.Elements.Floor) floor.ToDSType(false);
         }
-#endif
+
 
        
 
@@ -145,3 +147,4 @@ namespace Rhythm.Revit.Elements
         }
     }
 }
+#endif
