@@ -34,7 +34,7 @@ namespace Rhythm.Revit.Tools
             var uiapp = DocumentManager.Instance.CurrentUIApplication;
             var app = uiapp.Application;
             //read files from directory
-            string[] allfiles =  global::System.IO.Directory.GetFiles(directoryPath, "*.rfa*",  global::System.IO.SearchOption.AllDirectories);           
+            string[] allfiles = global::System.IO.Directory.GetFiles(directoryPath, "*.rfa*", global::System.IO.SearchOption.AllDirectories);           
             //create a new form!
             FamilyUpgradeForm statusBar = new FamilyUpgradeForm("Rhythm - Bulk Upgrade Families", "Upgrading family {0} of " + allfiles.Length.ToString(), "Batch Family Upgrayedd", allfiles.Length);
             //declare lists to output
@@ -113,7 +113,7 @@ namespace Rhythm.Revit.Tools
             }
             statusBar.Close();
             //clean up some backup files
-            string[] backupFiles =  global::System.IO.Directory.GetFiles(directoryPath, "*.0001*",  global::System.IO.SearchOption.AllDirectories);
+            string[] backupFiles = global::System.IO.Directory.GetFiles(directoryPath, "*.0001*", global::System.IO.SearchOption.AllDirectories);
             foreach (string file in backupFiles)
             {
                 File.Delete(file);

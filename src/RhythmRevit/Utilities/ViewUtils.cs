@@ -112,7 +112,7 @@ namespace Rhythm.Utilities
             if (findMatchingElements)
             {
                 // Build a map from name -> source element
-                Dictionary<string, ElementId> nameToFromElementsMap = new Dictionary<string, ElementId>();
+                Dictionary<global::System.String, ElementId> nameToFromElementsMap = new Dictionary<string, ElementId>();
 
                 foreach (ElementId id in elementIds)
                 {

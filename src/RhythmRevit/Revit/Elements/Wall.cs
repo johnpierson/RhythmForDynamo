@@ -202,7 +202,7 @@ namespace Rhythm.Revit.Elements
                     wallFacing = "NW";
                 }
                 //south west
-                if (global::System.Math.Abs(angleToSouth) < global::System.Math.PI / 3)
+                if (global::System.Math.Abs(angleToSouth) <global::System. Math.PI / 3)
                 {
                     wallFacing = "SW";
                 }

@@ -78,7 +78,6 @@ namespace Rhythm.Revit.Elements
             }
 
 
-
             //returns the outputs
             var outInfo = new Dictionary<string, object>
             {
@@ -99,6 +98,8 @@ namespace Rhythm.Revit.Elements
             return DocumentManager.Instance.CurrentDBDocument;
         }
 
+#if R21
+#else
         /// <summary>
         /// Creates a new sheet.
         /// </summary>
@@ -119,6 +120,8 @@ namespace Rhythm.Revit.Elements
 
             return result;
         }
+#endif
+
 
         /// <summary>
         /// This node will grab the titleblock from the given sheet.
@@ -143,8 +146,5 @@ namespace Rhythm.Revit.Elements
 
             return ttblList;
         }
-
-
     }
 }
- 

@@ -6,9 +6,9 @@
     <UseWPF>true</UseWPF>
     <PlatformTarget>x64</PlatformTarget>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <Configurations>Debug R23.1;Debug R24;Debug R24.1;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
-    <Configurations>$(Configurations);Release R24.1;Release R24;Release R23.1;Release R20;Release R21;Release R22;Release R23;</Configurations>
-    <NoWarn>MSB3277</NoWarn>
+    <Configurations>Debug R24;Debug R20;Debug R21;Debug R22;Debug R23;</Configurations>
+    <Configurations>$(Configurations);Release R24;Release R20;Release R21;Release R22;Release R23;</Configurations>
+    <NoWarn>MSB3277;CS1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
     <DynamoVersion>2.3</DynamoVersion>
@@ -53,52 +53,26 @@
     <DefineConstants>$(DefineConstants);R22</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Debug R23'))">
-    <DynamoVersion>2.13</DynamoVersion>
-    <DynamoOutput>2.13</DynamoOutput>
+    <DynamoVersion>2.16</DynamoVersion>
+    <DynamoOutput>2.16</DynamoOutput>
     <RevitVersion>2023</RevitVersion>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineConstants>$(DefineConstants);R23</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
-    <DynamoVersion>2.13</DynamoVersion>
-    <DynamoOutput>2.13</DynamoOutput>
-    <RevitVersion>2023</RevitVersion>
-    <DefineConstants>$(DefineConstants);R23</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="$(Configuration.Contains('Debug R23.1'))">
-    <DynamoVersion>2.16</DynamoVersion>
-    <DynamoOutput>2.16</DynamoOutput>
-    <RevitVersion>2023</RevitVersion>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <DefineConstants>$(DefineConstants);R23</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="$(Configuration.Contains('Release R23.1'))">
     <DynamoVersion>2.16</DynamoVersion>
     <DynamoOutput>2.16</DynamoOutput>
     <RevitVersion>2023</RevitVersion>
     <DefineConstants>$(DefineConstants);R23</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
-    <DynamoVersion>2.17</DynamoVersion>
-    <DynamoOutput>2.17</DynamoOutput>
-    <RevitVersion>2024</RevitVersion>
-    <DefineConstants>$(DefineConstants);R24</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
-    <DynamoVersion>2.17</DynamoVersion>
-    <DynamoOutput>2.17</DynamoOutput>
-    <RevitVersion>2024</RevitVersion>
-    <DefineConstants>$(DefineConstants);R24</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="$(Configuration.Contains('Debug R24.1'))">
     <DynamoVersion>2.18</DynamoVersion>
     <DynamoOutput>2.18</DynamoOutput>
     <RevitVersion>2024.1</RevitVersion>
     <DefineConstants>$(DefineConstants);R24</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="$(Configuration.Contains('Release R24.1'))">
+  <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
     <DynamoVersion>2.18</DynamoVersion>
     <DynamoOutput>2.18</DynamoOutput>
     <RevitVersion>2024.1</RevitVersion>
@@ -114,33 +88,13 @@
     <PackageTags>dynamo</PackageTags>
     <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\Rhythm\</FolderPackages>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
-    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
-    <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
-    <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*"/>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*"/>
-    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*"/>
-    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*"/>
 
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NUnit" Version="2.6.3" />
-    <PackageReference Include="Prism" Version="4.1.0.0" />
-    <PackageReference Include="CommonServiceLocator" Version="1.0" />
-    <PackageReference Include="System.Buffers" Version="4.5.1" />
-    <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.Memory" Version="4.5.4" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RhythmRevit\RhythmRevit.csproj" />
-    <ProjectReference Include="..\RhythmViewExtension\RhythmViewExtension.csproj" />
+    <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
+    <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*"/>
   </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild">
     <ItemGroup>
