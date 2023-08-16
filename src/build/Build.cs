@@ -135,9 +135,11 @@ class Build : NukeBuild
             var gitHubName = GitRepository.GetGitHubName();
             var gitHubOwner = GitRepository.GetGitHubOwner();
             var artifacts = Directory.GetFiles(ArtifactsDirectory, "*");
-            var version = GetProductVersion(artifacts);
+            //var version = GetProductVersion(artifacts);
 
-            CheckTags(gitHubOwner, gitHubName, version);
+            var version = GetVersionFromCommit(gitHubOwner, gitHubName);
+
+            //CheckTags(gitHubOwner, gitHubName, version);
             Log.Information("Detected Tag: {Version}", version);
             var newRelease = new NewRelease(version)
             {
@@ -156,8 +158,8 @@ class Build : NukeBuild
     {
         foreach (var a in artifacts)
         {
-            var fileInfo = new FileInfo(a);
-            Console.WriteLine(fileInfo.Name);
+            //var fileInfo = new FileInfo(a);
+            Console.WriteLine(a);
         }
         var stringVersion = string.Empty;
         var doubleVersion = 0d;
@@ -244,6 +246,28 @@ class Build : NukeBuild
             .Result;
 
         if (gitHubTags.Select(tag => tag.Name).Contains(version)) throw new ArgumentException($"The repository already contains a Release with the tag: {version}");
+    }
+
+    static string GetVersionFromCommit(string gitHubOwner, string gitHubName)
+    {
+        var gitHubTags = GitHubTasks.GitHubClient.Repository
+            .Commit.GetAll(gitHubOwner, gitHubName)
+            .Result;
+
+        var message = gitHubTags.Last().Commit.Message;
+
+        if (message.Contains("*v."))
+        {
+            var start = message.IndexOf("*v.");
+
+            return message.Substring(start, message.Length - start);
+        }
+
+
+        else
+        {
+            throw new ArgumentException($"No version found");
+        }
     }
 
 }
