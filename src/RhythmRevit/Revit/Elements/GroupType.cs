@@ -14,8 +14,9 @@ namespace Rhythm.Revit.Elements
         private GroupTypes()
         {
         }
-
-        /// <summary>
+#if R20 || R21 || R22 || R23
+#else
+/// <summary>
         /// Reload a group type from a given location. Note: This will override group types in the current file!
         /// </summary>
         /// <param name="group">The group to reload the type for</param>
@@ -54,6 +55,9 @@ namespace Rhythm.Revit.Elements
             }
            
         }
+#endif
+
+        
 
      
     }

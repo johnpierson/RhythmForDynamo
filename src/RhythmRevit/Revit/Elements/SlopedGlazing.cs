@@ -37,7 +37,7 @@ namespace Rhythm.Revit.Elements
 
             if (angle1 != null)
             {
-                var angleRad = angle1.Value * Math.PI / 180;
+                var angleRad = angle1.Value * global::System.Math.PI / 180;
                 angle1Parameter.Set(angleRad);
             }
             if (offset1 != null)
@@ -46,7 +46,7 @@ namespace Rhythm.Revit.Elements
             }
             if (angle2 != null)
             {
-                var angleRad = angle2.Value * Math.PI / 180;
+                var angleRad = angle2.Value * global::System.Math.PI / 180;
                 angle2Parameter.Set(angleRad);
             }
             if (offset2 != null)

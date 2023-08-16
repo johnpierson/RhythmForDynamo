@@ -137,72 +137,72 @@ namespace Rhythm.Revit.Elements
             string wallFacing = string.Empty;
 
             //north checks
-            if (Math.Abs(angleToNorth) < Math.PI / 4)
+            if (global::System.Math.Abs(angleToNorth) < global::System.Math.PI / 4)
             {
                 //north
                 wallFacing = "N";
 
                 //north east
-                if (Math.Abs(angleToEast) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToEast) < global::System.Math.PI / 3)
                 {
                     wallFacing = "NE";
                 }
                 //north west
-                if (Math.Abs(angleToWest) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToWest) < global::System.Math.PI / 3)
                 {
                     wallFacing = "NW";
                 }
             }
 
             //south checks
-            if (Math.Abs(angleToSouth) < Math.PI / 4)
+            if (global::System.Math.Abs(angleToSouth) < global::System.Math.PI / 4)
             {
                 //south
                 wallFacing = "S";
 
                 //south east
-                if (Math.Abs(angleToEast) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToEast) < global::System.Math.PI / 3)
                 {
                     wallFacing = "SE";
                 }
                 //south west
-                if (Math.Abs(angleToWest) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToWest) < global::System.Math.PI / 3)
                 {
                     wallFacing = "SW";
                 }
             }
 
             //east checks
-            if (Math.Abs(angleToEast) < Math.PI / 4)
+            if (global::System.Math.Abs(angleToEast) < global::System.Math.PI / 4)
             {
                 //east
                 wallFacing = "E";
 
                 //north east
-                if (Math.Abs(angleToNorth) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToNorth) < global::System.Math.PI / 3)
                 {
                     wallFacing = "NE";
                 }
                 //south east
-                if (Math.Abs(angleToSouth) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToSouth) < global::System.Math.PI / 3)
                 {
                     wallFacing = "SE";
                 }
             }
 
             //west checks
-            if (Math.Abs(angleToWest) < Math.PI / 4)
+            if (global::System.Math.Abs(angleToWest) < global::System.Math.PI / 4)
             {
                 //west
                 wallFacing = "W";
 
                 //north west
-                if (Math.Abs(angleToNorth) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToNorth) < global::System.Math.PI / 3)
                 {
                     wallFacing = "NW";
                 }
                 //south west
-                if (Math.Abs(angleToSouth) < Math.PI / 3)
+                if (global::System.Math.Abs(angleToSouth) <global::System. Math.PI / 3)
                 {
                     wallFacing = "SW";
                 }
@@ -223,7 +223,7 @@ namespace Rhythm.Revit.Elements
         {
             double wallAngle = 0;
 
-            var degrees = dir * Math.PI;
+            var degrees = dir * global::System.Math.PI;
 
             switch (direction)
             {
