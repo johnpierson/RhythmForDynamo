@@ -47,7 +47,7 @@ namespace Rhythm.Revit.Elements
         }
 
 
-#if R20 || R21
+#if  !R20 || R21
 
  /// <summary>
         /// Collect the first floor type available. Revit 2022+
