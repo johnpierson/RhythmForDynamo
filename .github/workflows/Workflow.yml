@@ -1,0 +1,18 @@
+name: Workflow
+on:
+  push:
+    branches:
+      - dev
+      - master
+  pull_request:
+    branches:
+      - '!master'
+jobs:
+  build:
+    name: windows-2022
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run Nuke Build
+        run: ./src/build.cmd --GitHubToken ${{ secrets.GITHUB_TOKEN }}
