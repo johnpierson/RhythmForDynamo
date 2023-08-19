@@ -106,17 +106,17 @@ class Build : NukeBuild
         .Executes(() =>
         {
             //TODO
-            // var configurations = Solution.GetConfigurations(InstallerConfiguration);
-            // configurations.ForEach(configuration =>
-            // {
-            //     MSBuild(s => s
-            //         .SetTargets("Rebuild")
-            //         .SetProcessToolPath(MsBuildPath.Value)
-            //         .SetConfiguration(configuration)
-            //         .SetVerbosity(MSBuildVerbosity.Minimal)
-            //         .DisableNodeReuse()
-            //         .EnableRestore());
-            // });
+            //var configurations = Solution.GetConfigurations(InstallerConfiguration);
+            //configurations.ForEach(configuration =>
+            //{
+            //    MSBuild(s => s
+            //        .SetTargets("Rebuild")
+            //        .SetProcessToolPath(MsBuildPath.Value)
+            //        .SetConfiguration(configuration)
+            //        .SetVerbosity(MSBuildVerbosity.Minimal)
+            //        .DisableNodeReuse()
+            //        .EnableRestore());
+            //});
         });
 
     Target PublishGitHubRelease => _ => _
@@ -137,6 +137,7 @@ class Build : NukeBuild
             var artifacts = Directory.GetFiles(ArtifactsDirectory, "*");
             var version = GetProductVersion(artifacts);
 
+ 
             CheckTags(gitHubOwner, gitHubName, version);
             Log.Information("Detected Tag: {Version}", version);
             var newRelease = new NewRelease(version)
@@ -154,6 +155,11 @@ class Build : NukeBuild
         });
     string GetProductVersion(IEnumerable<string> artifacts)
     {
+        foreach (var a in artifacts)
+        {
+            //var fileInfo = new FileInfo(a);
+            Console.WriteLine(a);
+        }
         var stringVersion = string.Empty;
         var doubleVersion = 0d;
         foreach (var file in artifacts)
@@ -240,5 +246,6 @@ class Build : NukeBuild
 
         if (gitHubTags.Select(tag => tag.Name).Contains(version)) throw new ArgumentException($"The repository already contains a Release with the tag: {version}");
     }
+
 
 }
