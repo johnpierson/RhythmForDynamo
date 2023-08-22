@@ -179,11 +179,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(ProjectDir)..\..\deploy\2020\" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(ProjectDir)..\..\deploy\2021\" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(ProjectDir)..\..\deploy\2022\" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(ProjectDir)..\..\deploy\2023\" /Y /I
-if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(ProjectDir)..\..\deploy\2024\" /Y /I
+    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(ProjectDir)..\..\deploy" /Y /I
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
