@@ -3,23 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmViewExtension.2024", "RhythmViewExtension.2024.csproj", "{0B4B05E9-C1A8-4767-8307-98914BCC6842}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmViewExtension", "RhythmViewExtension.csproj", "{0B4B05E9-C1A8-4767-8307-98914BCC6842}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|x64.ActiveCfg = Debug|x64
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|x64.Build.0 = Debug|x64
 		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|x64.ActiveCfg = Release|x64
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D8C0698F-37A5-4FF2-977A-A4DC8D1941AD}
+		SolutionGuid = {FACA4962-653A-42A7-A063-E2E26814C534}
 	EndGlobalSection
 EndGlobal
