@@ -10,10 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Forms\DefaultProgressForm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Forms\DefaultProgressForm.designer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Forms\FamilyUpgradeForm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Forms\FamilyUpgradeForm.designer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Tessellation\ConvexHull.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Application\Applications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Application\Document.cs" />
@@ -82,7 +78,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ViewUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Forms\DefaultProgressForm.resx" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Forms\FamilyUpgradeForm.resx" />
+    <Folder Include="$(MSBuildThisFileDirectory)Forms\" />
   </ItemGroup>
 </Project>

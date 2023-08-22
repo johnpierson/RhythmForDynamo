@@ -171,11 +171,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\logo.png" />
-    <Content Include="Revit\20\RhythmRevit.dll" />
-    <Content Include="Revit\21\RhythmRevit.dll" />
-    <Content Include="Revit\22\RhythmRevit.dll" />
-    <Content Include="Revit\23\RhythmRevit.dll" />
-    <Content Include="Revit\24\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\20\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\21\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\22\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\23\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\24\RhythmRevit.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

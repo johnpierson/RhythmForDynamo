@@ -178,8 +178,27 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="DefaultProgressForm.resx">
+      <DependentUpon>DefaultProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FamilyUpgradeForm.resx">
+      <DependentUpon>FamilyUpgradeForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DefaultProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DefaultProgressForm.designer.cs">
+      <DependentUpon>DefaultProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FamilyUpgradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FamilyUpgradeForm.designer.cs">
+      <DependentUpon>FamilyUpgradeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="..\RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems" Label="Shared" />
