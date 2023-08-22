@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmExtension.SharedProject", "RhythmExtension.SharedProject\RhythmExtension.SharedProject.shproj", "{8352C8D4-124A-400B-A6B1-DE3E3C6F43B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmExtension.2024", "RhythmExtension.2024\RhythmExtension.2024.csproj", "{21E81214-DECE-4C4A-8914-64E01F386613}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|x64.ActiveCfg = Debug|x64
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|x64.Build.0 = Debug|x64
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|x64.ActiveCfg = Release|x64
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDAA821A-EFD3-4D50-B7AB-562A7302F3B9}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		RhythmExtension.SharedProject\RhythmExtension.SharedProject.projitems*{21e81214-dece-4c4a-8914-64e01f386613}*SharedItemsImports = 4
+		RhythmExtension.SharedProject\RhythmExtension.SharedProject.projitems*{8352c8d4-124a-400b-a6b1-de3e3c6f43b3}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

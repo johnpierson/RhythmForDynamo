@@ -1,0 +1,34 @@
+20180830: [General] cleanup in preperation for last release for 1.3.3. [Additions] Hostobject nodes. Worksharing nodes to check element creator's and who last updated. [Removals] All Framing at Reference Level.dyf, All Pipes at Reference Level.dyf, Collector.DuctsBySystem.dyf, Collector.PipesBySystem.dyf, Rhythm.RenumberGridsByCurve.dyf, Rhythm.Toggle.dyfSelect Grids By Curve.dyf, OS.CurrentUser.dyf, OS.CurrentUserAppData.dyf, PostableCommand.Default3DView.dyf, PostableCommand.CloseHiddenWindows.dyf
+201897: [General] This release marks the first version of Rhythm that is fully compatible with Dynamo 2.0.1 and up. Changes include the revision of the UI nodes for outputs to work as expected, and only returning a dictionary when absolutely necessary.
+2018919: [General] Fixing namespace conflicts with OOTB. This means that Element was renamed to Elements and Category to Categories and so on. [Removals] Most DYFs have been removed. Sorry, but they are too hard to manage between 1.3.x and 2.0.x.
+2018124: [Changes] Revised Sheet.GetViewportsAndViews to accept a document input.
+2019121: [Additions] Added leader tools for text notes and added Mullion class back.
+201943: [Additions] Added a view extension for Dynamo 2.0 that labels Rhythm nodes on placement. [Changes] Revised Wall profile nodes to be less destructive
+2019425: [Changes] Revised the document nodes to return Autodesk.Revit.DB.Document. Also made the view extension force manual run mode on close document placement.
+201963: [Additions] Addition of Dimension.Properties replacements, Dimensions.Accuracy, Dimensions.Color, Dimensions.DisplayUnits.
+2019724: [Revisions] Revised Viewport.LocationData to dispose of the temporary geometry.
+2019912: [Revisions] Separation of core features and revit features. [Additions] Addition of Viewport.GetBoxCenter and Viewport.SetBoxCenter.
+20191015: [Revisions] Updated Dimension.CenterTextOnLine to work for metric files.
+2019117: [Revisions] Add skip for room tags that are actually family instances. Dispose of geometry in room nodes. [Additions] Humanizer tools to core
+20191111: [Revisions] Fix set crop region to return Revit.Elements.Element view.
+2019124: [Revisions] Viewport.Create fixes for more stability with schedule placement. [Additions] ReferencePlanes.ByLine with a boolean.
+20200122: [Revisions] Revised Sheet.ViewportsAndViews to automatically detect input sheet's document. [Additions] Core icons.
+20210112: [Revisions] Remove deprecation of applications nodes.
+20210301: [Additions] 2022 API methods related to ceiling creation, floor creation (multi-loop) and viewport locations. Also added model group creation with origin input.
+20210625: [Changes] Moved 2021 methods to main Rhythm Revit code. [Additions] New Generative Design category in core. Currently includes view packing. [Revisions] General code cleanup.
+20210714: [Changes] Revise View.SetCropBox to handle the incorrect bounding box error. [Additions] Added zip directory node.
+20211229: [Revisions] Fixed Revit 2022 view title nodes, PreviewViewId for SaveAs node  [Additions] new room tag and space tag creation node. [Removals] Removes isolated pick elements dyfs and replaced with single zerotouch node
+20220107: [Revisions] Changes Reference Plane node to work in family documents
+20220127: [Removals] Removed the View3D.SetSection box and view.setcropbox node. they had countless issues and supporting them is far too difficult.
+20220318: [Additions] Added Select in Link node for Generative Design and Dynamo Player
+20220329: Completed UI Selection nodes for linked elements.
+20220418: [Removals] Removed RhythmRevit2022.dll as it was not getting downloaded correctly from package manager.
+20220426: [Additions] Generative Design - Added random generator that uses the marsaglia algorithm
+20220424: [Bug Fix] Removed usage of Revit.Elements.CeilingType as that did not exist prior to Dynamo 2.10, which was causing breaking in older versions.
+20220624: [Additions] Addition of node to convert Autodesk.Revit.DB.Document to Revit.Application.Document and vice versa.
+20220701: [Changes] Changed the output of Autodesk.Revit.DB.Document for all document-related nodes. More on this change here:https://forum.dynamobim.com/t/the-fusion-post-for-coders
+20220901: [Additions] Added nodes for sloped glazing.
+20221001: [Additions] Added tools nodes for 3d room tags and 3d space tags
+20221109: [Fixes] Fix output port duplication for Titleblock Types node. Hopefully load in Revit 2020 again.
+20221129: [Fixes] Fix skipped segment curves trying to output a polycurve all the time.
+20230106: [Removals] Removed python nodes for additional cross-compatibility between Revit versions.
