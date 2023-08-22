@@ -66,9 +66,12 @@ namespace RhythmViewExtension
                     return;
                 }
 
-                var vm = new RhythmMessageBoxViewModel();
-                vm.UserMessage = $"Loading correct Rhythm version for Revit 20{version}. Please wait...";
-                vm.WrongVersionLoaded = false;
+                var vm = new RhythmMessageBoxViewModel
+                {
+                    IsCollapsed = false,
+                    UserMessage = $"Loading correct Rhythm version for Revit 20{version}. Please wait...",
+                    WrongVersionLoaded = false
+                };
 
                 RhythmMessageBox messageBox =
                     new RhythmMessageBox()
@@ -108,11 +111,14 @@ namespace RhythmViewExtension
                 if (!fileInfo.FileDescription.EndsWith(version))
                 {
 
-                    var vm = new RhythmMessageBoxViewModel();
-                    vm.UserMessage = $"Incompatible Rhythm version loaded. You have {fileInfo.FileDescription} loaded. " +
-                        $"You should reinstall from the package manager. Also, you made the dog sad. You monster. " +
-                        $"For more info, click the question mark button.";
-                    vm.WrongVersionLoaded = true;
+                    var vm = new RhythmMessageBoxViewModel()
+                    {
+                        IsCollapsed = false,
+                        UserMessage = $"Incompatible Rhythm version loaded. You have {fileInfo.FileDescription} loaded. " +
+                                      $"You should reinstall from the package manager. Also, you made the dog sad. You monster. " +
+                                      $"For more info, click the question mark button.",
+                        WrongVersionLoaded = true
+                    };
                     RhythmMessageBox messageBox =
                         new RhythmMessageBox()
                         {
