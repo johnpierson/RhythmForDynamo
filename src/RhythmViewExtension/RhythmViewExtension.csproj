@@ -92,11 +92,6 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Rhythm_ViewExtensionDefinition.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
 
     <ProjectReference Include="..\RhythmCore\RhythmCore.csproj" />
 
