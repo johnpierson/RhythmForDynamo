@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmRevit.SharedProject", "RhythmRevit.SharedProject.shproj", "{72686D71-EE55-437D-88C0-AE843287FA08}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CA8B939-4653-45B3-8251-8057580A89C8}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		RhythmRevit.SharedProject.projitems*{72686d71-ee55-437d-88c0-ae843287fa08}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

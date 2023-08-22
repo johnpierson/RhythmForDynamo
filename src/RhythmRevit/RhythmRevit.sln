@@ -1,29 +1,81 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.6.33815.320
+VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit", "RhythmRevit.csproj", "{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmRevit.SharedProject", "RhythmRevit.SharedProject\RhythmRevit.SharedProject.shproj", "{72686D71-EE55-437D-88C0-AE843287FA08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\..\build\_build.csproj", "{80D6548D-FED7-4951-A2ED-7A94CC8A0DD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2024", "RhythmRevit.2024\RhythmRevit.2024.csproj", "{3960FF23-2B1C-48AE-B770-D9203640FE07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2023", "RhythmRevit.2023\RhythmRevit.2023.csproj", "{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2022", "RhythmRevit.2022\RhythmRevit.2022.csproj", "{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2021", "RhythmRevit.2021\RhythmRevit.2021.csproj", "{69DB0C30-5CB4-409B-B5A1-63C97846F075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2020", "RhythmRevit.2020\RhythmRevit.2020.csproj", "{10D3BBE3-0175-4E93-A790-A1C86827B426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{80D6548D-FED7-4951-A2ED-7A94CC8A0DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80D6548D-FED7-4951-A2ED-7A94CC8A0DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|x64.ActiveCfg = Debug|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|x64.Build.0 = Debug|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|Any CPU.ActiveCfg = Release|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|Any CPU.Build.0 = Release|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|x64.ActiveCfg = Release|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|x64.Build.0 = Release|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|x64.ActiveCfg = Debug|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|x64.Build.0 = Debug|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|x64.ActiveCfg = Release|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|x64.Build.0 = Release|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|x64.ActiveCfg = Debug|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|x64.Build.0 = Debug|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|x64.ActiveCfg = Release|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|x64.Build.0 = Release|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|x64.ActiveCfg = Debug|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|x64.Build.0 = Debug|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|x64.ActiveCfg = Release|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|x64.Build.0 = Release|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|x64.ActiveCfg = Debug|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|x64.Build.0 = Debug|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|x64.ActiveCfg = Release|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9AD0950F-7743-4528-90DE-2A9F3C7BE0EB}
+		SolutionGuid = {AA54D464-B124-4064-A73D-A50797FE9FD3}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{10d3bbe3-0175-4e93-a790-a1c86827b426}*SharedItemsImports = 4
+		RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{3960ff23-2b1c-48ae-b770-d9203640fe07}*SharedItemsImports = 4
+		RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{69db0c30-5cb4-409b-b5a1-63c97846f075}*SharedItemsImports = 4
+		RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{72686d71-ee55-437d-88c0-ae843287fa08}*SharedItemsImports = 13
+		RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{92da5fff-de9d-40b6-b7fa-08168d50b822}*SharedItemsImports = 4
+		RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{e7e3e775-48da-45f7-81fa-2f8f293a00ec}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

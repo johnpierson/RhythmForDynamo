@@ -1,167 +1,127 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.6.33815.320
+VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmCore", "RhythmCore\RhythmCore.csproj", "{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmViewExtension.SharedProject", "RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.shproj", "{DF686D11-C6D3-4698-9834-1637E9537B33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit", "RhythmRevit\RhythmRevit.csproj", "{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmViewExtension.2024", "RhythmViewExtension\RhythmViewExtension.2024\RhythmViewExtension.2024.csproj", "{0B4B05E9-C1A8-4767-8307-98914BCC6842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmUI", "RhythmUI\RhythmUI.csproj", "{682544B9-D61D-4260-B358-5F9063B34E1A}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmExtension.SharedProject", "RhythmExtension\RhythmExtension.SharedProject\RhythmExtension.SharedProject.shproj", "{8352C8D4-124A-400B-A6B1-DE3E3C6F43B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmViewExtension", "RhythmViewExtension\RhythmViewExtension.csproj", "{A2F75C8F-5F87-461A-AA9E-436677763BB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmExtension.2024", "RhythmExtension\RhythmExtension.2024\RhythmExtension.2024.csproj", "{21E81214-DECE-4C4A-8914-64E01F386613}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItem", "SolutionItem", "{6EF733CB-A768-4D17-94A6-52223448A084}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RhythmRevit.SharedProject", "RhythmRevit\RhythmRevit.SharedProject\RhythmRevit.SharedProject.shproj", "{72686D71-EE55-437D-88C0-AE843287FA08}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{6E0545C7-367E-4F87-ACFA-495C8E34B0B4}"
-	ProjectSection(SolutionItems) = preProject
-		..\LICENSE = ..\LICENSE
-		..\README.md = ..\README.md
-		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
-		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
-		..\.github\workflows\tweetRelease.yml = ..\.github\workflows\tweetRelease.yml
-		..\.github\workflows\Workflow.yml = ..\.github\workflows\Workflow.yml
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2024", "RhythmRevit\RhythmRevit.2024\RhythmRevit.2024.csproj", "{3960FF23-2B1C-48AE-B770-D9203640FE07}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{E0B328DD-84AC-42E9-A2B0-CC3312AD5A4D}"
-	ProjectSection(SolutionItems) = preProject
-		_release\Rhythm\pkg.json = _release\Rhythm\pkg.json
-		_release\Rhythm\extra\Rhythm_ViewExtensionDefinition.xml = _release\Rhythm\extra\Rhythm_ViewExtensionDefinition.xml
-		_release\Rhythm\extra\Rhythm_ExtensionDefinition.xml = _release\Rhythm\extra\Rhythm_ExtensionDefinition.xml
-		_release\Rhythm\extra\RhythmCore_DynamoCustomization.xml = _release\Rhythm\extra\RhythmCore_DynamoCustomization.xml
-		_release\Rhythm\extra\RhythmRevit_DynamoCustomization.xml = _release\Rhythm\extra\RhythmRevit_DynamoCustomization.xml
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2023", "RhythmRevit\RhythmRevit.2023\RhythmRevit.2023.csproj", "{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "build\_build.csproj", "{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2022", "RhythmRevit\RhythmRevit.2022\RhythmRevit.2022.csproj", "{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2021", "RhythmRevit\RhythmRevit.2021\RhythmRevit.2021.csproj", "{69DB0C30-5CB4-409B-B5A1-63C97846F075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmRevit.2020", "RhythmRevit\RhythmRevit.2020\RhythmRevit.2020.csproj", "{10D3BBE3-0175-4E93-A790-A1C86827B426}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RhythmRevit", "RhythmRevit", "{CA57930A-13BD-4953-8607-E9AFF592F36D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RhythmExtension", "RhythmExtension", "{131A7D92-A94C-4CF0-A269-F707971C7C33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RhythmViewExtension", "RhythmViewExtension", "{3037E1AB-0C89-4CA2-82DD-1F2C81AC7EEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug R20|Any CPU = Debug R20|Any CPU
-
-								Debug R21|Any CPU = Debug R21|Any CPU
-								Debug R22|Any CPU = Debug R22|Any CPU
-								Debug R23|Any CPU = Debug R23|Any CPU
-								Debug R24|Any CPU = Debug R24|Any CPU
-
-								Release R20|Any CPU = Release R20|Any CPU
-								Release R21|Any CPU = Release R21|Any CPU
-								Release R22|Any CPU = Release R22|Any CPU
-								Release R23|Any CPU = Release R23|Any CPU
-								Release R24|Any CPU = Release R24|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R20|Any CPU.ActiveCfg = Debug R20|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R20|Any CPU.Build.0 = Debug R20|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R21|Any CPU.ActiveCfg = Debug R21|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R21|Any CPU.Build.0 = Debug R21|Any CPU
-
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R23|Any CPU.ActiveCfg = Debug R23|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R23|Any CPU.Build.0 = Debug R23|Any CPU
-
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R24|Any CPU.ActiveCfg = Debug R24|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R24|Any CPU.Build.0 = Debug R24|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R20|Any CPU.ActiveCfg = Release R20|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R20|Any CPU.Build.0 = Release R20|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R21|Any CPU.ActiveCfg = Release R21|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R21|Any CPU.Build.0 = Release R21|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R22|Any CPU.ActiveCfg = Release R22|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R22|Any CPU.Build.0 = Release R22|Any CPU
-
-
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R22|Any CPU.ActiveCfg = Debug R22|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Debug R22|Any CPU.Build.0 = Debug R22|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R24|Any CPU.ActiveCfg = Release R24|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R24|Any CPU.Build.0 = Release R24|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R23|Any CPU.ActiveCfg = Release R23|Any CPU
-		{E6678CFE-EDFD-4F2D-A992-2B39B19F3F5A}.Release R23|Any CPU.Build.0 = Release R23|Any CPU
-
-
-
-
-
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R20|Any CPU.ActiveCfg = Debug R20|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R20|Any CPU.Build.0 = Debug R20|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R21|Any CPU.ActiveCfg = Debug R21|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R21|Any CPU.Build.0 = Debug R21|Any CPU
-
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R23|Any CPU.ActiveCfg = Debug R23|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R23|Any CPU.Build.0 = Debug R23|Any CPU
-
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R24|Any CPU.ActiveCfg = Debug R24|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R24|Any CPU.Build.0 = Debug R24|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R20|Any CPU.ActiveCfg = Release R20|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R20|Any CPU.Build.0 = Release R20|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R21|Any CPU.ActiveCfg = Release R21|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R21|Any CPU.Build.0 = Release R21|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R22|Any CPU.ActiveCfg = Release R22|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R22|Any CPU.Build.0 = Release R22|Any CPU
-
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R22|Any CPU.ActiveCfg = Debug R22|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Debug R22|Any CPU.Build.0 = Debug R22|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R24|Any CPU.ActiveCfg = Release R24|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R24|Any CPU.Build.0 = Release R24|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R23|Any CPU.ActiveCfg = Release R23|Any CPU
-		{682544B9-D61D-4260-B358-5F9063B34E1A}.Release R23|Any CPU.Build.0 = Release R23|Any CPU
-
-
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R23|Any CPU.ActiveCfg = Debug R23|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R23|Any CPU.Build.0 = Debug R23|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R24|Any CPU.ActiveCfg = Debug R24|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R24|Any CPU.Build.0 = Debug R24|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R20|Any CPU.ActiveCfg = Debug R20|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R20|Any CPU.Build.0 = Debug R20|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R21|Any CPU.ActiveCfg = Debug R21|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R21|Any CPU.Build.0 = Debug R21|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R22|Any CPU.ActiveCfg = Debug R22|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R22|Any CPU.Build.0 = Debug R22|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R20|Any CPU.ActiveCfg = Release R20|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R20|Any CPU.Build.0 = Release R20|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R21|Any CPU.ActiveCfg = Release R21|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R21|Any CPU.Build.0 = Release R21|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R22|Any CPU.ActiveCfg = Release R22|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R22|Any CPU.Build.0 = Release R22|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R23|Any CPU.ActiveCfg = Release R23|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R23|Any CPU.Build.0 = Release R23|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R24|Any CPU.ActiveCfg = Release R24|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R24|Any CPU.Build.0 = Release R24|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R24|Any CPU.ActiveCfg = Debug R24|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R24|Any CPU.Build.0 = Debug R24|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R20|Any CPU.ActiveCfg = Debug R20|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R20|Any CPU.Build.0 = Debug R20|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R21|Any CPU.ActiveCfg = Debug R21|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R21|Any CPU.Build.0 = Debug R21|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R22|Any CPU.ActiveCfg = Debug R22|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R22|Any CPU.Build.0 = Debug R22|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R23|Any CPU.ActiveCfg = Debug R23|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Debug R23|Any CPU.Build.0 = Debug R23|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R20|Any CPU.ActiveCfg = Release R20|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R20|Any CPU.Build.0 = Release R20|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R21|Any CPU.ActiveCfg = Release R21|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R21|Any CPU.Build.0 = Release R21|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R22|Any CPU.ActiveCfg = Release R22|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R22|Any CPU.Build.0 = Release R22|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R23|Any CPU.ActiveCfg = Release R23|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R23|Any CPU.Build.0 = Release R23|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R24|Any CPU.ActiveCfg = Release R24|Any CPU
-		{A2F75C8F-5F87-461A-AA9E-436677763BB6}.Release R24|Any CPU.Build.0 = Release R24|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Debug R20|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Debug R21|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Debug R22|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Debug R23|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Debug R24|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Release R20|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Release R21|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Release R22|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Release R23|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07314A8-A90F-49D5-92AD-1E0FA0A391D9}.Release R24|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|x64.ActiveCfg = Debug|x64
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|x64.Build.0 = Debug|x64
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|x64.ActiveCfg = Release|x64
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|x64.Build.0 = Release|x64
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|x64.ActiveCfg = Debug|x64
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Debug|x64.Build.0 = Debug|x64
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|x64.ActiveCfg = Release|x64
+		{21E81214-DECE-4C4A-8914-64E01F386613}.Release|x64.Build.0 = Release|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|x64.ActiveCfg = Debug|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Debug|x64.Build.0 = Debug|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|x64.ActiveCfg = Release|x64
+		{3960FF23-2B1C-48AE-B770-D9203640FE07}.Release|x64.Build.0 = Release|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|x64.ActiveCfg = Debug|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Debug|x64.Build.0 = Debug|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|x64.ActiveCfg = Release|x64
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC}.Release|x64.Build.0 = Release|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|x64.ActiveCfg = Debug|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Debug|x64.Build.0 = Debug|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|x64.ActiveCfg = Release|x64
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822}.Release|x64.Build.0 = Release|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|x64.ActiveCfg = Debug|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Debug|x64.Build.0 = Debug|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|x64.ActiveCfg = Release|x64
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075}.Release|x64.Build.0 = Release|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|x64.ActiveCfg = Debug|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Debug|x64.Build.0 = Debug|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|x64.ActiveCfg = Release|x64
+		{10D3BBE3-0175-4E93-A790-A1C86827B426}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4478FE1D-3AC1-498B-949E-DAC465FC6EDA}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{DF686D11-C6D3-4698-9834-1637E9537B33} = {3037E1AB-0C89-4CA2-82DD-1F2C81AC7EEC}
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842} = {3037E1AB-0C89-4CA2-82DD-1F2C81AC7EEC}
+		{8352C8D4-124A-400B-A6B1-DE3E3C6F43B3} = {131A7D92-A94C-4CF0-A269-F707971C7C33}
+		{21E81214-DECE-4C4A-8914-64E01F386613} = {131A7D92-A94C-4CF0-A269-F707971C7C33}
+		{72686D71-EE55-437D-88C0-AE843287FA08} = {CA57930A-13BD-4953-8607-E9AFF592F36D}
+		{3960FF23-2B1C-48AE-B770-D9203640FE07} = {CA57930A-13BD-4953-8607-E9AFF592F36D}
+		{E7E3E775-48DA-45F7-81FA-2F8F293A00EC} = {CA57930A-13BD-4953-8607-E9AFF592F36D}
+		{92DA5FFF-DE9D-40B6-B7FA-08168D50B822} = {CA57930A-13BD-4953-8607-E9AFF592F36D}
+		{69DB0C30-5CB4-409B-B5A1-63C97846F075} = {CA57930A-13BD-4953-8607-E9AFF592F36D}
+		{10D3BBE3-0175-4E93-A790-A1C86827B426} = {CA57930A-13BD-4953-8607-E9AFF592F36D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A1A0AE9-58A6-4AF0-98A2-CAEA00EB9F81}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.projitems*{0b4b05e9-c1a8-4767-8307-98914bcc6842}*SharedItemsImports = 4
+		RhythmRevit\RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{10d3bbe3-0175-4e93-a790-a1c86827b426}*SharedItemsImports = 4
+		RhythmExtension\RhythmExtension.SharedProject\RhythmExtension.SharedProject.projitems*{21e81214-dece-4c4a-8914-64e01f386613}*SharedItemsImports = 4
+		RhythmRevit\RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{3960ff23-2b1c-48ae-b770-d9203640fe07}*SharedItemsImports = 4
+		RhythmRevit\RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{69db0c30-5cb4-409b-b5a1-63c97846f075}*SharedItemsImports = 4
+		RhythmRevit\RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{72686d71-ee55-437d-88c0-ae843287fa08}*SharedItemsImports = 13
+		RhythmExtension\RhythmExtension.SharedProject\RhythmExtension.SharedProject.projitems*{8352c8d4-124a-400b-a6b1-de3e3c6f43b3}*SharedItemsImports = 13
+		RhythmRevit\RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{92da5fff-de9d-40b6-b7fa-08168d50b822}*SharedItemsImports = 4
+		RhythmViewExtension\RhythmViewExtension.SharedProject\RhythmViewExtension.SharedProject.projitems*{df686d11-c6d3-4698-9834-1637e9537b33}*SharedItemsImports = 13
+		RhythmRevit\RhythmRevit.SharedProject\RhythmRevit.SharedProject.projitems*{e7e3e775-48da-45f7-81fa-2f8f293a00ec}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
