@@ -12,7 +12,6 @@ using Autodesk.Revit.UI;
 using Dynamo.Graph.Nodes;
 using RevitServices.Transactions;
 using Document = Autodesk.Revit.DB.Document;
-using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
 using SketchPlane = Autodesk.Revit.DB.SketchPlane;
 using StructuralType = Autodesk.Revit.DB.Structure.StructuralType;
 

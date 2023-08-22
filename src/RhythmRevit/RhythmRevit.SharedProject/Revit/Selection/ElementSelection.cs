@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.Elements;
@@ -8,10 +7,21 @@ using RevitServices.Persistence;
 
 namespace Rhythm.Revit.Selection
 {
+    /// <summary>
+    /// Wrapper for ElementSelection
+    /// </summary>
     [IsVisibleInDynamoLibrary(false)]
     public class ElementSelection
     {
         private ElementSelection(){}
+        /// <summary>
+        /// Get Elements in link document
+        /// </summary>
+        /// <param name="docTitle"></param>
+        /// <param name="uniqueId"></param>
+        /// <param name="returnElement"></param>
+        /// <param name="isRevitOwned"></param>
+        /// <returns></returns>
         public static object InLinkDoc(string docTitle, string uniqueId, bool returnElement, bool isRevitOwned = false )
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;

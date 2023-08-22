@@ -4,16 +4,12 @@ using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.IFC;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
-using Face = Autodesk.Revit.DB.Face;
-using Solid = Autodesk.DesignScript.Geometry.Solid;
-using Surface = Autodesk.Revit.DB.Surface;
 
 namespace Rhythm.Revit.Elements
 {

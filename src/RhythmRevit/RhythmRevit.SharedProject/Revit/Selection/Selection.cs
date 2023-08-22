@@ -9,7 +9,6 @@ using Autodesk.Revit.UI.Selection;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
-using Rhythm.Utilities;
 #if !Revit2020
 using static Autodesk.Revit.DB.SpecTypeId;
 #endif

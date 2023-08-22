@@ -73,7 +73,27 @@
             Wrapper class for application level nodes.
             </summary>
         </member>
-        <member name="M:Rhythm.Revit.Application.Applications.OpenDocumentFile(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Rhythm.Revit.Application.Applications.ActivateSuppressors(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Assigns event handlers for DialogBoxShowing and FailuresProcessing if we're in debug mode
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.DeactivateSuppressors(Autodesk.Revit.UI.UIApplication)">
+            <summary>
+            Assigns event handlers for DialogBoxShowing and FailuresProcessing if we're in debug mode
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.DismissAllDialogs(System.Object,Autodesk.Revit.UI.Events.DialogBoxShowingEventArgs)">
+            <summary>
+            Will dismiss all dialogs
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.DismissAllWarnings(System.Object,Autodesk.Revit.DB.Events.FailuresProcessingEventArgs)">
+            <summary>
+            Will dismiss all warnings
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Applications.OpenDocumentFile(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             This node will open the given file in the background.
             </summary>
@@ -82,6 +102,7 @@
             <param name="detachFromCentral">Choose whether or not to detach from central upon opening. Only for RVT files. </param>
             <param name="preserveWorksets">Choose whether or not to preserve worksets upon opening. Only for RVT files. </param>
             <param name="closeAllWorksets">Choose if you want to close all worksets upon opening. Defaulted to false.</param>
+            <param name="suppressWarnings">Do you want to enable warning suppression? Caution, this is experimental and if something goes wrong you might have to restart Revit</param>
             <returns name="document">The document object. If the file path is blank this returns the current document.</returns>
             <search>
             Application.OpenDocumentFile, rhythm
@@ -2001,6 +2022,21 @@
             <search>
             Collector.ModelGroupByName
             </search>
+        </member>
+        <member name="T:Rhythm.Revit.Selection.ElementSelection">
+            <summary>
+            Wrapper for ElementSelection
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Selection.ElementSelection.InLinkDoc(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Get Elements in link document
+            </summary>
+            <param name="docTitle"></param>
+            <param name="uniqueId"></param>
+            <param name="returnElement"></param>
+            <param name="isRevitOwned"></param>
+            <returns></returns>
         </member>
         <member name="T:Rhythm.Revit.Selection.Selection">
             <summary>

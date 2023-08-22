@@ -5,9 +5,6 @@ Link to the provided converters here: https://forum.dynamobim.com/t/the-fusion-p
 using System.Linq;
 using System.Reflection;
 using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
-using Revit.Elements;
-using RevitServices.Persistence;
 using dynCategory = Revit.Elements.Category;
 using dynDocument = Revit.Application.Document;
 using dynElement = Revit.Elements.Element;

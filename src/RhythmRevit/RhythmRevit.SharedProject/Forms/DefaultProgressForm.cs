@@ -23,7 +23,7 @@
 #endregion // Header
 
 #region Namespaces
-using System;
+
 using System.Drawing;
 using System.Windows.Forms;
 #endregion // Namespaces

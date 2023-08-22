@@ -69,6 +69,9 @@
     <Reference Include="DSCPython, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DSCPython.dll</HintPath>
     </Reference>
+    <Reference Include="DSRevitNodesUI, Version=2.17.0.7404, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.17.0.7404\lib\DSRevitNodesUI.dll</HintPath>
+    </Reference>
     <Reference Include="DynamoApplications, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoApplications.dll</HintPath>
     </Reference>
@@ -79,7 +82,7 @@
       <HintPath>..\packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoInstallDetective.dll</HintPath>
     </Reference>
     <Reference Include="DynamoRevitDS, Version=2.18.1.8943, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.18.1.8943\lib\DynamoRevitDS.dll</HintPath>
+      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.17.0.7404\lib\DynamoRevitDS.dll</HintPath>
     </Reference>
     <Reference Include="DynamoServices, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\packages\DynamoVisualProgramming.DynamoServices.2.18.1.5096\lib\netstandard2.0\DynamoServices.dll</HintPath>
@@ -133,11 +136,11 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitNodes, Version=2.18.1.8943, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.18.1.8943\lib\RevitNodes.dll</HintPath>
+    <Reference Include="RevitNodes, Version=2.17.0.7404, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.17.0.7404\lib\RevitNodes.dll</HintPath>
     </Reference>
-    <Reference Include="RevitServices, Version=2.18.1.8943, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.18.1.8943\lib\RevitServices.dll</HintPath>
+    <Reference Include="RevitServices, Version=2.17.0.7404, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Revit.2.17.0.7404\lib\RevitServices.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -172,6 +175,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

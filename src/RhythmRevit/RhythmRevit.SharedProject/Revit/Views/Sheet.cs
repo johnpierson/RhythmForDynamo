@@ -1,13 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
-using Nuclex.Game.Packing;
-using RevitServices.Persistence;
-using RevitServices.Transactions;
-using Element = Revit.Elements.Element;
-
-namespace Rhythm.Revit.Views
+﻿namespace Rhythm.Revit.Views
 {
     /// <summary>
     /// A Revit ViewSheet

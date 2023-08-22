@@ -1,20 +1,13 @@
 ﻿using System;
-using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Element = Revit.Elements.Element;
-using Plane = Autodesk.DesignScript.Geometry.Plane;
 using Point = Autodesk.DesignScript.Geometry.Point;
-using Rectangle = Autodesk.DesignScript.Geometry.Rectangle;
-using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Rhythm.Revit.Views
 {

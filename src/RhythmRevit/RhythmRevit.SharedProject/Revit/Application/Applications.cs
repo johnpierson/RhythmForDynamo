@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using Rhythm.Utilities;
 using Autodesk.Revit.DB.Events;
 using System.IO;
+using Autodesk.Revit.UI;
+using Autodesk.Revit.UI.Events;
 
 namespace Rhythm.Revit.Application
 {
@@ -20,6 +20,52 @@ namespace Rhythm.Revit.Application
         private Applications()
         { }
 
+        #region WarningSuppressors
+        internal static EventHandler<DialogBoxShowingEventArgs> _dialogHandler;
+        internal static EventHandler<FailuresProcessingEventArgs> _warningsHandler;
+
+        /// <summary>
+        /// Assigns event handlers for DialogBoxShowing and FailuresProcessing if we're in debug mode
+        /// </summary>
+        internal static void ActivateSuppressors(UIApplication uiapp)
+        {
+
+            _dialogHandler = new EventHandler<DialogBoxShowingEventArgs>(DismissAllDialogs);
+            _warningsHandler = new EventHandler<FailuresProcessingEventArgs>(DismissAllWarnings);
+            uiapp.DialogBoxShowing += _dialogHandler;
+            uiapp.Application.FailuresProcessing += _warningsHandler;
+        }
+        /// <summary>
+        /// Assigns event handlers for DialogBoxShowing and FailuresProcessing if we're in debug mode
+        /// </summary>
+        internal static void DeactivateSuppressors(UIApplication uiapp)
+        {
+            uiapp.DialogBoxShowing -= _dialogHandler;
+            uiapp.Application.FailuresProcessing -= _warningsHandler;
+        }
+        /// <summary>
+        /// Will dismiss all dialogs
+        /// </summary>
+        internal static void DismissAllDialogs(object o, DialogBoxShowingEventArgs e)
+        {
+            e.OverrideResult(1);
+        }
+
+        /// <summary>
+        /// Will dismiss all warnings
+        /// </summary>
+        internal static void DismissAllWarnings(object o, FailuresProcessingEventArgs e)
+        {
+            FailuresAccessor fa = e.GetFailuresAccessor();
+            IList<FailureMessageAccessor> failList = fa.GetFailureMessages();
+            foreach (FailureMessageAccessor failure in failList)
+            {
+                fa.DeleteWarning(failure);
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// This node will open the given file in the background.
         /// </summary>
@@ -28,15 +74,24 @@ namespace Rhythm.Revit.Application
         /// <param name="detachFromCentral">Choose whether or not to detach from central upon opening. Only for RVT files. </param>
         /// <param name="preserveWorksets">Choose whether or not to preserve worksets upon opening. Only for RVT files. </param>
         /// <param name="closeAllWorksets">Choose if you want to close all worksets upon opening. Defaulted to false.</param>
+        /// <param name="suppressWarnings">Do you want to enable warning suppression? Caution, this is experimental and if something goes wrong you might have to restart Revit</param>
         /// <returns name="document">The document object. If the file path is blank this returns the current document.</returns>
         /// <search>
         /// Application.OpenDocumentFile, rhythm
         /// </search>
         [NodeCategory("Create")]
-        public static global::Revit.Application.Document OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true, bool closeAllWorksets = false)
+        public static global::Revit.Application.Document OpenDocumentFile(string filePath, bool audit = false, bool detachFromCentral = false, bool preserveWorksets = true, bool closeAllWorksets = false, bool suppressWarnings = false)
         {
+            //access the UI application and application
             var uiapp = DocumentManager.Instance.CurrentUIApplication;
             var app = uiapp.Application;
+
+            //if warning suppression is desired, then do it
+            if (suppressWarnings)
+            {
+                ActivateSuppressors(uiapp);
+            }
+
             //instantiate open options for user to pick to audit or not
             OpenOptions openOpts = new OpenOptions
             {
@@ -59,8 +114,16 @@ namespace Rhythm.Revit.Application
 
             var document = app.OpenDocumentFile(modelPath, openOpts);
 
+
+            //if warning suppression is desired and was used, turn it off
+            if (suppressWarnings)
+            {
+                DeactivateSuppressors(uiapp);
+            }
+
             return document.ToDynamoType();
         }
+
 
         /// <summary>
         /// This node will close the given document with the option to save.
