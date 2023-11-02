@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Tessellation\ConvexHull.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Geometry\Geometry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Application\Applications.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Application\Document.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\ElementFilter\ElementFilter.cs" />
@@ -71,9 +72,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\ViewPlan.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Views\ViewSection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Revit\Worksharing\Element.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\CurvesTopology.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\Dijkstra.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\EdgeAddress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\ListByPattern.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\NodeAddress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\PathMethod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\SearchMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Converters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\PointInPoly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\PointInPolyExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShortestWalk\Geometry\AStar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utilities\ShortestWalkUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\Utilities.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utilities\ViewUtils.cs" />
   </ItemGroup>

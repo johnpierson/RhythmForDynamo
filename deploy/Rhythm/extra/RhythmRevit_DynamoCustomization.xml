@@ -40,5 +40,8 @@
 	<namespace name="Rhythm.Geometry.Tessellation">
       <category>Rhythm.Geometry.Tessellation</category>
     </namespace>
+	  <namespace name="Rhythm.Geometry">
+		  <category>Rhythm.Geometry</category>
+	  </namespace>
   </namespaces>
 </doc>

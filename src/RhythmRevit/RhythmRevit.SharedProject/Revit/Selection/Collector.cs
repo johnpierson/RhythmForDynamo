@@ -6,6 +6,7 @@ using Dynamo.Graph.Nodes;
 using Revit.Elements;
 using RevitServices.Persistence;
 using Rhythm.Utilities;
+using Convert = Rhythm.Utilities.Convert;
 
 namespace Rhythm.Revit.Selection
 {
@@ -79,6 +80,25 @@ namespace Rhythm.Revit.Selection
             {
                 doc = document as Document;
             }
+
+
+            if (DocumentManager.Instance.CurrentDBDocument.Equals(doc))
+            {
+                throw new Exception(
+                    "Rhythm for Dynamo: Sorry this node doesn't work for current documents. Please use All Elements of Category for this");
+            };
+
+
+            if (category is null)
+            {
+                throw new Exception(
+                    "Rhythm for Dynamo: You did not input a category element. This node won't work without a valid Revit category.");
+            };
+            if (!category.GetType().ToString().Contains("Category"))
+            {
+                throw new Exception(
+                    "Rhythm for Dynamo: You did not input a category element. This node won't work without a valid Revit category.");
+            };
 
             var filter = new ElementCategoryFilter(category.ToRevitType().Id);
 

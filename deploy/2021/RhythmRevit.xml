@@ -68,6 +68,25 @@
             <param name="points"></param>
             <returns></returns>
         </member>
+        <member name="T:Rhythm.Geometry.Geometry">
+            <summary>
+            Wrapper for geometry
+            </summary>
+        </member>
+        <member name="M:Rhythm.Geometry.Geometry.LunchboxShortestWalk(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Line})">
+            <summary>
+            Find the 'Shortest Walk' within a curve network.  This node uses ported open source code by Giulio Piacentino of McNeel and Associates.
+            Made possible thanks to Proving Ground open-sourcing their package, Lunchbox. provingground.org
+            </summary>
+            <param name="CurveNetwork">A list of curve segments defining a network.</param>
+            <param name="Lengths">A list of lengths for each curve segment. Length does not need to be "actual" if you want to weight the curves.</param>
+            <param name="Paths">A list lines defining the start and end of the path.</param>
+            <returns name="Shortest Walk">The shortest walk path.</returns>
+            <returns name="Links">Resulting links.</returns>
+            <returns name="Directions">Resulting directions.</returns>
+            <returns name="Length">Resulting lengths.</returns>
+            <search>lunchbox, curves, shortest walk, sort, path, distance</search>
+        </member>
         <member name="T:Rhythm.Revit.Application.Applications">
             <summary>
             Wrapper class for application level nodes.
