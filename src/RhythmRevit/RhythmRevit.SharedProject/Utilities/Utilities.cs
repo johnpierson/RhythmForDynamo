@@ -9,6 +9,45 @@ using Autodesk.Revit.DB;
 
 namespace Rhythm.Utilities
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ReflectionUtils
+    {
+        private ReflectionUtils(){}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="thing"></param>
+        /// <returns></returns>
+        public static Dictionary<string,object> GetPropertiesAndValues(object thing)
+        {
+            var thingType = thing.GetType();
+
+            
+            IList<PropertyInfo> props = new List<PropertyInfo>(thingType.GetProperties());
+
+            List<object> propertyValues = new List<object>();
+
+            foreach (PropertyInfo prop in props)
+            {
+                object propValue = prop.GetValue(thing, null);
+
+                propertyValues.Add(propValue);
+            }
+
+            //returns the outputs
+            var outInfo = new Dictionary<string, object>
+            {
+                { "Property Name", props},
+                { "Property Value", propertyValues}
+            };
+            return outInfo;
+        }
+
+    }
     /// <summary>
     /// 
     /// </summary>

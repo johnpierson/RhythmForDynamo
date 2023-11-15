@@ -2411,6 +2411,18 @@
             XY plane by simply dropping the Z coordinate.
             </summary>
         </member>
+        <member name="T:Rhythm.Utilities.ReflectionUtils">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Utilities.ReflectionUtils.GetPropertiesAndValues(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="thing"></param>
+            <returns></returns>
+        </member>
         <member name="T:Rhythm.Utilities.MiscUtils">
             <summary>
             
