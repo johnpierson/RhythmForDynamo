@@ -20,10 +20,11 @@ namespace Rhythm.Utilities
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="thing"></param>
+        /// <param name="revitThing"></param>
         /// <returns></returns>
-        public static Dictionary<string,object> GetPropertiesAndValues(object thing)
+        public static Dictionary<string,object> GetPropertiesAndValues(global::Revit.Elements.Element revitThing)
         {
+            var thing = revitThing.InternalElement;
             var thingType = thing.GetType();
 
             

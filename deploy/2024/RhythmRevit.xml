@@ -2539,11 +2539,11 @@
             
             </summary>
         </member>
-        <member name="M:Rhythm.Utilities.ReflectionUtils.GetPropertiesAndValues(System.Object)">
+        <member name="M:Rhythm.Utilities.ReflectionUtils.GetPropertiesAndValues(Revit.Elements.Element)">
             <summary>
             
             </summary>
-            <param name="thing"></param>
+            <param name="revitThing"></param>
             <returns></returns>
         </member>
         <member name="T:Rhythm.Utilities.MiscUtils">
