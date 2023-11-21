@@ -20,12 +20,14 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R20</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R20'))">
         <DynamoVersion>2.3</DynamoVersion>
         <DynamoOutput>2.3</DynamoOutput>
         <RevitVersion>2020</RevitVersion>
         <DefineConstants>$(DefineConstants);R20</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R21'))">
         <DynamoVersion>2.6</DynamoVersion>
@@ -34,12 +36,14 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R21</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R21'))">
         <DynamoVersion>2.6</DynamoVersion>
         <DynamoOutput>2.6</DynamoOutput>
         <RevitVersion>2021</RevitVersion>
         <DefineConstants>$(DefineConstants);R21</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R22'))">
         <DynamoVersion>2.12</DynamoVersion>
@@ -48,12 +52,14 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R22</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R22'))">
         <DynamoVersion>2.12</DynamoVersion>
         <DynamoOutput>2.12</DynamoOutput>
         <RevitVersion>2022</RevitVersion>
         <DefineConstants>$(DefineConstants);R22</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug R23'))">
         <DynamoVersion>2.13</DynamoVersion>
@@ -62,24 +68,28 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
-    </PropertyGroup>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+	</PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
         <DynamoVersion>2.13</DynamoVersion>
         <DynamoOutput>2.13</DynamoOutput>
         <RevitVersion>2023</RevitVersion>
         <DefineConstants>$(DefineConstants);R23</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
 	<PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
         <DynamoVersion>2.18</DynamoVersion>
         <DynamoOutput>2.18</DynamoOutput>
         <RevitVersion>2024</RevitVersion>
         <DefineConstants>$(DefineConstants);R24</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
         <DynamoVersion>2.17</DynamoVersion>
         <DynamoOutput>2.17</DynamoOutput>
         <RevitVersion>2024</RevitVersion>
         <DefineConstants>$(DefineConstants);R24</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
 	<PropertyGroup Condition="$(Configuration.Contains('Debug R25'))">
         <DynamoVersion>3.0</DynamoVersion>
@@ -93,7 +103,7 @@
         <DynamoOutput>3.0</DynamoOutput>
         <RevitVersion>2025</RevitVersion>
         <DefineConstants>$(DefineConstants);R25</DefineConstants>
-		 <TargetFrameworkVersion>net7.0-windows</TargetFrameworkVersion>
+		<TargetFrameworkVersion>net7.0-windows</TargetFrameworkVersion>
     </PropertyGroup>
 	 <PropertyGroup>
         <DynVersion>$(DynamoVersion)</DynVersion>
@@ -175,7 +185,7 @@
         <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     </ItemGroup>
 	  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
-        <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
+        <PackageReference Include="DynamoVisualProgramming.Revit" Version="3.0.0.3033" />
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.0.0-beta6885" />
         <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
