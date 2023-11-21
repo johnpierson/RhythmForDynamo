@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
@@ -85,34 +85,61 @@
         <DynVersion>$(DynamoVersion)</DynVersion>
         <BuildOutput>$(DynamoOutput)</BuildOutput>
         <PublishSingleFile>true</PublishSingleFile>
-        <PublishTrimmed>true</PublishTrimmed>
         <Copyright>MIT</Copyright>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>dynamo</PackageTags>
         <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\RhythmRevit\</FolderPackages>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R24|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R20|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R21|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R22|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R23|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R24|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R20|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R21|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R22|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R23|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
 	  <ItemGroup>
-        <Reference Include="System.Windows"/>
+        <Reference Include="System.Windows" />
     </ItemGroup>
 	  <ItemGroup>
-        <ProjectReference Include="..\RhythmCore\RhythmCore.csproj"/>
-        <ProjectReference Include="..\RhythmViewExtension\RhythmViewExtension.csproj"/>
-        <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
-        <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*"/>
-        <PackageReference Include="Chuongmep.Revit.Api.AdWindows" Version="$(RevitVersion).*"/>
+        <PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
+        <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
+        <PackageReference Include="Chuongmep.Revit.Api.AdWindows" Version="$(RevitVersion).*" />
         <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
-        <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*"/>
-        <PackageReference Include="CommonServiceLocator" Version="1.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-        <PackageReference Include="NUnit" Version="2.6.3"/>
-        <PackageReference Include="Prism" Version="4.1.0.0"/>
-        <PackageReference Include="System.Buffers" Version="4.5.1"/>
-        <PackageReference Include="System.Collections.Immutable" Version="1.7.1"/>
-        <PackageReference Include="System.Memory" Version="4.5.4"/>
-        <PackageReference Include="System.Numerics.Vectors" Version="4.5.0"/>
-        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3"/>
-        <PackageReference Include="Microsoft.CSharp" Version="4.7.0"/>
-        <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0"/>
+        <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
+        <PackageReference Include="CommonServiceLocator" Version="1.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NUnit" Version="2.6.3" />
+        <PackageReference Include="Prism" Version="4.1.0.0" />
+        <PackageReference Include="System.Buffers" Version="4.5.1" />
+        <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
+        <PackageReference Include="System.Memory" Version="4.5.4" />
+        <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+        <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     </ItemGroup>
 </Project>
