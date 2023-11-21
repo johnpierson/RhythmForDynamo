@@ -1,15 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
+	 <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+	<UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <PlatformTarget>x64</PlatformTarget>
     <AssemblyTitle>RhythmExtension.2024</AssemblyTitle>
     <Product>RhythmExtension.2024</Product>
     <Copyright>Copyright ©  2023</Copyright>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmExtension.dll" "$(ProjectDir)..\..\deploy\" /Y /I
-</PostBuildEvent>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmExtension.dll" "$(ProjectDir)..\..\deploy\" /Y /I
-</PostBuildEvent>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmExtension.dll" "$(ProjectDir)..\..\deploy\" /Y /I
-</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -29,42 +27,21 @@
     <DebugType>pdbonly</DebugType>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmExtension.dll" "$(ProjectDir)..\..\deploy\" /Y /I
-</PostBuildEvent>
-  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CommonServiceLocator" Version="1.0" />
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="2.18.1.5096" />
-    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="2.18.1.5096" />
-    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="2.18.1.5096" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NUnit" Version="2.6.3" />
+    <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.0.0-beta6885" />
+    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="3.0.0-beta6885" />
+    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="3.0.0-beta6885" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NUnit" Version="4.0.0-beta.1" />
     <PackageReference Include="Prism" Version="4.1.0.0" />
     <PackageReference Include="System.Buffers" Version="4.5.1" />
-    <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
-    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="CoreNodeModels, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.18.1.5096\lib\net48\CoreNodeModels.dll</HintPath>
-    </Reference>
-    <Reference Include="CoreNodeModelsWpf, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.18.1.5096\lib\net48\CoreNodeModelsWpf.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoCoreWpf, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\DynamoVisualProgramming.WpfUILibrary.2.18.1.5096\lib\net48\DynamoCoreWpf.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
+  
   <ItemGroup>
     <EmbeddedResource Include="Revit\21\RhythmRevit.dll" />
   </ItemGroup>
@@ -81,9 +58,16 @@
     <EmbeddedResource Include="Revit\24\RhythmRevit.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="obj\x64\Release\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
   </ItemGroup>
+  <Target Name="CopyFiles" AfterTargets="CoreBuild">
+        <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
+        <ItemGroup>
+            <AssemblyFiles Include="$(TargetDir)RhythmExtension.dll" />
+            
+        </ItemGroup>
+        <Message Text="Copying From $(TargetDir) To $(FolderPackages)" Importance="high" />
+        <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\..\deploy" />
+        <Message Text="Copied Completed" Importance="high" />
+    </Target>
 </Project>

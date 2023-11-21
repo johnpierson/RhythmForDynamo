@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{0B4B05E9-C1A8-4767-8307-98914BCC6842}</ProjectGuid>
-     <UseWPF>true</UseWPF>
-		 <UseWindowsForms>true</UseWindowsForms>
+        <ProjectGuid>{0B4B05E9-C1A8-4767-8307-98914BCC6842}</ProjectGuid>
+        <UseWPF>true</UseWPF>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
         <LangVersion>latest</LangVersion>
         <PlatformTarget>x64</PlatformTarget>
         <ImplicitUsings>true</ImplicitUsings>
@@ -54,4 +55,14 @@
     <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="3.0.0-beta6885" />
     <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="3.0.0-beta6885" />
   </ItemGroup>
+  <Target Name="CopyFiles" AfterTargets="CoreBuild">
+        <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
+        <ItemGroup>
+            <AssemblyFiles Include="$(TargetDir)RhythmViewExtension.dll" />
+            
+        </ItemGroup>
+        <Message Text="Copying From $(TargetDir) To $(FolderPackages)" Importance="high" />
+        <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\..\deploy" />
+        <Message Text="Copied Completed" Importance="high" />
+    </Target>
 </Project>
