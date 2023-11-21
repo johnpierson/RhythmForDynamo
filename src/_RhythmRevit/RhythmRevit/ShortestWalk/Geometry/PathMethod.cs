@@ -67,7 +67,12 @@ namespace Rhythm.ShortestWalk.Geometry
                 curveList.Add(curve);
                 totLength += this.m_dist[num];
             }
+#if !R25_OR_GREATER
             return (Curve)PolyCurve.ByJoinedCurves((IEnumerable<Curve>)curveList, 0.001);
+#endif
+#if R25_OR_GREATER
+            return (Curve)PolyCurve.ByJoinedCurves((IEnumerable<Curve>)curveList, 0.001,false,false);
+#endif
         }
 
         protected int FindEdge(int currentNode, int nxt, out bool rev)

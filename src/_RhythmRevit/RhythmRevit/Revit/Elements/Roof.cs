@@ -42,11 +42,19 @@ namespace Rhythm.Revit.Elements
             try
             {
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-
+#if !R24_OR_GREATER
                 internalRoof.SlabShapeEditor.Enable();
                 SlabShapeVertex vertex1 = internalRoof.SlabShapeEditor.DrawPoint(startPoint.ToXyz());
                 SlabShapeVertex vertex2 = internalRoof.SlabShapeEditor.DrawPoint(endPoint.ToXyz());
                 internalRoof.SlabShapeEditor.DrawSplitLine(vertex1, vertex2);
+#endif
+#if R24_OR_GREATER
+                internalRoof.GetSlabShapeEditor().Enable();
+                SlabShapeVertex vertex1 = internalRoof.GetSlabShapeEditor().DrawPoint(startPoint.ToXyz());
+                SlabShapeVertex vertex2 = internalRoof.GetSlabShapeEditor().DrawPoint(endPoint.ToXyz());
+                internalRoof.GetSlabShapeEditor().DrawSplitLine(vertex1, vertex2);
+#endif
+
 
                 TransactionManager.Instance.TransactionTaskDone();
                 result = "Success.";
@@ -77,8 +85,15 @@ namespace Rhythm.Revit.Elements
             try
             {
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+#if !R24_OR_GREATER
                 internalRoof.SlabShapeEditor.Enable();
                 SlabShapeVertex vertex1 = internalRoof.SlabShapeEditor.DrawPoint(point.ToXyz());
+#endif
+#if R24_OR_GREATER
+                internalRoof.GetSlabShapeEditor().Enable();
+                SlabShapeVertex vertex1 = internalRoof.GetSlabShapeEditor().DrawPoint(point.ToXyz());
+#endif
+
                 TransactionManager.Instance.TransactionTaskDone();
                 result = "Success.";
             }
