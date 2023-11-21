@@ -71,7 +71,7 @@ namespace Rhythm.ShortestWalk.Geometry
             return (Curve)PolyCurve.ByJoinedCurves((IEnumerable<Curve>)curveList, 0.001);
 #endif
 #if R25_OR_GREATER
-            return (Curve)PolyCurve.ByJoinedCurves((IEnumerable<Curve>)curveList, 0.001,false,false);
+            return (Curve)PolyCurve.ByJoinedCurves((IEnumerable<Curve>)curveList, 0.001,false);
 #endif
         }
 

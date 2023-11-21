@@ -4,7 +4,7 @@
         <TargetFrameworks>net48;net7.0-windows</TargetFrameworks>
         <OutputType>Library</OutputType>
         <RootNamespace>Rhythm</RootNamespace>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
         <UseWindowsForms>true</UseWindowsForms>
         <UseWPF>true</UseWPF>
         <PlatformTarget>x64</PlatformTarget>
@@ -114,6 +114,12 @@
         <PackageTags>dynamo</PackageTags>
         <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\RhythmRevit\</FolderPackages>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <Version>$(RevitVersion).12.1</Version>
+        <Description>Rhythm for Dynamo|Revit$(RevitVersion)</Description>
+        <FileVersion>$(RevitVersion).12.1</FileVersion>
+        <AssemblyVersion>$(RevitVersion).12.1</AssemblyVersion>
+        <Title>Rhythm for Dynamo|Revit$(RevitVersion)</Title>
+        <Product>Rhythm for Dynamo|Revit$(RevitVersion)</Product>
     </PropertyGroup>
 	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R24|AnyCPU'">
 	   <Optimize>True</Optimize>
@@ -151,7 +157,7 @@
 	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
 	   <Optimize>True</Optimize>
 	 </PropertyGroup>
-	  <ItemGroup>
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
         <Reference Include="System.Windows" />
     </ItemGroup>
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'"> 
@@ -191,16 +197,34 @@
 	  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
         <PackageReference Include="DynamoVisualProgramming.Revit" Version="3.0.0.3033" />
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.0.0-beta6885" />
+		<PackageReference Include="DynamoVisualProgramming.Core" Version="3.0.0-beta6885" />
         <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NUnit" Version="3.14.0" />
         <PackageReference Include="Prism" Version="4.1.0.0" />
         <PackageReference Include="System.Buffers" Version="4.5.1" />
-        <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
+        <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
         <PackageReference Include="System.Memory" Version="4.5.4" />
         <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
         <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
         <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     </ItemGroup>
+	<Target Name="CopyFiles" AfterTargets="CoreBuild">
+        <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
+        <ItemGroup>
+            <AssemblyFiles Include="$(TargetDir)RhythmRevit.dll" />
+            <AssemblyFiles Include="$(TargetDir)*.xml" />
+            
+            <!--            <XmlCustomization Include="$(SolutionDir)docs\*.xml"/>-->
+            <!--      <DyfFiles Include="$(SolutionDir)docs\dyf\*.*" />-->
+        </ItemGroup>
+        <Message Text="Copying From $(TargetDir) To $(FolderPackages)" Importance="high" />
+
+        <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\..\deploy\$(RevitVersion)" />
+
+        <!--        <Copy SourceFiles="@(DyfFiles)" DestinationFolder="$(FolderPackages)dyf"/>-->
+        <Message Text="Copied Completed" Importance="high" />
+
+    </Target>
 </Project>

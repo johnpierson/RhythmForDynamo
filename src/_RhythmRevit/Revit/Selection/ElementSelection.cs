@@ -4,6 +4,7 @@ using Autodesk.Revit.DB;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
+using RevitLinkInstance = Autodesk.Revit.DB.RevitLinkInstance;
 
 namespace Rhythm.Revit.Selection
 {

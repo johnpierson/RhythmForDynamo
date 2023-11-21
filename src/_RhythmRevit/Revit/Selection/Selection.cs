@@ -19,6 +19,7 @@ using Grid = Autodesk.Revit.DB.Grid;
 using ModelCurve = Autodesk.Revit.DB.ModelCurve;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Reference = Autodesk.Revit.DB.Reference;
+using RevitLinkInstance = Autodesk.Revit.DB.RevitLinkInstance;
 
 namespace Rhythm.Revit.Selection
 {
