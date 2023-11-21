@@ -3,18 +3,48 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhythmCore", "RhythmCore.csproj", "{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhythmCore", "RhythmCore.csproj", "{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug R20|Any CPU = Debug R20|Any CPU
+		Debug R21|Any CPU = Debug R21|Any CPU
+		Debug R22|Any CPU = Debug R22|Any CPU
+		Debug R23|Any CPU = Debug R23|Any CPU
+		Debug R24|Any CPU = Debug R24|Any CPU
+		Debug R25|Any CPU = Debug R25|Any CPU
+		Release R20|Any CPU = Release R20|Any CPU
+		Release R21|Any CPU = Release R21|Any CPU
+		Release R22|Any CPU = Release R22|Any CPU
+		Release R23|Any CPU = Release R23|Any CPU
+		Release R24|Any CPU = Release R24|Any CPU
+		Release R25|Any CPU = Release R25|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R20|Any CPU.ActiveCfg = Debug R20|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R20|Any CPU.Build.0 = Debug R20|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R21|Any CPU.ActiveCfg = Debug R21|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R21|Any CPU.Build.0 = Debug R21|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R22|Any CPU.ActiveCfg = Debug R22|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R22|Any CPU.Build.0 = Debug R22|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R23|Any CPU.ActiveCfg = Debug R23|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R23|Any CPU.Build.0 = Debug R23|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R24|Any CPU.ActiveCfg = Debug R24|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R24|Any CPU.Build.0 = Debug R24|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R25|Any CPU.ActiveCfg = Debug R25|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R25|Any CPU.Build.0 = Debug R25|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R20|Any CPU.ActiveCfg = Release R20|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R20|Any CPU.Build.0 = Release R20|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R21|Any CPU.ActiveCfg = Release R21|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R21|Any CPU.Build.0 = Release R21|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R22|Any CPU.ActiveCfg = Release R22|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R22|Any CPU.Build.0 = Release R22|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R23|Any CPU.ActiveCfg = Release R23|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R23|Any CPU.Build.0 = Release R23|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R24|Any CPU.ActiveCfg = Release R24|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R24|Any CPU.Build.0 = Release R24|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R25|Any CPU.ActiveCfg = Release R25|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R25|Any CPU.Build.0 = Release R25|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
