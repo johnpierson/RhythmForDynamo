@@ -34,6 +34,15 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <None Remove="Revit\20\RhythmUI.dll" />
+    <None Remove="Revit\21\RhythmUI.dll" />
+    <None Remove="Revit\22\RhythmUI.dll" />
+    <None Remove="Revit\23\RhythmUI.dll" />
+    <None Remove="Revit\24\RhythmUI.dll" />
+    <None Remove="Revit\25\RhythmRevit.dll" />
+    <None Remove="Revit\25\RhythmUI.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="RhythmMessageBox.xaml.cs">
       <DependentUpon>RhythmMessageBox.xaml</DependentUpon>
     </Compile>
@@ -43,10 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Revit\20\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\20\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\21\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\21\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\22\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\22\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\23\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\23\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\24\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\24\RhythmUI.dll" />
+    <EmbeddedResource Include="Revit\25\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\25\RhythmUI.dll" />
   </ItemGroup>
 
   <ItemGroup>

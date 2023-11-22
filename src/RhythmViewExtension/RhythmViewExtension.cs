@@ -59,12 +59,14 @@ namespace RhythmViewExtension
             //first run setup. If this is the first install of Rhythm, load the correct Revit DLLs.
             if (!File.Exists(Global.RhythmRevitDll))
             {
-                // Get resource name
-                var resourceName = Global.EmbeddedLibraries.FirstOrDefault(x => x.Contains(version));
-                if (resourceName == null)
+                // Get resource name for our DLLs
+                var revitResourceName = Global.EmbeddedRevitLibraries.FirstOrDefault(x => x.Contains(version));
+                if (revitResourceName == null)
                 {
                     return;
                 }
+
+                var revitUiResourceName = Global.EmbeddedRevitUiLibraries.FirstOrDefault(x => x.Contains(version));
 
                 var vm = new RhythmMessageBoxViewModel
                 {
@@ -76,30 +78,42 @@ namespace RhythmViewExtension
                 RhythmMessageBox messageBox =
                     new RhythmMessageBox()
                     {
-                        // Set the data context for the main grid in the window.
+                        //Set the data context for the main grid in the window.
                         MainGrid = { DataContext = vm },
-                        // Set the owner of the window to the Dynamo window.
+                        //Set the owner of the window to the Dynamo window.
                         Owner = p.DynamoWindow,
                     };
 
                 messageBox.Show();
 
-                // Load assembly from resource
-                using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(resourceName))
+                //install and load the revit nodes
+                using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName))
                 {
                     var bytes = new byte[stream.Length];
                     stream.Read(bytes, 0, bytes.Length);
 
                     File.WriteAllBytes(Global.RhythmRevitDll, bytes);
                 }
+                //install and load the revit ui nodes
+                if (!string.IsNullOrWhiteSpace(revitUiResourceName))
+                {
+                    using var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName);
+                    var bytes = new byte[stream.Length];
+                    stream.Read(bytes, 0, bytes.Length);
 
-                //load the darn thing
+                    File.WriteAllBytes(Global.RhythmRevitUiDll, bytes);
+                }
+
+                //load the regular revit nodes
                 var assembly = Assembly.Load(Global.RhythmRevitDll);
                 p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(assembly);
 
+                //try to load the ui nodes
+                var uiAssembly = Assembly.Load(Global.RhythmRevitUiDll);
+                p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(uiAssembly);
+
                 //rewrite the json
                 File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
-
 
                 messageBox.Close();
             }

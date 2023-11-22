@@ -43,22 +43,38 @@
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Include="Revit\20\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\21\RhythmRevit.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Revit\20\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\21\RhythmUI.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Revit\22\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\22\RhythmUI.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Revit\23\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\23\RhythmUI.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Revit\24\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\24\RhythmUI.dll" />
+    <EmbeddedResource Include="Revit\25\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\25\RhythmUI.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="obj\x64\Release\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Revit\20\RhythmUI.dll" />
+    <None Remove="Revit\21\RhythmUI.dll" />
+    <None Remove="Revit\22\RhythmUI.dll" />
+    <None Remove="Revit\23\RhythmUI.dll" />
+    <None Remove="Revit\24\RhythmUI.dll" />
+    <None Remove="Revit\25\RhythmRevit.dll" />
+    <None Remove="Revit\25\RhythmUI.dll" />
   </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
