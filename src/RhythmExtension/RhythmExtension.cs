@@ -85,23 +85,25 @@ namespace RhythmExtension
             //install and load the revit ui nodes
             if (!string.IsNullOrWhiteSpace(revitUiResourceName))
             {
-                using var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName);
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
+                using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName))
+                {
+                    var bytes = new byte[stream.Length];
+                    stream.Read(bytes, 0, bytes.Length);
 
-                File.WriteAllBytes(Global.RhythmRevitUiDll, bytes);
+                    File.WriteAllBytes(Global.RhythmRevitUiDll, bytes);
+                }
             }
 
             //load the regular revit nodes
             var assembly = Assembly.Load(Global.RhythmRevitDll);
             sp.LibraryLoader.LoadNodeLibrary(assembly);
-
-            //try to load the ui nodes
-            var uiAssembly = Assembly.Load(Global.RhythmRevitUiDll);
-            sp.LibraryLoader.LoadNodeLibrary(uiAssembly);
-
+            
             //rewrite the json
             File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
+
+            
+
+            
         }
     }
 }

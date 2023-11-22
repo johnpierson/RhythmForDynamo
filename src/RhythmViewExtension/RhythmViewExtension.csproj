@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+		<TargetFrameworks>net48</TargetFrameworks>
         <ProjectGuid>{0B4B05E9-C1A8-4767-8307-98914BCC6842}</ProjectGuid>
         <UseWPF>true</UseWPF>
 		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -7,7 +8,6 @@
         <LangVersion>latest</LangVersion>
         <PlatformTarget>x64</PlatformTarget>
         <ImplicitUsings>true</ImplicitUsings>
-        <TargetFramework>net7.0-windows</TargetFramework>
     <AssemblyTitle>Rhythm for Dynamo| View Extension</AssemblyTitle>
     <Product>Rhythm for Dynamo| View Extension</Product>
     <Copyright>Copyright ©  2023</Copyright>
@@ -32,8 +32,11 @@
     <DebugType>pdbonly</DebugType>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
-  <PropertyGroup />
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
+  </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\System.Runtime.dll" />
     <None Remove="Revit\20\RhythmUI.dll" />
     <None Remove="Revit\21\RhythmUI.dll" />
     <None Remove="Revit\22\RhythmUI.dll" />
@@ -51,6 +54,7 @@
     <Resource Include="Resources\sadDog.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\System.Runtime.dll" />
     <EmbeddedResource Include="Revit\20\RhythmRevit.dll" />
     <EmbeddedResource Include="Revit\20\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\21\RhythmRevit.dll" />
@@ -64,12 +68,11 @@
     <EmbeddedResource Include="Revit\25\RhythmRevit.dll" />
     <EmbeddedResource Include="Revit\25\RhythmUI.dll" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.0.0-beta6885" />
-    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="3.0.0-beta6885" />
-    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="3.0.0-beta6885" />
-    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="3.0.0-beta6885" />
+       <PackageReference Include="DynamoVisualProgramming.Core" Version="2.19.4.6671" />
+    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="2.19.4.6671" />
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="2.19.4.6671" />
+    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="2.19.4.6671" />
   </ItemGroup>
   <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />

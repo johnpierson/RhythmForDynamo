@@ -26,8 +26,8 @@ namespace RhythmViewExtension
 
         public void Startup(ViewStartupParams p)
         {
-            var stuff = Global.PackageBinFolder;
-            var otherStuff = Global.PackageExtraFolder;
+            //var stuff = Global.PackageBinFolder;
+            //var otherStuff = Global.PackageExtraFolder;
         }
 
         private ViewLoadedParams loaded = null;
@@ -107,11 +107,6 @@ namespace RhythmViewExtension
                 //load the regular revit nodes
                 var assembly = Assembly.Load(Global.RhythmRevitDll);
                 p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(assembly);
-
-                //try to load the ui nodes
-                var uiAssembly = Assembly.Load(Global.RhythmRevitUiDll);
-                p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(uiAssembly);
-
                 //rewrite the json
                 File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
 
