@@ -1,39 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-		<TargetFrameworks>net48</TargetFrameworks>
+		<TargetFrameworks>net8.0-windows</TargetFrameworks>
         <ProjectGuid>{0B4B05E9-C1A8-4767-8307-98914BCC6842}</ProjectGuid>
         <UseWPF>true</UseWPF>
-		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<OutputType>Library</OutputType>
+        <RootNamespace>RhythmViewExtension</RootNamespace>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
-        <LangVersion>latest</LangVersion>
         <PlatformTarget>x64</PlatformTarget>
-        <ImplicitUsings>true</ImplicitUsings>
-    <AssemblyTitle>Rhythm for Dynamo| View Extension</AssemblyTitle>
-    <Product>Rhythm for Dynamo| View Extension</Product>
-    <Copyright>Copyright ©  2023</Copyright>
-    <AssemblyVersion>2023.9.1</AssemblyVersion>
-    <FileVersion>2023.9.1</FileVersion>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<Configurations>Debug R25;</Configurations>
+        <Configurations>$(Configurations)Release R25;</Configurations>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <DebugType>full</DebugType>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <DebugType>pdbonly</DebugType>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+   </PropertyGroup>
+   <PropertyGroup Condition="$(Configuration.Contains('Release R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net6.0-windows7.0</TargetFramework>
+    <DynVersion>$(DynamoVersion)</DynVersion>
+	<AssemblyTitle>Rhythm for Dynamo| View Extension</AssemblyTitle>
+	<Product>Rhythm for Dynamo| View Extension</Product>
+	<Copyright>Copyright ©  2023</Copyright>
+	<AssemblyVersion>2023.9.1</AssemblyVersion>
+	<FileVersion>2023.9.1</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\System.Runtime.dll" />
@@ -69,11 +68,12 @@
     <EmbeddedResource Include="Revit\25\RhythmUI.dll" />
   </ItemGroup>
   <ItemGroup>
-       <PackageReference Include="DynamoVisualProgramming.Core" Version="2.19.4.6671" />
-    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="2.19.4.6671" />
-    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="2.19.4.6671" />
-    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="2.19.4.6671" />
+     <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="$(DynVersion).*" />
   </ItemGroup>
+ 
   <Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
         <ItemGroup>

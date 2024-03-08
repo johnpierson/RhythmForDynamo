@@ -7,14 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhythmViewExtension", "Rhyt
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug R25|Any CPU = Debug R25|Any CPU
+		Release R25|Any CPU = Release R25|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug R25|Any CPU.ActiveCfg = Debug R25|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Debug R25|Any CPU.Build.0 = Debug R25|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release R25|Any CPU.ActiveCfg = Release R25|Any CPU
+		{0B4B05E9-C1A8-4767-8307-98914BCC6842}.Release R25|Any CPU.Build.0 = Release R25|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

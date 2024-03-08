@@ -97,14 +97,14 @@
         <DynamoOutput>3.0</DynamoOutput>
         <RevitVersion>2025</RevitVersion>
         <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
-		 <TargetFrameworkVersion>net7.0-windows</TargetFrameworkVersion>
+		 <TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R25'))">
         <DynamoVersion>3.0</DynamoVersion>
         <DynamoOutput>3.0</DynamoOutput>
         <RevitVersion>2025</RevitVersion>
         <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
-		<TargetFrameworkVersion>net7.0-windows</TargetFrameworkVersion>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
     </PropertyGroup>
 	 <PropertyGroup>
         <DynVersion>$(DynamoVersion)</DynVersion>
