@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-        <TargetFrameworks>net48</TargetFrameworks>
-		<!--            <TargetFrameworks>net7.0-windows</TargetFrameworks>>-->
+		<!--<TargetFrameworks>net48</TargetFrameworks>-->
+		<TargetFrameworks>net8.0-windows</TargetFrameworks>
         <OutputType>Library</OutputType>
         <RootNamespace>Rhythm</RootNamespace>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -86,8 +86,8 @@
 		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
-        <DynamoVersion>2.17</DynamoVersion>
-        <DynamoOutput>2.17</DynamoOutput>
+        <DynamoVersion>2.19</DynamoVersion>
+        <DynamoOutput>2.19</DynamoOutput>
         <RevitVersion>2024</RevitVersion>
         <DefineConstants>$(DefineConstants);R24;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER</DefineConstants>
 		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
@@ -161,55 +161,31 @@
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
         <Reference Include="System.Windows" />
     </ItemGroup>
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'"> 
-		
-		<Reference Include="UIFramework">
-	      <HintPath>C:\Program Files\Autodesk\Revit 2025\UIFramework.dll</HintPath>
-        </Reference>
-		<Reference Include="AdWindows">
-	      <HintPath>C:\Program Files\Autodesk\Revit 2025\AdWindows.dll</HintPath>
-        </Reference>
-		<Reference Include="RevitAPI">
-	      <HintPath>C:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
-        </Reference>
-		<Reference Include="RevitAPIUI">
-	     <HintPath>C:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-	  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
-        <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
+	<ItemGroup>
+	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
-        <PackageReference Include="CommonServiceLocator" Version="1.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="NUnit" Version="2.6.3" />
         <PackageReference Include="Prism" Version="4.1.0.0" />
         <PackageReference Include="System.Buffers" Version="4.5.1" />
-        <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
         <PackageReference Include="System.Memory" Version="4.5.4" />
         <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
         <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
         <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="Chuongmep.Revit.Api.RevitAPI" Version="$(RevitVersion).*" />
-        <PackageReference Include="Chuongmep.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*" />
-		<PackageReference Include="Chuongmep.Revit.Api.AdWindows" Version="$(RevitVersion).*" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*-*" />
         <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
-    </ItemGroup>
-	  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
-        <PackageReference Include="DynamoVisualProgramming.Revit" Version="3.0.0.3033" />
-        <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.0.0-beta6885" />
-		<PackageReference Include="DynamoVisualProgramming.Core" Version="3.0.0-beta6885" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
+		<PackageReference Include="CommonServiceLocator" Version="1.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NUnit" Version="2.6.3" />
+        <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
         <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NUnit" Version="3.14.0" />
-        <PackageReference Include="Prism" Version="4.1.0.0" />
-        <PackageReference Include="System.Buffers" Version="4.5.1" />
         <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
-        <PackageReference Include="System.Memory" Version="4.5.4" />
-        <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-        <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     </ItemGroup>
 	<Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
