@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RhythmViewExtension
 {
-    public class RhythmMessageBoxViewModel: ViewModelBase
+    public class RhythmMessageBoxViewModel
 
     {
     private string _userMessage;

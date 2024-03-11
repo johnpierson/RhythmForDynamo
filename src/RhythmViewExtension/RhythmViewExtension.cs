@@ -68,7 +68,6 @@ namespace RhythmViewExtension
 
                 var vm = new RhythmMessageBoxViewModel
                 {
-                    IsCollapsed = false,
                     UserMessage = $"Loading correct Rhythm version for Revit 20{version}. Please wait...",
                     WrongVersionLoaded = false
                 };
@@ -130,7 +129,7 @@ namespace RhythmViewExtension
 
                     var vm = new RhythmMessageBoxViewModel()
                     {
-                        IsCollapsed = false,
+                       
                         UserMessage = $"Incompatible Rhythm version loaded. You have {fileInfo.FileDescription} loaded. " +
                                       $"You should reinstall from the package manager. Also, you made the dog sad. You monster. " +
                                       $"For more info, click the question mark button.",
