@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using CoreNodeModels.Input;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
@@ -97,11 +95,13 @@ namespace RhythmViewExtension
                 //install and load the revit ui nodes
                 if (!string.IsNullOrWhiteSpace(revitUiResourceName))
                 {
-                    using var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName);
-                    var bytes = new byte[stream.Length];
-                    stream.Read(bytes, 0, bytes.Length);
+                    using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitUiResourceName))
+                    {
+                        var bytes = new byte[stream.Length];
+                        stream.Read(bytes, 0, bytes.Length);
 
-                    File.WriteAllBytes(Global.RhythmRevitUiDll, bytes);
+                        File.WriteAllBytes(Global.RhythmRevitUiDll, bytes);
+                    }
                 }
 
                 //load the regular revit nodes

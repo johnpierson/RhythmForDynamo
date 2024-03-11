@@ -89,7 +89,7 @@ namespace RhythmExtension
             //install and load the revit ui nodes
             if (!string.IsNullOrWhiteSpace(revitUiResourceName))
             {
-                using var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName);
+                using var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitUiResourceName);
                 var bytes = new byte[stream.Length];
                 stream.Read(bytes, 0, bytes.Length);
 
@@ -99,7 +99,6 @@ namespace RhythmExtension
             //load the regular revit nodes
             try
             {
-                Thread.Sleep(2000);
                 var assembly = Assembly.Load(Global.RhythmRevitDll);
                 sp.LibraryLoader.LoadNodeLibrary(assembly);
             }
