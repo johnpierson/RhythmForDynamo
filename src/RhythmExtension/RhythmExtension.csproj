@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-   <TargetFrameworks>net48</TargetFrameworks>
+   <TargetFrameworks>net8.0-windows</TargetFrameworks>
 	 <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
 	<UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
@@ -8,30 +8,36 @@
     <AssemblyTitle>RhythmExtension.2024</AssemblyTitle>
     <Product>RhythmExtension.2024</Product>
     <Copyright>Copyright ©  2023</Copyright>
+ <Configurations>Debug R25;</Configurations>
+        <Configurations>$(Configurations)Release R25;</Configurations>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <DebugType>full</DebugType>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <DebugType>pdbonly</DebugType>
-    <LangVersion>7.3</LangVersion>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+   </PropertyGroup>
+   <PropertyGroup Condition="$(Configuration.Contains('Release R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+   </PropertyGroup>
+    <PropertyGroup>
+    <DynVersion>$(DynamoVersion)</DynVersion>
+	<AssemblyTitle>Rhythm for Dynamo| Extension</AssemblyTitle>
+	<Product>Rhythm for Dynamo| Extension</Product>
+	<Copyright>Copyright ©  2023</Copyright>
+	<AssemblyVersion>2023.9.1</AssemblyVersion>
+	<FileVersion>2023.9.1</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-     <PackageReference Include="DynamoVisualProgramming.Core" Version="2.19.4.6671" />
-    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="2.19.4.6671" />
-    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="2.19.4.6671" />
-    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="2.19.4.6671" />
+     <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.DynamoServices" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
+    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="$(DynVersion).*" />
   </ItemGroup>
   
   <ItemGroup>

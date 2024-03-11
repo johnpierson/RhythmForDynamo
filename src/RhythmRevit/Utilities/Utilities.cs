@@ -13,42 +13,42 @@ namespace Rhythm.Utilities
     /// <summary>
     /// 
     /// </summary>
-    public class ReflectionUtils
-    {
-        private ReflectionUtils(){}
+    //public class ReflectionUtils
+    //{
+    //    private ReflectionUtils(){}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="revitThing"></param>
-        /// <returns></returns>
-        public static Dictionary<string,object> GetPropertiesAndValues(global::Revit.Elements.Element revitThing)
-        {
-            var thing = revitThing.InternalElement;
-            var thingType = thing.GetType();
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="revitThing"></param>
+    //    /// <returns></returns>
+    //    public static Dictionary<string,object> GetPropertiesAndValues(global::Revit.Elements.Element revitThing)
+    //    {
+    //        var thing = revitThing.InternalElement;
+    //        var thingType = thing.GetType();
 
             
-            IList<PropertyInfo> props = new List<PropertyInfo>(thingType.GetProperties());
+    //        IList<PropertyInfo> props = new List<PropertyInfo>(thingType.GetProperties());
 
-            List<object> propertyValues = new List<object>();
+    //        List<object> propertyValues = new List<object>();
 
-            foreach (PropertyInfo prop in props)
-            {
-                object propValue = prop.GetValue(thing, null);
+    //        foreach (PropertyInfo prop in props)
+    //        {
+    //            object propValue = prop.GetValue(thing, null);
 
-                propertyValues.Add(propValue);
-            }
+    //            propertyValues.Add(propValue);
+    //        }
 
-            //returns the outputs
-            var outInfo = new Dictionary<string, object>
-            {
-                { "Property Name", props},
-                { "Property Value", propertyValues}
-            };
-            return outInfo;
-        }
+    //        //returns the outputs
+    //        var outInfo = new Dictionary<string, object>
+    //        {
+    //            { "Property Name", props},
+    //            { "Property Value", propertyValues}
+    //        };
+    //        return outInfo;
+    //    }
 
-    }
+    //}
     /// <summary>
     /// 
     /// </summary>

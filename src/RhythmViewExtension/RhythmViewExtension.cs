@@ -105,8 +105,16 @@ namespace RhythmViewExtension
                 }
 
                 //load the regular revit nodes
-                var assembly = Assembly.Load(Global.RhythmRevitDll);
-                p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(assembly);
+                try
+                {
+                    var assembly = Assembly.Load(Global.RhythmRevitDll);
+                    p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(assembly);
+                }
+                catch (Exception e)
+                {
+                    //
+                }
+                
                 //rewrite the json
                 File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
 

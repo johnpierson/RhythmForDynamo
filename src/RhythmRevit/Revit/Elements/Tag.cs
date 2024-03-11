@@ -66,7 +66,7 @@ namespace Rhythm.Revit.Elements
                 return internalTag.LeaderEnd.ToPoint();
 
 #endif
-#if R22 || R23 || R24 || R25
+#if R22_OR_GREATER 
                 return internalTag.GetTaggedReferences().Select(r => internalTag.GetLeaderEnd(r).ToPoint()).ToList();
 #endif
             }
@@ -102,7 +102,7 @@ namespace Rhythm.Revit.Elements
                 return internalTag.LeaderElbow.ToPoint();
 
 #endif
-#if R22_OR_GREATER
+#if !(R20 || R21)
                 return internalTag.GetTaggedReferences().Select(r => internalTag.GetLeaderElbow(r).ToPoint()).ToList();
 #endif
             }
