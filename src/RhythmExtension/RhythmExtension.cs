@@ -99,6 +99,7 @@ namespace RhythmExtension
             //load the regular revit nodes
             try
             {
+                Thread.Sleep(2000);
                 var assembly = Assembly.Load(Global.RhythmRevitDll);
                 sp.LibraryLoader.LoadNodeLibrary(assembly);
             }
