@@ -1,0 +1,520 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RhythmUI</name>
+    </assembly>
+    <members>
+        <member name="T:RhythmUI.Utilities.IElementSelectionFilter">
+            <summary>
+            Used as a flag to show "this is a filter that will only filter for elements,
+            the AllowReference-Method always passes true.
+            Instances of IElementSelectionFilter and IReferenceSelectionFilter can only be combined
+            with an "LogicalAnd"; combining them with "or" will result in a filter that will let everything pass.
+            </summary>
+        </member>
+        <member name="T:RhythmUI.Utilities.ILogicalCombinationFilter">
+            <summary>
+            Interface for logical filters. Allows the user to read and set the executeAll-Property
+            </summary>
+        </member>
+        <member name="P:RhythmUI.Utilities.ILogicalCombinationFilter.ExecuteAll">
+            <summary>
+            If true, all filters are executed, even if the result is already defined.
+            Default is false
+            </summary>
+        </member>
+        <member name="T:RhythmUI.Utilities.IReferenceSelectionFilter">
+            <summary>
+            Used as a flag to show "this is a filter that will only filter for references;
+            the AllowElement-Method always passes true.
+            Instances of IElementSelectionFilter and IReferenceSelectionFilter can only be combined
+            with an "LogicalAnd"; combining them with "or" will result in a filter that will let everything pass.
+            </summary>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter``1">
+            <summary>
+            Creates a selection filter, which only elements of Type T will pass
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Creates a selection filter, which elements of any Type in the collection will pass
+            </summary>
+            <param name="allowedTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter(System.Type,System.Type[])">
+            <summary>
+            Creates a selection filter, which elements of any of the given Types  will pass
+            </summary>
+            <param name="type"> </param>
+            <param name="types"> </param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter(Autodesk.Revit.DB.ElementFilter)">
+            <summary>
+            Creates a selection filter from an ElementFilter
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter(System.Func{Autodesk.Revit.DB.Element,System.Boolean})">
+            <summary>
+            Creates a selection filter that will use the "filterMethod" to filter the elements
+            </summary>
+            <param name="filterMethod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter(System.Predicate{Autodesk.Revit.DB.Element})">
+            <summary>
+            Creates a selection filter that will use the "filterMethod" to filter the elements
+            </summary>
+            <param name="filterMethod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter(Autodesk.Revit.DB.ElementId,Autodesk.Revit.DB.ElementId[])">
+            <summary>
+             Creates a selection filter that will let pass only the elements defined by the ids
+            </summary>
+            <param name="id"></param>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetElementFilter(System.Collections.Generic.IEnumerable{Autodesk.Revit.DB.ElementId})">
+            <summary>
+             Creates a selection filter that will let pass only the elements defined by the ids
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetReferenceFilter(System.Func{Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ,System.Boolean})">
+            <summary>
+            Creates a selection filter that will use the "filterMethod" to filter the references
+            </summary>
+            <param name="filterMethod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetPlanarFaceFilter(Autodesk.Revit.DB.Document)">
+            <summary>
+            Creates a selection filter that will let only PlanarFace-References pass
+            </summary>
+            <param name="doc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetFaceNormalFilter(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.XYZ,System.Boolean)">
+            <summary>
+            Creates a selection filter that will let faces pass, if their normal vector at (0/0) is 
+            codirectional or parallel to the given normal vector
+            </summary>
+            <param name="doc"></param>
+            <param name="normal"></param>
+            <param name="acceptParallel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetFilter(System.Func{Autodesk.Revit.DB.Element,System.Boolean},System.Func{Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <param name="elementFilterMethod"></param>
+            <param name="referencesFilterMethod"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetLogicalOrFilter(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter,System.Boolean)">
+            <summary>
+            Creates a logical "or" filter
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <param name="executeAll"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetLogicalOrFilter(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter[])">
+            <summary>
+            Creates a logical "or" filter
+            </summary>
+            <param name="first"></param>
+            <param name="filters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetLogicalOrFilter(System.Collections.Generic.IEnumerable{Autodesk.Revit.UI.Selection.ISelectionFilter})">
+            <summary>
+            Creates a logical "or" filter
+            </summary>
+            <param name="filters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetLogicalAndFilter(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter,System.Boolean)">
+            <summary>
+            Creates a logical "and" filter
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <param name="executeAll"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetLogicalAndFilter(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter[])">
+            <summary>
+            Creates a logical "and" filter
+            </summary>
+            <param name="first"></param>
+            <param name="filters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetLogicalAndFilter(System.Collections.Generic.IEnumerable{Autodesk.Revit.UI.Selection.ISelectionFilter})">
+            <summary>
+            Creates a logical "and" filter
+            </summary>
+            <param name="filters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.GetLogicalNotFilter(Autodesk.Revit.UI.Selection.ISelectionFilter)">
+            <summary>
+            Creates a logical "not" filter
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.Or(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter[])">
+            <summary>
+            Creates a logical "or" filter
+            </summary>
+            <param name="_this"></param>
+            <param name="filters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.And(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter[])">
+            <summary>
+            Creates a logical "and" filter
+            </summary>
+            <param name="_this"></param>
+            <param name="filters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.Not(Autodesk.Revit.UI.Selection.ISelectionFilter)">
+            <summary>
+            Creates a logical "not" filter
+            </summary>
+            <param name="_this"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.ElementSelectionFilter">
+            <summary>
+            Private class that represents a selection filter which will filter only for elements
+            and lets all references pass
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementSelectionFilter.AllowReference(Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ)">
+            <summary>
+            This class does not filter for references
+            </summary>
+            <param name="reference"></param>
+            <param name="position"></param>
+            <returns>true</returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.ElementTypeFilter">
+            <summary>
+            Private class that represents a filter for one or more ElementTypes
+            </summary>
+        </member>
+        <member name="F:RhythmUI.Utilities.SelFilter.ElementTypeFilter.m_types">
+            <summary>
+            List of the allowed types 
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementTypeFilter.#ctor(System.Type)">
+            <summary>
+            Constructs a Filter for a single Type
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementTypeFilter.#ctor(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Constructs a Filter for a list of Types
+            </summary>
+            <param name="types"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementTypeFilter.#ctor(System.Type,System.Type[])">
+            <summary>
+            Constructs a Filter for a number of Types
+            </summary>
+            <param name="type"></param>
+            <param name="types"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementTypeFilter.AllowElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            
+            </summary>
+            <param name="elem"></param>
+            <returns>true, if <paramref name="elem"/> is of an allowed Type</returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.ElementFilterFilter">
+            <summary>
+            Private class that represents a filter using an ElementFilter
+            </summary>
+        </member>
+        <member name="F:RhythmUI.Utilities.SelFilter.ElementFilterFilter.m_filter">
+            <summary>
+            The ElementFilter that is used
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementFilterFilter.#ctor(Autodesk.Revit.DB.ElementFilter)">
+            <summary>
+            Constructs a SelectionFilter for an ElementFilter
+            </summary>
+            <param name="filter"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementFilterFilter.AllowElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            An element passes if it passes the ElementFilter
+            </summary>
+            <param name="elem"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.ElementIdFilter">
+            <summary>
+            Private class that represents a filter for one or more specific elements.
+            Especially usefull when and-combined with a ReferenceFilter
+            </summary>
+        </member>
+        <member name="F:RhythmUI.Utilities.SelFilter.ElementIdFilter.m_ids">
+            <summary>
+            The list of valid ElementIds
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementIdFilter.#ctor(Autodesk.Revit.DB.ElementId,Autodesk.Revit.DB.ElementId[])">
+            <summary>
+            Constructs a ElementIdFilter for one or more ElementIds
+            </summary>
+            <param name="id"></param>
+            <param name="ids"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementIdFilter.#ctor(System.Collections.Generic.IEnumerable{Autodesk.Revit.DB.ElementId})">
+            <summary>
+            Constructs a ElementIdFilter for a Collection of ElementIds
+            </summary>
+            <param name="ids"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.ElementIdFilter.AllowElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            An Element passes if its Id is in the List of valid Ids
+            </summary>
+            <param name="elem"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.DelegatesFilter">
+            <summary>
+            Private class, that represents a filter using delegate methods
+            </summary>
+        </member>
+        <member name="F:RhythmUI.Utilities.SelFilter.DelegatesFilter.m_elementFilter">
+            <summary>
+            The delegate used to filter elements
+            </summary>
+        </member>
+        <member name="F:RhythmUI.Utilities.SelFilter.DelegatesFilter.m_referenceFilter">
+            <summary>
+            The delegate used to filter References
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.DelegatesFilter.#ctor(System.Func{Autodesk.Revit.DB.Element,System.Boolean},System.Func{Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ,System.Boolean})">
+            <summary>
+            Constructs a filter that uses the elementFilter- and referenceFilter-delegates
+            </summary>
+            <param name="elementFilter"></param>
+            <param name="referenceFilter"></param>
+        </member>
+        <member name="P:RhythmUI.Utilities.SelFilter.DelegatesFilter.AllElements">
+            <summary>
+            Use this, if all Elements should pass the Filter
+            </summary>
+        </member>
+        <member name="P:RhythmUI.Utilities.SelFilter.DelegatesFilter.AllReferences">
+            <summary>
+            Use this, if all References should pass the Filter
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.DelegatesFilter.AllowElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            Elements that passes the elementFilter-Predicate will pass
+            </summary>
+            <param name="elem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.DelegatesFilter.AllowReference(Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ)">
+            <summary>
+            Elements that passes the referenceFilter-Predicate will pass
+            </summary>
+            <param name="reference"> </param>
+            <param name="position"> </param>
+            <returns></returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.LogicalCombinationFilter">
+            <summary>
+            Private class that represents a logical or filter for selection filters.
+            </summary>
+        </member>
+        <member name="F:RhythmUI.Utilities.SelFilter.LogicalCombinationFilter.m_filterList">
+            <summary>
+            List of the filters to check
+            </summary>
+        </member>
+        <member name="P:RhythmUI.Utilities.SelFilter.LogicalCombinationFilter.ExecuteAll">
+            <summary>
+            If true, all filters are executed, even if the result is already obvious
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalCombinationFilter.#ctor(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter,System.Boolean)">
+            <summary>
+            Constructs a logical filter for two selectionFilters
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <param name="executeAll"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalCombinationFilter.#ctor(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter[])">
+            <summary>
+            Constructs a logical filter for a number of selectionsFilters
+            executeAll is set to false
+            </summary>
+            <param name="first"></param>
+            <param name="filters"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalCombinationFilter.#ctor(System.Collections.Generic.IEnumerable{Autodesk.Revit.UI.Selection.ISelectionFilter})">
+            <summary>
+            Constructs a logical filter for a number of selectionsFilters
+            executeAll is set to false
+            </summary>
+            <param name="filters"></param>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.LogicalOrFilter">
+            <summary>
+            Private class that represents a logical or filter
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalOrFilter.#ctor(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter,System.Boolean)">
+            <summary>
+            Constructs a logical or filter for two Filters
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <param name="executeAll"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalOrFilter.#ctor(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter[])">
+            <summary>
+            Constructs a logical or filter for a number of filters
+            </summary>
+            <param name="first"></param>
+            <param name="filters"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalOrFilter.#ctor(System.Collections.Generic.IEnumerable{Autodesk.Revit.UI.Selection.ISelectionFilter})">
+            <summary>
+            Constructs a logical or filter for a number of filters
+            </summary>
+            <param name="filters"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalOrFilter.AllowElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            Elements that pass at least on of the filters will pass
+            </summary>
+            <param name="elem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalOrFilter.AllowReference(Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ)">
+            <summary>
+            References that pass at least on of the filters will pass
+            </summary>
+            <param name="reference"></param>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.LogicalAndFilter">
+            <summary>
+            Private class that represents a logical and filter
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalAndFilter.#ctor(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter,System.Boolean)">
+            <summary>
+            Constructs a logical and filter for two Filters
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <param name="executeAll"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalAndFilter.#ctor(Autodesk.Revit.UI.Selection.ISelectionFilter,Autodesk.Revit.UI.Selection.ISelectionFilter[])">
+            <summary>
+            Constructs a logical and filter for a number of filters
+            </summary>
+            <param name="first"></param>
+            <param name="filters"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalAndFilter.#ctor(System.Collections.Generic.IEnumerable{Autodesk.Revit.UI.Selection.ISelectionFilter})">
+            <summary>
+            Constructs a logical and filter for a number of filters
+            </summary>
+            <param name="filters"></param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalAndFilter.AllowElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            Elements that pass all of the filters will pass
+            </summary>
+            <param name="elem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalAndFilter.AllowReference(Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ)">
+            <summary>
+            References that pass all of the filters will pass
+            </summary>
+            <param name="reference"></param>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RhythmUI.Utilities.SelFilter.LogicalNotFilter">
+            <summary>
+            Private class that represents a logical Not filter
+            </summary>
+        </member>
+        <member name="F:RhythmUI.Utilities.SelFilter.LogicalNotFilter.m_filter">
+            <summary>
+            The filter, that will get negated
+            </summary>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalNotFilter.#ctor(Autodesk.Revit.UI.Selection.ISelectionFilter)">
+            <summary>
+            constructs a not-Filter
+            </summary>
+            <param name="filter"> </param>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalNotFilter.AllowElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            Elements will pass, if they don't pass the original filter
+            </summary>
+            <param name="elem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RhythmUI.Utilities.SelFilter.LogicalNotFilter.AllowReference(Autodesk.Revit.DB.Reference,Autodesk.Revit.DB.XYZ)">
+            <summary>
+            References will pass, if they don't pass the original filter
+            </summary>
+            <param name="reference"></param>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RevitElementSelectionHelper`1.RequestSelectionOfType(System.String,CoreNodeModels.SelectionType,CoreNodeModels.SelectionObjectType)">
+            <summary>
+            Request an element in a selection.
+            </summary>
+            <typeparam name="T">The type of the Element.</typeparam>
+            <param name="selectionMessage">The message to display.</param>
+            <param name="selectionType">The selection type.</param>
+            <param name="objectType">The selection object type.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

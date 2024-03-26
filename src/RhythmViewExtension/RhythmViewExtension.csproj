@@ -1,185 +1,101 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0B4B05E9-C1A8-4767-8307-98914BCC6842}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RhythmViewExtension</RootNamespace>
-    <AssemblyName>RhythmViewExtension</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+		<TargetFrameworks>net48</TargetFrameworks>
+		<!--<TargetFrameworks>net8.0-windows</TargetFrameworks>-->
+        <ProjectGuid>{0B4B05E9-C1A8-4767-8307-98914BCC6842}</ProjectGuid>
+        <UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<OutputType>Library</OutputType>
+        <RootNamespace>RhythmViewExtension</RootNamespace>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <PlatformTarget>x64</PlatformTarget>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<Configurations>Debug R24;Debug R25;</Configurations>
+        <Configurations>$(Configurations)Release R24;Release R25;</Configurations>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
+        <DynamoVersion>2.19</DynamoVersion>
+        <DynamoOutput>2.19</DynamoOutput>
+        <RevitVersion>2024</RevitVersion>
+        <DefineConstants>$(DefineConstants);R24;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
+        <DynamoVersion>2.19</DynamoVersion>
+        <DynamoOutput>2.19</DynamoOutput>
+        <RevitVersion>2024</RevitVersion>
+        <DefineConstants>$(DefineConstants);R24;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.Contains('Debug R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+   </PropertyGroup>
+   <PropertyGroup Condition="$(Configuration.Contains('Release R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+   </PropertyGroup>
+  <PropertyGroup>
+    <DynVersion>$(DynamoVersion)</DynVersion>
+	<AssemblyTitle>Rhythm for Dynamo| View Extension</AssemblyTitle>
+	<Product>Rhythm for Dynamo| View Extension</Product>
+	<Copyright>Copyright ©  2023</Copyright>
+	<AssemblyVersion>2023.9.1</AssemblyVersion>
+	<FileVersion>2023.9.1</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CoreNodeModels, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.2.18.1.5096\lib\net48\CoreNodeModels.dll</HintPath>
-    </Reference>
-    <Reference Include="CoreNodeModelsWpf, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.2.18.1.5096\lib\net48\CoreNodeModelsWpf.dll</HintPath>
-    </Reference>
-    <Reference Include="DesignScriptBuiltin, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DesignScriptBuiltin.dll</HintPath>
-    </Reference>
-    <Reference Include="DSCPython, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DSCPython.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoApplications, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoApplications.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoCore, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoCore.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoCoreWpf, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.WpfUILibrary.2.18.1.5096\lib\net48\DynamoCoreWpf.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoInstallDetective, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoInstallDetective.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoServices, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.DynamoServices.2.18.1.5096\lib\netstandard2.0\DynamoServices.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoShapeManager, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoShapeManager.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoUnits, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.ZeroTouchLibrary.2.18.1.5096\lib\net48\DynamoUnits.dll</HintPath>
-    </Reference>
-    <Reference Include="DynamoUtilities, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\DynamoUtilities.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="ProtoCore, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\ProtoCore.dll</HintPath>
-    </Reference>
-    <Reference Include="ProtoGeometry, Version=2.18.0.1365, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.ZeroTouchLibrary.2.18.1.5096\lib\net48\ProtoGeometry.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Immutable, Version=1.2.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Collections.Immutable.1.7.1\lib\net461\System.Collections.Immutable.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="VMDataBridge, Version=2.18.1.5096, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>packages\DynamoVisualProgramming.Core.2.18.1.5096\lib\net48\VMDataBridge.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowsBase" />
+    <None Remove="Resources\System.Runtime.dll" />
+    <None Remove="Revit\20\RhythmUI.dll" />
+    <None Remove="Revit\21\RhythmUI.dll" />
+    <None Remove="Revit\22\RhythmUI.dll" />
+    <None Remove="Revit\23\RhythmUI.dll" />
+    <None Remove="Revit\24\RhythmUI.dll" />
+    <None Remove="Revit\25\RhythmRevit.dll" />
+    <None Remove="Revit\25\RhythmUI.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Global.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RhythmMessageBox.xaml.cs">
+    <Compile Update="RhythmMessageBox.xaml.cs">
       <DependentUpon>RhythmMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RhythmMessageBoxViewModel.cs" />
-    <Compile Include="RhythmViewExtension.cs" />
-    <Compile Include="Utilities\VersionUtils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="RhythmMessageBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\sadDog.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\logo.png" />
+    <EmbeddedResource Include="Resources\System.Runtime.dll" />
     <EmbeddedResource Include="Revit\20\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\20\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\21\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\21\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\22\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\22\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\23\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\23\RhythmUI.dll" />
     <EmbeddedResource Include="Revit\24\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\24\RhythmUI.dll" />
+    <EmbeddedResource Include="Revit\25\RhythmRevit.dll" />
+    <EmbeddedResource Include="Revit\25\RhythmUI.dll" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release xcopy "$(ProjectDir)bin\x64\Release\RhythmViewExtension.dll" "$(ProjectDir)..\..\deploy" /Y /I
-</PostBuildEvent>
-  </PropertyGroup>
+  <ItemGroup>
+
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
+
+  </ItemGroup>
+ 
+  <Target Name="CopyFiles" AfterTargets="CoreBuild">
+        <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
+        <ItemGroup>
+            <AssemblyFiles Include="$(TargetDir)RhythmViewExtension.dll" />
+            
+        </ItemGroup>
+        <Message Text="Copying From $(TargetDir) To $(FolderPackages)" Importance="high" />
+        <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\..\deploy" />
+        <Message Text="Copied Completed" Importance="high" />
+    </Target>
 </Project>

@@ -32,3 +32,10 @@
 20221109: [Fixes] Fix output port duplication for Titleblock Types node. Hopefully load in Revit 2020 again.
 20221129: [Fixes] Fix skipped segment curves trying to output a polycurve all the time.
 20230106: [Removals] Removed python nodes for additional cross-compatibility between Revit versions.
+20230202: [Additions] New node for getting longest matching string in two strings.
+20230207: [IMPORTANT] This publish was primarily to override the temporary publish for Revit legacy support (2020 and older) v2023.2.1.
+20230412: [Fixes] Fix return dictionary for upgrade nodes.
+20230724:[Removals] Removed the isolated link selection node. [Fixes] Should be compatible from Revit 2021 - 2024
+20230807; [Fixes] Unhide the floor nodes.
+20230822: [Fixes] Release to include auto-versioning for Revit DLLs
+20231122: [Testing] This build is to test Dynamo 3.0 compatibility
