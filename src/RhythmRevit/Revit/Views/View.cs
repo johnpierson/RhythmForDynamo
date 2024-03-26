@@ -41,7 +41,7 @@ namespace Rhythm.Revit.Views
 
 
 
-            return !viewports.Any() ? new List<Element>() : viewports.Select(v => doc.GetElement(v.Id).ToDSType(true)).ToList();
+            return !viewports.Any() ? new List<Element>() : viewports.Select(v => doc.GetElement(v.Id).ToDSType(false)).ToList();
         }
 
 
