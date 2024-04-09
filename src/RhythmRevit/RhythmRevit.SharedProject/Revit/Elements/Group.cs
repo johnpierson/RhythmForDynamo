@@ -6,6 +6,7 @@ using RevitServices.Transactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Revit.GeometryConversion;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using FloorType = Autodesk.Revit.DB.FloorType;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -122,6 +123,31 @@ namespace Rhythm.Revit.Elements
 
             return specificOriginGroup.ToDSType(false);
         }
+
+        //public static global::Revit.Elements.Element RemoveElementsFromGroup(global::Revit.Elements.Element group,
+        //    List<global::Revit.Elements.Element> elementsToRemove)
+        //{
+        //    Document doc = group.InternalElement.Document;
+
+        //    Autodesk.Revit.DB.Group internalGroup = group.InternalElement as Autodesk.Revit.DB.Group;
+
+        //    var originalLocation = internalGroup.Location as LocationPoint;
+        //    var originalLocationPoint = originalLocation.Point;
+
+        //    var toRemoveIds = elementsToRemove.Select(e => e.InternalElement.Id).ToList();
+
+        //    var originalGroupIds = internalGroup.GetMemberIds().ToList();
+
+        //    var newGroupIds = originalGroupIds.Except(toRemoveIds).ToList();
+
+        //    var newGroupElements = newGroupIds.Select(e => doc.GetElement(e).ToDSType(false)).ToList();
+
+        //    var offsetLocation = new XYZ(originalLocationPoint.X, originalLocationPoint.Y,
+        //        originalLocationPoint.Z + 1000);
+
+
+        //    return ByElementsAndOrigin(newGroupElements, group.Name, offsetLocation.ToPoint());
+        //}
     }
 
 }

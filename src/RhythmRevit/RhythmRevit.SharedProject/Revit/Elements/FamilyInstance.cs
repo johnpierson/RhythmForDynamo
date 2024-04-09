@@ -14,6 +14,8 @@ using RevitServices.Transactions;
 using Document = Autodesk.Revit.DB.Document;
 using SketchPlane = Autodesk.Revit.DB.SketchPlane;
 using StructuralType = Autodesk.Revit.DB.Structure.StructuralType;
+using System.DirectoryServices.ActiveDirectory;
+using Autodesk.DesignScript.Runtime;
 
 namespace Rhythm.Revit.Elements
 {
@@ -405,6 +407,87 @@ namespace Rhythm.Revit.Elements
                 { "familyInstance", famInstance}
             };
             return outInfo;
-        }   
+        }
+
+        /// <summary>
+        /// Detect if the input family instance has arrays set to less than 1
+        /// </summary>
+        /// <param name="familyInstance">The family instance to check</param>
+        /// <returns name="containsArraysLessThan1">Does the instance have arrays of less than 1?</returns>
+        /// <returns name="arrayParameters">The parameter names of arrays (if applicable).</returns>
+        /// <returns name="arrayValues">The parameter values of arrays (if applicable).</returns>
+        [MultiReturn(new[] { "containsArraysLessThan1", "arrayParameters", "arrayValues" })]
+        public static Dictionary<string, object> ArrayInterrogator(global::Revit.Elements.FamilyInstance familyInstance)
+        {
+            //lists to output results
+            List<string> arrayParameters = new List<string>();
+            List<bool> results = new List<bool>();
+            List<int> arrayValues = new List<int>();
+
+
+            //cast the family to internal type and get its symbol/family to edit
+            Autodesk.Revit.DB.FamilyInstance internalFamilyInstance = familyInstance.InternalElement as Autodesk.Revit.DB.FamilyInstance;
+            var family = internalFamilyInstance.Symbol.Family;
+
+            //our current document and family document to work with
+            var doc = internalFamilyInstance.Document;
+            var familyDoc = doc.EditFamily(family);
+
+            //check if there are arrays, if not return false
+            var arrays = new FilteredElementCollector(familyDoc).OfCategory(BuiltInCategory.OST_IOSArrays).ToElements();
+            if (!arrays.Any())
+            {
+                results.Add(false);
+
+                //returns the outputs
+                var noArraysLessThan1 = new Dictionary<string, object>
+                {
+                    { "containsArraysLessThan1", false},
+                    { "arrayParameters", arrayParameters},
+                    { "arrayValues", arrayValues}
+                };
+                return noArraysLessThan1;
+            };
+            
+            //iterate through arrays to get the associated parameters
+            foreach (var array in arrays)
+            {
+                switch (array)
+                {
+                    case LinearArray linearArray:
+                    {
+                        string arrayParameterName = linearArray.Label.Definition.Name;
+                        arrayParameters.Add(arrayParameterName);
+                        break;
+                    }
+                    case RadialArray radialArray:
+                    {
+                        string arrayParameterName = radialArray.Label.Definition.Name;
+                        arrayParameters.Add(arrayParameterName);
+                        break;
+                    }
+                }
+            }
+            //now check the values to return results
+            foreach (string arrayParam in arrayParameters)
+            {
+                int arrayValue = internalFamilyInstance.LookupParameter(arrayParam).AsInteger();
+                arrayValues.Add(arrayValue);
+
+                results.Add(arrayValue <= 1);
+            }
+
+            //are any of these things less than 1?
+            var containsArraysLessThan1 = results.Any(r => r.Equals(true));
+
+            //returns the outputs
+            var outInfo = new Dictionary<string, object>
+            {
+                { "containsArraysLessThan1", containsArraysLessThan1},
+                { "arrayParameters", arrayParameters},
+                { "arrayValues", arrayValues}
+            };
+            return outInfo;
+        }
     }
 }
