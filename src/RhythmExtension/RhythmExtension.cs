@@ -1,8 +1,11 @@
 ﻿using Dynamo.Extensions;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using DSCore;
+using Thread = System.Threading.Thread;
 
 namespace RhythmExtension
 {
@@ -17,7 +20,9 @@ namespace RhythmExtension
 
         public string UniqueId => "CD7A123A-7121-4FA4-99D3-D941CD049EA5";
 
+#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
         public void Dispose()
+#pragma warning restore CA1816 // Dispose methods should call SuppressFinalize
         {
 
         }
@@ -62,32 +67,50 @@ namespace RhythmExtension
         /// We get here because someone is missing the freakin DLLs
         /// </summary>
         /// <param name="version"></param>
-        private void FirstRunSetup(StartupParams sp,string version)
+        private static void FirstRunSetup(StartupParams sp,string version)
         {
-            // Get resource name
-            var resourceName = Global.EmbeddedLibraries.FirstOrDefault(x => x.Contains(version));
-            if (resourceName == null)
+            // Get resource name for our DLLs
+            var revitResourceName = Global.EmbeddedRevitLibraries.FirstOrDefault(x => x.Contains(version));
+            if (revitResourceName == null)
             {
                 return;
             }
 
-            // Load assembly from resource
-            using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(resourceName))
+            var revitUiResourceName = Global.EmbeddedRevitUiLibraries.FirstOrDefault(x => x.Contains(version));
+
+            //install and load the revit nodes
+            using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName))
             {
                 var bytes = new byte[stream.Length];
                 stream.Read(bytes, 0, bytes.Length);
 
                 File.WriteAllBytes(Global.RhythmRevitDll, bytes);
             }
+            //install and load the revit ui nodes
+            if (!string.IsNullOrWhiteSpace(revitUiResourceName))
+            {
+                using var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitUiResourceName);
+                var bytes = new byte[stream.Length];
+                stream.Read(bytes, 0, bytes.Length);
 
-            var assembly = Assembly.Load(Global.RhythmRevitDll);
+                File.WriteAllBytes(Global.RhythmRevitUiDll, bytes);
+            }
 
-            sp.LibraryLoader.LoadNodeLibrary(assembly);
-
-
+            //load the regular revit nodes
+            try
+            {
+                Thread.Sleep(2000);
+                var assembly = Assembly.Load(Global.RhythmRevitDll);
+                sp.LibraryLoader.LoadNodeLibrary(assembly);
+            }
+            catch (Exception e)
+            {
+                string message = e.Message;
+            }
+    
+            
             //rewrite the json
             File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
         }
-
     }
 }

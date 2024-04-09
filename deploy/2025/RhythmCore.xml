@@ -1,0 +1,478 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RhythmCore</name>
+    </assembly>
+    <members>
+        <member name="T:Rhythm.About.About">
+            <summary>
+            Wrapper for about class.
+            </summary>
+        </member>
+        <member name="M:Rhythm.About.About.AboutRhythm">
+            <summary>
+            This is mostly to show the icon in the Dynamo 2.0 library.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.GenerativeDesign.GenerativeDesign">
+            <summary>
+            Wrapper class for generative design
+            </summary>
+        </member>
+        <member name="M:Rhythm.GenerativeDesign.GenerativeDesign.PackViewports(Autodesk.DesignScript.Geometry.Rectangle,System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Rectangle},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            
+            </summary>
+            <param name="container"></param>
+            <param name="viewportRectangles"></param>
+            <param name="viewportIds"></param>
+            <returns name="viewportsThatFit">The viewports that fit in the titleblock container</returns>
+            <returns name="proposedLocations">The proposed locations</returns>
+            <returns name="viewportRectangles">The rectangles</returns>
+        </member>
+        <member name="T:Rhythm.GenerativeDesign.RandomDistribution">
+            <summary>
+            Wrapper for random distribution. This section made possible with https://github.com/MarcoFazioRandom/Gaussian-Random under the MIT license
+            </summary>
+        </member>
+        <member name="M:Rhythm.GenerativeDesign.RandomDistribution.NextGaussian(System.Double)">
+            <summary>
+            Return a number in the range (-1, +1) with a Normal distributed probability using the Marsaglia polar method.
+            </summary>
+            <param name="standardDeviation"> 
+            It is a measure of the amount of variation or dispersion of the values.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Helpers.Helpers">
+            <summary>
+            Wrapper Class for Helpers
+            </summary>
+        </member>
+        <member name="M:Rhythm.Helpers.Helpers.Toggle(System.Collections.Generic.List{System.Object},System.Boolean)">
+            <summary>
+            This provides a toggle based on boolean input. Replacement for Rhythm.Toggle.
+            </summary>
+            <param name="obj">The object to passthrough.</param>
+            <param name="toggle">Toggle the passthrough.</param>
+            <returns name = "result">The object.</returns>
+        </member>
+        <member name="M:Rhythm.Helpers.Helpers.ThisOrThat(System.Collections.Generic.List{System.Object},System.Collections.Generic.List{System.Object},System.Boolean)">
+            <summary>
+            This provides a toggle input to select between 2 inputs.
+            </summary>
+            <param name="obj1">First choice.</param>
+            <param name="obj2">Second choice.</param>
+            <param name="toggle">True for option 1, false for option 2.</param>
+            <returns name = "result">The object.</returns>
+        </member>
+        <member name="T:Rhythm.Helpers.ImportExport">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Helpers.ImportExport.ScreenshotMainWindow(System.String)">
+            <summary>
+            Creates a full screenshot of the main window.
+            </summary>
+            <param name="filepath">The image filepath</param>
+        </member>
+        <member name="T:Rhythm.Helpers.System">
+            <summary>
+            Wrapper class for system stuff
+            </summary>
+        </member>
+        <member name="M:Rhythm.Helpers.System.CurrentUserTempFolder(System.Boolean)">
+            <summary>
+            This returns the temporary path for the current user.
+            </summary>
+            <param name="refresh">Optional toggle to refresh the node</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Helpers.System.CurrentUserAppData(System.Boolean)">
+            <summary>
+            This returns the appdata path for the current user.
+            </summary>
+            <param name="refresh">Optional toggle to refresh the node</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Helpers.System.CurrentUserDomainName(System.Boolean)">
+            <summary>
+            Returns the domain name of the current user.
+            </summary>
+            <param name="refresh">Optional toggle to refresh the node</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Helpers.System.SendToClipboard(System.String)">
+            <summary>
+            Send the given string to the clipboard
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:Rhythm.Helpers.System.CurrentUserName(System.Boolean)">
+            <summary>
+            Returns the current windows user.
+            </summary>
+            <param name="refresh">Optional toggle to refresh the node</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Helpers.System.MachineName(System.Boolean)">
+            <summary>
+            Returns the current computer name.
+            </summary>
+            <param name="refresh">Optional toggle to refresh the node</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Helpers.System.JiggleMouse(System.Boolean,System.Double)">
+            <summary>
+            This will move your mouse back and forth slowly while toggled true.
+            </summary>
+            <param name="runIt">True will cause the mouse to move on it's own.</param>
+            <param name="interval">Time between movements (in seconds).</param>
+        </member>
+        <member name="T:Rhythm.Math.MarkovChain">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Math.MarkovChain.PredictNext(System.String[],System.String)">
+            <summary>
+            Prediction with a markov chain
+            </summary>
+            <param name="trainingData"></param>
+            <param name="previous"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.Numbers.Numbers">
+            <summary>
+            Wrapper class for numbers
+            </summary>
+        </member>
+        <member name="M:Rhythm.Numbers.Numbers.ToWords(System.Int32,System.String)">
+            <summary>
+            Convert the input numbers into words. Only considers whole numbers (integers).
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="number"></param>
+            <param name="locale">This offers the option to override the locale of the words.
+            By default it uses your computer's locale, you can override this with the list here. https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c?redirectedfrom=MSDN</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Numbers.Numbers.ToOrdinalWords(System.Int32,System.String,System.Boolean)">
+            <summary>
+            Convert the input numbers into ordinal words. Only considers whole numbers (integers) (Eg. 1 becomes 1st).
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="number"></param>
+            <param name="locale">This offers the option to override the locale of the words.
+                By default it uses your computer's locale, you can override this with the list here. https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c?redirectedfrom=MSDN</param>
+            <param name="fullWord"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Numbers.Numbers.ToRoman(System.Int32)">
+            <summary>
+            Convert the input numbers into roman numerals. Only considers whole numbers (integers) (Eg. 1 becomes I).
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="number"></param>
+            By default it uses your computer's locale, you can override this with the list here. https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c?redirectedfrom=MSDN
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Numbers.Numbers.ToHeading(System.Double,System.Boolean)">
+            <summary>
+            Convert the input numbers into headings: N,S,E,W or north, east, south or west.
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="number"></param>
+            <param name="fullHeading"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Numbers.Numbers.ToHeadingArrow(System.Double)">
+            <summary>
+            Convert the input numbers into headings: ↑, →, ↓, ←.
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.String.Inspect">
+            <summary>
+            Wrapper class for string modifiers
+            </summary>
+        </member>
+        <member name="M:Rhythm.String.Inspect.LongestCommonSubstring(System.String,System.String)">
+            <summary>
+            Find the longest common substring between two strings.
+            </summary>
+            <param name="string1">First one to compare.</param>
+            <param name="string2">Second one to compare.</param>
+            <returns name="longestCommonSubstring">The longest common substring.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.ParseRegularExpression(System.String,System.String,System.String)">
+            <summary>
+            This will run a regular expression on a a string. By default this removes all whitespace and special characters from a string
+            </summary>
+            <param name="stringToReplace">Your target string.</param>
+            <param name="regexString">The regular expression to use.</param>
+            <param name="replacement">What to replace with.</param>
+            <returns name="modifiedString">The finished product</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.ToTitle(System.String)">
+            <summary>
+            Converts the input string to a title case.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.ToSentence(System.String)">
+            <summary>
+            Converts the input string to a title case.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.ToQuantity(System.String,System.Int32)">
+            <summary>
+            This will attempt to return a quantity, given a string and count.
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to convert to quantity.</param>
+            <param name="quantity">The amount of things.</param>
+            <returns name="quantityString">The formatted quantity.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Truncate(System.String,System.Int32,System.String)">
+            <summary>
+            This will truncate the given string, byt the given length. (Eg."Long text to truncate", with 10, becomes Long text…") 
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to truncate.</param>
+            <param name="length">The target length of the string.</param>
+            <param name="truncationString">The characters to fill in the string with.</param>
+            <returns name="truncatedString">The truncated string.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Pluralize(System.String)">
+            <summary>
+            This will attempt to return a plural version of a word.
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to pluralize.</param>
+            <returns name="pluralString">The string in it's plural form.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Singularize(System.String)">
+            <summary>
+            This will attempt to return a singular version of a word.
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to singularize.</param>
+            <returns name="singularString">The string in it's singular form.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Titleize(System.String)">
+            <summary>
+            Titleize converts the input words to Title casing
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to titleize.</param>
+            <returns name="str">The string in it's title form.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Pascalize(System.String)">
+            <summary>
+            Pascalize converts the input words to UpperCamelCase, also removing underscores and spaces. (Eg. SomeTitleForSomething)
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to Pascalize.</param>
+            <returns name="str">The string in it's pascal case form.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Camelize(System.String)">
+            <summary>
+            Camelize behaves identically to Pascalize, except that the first character is lower case. (Eg. someTitleForSomething)
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to Camelize.</param>
+            <returns name="str">The string in it's camel case form.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Underscore(System.String)">
+            <summary>
+            Underscore separates the input words with underscore. (Eg. some_title)
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to convert to underscore separated.</param>
+            <returns name="str">The resulting words separated with underscores.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Dasherize(System.String)">
+            <summary>
+            Underscore separates the input words with a dash. (Eg. Some-Title)
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to convert to dash separated.</param>
+            <returns name="str">The resulting words separated with dashes.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.Humanize(System.Object)">
+            <summary>
+            Humanize string extensions allow you turn an otherwise computerized string into a more readable human-friendly one.
+            "Underscored_input_string_is_turned_into_sentence." becomes "Underscored input string is turned into sentence"
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="obj">The string to human understandable form.</param>
+            <returns name="str">The humanized string.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.FormatWith(System.String,System.Object[])">
+            <summary>
+            Format input string with arguments.
+            Made possible with Humanizer (https://github.com/Humanizr/Humanizer)
+            </summary>
+            <param name="str">The string to format.</param>
+            <param name="args">The params (objects)</param>
+            <returns name="str">The formatted string.</returns>
+        </member>
+        <member name="M:Rhythm.String.Modify.MOcKtExt(System.String)">
+            <summary>
+            This generates a "mocking text" case. Just for fun. 😀
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Rhythm.System.System">
+            <summary>
+            Wrapper class for system
+            </summary>
+        </member>
+        <member name="M:Rhythm.System.System.Compress(System.String)">
+            <summary>
+            This will compress (zip) a given directory
+            </summary>
+            <param name="directoryName">The directory to try to zip.</param>
+        </member>
+        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker">
+            <summary>Packer using a custom algorithm by Markus 'Cygon' Ewald</summary>
+            <remarks>
+              <para>
+                Algorithm conceived by Markus Ewald (cygon at nuclex dot org), though
+                I'm quite sure I'm not the first one to come up with it :)
+              </para>
+              <para>
+                The algorithm always places rectangles as low as possible in the packing
+                area. So, for any new rectangle that is to be added, the packer has to
+                determine the X coordinate at which the rectangle can have the lowest
+                overall height without intersecting any other rectangles.
+              </para>
+              <para>
+                To quickly discover these locations, the packer uses a sophisticated
+                data structure that stores the upper silhouette of the packing area. When
+                a new rectangle needs to be added, only the silouette edges need to be
+                analyzed to find the position where the rectangle would achieve the lowest
+                placement possible in the packing area.
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer">
+            <summary>Compares the starting position of height slices</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Default">
+            <summary>Provides a default instance for the anchor rank comparer</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Compare(Autodesk.DesignScript.Geometry.UV,Autodesk.DesignScript.Geometry.UV)">
+            <summary>Compares the starting position of two height slices</summary>
+            <param name="left">Left slice start that will be compared</param>
+            <param name="right">Right slice start that will be compared</param>
+            <returns>The relation of the two slice starts ranks to each other</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.#ctor(System.Double,System.Double)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Maximum width of the packing area</param>
+            <param name="packingAreaHeight">Maximum height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.TryPack(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.tryFindBestPlacement(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
+            <summary>Finds the best position for a rectangle of the given dimensions</summary>
+            <param name="rectangleWidth">Width of the rectangle to find a position for</param>
+            <param name="rectangleHeight">Height of the rectangle to find a position for</param>
+            <param name="placement">Receives the best placement found for the rectangle</param>
+            <returns>True if a valid placement for the rectangle could be found</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.integrateRectangle(System.Double,System.Double,System.Double)">
+            <summary>Integrates a new rectangle into the height slice table</summary>
+            <param name="left">Position of the rectangle's left side</param>
+            <param name="width">Width of the rectangle</param>
+            <param name="bottom">Position of the rectangle's lower side</param>
+        </member>
+        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.heightSlices">
+            <summary>Stores the height silhouette of the rectangles</summary>
+        </member>
+        <member name="T:Nuclex.Game.Packing.OutOfSpaceException">
+            <summary>Insufficient space left in packing area to contain a given object</summary>
+            <remarks>
+              An exception being sent to you from deep space. Erm, no, wait, it's an exception
+              that occurs when a packing algorithm runs out of space and is unable to fit
+              the object you tried to pack into the remaining packing area.
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor">
+            <summary>Initializes the exception</summary>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String)">
+            <summary>Initializes the exception with an error message</summary>
+            <param name="message">Error message describing the cause of the exception</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String,System.Exception)">
+            <summary>Initializes the exception as a followup exception</summary>
+            <param name="message">Error message describing the cause of the exception</param>
+            <param name="inner">Preceding exception that has caused this exception</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>Initializes the exception from its serialized state</summary>
+            <param name="info">Contains the serialized fields of the exception</param>
+            <param name="context">Additional environmental informations</param>
+        </member>
+        <member name="T:Nuclex.Game.Packing.RectanglePacker">
+            <summary>Base class for rectangle packing algorithms</summary>
+            <remarks>
+              <para>
+                By uniting all rectangle packers under this common base class, you can
+                easily switch between different algorithms to find the most efficient or
+                performant one for a given job.
+              </para>
+              <para>
+                An almost exhaustive list of packing algorithms can be found here:
+                http://www.csc.liv.ac.uk/~epa/surveyhtml.html
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.#ctor(System.Double,System.Double)">
+            <summary>Initializes a new rectangle packer</summary>
+            <param name="packingAreaWidth">Width of the packing area</param>
+            <param name="packingAreaHeight">Height of the packing area</param>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.Pack(System.Double,System.Double)">
+            <summary>Allocates space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <returns>The location at which the rectangle has been placed</returns>
+        </member>
+        <member name="M:Nuclex.Game.Packing.RectanglePacker.TryPack(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
+            <summary>Tries to allocate space for a rectangle in the packing area</summary>
+            <param name="rectangleWidth">Width of the rectangle to allocate</param>
+            <param name="rectangleHeight">Height of the rectangle to allocate</param>
+            <param name="placement">Output parameter receiving the rectangle's placement</param>
+            <returns>True if space for the rectangle could be allocated</returns>
+        </member>
+        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaWidth">
+            <summary>Maximum width the packing area is allowed to have</summary>
+        </member>
+        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaHeight">
+            <summary>Maximum height the packing area is allowed to have</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaWidth">
+            <summary>Maximum allowed width of the packing area</summary>
+        </member>
+        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaHeight">
+            <summary>Maximum allowed height of the packing area</summary>
+        </member>
+    </members>
+</doc>

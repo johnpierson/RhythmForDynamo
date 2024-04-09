@@ -1,0 +1,207 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+		<!--<TargetFrameworks>net48</TargetFrameworks>-->
+		<TargetFrameworks>net8.0-windows</TargetFrameworks>
+        <OutputType>Library</OutputType>
+        <RootNamespace>Rhythm</RootNamespace>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseWPF>true</UseWPF>
+        <PlatformTarget>x64</PlatformTarget>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <Configurations>Debug R24;Debug R20;Debug R21;Debug R22;Debug R23;Debug R25;</Configurations>
+        <Configurations>$(Configurations)Release R24;Release R20;Release R21;Release R22;Release R23;Release R25;</Configurations>
+        <NoWarn>MSB3277;CS1591</NoWarn>
+    </PropertyGroup>
+ <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
+        <DynamoVersion>2.3</DynamoVersion>
+        <DynamoOutput>2.3</DynamoOutput>
+        <RevitVersion>2020</RevitVersion>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);R20;R20_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R20'))">
+        <DynamoVersion>2.3</DynamoVersion>
+        <DynamoOutput>2.3</DynamoOutput>
+        <RevitVersion>2020</RevitVersion>
+        <DefineConstants>$(DefineConstants);R20;R20_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Debug R21'))">
+        <DynamoVersion>2.6</DynamoVersion>
+        <DynamoOutput>2.6</DynamoOutput>
+        <RevitVersion>2021</RevitVersion>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);R21;R20_OR_GREATER;R21_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R21'))">
+        <DynamoVersion>2.6</DynamoVersion>
+        <DynamoOutput>2.6</DynamoOutput>
+        <RevitVersion>2021</RevitVersion>
+        <DefineConstants>$(DefineConstants);R21;R20_OR_GREATER;R21_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Debug R22'))">
+        <DynamoVersion>2.12</DynamoVersion>
+        <DynamoOutput>2.12</DynamoOutput>
+        <RevitVersion>2022</RevitVersion>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);R22;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R22'))">
+        <DynamoVersion>2.12</DynamoVersion>
+        <DynamoOutput>2.12</DynamoOutput>
+        <RevitVersion>2022</RevitVersion>
+        <DefineConstants>$(DefineConstants);R22;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Debug R23'))">
+        <DynamoVersion>2.13</DynamoVersion>
+        <DynamoOutput>2.13</DynamoOutput>
+        <RevitVersion>2023</RevitVersion>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);R23;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+	</PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R23'))">
+        <DynamoVersion>2.13</DynamoVersion>
+        <DynamoOutput>2.13</DynamoOutput>
+        <RevitVersion>2023</RevitVersion>
+        <DefineConstants>$(DefineConstants);R23;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('Debug R24'))">
+        <DynamoVersion>2.18</DynamoVersion>
+        <DynamoOutput>2.18</DynamoOutput>
+        <RevitVersion>2024</RevitVersion>
+        <DefineConstants>$(DefineConstants);R24;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
+        <DynamoVersion>2.19</DynamoVersion>
+        <DynamoOutput>2.19</DynamoOutput>
+        <RevitVersion>2024</RevitVersion>
+        <DefineConstants>$(DefineConstants);R24;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
+    </PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('Debug R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		 <TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R25'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2025</RevitVersion>
+        <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
+		<TargetFrameworkVersion>net8.0-windows</TargetFrameworkVersion>
+    </PropertyGroup>
+	 <PropertyGroup>
+        <DynVersion>$(DynamoVersion)</DynVersion>
+        <BuildOutput>$(DynamoOutput)</BuildOutput>
+        <PublishSingleFile>true</PublishSingleFile>
+        <Copyright>MIT</Copyright>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageTags>dynamo</PackageTags>
+        <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\RhythmRevit\</FolderPackages>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <Version>$(RevitVersion).3.1</Version>
+        <Description>Rhythm for Dynamo|Revit$(RevitVersion)</Description>
+        <FileVersion>$(RevitVersion).3.1</FileVersion>
+        <AssemblyVersion>$(RevitVersion).3.1</AssemblyVersion>
+        <Title>Rhythm for Dynamo|Revit$(RevitVersion)</Title>
+        <Product>Rhythm for Dynamo|Revit$(RevitVersion)</Product>
+    </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R24|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R20|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R21|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R22|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R23|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R25|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R24|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R20|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R21|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R22|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R23|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
+        <Reference Include="System.Windows" />
+    </ItemGroup>
+	<ItemGroup>
+	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
+        <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
+        <PackageReference Include="Prism" Version="4.1.0.0" />
+        <PackageReference Include="System.Buffers" Version="4.5.1" />
+        <PackageReference Include="System.Memory" Version="4.5.4" />
+        <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+        <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+        <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*-*" />
+        <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
+		<PackageReference Include="CommonServiceLocator" Version="1.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NUnit" Version="2.6.3" />
+        <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
+        <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NUnit" Version="3.14.0" />
+        <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+    </ItemGroup>
+	<Target Name="CopyFiles" AfterTargets="CoreBuild">
+        <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
+        <ItemGroup>
+            <AssemblyFiles Include="$(TargetDir)RhythmRevit.dll" />
+            <AssemblyFiles Include="$(TargetDir)*.xml" />
+            
+            <!--            <XmlCustomization Include="$(SolutionDir)docs\*.xml"/>-->
+            <!--      <DyfFiles Include="$(SolutionDir)docs\dyf\*.*" />-->
+        </ItemGroup>
+        <Message Text="Copying From $(TargetDir) To $(FolderPackages)" Importance="high" />
+
+        <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\..\deploy\$(RevitVersion)" />
+
+        <!--        <Copy SourceFiles="@(DyfFiles)" DestinationFolder="$(FolderPackages)dyf"/>-->
+        <Message Text="Copied Completed" Importance="high" />
+
+    </Target>
+</Project>

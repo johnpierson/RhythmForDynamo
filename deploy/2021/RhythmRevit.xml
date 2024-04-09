@@ -56,18 +56,6 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:Rhythm.Geometry.Tessellation.ConvexHull">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Rhythm.Geometry.Tessellation.ConvexHull.FromPoints(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point})">
-            <summary>
-            Generates a convex hull from given points.
-            </summary>
-            <param name="points"></param>
-            <returns></returns>
-        </member>
         <member name="T:Rhythm.Geometry.Geometry">
             <summary>
             Wrapper for geometry
@@ -86,6 +74,18 @@
             <returns name="Directions">Resulting directions.</returns>
             <returns name="Length">Resulting lengths.</returns>
             <search>lunchbox, curves, shortest walk, sort, path, distance</search>
+        </member>
+        <member name="T:Rhythm.Geometry.Tessellation.ConvexHull">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rhythm.Geometry.Tessellation.ConvexHull.FromPoints(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point})">
+            <summary>
+            Generates a convex hull from given points.
+            </summary>
+            <param name="points"></param>
+            <returns></returns>
         </member>
         <member name="T:Rhythm.Revit.Application.Applications">
             <summary>
@@ -2460,18 +2460,6 @@
             Project an XYZ point to a UV one in the 
             XY plane by simply dropping the Z coordinate.
             </summary>
-        </member>
-        <member name="T:Rhythm.Utilities.ReflectionUtils">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Rhythm.Utilities.ReflectionUtils.GetPropertiesAndValues(System.Object)">
-            <summary>
-            
-            </summary>
-            <param name="thing"></param>
-            <returns></returns>
         </member>
         <member name="T:Rhythm.Utilities.MiscUtils">
             <summary>
