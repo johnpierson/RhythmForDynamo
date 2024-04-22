@@ -81,14 +81,6 @@ namespace Rhythm.Revit.Selection
                 doc = document as Document;
             }
 
-
-            if (DocumentManager.Instance.CurrentDBDocument.Equals(doc))
-            {
-                throw new Exception(
-                    "Rhythm for Dynamo: Sorry this node doesn't work for current documents. Please use All Elements of Category for this");
-            };
-
-
             if (category is null)
             {
                 throw new Exception(
@@ -105,7 +97,7 @@ namespace Rhythm.Revit.Selection
             FilteredElementCollector coll = new FilteredElementCollector(doc);
             List<global::Revit.Elements.Element> elems =
                 new List<global::Revit.Elements.Element>(coll.WhereElementIsNotElementType().WherePasses(filter).ToElements()
-                    .Select(e => e.ToDSType(false)));
+                    .Select(e => e.ToDSType(true)));
 
             return elems;
         }
