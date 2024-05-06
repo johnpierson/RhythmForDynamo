@@ -168,9 +168,9 @@ namespace Rhythm.Helpers
                 byte[] imageArray = File.ReadAllBytes(image);
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
-                FileInfo fInfo = new FileInfo(image);
+                var name = Path.GetFileNameWithoutExtension(image);
 
-                string firstReplacement = ResxImageInfo.Replace("$name$", fInfo.Name);
+                string firstReplacement = ResxImageInfo.Replace("$name$", name);
                 string secondReplacement = firstReplacement.Replace("$base64$", base64ImageRepresentation);
                 body += secondReplacement;
             }
@@ -179,9 +179,8 @@ namespace Rhythm.Helpers
                 byte[] imageArray = File.ReadAllBytes(image);
                 string base64ImageRepresentation = Convert.ToBase64String(imageArray);
 
-                FileInfo fInfo = new FileInfo(image);
-
-                string firstReplacement = ResxImageInfo.Replace("$name$", fInfo.Name);
+                var name = Path.GetFileNameWithoutExtension(image);
+                string firstReplacement = ResxImageInfo.Replace("$name$", name);
                 string secondReplacement = firstReplacement.Replace("$base64$", base64ImageRepresentation);
                 body += secondReplacement;
             }
