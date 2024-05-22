@@ -20,6 +20,8 @@ namespace RhythmViewExtension
         public string UniqueId => "5435824A-A3A1-4FC1-AF42-E5139041740F";//NOTE: If you are building your own view extension, you MUST change this.
         public string Name => "Rhythm View Extension";//NOTE: If you are building your own view extension, you MUST change this.
 
+        internal string GitHubUrl => "https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20";
+
         public void Dispose()
         {
         }
@@ -82,43 +84,17 @@ namespace RhythmViewExtension
 
                 messageBox.Show();
 
-
                 //core nodes
                 LoadCoreNodes(p,version);
 
-                //the latest dlls related to that Revit version
-                string revitDllUrl =
-                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmRevit.dll";
-                string revitUiDllUrl =
-                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmUI.dll";
-
-                //next, the regular revit nodes
-                using (WebClient wc = new WebClient())
-                {
-                    wc.Headers.Add("a", "a");
-                    try
-                    {
-                        wc.DownloadFile(revitDllUrl, Global.RhythmRevitDll);
-                    }
-                    catch (Exception ex)
-                    {
-                        //
-                    }
-                }
+                //download the latest dlls related to that Revit version
+                DownloadFile(version, Global.RhythmRevitDll);
+                DownloadFile(version, Global.RhythmRevitXml);
+                DownloadFile(version, Global.RhythmRevitCustomizationXml);
 
                 //next the ui revit nodes
-                using (WebClient wc = new WebClient())
-                {
-                    wc.Headers.Add("a", "a");
-                    try
-                    {
-                        wc.DownloadFile(revitUiDllUrl, Global.RhythmRevitUiDll);
-                    }
-                    catch (Exception ex)
-                    {
-                        //
-                    }
-                }
+                DownloadFile(version, Global.RhythmRevitUiDll);
+                DownloadFile(version, Global.RhythmRevitUiXml);
 
                 //load the regular revit nodes
                 try
@@ -182,21 +158,12 @@ namespace RhythmViewExtension
         internal void LoadCoreNodes(ViewLoadedParams p, string version)
         {
             //download the latest core nodes
-            string rhythmCoreDllUrl =
-                $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmCore.dll";
+            DownloadFile(version, Global.RhythmCoreDll);
 
-            using (WebClient wc = new WebClient())
-            {
-                wc.Headers.Add("a", "a");
-                try
-                {
-                    wc.DownloadFile(rhythmCoreDllUrl, Global.RhythmCoreDll);
-                }
-                catch (Exception ex)
-                {
-                    //
-                }
-            }
+            //now the appropriate XMLs
+            DownloadFile(version, Global.RhythmCoreXml);
+            DownloadFile(version,Global.RhythmCoreCustomizationXml);
+
             //load the core nodes
             try
             {
@@ -208,6 +175,28 @@ namespace RhythmViewExtension
                 //
             }
 
+        }
+
+        internal void DownloadFile(string version, string fileLocation)
+        {
+            FileInfo fileInfo = new FileInfo(fileLocation);
+
+            string fileName = fileInfo.Name;
+
+            string url = $"{GitHubUrl}{version}/{fileName}";
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("a", "a");
+                try
+                {
+                    wc.DownloadFile(url, fileLocation);
+                }
+                catch (Exception ex)
+                {
+                    //
+                }
+            }
         }
 
         private void POnCurrentWorkspaceChanged(IWorkspaceModel obj)
