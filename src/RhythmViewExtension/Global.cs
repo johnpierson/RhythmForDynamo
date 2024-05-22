@@ -11,14 +11,10 @@ namespace RhythmViewExtension
         internal static string PackageExtraFolder => PackageBinFolder.Replace("bin", "extra");
         internal static string PackageRoot => PackageBinFolder.Replace("bin", "");
         internal static string PackageJson => Path.Combine(PackageRoot, "pkg.json");
+        internal static string RhythmCoreDll => Path.Combine(PackageBinFolder, "RhythmCore.dll");
         internal static string RhythmRevitDll => Path.Combine(PackageBinFolder, "RhythmRevit.dll");
         internal static string RhythmRevitUiDll => Path.Combine(PackageBinFolder, "RhythmUI.dll");
 
-        internal static string[] EmbeddedRevitLibraries =
-            ExecutingAssembly.GetManifestResourceNames().Where(x => x.EndsWith(".dll") && !x.Contains("UI")).ToArray();
-
-        internal static string[] EmbeddedRevitUiLibraries =
-            ExecutingAssembly.GetManifestResourceNames().Where(x => x.EndsWith(".dll") && x.Contains("UI")).ToArray();
 
         internal static string PackageJsonText =>
             "{\r\n  \"license\": \"BSD 3-Clause\",\r\n  \"file_hash\": null,\r\n  \"name\": \"Rhythm\",\r\n  \"version\": \"2024.5.1\",\r\n  " +

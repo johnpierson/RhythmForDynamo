@@ -52,12 +52,17 @@ namespace RhythmViewExtension
 
                 FirstRunSetup(p, $"{version}");
             }
-
+            //just load the core nodes, the user isn't in Revit
+            else
+            {
+                //core nodes
+                LoadCoreNodes(p, "24");
+            }
         }
 
         private void FirstRunSetup(ViewLoadedParams p, string version)
         {
-            //first run setup. If this is the first install of Rhythm, load the correct Revit DLLs.
+            //first run setup. If this is the first install of Rhythm, load the correct DLLs.
             if (!File.Exists(Global.RhythmRevitDll))
             {
                 var vm = new RhythmMessageBoxViewModel
@@ -77,13 +82,17 @@ namespace RhythmViewExtension
 
                 messageBox.Show();
 
+
+                //core nodes
+                LoadCoreNodes(p,version);
+
                 //the latest dlls related to that Revit version
                 string revitDllUrl =
                     $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmRevit.dll";
                 string revitUiDllUrl =
                     $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmUI.dll";
 
-                //first the regular revit nodes
+                //next, the regular revit nodes
                 using (WebClient wc = new WebClient())
                 {
                     wc.Headers.Add("a", "a");
@@ -168,6 +177,37 @@ namespace RhythmViewExtension
                     messageBox.Show();
                 }
             }
+        }
+
+        internal void LoadCoreNodes(ViewLoadedParams p, string version)
+        {
+            //download the latest core nodes
+            string rhythmCoreDllUrl =
+                $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmCore.dll";
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("a", "a");
+                try
+                {
+                    wc.DownloadFile(rhythmCoreDllUrl, Global.RhythmCoreDll);
+                }
+                catch (Exception ex)
+                {
+                    //
+                }
+            }
+            //load the core nodes
+            try
+            {
+                var assembly = Assembly.LoadFrom(Global.RhythmCoreDll);
+                p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(assembly);
+            }
+            catch (Exception e)
+            {
+                //
+            }
+
         }
 
         private void POnCurrentWorkspaceChanged(IWorkspaceModel obj)
