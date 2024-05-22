@@ -26,7 +26,9 @@
   "repository_url": "https://github.com/johnpierson/RhythmForDynamo",
   "contains_binaries": true,
   "node_libraries": [
-    "RhythmCore, Version=2023.12.1.0, Culture=neutral, PublicKeyToken=null"
+    "RhythmCore, Version=2023.12.1.0, Culture=neutral, PublicKeyToken=null",
+    "RhythmRevit, Version=2024.5.1.0, Culture=neutral, PublicKeyToken=null",
+    "RhythmUI, Version=2024.5.1.0, Culture=neutral, PublicKeyToken=null"
   ],
   "copyright_holder": "j0hnp",
   "copyright_year": "2024"
