@@ -27,46 +27,35 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-
+[assembly: AssemblyVersion("2024.5.1")]
+[assembly: AssemblyFileVersion("2024.5.1")]
 
 #if R20
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2020")]
 [assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2020")]
-[assembly: AssemblyVersion("2020.5.1")]
-[assembly: AssemblyFileVersion("2020.5.1")]
 #endif
 
 #if R21
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2021")]
 [assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2021")]
-[assembly: AssemblyVersion("2021.5.1")]
-[assembly: AssemblyFileVersion("2021.5.1")]
 #endif
 
 #if R22
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2022")]
 [assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2022")]
-[assembly: AssemblyVersion("2022.5.1")]
-[assembly: AssemblyFileVersion("2022.5.1")]
 #endif
 
 #if R23
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2023")]
 [assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2023")]
-[assembly: AssemblyVersion("2023.5.1")]
-[assembly: AssemblyFileVersion("2023.5.1")]
 #endif
 
 #if R24
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2024")]
 [assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2024")]
-[assembly: AssemblyVersion("2024.5.1")]
-[assembly: AssemblyFileVersion("2024.5.1")]
 #endif
 
 #if R25
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2025")]
 [assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2025")]
-[assembly: AssemblyVersion("2025.5.1")]
-[assembly: AssemblyFileVersion("2025.5.1")]
 #endif
