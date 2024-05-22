@@ -1144,6 +1144,15 @@
             space, rhythm,element.space
             </search>
         </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.ArrayInterrogator(Revit.Elements.FamilyInstance)">
+            <summary>
+            Detect if the input family instance has arrays set to less than 1
+            </summary>
+            <param name="familyInstance">The family instance to check</param>
+            <returns name="containsArraysLessThan1">Does the instance have arrays of less than 1?</returns>
+            <returns name="arrayParameters">The parameter names of arrays (if applicable).</returns>
+            <returns name="arrayValues">The parameter values of arrays (if applicable).</returns>
+        </member>
         <member name="T:Rhythm.Revit.Elements.FilledRegions">
             <summary>
             Wrapper class for filled regions

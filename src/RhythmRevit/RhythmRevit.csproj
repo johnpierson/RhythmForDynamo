@@ -117,10 +117,10 @@
         <PackageTags>dynamo</PackageTags>
         <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\RhythmRevit\</FolderPackages>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
-        <Version>$(RevitVersion).3.1</Version>
+        <Version>$(RevitVersion).5.1</Version>
         <Description>Rhythm for Dynamo|Revit$(RevitVersion)</Description>
-        <FileVersion>$(RevitVersion).3.1</FileVersion>
-        <AssemblyVersion>$(RevitVersion).3.1</AssemblyVersion>
+        <FileVersion>$(RevitVersion).5.1</FileVersion>
+        <AssemblyVersion>$(RevitVersion).5.1</AssemblyVersion>
         <Title>Rhythm for Dynamo|Revit$(RevitVersion)</Title>
         <Product>Rhythm for Dynamo|Revit$(RevitVersion)</Product>
     </PropertyGroup>
