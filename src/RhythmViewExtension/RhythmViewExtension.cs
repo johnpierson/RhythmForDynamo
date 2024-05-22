@@ -114,7 +114,7 @@ namespace RhythmViewExtension
                 //load the regular revit nodes
                 try
                 {
-                    var assembly = Assembly.Load(Global.RhythmRevitDll);
+                    var assembly = Assembly.LoadFrom(Global.RhythmRevitDll);
                     p.ViewStartupParams.LibraryLoader.LoadNodeLibrary(assembly);
                 }
                 catch (Exception e)
@@ -124,7 +124,7 @@ namespace RhythmViewExtension
 
                 //rewrite the json
                 string jsonDLLUrl =
-                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/Rhythm/pkg.json";
+                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/pkg.json";
                 using (WebClient wc = new WebClient())
                 {
                     wc.Headers.Add("a", "a");
