@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
@@ -9,6 +10,8 @@ using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace RhythmViewExtension
 {
@@ -57,15 +60,6 @@ namespace RhythmViewExtension
             //first run setup. If this is the first install of Rhythm, load the correct Revit DLLs.
             if (!File.Exists(Global.RhythmRevitDll))
             {
-                // Get resource name for our DLLs
-                var revitResourceName = Global.EmbeddedRevitLibraries.FirstOrDefault(x => x.Contains(version));
-                if (revitResourceName == null)
-                {
-                    return;
-                }
-
-                var revitUiResourceName = Global.EmbeddedRevitUiLibraries.FirstOrDefault(x => x.Contains(version));
-
                 var vm = new RhythmMessageBoxViewModel
                 {
                     UserMessage = $"Loading correct Rhythm version for Revit 20{version}. Please wait...",
@@ -83,23 +77,37 @@ namespace RhythmViewExtension
 
                 messageBox.Show();
 
-                //install and load the revit nodes
-                using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitResourceName))
-                {
-                    var bytes = new byte[stream.Length];
-                    stream.Read(bytes, 0, bytes.Length);
+                //the latest dlls related to that Revit version
+                string revitDllUrl =
+                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmRevit.dll";
+                string revitUiDllUrl =
+                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/20{version}/RhythmUI.dll";
 
-                    File.WriteAllBytes(Global.RhythmRevitDll, bytes);
-                }
-                //install and load the revit ui nodes
-                if (!string.IsNullOrWhiteSpace(revitUiResourceName))
+                //first the regular revit nodes
+                using (WebClient wc = new WebClient())
                 {
-                    using (var stream = Global.ExecutingAssembly.GetManifestResourceStream(revitUiResourceName))
+                    wc.Headers.Add("a", "a");
+                    try
                     {
-                        var bytes = new byte[stream.Length];
-                        stream.Read(bytes, 0, bytes.Length);
+                        wc.DownloadFile(revitDllUrl, Global.RhythmRevitDll);
+                    }
+                    catch (Exception ex)
+                    {
+                        //
+                    }
+                }
 
-                        File.WriteAllBytes(Global.RhythmRevitUiDll, bytes);
+                //next the ui revit nodes
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers.Add("a", "a");
+                    try
+                    {
+                        wc.DownloadFile(revitUiDllUrl, Global.RhythmRevitUiDll);
+                    }
+                    catch (Exception ex)
+                    {
+                        //
                     }
                 }
 
@@ -113,9 +121,22 @@ namespace RhythmViewExtension
                 {
                     //
                 }
-                
+
                 //rewrite the json
-                File.WriteAllText(Global.PackageJson, Global.PackageJsonText);
+                string jsonDLLUrl =
+                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/Rhythm/pkg.json";
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Headers.Add("a", "a");
+                    try
+                    {
+                        wc.DownloadFile(jsonDLLUrl, Global.PackageJson);
+                    }
+                    catch (Exception ex)
+                    {
+                        //
+                    }
+                }
 
                 messageBox.Close();
             }
@@ -145,9 +166,6 @@ namespace RhythmViewExtension
                         };
 
                     messageBox.Show();
-
-                    //rewrite the json without the DynamoRevit libraries being loaded TODO: Decide if it is too cruel to unload the DLL like this.
-                    //File.WriteAllText(Global.PackageJson, Global.PackageJsonTextWithoutRevitNodes);
                 }
             }
         }

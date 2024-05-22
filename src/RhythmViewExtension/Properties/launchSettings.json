@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RhythmView": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\johnpierson\\Desktop\\Autodesk\\DynamoCoreRuntime2.19.3\\DynamoSandbox.exe"
+    }
+  }
+}
