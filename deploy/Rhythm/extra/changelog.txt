@@ -39,3 +39,4 @@
 20230807; [Fixes] Unhide the floor nodes.
 20230822: [Fixes] Release to include auto-versioning for Revit DLLs
 20231122: [Testing] This build is to test Dynamo 3.0 compatibility
+20240522: This is the final release to the package manager. Rhythm now downloads the correct DLLs from github. Resulting in easier updates to the package without messing with Dynamo's package manager anymore. ✌️
