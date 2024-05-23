@@ -34,7 +34,7 @@ namespace Rhythm.Revit.Elements
             List<global::Revit.Elements.Category> dynamoSurfacePatternCategories = new List<Category>();
             List<global::Revit.Elements.Category> dynamoCutPatternCategories = new List<Category>();
 
-
+            
             foreach (Autodesk.Revit.DB.Category cat in doc.Settings.Categories)
             {
                 foreach (Autodesk.Revit.DB.Category subcategory in cat.SubCategories)
@@ -276,5 +276,20 @@ namespace Rhythm.Revit.Elements
             }
             return materialName;
         }
+#if R22_OR_GREATER
+        /// <summary>
+        /// Get the built in category name. Useful for troubleshooting.
+        /// </summary>
+        /// <param name="category">The category</param>
+        /// <returns name="builtInCategoryName"></returns>
+        public static string BuiltInCategoryName(global::Revit.Elements.Category category)
+        {
+            //obtain the internal Revit category
+            Autodesk.Revit.DB.Category c = category.ToRevitType();
+
+            return c.BuiltInCategory.ToString();
+        }
+#endif
+
     }
 }
