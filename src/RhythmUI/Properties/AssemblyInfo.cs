@@ -27,8 +27,8 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2023.3.1")]
-[assembly: AssemblyFileVersion("2023.3.1")]
+[assembly: AssemblyVersion("2023.5.5")]
+[assembly: AssemblyFileVersion("2023.5.5")]
 
 #if R20
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2020")]

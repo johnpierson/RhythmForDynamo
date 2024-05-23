@@ -169,18 +169,21 @@
 		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*-*" />
         <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
 		<PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
-		
+	<Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\Autodesk\Revit $(RevitVersion)\AddIns\DynamoForRevit\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
 	 </ItemGroup>
 	  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
 		<PackageReference Include="CommonServiceLocator" Version="1.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      
         <PackageReference Include="NUnit" Version="2.6.3" />
         <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
         <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        
         <PackageReference Include="NUnit" Version="3.14.0" />
         <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
