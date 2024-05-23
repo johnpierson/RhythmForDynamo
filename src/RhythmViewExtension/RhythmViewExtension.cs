@@ -91,6 +91,7 @@ namespace RhythmViewExtension
                 DownloadFile(version, Global.RhythmRevitDll);
                 DownloadFile(version, Global.RhythmRevitXml);
                 DownloadFile(version, Global.RhythmRevitCustomizationXml);
+                DownloadFile(version, Global.RhythmRevitCustomizationDll);
 
                 //next the ui revit nodes
                 DownloadFile(version, Global.RhythmRevitUiDll);
@@ -163,6 +164,7 @@ namespace RhythmViewExtension
             //now the appropriate XMLs
             DownloadFile(version, Global.RhythmCoreXml);
             DownloadFile(version,Global.RhythmCoreCustomizationXml);
+            DownloadFile(version, Global.RhythmCoreCustomizationDll);
 
             //load the core nodes
             try

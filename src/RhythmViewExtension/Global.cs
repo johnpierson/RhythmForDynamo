@@ -14,9 +14,11 @@ namespace RhythmViewExtension
         internal static string RhythmCoreDll => Path.Combine(PackageBinFolder, "RhythmCore.dll");
         internal static string RhythmCoreXml => Path.Combine(PackageBinFolder, "RhythmCore.xml");
         internal static string RhythmCoreCustomizationXml => Path.Combine(PackageBinFolder, "RhythmCore_DynamoCustomization.xml");
+        internal static string RhythmCoreCustomizationDll => Path.Combine(PackageBinFolder, "RhythmCore.customization.dll");
         internal static string RhythmRevitDll => Path.Combine(PackageBinFolder, "RhythmRevit.dll");
         internal static string RhythmRevitXml => Path.Combine(PackageBinFolder, "RhythmRevit.xml");
         internal static string RhythmRevitCustomizationXml => Path.Combine(PackageBinFolder, "RhythmRevit_DynamoCustomization.xml");
+        internal static string RhythmRevitCustomizationDll => Path.Combine(PackageBinFolder, "RhythmRevit.customization.dll");
         internal static string RhythmRevitUiDll => Path.Combine(PackageBinFolder, "RhythmUI.dll");
         internal static string RhythmRevitUiXml => Path.Combine(PackageBinFolder, "RhythmUI.xml");
 

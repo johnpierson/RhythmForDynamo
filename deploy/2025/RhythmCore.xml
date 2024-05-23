@@ -124,6 +124,13 @@
             <param name="refresh">Optional toggle to refresh the node</param>
             <returns></returns>
         </member>
+        <member name="M:Rhythm.Helpers.System.CreateResxImageFile(System.String,System.String)">
+            <summary>
+            Creates a .Resx (resources) file from a directory of images for a Dynamo package. This helps greatly when trying to add icons to zerotouch nodes and the like.
+            </summary>
+            <param name="imageDirectoryPath">The image directory path to search within.</param>
+            <param name="resxFilePath">Where to write the resx file.</param>
+        </member>
         <member name="M:Rhythm.Helpers.System.JiggleMouse(System.Boolean,System.Double)">
             <summary>
             This will move your mouse back and forth slowly while toggled true.
@@ -131,6 +138,7 @@
             <param name="runIt">True will cause the mouse to move on it's own.</param>
             <param name="interval">Time between movements (in seconds).</param>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Rhythm.Image.Image.ConvertToBase64(System.String)" -->
         <member name="T:Rhythm.Math.MarkovChain">
             <summary>
             

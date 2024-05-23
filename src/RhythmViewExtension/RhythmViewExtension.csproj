@@ -50,6 +50,7 @@
 	<FileVersion>2023.9.1</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\bailey-dog-meme-2.jpg" />
     <None Remove="Resources\System.Runtime.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +59,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\bailey-dog-meme-2.jpg" />
     <Resource Include="Resources\sadDog.jpg" />
   </ItemGroup>
   <ItemGroup>

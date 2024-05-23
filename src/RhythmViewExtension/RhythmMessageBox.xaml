@@ -29,7 +29,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="1" Padding="12" TextWrapping="Wrap" Text="{Binding UserMessage, FallbackValue=Loading}" Foreground="White"></TextBlock>
-            <Image Stretch="Uniform" VerticalAlignment="Center" Grid.Column="0" Source="/RhythmViewExtension;component/Resources/sadDog.jpg" Visibility="{Binding WrongVersionLoaded, Converter={StaticResource b2v}}" ></Image>
+            <Image Stretch="Uniform" VerticalAlignment="Center" Grid.Column="0" Source="/RhythmViewExtension;component/Resources/bailey-dog-meme-2.jpg" Visibility="{Binding WrongVersionLoaded, Converter={StaticResource b2v}}" />
+
+            <Image Stretch="Uniform" VerticalAlignment="Center" Grid.Column="0" Source="/RhythmViewExtension;component/Resources/sadDog.jpg" Visibility="{Binding WrongVersionLoaded, Converter={StaticResource b2v}}" />
         </Grid>
 
 
