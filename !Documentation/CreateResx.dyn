@@ -1,0 +1,208 @@
+{
+  "Uuid": "799f67d2-557c-4e42-bbbb-73b79677504e",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "CreateResx",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "e197dd36d8384171905e94f989f4eac4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e5f4e206947947c59402ef9e4cc2dbec",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "D:\\repos_john\\RhythmForDynamo\\!Documentation\\NodeIcons"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "568be4416f94410e9b81a7bbe2f2dbeb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d5129f833dd0402bbda4d15fed98fe63",
+          "Name": "imageDirectoryPath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d67279e1d64f47dab5379d4f49f59caa",
+          "Name": "resxFilePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b03ec3bd4a6c41c2aba91898c583c8d8",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Rhythm.Helpers.System.CreateResxImageFile@string,string",
+      "Replication": "Auto",
+      "Description": "System.CreateResxImageFile (imageDirectoryPath: string, resxFilePath: string): void"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "698f6de2bfa142efad829511b0181f10",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "783ead083f3049fba585f94a9e94ef53",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "D:\\repos_john\\RhythmForDynamo\\src\\RhythmRevit\\RhythmRevitImages.resx"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e5f4e206947947c59402ef9e4cc2dbec",
+      "End": "d5129f833dd0402bbda4d15fed98fe63",
+      "Id": "50c6cc8c2c6b46b9a23b853684d4c20d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "783ead083f3049fba585f94a9e94ef53",
+      "End": "d67279e1d64f47dab5379d4f49f59caa",
+      "Id": "69777e91d8dd4627b2358fdcd3955846",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Rhythm",
+      "Version": "2024.3.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "568be4416f94410e9b81a7bbe2f2dbeb"
+      ]
+    },
+    {
+      "Name": "RhythmRevitImages.resx",
+      "ReferenceType": "External",
+      "Nodes": [
+        "698f6de2bfa142efad829511b0181f10"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.4.7905",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e197dd36d8384171905e94f989f4eac4",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 552.0000000000001,
+        "Y": 494.4000000000001
+      },
+      {
+        "Id": "568be4416f94410e9b81a7bbe2f2dbeb",
+        "Name": "ʳʰʸᵗʰᵐ|System.CreateResxImageFile",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1032.6367170626352,
+        "Y": 560.2453563714903
+      },
+      {
+        "Id": "698f6de2bfa142efad829511b0181f10",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 552.0000000000001,
+        "Y": 673.6000000000001
+      }
+    ],
+    "Annotations": [],
+    "X": -772.0619999999998,
+    "Y": -424.29800000000006,
+    "Zoom": 1.1575
+  }
+}
