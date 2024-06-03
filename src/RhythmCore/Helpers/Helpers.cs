@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Dynamo.Graph.Nodes;
@@ -150,6 +152,16 @@ namespace Rhythm.Helpers
         {
             return Environment.MachineName;
         }
+        /// <summary>
+        /// Returns the current computer's mac address.
+        /// </summary>
+        /// <param name="refresh">Optional toggle to refresh the node</param>
+        /// <returns></returns>
+        public static string MachineMacAddress(bool refresh = true)
+        {
+            return NetworkInterface.GetAllNetworkInterfaces().Where(nic => nic.OperationalStatus == OperationalStatus.Up).Select(nic => nic.GetPhysicalAddress().ToString()).FirstOrDefault();
+        }
+
 
         /// <summary>
         /// Creates a .Resx (resources) file from a directory of images for a Dynamo package. This helps greatly when trying to add icons to zerotouch nodes and the like.

@@ -124,6 +124,13 @@
             <param name="refresh">Optional toggle to refresh the node</param>
             <returns></returns>
         </member>
+        <member name="M:Rhythm.Helpers.System.MachineMacAddress(System.Boolean)">
+            <summary>
+            Returns the current computer's mac address.
+            </summary>
+            <param name="refresh">Optional toggle to refresh the node</param>
+            <returns></returns>
+        </member>
         <member name="M:Rhythm.Helpers.System.CreateResxImageFile(System.String,System.String)">
             <summary>
             Creates a .Resx (resources) file from a directory of images for a Dynamo package. This helps greatly when trying to add icons to zerotouch nodes and the like.
