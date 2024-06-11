@@ -276,7 +276,7 @@ namespace Rhythm.Revit.Elements
             }
             return materialName;
         }
-#if R22_OR_GREATER
+#if R23_OR_GREATER
         /// <summary>
         /// Get the built in category name. Useful for troubleshooting.
         /// </summary>

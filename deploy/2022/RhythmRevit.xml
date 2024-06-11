@@ -509,13 +509,6 @@
             Categories.MaterialName
             </search>
         </member>
-        <member name="M:Rhythm.Revit.Elements.Categories.BuiltInCategoryName(Revit.Elements.Category)">
-            <summary>
-            Get the built in category name. Useful for troubleshooting.
-            </summary>
-            <param name="category">The category</param>
-            <returns name="builtInCategoryName"></returns>
-        </member>
         <member name="T:Rhythm.Revit.Elements.Ceiling">
             <summary>
             Wrapper class for floors

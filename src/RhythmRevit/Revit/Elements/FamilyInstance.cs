@@ -14,7 +14,7 @@ using RevitServices.Transactions;
 using Document = Autodesk.Revit.DB.Document;
 using SketchPlane = Autodesk.Revit.DB.SketchPlane;
 using StructuralType = Autodesk.Revit.DB.Structure.StructuralType;
-using System.DirectoryServices.ActiveDirectory;
+
 using Autodesk.DesignScript.Runtime;
 
 namespace Rhythm.Revit.Elements
