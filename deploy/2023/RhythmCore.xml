@@ -45,6 +45,13 @@
             </param>
             <returns></returns>
         </member>
+        <member name="M:Rhythm.Geometry.Point.Deconstruct(Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            
+            </summary>
+            <param name="point">The point to return values for.</param>
+            <returns></returns>
+        </member>
         <member name="T:Rhythm.Helpers.Helpers">
             <summary>
             Wrapper Class for Helpers
