@@ -27,8 +27,8 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2024.6.2")]
-[assembly: AssemblyFileVersion("2024.6.2")]
+[assembly: AssemblyVersion("2024.6.3")]
+[assembly: AssemblyFileVersion("2024.6.3")]
 
 #if R20
 [assembly: AssemblyTitle("Rhythm for Dynamo| Core 2020")]
