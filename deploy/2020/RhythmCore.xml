@@ -47,7 +47,7 @@
         </member>
         <member name="M:Rhythm.Geometry.Point.Deconstruct(Autodesk.DesignScript.Geometry.Point)">
             <summary>
-            
+            Return the XYZ values of a given point.
             </summary>
             <param name="point">The point to return values for.</param>
             <returns></returns>

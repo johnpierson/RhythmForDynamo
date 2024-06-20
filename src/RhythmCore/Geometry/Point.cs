@@ -11,7 +11,7 @@ namespace Rhythm.Geometry
     {
         private Point(){}
         /// <summary>
-        /// 
+        /// Return the XYZ values of a given point.
         /// </summary>
         /// <param name="point">The point to return values for.</param>
         /// <returns></returns>
