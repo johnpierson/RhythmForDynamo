@@ -1153,6 +1153,48 @@
             <returns name="arrayParameters">The parameter names of arrays (if applicable).</returns>
             <returns name="arrayValues">The parameter values of arrays (if applicable).</returns>
         </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.ByGeometry(Autodesk.DesignScript.Geometry.Solid,System.String,Revit.Elements.Category,System.String,Revit.Elements.Material,System.String)">
+            <summary>
+            Create a familyInstance from Dynamo solid geometry.
+            This node was made possible thanks to spring nodes (originally) https://github.com/dimven/SpringNodes/blob/master/py/FamilyInstance.ByGeometry.py
+            </summary>
+            <param name="solidGeometry"></param>
+            <param name="name"></param>
+            <param name="category"></param>
+            <param name="templatePath"></param>
+            <param name="material"></param>
+            <param name="subcategory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.GetSolidsFromElement(Autodesk.Revit.DB.Element)">
+            <summary>
+            Get Solids from Element
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.ApplyMaterialToFreeForm(Autodesk.Revit.DB.Document,Revit.Elements.Material,Autodesk.Revit.DB.FreeFormElement)">
+            <summary>
+            Apply Material to Solid
+            </summary>
+            <param name="familyDocument"></param>
+            <param name="material"></param>
+            <param name="freeform"></param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.ApplySubCategoryToFreeForm(Autodesk.Revit.DB.Document,System.String,Autodesk.Revit.DB.FreeFormElement)">
+            <summary>
+            Apply SubCategory to Solid
+            </summary>
+            <param name="familyDocument"></param>
+            <param name="subcategory"></param>
+            <param name="freeform"></param>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.FamilyInstances.ApplyVoidSettingsToFreeForm(Autodesk.Revit.DB.FreeFormElement)">
+            <summary>
+            Apply Cutting Settings to Void
+            </summary>
+            <param name="freeform"></param>
+        </member>
         <member name="T:Rhythm.Revit.Elements.FilledRegions">
             <summary>
             Wrapper class for filled regions
