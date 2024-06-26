@@ -14,7 +14,6 @@ using RevitServices.Transactions;
 using Document = Autodesk.Revit.DB.Document;
 using SketchPlane = Autodesk.Revit.DB.SketchPlane;
 using StructuralType = Autodesk.Revit.DB.Structure.StructuralType;
-
 using Autodesk.DesignScript.Runtime;
 
 namespace Rhythm.Revit.Elements
@@ -55,7 +54,7 @@ namespace Rhythm.Revit.Elements
                     try
                     {
                         var locationPoint = internalFamily.Location as LocationPoint;
-                        room.Add(doc.GetRoomAtPoint(locationPoint.Point,phaseToUse).ToDSType(false));
+                        room.Add(doc.GetRoomAtPoint(locationPoint.Point, phaseToUse).ToDSType(false));
                     }
                     catch (Exception)
                     {
@@ -448,24 +447,24 @@ namespace Rhythm.Revit.Elements
                 };
                 return noArraysLessThan1;
             };
-            
+
             //iterate through arrays to get the associated parameters
             foreach (var array in arrays)
             {
                 switch (array)
                 {
                     case LinearArray linearArray:
-                    {
-                        string arrayParameterName = linearArray.Label.Definition.Name;
-                        arrayParameters.Add(arrayParameterName);
-                        break;
-                    }
+                        {
+                            string arrayParameterName = linearArray.Label.Definition.Name;
+                            arrayParameters.Add(arrayParameterName);
+                            break;
+                        }
                     case RadialArray radialArray:
-                    {
-                        string arrayParameterName = radialArray.Label.Definition.Name;
-                        arrayParameters.Add(arrayParameterName);
-                        break;
-                    }
+                        {
+                            string arrayParameterName = radialArray.Label.Definition.Name;
+                            arrayParameters.Add(arrayParameterName);
+                            break;
+                        }
                 }
             }
             //now check the values to return results
@@ -489,5 +488,233 @@ namespace Rhythm.Revit.Elements
             };
             return outInfo;
         }
+        /// <summary>
+        /// Create a familyInstance from Dynamo solid geometry.
+        /// This node was made possible thanks to spring nodes (originally) https://github.com/dimven/SpringNodes/blob/master/py/FamilyInstance.ByGeometry.py
+        /// </summary>
+        /// <param name="solidGeometry"></param>
+        /// <param name="name"></param>
+        /// <param name="category"></param>
+        /// <param name="templatePath"></param>
+        /// <param name="material"></param>
+        /// <param name="subcategory"></param>
+        /// <returns></returns>
+        public static global::Revit.Elements.Element ByGeometry(Autodesk.DesignScript.Geometry.Solid solidGeometry, string name, global::Revit.Elements.Category category,
+            string templatePath, global::Revit.Elements.Material material, string subcategory = "")
+        {
+            // Keep the current document and close the open transaction
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+            TransactionManager.Instance.ForceCloseTransaction();
+
+            // create a temp sat file
+            string tempFile = System.IO.Path.GetTempFileName() + ".sat";
+
+            // create a temp family file
+            string tempDir = System.IO.Path.GetTempPath();
+            string tempFamilyFile = System.IO.Path.Combine(tempDir, name + ".rfa");
+
+            // scale the incoming geometry
+            Vector vector;
+            using (solidGeometry = solidGeometry.InHostUnits())
+            {
+
+                // get a displacement vector
+                Autodesk.DesignScript.Geometry.Geometry[] solidGeoms = new Autodesk.DesignScript.Geometry.Geometry[] { solidGeometry };
+                vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(solidGeoms).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
+
+                // translate the geometry to origin
+                solidGeoms[0] = solidGeoms[0].Translate(vector) as Autodesk.DesignScript.Geometry.Solid;
+
+                // export geometry to SAT
+                Autodesk.DesignScript.Geometry.Geometry.ExportToSAT(solidGeoms, tempFile);
+            }
+
+            // create a new family document using the supplied template
+            Autodesk.Revit.DB.Document familyDocument = document.Application.NewFamilyDocument(templatePath);
+
+            // Get the families 3d view
+            var collector = new Autodesk.Revit.DB.FilteredElementCollector(familyDocument).OfClass(typeof(Autodesk.Revit.DB.View));
+            Autodesk.Revit.DB.View view = null;
+            foreach (Autodesk.Revit.DB.View v in collector.ToElements())
+            {
+                if (!v.IsTemplate && v.ViewType == ViewType.ThreeD)
+                {
+                    view = v;
+                }
+            }
+
+            // Open a Transaction with the FamilyDocument
+            TransactionManager.Instance.EnsureInTransaction(familyDocument);
+
+            // Import the sat file to origin in feet
+            ElementId importedElementId = familyDocument.Import(tempFile, new SATImportOptions() { Placement = ImportPlacement.Origin, Unit = ImportUnit.Foot }, view);
+
+            // get the solid element from the imported sat file
+            var solids = GetSolidsFromElement(familyDocument.GetElement(importedElementId));
+
+            // delete imported sat
+            // first unpin the element to avoid an exception when deleting the SAT import
+            familyDocument.GetElement(importedElementId).Pinned = false;
+        
+            familyDocument.Delete(importedElementId);
+           
+            
+            System.IO.File.Delete(tempFile);
+
+            // Set the families category
+            familyDocument.OwnerFamily.FamilyCategory = familyDocument.Settings.Categories.get_Item(category.Name);
+
+            foreach (var solid in solids)
+            {
+                // Create Freeform Element
+                var freeform = FreeFormElement.Create(familyDocument, solid);
+
+                // if the geometry should be void set parameters accordingly
+
+                // Apply material if supplied
+                ApplyMaterialToFreeForm(familyDocument, material, freeform);
+
+                // Apply Subcategory if supplied
+                if (subcategory != string.Empty)
+                {
+                    ApplySubCategoryToFreeForm(familyDocument, subcategory, freeform);
+                }
+
+            }
+
+            // Close the FamilyDocument Transaction
+            TransactionManager.Instance.ForceCloseTransaction();
+
+            // Save Family document and load it into the project
+            familyDocument.SaveAs(tempFamilyFile, new SaveAsOptions() { OverwriteExistingFile = true });
+            var family = familyDocument.LoadFamily(document, new FamilyImportOptions());
+
+            // close and delete family
+            familyDocument.Close(false);
+            System.IO.File.Delete(tempFamilyFile);
+
+            // get first imported family symbol
+            var symbols = family.GetFamilySymbolIds();
+
+            // Restore the Project Document Transaction
+            TransactionManager.Instance.EnsureInTransaction(document);
+
+            if (symbols.Count > 0)
+            {
+                FamilySymbol symbol = (FamilySymbol)document.GetElement(symbols.First());
+
+                // activate symbol
+                if (!symbol.IsActive) symbol.Activate();
+
+
+                var origin = XYZ.Zero;
+
+                TransactionManager.Instance.EnsureInTransaction(document);
+
+                var newFamilyInstance = document.Create.NewFamilyInstance(origin, symbol, StructuralType.NonStructural);
+
+                ElementTransformUtils.MoveElement(document, newFamilyInstance.Id, vector.Reverse().ToXyz());
+
+                TransactionManager.Instance.TransactionTaskDone();
+
+
+
+                return newFamilyInstance.ToDSType(true);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Get Solids from Element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        private static IList<Autodesk.Revit.DB.Solid> GetSolidsFromElement(Autodesk.Revit.DB.Element element)
+        {
+            GeometryElement geo = element.get_Geometry(new Options() { ComputeReferences = true });
+
+            List<Autodesk.Revit.DB.Solid> solids = new List<Autodesk.Revit.DB.Solid>();
+
+            foreach (object obj in geo)
+            {
+                GeometryInstance geoinstance = obj as GeometryInstance;
+                if (geoinstance != null)
+                {
+                    foreach (object solidobj in geoinstance.GetInstanceGeometry())
+                    {
+                        if (solidobj.GetType() == typeof(Autodesk.Revit.DB.Solid))
+                        {
+                            Autodesk.Revit.DB.Solid solid = solidobj as Autodesk.Revit.DB.Solid;
+                            solids.Add(solid);
+                        }
+                    }
+                }
+            }
+
+            return solids;
+        }
+        /// <summary>
+        /// Apply Material to Solid
+        /// </summary>
+        /// <param name="familyDocument"></param>
+        /// <param name="material"></param>
+        /// <param name="freeform"></param>
+        private static void ApplyMaterialToFreeForm(
+            Autodesk.Revit.DB.Document familyDocument,
+            global::Revit.Elements.Material material,
+            Autodesk.Revit.DB.FreeFormElement freeform)
+        {
+            var materialCollector = new Autodesk.Revit.DB.FilteredElementCollector(familyDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.Material));
+
+            foreach (Autodesk.Revit.DB.Material mat in materialCollector)
+            {
+                if (mat.Name == material.Name)
+                {
+                    var materialParam = freeform.get_Parameter(BuiltInParameter.MATERIAL_ID_PARAM);
+                    if (materialParam != null && !materialParam.IsReadOnly)
+                    {
+                        freeform.get_Parameter(BuiltInParameter.MATERIAL_ID_PARAM).Set(material.InternalElement.Id);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Apply SubCategory to Solid
+        /// </summary>
+        /// <param name="familyDocument"></param>
+        /// <param name="subcategory"></param>
+        /// <param name="freeform"></param>
+        private static void ApplySubCategoryToFreeForm(
+            Autodesk.Revit.DB.Document familyDocument,
+            string subcategory,
+            Autodesk.Revit.DB.FreeFormElement freeform)
+        {
+            var currentFamilyCategory = familyDocument.OwnerFamily.FamilyCategory;
+            var newSubCategory = familyDocument.Settings.Categories.NewSubcategory(currentFamilyCategory, subcategory);
+            freeform.Subcategory = newSubCategory;
+        }
+        /// <summary>
+        /// Apply Cutting Settings to Void
+        /// </summary>
+        /// <param name="freeform"></param>
+        private static void ApplyVoidSettingsToFreeForm(Autodesk.Revit.DB.FreeFormElement freeform)
+        {
+            var elementIsCuttingParameter = freeform.get_Parameter(BuiltInParameter.ELEMENT_IS_CUTTING);
+            if (elementIsCuttingParameter != null && !elementIsCuttingParameter.IsReadOnly)
+            {
+                freeform.get_Parameter(BuiltInParameter.ELEMENT_IS_CUTTING).Set(1);
+            }
+
+            var cutWithVoidsParameter = freeform.get_Parameter(BuiltInParameter.FAMILY_ALLOW_CUT_WITH_VOIDS);
+            if (cutWithVoidsParameter != null && !cutWithVoidsParameter.IsReadOnly)
+            {
+                freeform.Document.OwnerFamily.get_Parameter(BuiltInParameter.FAMILY_ALLOW_CUT_WITH_VOIDS).Set(1);
+            }
+        }
+
     }
 }
