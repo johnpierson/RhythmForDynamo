@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using Revit.Elements;
+using Revit.GeometryConversion;
 using RevitServices.Persistence;
+using RevitServices.Transactions;
 using Rhythm.Utilities;
 using Convert = Rhythm.Utilities.Convert;
+using Line = Autodesk.DesignScript.Geometry.Line;
 
 namespace Rhythm.Revit.Selection
 {
@@ -128,5 +132,9 @@ namespace Rhythm.Revit.Selection
 
             return groups.Select(g => g.ToDSType(false)).ToList();
         }
+
+      
+
     }
 }
+ 

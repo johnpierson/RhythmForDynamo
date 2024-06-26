@@ -226,7 +226,18 @@ namespace Rhythm.Revit.Elements
             };
             return outInfo;
         }
+        /// <summary>
+        /// Get the level for the given room
+        /// </summary>
+        /// <param name="room">The room to get the level from</param>
+        /// <returns name="Level"></returns>
+        [NodeCategory("Query")]
+        public static global::Revit.Elements.Level Level(global::Revit.Elements.Room room)
+        {
+            var internalRoom = room.InternalElement as Autodesk.Revit.DB.Architecture.Room;
 
+            return internalRoom.Level.ToDSType(true) as global::Revit.Elements.Level;
+        }
 
         ///// <summary>
         ///// 

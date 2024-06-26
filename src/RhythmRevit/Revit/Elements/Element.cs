@@ -10,6 +10,9 @@ using Rhythm.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media.Media3D;
+using Line = Autodesk.DesignScript.Geometry.Line;
+using Point = Autodesk.DesignScript.Geometry.Point;
 using Solid = Autodesk.Revit.DB.Solid;
 
 namespace Rhythm.Revit.Elements
@@ -46,7 +49,7 @@ namespace Rhythm.Revit.Elements
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             //create a list to hold the element ids and add them to it
-            ICollection<Autodesk.Revit.DB.ElementId> elementIds = new List<ElementId>(){ element.InternalElement.Id };
+            ICollection<Autodesk.Revit.DB.ElementId> elementIds = new List<ElementId>() { element.InternalElement.Id };
             //start a transaction and create the parts
             TransactionManager.Instance.EnsureInTransaction(doc);
             PartUtils.CreateParts(doc, elementIds);
@@ -523,6 +526,51 @@ namespace Rhythm.Revit.Elements
                         .ToElementIds()
                 where idList.Contains(idToCheck)
                 select v);
+        }
+        /// <summary>
+        /// Rotate an element in Revit given the angle and an optional rotation vector.
+        /// </summary>
+        /// <param name="element">The element to rotate</param>
+        /// <param name="angle">How much to rotate?</param>
+        /// <param name="vector">The vector to rotate about.</param>
+        /// <returns name="Element">The rotated element</returns>
+        public static global::Revit.Elements.Element SetRotation(global::Revit.Elements.Element element, double angle, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Vector vector)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            var internalElement = element.InternalElement;
+
+            Autodesk.Revit.DB.Line rotationLine = null;
+
+            if (vector != null)
+            {
+                var vectorPoint = vector.ToXyz(true);
+
+                var newPoint = new XYZ(vectorPoint.X, vectorPoint.Y, 0);
+
+                rotationLine = Autodesk.Revit.DB.Line.CreateBound(newPoint, vector.ToXyz(true));
+            }
+            else
+            {
+                if (internalElement.Location is LocationPoint locationPoint)
+                {
+                    var secondPoint = locationPoint.Point;
+                    var firstPoint = new XYZ(secondPoint.X, secondPoint.Y, secondPoint.Z - 100);
+
+                    rotationLine = Autodesk.Revit.DB.Line.CreateBound(firstPoint, secondPoint);
+                }
+                else
+                {
+                    throw new Exception("Element is not point based. Cannot rotate.");
+                }
+            }
+
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            ElementTransformUtils.RotateElement(doc, internalElement.Id, rotationLine, angle);
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return element;
         }
     }
 }

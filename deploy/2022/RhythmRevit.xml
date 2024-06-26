@@ -1064,6 +1064,15 @@
             <param name="element">The element to analyze.</param>
             <returns name="views">The views this element appears in.</returns>
         </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.SetRotation(Revit.Elements.Element,System.Double,Autodesk.DesignScript.Geometry.Vector)">
+            <summary>
+            Rotate an element in Revit given the angle and an optional rotation vector.
+            </summary>
+            <param name="element">The element to rotate</param>
+            <param name="angle">How much to rotate?</param>
+            <param name="vector">The vector to rotate about.</param>
+            <returns name="Element">The rotated element</returns>
+        </member>
         <member name="T:Rhythm.Revit.Elements.ElevationMarker">
             <summary>
             Wrapper class for elevation markers.
@@ -1515,6 +1524,13 @@
             </summary>
             <returns name="dim1">The first dimension. (not sorted as we simply get the longest edge)</returns>
             <returns name="dim2">The second dimension. (not sorted as we simply get the longest edge)</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Rooms.Level(Revit.Elements.Room)">
+            <summary>
+            Get the level for the given room
+            </summary>
+            <param name="room">The room to get the level from</param>
+            <returns name="Level"></returns>
         </member>
         <member name="T:Rhythm.Revit.Elements.RoomTag">
             <summary>
