@@ -2311,6 +2311,14 @@
             <param name="view">The view to check the filter on.</param>
             <returns></returns>
         </member>
+        <member name="M:Rhythm.Revit.Views.View.SetFilterOrder(Revit.Elements.Views.View,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            Set the view filter order for the view or view template. Important: the view filters must already be assigned to the view in order to preserve overrides.
+            </summary>
+            <param name="view">The view or view template</param>
+            <param name="viewFilters">The view filters in order</param>
+            <returns name="viewFiltersInNewOrder"></returns>
+        </member>
         <member name="T:Rhythm.Revit.Views.ViewPlan">
             <summary>
             Wrapper class for plans.

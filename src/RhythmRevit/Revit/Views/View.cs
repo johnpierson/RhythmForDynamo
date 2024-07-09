@@ -330,7 +330,7 @@ namespace Rhythm.Revit.Views
         //    return result;
         //}
 
-#if !R20
+#if R21_OR_GREATER
 
         /// <summary>
         /// Revit 2021 - Checks if a view filter is enabled in the given view.
@@ -368,6 +368,73 @@ namespace Rhythm.Revit.Views
 
             return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList();
         }
+        /// <summary>
+        /// Set the view filter order for the view or view template. Important: the view filters must already be assigned to the view in order to preserve overrides.
+        /// </summary>
+        /// <param name="view">The view or view template</param>
+        /// <param name="viewFilters">The view filters in order</param>
+        /// <returns name="viewFiltersInNewOrder"></returns>
+        public static List<global::Revit.Elements.Element> SetFilterOrder(global::Revit.Elements.Views.View view, List<global::Revit.Elements.Element> viewFilters)
+        {
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+            Document doc = internalView.Document;
+
+
+            if (internalView.ViewTemplateId != ElementId.InvalidElementId)
+            {
+                internalView = doc.GetElement(internalView.ViewTemplateId) as Autodesk.Revit.DB.View;
+            }
+
+
+            TransactionManager.Instance.ForceCloseTransaction();
+
+            TransactionGroup reorderFilters = new TransactionGroup(doc);
+
+            reorderFilters.Start();
+            
+            foreach (var viewFilter in viewFilters)
+            {
+                var viewFilterId = viewFilter.InternalElement.Id;
+
+                var filterElement = doc.GetElement(viewFilter.InternalElement.Id);
+                if (!filterElement.GetType().ToString().Contains("ParameterFilterElement"))
+                {
+                    continue;
+                }
+
+                //get all the settings
+                var viewFilterOverrides = internalView.GetFilterOverrides(viewFilterId);
+                var viewFilterVisibility = internalView.GetFilterVisibility(viewFilterId);
+                var viewFilterEnabled = internalView.GetIsFilterEnabled(viewFilterId);
+
+                //remove the filter
+                using (Transaction removeFilterTransaction = new Transaction(doc, "Removing Filter"))
+                {
+                    removeFilterTransaction.Start();
+                    internalView.RemoveFilter(viewFilterId);
+                    removeFilterTransaction.Commit();
+                }
+
+                //add the filter back and set the settings
+                using (Transaction addFilterTransaction = new Transaction(doc, "Adding Filter"))
+                {
+                    addFilterTransaction.Start();
+
+                    internalView.AddFilter(viewFilterId);
+                    internalView.SetFilterOverrides(viewFilterId, viewFilterOverrides);
+                    internalView.SetFilterVisibility(viewFilterId, viewFilterVisibility);
+                    internalView.SetIsFilterEnabled(viewFilterId, viewFilterEnabled);
+
+                    addFilterTransaction.Commit();
+
+                }
+            }
+
+            reorderFilters.Assimilate();
+
+            return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList(); ;
+        }
+
 #endif
     }
 
