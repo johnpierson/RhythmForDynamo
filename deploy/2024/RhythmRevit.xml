@@ -2148,6 +2148,14 @@
             Wrapper class for selections.
             </summary>
         </member>
+        <member name="M:Rhythm.Revit.Selection.Selection.RoomAtPoint(Autodesk.DesignScript.Geometry.Point,Revit.Elements.Element)">
+            <summary>
+            Select a room at the corresponding point in the corresponding phase.
+            </summary>
+            <param name="point">The point location</param>
+            <param name="phase">Optional phase to search in. If empty, the last phase is used.</param>
+            <returns name="room"></returns>
+        </member>
         <member name="M:Rhythm.Revit.Selection.Selection.FromLink(System.Boolean,System.Boolean)">
             <summary>
             Select stuff from a link. Useful for Dynamo player.

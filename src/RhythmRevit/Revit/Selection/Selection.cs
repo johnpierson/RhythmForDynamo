@@ -15,6 +15,7 @@ using static Autodesk.Revit.DB.SpecTypeId;
 using Category = Revit.Elements.Category;
 using Curve = Autodesk.Revit.DB.Curve;
 using Element = Autodesk.Revit.DB.Element;
+using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Grid = Autodesk.Revit.DB.Grid;
 using ModelCurve = Autodesk.Revit.DB.ModelCurve;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -29,6 +30,46 @@ namespace Rhythm.Revit.Selection
     public class Selection
     {
         private Selection() { }
+
+        /// <summary>
+        /// Select a room at the corresponding point in the corresponding phase.
+        /// </summary>
+        /// <param name="point">The point location</param>
+        /// <param name="phase">Optional phase to search in. If empty, the last phase is used.</param>
+        /// <returns name="room"></returns>
+        public static global::Revit.Elements.Element RoomAtPoint(Point point, [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] global::Revit.Elements.Element phase)
+        {
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+
+            var revitPoint = point.ToRevitType(true);
+
+            Autodesk.Revit.DB.Architecture.Room room = null;
+
+            if (phase is null)
+            {
+               room = doc.GetRoomAtPoint(revitPoint);
+            }
+            else
+            {
+                try
+                {
+                    var internalPhase = phase.InternalElement as Phase;
+                    room = doc.GetRoomAtPoint(revitPoint, internalPhase);
+                }
+                catch (Exception)
+                {
+                    room = doc.GetRoomAtPoint(revitPoint);
+                }
+            }
+
+            if (room is null)
+            {
+                throw new Exception(
+                    "Could not find a room at the given point, in the given phase. Maybe try offsetting your point in the Z Axis a little?");
+            }
+
+            return room.ToDSType(true);
+        }
 
         /// <summary>
         /// Select stuff from a link. Useful for Dynamo player.
