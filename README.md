@@ -21,7 +21,6 @@
 ---
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/johnpierson/RhythmForDynamo/graphs/commit-activity)
-[![GitHub license](https://img.shields.io/github/license/johnpierson/RhythmForDynamo)](https://github.com/johnpierson/RhythmForDynamo/blob/master/LICENSE)
 
 If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager. 
 
@@ -29,13 +28,17 @@ If you appreciate the work put into this free package, please vote in support of
 
  <a href="https://www.buymeacoffee.com/j0hnp" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
+## License
+[![GitHub license](https://img.shields.io/github/license/johnpierson/RhythmForDynamo)](https://github.com/johnpierson/RhythmForDynamo/blob/master/LICENSE)
+Rhythm is licensed under the BSD 3 Clause License. You can use this package however you want in Dynamo. It's just limited in the way the source code may be used. A simplified version of this license is available [here](https://www.tldrlegal.com/license/bsd-3-clause-license-revised).
+
 ## Current Version
-Rhythm is currently built against the latest Dynamo stable build. At this time that is 2.6.0.
+ Supported Revit versions are 2020 and up. And supported Dynamo versions are Dynamo 2.0.x and up. Rhythm is deployed from github, and auto-downloads the correct node libraries on the fly. 
 
 ## Components
 Rhythm consists of several sub-libraries. These are describe a bit more in detail below.
 - [Rhythm Core](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmCore), General methods and helpers with no reliance on Revit.
-- [Rhythm Revit](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/Rhythm), All the Revit nodes that work from 2019-2023
+- [Rhythm Revit](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/Rhythm), All the Revit nodes that work from 2020-2025
 - [Rhythm UI](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmUI), Revit UI Nodes.
 - [Rhythm View Extension](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmViewExtension), this view extension allows for the auto-annotating of Rhythm nodes and control of the run mode when the user places `Background Document` nodes.
 - [Rhythm Python](https://github.com/johnpierson/RhythmForDynamo/tree/master/RhythmPython), Python code for many of the popular Rhythm  nodes. <sub><sup>if you want to hurt my feelings and not use the Rhythm package :pleading_face: </sub></sup>
@@ -44,7 +47,7 @@ Rhythm consists of several sub-libraries. These are describe a bit more in detai
 - Nodes that interact with background opened documents take some more consideration. This includes running Dynamo graphs that use them in manual run mode and often times closing and opening dynamo after the process is complete. The reason this happens is Dynamo has limited document switching capability and we are exploiting this with those nodes. (Included Nodes: Applications.OpenDocumentFile, Applications.CloseDocument)
 
 ## Contributors
-This package is primarily managed by the author of http://sixtysecondrevit.com with additional contributions from [People Like You™](https://github.com/johnpierson/RhythmForDynamo/graphs/contributors).
+This package is primarily managed by the author of http://designtechunraveled.com with additional contributions from [People Like You™](https://github.com/johnpierson/RhythmForDynamo/graphs/contributors).
 
 ## Special Thanks
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg"/>
@@ -58,7 +61,7 @@ Since there is not currently an update notification process on Dynamo's package 
 Examples will be available on the [wiki](https://github.com/johnpierson/RhythmForDynamo/wiki) soon,
 
 ## Help improve Rhythm
-If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/sixtysecondrevit/RhythmForDynamo/pulls).
+If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/johnpierson/RhythmForDynamo/pulls).
 
 ## Installation
 Rhythm is available through Dynamo's built-in package manager. This provides the simplest installation for most users. If you are interested in manual install, there are some fabulous resources out there describing how to build your own Dynamo package.
