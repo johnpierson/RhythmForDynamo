@@ -196,6 +196,11 @@
    <PackageReference Include="Humanizer.Core" Version="2.14.1" />
    <PackageReference Include="Markov" Version="2.0.0" />
     </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Accord" Version="3.8.0" />
+    <PackageReference Include="Accord.MachineLearning" Version="3.8.0" />
+    <PackageReference Include="Accord.Math" Version="3.8.0" />
+  </ItemGroup>
 	<Target Name="CopyFiles" AfterTargets="CoreBuild">
         <Message Text="Build Revit Version $(RevitVersion)" Importance="high" />
         <ItemGroup>

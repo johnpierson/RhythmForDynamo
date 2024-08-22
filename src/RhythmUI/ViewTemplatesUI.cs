@@ -128,4 +128,60 @@ namespace RhythmUI
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
     }
+    [NodeName("ViewTemplates")]
+    [NodeCategory("Rhythm.Revit.Selection.Selection")]
+    [NodeDescription("Allows you to select a view template from the instances in your project.")]
+    [IsDesignScriptCompatible]
+    public class ViewTemplates : RevitDropDownBase
+    {
+        private const string outputName = "ViewTemplate";
+        public ViewTemplates() : base(outputName) { }
+        [JsonConstructor]
+        public ViewTemplates(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
+        {
+        }
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+            //find all views in the project
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var views = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(View)).Cast<View>()
+                .Where(x => !x.Name.Contains('<'))
+                .Where(v => v.IsTemplate)
+                .ToList();
+            Items = views.Select(x => new DynamoDropDownItem((x.Name), x)).OrderBy(x => x.Name).ToObservableCollection();
+
+            return SelectionState.Restore;
+        }
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            AssociativeNode node;
+
+            if (SelectedIndex == -1)
+            {
+                node = AstFactory.BuildNullNode();
+            }
+            else
+            {
+                var view = Items[SelectedIndex].Item as View;
+                if (view == null)
+                {
+                    node = AstFactory.BuildNullNode();
+                }
+                else
+                {
+                    var idNode = AstFactory.BuildStringNode(view.UniqueId);
+                    var falseNode = AstFactory.BuildBooleanNode(true);
+
+                    node =
+                        AstFactory.BuildFunctionCall(
+                            new Func<string, bool, object>(ElementSelector.ByUniqueId),
+                            new List<AssociativeNode>() { idNode, falseNode });
+                }
+            }
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+        }
+    }
 }

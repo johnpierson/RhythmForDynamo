@@ -166,6 +166,7 @@
 	<ItemGroup>
 	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
+        <PackageReference Include="OptimizedPriorityQueue" Version="5.1.0" />
         <PackageReference Include="Prism" Version="4.1.0.0" />
         <PackageReference Include="System.Buffers" Version="4.5.1" />
         <PackageReference Include="System.Memory" Version="4.5.4" />
