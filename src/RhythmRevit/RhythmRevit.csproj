@@ -173,7 +173,9 @@
         <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
         <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
         <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*-*" />
+		<PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" />
+	    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
+	    <PackageReference Include="Nice3point.Revit.Api.AdWindows" Version="$(RevitVersion).*-*" />
         <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'!= 'Release R25|AnyCPU' ">

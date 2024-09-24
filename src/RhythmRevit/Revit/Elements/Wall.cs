@@ -8,6 +8,7 @@ using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using Element = Autodesk.Revit.DB.Element;
+using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Line = Autodesk.Revit.DB.Line;
 
 namespace Rhythm.Revit.Elements
@@ -271,5 +272,12 @@ namespace Rhythm.Revit.Elements
 
             return wallAngle;
         }
+
+        //public static void Attach(global::Revit.Elements.Wall wall)
+        //{
+        //    Autodesk.Revit.DB.Wall internalWall = wall.InternalElement as Autodesk.Revit.DB.Wall;
+
+        //    internalWall.
+        //}
     }
 }

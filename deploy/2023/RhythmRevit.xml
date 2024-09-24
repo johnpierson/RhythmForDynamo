@@ -2136,6 +2136,14 @@
             Wrapper class for selections.
             </summary>
         </member>
+        <member name="M:Rhythm.Revit.Selection.Selection.RoomAtPoint(Autodesk.DesignScript.Geometry.Point,Revit.Elements.Element)">
+            <summary>
+            Select a room at the corresponding point in the corresponding phase.
+            </summary>
+            <param name="point">The point location</param>
+            <param name="phase">Optional phase to search in. If empty, the last phase is used.</param>
+            <returns name="room"></returns>
+        </member>
         <member name="M:Rhythm.Revit.Selection.Selection.FromLink(System.Boolean,System.Boolean)">
             <summary>
             Select stuff from a link. Useful for Dynamo player.
@@ -2273,6 +2281,20 @@
             <summary>
             Wrapper class for view.
             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.HideElements(Revit.Elements.Views.View,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            Hide the given elements in the given view.
+            </summary>
+            <param name="view">The view to hide elements in.</param>
+            <param name="elementsToHide">The elements to hide.</param>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.UnhideElements(Revit.Elements.Views.View,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            Unhide the given elements in the given view. Unhide is kind of a weird word huh?
+            </summary>
+            <param name="view">The view to unhide elements in.</param>
+            <param name="elementsToHide">The elements to unhide.</param>
         </member>
         <member name="M:Rhythm.Revit.Views.View.Viewport(Revit.Elements.Element)">
             <summary>

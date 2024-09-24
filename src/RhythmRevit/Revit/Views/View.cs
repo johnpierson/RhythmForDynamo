@@ -20,6 +20,42 @@ namespace Rhythm.Revit.Views
         { }
 
         /// <summary>
+        /// Hide the given elements in the given view.
+        /// </summary>
+        /// <param name="view">The view to hide elements in.</param>
+        /// <param name="elementsToHide">The elements to hide.</param>
+        public static void HideElements(global::Revit.Elements.Views.View view, List<global::Revit.Elements.Element> elementsToHide)
+        {
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+
+            var doc = internalView.Document;
+
+            var idCollection = elementsToHide.Select(e => e.InternalElement.Id).ToList();
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalView.HideElements(idCollection);
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Unhide the given elements in the given view. Unhide is kind of a weird word huh?
+        /// </summary>
+        /// <param name="view">The view to unhide elements in.</param>
+        /// <param name="elementsToHide">The elements to unhide.</param>
+        public static void UnhideElements(global::Revit.Elements.Views.View view, List<global::Revit.Elements.Element> elementsToUnhide)
+        {
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+
+            var doc = internalView.Document;
+
+            var idCollection = elementsToUnhide.Select(e => e.InternalElement.Id).ToList();
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalView.UnhideElements(idCollection);
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
         /// Retrieve the view's viewport(s) if there is one.
         /// </summary>
         /// <param name="view"></param>

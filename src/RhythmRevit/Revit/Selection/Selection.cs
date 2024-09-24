@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 using Revit.Elements;
@@ -15,12 +17,14 @@ using static Autodesk.Revit.DB.SpecTypeId;
 using Category = Revit.Elements.Category;
 using Curve = Autodesk.Revit.DB.Curve;
 using Element = Autodesk.Revit.DB.Element;
+using FamilyType = Revit.Elements.FamilyType;
 using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Grid = Autodesk.Revit.DB.Grid;
 using ModelCurve = Autodesk.Revit.DB.ModelCurve;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Reference = Autodesk.Revit.DB.Reference;
 using RevitLinkInstance = Autodesk.Revit.DB.RevitLinkInstance;
+using Vector = Autodesk.DesignScript.Geometry.Vector;
 
 namespace Rhythm.Revit.Selection
 {
@@ -69,6 +73,32 @@ namespace Rhythm.Revit.Selection
             }
 
             return room.ToDSType(true);
+        }
+
+        public static void RoomsAtCurve(global::Revit.Elements.FamilyType famType)
+        {
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var uiDoc = DocumentManager.Instance.CurrentUIDocument;
+
+            var app = doc.Application;
+
+            app.DocumentChanged
+                += AppOnDocumentChanged;
+
+            var internalfamType = famType.InternalElement as Autodesk.Revit.DB.FamilySymbol;
+
+
+            PromptForFamilyInstancePlacementOptions opts = new PromptForFamilyInstancePlacementOptions();
+            opts.SketchGalleryOptions = SketchGalleryOptions.SGO_Spline;
+
+            uiDoc.PromptForFamilyInstancePlacement(internalfamType, opts);
+
+
+        }
+
+        private static void AppOnDocumentChanged(object sender, DocumentChangedEventArgs e)
+        {
+            var newStuff = e.GetAddedElementIds();
         }
 
         /// <summary>
