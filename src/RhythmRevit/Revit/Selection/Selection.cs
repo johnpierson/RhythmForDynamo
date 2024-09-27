@@ -75,31 +75,31 @@ namespace Rhythm.Revit.Selection
             return room.ToDSType(true);
         }
 
-        public static void RoomsAtCurve(global::Revit.Elements.FamilyType famType)
-        {
-            var doc = DocumentManager.Instance.CurrentDBDocument;
-            var uiDoc = DocumentManager.Instance.CurrentUIDocument;
+        //public static void RoomsAtCurve(global::Revit.Elements.FamilyType famType)
+        //{
+        //    var doc = DocumentManager.Instance.CurrentDBDocument;
+        //    var uiDoc = DocumentManager.Instance.CurrentUIDocument;
 
-            var app = doc.Application;
+        //    var app = doc.Application;
 
-            app.DocumentChanged
-                += AppOnDocumentChanged;
+        //    app.DocumentChanged
+        //        += AppOnDocumentChanged;
 
-            var internalfamType = famType.InternalElement as Autodesk.Revit.DB.FamilySymbol;
-
-
-            PromptForFamilyInstancePlacementOptions opts = new PromptForFamilyInstancePlacementOptions();
-            opts.SketchGalleryOptions = SketchGalleryOptions.SGO_Spline;
-
-            uiDoc.PromptForFamilyInstancePlacement(internalfamType, opts);
+        //    var internalfamType = famType.InternalElement as Autodesk.Revit.DB.FamilySymbol;
 
 
-        }
+        //    PromptForFamilyInstancePlacementOptions opts = new PromptForFamilyInstancePlacementOptions();
+        //    opts.SketchGalleryOptions = SketchGalleryOptions.SGO_Spline;
 
-        private static void AppOnDocumentChanged(object sender, DocumentChangedEventArgs e)
-        {
-            var newStuff = e.GetAddedElementIds();
-        }
+        //    uiDoc.PromptForFamilyInstancePlacement(internalfamType, opts);
+
+
+        //}
+
+        //private static void AppOnDocumentChanged(object sender, DocumentChangedEventArgs e)
+        //{
+        //    var newStuff = e.GetAddedElementIds();
+        //}
 
         /// <summary>
         /// Select stuff from a link. Useful for Dynamo player.

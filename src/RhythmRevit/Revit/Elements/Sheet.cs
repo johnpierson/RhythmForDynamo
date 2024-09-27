@@ -113,6 +113,13 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
 
+            var titleBlockName = titleblock.Family.Name;
+
+            var allTitleBlocks = new FilteredElementCollector(doc).OfClass(typeof(FamilySymbol)).OfCategory(BuiltInCategory.OST_TitleBlocks)
+                .ToElements();
+
+
+
 #if R20 || R21 || R22 || R23
              ElementId titleblockId = new ElementId(titleblock.Id);
 #endif
@@ -121,11 +128,25 @@ namespace Rhythm.Revit.Elements
             ElementId titleblockId = new ElementId(Convert.ToInt64(-2000480));
 #endif
 
-            ViewSheet createdSheet = ViewSheet.Create(doc, titleblockId);
-            var result = createdSheet.ToDSType(false);
+            
+
+            global::Revit.Elements.Element createdSheet;
+            try
+            {
+                ViewSheet internalSheet = ViewSheet.Create(doc, titleblockId);
+                createdSheet = internalSheet.ToDSType(false);
+            }
+            catch (Exception e)
+            {
+
+                var toUse = allTitleBlocks.Where(t => t.Name.Equals(titleBlockName)).FirstOrDefault().Id;
+                ViewSheet internalSheet = ViewSheet.Create(doc, titleblockId);
+                createdSheet = internalSheet.ToDSType(false);
+            }
+          
             TransactionManager.Instance.TransactionTaskDone();
 
-            return result;
+            return createdSheet;
         }
 
         /// <summary>

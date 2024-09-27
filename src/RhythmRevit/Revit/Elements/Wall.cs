@@ -7,6 +7,7 @@ using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
+using RevitServices.Transactions;
 using Element = Autodesk.Revit.DB.Element;
 using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
 using Line = Autodesk.Revit.DB.Line;
@@ -272,12 +273,23 @@ namespace Rhythm.Revit.Elements
 
             return wallAngle;
         }
-
-        //public static void Attach(global::Revit.Elements.Wall wall)
+        ///// <summary>
+        ///// Attach a given wall to a given element.
+        ///// </summary>
+        ///// <param name="wall">The wall to attach.</param>
+        ///// <param name="elementToAttachTo">The element to attempt to attach to.</param>
+        ///// <param name="attachmentLocation">Attachment location. Choices are 0 for base and 1 for top.</param>
+        //public static void Attach(global::Revit.Elements.Wall wall, global::Revit.Elements.Element elementToAttachTo, int attachmentLocation = 0)
         //{
         //    Autodesk.Revit.DB.Wall internalWall = wall.InternalElement as Autodesk.Revit.DB.Wall;
+        //    var doc = internalWall.Document;
 
-        //    internalWall.
+        //    //get the attachment from the int
+        //    AttachmentLocation attachment = attachmentLocation == 0 ? AttachmentLocation.Base : AttachmentLocation.Top;
+
+        //    TransactionManager.Instance.EnsureInTransaction(doc);
+        //    internalWall.AddAttachment(elementToAttachTo.InternalElement.Id, attachment);
+        //    TransactionManager.Instance.TransactionTaskDone();
         //}
     }
 }
