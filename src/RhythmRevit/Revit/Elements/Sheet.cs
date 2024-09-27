@@ -140,7 +140,7 @@ namespace Rhythm.Revit.Elements
             {
 
                 var toUse = allTitleBlocks.Where(t => t.Name.Equals(titleBlockName)).FirstOrDefault().Id;
-                ViewSheet internalSheet = ViewSheet.Create(doc, titleblockId);
+                ViewSheet internalSheet = ViewSheet.Create(doc, toUse);
                 createdSheet = internalSheet.ToDSType(false);
             }
           
