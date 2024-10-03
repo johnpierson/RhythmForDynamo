@@ -10,6 +10,7 @@ using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
+using ProtoCore.AST.ImperativeAST;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 
@@ -97,6 +98,13 @@ namespace RhythmViewExtension
                 DownloadFile(version, Global.RhythmRevitUiDll);
                 DownloadFile(version, Global.RhythmRevitUiXml);
 
+                //download supplemental DLLs and correct pkg.json
+                DownloadFile(version,Global.HumanizerDll);
+                DownloadFile(version, Global.MarkovDll);
+                DownloadFile(string.Empty, Global.PackageJson);
+
+
+
                 //load the regular revit nodes
                 try
                 {
@@ -166,6 +174,9 @@ namespace RhythmViewExtension
             DownloadFile(version,Global.RhythmCoreCustomizationXml);
             DownloadFile(version, Global.RhythmCoreCustomizationDll);
 
+
+
+
             //load the core nodes
             try
             {
@@ -185,7 +196,7 @@ namespace RhythmViewExtension
 
             string fileName = fileInfo.Name;
 
-            string url = $"{GitHubUrl}{version}/{fileName}";
+            var url = string.IsNullOrWhiteSpace(version) ? $"{GitHubUrl}/{fileName}" : $"{GitHubUrl}{version}/{fileName}";
 
             using (WebClient wc = new WebClient())
             {
