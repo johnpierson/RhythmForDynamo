@@ -1,13 +1,18 @@
-﻿using Autodesk.DesignScript.Runtime;
+﻿using System;
+using Autodesk.DesignScript.Runtime;
 using System.Collections.Generic;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
+using Revit.Elements;
+using Revit.Elements.Views;
 using Revit.GeometryConversion;
 using Plane = Autodesk.DesignScript.Geometry.Plane;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using GlobalParameter = Autodesk.Revit.DB.GlobalParameter;
+using System.Linq;
 
 namespace Rhythm.Revit.Views
 {
@@ -126,6 +131,67 @@ namespace Rhythm.Revit.Views
             TransactionManager.Instance.TransactionTaskDone();
 
             return cropBoxElement;
+        }
+
+        public static global::Revit.Elements.PlanView ByLevelTypeAndName(global::Revit.Elements.Level level, global::Revit.Elements.Element viewFamilyType, string viewName)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            Autodesk.Revit.DB.ViewFamilyType vft;
+            if (viewFamilyType == null)
+            {
+                vft = new Autodesk.Revit.DB.FilteredElementCollector(doc)
+                    .OfClass(typeof(Autodesk.Revit.DB.ViewFamilyType))
+                    .Cast<Autodesk.Revit.DB.ViewFamilyType>()
+                    .FirstOrDefault(x => x.ViewFamily == Autodesk.Revit.DB.ViewFamily.FloorPlan);
+            }
+            else
+            {
+                vft = viewFamilyType.InternalElement as Autodesk.Revit.DB.ViewFamilyType;
+            }
+
+            if (vft?.ViewFamily != Autodesk.Revit.DB.ViewFamily.FloorPlan)
+                throw new ArgumentException(nameof(viewFamilyType));
+
+
+
+            TransactionManager.Instance.ForceCloseTransaction();
+
+            global::Revit.Elements.PlanView newPlanView;
+
+            using (TransactionGroup tGroup = new TransactionGroup(doc, "Create new plan views with names."))
+            {
+                tGroup.Start();
+                //create the view first
+                Autodesk.Revit.DB.ViewPlan viewPlan;
+                using (Transaction create = new Transaction(doc,"Creating View"))
+                {
+                    create.Start();
+                    viewPlan = Autodesk.Revit.DB.ViewPlan.Create(doc, vft.Id, level.InternalElement.Id);
+                    create.Commit();
+                }
+
+
+                var planViewsWithName = new FilteredElementCollector(doc).OfClass(typeof(Autodesk.Revit.DB.ViewPlan)).WhereElementIsNotElementType().Where(v => v.Name.Equals(viewName)).ToList();
+
+
+                if (!planViewsWithName.Any())
+                {
+                    //now name that thing
+                    using (Transaction name = new Transaction(doc, "Naming View"))
+                    {
+                        name.Start();
+                        viewPlan.Name = viewName;
+                        name.Commit();
+                    }
+                }
+
+                newPlanView = viewPlan.ToDSType(true) as global::Revit.Elements.PlanView;
+
+                tGroup.Assimilate();
+            }
+
+            return newPlanView;
         }
     }
 }
