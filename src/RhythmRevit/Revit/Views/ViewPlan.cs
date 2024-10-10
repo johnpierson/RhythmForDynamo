@@ -133,31 +133,15 @@ namespace Rhythm.Revit.Views
             return cropBoxElement;
         }
 
-        public static global::Revit.Elements.PlanView ByLevelTypeAndName(global::Revit.Elements.Level level, global::Revit.Elements.Element viewFamilyType, string viewName)
+        public static global::Revit.Elements.Element ByLevelTypeAndName(global::Revit.Elements.Level level, global::Revit.Elements.Element viewFamilyType, string viewName)
         {
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
-            Autodesk.Revit.DB.ViewFamilyType vft;
-            if (viewFamilyType == null)
-            {
-                vft = new Autodesk.Revit.DB.FilteredElementCollector(doc)
-                    .OfClass(typeof(Autodesk.Revit.DB.ViewFamilyType))
-                    .Cast<Autodesk.Revit.DB.ViewFamilyType>()
-                    .FirstOrDefault(x => x.ViewFamily == Autodesk.Revit.DB.ViewFamily.FloorPlan);
-            }
-            else
-            {
-                vft = viewFamilyType.InternalElement as Autodesk.Revit.DB.ViewFamilyType;
-            }
-
-            if (vft?.ViewFamily != Autodesk.Revit.DB.ViewFamily.FloorPlan)
-                throw new ArgumentException(nameof(viewFamilyType));
-
-
+          
 
             TransactionManager.Instance.ForceCloseTransaction();
 
-            global::Revit.Elements.PlanView newPlanView;
+            global::Revit.Elements.Element newPlanView;
 
             using (TransactionGroup tGroup = new TransactionGroup(doc, "Create new plan views with names."))
             {
@@ -167,7 +151,7 @@ namespace Rhythm.Revit.Views
                 using (Transaction create = new Transaction(doc,"Creating View"))
                 {
                     create.Start();
-                    viewPlan = Autodesk.Revit.DB.ViewPlan.Create(doc, vft.Id, level.InternalElement.Id);
+                    viewPlan = Autodesk.Revit.DB.ViewPlan.Create(doc, viewFamilyType.InternalElement.Id, level.InternalElement.Id);
                     create.Commit();
                 }
 
@@ -186,7 +170,7 @@ namespace Rhythm.Revit.Views
                     }
                 }
 
-                newPlanView = viewPlan.ToDSType(true) as global::Revit.Elements.PlanView;
+                newPlanView = viewPlan.ToDSType(true);
 
                 tGroup.Assimilate();
             }
