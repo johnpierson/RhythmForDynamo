@@ -516,6 +516,34 @@
             <param name="category">The category</param>
             <returns name="builtInCategoryName"></returns>
         </member>
+        <member name="T:Rhythm.Revit.Elements.Ceiling">
+            <summary>
+            Wrapper class for floors
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Ceiling.DefaultCeilingType">
+            <summary>
+            Collect the first ceiling type available. Revit 2022+
+            </summary>
+            <returns name="ceilingType">The first (default) ceiling type.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Ceiling.ByCurveLoops(System.Collections.Generic.List{System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve}},Revit.Elements.Element,Revit.Elements.Level)">
+            <summary>
+            Create a ceiling by multiple curve loops. Revit 2022+
+            </summary>
+            <param name="curves">The input curves as a list of lists.</param>
+            <param name="ceilingType">Ceiling type to use.</param>
+            <param name="level">The level to host on.</param>
+            <returns name="ceiling">The newly created ceiling.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Ceiling.GetGridLines(Revit.Elements.Element,System.Boolean)">
+            <summary>
+            Returns ceiling grid lines, with the option to return the boundary as well.
+            </summary>
+            <param name="ceiling">The ceiling to extract grids from</param>
+            <param name="includeBoundary">Extract the boundary?</param>
+            <returns name="ceilingGrids"></returns>
+        </member>
         <member name="T:Rhythm.Revit.Elements.CurtainGrid">
             <summary>
             Wrapper class for curtain grids.

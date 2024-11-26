@@ -14,7 +14,7 @@ using Level = Revit.Elements.Level;
 
 namespace Rhythm.Revit.Elements
 {
-#if R22 || R23 || R24
+#if R22_OR_GREATER
     /// <summary>
     /// Wrapper class for floors
     /// </summary>
@@ -133,7 +133,20 @@ namespace Rhythm.Revit.Elements
 
             return ceiling.ToDSType(false);
         }
+        /// <summary>
+        /// Returns ceiling grid lines, with the option to return the boundary as well.
+        /// </summary>
+        /// <param name="ceiling">The ceiling to extract grids from</param>
+        /// <param name="includeBoundary">Extract the boundary?</param>
+        /// <returns name="ceilingGrids"></returns>
+        public static List<Curve> GetGridLines(global::Revit.Elements.Element ceiling, bool includeBoundary = false)
+        {
+            Autodesk.Revit.DB.Ceiling internalCeiling = ceiling.InternalElement as Autodesk.Revit.DB.Ceiling;
 
+            var curveList = internalCeiling.GetCeilingGridLines(includeBoundary);
+
+            return curveList.Select(c => c.ToProtoType(true)).ToList();
+        }
 
         internal class FailuresPreprocessor : IFailuresPreprocessor
         {
