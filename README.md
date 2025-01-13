@@ -24,8 +24,6 @@
 
 If you appreciate the work put into this free package, please vote in support of it on Dynamo's package manager. 
 
- _If you feel so inclined, here is a method to donate to this open source project
-
 ## Disclaimer
 This tool is not affiliated with Autodesk and was written and provided in a personal capacity by the author. This tool is provided "as is" without warranty of any kind, express or implied. Use at your own risk. By using this open-source tool, you acknowledge that the developers and contributors are not liable for any damages, losses, or issues that may arise from its use. You are responsible for ensuring compliance with all applicable laws and regulations. Remember, open-source software relies on community contributions, so functionality and security might vary. Always review, understand, and, if necessary, modify the code to suit your specific needs.
 
