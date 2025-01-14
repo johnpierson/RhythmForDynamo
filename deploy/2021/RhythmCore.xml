@@ -218,6 +218,55 @@
             <param name="number"></param>
             <returns></returns>
         </member>
+        <member name="P:Rhythm.Polylabel.Cell.X">
+            <summary>
+            Cell center X
+            </summary>
+        </member>
+        <member name="P:Rhythm.Polylabel.Cell.Y">
+            <summary>
+            Cell center Y
+            </summary>
+        </member>
+        <member name="P:Rhythm.Polylabel.Cell.H">
+            <summary>
+            Half the cell size
+            </summary>
+        </member>
+        <member name="P:Rhythm.Polylabel.Cell.D">
+            <summary>
+            Distance from cell center to polygon
+            </summary>
+        </member>
+        <member name="P:Rhythm.Polylabel.Cell.Max">
+            <summary>
+            Max distance to polygon within a cell
+            </summary>
+        </member>
+        <member name="M:Rhythm.Polylabel.Cell.PointToPolygonDist(System.Double,System.Double,System.Double[][][])">
+            <summary>
+            Signed distance from point to polygon outline (negative if point is outside)
+            </summary>
+            <param name="x">Cell center x</param>
+            <param name="y">Cell center y</param>
+            <param name="polygon">Full GeoJson like Polygon</param>
+        </member>
+        <member name="M:Rhythm.Polylabel.Cell.GetSegDistSq(System.Double,System.Double,System.Double[],System.Double[])">
+            <summary>
+            Get squared distance from a point to a segment
+            </summary>
+        </member>
+        <member name="M:Rhythm.Polylabel.Polylabel.GetPolylabel(System.Double[][][],System.Double,System.Boolean)">
+            <summary>
+            A fast algorithm for finding polygon pole of inaccessibility, the most distant
+            internal point from the polygon outline (not to be confused with centroid).
+            Useful for optimal placement of a text label on a polygon.
+            </summary>
+            <param name="polygon">GeoJson like format</param>
+            <param name="precision"></param>
+            <param name="debug"></param>
+            <returns></returns>
+        </member>
         <member name="T:Rhythm.String.Inspect">
             <summary>
             Wrapper class for string modifiers

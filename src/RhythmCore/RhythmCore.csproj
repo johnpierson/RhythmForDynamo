@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-     <!--<TargetFramework>net48</TargetFramework>-->
-	 <TargetFramework>net8.0-windows</TargetFramework>
+     <TargetFramework>net48</TargetFramework>
+	 <!--<TargetFramework>net8.0-windows</TargetFramework>-->
         <OutputType>Library</OutputType>
         <RootNamespace>Rhythm</RootNamespace>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -116,8 +116,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <Version>$(RevitVersion).10.1</Version>
         <Description>Rhythm for Dynamo|Core$(RevitVersion)</Description>
-        <FileVersion>$(RevitVersion).12.1</FileVersion>
-        <AssemblyVersion>$(RevitVersion).12.1</AssemblyVersion>
+        <FileVersion>$(RevitVersion).1.1</FileVersion>
+        <AssemblyVersion>$(RevitVersion).1.1</AssemblyVersion>
         <Title>Rhythm for Dynamo|Core$(RevitVersion)</Title>
         <Product>Rhythm for Dynamo|Core$(RevitVersion)</Product>
     </PropertyGroup>
