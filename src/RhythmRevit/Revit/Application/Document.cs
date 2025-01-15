@@ -22,6 +22,29 @@ namespace Rhythm.Revit.Application
         private Documents()
         { }
 
+
+        public static global::Revit.Elements.Views.View ActiveView(global::Revit.Application.Document document)
+        {
+            //Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            //var dynRevitDocument = doc.ToDynamoType();
+
+            var uiDocument = DocumentManager.Instance.CurrentUIDocument;
+
+            try
+            {
+                return document.ActiveView;
+            }
+
+            //land here for if someone has the project browser active
+            catch (Exception e)
+            {
+                var activeGraphicalView = uiDocument.ActiveGraphicalView;
+
+                return activeGraphicalView.ToDSType(true) as global::Revit.Elements.Views.View;
+            }
+
+        }
+
         /// <summary>
         /// This node will copy the given elements from the given linked document into the active document.
         /// </summary>
