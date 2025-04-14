@@ -106,7 +106,7 @@ namespace Rhythm.String
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
             TextInfo textInfo = cultureInfo.TextInfo;
             
-            return textInfo.ToTitleCase(str);
+            return textInfo.ToTitleCase(str.ToLower());
         }
         /// <summary>
         /// Converts the input string to a title case.
