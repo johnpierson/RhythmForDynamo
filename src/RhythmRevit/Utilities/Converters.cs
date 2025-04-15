@@ -50,7 +50,7 @@ namespace Rhythm.Utilities
             return dynCategory.ById(item.Id.IntegerValue);
 #endif
 
-#if R24 || R25
+#if R24_OR_GREATER
             return dynCategory.ById(item.Id.Value);
 #endif
         }

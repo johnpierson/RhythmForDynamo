@@ -48,13 +48,18 @@ namespace Rhythm.Revit.Elements
                 SlabShapeVertex vertex2 = internalRoof.SlabShapeEditor.DrawPoint(endPoint.ToXyz());
                 internalRoof.SlabShapeEditor.DrawSplitLine(vertex1, vertex2);
 #endif
-#if R24_OR_GREATER
+#if R24 || R25
                 internalRoof.GetSlabShapeEditor().Enable();
                 SlabShapeVertex vertex1 = internalRoof.GetSlabShapeEditor().DrawPoint(startPoint.ToXyz());
                 SlabShapeVertex vertex2 = internalRoof.GetSlabShapeEditor().DrawPoint(endPoint.ToXyz());
                 internalRoof.GetSlabShapeEditor().DrawSplitLine(vertex1, vertex2);
 #endif
-
+#if R26_OR_GREATER
+                internalRoof.GetSlabShapeEditor().Enable();
+                SlabShapeVertex vertex1 = internalRoof.GetSlabShapeEditor().AddPoint(startPoint.ToXyz());
+                SlabShapeVertex vertex2 = internalRoof.GetSlabShapeEditor().AddPoint(endPoint.ToXyz());
+                internalRoof.GetSlabShapeEditor().AddSplitLine(vertex1, vertex2);
+#endif
 
                 TransactionManager.Instance.TransactionTaskDone();
                 result = "Success.";
@@ -89,11 +94,14 @@ namespace Rhythm.Revit.Elements
                 internalRoof.SlabShapeEditor.Enable();
                 SlabShapeVertex vertex1 = internalRoof.SlabShapeEditor.DrawPoint(point.ToXyz());
 #endif
-#if R24_OR_GREATER
+#if R24 || R25
                 internalRoof.GetSlabShapeEditor().Enable();
                 SlabShapeVertex vertex1 = internalRoof.GetSlabShapeEditor().DrawPoint(point.ToXyz());
 #endif
-
+#if R26_OR_GREATER
+                internalRoof.GetSlabShapeEditor().Enable();
+                SlabShapeVertex vertex1 = internalRoof.GetSlabShapeEditor().AddPoint(point.ToXyz());
+#endif
                 TransactionManager.Instance.TransactionTaskDone();
                 result = "Success.";
             }

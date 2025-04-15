@@ -1289,18 +1289,6 @@
             Wrapper class for group types
             </summary>
         </member>
-        <member name="M:Rhythm.Revit.Elements.GroupTypes.ReloadGroupType(Revit.Elements.Group,System.String,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Reload a group type from a given location. Note: This will override group types in the current file!
-            </summary>
-            <param name="group">The group to reload the type for</param>
-            <param name="reloadFrom">Location path</param>
-            <param name="includeAttachedDetails">Include attached details with this group type?</param>
-            <param name="includeGrids">Include grids with this group type?</param>
-            <param name="includeLevels">Include levels with this group type?></param>
-            <returns name="groupType">The updated group type definition</returns>
-            <exception cref="T:System.Exception"></exception>
-        </member>
         <member name="T:Rhythm.Revit.Elements.HostObject">
             <summary>
             Wrapper class for host objects.

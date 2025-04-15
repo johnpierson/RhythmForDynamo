@@ -45,7 +45,7 @@ namespace Rhythm.Revit.Elements
                         var dynamoSurfacePatternCategory = global::Revit.Elements.Category.ById(subcategory.Id.IntegerValue);
 #endif
 
-#if R24 || R25
+#if R24_OR_GREATER
                         var dynamoSurfacePatternCategory = global::Revit.Elements.Category.ById(subcategory.Id.Value);
 #endif
 
@@ -59,7 +59,7 @@ namespace Rhythm.Revit.Elements
                         var dynamoCutPatternCategory = global::Revit.Elements.Category.ById(subcategory.Id.IntegerValue);
 #endif
 
-#if R24 || R25
+#if  R24_OR_GREATER
                         var dynamoCutPatternCategory = global::Revit.Elements.Category.ById(subcategory.Id.Value);
 #endif
 
