@@ -20,7 +20,10 @@ namespace RhythmViewExtension
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://designtechunraveled.com/rhythm-for-revit-loading-errors/");
+            Process openWeblink = new Process();
+            openWeblink.StartInfo.FileName = "https://designtechunraveled.com/rhythm-for-revit-loading-errors/";
+            openWeblink.StartInfo.UseShellExecute = true;
+            openWeblink.Start();
         }
     }
 }

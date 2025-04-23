@@ -46,8 +46,8 @@
 	<AssemblyTitle>Rhythm for Dynamo| View Extension</AssemblyTitle>
 	<Product>Rhythm for Dynamo| View Extension</Product>
 	<Copyright>Copyright ©  2023</Copyright>
-	<AssemblyVersion>2023.9.1</AssemblyVersion>
-	<FileVersion>2023.9.1</FileVersion>
+	<AssemblyVersion>2025.4.1</AssemblyVersion>
+	<FileVersion>2025.4.1</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\bailey-dog-meme-2.jpg" />
