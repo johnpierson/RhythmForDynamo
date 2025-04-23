@@ -27,8 +27,8 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2024.11.1")]
-[assembly: AssemblyFileVersion("2024.11.1")]
+[assembly: AssemblyVersion("2025.4.1")]
+[assembly: AssemblyFileVersion("2025.4.1")]
 
 #if R20
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2020")]
@@ -58,4 +58,9 @@ using System.Runtime.InteropServices;
 #if R25
 [assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2025")]
 [assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2025")]
+#endif
+
+#if R26
+[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2026")]
+[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2026")]
 #endif
