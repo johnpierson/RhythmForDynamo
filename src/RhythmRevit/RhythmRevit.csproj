@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <!--<TargetFrameworks>net48</TargetFrameworks>-->
-  <TargetFrameworks>net8.0-windows</TargetFrameworks>
+	  <TargetFrameworks>net48</TargetFrameworks>
+ <!-- <TargetFrameworks>net8.0-windows</TargetFrameworks>-->
         <OutputType>Library</OutputType>
         <RootNamespace>Rhythm</RootNamespace>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -12,8 +12,8 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>    	
-        <Configurations>Debug R24;Debug R20;Debug R21;Debug R22;Debug R23;Debug R25;Debug R26</Configurations>
-        <Configurations>$(Configurations)Release R24;Release R20;Release R21;Release R22;Release R23;Release R25;Release R26</Configurations>
+        <Configurations>Debug R20;Debug R21;Debug R22;Debug R23;Debug R24;Debug R25;Debug R26</Configurations>
+        <Configurations>$(Configurations)Release R20;Release R21;Release R22;Release R23;Release R24;Release R25;Release R26</Configurations>
         <NoWarn>MSB3277;CS1591</NoWarn>
     </PropertyGroup>
  <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
@@ -178,7 +178,7 @@
         <Reference Include="System.Windows" />
     </ItemGroup>
 	<ItemGroup>
-	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="3.0.*" />
+	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
         <PackageReference Include="OptimizedPriorityQueue" Version="5.1.0" />
         <PackageReference Include="Prism" Version="4.1.0.0" />

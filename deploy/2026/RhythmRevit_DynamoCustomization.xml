@@ -46,5 +46,8 @@
 		<namespace name="Rhythm.Utilities.ReflectionUtils">
 			<category>Rhythm.Utilities.ReflectionUtils</category>
 		</namespace>
+		<namespace name="Rhythm.Revit.Fabrication">
+			<category>Rhythm.Revit.Fabrication</category>
+		</namespace>
 	</namespaces>
 </doc>

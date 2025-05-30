@@ -1938,6 +1938,7 @@
         <member name="M:Rhythm.Revit.Elements.Walls.GetFacingDirection(Autodesk.Revit.DB.XYZ)">
             https://github.com/rudderdon/case-apps/blob/master/2017/Case.Directionality/Case.Directionality/Data/clsExternalWalls.vb
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Rhythm.Revit.Fabrication.Fabrication.ExportToPCF(System.String,System.Collections.Generic.List{Revit.Elements.Element})" -->
         <member name="T:Rhythm.Revit.Helpers.Helpers">
             <summary>
             Helpers Wrapper

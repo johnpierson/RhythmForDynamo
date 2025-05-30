@@ -149,6 +149,7 @@ namespace Rhythm.Revit.Elements
                 return FailureProcessingResult.Continue;
             }
         }
+    }
 #endif
 #if R25_OR_GREATER
         /// <summary>
@@ -169,4 +170,5 @@ namespace Rhythm.Revit.Elements
 
     }
 #endif
+
 }
