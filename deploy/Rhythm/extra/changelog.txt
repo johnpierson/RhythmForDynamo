@@ -41,3 +41,4 @@
 20231122: [Testing] This build is to test Dynamo 3.0 compatibility
 20240522: This is the final release to the package manager. Rhythm now downloads the correct DLLs from github. Resulting in easier updates to the package without messing with Dynamo's package manager anymore. ✌️
 20241001: This is an incremental release to fix some pkg.json stuff to hopefully work with the Workspace References Extension.
+20250605: [Fixes] Fixed an issue with .net8 not allowing the help link to work when the wrong version of Rhythm is loaded.
