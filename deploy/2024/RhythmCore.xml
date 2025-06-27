@@ -20,13 +20,14 @@
             Wrapper class for generative design
             </summary>
         </member>
-        <member name="M:Rhythm.GenerativeDesign.GenerativeDesign.PackViewports(Autodesk.DesignScript.Geometry.Rectangle,System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Rectangle},System.Collections.Generic.List{System.Int32})">
+        <member name="M:Rhythm.GenerativeDesign.GenerativeDesign.PackViewports(Autodesk.DesignScript.Geometry.Rectangle,System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Rectangle},System.Collections.Generic.List{System.Int32},System.Double)">
             <summary>
-            
+            Packs viewport rectangles within a container rectangle, ensuring no overlap with container edges
             </summary>
-            <param name="container"></param>
-            <param name="viewportRectangles"></param>
-            <param name="viewportIds"></param>
+            <param name="container">The container rectangle to pack viewports within</param>
+            <param name="viewportRectangles">List of viewport rectangles to pack</param>
+            <param name="viewportIds">List of viewport IDs corresponding to the rectangles</param>
+            <param name="marginFromEdge">Minimum margin distance from container edges</param>
             <returns name="viewportsThatFit">The viewports that fit in the titleblock container</returns>
             <returns name="proposedLocations">The proposed locations</returns>
             <returns name="viewportRectangles">The rectangles</returns>
