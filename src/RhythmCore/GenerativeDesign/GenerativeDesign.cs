@@ -26,7 +26,7 @@ namespace Rhythm.GenerativeDesign
         /// <returns name="proposedLocations">The proposed locations</returns>
         /// <returns name="viewportRectangles">The rectangles</returns>
         [MultiReturn(new[] { "viewportsThatFit", "proposedLocations", "viewportRectangles" })]
-        public static Dictionary<string, object> PackViewports(Rectangle container, List<Rectangle> viewportRectangles, List<int> viewportIds, double marginFromEdge)
+        public static Dictionary<string, object> PackViewports(Rectangle container, List<Rectangle> viewportRectangles, List<int> viewportIds, double marginFromEdge = 0)
         {
             List<int> viewportsThatFit = new List<int>();
             List<Point> points = new List<Point>();
