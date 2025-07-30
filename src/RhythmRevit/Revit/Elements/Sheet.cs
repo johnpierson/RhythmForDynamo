@@ -125,7 +125,8 @@ namespace Rhythm.Revit.Elements
 #endif
 
 #if R24_OR_GREATER
-            ElementId titleblockId = new ElementId(Convert.ToInt64(-2000480));
+            var internalTitleblock = titleblock.InternalElement;
+            ElementId titleblockId = internalTitleblock.Id;
 #endif
 
             

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<!--   <TargetFramework>net48</TargetFramework>-->
- <TargetFrameworks>net8.0-windows</TargetFrameworks>
+	  <!--   <TargetFramework>net48</TargetFramework>-->
+  <TargetFrameworks>net8.0-windows</TargetFrameworks>
         <OutputType>Library</OutputType>
         <RootNamespace>Rhythm</RootNamespace>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -89,8 +89,8 @@
 		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R24'))">
-        <DynamoVersion>2.19</DynamoVersion>
-        <DynamoOutput>2.19</DynamoOutput>
+        <DynamoVersion>2.18</DynamoVersion>
+        <DynamoOutput>2.18</DynamoOutput>
         <RevitVersion>2024</RevitVersion>
         <DefineConstants>$(DefineConstants);R24;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER</DefineConstants>
 		<TargetFrameworkVersion>net48</TargetFrameworkVersion>
@@ -110,15 +110,15 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
     </PropertyGroup>
 	<PropertyGroup Condition="$(Configuration.Contains('Debug R26'))">
-        <DynamoVersion>3.4</DynamoVersion>
-        <DynamoOutput>3.4</DynamoOutput>
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
         <RevitVersion>2026</RevitVersion>
         <DefineConstants>$(DefineConstants);R26;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER</DefineConstants>
 		<TargetFramework>net8.0-windows</TargetFramework>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R26'))">
-        <DynamoVersion>3.4</DynamoVersion>
-        <DynamoOutput>3.4</DynamoOutput>
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
         <RevitVersion>2026</RevitVersion>
         <DefineConstants>$(DefineConstants);R26;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER</DefineConstants>
 		<TargetFramework>net8.0-windows</TargetFramework>
@@ -179,7 +179,7 @@
         <Reference Include="System.Windows" />
     </ItemGroup>
 	<ItemGroup>
-	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="3.0.*" />
+	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynVersion).*" />
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
         <PackageReference Include="OptimizedPriorityQueue" Version="5.1.0" />
         <PackageReference Include="Prism" Version="4.1.0.0" />
