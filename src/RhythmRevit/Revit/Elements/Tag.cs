@@ -5,6 +5,7 @@ using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using Revit.GeometryConversion;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Autodesk.DesignScript.Runtime;
 
 namespace Rhythm.Revit.Elements
 {
@@ -24,6 +25,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, Tag.HeadLocation")]
         [NodeCategory("Query")]
         public static Point GetHeadPosition(global::Revit.Elements.Element tag)
         {
@@ -54,6 +56,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, Tag.LeaderEnd")]
         [NodeCategory("Query")]
         public static object GetLeaderEnd(global::Revit.Elements.Tag tag)
         {
@@ -91,6 +94,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, Tag.LeaderElbow")]
         [NodeCategory("Query")]
         public static object GetLeaderElbow(global::Revit.Elements.Tag tag)
         {
@@ -120,10 +124,10 @@ namespace Rhythm.Revit.Elements
             return null;
         }
 
-      
-       
 
-         /// <summary>
+
+
+        /// <summary>
         /// This will attempt to set the head position of the tag.
         /// </summary>
         /// <param name="tag">The tag to set head position of.</param>
@@ -131,6 +135,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Tag, Tag.Location
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, Tag.SetHeadLocation")]
         [NodeCategory("Actions")]
         public static void SetHeadPosition(global::Revit.Elements.Tag tag, Point location)
         {

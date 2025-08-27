@@ -34,6 +34,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// room, rhythm,element.room
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, FamilyInstance.Room")]
         [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> Room(List<global::Revit.Elements.Element> instance)
         {
@@ -97,6 +98,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// space, rhythm,element.space
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, FamilyInstance.Space")]
         [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> Space(List<global::Revit.Elements.Element> instance)
         {

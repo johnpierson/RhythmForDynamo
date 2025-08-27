@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using Revit.Elements;
@@ -79,6 +80,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// Area.Boundaries
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, Area.Boundaries")]
         [NodeCategory("Query")]
         public static List<List<Autodesk.DesignScript.Geometry.Curve>> Boundaries(global::Revit.Elements.Element area)
         {

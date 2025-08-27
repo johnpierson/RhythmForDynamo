@@ -137,6 +137,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         ///  IntersectingElements
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, Element.GetIntersectingElementsOfCategory")]
         [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> GetIntersectingElementsOfCategory(global::Revit.Elements.Element element,
             global::Revit.Elements.Category category)
@@ -393,6 +394,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         ///  Element.GetJoinedElements,JoinedElements
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, Element.GetJoinedElements")]
         [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> JoinedElements(global::Revit.Elements.Element element)
         {
@@ -417,6 +419,7 @@ namespace Rhythm.Revit.Elements
         ///  Element.SetPinnedStatus
         /// </search>
         /// works with background docs
+        [IsObsolete("Node removed, use the OOTB node, Element.SetPinnedStatus")]
         [NodeCategory("Actions")]
         public static global::Revit.Elements.Element SetPinnedStatus(global::Revit.Elements.Element element, bool status)
         {

@@ -207,6 +207,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.SetAboveValue
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, Dimension.SetAboveValue")]
         [MultiReturn(new[] { "set", "notSet" })]
         [NodeCategory("Actions")]
         public static Dictionary<string, object> SetAboveValue(global::Revit.Elements.Dimension dimension, List<string> aboveValue)
@@ -313,6 +314,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// dimension.SetBelowValue
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, Dimension.SetBelowValue")]
         [MultiReturn(new[] { "set", "notSet" })]
         [NodeCategory("Actions")]
         public static Dictionary<string, object> SetBelowValue(global::Revit.Elements.Dimension dimension, List<string> belowValue)
@@ -699,6 +701,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="dimension">The dimension to retrieve values from.</param>
         /// <returns name="aboveValue">The above value for the dimension.</returns>
+        [IsObsolete("Node removed, use the OOTB node, Dimension.AboveValue")]
         [NodeCategory("Query")]
         public static List<string> AboveValue(global::Revit.Elements.Dimension dimension)
         {
@@ -723,6 +726,7 @@ namespace Rhythm.Revit.Elements
         /// </summary>
         /// <param name="dimension">The dimension to retrieve values from.</param>
         /// <returns name="belowValue">The below value for the dimension.</returns>
+        [IsObsolete("Node removed, use the OOTB node, Dimension.BelowValue")]
         [NodeCategory("Query")]
         public static List<string> BelowValue(global::Revit.Elements.Dimension dimension)
         {

@@ -5,6 +5,7 @@ using RevitServices.Persistence;
 using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
+using Autodesk.DesignScript.Runtime;
 
 namespace Rhythm.Revit.Elements
 {
@@ -27,6 +28,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, addview,rhythm
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, ElevationMarker.ByViewTypeLocation")]
         [NodeCategory("Create")]
         public static List<global::Revit.Elements.Element> CreateElevationMarker(List<Autodesk.DesignScript.Geometry.Point> location, int scaleFactor, global::Revit.Elements.Element viewFamilyType )
         {
@@ -36,7 +38,7 @@ namespace Rhythm.Revit.Elements
             List<global::Revit.Elements.Element> elevationMarker = new List<global::Revit.Elements.Element>();
             foreach (Autodesk.DesignScript.Geometry.Point loc in location)
             {
-            TransactionManager.Instance.EnsureInTransaction(doc);
+                TransactionManager.Instance.EnsureInTransaction(doc);
                 elevationMarker.Add(Autodesk.Revit.DB.ElevationMarker.CreateElevationMarker(doc, viewFamilyTypeId, loc.ToXyz(), scaleFactor).ToDSType(false));
             TransactionManager.Instance.TransactionTaskDone();  
             }
@@ -53,6 +55,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, addview,rhythm
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, ElevationMarker.CreateElevationByMarkerIndex")]
         [NodeCategory("Create")]
         public static List<global::Revit.Elements.Element> CreateElevationByMarkerIndex(global::Revit.Elements.Element elevationMarker, global::Revit.Elements.Element planView, List<int> index)
         {

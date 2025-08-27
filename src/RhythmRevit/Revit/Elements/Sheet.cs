@@ -29,7 +29,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, schedules,rhythm
         /// </search>
-        //this is the node sheet.viewports
+        [IsObsolete("Node removed, use the OOTB nodes,Sheet.Views, Sheet.Schedules, Sheet.Viewports")]
         [MultiReturn(new[] {"viewports", "views", "schedules"})]
         [NodeCategory("Query")]
         public static Dictionary<string, object> GetViewportsAndViews(global::Revit.Elements.Views.Sheet sheet)
@@ -158,6 +158,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// sheet, sheets, titleblock
         /// </search>
+        [IsObsolete("Node removed, use the OOTB node, Sheet.Titleblock")]
         [NodeCategory("Query")]
         public static List<global::Revit.Elements.Element> Titleblock(global::Revit.Elements.Views.Sheet viewSheet)
         {

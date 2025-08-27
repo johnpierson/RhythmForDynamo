@@ -78,6 +78,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, addview,rhythm
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, Viewport.BySheetViewLocation ")]
         [NodeCategory("Create")]
         public static object Create(global::Revit.Elements.Views.Sheet sheet, global::Revit.Elements.Element view, Autodesk.DesignScript.Geometry.Point location)
         {
@@ -137,6 +138,7 @@ namespace Rhythm.Revit.Elements
         /// viewport, Viewport.LocationData,rhythm
         /// </search>
         //this is the node Viewport.LocationData
+        [IsObsolete("Node removed, use the OOTB nodes, Viewport.BoxCenter and Viewport.BoxOutline ")]
         [MultiReturn(new[] { "bBox", "boxCenter", "boxOutline" })]
         [NodeCategory("Query")]
         public static Dictionary<string, object> LocationData(global::Revit.Elements.Element viewport)
@@ -195,6 +197,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport, Viewport.LabelOutline, rhythm
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, Viewport.LabelOutline")]
         [NodeCategory("Query")]
         public static List<Autodesk.DesignScript.Geometry.Curve> LabelOutline(global::Revit.Elements.Element viewport)
         {
@@ -281,6 +284,7 @@ namespace Rhythm.Revit.Elements
         /// <search>
         /// viewport
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, Viewport.SetBoxCenter")]
         [NodeCategory("Actions")]
         public static void SetBoxCenter(global::Revit.Elements.Element viewport, Point point)
         {
