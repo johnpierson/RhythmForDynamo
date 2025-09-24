@@ -15,7 +15,7 @@ using Level = Revit.Elements.Level;
 
 namespace Rhythm.Revit.Elements
 {
-#if R22 || R23 || R24
+#if R22_OR_GREATER
     /// <summary>
     /// Wrapper class for floors
     /// </summary>
