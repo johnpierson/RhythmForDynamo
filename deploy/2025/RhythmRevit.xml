@@ -1253,6 +1253,27 @@
             <param name="curvesToUse"></param>
             <returns></returns>
         </member>
+        <member name="T:Rhythm.Revit.Elements.Floor">
+            <summary>
+            Wrapper class for floors
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Floor.DefaultFloorType">
+            <summary>
+            Collect the first floor type available. Revit 2022+
+            </summary>
+            <returns name="floorType">The first (default) floor type.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Floor.ByCurveLoops(System.Collections.Generic.List{System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve}},Revit.Elements.FloorType,Revit.Elements.Level)">
+            <summary>
+            Create a floor with multiple loops. Revit 2022+
+            </summary>
+            <param name="curves">The input curves as a list of lists.</param>
+            <param name="floorType">Floor type to use.</param>
+            <param name="level">The level to host on.</param>
+            <returns name="floor">The new floor.</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
         <member name="T:Rhythm.Revit.Elements.Grids">
             <summary>
             Wrapper class for grids.
