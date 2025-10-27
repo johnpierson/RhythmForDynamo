@@ -11,6 +11,7 @@ using Dynamo.Models;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Extensions;
 using ProtoCore.AST.ImperativeAST;
+using RhythmViewExtension.Utilities;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
 
@@ -58,8 +59,18 @@ namespace RhythmViewExtension
             //just load the core nodes, the user isn't in Revit
             else
             {
-                //core nodes
-                LoadCoreNodes(p, "24");
+                var dynamoCore = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.FullName.Contains("DynamoCore"));
+
+                if (dynamoCore != null)
+                {
+                    var dynamoCoreVersion = dynamoCore.GetName().Version;
+                    string dynamoMajorMinor = $"{dynamoCoreVersion.Major}.{dynamoCoreVersion.Minor}";
+
+                    var revitVersion = VersionUtils.GetRevitYearsForDynamo(dynamoMajorMinor).First().ToString();
+                    //core nodes
+                    LoadCoreNodes(p, revitVersion);
+                }
+                
             }
         }
 

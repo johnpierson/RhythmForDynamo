@@ -12,8 +12,6 @@ namespace RhythmViewExtension.Utilities
     {
         private VersionUtils(){}
 
-        // Replace the embedded mapping and update GetDynamoRevitMapping to fetch from GitHub
-
         private const string DynamoRevitMappingUrl = "https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/refs/heads/master/deploy/dynamo_to_revit_mapping.json";
 
         private static Dictionary<string, List<int>> _mappingCache;
@@ -26,11 +24,19 @@ namespace RhythmViewExtension.Utilities
         {
             if (_mappingCache == null)
             {
-                using (WebClient webClient = new WebClient())
+                try
                 {
-                    webClient.Headers.Add("User-Agent", "RhythmViewExtension");
-                    string json = webClient.DownloadString(DynamoRevitMappingUrl);
-                    _mappingCache = JsonConvert.DeserializeObject<Dictionary<string, List<int>>>(json);
+                    using (WebClient webClient = new WebClient())
+                    {
+                        webClient.Headers.Add("User-Agent", "RhythmViewExtension");
+                        string json = webClient.DownloadString(DynamoRevitMappingUrl);
+                        _mappingCache = JsonConvert.DeserializeObject<Dictionary<string, List<int>>>(json);
+                    }
+                }
+                catch (Exception)
+                {
+                    // Return empty dictionary if fetch fails
+                    _mappingCache = new Dictionary<string, List<int>>();
                 }
             }
             return _mappingCache;
