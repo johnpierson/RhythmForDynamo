@@ -174,7 +174,10 @@ namespace RhythmViewExtension
             DownloadFile(version,Global.RhythmCoreCustomizationXml);
             DownloadFile(version, Global.RhythmCoreCustomizationDll);
 
-
+            //download supplemental DLLs and correct pkg.json
+            DownloadFile(version, Global.HumanizerDll);
+            DownloadFile(version, Global.MarkovDll);
+            DownloadFile(string.Empty, Global.PackageJson);
 
 
             //load the core nodes
