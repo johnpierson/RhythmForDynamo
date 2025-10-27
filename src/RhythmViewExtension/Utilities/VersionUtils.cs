@@ -12,45 +12,26 @@ namespace RhythmViewExtension.Utilities
     {
         private VersionUtils(){}
 
-        // Embedded Dynamo to Revit version mapping
-        private const string DYNAMO_REVIT_MAPPING = @"{
-  ""3.6"": [26],
-  ""3.5"": [26],
-  ""3.4"": [26, 25],
-  ""3.3"": [25],
-  ""3.2"": [25],
-  ""3.0"": [25],
-  ""2.19"": [24],
-  ""2.18"": [24],
-  ""2.17"": [24],
-  ""2.16"": [23],
-  ""2.15"": [23],
-  ""2.13"": [23],
-  ""2.12"": [22],
-  ""2.11"": [22],
-  ""2.10"": [22],
-  ""2.8"": [22, 21],
-  ""2.7"": [21],
-  ""2.6"": [21],
-  ""2.5"": [21, 20],
-  ""2.4"": [20],
-  ""2.3"": [20],
-  ""2.2"": [20],
-  ""2.1"": [20],
-  ""2.0"": [20, 19, 18, 17]
-}";
+        // Replace the embedded mapping and update GetDynamoRevitMapping to fetch from GitHub
+
+        private const string DynamoRevitMappingUrl = "https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/refs/heads/master/deploy/dynamo_to_revit_mapping.json";
 
         private static Dictionary<string, List<int>> _mappingCache;
 
         /// <summary>
-        /// Gets the Dynamo to Revit mapping dictionary (cached)
+        /// Gets the Dynamo to Revit mapping dictionary (cached, loaded from GitHub)
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         private static Dictionary<string, List<int>> GetDynamoRevitMapping()
         {
             if (_mappingCache == null)
             {
-                _mappingCache = JsonConvert.DeserializeObject<Dictionary<string, List<int>>>(DYNAMO_REVIT_MAPPING);
+                using (WebClient webClient = new WebClient())
+                {
+                    webClient.Headers.Add("User-Agent", "RhythmViewExtension");
+                    string json = webClient.DownloadString(DynamoRevitMappingUrl);
+                    _mappingCache = JsonConvert.DeserializeObject<Dictionary<string, List<int>>>(json);
+                }
             }
             return _mappingCache;
         }
@@ -129,3 +110,4 @@ namespace RhythmViewExtension.Utilities
         }
     }
 }
+
