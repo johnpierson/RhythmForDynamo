@@ -33,8 +33,9 @@ namespace RhythmViewExtension.Utilities
                         _mappingCache = JsonConvert.DeserializeObject<Dictionary<string, List<int>>>(json);
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    string messssss = e.Message;
                     // Return empty dictionary if fetch fails
                     _mappingCache = new Dictionary<string, List<int>>();
                 }
@@ -59,11 +60,11 @@ namespace RhythmViewExtension.Utilities
                     return mapping[dynamoVersion];
                 }
                 
-                return null;
+                return new List<int>(){24};
             }
             catch (Exception)
             {
-                return null;
+                return new List<int>() { 24 };
             }
         }
 

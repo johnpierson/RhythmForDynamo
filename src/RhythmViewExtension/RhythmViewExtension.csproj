@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-		<TargetFrameworks>net48</TargetFrameworks>
-		<!--<TargetFrameworks>net8.0-windows</TargetFrameworks>-->
+	  <TargetFrameworks>net48</TargetFrameworks>
+	  <!--<TargetFrameworks>net8.0-windows</TargetFrameworks>-->
         <ProjectGuid>{0B4B05E9-C1A8-4767-8307-98914BCC6842}</ProjectGuid>
         <UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -46,8 +46,8 @@
 	<AssemblyTitle>Rhythm for Dynamo| View Extension</AssemblyTitle>
 	<Product>Rhythm for Dynamo| View Extension</Product>
 	<Copyright>Copyright ©  2023</Copyright>
-	<AssemblyVersion>2025.4.1</AssemblyVersion>
-	<FileVersion>2025.4.1</FileVersion>
+	<AssemblyVersion>2025.10.1</AssemblyVersion>
+	<FileVersion>2025.10.1</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\bailey-dog-meme-2.jpg" />
