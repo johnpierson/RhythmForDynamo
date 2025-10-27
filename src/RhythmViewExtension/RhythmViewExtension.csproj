@@ -66,6 +66,12 @@
     <EmbeddedResource Include="Resources\System.Runtime.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Utilities\dynamo_to_revit_mapping.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>dynamo_to_revit_mapping.json</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
 
     <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
 
