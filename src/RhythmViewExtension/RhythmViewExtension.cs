@@ -96,9 +96,6 @@ namespace RhythmViewExtension
 
                 messageBox.Show();
 
-                //core nodes
-                LoadCoreNodes(p,version);
-
                 //download the latest dlls related to that Revit version
                 DownloadFile(version, Global.RhythmRevitDll);
                 DownloadFile(version, Global.RhythmRevitXml);
@@ -109,12 +106,8 @@ namespace RhythmViewExtension
                 DownloadFile(version, Global.RhythmRevitUiDll);
                 DownloadFile(version, Global.RhythmRevitUiXml);
 
-                //download supplemental DLLs and correct pkg.json
-                DownloadFile(version,Global.HumanizerDll);
-                DownloadFile(version, Global.MarkovDll);
-                DownloadFile(string.Empty, Global.PackageJson);
-
-
+                //core nodes
+                LoadCoreNodes(p, version);
 
                 //load the regular revit nodes
                 try
@@ -125,22 +118,6 @@ namespace RhythmViewExtension
                 catch (Exception e)
                 {
                     //
-                }
-
-                //rewrite the json
-                string jsonDLLUrl =
-                    $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/pkg.json";
-                using (WebClient wc = new WebClient())
-                {
-                    wc.Headers.Add("a", "a");
-                    try
-                    {
-                        wc.DownloadFile(jsonDLLUrl, Global.PackageJson);
-                    }
-                    catch (Exception ex)
-                    {
-                        //
-                    }
                 }
 
                 messageBox.Close();
@@ -200,6 +177,22 @@ namespace RhythmViewExtension
             catch (Exception e)
             {
                 //
+            }
+
+            //rewrite the json
+            string jsonDLLUrl =
+                $"https://raw.githubusercontent.com/johnpierson/RhythmForDynamo/master/deploy/pkg.json";
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("a", "a");
+                try
+                {
+                    wc.DownloadFile(jsonDLLUrl, Global.PackageJson);
+                }
+                catch (Exception ex)
+                {
+                    //
+                }
             }
 
         }
