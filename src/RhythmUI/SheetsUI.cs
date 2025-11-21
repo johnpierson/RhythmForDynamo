@@ -18,6 +18,7 @@ namespace RhythmUI
     [NodeCategory("Rhythm.Revit.Selection.Selection")]
     [NodeDescription("Allows you to select a sheet from all of the sheets in your project.")]
     [IsDesignScriptCompatible]
+    [NodeDeprecated]
     public class Sheets : RevitDropDownBase
     {
         private const string noSheets = "No Sheets available in project.";
@@ -56,7 +57,14 @@ namespace RhythmUI
                 "ByElementId",
                 new List<AssociativeNode>
                 {
+
+#if !R25_OR_GREATER
                     AstFactory.BuildIntNode(((ViewSheet)Items[SelectedIndex].Item).Id.IntegerValue)
+#endif
+#if R25_OR_GREATER
+                    AstFactory.BuildIntNode(((ViewSheet)Items[SelectedIndex].Item).Id.Value)
+
+#endif
                 });
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }

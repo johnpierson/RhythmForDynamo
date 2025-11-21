@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
-       <TargetFramework>net48</TargetFramework>
-	   <!--<TargetFramework>net8.0-windows</TargetFramework>-->
-        <OutputType>Library</OutputType>
+	   <TargetFramework>net48</TargetFramework>
+	   <TargetFramework>net8.0-windows</TargetFramework>
+	   <!--<OutputType>Library</OutputType>-->
         <RootNamespace>Rhythm</RootNamespace>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
         <UseWindowsForms>true</UseWindowsForms>
@@ -116,8 +116,8 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <Version>$(RevitVersion).12.1</Version>
         <Description>Rhythm for Dynamo|Revit UI$(RevitVersion)</Description>
-        <FileVersion>$(RevitVersion).12.1</FileVersion>
-        <AssemblyVersion>$(RevitVersion).12.1</AssemblyVersion>
+        <FileVersion>$(RevitVersion).11.1</FileVersion>
+        <AssemblyVersion>$(RevitVersion).11.1</AssemblyVersion>
         <Title>Rhythm for Dynamo|Revit UI$(RevitVersion)</Title>
         <Product>Rhythm for Dynamo|Revit UI$(RevitVersion)</Product>
     </PropertyGroup>
@@ -191,32 +191,32 @@
 	
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R20|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R20|AnyCPU'">
 		<Reference Include="RhythmRevit">
-	      <HintPath>D:\repos_john\RhythmForDynamo\deploy\2020\RhythmRevit.dll</HintPath>
+	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2020\RhythmRevit.dll</HintPath>
         </Reference>
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R21|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R21|AnyCPU'">
 		<Reference Include="RhythmRevit">
-	      <HintPath>D:\repos_john\RhythmForDynamo\deploy\2021\RhythmRevit.dll</HintPath>
+	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2021\RhythmRevit.dll</HintPath>
         </Reference>
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R22|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R22|AnyCPU'">
 		<Reference Include="RhythmRevit">
-	      <HintPath>D:\repos_john\RhythmForDynamo\deploy\2022\RhythmRevit.dll</HintPath>
+	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2022\RhythmRevit.dll</HintPath>
         </Reference>
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R23|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R23|AnyCPU'">
 		<Reference Include="RhythmRevit">
-	      <HintPath>D:\repos_john\RhythmForDynamo\deploy\2023\RhythmRevit.dll</HintPath>
+	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2023\RhythmRevit.dll</HintPath>
         </Reference>
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R24|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R24|AnyCPU'">
 		<Reference Include="RhythmRevit">
-	      <HintPath>D:\repos_john\RhythmForDynamo\deploy\2024\RhythmRevit.dll</HintPath>
+	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2024\RhythmRevit.dll</HintPath>
         </Reference>
 	</ItemGroup>
 <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R25|AnyCPU'">
 		<Reference Include="RhythmRevit">
-	      <HintPath>D:\repos_john\RhythmForDynamo\deploy\2025\RhythmRevit.dll</HintPath>
+	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2025\RhythmRevit.dll</HintPath>
         </Reference>
 	</ItemGroup>
 	
