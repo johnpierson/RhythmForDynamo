@@ -60,32 +60,66 @@ jobs:
     
     - name: Restore NuGet packages
       run: |
-        dotnet restore src/RhythmCore/RhythmCore.sln
-        dotnet restore src/RhythmRevit/RhythmRevit.sln
-        dotnet restore src/RhythmUI/RhythmUI.sln
-        dotnet restore src/RhythmExtension/RhythmExtension.sln
-        dotnet restore src/RhythmViewExtension/RhythmViewExtension.sln
+        if ("${{ matrix.revit-version }}" -eq "R25") {
+          dotnet restore src/RhythmCore/RhythmCore.sln
+          dotnet restore src/RhythmRevit/RhythmRevit.sln
+          dotnet restore src/RhythmUI/RhythmUI.sln
+          dotnet restore src/RhythmExtension/RhythmExtension.sln
+          dotnet restore src/RhythmViewExtension/RhythmViewExtension.sln
+        } else {
+          msbuild src/RhythmCore/RhythmCore.sln /t:Restore /p:Configuration="${{ matrix.config }}"
+          msbuild src/RhythmRevit/RhythmRevit.sln /t:Restore /p:Configuration="${{ matrix.config }}"
+          msbuild src/RhythmUI/RhythmUI.sln /t:Restore /p:Configuration="${{ matrix.config }}"
+          msbuild src/RhythmExtension/RhythmExtension.sln /t:Restore /p:Configuration="${{ matrix.config }}"
+          msbuild src/RhythmViewExtension/RhythmViewExtension.sln /t:Restore /p:Configuration="${{ matrix.config }}"
+        }
+      shell: pwsh
     
     - name: Build RhythmCore
       run: |
-        dotnet build src/RhythmCore/RhythmCore.sln --configuration "${{ matrix.config }}" --no-restore
+        if ("${{ matrix.revit-version }}" -eq "R25") {
+          dotnet build src/RhythmCore/RhythmCore.sln --configuration "${{ matrix.config }}" --no-restore
+        } else {
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
+        }
+      shell: pwsh
     
     - name: Build RhythmRevit
       run: |
-        dotnet build src/RhythmRevit/RhythmRevit.sln --configuration "${{ matrix.config }}" --no-restore
+        if ("${{ matrix.revit-version }}" -eq "R25") {
+          dotnet build src/RhythmRevit/RhythmRevit.sln --configuration "${{ matrix.config }}" --no-restore
+        } else {
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
+        }
+      shell: pwsh
     
     # Note: RhythmUI.csproj contains hardcoded paths that may need adjustment for CI
     - name: Build RhythmUI
       run: |
-        dotnet build src/RhythmUI/RhythmUI.sln --configuration "${{ matrix.config }}" --no-restore
+        if ("${{ matrix.revit-version }}" -eq "R25") {
+          dotnet build src/RhythmUI/RhythmUI.sln --configuration "${{ matrix.config }}" --no-restore
+        } else {
+          msbuild src/RhythmUI/RhythmUI.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
+        }
+      shell: pwsh
     
     - name: Build RhythmExtension
       run: |
-        dotnet build src/RhythmExtension/RhythmExtension.sln --configuration "${{ matrix.config }}" --no-restore
+        if ("${{ matrix.revit-version }}" -eq "R25") {
+          dotnet build src/RhythmExtension/RhythmExtension.sln --configuration "${{ matrix.config }}" --no-restore
+        } else {
+          msbuild src/RhythmExtension/RhythmExtension.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
+        }
+      shell: pwsh
     
     - name: Build RhythmViewExtension
       run: |
-        dotnet build src/RhythmViewExtension/RhythmViewExtension.sln --configuration "${{ matrix.config }}" --no-restore
+        if ("${{ matrix.revit-version }}" -eq "R25") {
+          dotnet build src/RhythmViewExtension/RhythmViewExtension.sln --configuration "${{ matrix.config }}" --no-restore
+        } else {
+          msbuild src/RhythmViewExtension/RhythmViewExtension.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
+        }
+      shell: pwsh
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
