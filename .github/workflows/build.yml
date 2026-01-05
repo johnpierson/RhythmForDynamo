@@ -1,0 +1,99 @@
+name: Build Solutions
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        revit-version: [R20, R21, R22, R23, R24, R25]
+        include:
+          - revit-version: R20
+            config: "Release R20"
+            deploy-year: "2020"
+            net-framework: net48
+          - revit-version: R21
+            config: "Release R21"
+            deploy-year: "2021"
+            net-framework: net48
+          - revit-version: R22
+            config: "Release R22"
+            deploy-year: "2022"
+            net-framework: net48
+          - revit-version: R23
+            config: "Release R23"
+            deploy-year: "2023"
+            net-framework: net48
+          - revit-version: R24
+            config: "Release R24"
+            deploy-year: "2024"
+            net-framework: net48
+          - revit-version: R25
+            config: "Release R25"
+            deploy-year: "2025"
+            net-framework: net8.0-windows
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.0.x
+          7.0.x
+          6.0.x
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+    
+    - name: Create deploy directory
+      run: |
+        New-Item -ItemType Directory -Force -Path deploy/${{ matrix.deploy-year }}
+    
+    - name: Restore NuGet packages
+      run: |
+        dotnet restore src/RhythmCore/RhythmCore.sln
+        dotnet restore src/RhythmRevit/RhythmRevit.sln
+        dotnet restore src/RhythmUI/RhythmUI.sln
+        dotnet restore src/RhythmExtension/RhythmExtension.sln
+        dotnet restore src/RhythmViewExtension/RhythmViewExtension.sln
+    
+    - name: Build RhythmCore
+      run: |
+        dotnet build src/RhythmCore/RhythmCore.sln --configuration "${{ matrix.config }}" --no-restore
+    
+    - name: Build RhythmRevit
+      run: |
+        dotnet build src/RhythmRevit/RhythmRevit.sln --configuration "${{ matrix.config }}" --no-restore
+    
+    # Note: RhythmUI.csproj contains hardcoded paths that may need adjustment for CI
+    - name: Build RhythmUI
+      run: |
+        dotnet build src/RhythmUI/RhythmUI.sln --configuration "${{ matrix.config }}" --no-restore
+    
+    - name: Build RhythmExtension
+      run: |
+        dotnet build src/RhythmExtension/RhythmExtension.sln --configuration "${{ matrix.config }}" --no-restore
+    
+    - name: Build RhythmViewExtension
+      run: |
+        dotnet build src/RhythmViewExtension/RhythmViewExtension.sln --configuration "${{ matrix.config }}" --no-restore
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: build-artifacts-${{ matrix.revit-version }}
+        path: |
+          deploy/${{ matrix.deploy-year }}/
+          src/**/bin/**/${{ matrix.config }}/
+        retention-days: 7
+
