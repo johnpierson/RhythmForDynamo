@@ -13,12 +13,14 @@ Global
 		Debug R23|Any CPU = Debug R23|Any CPU
 		Debug R24|Any CPU = Debug R24|Any CPU
 		Debug R25|Any CPU = Debug R25|Any CPU
+		Debug R26|Any CPU = Debug R26|Any CPU
 		Release R20|Any CPU = Release R20|Any CPU
 		Release R21|Any CPU = Release R21|Any CPU
 		Release R22|Any CPU = Release R22|Any CPU
 		Release R23|Any CPU = Release R23|Any CPU
 		Release R24|Any CPU = Release R24|Any CPU
 		Release R25|Any CPU = Release R25|Any CPU
+		Release R26|Any CPU = Release R26|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R20|Any CPU.ActiveCfg = Debug R20|Any CPU
@@ -33,6 +35,8 @@ Global
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R24|Any CPU.Build.0 = Debug R24|Any CPU
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R25|Any CPU.ActiveCfg = Debug R25|Any CPU
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R25|Any CPU.Build.0 = Debug R25|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R26|Any CPU.ActiveCfg = Debug R26|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Debug R26|Any CPU.Build.0 = Debug R26|Any CPU
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R20|Any CPU.ActiveCfg = Release R20|Any CPU
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R20|Any CPU.Build.0 = Release R20|Any CPU
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R21|Any CPU.ActiveCfg = Release R21|Any CPU
@@ -45,6 +49,8 @@ Global
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R24|Any CPU.Build.0 = Release R24|Any CPU
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R25|Any CPU.ActiveCfg = Release R25|Any CPU
 		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R25|Any CPU.Build.0 = Release R25|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R26|Any CPU.ActiveCfg = Release R26|Any CPU
+		{63D58255-D8AB-42FE-BD8E-5EBE6C64C558}.Release R26|Any CPU.Build.0 = Release R26|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,7 +12,7 @@ jobs:
     
     strategy:
       matrix:
-        revit-version: [R20, R21, R22, R23, R24, R25]
+        revit-version: [R20, R21, R22, R23, R24, R25, R26]
         include:
           - revit-version: R20
             config: "Release R20"
@@ -38,6 +38,10 @@ jobs:
             config: "Release R25"
             deploy-year: "2025"
             net-framework: net8.0-windows
+          - revit-version: R26
+            config: "Release R26"
+            deploy-year: "2026"
+            net-framework: net8.0-windows
     
     steps:
     - name: Checkout code
@@ -60,7 +64,7 @@ jobs:
     
     - name: Restore NuGet packages
       run: |
-        if ("${{ matrix.revit-version }}" -eq "R25") {
+        if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
           dotnet restore src/RhythmCore/RhythmCore.sln
           dotnet restore src/RhythmRevit/RhythmRevit.sln
           dotnet restore src/RhythmUI/RhythmUI.sln
@@ -77,7 +81,7 @@ jobs:
     
     - name: Build RhythmCore
       run: |
-        if ("${{ matrix.revit-version }}" -eq "R25") {
+        if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
           dotnet build src/RhythmCore/RhythmCore.sln --configuration "${{ matrix.config }}" --no-restore
         } else {
           msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
@@ -86,7 +90,7 @@ jobs:
     
     - name: Build RhythmRevit
       run: |
-        if ("${{ matrix.revit-version }}" -eq "R25") {
+        if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
           dotnet build src/RhythmRevit/RhythmRevit.sln --configuration "${{ matrix.config }}" --no-restore
         } else {
           msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
@@ -96,7 +100,7 @@ jobs:
     # Note: RhythmUI.csproj contains hardcoded paths that may need adjustment for CI
     - name: Build RhythmUI
       run: |
-        if ("${{ matrix.revit-version }}" -eq "R25") {
+        if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
           dotnet build src/RhythmUI/RhythmUI.sln --configuration "${{ matrix.config }}" --no-restore
         } else {
           msbuild src/RhythmUI/RhythmUI.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
@@ -105,7 +109,7 @@ jobs:
     
     - name: Build RhythmExtension
       run: |
-        if ("${{ matrix.revit-version }}" -eq "R25") {
+        if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
           dotnet build src/RhythmExtension/RhythmExtension.sln --configuration "${{ matrix.config }}" --no-restore
         } else {
           msbuild src/RhythmExtension/RhythmExtension.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
@@ -114,7 +118,7 @@ jobs:
     
     - name: Build RhythmViewExtension
       run: |
-        if ("${{ matrix.revit-version }}" -eq "R25") {
+        if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
           dotnet build src/RhythmViewExtension/RhythmViewExtension.sln --configuration "${{ matrix.config }}" --no-restore
         } else {
           msbuild src/RhythmViewExtension/RhythmViewExtension.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
