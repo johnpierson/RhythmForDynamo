@@ -18,7 +18,6 @@ namespace RhythmUI
     [NodeCategory("Rhythm.Revit.Selection.Selection")]
     [NodeDescription("Allows you to select a sheet from all of the sheets in your project.")]
     [IsDesignScriptCompatible]
-    [NodeDeprecated]
     public class Sheets : RevitDropDownBase
     {
         private const string noSheets = "No Sheets available in project.";

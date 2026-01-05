@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
 	   <TargetFramework>net48</TargetFramework>
-	   <TargetFramework>net8.0-windows</TargetFramework>
-	   <!--<OutputType>Library</OutputType>-->
+	   <!--<TargetFramework>net8.0-windows</TargetFramework>-->
+	   <OutputType>Library</OutputType>
         <RootNamespace>Rhythm</RootNamespace>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
         <UseWindowsForms>true</UseWindowsForms>
