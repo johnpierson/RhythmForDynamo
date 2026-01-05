@@ -69,13 +69,18 @@ jobs:
           dotnet restore src/RhythmRevit/RhythmRevit.sln
           dotnet restore src/RhythmUI/RhythmUI.sln
           dotnet restore src/RhythmExtension/RhythmExtension.sln
-          dotnet restore src/RhythmViewExtension/RhythmViewExtension.sln
         } else {
           msbuild src/RhythmCore/RhythmCore.sln /t:Restore /p:Configuration="${{ matrix.config }}"
           msbuild src/RhythmRevit/RhythmRevit.sln /t:Restore /p:Configuration="${{ matrix.config }}"
           msbuild src/RhythmUI/RhythmUI.sln /t:Restore /p:Configuration="${{ matrix.config }}"
           msbuild src/RhythmExtension/RhythmExtension.sln /t:Restore /p:Configuration="${{ matrix.config }}"
-          msbuild src/RhythmViewExtension/RhythmViewExtension.sln /t:Restore /p:Configuration="${{ matrix.config }}"
+        }
+        if ("${{ matrix.revit-version }}" -eq "R24" -or "${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
+          if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
+            dotnet restore src/RhythmViewExtension/RhythmViewExtension.sln
+          } else {
+            msbuild src/RhythmViewExtension/RhythmViewExtension.sln /t:Restore /p:Configuration="${{ matrix.config }}"
+          }
         }
       shell: pwsh
     
@@ -118,10 +123,14 @@ jobs:
     
     - name: Build RhythmViewExtension
       run: |
-        if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
-          dotnet build src/RhythmViewExtension/RhythmViewExtension.sln --configuration "${{ matrix.config }}" --no-restore
+        if ("${{ matrix.revit-version }}" -eq "R24" -or "${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
+          if ("${{ matrix.revit-version }}" -eq "R25" -or "${{ matrix.revit-version }}" -eq "R26") {
+            dotnet build src/RhythmViewExtension/RhythmViewExtension.sln --configuration "${{ matrix.config }}" --no-restore
+          } else {
+            msbuild src/RhythmViewExtension/RhythmViewExtension.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
+          }
         } else {
-          msbuild src/RhythmViewExtension/RhythmViewExtension.sln /p:Configuration="${{ matrix.config }}" /p:Platform="AnyCPU" /t:Build
+          Write-Host "Skipping RhythmViewExtension build for ${{ matrix.revit-version }} (not supported)"
         }
       shell: pwsh
     
