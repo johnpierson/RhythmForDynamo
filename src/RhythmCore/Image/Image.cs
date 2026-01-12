@@ -15,7 +15,7 @@ namespace Rhythm.Image
         /// Converts an input image to a base64 (string) representation.
         /// </summary>
         /// <param name="imagePath">The image to convert.</param>
-        /// <returns name"base64String"></returns>
+        /// <returns name="base64String"></returns>
         public static string ConvertToBase64(string imagePath)
         {
             byte[] imageArray = File.ReadAllBytes(imagePath);

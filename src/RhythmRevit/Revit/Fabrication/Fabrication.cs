@@ -13,7 +13,6 @@ namespace Rhythm.Revit.Fabrication
     {
         private Fabrication() { }
 
-        /// <summary>
         /// <summary>  
         /// This node exports a list of fabrication elements to a PCF (Piping Component File) format.  
         /// It filters the provided elements to include only FabricationPart instances and then uses Revit's FabricationUtils  

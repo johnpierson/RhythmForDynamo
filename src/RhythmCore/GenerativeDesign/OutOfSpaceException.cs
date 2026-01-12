@@ -26,9 +26,7 @@ namespace Nuclex.Game.Packing
     ///   that occurs when a packing algorithm runs out of space and is unable to fit
     ///   the object you tried to pack into the remaining packing area.
     /// </remarks>
-#if !NO_SERIALIZATION
-    [Serializable]
-#endif
+
     internal class OutOfSpaceException : Exception
     {
 
@@ -44,7 +42,7 @@ namespace Nuclex.Game.Packing
         /// <param name="inner">Preceding exception that has caused this exception</param>
         public OutOfSpaceException(string message, Exception inner) : base(message, inner) { }
 
-#if !NO_SERIALIZATION
+
 
         /// <summary>Initializes the exception from its serialized state</summary>
         /// <param name="info">Contains the serialized fields of the exception</param>
@@ -56,7 +54,7 @@ namespace Nuclex.Game.Packing
             base(info, context)
         { }
 
-#endif
+
 
     }
 
