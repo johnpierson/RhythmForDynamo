@@ -14,10 +14,15 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
@@ -125,6 +130,27 @@ jobs:
             exit 1
           }
           Write-Host "All required files verified successfully!" -ForegroundColor Green
+
+      - name: Configure Git
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Commit and push deploy folder changes
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        run: |
+          git add deploy/
+          $changes = git diff --cached --name-only
+          if ($changes) {
+            $commitMessage = "chore: update deploy folder with latest builds [skip ci]"
+            git commit -m $commitMessage
+            Write-Host "Committed deploy folder changes"
+            git push origin HEAD:${{ github.ref_name }}
+            Write-Host "Pushed changes to ${{ github.ref_name }}"
+          } else {
+            Write-Host "No changes to commit in deploy folder"
+          }
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
