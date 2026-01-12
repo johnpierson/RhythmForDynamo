@@ -54,7 +54,12 @@ namespace RhythmUI
                 "ByElementId",
                 new List<AssociativeNode>
                 {
-                    AstFactory.BuildIntNode(((ViewFamilyType)Items[SelectedIndex].Item).Id.IntegerValue)
+#if R26_OR_GREATER
+                    AstFactory.BuildIntNode(((ViewFamilyType)Items[SelectedIndex].Item).Id.Value)
+#endif
+#if !R26_OR_GREATER
+                    AstFactory.BuildIntNode(((RoofType)Items[SelectedIndex].Item).Id.IntegerValue)
+#endif
                 });
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }

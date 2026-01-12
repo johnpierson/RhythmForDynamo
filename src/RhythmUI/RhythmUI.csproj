@@ -6,8 +6,8 @@
         <UseWPF>true</UseWPF>
         <PlatformTarget>x64</PlatformTarget>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <Configurations>Debug R24;Debug R20;Debug R21;Debug R22;Debug R23;Debug R25;</Configurations>
-        <Configurations>$(Configurations)Release R24;Release R20;Release R21;Release R22;Release R23;Release R25;</Configurations>
+        <Configurations>Debug R24;Debug R20;Debug R21;Debug R22;Debug R23;Debug R25;Debug R26;</Configurations>
+        <Configurations>$(Configurations)Release R24;Release R20;Release R21;Release R22;Release R23;Release R25;Release R26;</Configurations>
         <NoWarn>MSB3277;CS1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
@@ -102,6 +102,22 @@
         <DefineConstants>$(DefineConstants);R25;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER</DefineConstants>
 		<TargetFramework>net8.0-windows</TargetFramework>
     </PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('Debug R26'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2026</RevitVersion>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);R26;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER</DefineConstants>
+		<TargetFramework>net8.0-windows</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R26'))">
+        <DynamoVersion>3.0</DynamoVersion>
+        <DynamoOutput>3.0</DynamoOutput>
+        <RevitVersion>2026</RevitVersion>
+        <DefineConstants>$(DefineConstants);R26;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER</DefineConstants>
+		<TargetFramework>net8.0-windows</TargetFramework>
+    </PropertyGroup>
     <PropertyGroup>
         <DynVersion>$(DynamoVersion)</DynVersion>
         <BuildOutput>$(DynamoOutput)</BuildOutput>
@@ -136,6 +152,9 @@
 	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R25|AnyCPU'">
 	   <Optimize>True</Optimize>
 	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R26|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
 	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R24|AnyCPU'">
 	   <Optimize>True</Optimize>
 	 </PropertyGroup>
@@ -152,6 +171,9 @@
 	   <Optimize>True</Optimize>
 	 </PropertyGroup>
 	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R26|AnyCPU'">
 	   <Optimize>True</Optimize>
 	 </PropertyGroup>
 	 <ItemGroup>
@@ -171,14 +193,14 @@
       <Private>False</Private>
     </Reference>
 	 </ItemGroup>
-	  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU'">
+	  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R26|AnyCPU'">
 		<PackageReference Include="CommonServiceLocator" Version="1.0" />
       
         <PackageReference Include="NUnit" Version="2.6.3" />
         <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R25|AnyCPU'">
+	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R26|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R26|AnyCPU'">
         <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
         
         <PackageReference Include="NUnit" Version="3.14.0" />
@@ -214,6 +236,11 @@
 <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R25|AnyCPU'">
 		<Reference Include="RhythmRevit">
 	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2025\RhythmRevit.dll</HintPath>
+        </Reference>
+	</ItemGroup>
+<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R26|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R26|AnyCPU'">
+		<Reference Include="RhythmRevit">
+	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2026\RhythmRevit.dll</HintPath>
         </Reference>
 	</ItemGroup>
 	

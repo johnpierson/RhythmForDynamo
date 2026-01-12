@@ -42,10 +42,19 @@ namespace RhythmUI
                 foreach (var id in family.GetFamilySymbolIds())
                 {
                     var fs = family.Document.GetElement(id);
+#if R26_OR_GREATER
+                    if (fs.Category.Id.Value.Equals(-2000280))
+                    {
+                        Items.Add(new DynamoDropDownItem($"{family.Name}:{fs.Name}", fs));
+                    }
+#endif
+#if !R26_OR_GREATER
                     if (fs.Category.Id.IntegerValue.Equals(-2000280))
                     {
                         Items.Add(new DynamoDropDownItem($"{family.Name}:{fs.Name}", fs));
                     }
+#endif
+
                 }
             }
 
