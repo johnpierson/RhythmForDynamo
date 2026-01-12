@@ -74,7 +74,7 @@ namespace RhythmUI
                 "ByElementId",
                 new List<AssociativeNode>
                 {
-                    AstFactory.BuildIntNode(selectedCollection.Id.Value)
+                    AstFactory.BuildIntNode((int)selectedCollection.Id.Value)
                 });
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
 #endif
