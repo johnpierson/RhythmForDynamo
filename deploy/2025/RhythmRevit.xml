@@ -1680,6 +1680,21 @@
             sheet, sheets, titleblock
             </search>
         </member>
+        <member name="T:Rhythm.Revit.Elements.SheetCollection">
+            <summary>
+            Wrapper class for sheet collections.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.SheetCollection.Sheets(Revit.Elements.Element)">
+            <summary>
+            Gets all sheets in the specified sheet collection.
+            </summary>
+            <param name="sheetCollection">The sheet collection to get sheets from.</param>
+            <returns name="Sheets">The sheets in the collection.</returns>
+            <search>
+            sheet collection, sheets, rhythm
+            </search>
+        </member>
         <member name="T:Rhythm.Revit.Elements.SlopedGlazing">
             <summary>
             Wrapper class for sloped glazing
