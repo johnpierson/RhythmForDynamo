@@ -1950,6 +1950,31 @@
         <member name="M:Rhythm.Revit.Elements.Walls.GetFacingDirection(Autodesk.Revit.DB.XYZ)">
             https://github.com/rudderdon/case-apps/blob/master/2017/Case.Directionality/Case.Directionality/Data/clsExternalWalls.vb
         </member>
+        <member name="T:Rhythm.Revit.Elements.Windows">
+            <summary>
+            Wrapper class for windows.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Windows.Direction(Revit.Elements.Element)">
+            <summary>
+            This will get the window's facing direction based on the FacingOrientation property.
+            Windows in Revit are typically FamilyInstance elements with a FacingOrientation that indicates the direction they face.
+            </summary>
+            <param name="window">The window to calculate facing from.</param>
+            <returns name="facingDirection">The estimated facing direction.</returns>
+            <returns name="facingVector">The facing vector.</returns>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Windows.GetWindowDirection(Autodesk.Revit.DB.FamilyInstance)">
+            <summary>
+            Get the facing direction of a window using its FacingOrientation property.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Windows.GetFacingDirection(Autodesk.Revit.DB.XYZ)">
+            <summary>
+            Convert an XYZ direction vector to a cardinal direction string.
+            This uses the same logic as Walls.Direction for consistency.
+            </summary>
+        </member>
         <member name="M:Rhythm.Revit.Fabrication.Fabrication.ExportToPCF(System.String,System.Collections.Generic.List{Revit.Elements.Element})">
             <summary>  
             This node exports a list of fabrication elements to a PCF (Piping Component File) format.  
