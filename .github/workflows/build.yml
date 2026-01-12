@@ -1,0 +1,142 @@
+name: Build RhythmForDynamo
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup MSBuild for .NET Framework
+        uses: microsoft/setup-msbuild@v1.3
+
+      - name: Restore NuGet packages for RhythmCore
+        run: |
+          dotnet restore src/RhythmCore/RhythmCore.sln
+
+      - name: Restore NuGet packages for RhythmRevit
+        run: |
+          dotnet restore src/RhythmRevit/RhythmRevit.sln
+
+      - name: Build RhythmCore - Release R20
+        run: |
+          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R20" --no-restore
+
+      - name: Build RhythmCore - Release R21
+        run: |
+          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R21" --no-restore
+
+      - name: Build RhythmCore - Release R22
+        run: |
+          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R22" --no-restore
+
+      - name: Build RhythmCore - Release R23
+        run: |
+          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R23" --no-restore
+
+      - name: Build RhythmCore - Release R24
+        run: |
+          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R24" --no-restore
+
+      - name: Build RhythmCore - Release R25
+        run: |
+          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R25" --no-restore
+
+      - name: Build RhythmRevit - Release R20
+        run: |
+          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R20" --no-restore
+
+      - name: Build RhythmRevit - Release R21
+        run: |
+          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R21" --no-restore
+
+      - name: Build RhythmRevit - Release R22
+        run: |
+          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R22" --no-restore
+
+      - name: Build RhythmRevit - Release R23
+        run: |
+          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R23" --no-restore
+
+      - name: Build RhythmRevit - Release R24
+        run: |
+          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R24" --no-restore
+
+      - name: Build RhythmRevit - Release R25
+        run: |
+          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R25" --no-restore
+
+      - name: Build RhythmRevit - Release R26
+        run: |
+          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R26" --no-restore
+
+      - name: Verify deploy folder structure
+        run: |
+          Write-Host "Verifying deploy folder structure..."
+          $deployPath = "deploy"
+          $rhythmCoreVersions = @("2020", "2021", "2022", "2023", "2024", "2025")
+          $rhythmRevitVersions = @("2020", "2021", "2022", "2023", "2024", "2025", "2026")
+          
+          $allValid = $true
+          
+          foreach ($version in $rhythmCoreVersions) {
+            $dllPath = Join-Path $deployPath $version "RhythmCore.dll"
+            $xmlPath = Join-Path $deployPath $version "RhythmCore.xml"
+            if (-not (Test-Path $dllPath)) {
+              Write-Host "ERROR: Missing $dllPath" -ForegroundColor Red
+              $allValid = $false
+            } else {
+              Write-Host "✓ Found $dllPath" -ForegroundColor Green
+            }
+            if (-not (Test-Path $xmlPath)) {
+              Write-Host "WARNING: Missing $xmlPath" -ForegroundColor Yellow
+            } else {
+              Write-Host "✓ Found $xmlPath" -ForegroundColor Green
+            }
+          }
+          
+          foreach ($version in $rhythmRevitVersions) {
+            $dllPath = Join-Path $deployPath $version "RhythmRevit.dll"
+            $xmlPath = Join-Path $deployPath $version "RhythmRevit.xml"
+            if (-not (Test-Path $dllPath)) {
+              Write-Host "ERROR: Missing $dllPath" -ForegroundColor Red
+              $allValid = $false
+            } else {
+              Write-Host "✓ Found $dllPath" -ForegroundColor Green
+            }
+            if (-not (Test-Path $xmlPath)) {
+              Write-Host "WARNING: Missing $xmlPath" -ForegroundColor Yellow
+            } else {
+              Write-Host "✓ Found $xmlPath" -ForegroundColor Green
+            }
+          }
+          
+          if (-not $allValid) {
+            Write-Host "Build verification failed - some required files are missing" -ForegroundColor Red
+            exit 1
+          }
+          Write-Host "All required files verified successfully!" -ForegroundColor Green
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-folder
+          path: deploy/
+          retention-days: 30
