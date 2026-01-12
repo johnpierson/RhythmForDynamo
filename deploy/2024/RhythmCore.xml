@@ -153,7 +153,13 @@
             <param name="runIt">True will cause the mouse to move on it's own.</param>
             <param name="interval">Time between movements (in seconds).</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Rhythm.Image.Image.ConvertToBase64(System.String)" -->
+        <member name="M:Rhythm.Image.Image.ConvertToBase64(System.String)">
+            <summary>
+            Converts an input image to a base64 (string) representation.
+            </summary>
+            <param name="imagePath">The image to convert.</param>
+            <returns name="base64String"></returns>
+        </member>
         <member name="T:Rhythm.Math.MarkovChain">
             <summary>
             
