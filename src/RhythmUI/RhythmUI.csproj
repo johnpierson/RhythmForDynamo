@@ -223,7 +223,7 @@
             <AssemblyFiles Include="$(TargetDir)RhythmUI.dll" />
             <AssemblyFiles Include="$(TargetDir)*.xml" />
         </ItemGroup>
-        <Message Text="Copying From $(TargetDir) To $(FolderPackages)" Importance="high" />
+        <Message Text="Copying From $(TargetDir) To $(ProjectDir)..\..\deploy\$(RevitVersion)" Importance="high" />
         <Copy SourceFiles="@(AssemblyFiles)" DestinationFolder="$(ProjectDir)..\..\deploy\$(RevitVersion)" />
         <Message Text="Copied Completed" Importance="high" />
     </Target>
