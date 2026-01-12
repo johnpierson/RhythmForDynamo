@@ -27,65 +27,57 @@ jobs:
       - name: Setup MSBuild for .NET Framework
         uses: microsoft/setup-msbuild@v1.3
 
-      - name: Restore NuGet packages for RhythmCore
-        run: |
-          dotnet restore src/RhythmCore/RhythmCore.sln
-
-      - name: Restore NuGet packages for RhythmRevit
-        run: |
-          dotnet restore src/RhythmRevit/RhythmRevit.sln
-
       - name: Build RhythmCore - Release R20
         run: |
-          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R20" --no-restore
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R20" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmCore - Release R21
         run: |
-          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R21" --no-restore
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R21" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmCore - Release R22
         run: |
-          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R22" --no-restore
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R22" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmCore - Release R23
         run: |
-          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R23" --no-restore
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R23" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmCore - Release R24
         run: |
-          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R24" --no-restore
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmCore - Release R25
         run: |
-          dotnet build src/RhythmCore/RhythmCore.sln -c "Release R25" --no-restore
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R20
         run: |
-          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R20" --no-restore
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R20" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R21
         run: |
-          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R21" --no-restore
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R21" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R22
         run: |
-          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R22" --no-restore
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R22" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R23
         run: |
-          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R23" --no-restore
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R23" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R24
         run: |
-          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R24" --no-restore
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R25
         run: |
-          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R25" --no-restore
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R26
         run: |
-          dotnet build src/RhythmRevit/RhythmRevit.sln -c "Release R26" --no-restore
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Verify deploy folder structure
         run: |
