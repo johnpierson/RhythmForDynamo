@@ -1,6 +1,7 @@
 using System;
 using Autodesk.DesignScript.Geometry;
 using Dynamo.Graph.Nodes;
+using SystemMath = System.Math;
 
 namespace Rhythm.Geometry
 {
@@ -31,87 +32,108 @@ namespace Rhythm.Geometry
             var east = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(1, 0, 0);
             var west = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(-1, 0, 0);
             
-            // Calculate angles to cardinal directions using AngleTo method
-            var angleToNorth = vector.AngleTo(north);
-            var angleToSouth = vector.AngleTo(south);
-            var angleToEast = vector.AngleTo(east);
-            var angleToWest = vector.AngleTo(west);
+            // Calculate angles to cardinal directions using dot product
+            // Angle between two vectors: angle = acos(dot product / (length1 * length2))
+            var angleToNorth = AngleBetweenVectors(vector, north);
+            var angleToSouth = AngleBetweenVectors(vector, south);
+            var angleToEast = AngleBetweenVectors(vector, east);
+            var angleToWest = AngleBetweenVectors(vector, west);
             
             string vectorDirection = string.Empty;
             
             // North checks
-            if (Math.Abs(angleToNorth) < Math.PI / 4)
+            if (SystemMath.Abs(angleToNorth) < SystemMath.PI / 4)
             {
                 // North
                 vectorDirection = "N";
                 
                 // North east
-                if (Math.Abs(angleToEast) < Math.PI / 3)
+                if (SystemMath.Abs(angleToEast) < SystemMath.PI / 3)
                 {
                     vectorDirection = "NE";
                 }
                 // North west
-                if (Math.Abs(angleToWest) < Math.PI / 3)
+                if (SystemMath.Abs(angleToWest) < SystemMath.PI / 3)
                 {
                     vectorDirection = "NW";
                 }
             }
             
             // South checks
-            if (Math.Abs(angleToSouth) < Math.PI / 4)
+            if (SystemMath.Abs(angleToSouth) < SystemMath.PI / 4)
             {
                 // South
                 vectorDirection = "S";
                 
                 // South east
-                if (Math.Abs(angleToEast) < Math.PI / 3)
+                if (SystemMath.Abs(angleToEast) < SystemMath.PI / 3)
                 {
                     vectorDirection = "SE";
                 }
                 // South west
-                if (Math.Abs(angleToWest) < Math.PI / 3)
+                if (SystemMath.Abs(angleToWest) < SystemMath.PI / 3)
                 {
                     vectorDirection = "SW";
                 }
             }
             
             // East checks
-            if (Math.Abs(angleToEast) < Math.PI / 4)
+            if (SystemMath.Abs(angleToEast) < SystemMath.PI / 4)
             {
                 // East
                 vectorDirection = "E";
                 
                 // North east
-                if (Math.Abs(angleToNorth) < Math.PI / 3)
+                if (SystemMath.Abs(angleToNorth) < SystemMath.PI / 3)
                 {
                     vectorDirection = "NE";
                 }
                 // South east
-                if (Math.Abs(angleToSouth) < Math.PI / 3)
+                if (SystemMath.Abs(angleToSouth) < SystemMath.PI / 3)
                 {
                     vectorDirection = "SE";
                 }
             }
             
             // West checks
-            if (Math.Abs(angleToWest) < Math.PI / 4)
+            if (SystemMath.Abs(angleToWest) < SystemMath.PI / 4)
             {
                 // West
                 vectorDirection = "W";
                 
                 // North west
-                if (Math.Abs(angleToNorth) < Math.PI / 3)
+                if (SystemMath.Abs(angleToNorth) < SystemMath.PI / 3)
                 {
                     vectorDirection = "NW";
                 }
                 // South west
-                if (Math.Abs(angleToSouth) < Math.PI / 3)
+                if (SystemMath.Abs(angleToSouth) < SystemMath.PI / 3)
                 {
                     vectorDirection = "SW";
                 }
             }
             
             return vectorDirection;
+        }
+        
+        /// <summary>
+        /// Helper method to calculate the angle between two vectors.
+        /// </summary>
+        private static double AngleBetweenVectors(Autodesk.DesignScript.Geometry.Vector v1, Autodesk.DesignScript.Geometry.Vector v2)
+        {
+            // Calculate dot product
+            double dotProduct = v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
+            
+            // Calculate magnitudes
+            double magnitude1 = SystemMath.Sqrt(v1.X * v1.X + v1.Y * v1.Y + v1.Z * v1.Z);
+            double magnitude2 = SystemMath.Sqrt(v2.X * v2.X + v2.Y * v2.Y + v2.Z * v2.Z);
+            
+            // Calculate angle using dot product formula
+            // Clamp the value to handle floating point errors
+            double cosAngle = dotProduct / (magnitude1 * magnitude2);
+            cosAngle = SystemMath.Max(-1.0, SystemMath.Min(1.0, cosAngle));
+            
+            return SystemMath.Acos(cosAngle);
         }
     }
 }
