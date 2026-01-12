@@ -1,0 +1,96 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      minor_version:
+        description: 'Minor version number (leave empty to auto-calculate)'
+        required: false
+        type: string
+        default: ''
+  push:
+    tags:
+      - '20*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Calculate CalVer version
+        id: calver
+        run: |
+          YEAR=$(date +%Y)
+          MONTH=$(date +%-m)
+          
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            # Manual trigger
+            if [ -n "${{ github.event.inputs.minor_version }}" ]; then
+              MINOR="${{ github.event.inputs.minor_version }}"
+            else
+              # Auto-calculate: find highest minor version for current month
+              echo "Auto-calculating minor version for ${YEAR}.${MONTH}..."
+              MAX_MINOR=0
+              
+              # Get all tags matching the current year and month
+              for tag in $(git tag -l "${YEAR}.${MONTH}.*"); do
+                TAG_MINOR=$(echo $tag | cut -d'.' -f3)
+                if [ -n "$TAG_MINOR" ] && [ "$TAG_MINOR" -gt "$MAX_MINOR" ] 2>/dev/null; then
+                  MAX_MINOR=$TAG_MINOR
+                fi
+              done
+              
+              MINOR=$((MAX_MINOR + 1))
+              echo "Found max minor version: ${MAX_MINOR}, using: ${MINOR}"
+            fi
+          else
+            # Tag push - extract version from tag
+            TAG_NAME="${{ github.ref_name }}"
+            MINOR=$(echo $TAG_NAME | cut -d'.' -f3)
+            YEAR=$(echo $TAG_NAME | cut -d'.' -f1)
+            MONTH=$(echo $TAG_NAME | cut -d'.' -f2)
+          fi
+          
+          VERSION="${YEAR}.${MONTH}.${MINOR}"
+          
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "tag_name=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Calculated CalVer version: ${VERSION}"
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          NOTES=$(cat <<EOF
+          ## Installation
+          
+          Installation available through package manager.
+          
+          ## Changes
+          
+          See commit history for detailed changes.
+          EOF
+          )
+          
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.calver.outputs.tag_name }}
+          name: Release ${{ steps.calver.outputs.version }}
+          body: ${{ steps.release_notes.outputs.notes }}
+          draft: false
+          prerelease: false
+          generate_release_notes: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
