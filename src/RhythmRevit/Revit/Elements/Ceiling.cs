@@ -151,7 +151,6 @@ namespace Rhythm.Revit.Elements
             }
         }
 
-#endif
 #if R25_OR_GREATER
         /// <summary>
         /// Returns ceiling grid lines, with the option to return the boundary as well.
@@ -172,4 +171,5 @@ namespace Rhythm.Revit.Elements
     
 #endif
     }
+#endif
 }
