@@ -13,6 +13,12 @@ namespace Rhythm.Geometry
         private Vector()
         { }
 
+        // Cardinal direction vectors as static readonly to avoid repeated allocation
+        private static readonly Autodesk.DesignScript.Geometry.Vector North = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 1, 0);
+        private static readonly Autodesk.DesignScript.Geometry.Vector South = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, -1, 0);
+        private static readonly Autodesk.DesignScript.Geometry.Vector East = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(1, 0, 0);
+        private static readonly Autodesk.DesignScript.Geometry.Vector West = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(-1, 0, 0);
+
         /// <summary>
         /// This will determine the vector's cardinal direction (N, S, E, W, NE, NW, SE, SW).
         /// Based on the logic from Walls.Direction.
@@ -25,19 +31,19 @@ namespace Rhythm.Geometry
         [NodeCategory("Query")]
         public static string Direction(Autodesk.DesignScript.Geometry.Vector vector)
         {
-            // Define cardinal direction vectors
-            // North is +Y, East is +X, South is -Y, West is -X
-            var north = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 1, 0);
-            var south = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, -1, 0);
-            var east = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(1, 0, 0);
-            var west = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(-1, 0, 0);
+            // Validate input vector
+            double magnitude = SystemMath.Sqrt(vector.X * vector.X + vector.Y * vector.Y + vector.Z * vector.Z);
+            if (magnitude < 1e-10)
+            {
+                return string.Empty; // Return empty string for zero or near-zero vectors
+            }
             
             // Calculate angles to cardinal directions using dot product
             // Angle between two vectors: angle = acos(dot product / (length1 * length2))
-            var angleToNorth = AngleBetweenVectors(vector, north);
-            var angleToSouth = AngleBetweenVectors(vector, south);
-            var angleToEast = AngleBetweenVectors(vector, east);
-            var angleToWest = AngleBetweenVectors(vector, west);
+            var angleToNorth = AngleBetweenVectors(vector, North, magnitude);
+            var angleToSouth = AngleBetweenVectors(vector, South, magnitude);
+            var angleToEast = AngleBetweenVectors(vector, East, magnitude);
+            var angleToWest = AngleBetweenVectors(vector, West, magnitude);
             
             string vectorDirection = string.Empty;
             
@@ -119,18 +125,18 @@ namespace Rhythm.Geometry
         /// <summary>
         /// Helper method to calculate the angle between two vectors.
         /// </summary>
-        private static double AngleBetweenVectors(Autodesk.DesignScript.Geometry.Vector v1, Autodesk.DesignScript.Geometry.Vector v2)
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector (cardinal direction with magnitude 1)</param>
+        /// <param name="magnitude1">Pre-calculated magnitude of v1</param>
+        private static double AngleBetweenVectors(Autodesk.DesignScript.Geometry.Vector v1, Autodesk.DesignScript.Geometry.Vector v2, double magnitude1)
         {
             // Calculate dot product
             double dotProduct = v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
             
-            // Calculate magnitudes
-            double magnitude1 = SystemMath.Sqrt(v1.X * v1.X + v1.Y * v1.Y + v1.Z * v1.Z);
-            double magnitude2 = SystemMath.Sqrt(v2.X * v2.X + v2.Y * v2.Y + v2.Z * v2.Z);
-            
+            // Cardinal direction vectors have magnitude 1, so we only need magnitude1
             // Calculate angle using dot product formula
             // Clamp the value to handle floating point errors
-            double cosAngle = dotProduct / (magnitude1 * magnitude2);
+            double cosAngle = dotProduct / magnitude1;
             cosAngle = SystemMath.Max(-1.0, SystemMath.Min(1.0, cosAngle));
             
             return SystemMath.Acos(cosAngle);
