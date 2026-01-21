@@ -53,6 +53,26 @@
             <param name="point">The point to return values for.</param>
             <returns></returns>
         </member>
+        <member name="T:Rhythm.Geometry.PolyCurve">
+            <summary>
+            Wrapper class for PolyCurve operations
+            </summary>
+        </member>
+        <member name="M:Rhythm.Geometry.PolyCurve.ByRandomPoints(System.Int32,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Int32)">
+            <summary>
+            Creates a PolyCurve from a random distribution of points.
+            </summary>
+            <param name="numberOfPoints">The number of random points to generate</param>
+            <param name="minX">Minimum X coordinate (default: 0)</param>
+            <param name="maxX">Maximum X coordinate (default: 100)</param>
+            <param name="minY">Minimum Y coordinate (default: 0)</param>
+            <param name="maxY">Maximum Y coordinate (default: 100)</param>
+            <param name="minZ">Minimum Z coordinate (default: 0)</param>
+            <param name="maxZ">Maximum Z coordinate (default: 0)</param>
+            <param name="connectToStart">Whether to connect the last point back to the first point (default: false)</param>
+            <param name="seed">Random seed for reproducible results (default: uses time-based seed)</param>
+            <returns>A PolyCurve created from randomly distributed points</returns>
+        </member>
         <member name="T:Rhythm.Geometry.Vector">
             <summary>
             Wrapper class for vectors.
