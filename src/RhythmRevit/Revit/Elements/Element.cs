@@ -1,4 +1,4 @@
-﻿using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
@@ -242,6 +242,59 @@ namespace Rhythm.Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             return element;
+        }
+
+        /// <summary>
+        /// This will take a given element and category and grab the intersecting elements of that category.
+        /// </summary>
+        /// <param name="element">The element to run intersections against.</param>
+        /// <param name="category">The category to check.</param>
+        /// <param name="buffer">Optional scale buffer in X, Y, Z directions. Defaults to 0.</param>
+        /// <returns name="elements">The intersecting elements.</returns>
+        /// <search>
+        ///  IntersectingElements
+        /// </search>
+        [NodeCategory("Query")]
+        public static List<global::Revit.Elements.Element> IntersectingElementsOfCategoryBuffered(
+            global::Revit.Elements.Element element,
+            global::Revit.Elements.Category category,
+            [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Vector buffer)
+        {
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            BuiltInCategory myCatEnum = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), category.Id.ToString());
+
+            var internalElement = element.InternalElement;
+            List<Solid> solids = GetSolidsFromElement(internalElement);
+            if (solids.Count == 0)
+            {
+                return new List<global::Revit.Elements.Element>();
+            }
+
+            Vector bufferVector = buffer ?? Vector.ByCoordinates(0, 0, 0);
+            List<ElementFilter> solidFilters = new List<ElementFilter>();
+            foreach (Solid solid in solids)
+            {
+                Solid scaledSolid = ApplyScaleBuffer(solid, bufferVector);
+                solidFilters.Add(new ElementIntersectsSolidFilter(scaledSolid));
+            }
+
+            ElementFilter filter = solidFilters.Count == 1 ? solidFilters[0] : new LogicalOrFilter(solidFilters);
+            IList<Autodesk.Revit.DB.Element> intersectingElementsInternaList = new FilteredElementCollector(doc)
+                .OfCategory(myCatEnum)
+                .WhereElementIsNotElementType()
+                .WherePasses(filter)
+                .ToElements();
+
+            List<global::Revit.Elements.Element> intersectingElements = new List<global::Revit.Elements.Element>();
+            foreach (Autodesk.Revit.DB.Element internalIntersectingElement in intersectingElementsInternaList)
+            {
+                if (!internalIntersectingElement.Id.Equals(internalElement.Id))
+                {
+                    intersectingElements.Add(internalIntersectingElement.ToDSType(false));
+                }
+            }
+
+            return intersectingElements;
         }
 
         /// <summary>
@@ -492,6 +545,71 @@ namespace Rhythm.Revit.Elements
             global::Revit.Elements.Element elem = areaLocations.First(a => a.GetLocation().DistanceTo(ptLocation) == areaLocations.Min(e => e.GetLocation().DistanceTo(ptLocation)));
 
             return elem;
+        }
+
+        private static List<Solid> GetSolidsFromElement(Autodesk.Revit.DB.Element element)
+        {
+            GeometryElement geometryElement = element.get_Geometry(new Options() { ComputeReferences = true });
+            List<Solid> solids = new List<Solid>();
+
+            if (geometryElement == null)
+            {
+                return solids;
+            }
+
+            foreach (GeometryObject geometryObject in geometryElement)
+            {
+                if (geometryObject is Solid directSolid && directSolid.Volume > 0)
+                {
+                    solids.Add(directSolid);
+                    continue;
+                }
+
+                GeometryInstance geometryInstance = geometryObject as GeometryInstance;
+                if (geometryInstance == null)
+                {
+                    continue;
+                }
+
+                foreach (GeometryObject instanceObject in geometryInstance.GetInstanceGeometry())
+                {
+                    if (instanceObject is Solid instanceSolid && instanceSolid.Volume > 0)
+                    {
+                        solids.Add(instanceSolid);
+                    }
+                }
+            }
+
+            return solids;
+        }
+
+        private static Solid ApplyScaleBuffer(Solid solid, Vector buffer)
+        {
+            double scaleX = 1.0 + buffer.X;
+            double scaleY = 1.0 + buffer.Y;
+            double scaleZ = 1.0 + buffer.Z;
+
+            if (scaleX <= 0 || scaleY <= 0 || scaleZ <= 0)
+            {
+                throw new Exception("Buffer values must be greater than -1 in each direction.");
+            }
+
+            if (scaleX.Equals(1.0) && scaleY.Equals(1.0) && scaleZ.Equals(1.0))
+            {
+                return solid;
+            }
+
+            XYZ centroid = solid.ComputeCentroid();
+            Transform toOrigin = Transform.CreateTranslation(new XYZ(-centroid.X, -centroid.Y, -centroid.Z));
+            Transform fromOrigin = Transform.CreateTranslation(centroid);
+
+            Transform scaleTransform = Transform.Identity;
+            scaleTransform.BasisX = new XYZ(scaleX, 0, 0);
+            scaleTransform.BasisY = new XYZ(0, scaleY, 0);
+            scaleTransform.BasisZ = new XYZ(0, 0, scaleZ);
+
+            Transform finalTransform = fromOrigin.Multiply(scaleTransform).Multiply(toOrigin);
+            return SolidUtils.CreateTransformed(solid, finalTransform);
         }
 
         /// <summary>
