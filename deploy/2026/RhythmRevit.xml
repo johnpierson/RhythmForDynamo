@@ -2479,7 +2479,7 @@
             <param name="viewFilters">The view filters in order</param>
             <returns name="viewFiltersInNewOrder"></returns>
         </member>
-        <member name="M:Rhythm.Revit.Views.View.CopyOrderedFiltersFromView(Revit.Elements.Views.View,Revit.Elements.Views.View)">
+        <member name="M:Rhythm.Revit.Views.View.CopyOrderedFiltersFromView(Revit.Elements.Views.View,Revit.Elements.Views.View,System.Boolean)">
             <summary>
             Revit 2021 - Copies view filters from the source view to the receiving view while preserving filter order.
             If the receiving view has a view template assigned, an exception will be thrown.
@@ -2487,6 +2487,7 @@
             </summary>
             <param name="receivingView">The target view to receive the filters.</param>
             <param name="sourceView">The source view to copy filters from.</param>
+            <param name="runIt">Run the tool?</param>
         </member>
         <member name="T:Rhythm.Revit.Views.ViewPlan">
             <summary>
