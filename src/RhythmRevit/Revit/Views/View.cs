@@ -477,8 +477,7 @@ namespace Rhythm.Revit.Views
         /// </summary>
         /// <param name="receivingView">The target view to receive the filters.</param>
         /// <param name="sourceView">The source view to copy filters from.</param>
-        /// <returns name="receivingView">The receiving view.</returns>
-        public static global::Revit.Elements.Views.View CopyOrderedFiltersFromView(
+        public static void CopyOrderedFiltersFromView(
             global::Revit.Elements.Views.View receivingView,
             global::Revit.Elements.Views.View sourceView)
         {
@@ -540,8 +539,6 @@ namespace Rhythm.Revit.Views
 
                 copyFilters.Assimilate();
             }
-
-            return receivingView;
         }
 
 #endif
