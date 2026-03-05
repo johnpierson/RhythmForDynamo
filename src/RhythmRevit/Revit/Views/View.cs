@@ -427,7 +427,7 @@ namespace Rhythm.Revit.Views
             TransactionGroup reorderFilters = new TransactionGroup(doc);
 
             reorderFilters.Start();
-            
+
             foreach (var viewFilter in viewFilters)
             {
                 var viewFilterId = viewFilter.InternalElement.Id;
@@ -501,46 +501,39 @@ namespace Rhythm.Revit.Views
 
             var sourceFilters = internalSourceView.GetOrderedFilters();
 
-            TransactionManager.Instance.ForceCloseTransaction();
+            TransactionManager.Instance.EnsureInTransaction(doc);
 
-            using (TransactionGroup copyFilters = new TransactionGroup(doc))
+
+            foreach (var filterId in sourceFilters)
             {
-                copyFilters.Start();
-
-                foreach (var filterId in sourceFilters)
+                var filterElement = doc.GetElement(filterId);
+                if (!(filterElement is Autodesk.Revit.DB.ParameterFilterElement))
                 {
-                    var filterElement = doc.GetElement(filterId);
-                    if (!(filterElement is Autodesk.Revit.DB.ParameterFilterElement))
-                    {
-                        continue;
-                    }
-
-                    // Capture overrides/visibility/enabled state from source view
-                    var filterOverrides = internalSourceView.GetFilterOverrides(filterId);
-                    var filterVisibility = internalSourceView.GetFilterVisibility(filterId);
-                    var filterEnabled = internalSourceView.GetIsFilterEnabled(filterId);
-
-                    using (Transaction t = new Transaction(doc, "Copying Filter"))
-                    {
-                        t.Start();
-
-                        // Remove from receiving view first if already present so it can be re-added at the end (preserving order)
-                        if (internalReceivingView.GetOrderedFilters().Contains(filterId))
-                        {
-                            internalReceivingView.RemoveFilter(filterId);
-                        }
-
-                        internalReceivingView.AddFilter(filterId);
-                        internalReceivingView.SetFilterOverrides(filterId, filterOverrides);
-                        internalReceivingView.SetFilterVisibility(filterId, filterVisibility);
-                        internalReceivingView.SetIsFilterEnabled(filterId, filterEnabled);
-
-                        t.Commit();
-                    }
+                    continue;
                 }
 
-                copyFilters.Assimilate();
+                // Capture overrides/visibility/enabled state from source view
+                var filterOverrides = internalSourceView.GetFilterOverrides(filterId);
+                var filterVisibility = internalSourceView.GetFilterVisibility(filterId);
+                var filterEnabled = internalSourceView.GetIsFilterEnabled(filterId);
+
+
+                // Remove from receiving view first if already present so it can be re-added at the end (preserving order)
+                if (internalReceivingView.GetOrderedFilters().Contains(filterId))
+                {
+                    internalReceivingView.RemoveFilter(filterId);
+                }
+
+                internalReceivingView.AddFilter(filterId);
+                internalReceivingView.SetFilterOverrides(filterId, filterOverrides);
+                internalReceivingView.SetFilterVisibility(filterId, filterVisibility);
+                internalReceivingView.SetIsFilterEnabled(filterId, filterEnabled);
             }
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return;
+
         }
 
 #endif
