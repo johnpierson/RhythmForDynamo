@@ -228,12 +228,13 @@ namespace RhythmViewExtension
         private void CurrentWorkspaceModelOnNodeAdded(NodeModel obj)
         {
             string creationName = obj.CreationName;
+            string nodeDescription = obj.Description;
 
             if (creationName.Contains("Rhythm") && !obj.Name.Contains("ʳʰʸᵗʰᵐ|"))
             {
                 obj.Name = "ʳʰʸᵗʰᵐ|" + obj.Name;
             }
-            if (creationName.Contains("CloseDocument") || creationName.Contains("UpgradeFamilies"))
+            if (creationName.Contains("CloseDocument") || creationName.Contains("UpgradeFamilies") || nodeDescription.Contains("Manual Run Mode"))
             {
                 dynView.HomeSpace.RunSettings.RunType = RunType.Manual;
             }
