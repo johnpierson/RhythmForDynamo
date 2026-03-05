@@ -994,6 +994,18 @@
              CaseInsensitive
             </search>
         </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.IntersectingElementsOfCategoryBuffered(Revit.Elements.Element,Revit.Elements.Category,Autodesk.DesignScript.Geometry.Vector)">
+            <summary>
+            This will take a given element and category and grab the intersecting elements of that category.
+            </summary>
+            <param name="element">The element to run intersections against.</param>
+            <param name="category">The category to check.</param>
+            <param name="buffer">Optional scale buffer in X, Y, Z directions. Defaults to 0.</param>
+            <returns name="elements">The intersecting elements.</returns>
+            <search>
+             IntersectingElements
+            </search>
+        </member>
         <member name="M:Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategoryLinkOption(Revit.Elements.Element,Revit.Elements.Category,Revit.Elements.Element)">
             <summary>
             This will take a given element and category and grab the intersecting elements of that category.
@@ -2466,6 +2478,15 @@
             <param name="view">The view or view template</param>
             <param name="viewFilters">The view filters in order</param>
             <returns name="viewFiltersInNewOrder"></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.CopyOrderedFiltersFromView(Revit.Elements.Views.View,Revit.Elements.Views.View)">
+            <summary>
+            Revit 2021 - Copies view filters from the source view to the receiving view while preserving filter order.
+            If the receiving view has a view template assigned, an exception will be thrown.
+            If the source view has a view template assigned, the filters will be copied from that view template instead.
+            </summary>
+            <param name="receivingView">The target view to receive the filters.</param>
+            <param name="sourceView">The source view to copy filters from.</param>
         </member>
         <member name="T:Rhythm.Revit.Views.ViewPlan">
             <summary>

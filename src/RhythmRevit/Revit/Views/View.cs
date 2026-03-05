@@ -470,6 +470,7 @@ namespace Rhythm.Revit.Views
 
             return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList(); ;
         }
+
         /// <summary>
         /// Revit 2021 - Copies view filters from the source view to the receiving view while preserving filter order.
         /// If the receiving view has a view template assigned, an exception will be thrown.
@@ -477,9 +478,10 @@ namespace Rhythm.Revit.Views
         /// </summary>
         /// <param name="receivingView">The target view to receive the filters.</param>
         /// <param name="sourceView">The source view to copy filters from.</param>
+        /// <param name="runIt">Run the tool?</param>
         public static void CopyOrderedFiltersFromView(
             global::Revit.Elements.Views.View receivingView,
-            global::Revit.Elements.Views.View sourceView)
+            global::Revit.Elements.Views.View sourceView, bool runIt)
         {
             Autodesk.Revit.DB.View internalReceivingView = receivingView.InternalElement as Autodesk.Revit.DB.View;
             Autodesk.Revit.DB.View internalSourceView = sourceView.InternalElement as Autodesk.Revit.DB.View;
