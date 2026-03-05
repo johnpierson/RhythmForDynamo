@@ -271,14 +271,14 @@ namespace Rhythm.Revit.Elements
             }
 
             Vector bufferVector = buffer ?? Vector.ByCoordinates(0, 0, 0);
-            List<ElementFilter> solidFilters = new List<ElementFilter>();
+            List<Autodesk.Revit.DB.ElementFilter> solidFilters = new List<Autodesk.Revit.DB.ElementFilter>();
             foreach (Solid solid in solids)
             {
                 Solid scaledSolid = ApplyScaleBuffer(solid, bufferVector);
                 solidFilters.Add(new ElementIntersectsSolidFilter(scaledSolid));
             }
 
-            ElementFilter filter = solidFilters.Count == 1 ? solidFilters[0] : new LogicalOrFilter(solidFilters);
+            Autodesk.Revit.DB.ElementFilter filter = solidFilters.Count == 1 ? solidFilters[0] : new LogicalOrFilter(solidFilters);
             IList<Autodesk.Revit.DB.Element> intersectingElementsInternaList = new FilteredElementCollector(doc)
                 .OfCategory(myCatEnum)
                 .WhereElementIsNotElementType()
