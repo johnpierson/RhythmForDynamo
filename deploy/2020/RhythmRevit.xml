@@ -959,6 +959,18 @@
              CaseInsensitive
             </search>
         </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.IntersectingElementsOfCategoryBuffered(Revit.Elements.Element,Revit.Elements.Category,Autodesk.DesignScript.Geometry.Vector)">
+            <summary>
+            This will take a given element and category and grab the intersecting elements of that category.
+            </summary>
+            <param name="element">The element to run intersections against.</param>
+            <param name="category">The category to check.</param>
+            <param name="buffer">Optional scale buffer in X, Y, Z directions. Defaults to 0.</param>
+            <returns name="elements">The intersecting elements.</returns>
+            <search>
+             IntersectingElements
+            </search>
+        </member>
         <member name="M:Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategoryLinkOption(Revit.Elements.Element,Revit.Elements.Category,Revit.Elements.Element)">
             <summary>
             This will take a given element and category and grab the intersecting elements of that category.

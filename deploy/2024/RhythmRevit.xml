@@ -2491,7 +2491,6 @@
             </summary>
             <param name="receivingView">The target view to receive the filters.</param>
             <param name="sourceView">The source view to copy filters from.</param>
-            <returns name="receivingView">The receiving view.</returns>
         </member>
         <member name="T:Rhythm.Revit.Views.ViewPlan">
             <summary>
