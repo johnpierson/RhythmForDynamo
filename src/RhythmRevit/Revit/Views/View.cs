@@ -470,6 +470,79 @@ namespace Rhythm.Revit.Views
 
             return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList(); ;
         }
+        /// <summary>
+        /// Revit 2021 - Copies view filters from the source view to the receiving view while preserving filter order.
+        /// If the receiving view has a view template assigned, an exception will be thrown.
+        /// If the source view has a view template assigned, the filters will be copied from that view template instead.
+        /// </summary>
+        /// <param name="receivingView">The target view to receive the filters.</param>
+        /// <param name="sourceView">The source view to copy filters from.</param>
+        /// <returns name="receivingView">The receiving view.</returns>
+        public static global::Revit.Elements.Views.View CopyOrderedFiltersFromView(
+            global::Revit.Elements.Views.View receivingView,
+            global::Revit.Elements.Views.View sourceView)
+        {
+            Autodesk.Revit.DB.View internalReceivingView = receivingView.InternalElement as Autodesk.Revit.DB.View;
+            Autodesk.Revit.DB.View internalSourceView = sourceView.InternalElement as Autodesk.Revit.DB.View;
+            Document doc = internalReceivingView.Document;
+
+            // Receiving view must not be governed by a view template
+            if (internalReceivingView.ViewTemplateId != ElementId.InvalidElementId)
+            {
+                throw new Exception("Cannot copy filters to a view that has a view template assigned. Please remove the view template first.");
+            }
+
+            // If source view has a view template, copy filters from the template instead
+            if (internalSourceView.ViewTemplateId != ElementId.InvalidElementId)
+            {
+                internalSourceView = doc.GetElement(internalSourceView.ViewTemplateId) as Autodesk.Revit.DB.View;
+            }
+
+            var sourceFilters = internalSourceView.GetOrderedFilters();
+
+            TransactionManager.Instance.ForceCloseTransaction();
+
+            using (TransactionGroup copyFilters = new TransactionGroup(doc))
+            {
+                copyFilters.Start();
+
+                foreach (var filterId in sourceFilters)
+                {
+                    var filterElement = doc.GetElement(filterId);
+                    if (!(filterElement is Autodesk.Revit.DB.ParameterFilterElement))
+                    {
+                        continue;
+                    }
+
+                    // Capture overrides/visibility/enabled state from source view
+                    var filterOverrides = internalSourceView.GetFilterOverrides(filterId);
+                    var filterVisibility = internalSourceView.GetFilterVisibility(filterId);
+                    var filterEnabled = internalSourceView.GetIsFilterEnabled(filterId);
+
+                    using (Transaction t = new Transaction(doc, "Copying Filter"))
+                    {
+                        t.Start();
+
+                        // Remove from receiving view first if already present so it can be re-added at the end (preserving order)
+                        if (internalReceivingView.GetOrderedFilters().Contains(filterId))
+                        {
+                            internalReceivingView.RemoveFilter(filterId);
+                        }
+
+                        internalReceivingView.AddFilter(filterId);
+                        internalReceivingView.SetFilterOverrides(filterId, filterOverrides);
+                        internalReceivingView.SetFilterVisibility(filterId, filterVisibility);
+                        internalReceivingView.SetIsFilterEnabled(filterId, filterEnabled);
+
+                        t.Commit();
+                    }
+                }
+
+                copyFilters.Assimilate();
+            }
+
+            return receivingView;
+        }
 
 #endif
     }
