@@ -54,7 +54,7 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Create")]
         public static global::Revit.Elements.Element ByLine(Curve curve, bool drawInPlan = true)
         {
-            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
             Vector normal = Vector.ZAxis();
             if (!drawInPlan)

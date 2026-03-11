@@ -400,7 +400,7 @@ namespace Rhythm.Revit.Views
         public static List<global::Revit.Elements.Element> GetOrderedFilters(global::Revit.Elements.Views.View view)
         {
             Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
-            Document doc = internalView.Document;
+            Autodesk.Revit.DB.Document doc = internalView.Document;
 
             return internalView.GetOrderedFilters().Select(f => doc.GetElement(f).ToDSType(true)).ToList();
         }
@@ -413,7 +413,7 @@ namespace Rhythm.Revit.Views
         public static List<global::Revit.Elements.Element> SetFilterOrder(global::Revit.Elements.Views.View view, List<global::Revit.Elements.Element> viewFilters)
         {
             Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
-            Document doc = internalView.Document;
+            Autodesk.Revit.DB.Document doc = internalView.Document;
 
 
             if (internalView.ViewTemplateId != ElementId.InvalidElementId)
@@ -484,7 +484,7 @@ namespace Rhythm.Revit.Views
         {
             Autodesk.Revit.DB.View internalReceivingView = receivingView.InternalElement as Autodesk.Revit.DB.View;
             Autodesk.Revit.DB.View internalSourceView = sourceView.InternalElement as Autodesk.Revit.DB.View;
-            Document doc = internalReceivingView.Document;
+            Autodesk.Revit.DB.Document doc = internalReceivingView.Document;
 
             // Receiving view must not be governed by a view template
             if (internalReceivingView.ViewTemplateId != ElementId.InvalidElementId)

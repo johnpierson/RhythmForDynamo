@@ -34,7 +34,7 @@ namespace Rhythm.Revit.Elements
             [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] string name,
             [DefaultArgument("Rhythm.Utilities.MiscUtils.GetNull()")] Point origin)
         {
-            Document doc = elements.First().InternalElement.Document;
+            Autodesk.Revit.DB.Document doc = elements.First().InternalElement.Document;
 
             //if any of the elements belong to a group, cancel
             if (elements.Any(e => e.InternalElement.GroupId != ElementId.InvalidElementId))

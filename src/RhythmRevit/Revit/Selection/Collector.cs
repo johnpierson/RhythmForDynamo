@@ -33,7 +33,7 @@ namespace Rhythm.Revit.Selection
         [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> ElementsOfTypeInDocument(object document, Type elementType )
         {
-            Document doc = null;
+            Autodesk.Revit.DB.Document doc = null;
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
             if (document.GetType().ToString().Contains("Orchid"))
             {
@@ -47,7 +47,7 @@ namespace Rhythm.Revit.Selection
             }
             else
             {
-                doc = document as Document;
+                doc = document as Autodesk.Revit.DB.Document;
             }
 
             FilteredElementCollector coll = new FilteredElementCollector(doc);
@@ -69,7 +69,7 @@ namespace Rhythm.Revit.Selection
         [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> ElementsOfCategoryInDocument(object document, global::Revit.Elements.Category category)
         {
-            Document doc = null;
+            Autodesk.Revit.DB.Document doc = null;
             //this enables cross-compatibility with orchid documents by converting them to built in Autodesk.Revit.DB.Documents
             if (document.GetType().ToString().Contains("Orchid"))
             {
@@ -82,7 +82,7 @@ namespace Rhythm.Revit.Selection
             }
             else
             {
-                doc = document as Document;
+                doc = document as Autodesk.Revit.DB.Document;
             }
 
             if (category is null)

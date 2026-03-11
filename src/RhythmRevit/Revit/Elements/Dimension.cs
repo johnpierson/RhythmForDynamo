@@ -36,7 +36,7 @@ namespace Rhythm.Revit.Elements
         {
             //convert to internal dimension
             Autodesk.Revit.DB.Dimension internalDimension = (Autodesk.Revit.DB.Dimension)dimension.InternalElement;
-            Document doc = internalDimension.Document;
+            Autodesk.Revit.DB.Document doc = internalDimension.Document;
             List<Autodesk.DesignScript.Geometry.Line> dimensionLine = new List<Line>();
 
             if (internalDimension.NumberOfSegments > 1)

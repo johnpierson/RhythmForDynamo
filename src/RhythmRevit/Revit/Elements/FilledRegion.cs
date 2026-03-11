@@ -29,7 +29,7 @@ namespace Rhythm.Revit.Elements
         public static global::Revit.Elements.Element ByMultipleLoops(global::Revit.Elements.FilledRegionType filledRegionType, global::Revit.Elements.Views.View view, List<List<Curve>> curvesToUse)
         {
             //the current document
-            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
             //boundary loop to append nested loops to
             List<CurveLoop> boundariesLoop = new List<CurveLoop>();

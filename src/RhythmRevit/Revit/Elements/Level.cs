@@ -26,7 +26,7 @@ namespace Rhythm.Revit.Elements
         [NodeCategory("Query")]
         public static bool HasView(global::Revit.Elements.Level level)
         {
-            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
             FilteredElementCollector fec = new FilteredElementCollector(doc);
 
             //nested this in a try catch because I want false if this fails for any reason, instead of nulls. 

@@ -44,7 +44,7 @@ namespace Rhythm.Revit.Elements
             foreach (var i in instance)
             {
                 var internalFamily = (Autodesk.Revit.DB.FamilyInstance)i.InternalElement;
-                Document doc = internalFamily.Document;
+                Autodesk.Revit.DB.Document doc = internalFamily.Document;
                 Phase phaseToUse = doc.GetElement(internalFamily.CreatedPhaseId) as Phase;
                 try
                 {
@@ -230,7 +230,7 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.Architecture.Room internalRoom = (Autodesk.Revit.DB.Architecture.Room)room.InternalElement;
             string name = internalRoom.Name;
             //we close all of the families because we need to swap documents
-            foreach (Document d in uiapp.Application.Documents)
+            foreach (Autodesk.Revit.DB.Document d in uiapp.Application.Documents)
             {
                 if (d.IsFamilyDocument)
                 {
@@ -238,7 +238,7 @@ namespace Rhythm.Revit.Elements
                 }
             }
             //create the new family document in the background and store it in memory
-            Document familyDocument = uiapp.Application.NewFamilyDocument(familyTemplatePath);
+            Autodesk.Revit.DB.Document familyDocument = uiapp.Application.NewFamilyDocument(familyTemplatePath);
             //instantiate a material element id and try to get the material that was specified
             ElementId material = null;
             FilteredElementCollector materialCollector = new FilteredElementCollector(familyDocument).OfClass(typeof(Autodesk.Revit.DB.Material));

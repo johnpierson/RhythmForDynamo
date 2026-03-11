@@ -86,7 +86,7 @@ namespace Rhythm.Revit.Tools
                         var newFileName = $"{fileName}{suffix}";
                         string newFilePath = document.PathName.Replace(fileName, newFileName);
                         document.SaveAs(newFilePath);
-                        foreach (Document openDoc in app.Documents)
+                        foreach (Autodesk.Revit.DB.Document openDoc in app.Documents)
                         {
                             if (openDoc.Title.Equals(newFileName))
                             {
