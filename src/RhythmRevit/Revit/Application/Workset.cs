@@ -173,7 +173,7 @@ namespace Rhythm.Revit.Application
 #if R22_OR_GREATER
             TransactionManager.Instance.EnsureInTransaction(doc);
             var settings = new DeleteWorksetSettings();
-            WorksetTable.DeleteWorkset(doc, workset.Id, ref settings);
+            WorksetTable.DeleteWorkset(doc, workset.Id, settings);
             TransactionManager.Instance.TransactionTaskDone();
             return true;
 #else
