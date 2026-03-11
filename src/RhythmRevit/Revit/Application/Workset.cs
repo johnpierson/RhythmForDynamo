@@ -170,12 +170,15 @@ namespace Rhythm.Revit.Application
                 throw new InvalidOperationException(
                     "The current document is not workshared. Workset operations require a workshared model.");
 
+#if R22_OR_GREATER
             TransactionManager.Instance.EnsureInTransaction(doc);
             var settings = new DeleteWorksetSettings();
             WorksetTable.DeleteWorkset(doc, workset.Id, ref settings);
             TransactionManager.Instance.TransactionTaskDone();
-
             return true;
+#else
+            throw new NotSupportedException("Workset.Delete is only supported in Revit 2022 or later.");
+#endif
         }
 
         /// <summary>
