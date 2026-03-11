@@ -5,7 +5,7 @@ using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
-namespace Rhythm.Revit.Document
+namespace Rhythm.Revit.Application
 {
     /// <summary>
     /// Wrapper class for workset nodes.
