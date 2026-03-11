@@ -1,10 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using Rhythm.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Rhythm.Revit.Application
 {
@@ -103,10 +104,11 @@ namespace Rhythm.Revit.Application
         /// workset, getall, list, workshared, rhythm
         /// </search>
         [NodeCategory("Query")]
-        public static List<Autodesk.Revit.DB.Workset> GetAll(Autodesk.Revit.DB.Document document = null)
+        public static List<Autodesk.Revit.DB.Workset> GetAll(global::Revit.Application.Document document = null)
         {
-            Autodesk.Revit.DB.Document doc = document ?? DocumentManager.Instance.CurrentDBDocument;
+            Autodesk.Revit.DB.Document doc = document.ToRevitType();
 
+            
             if (!doc.IsWorkshared)
                 throw new InvalidOperationException(
                     "The current document is not workshared. Workset operations require a workshared model.");
