@@ -292,7 +292,7 @@
             workset, rename, workshared, rhythm
             </search>
         </member>
-        <member name="M:Rhythm.Revit.Application.Workset.GetAll(Autodesk.Revit.DB.Document)">
+        <member name="M:Rhythm.Revit.Application.Workset.GetAll(Revit.Application.Document)">
             <summary>
             Returns all user worksets in the active document.
             </summary>
