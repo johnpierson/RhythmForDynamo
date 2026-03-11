@@ -266,12 +266,12 @@
             <param name="failuresAccessor"></param>
             <returns></returns>
         </member>
-        <member name="T:Rhythm.Revit.Document.Workset">
+        <member name="T:Rhythm.Revit.Application.Workset">
             <summary>
             Wrapper class for workset nodes.
             </summary>
         </member>
-        <member name="M:Rhythm.Revit.Document.Workset.Create(System.String)">
+        <member name="M:Rhythm.Revit.Application.Workset.Create(System.String)">
             <summary>
             Creates a new user workset in the active document.
             </summary>
@@ -281,7 +281,7 @@
             workset, create, workshared, rhythm
             </search>
         </member>
-        <member name="M:Rhythm.Revit.Document.Workset.Rename(Autodesk.Revit.DB.Workset,System.String)">
+        <member name="M:Rhythm.Revit.Application.Workset.Rename(Autodesk.Revit.DB.Workset,System.String)">
             <summary>
             Renames an existing user workset in the active document.
             </summary>
