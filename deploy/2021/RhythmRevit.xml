@@ -266,6 +266,32 @@
             <param name="failuresAccessor"></param>
             <returns></returns>
         </member>
+        <member name="T:Rhythm.Revit.Document.Workset">
+            <summary>
+            Wrapper class for workset nodes.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Document.Workset.Create(System.String)">
+            <summary>
+            Creates a new user workset in the active document.
+            </summary>
+            <param name="name">The name of the workset to create.</param>
+            <returns name="workset">The newly created workset.</returns>
+            <search>
+            workset, create, workshared, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Document.Workset.Rename(Autodesk.Revit.DB.Workset,System.String)">
+            <summary>
+            Renames an existing user workset in the active document.
+            </summary>
+            <param name="workset">The workset to rename.</param>
+            <param name="newName">The new name for the workset.</param>
+            <returns name="workset">The renamed workset.</returns>
+            <search>
+            workset, rename, workshared, rhythm
+            </search>
+        </member>
         <member name="T:Rhythm.Revit.ElementFilter.ElementFilter">
             <summary>
             Wrapper class for ElementFilter.
