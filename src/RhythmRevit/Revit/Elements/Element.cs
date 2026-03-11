@@ -634,7 +634,7 @@ namespace Rhythm.Revit.Elements
         private static IEnumerable<Autodesk.Revit.DB.View> FindAllViewsWhereElementIsVisible(
             Autodesk.Revit.DB.Element element)
         {
-            Document doc = element.Document;
+            Autodesk.Revit.DB.Document doc = element.Document;
             IEnumerable<View> relevantViewList = FindAllViewsThatCanDisplayElements(doc);
 
             ElementId idToCheck = element.Id;

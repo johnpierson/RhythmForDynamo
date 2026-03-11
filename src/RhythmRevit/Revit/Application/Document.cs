@@ -59,7 +59,7 @@ namespace Rhythm.Revit.Application
         public static List<global::Revit.Elements.Element> CopyElementsFromLinkedDocument(object sourceDocument,
             global::Revit.Elements.Element sourceInstance, List<global::Revit.Elements.Element> elements)
         {
-            Document sourceDbDoc;
+            Autodesk.Revit.DB.Document sourceDbDoc;
 
             if (sourceDocument is global::Revit.Application.Document dynamoDoc)
             {
@@ -67,7 +67,7 @@ namespace Rhythm.Revit.Application
             }
             else
             {
-                sourceDbDoc = sourceDocument as Document;
+                sourceDbDoc = sourceDocument as Autodesk.Revit.DB.Document;
             }
 
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -111,7 +111,7 @@ namespace Rhythm.Revit.Application
         [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> CopyElementsFromDocument(object sourceDocument, List<global::Revit.Elements.Element> elements)
         {
-            Document sourceDbDoc;
+            Autodesk.Revit.DB.Document sourceDbDoc;
 
             if (sourceDocument is global::Revit.Application.Document dynamoDoc)
             {
@@ -119,7 +119,7 @@ namespace Rhythm.Revit.Application
             }
             else
             {
-                sourceDbDoc = sourceDocument as Document;
+                sourceDbDoc = sourceDocument as Autodesk.Revit.DB.Document;
             }
 
 
@@ -177,7 +177,7 @@ namespace Rhythm.Revit.Application
         [NodeCategory("Actions")]
         public static string SetStartingView(object sourceDocument, global::Revit.Elements.Element view)
         {
-            Document dbDoc;
+            Autodesk.Revit.DB.Document dbDoc;
 
             if (sourceDocument is global::Revit.Application.Document dynamoDoc)
             {
@@ -185,7 +185,7 @@ namespace Rhythm.Revit.Application
             }
             else
             {
-                dbDoc = sourceDocument as Document;
+                dbDoc = sourceDocument as Autodesk.Revit.DB.Document;
             }
 
             try
@@ -212,7 +212,7 @@ namespace Rhythm.Revit.Application
         [NodeCategory("Actions")]
         public static List<global::Revit.Elements.Element> CopyDraftingViewsFromDocument(object sourceDocument, List<global::Revit.Elements.Element> draftingViews)
         {
-            Document sourceDbDoc = null;
+            Autodesk.Revit.DB.Document sourceDbDoc = null;
 
             if (sourceDocument is global::Revit.Application.Document dynamoDoc)
             {
@@ -220,7 +220,7 @@ namespace Rhythm.Revit.Application
             }
             else
             {
-                sourceDbDoc = sourceDocument as Document;
+                sourceDbDoc = sourceDocument as Autodesk.Revit.DB.Document;
             }
 
             Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
@@ -251,7 +251,7 @@ namespace Rhythm.Revit.Application
         [NodeCategory("Action")]
         public static string SaveAs(object document, string filePath, int previewViewId = -1)
         {
-            Document dbDoc;
+            Autodesk.Revit.DB.Document dbDoc;
 
             if (document is global::Revit.Application.Document dynamoDoc)
             {
@@ -259,7 +259,7 @@ namespace Rhythm.Revit.Application
             }
             else
             {
-                dbDoc = document as Document;
+                dbDoc = document as Autodesk.Revit.DB.Document;
             }
 
 

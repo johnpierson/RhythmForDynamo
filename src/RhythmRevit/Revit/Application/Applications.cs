@@ -138,7 +138,7 @@ namespace Rhythm.Revit.Application
         //[Obsolete("This node will be completely removed in future versions of Rhythm")]
         public static string CloseDocument(object document, bool save)
         {
-            Document dbDoc;
+            Autodesk.Revit.DB.Document dbDoc;
 
             if (document is global::Revit.Application.Document dynamoDoc)
             {
@@ -146,7 +146,7 @@ namespace Rhythm.Revit.Application
             }
             else
             {
-                dbDoc = document as Document;
+                dbDoc = document as Autodesk.Revit.DB.Document;
             }
 
             try
@@ -263,7 +263,7 @@ namespace Rhythm.Revit.Application
             var uiApp = DocumentManager.Instance.CurrentUIApplication;
             var app = uiApp.Application;
 
-            foreach (Document d in app.Documents)
+            foreach (Autodesk.Revit.DB.Document d in app.Documents)
             {
                 if (d.Title == doc.Title) continue;
                 try

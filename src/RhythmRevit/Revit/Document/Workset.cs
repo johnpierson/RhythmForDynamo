@@ -35,8 +35,6 @@ namespace Rhythm.Revit.Document
                 throw new InvalidOperationException(
                     "The current document is not workshared. Worksets can only be created or modified in workshared models.");
 
-            WorksetTable worksetTable = doc.GetWorksetTable();
-
             // Check for duplicate workset name
             var existingWorksets = new FilteredWorksetCollector(doc)
                 .OfKind(WorksetKind.UserWorkset)
@@ -47,10 +45,10 @@ namespace Rhythm.Revit.Document
                     $"A workset with the name \"{name}\" already exists in the document.");
 
             TransactionManager.Instance.EnsureInTransaction(doc);
-            WorksetId worksetId = Autodesk.Revit.DB.Workset.Create(doc, name);
+            Autodesk.Revit.DB.Workset createdWorkset = Autodesk.Revit.DB.Workset.Create(doc, name);
             TransactionManager.Instance.TransactionTaskDone();
 
-            return worksetTable.GetWorkset(worksetId);
+            return createdWorkset;
         }
 
         /// <summary>
