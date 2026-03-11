@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
 using Dynamo.Graph.Nodes;
@@ -91,6 +92,166 @@ namespace Rhythm.Revit.Application
             TransactionManager.Instance.TransactionTaskDone();
 
             return worksetTable.GetWorkset(workset.Id);
+        }
+
+        /// <summary>
+        /// Returns all user worksets in the active document.
+        /// </summary>
+        /// <param name="document">The document to retrieve worksets from. Defaults to the current document.</param>
+        /// <returns name="worksets">All user worksets in the document.</returns>
+        /// <search>
+        /// workset, getall, list, workshared, rhythm
+        /// </search>
+        [NodeCategory("Query")]
+        public static List<Autodesk.Revit.DB.Workset> GetAll(Autodesk.Revit.DB.Document document = null)
+        {
+            Autodesk.Revit.DB.Document doc = document ?? DocumentManager.Instance.CurrentDBDocument;
+
+            if (!doc.IsWorkshared)
+                throw new InvalidOperationException(
+                    "The current document is not workshared. Workset operations require a workshared model.");
+
+            return new FilteredWorksetCollector(doc)
+                .OfKind(WorksetKind.UserWorkset)
+                .ToList();
+        }
+
+        /// <summary>
+        /// Retrieves a workset by name.
+        /// </summary>
+        /// <param name="name">The name of the workset to retrieve.</param>
+        /// <returns name="workset">The workset matching the given name.</returns>
+        /// <search>
+        /// workset, byname, find, workshared, rhythm
+        /// </search>
+        [NodeCategory("Query")]
+        public static Autodesk.Revit.DB.Workset ByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Workset name cannot be null or empty.", nameof(name));
+
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            if (!doc.IsWorkshared)
+                throw new InvalidOperationException(
+                    "The current document is not workshared. Workset operations require a workshared model.");
+
+            var workset = new FilteredWorksetCollector(doc)
+                .OfKind(WorksetKind.UserWorkset)
+                .FirstOrDefault(w => string.Equals(w.Name, name, StringComparison.OrdinalIgnoreCase));
+
+            if (workset == null)
+                throw new InvalidOperationException(
+                    $"No workset with the name \"{name}\" was found in the document.");
+
+            return workset;
+        }
+
+        /// <summary>
+        /// Deletes a user workset from the active document.
+        /// </summary>
+        /// <param name="workset">The workset to delete.</param>
+        /// <returns name="success">Whether the deletion succeeded.</returns>
+        /// <search>
+        /// workset, delete, remove, workshared, rhythm
+        /// </search>
+        [NodeCategory("Actions")]
+        public static bool Delete(Autodesk.Revit.DB.Workset workset)
+        {
+            if (workset == null)
+                throw new ArgumentNullException(nameof(workset), "Workset cannot be null.");
+
+            if (workset.Kind != WorksetKind.UserWorkset)
+                throw new InvalidOperationException("Only user worksets can be deleted.");
+
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            if (!doc.IsWorkshared)
+                throw new InvalidOperationException(
+                    "The current document is not workshared. Workset operations require a workshared model.");
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            var settings = new DeleteWorksetSettings();
+            WorksetTable.DeleteWorkset(doc, workset.Id, ref settings);
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return true;
+        }
+
+        /// <summary>
+        /// Returns whether a workset is visible in a specific view.
+        /// </summary>
+        /// <param name="workset">The workset to query.</param>
+        /// <param name="view">The view to check visibility in.</param>
+        /// <returns name="visible">Whether the workset is visible in the view.</returns>
+        /// <search>
+        /// workset, visible, visibility, view, rhythm
+        /// </search>
+        [NodeCategory("Query")]
+        public static bool VisibleInView(Autodesk.Revit.DB.Workset workset, global::Revit.Elements.Element view)
+        {
+            if (workset == null)
+                throw new ArgumentNullException(nameof(workset), "Workset cannot be null.");
+
+            if (view == null)
+                throw new ArgumentNullException(nameof(view), "View cannot be null.");
+
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            if (!doc.IsWorkshared)
+                throw new InvalidOperationException(
+                    "The current document is not workshared. Workset operations require a workshared model.");
+
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+            if (internalView == null)
+                throw new ArgumentException("The provided element is not a valid Revit view.", nameof(view));
+            WorksetVisibility visibility = internalView.GetWorksetVisibility(workset.Id);
+
+            if (visibility == WorksetVisibility.Visible)
+                return true;
+
+            if (visibility == WorksetVisibility.Hidden)
+                return false;
+
+            // WorksetVisibility.UseGlobalSetting - fall back to the workset's default visibility
+            return workset.IsVisibleByDefault;
+        }
+
+        /// <summary>
+        /// Sets workset visibility in a view.
+        /// </summary>
+        /// <param name="workset">The workset to modify visibility for.</param>
+        /// <param name="view">The view in which to set visibility.</param>
+        /// <param name="visible">True to show the workset, false to hide it.</param>
+        /// <returns name="view">The updated view.</returns>
+        /// <search>
+        /// workset, setvisible, visibility, view, rhythm
+        /// </search>
+        [NodeCategory("Actions")]
+        public static global::Revit.Elements.Element SetVisibleInView(Autodesk.Revit.DB.Workset workset, global::Revit.Elements.Element view, bool visible)
+        {
+            if (workset == null)
+                throw new ArgumentNullException(nameof(workset), "Workset cannot be null.");
+
+            if (view == null)
+                throw new ArgumentNullException(nameof(view), "View cannot be null.");
+
+            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+            if (!doc.IsWorkshared)
+                throw new InvalidOperationException(
+                    "The current document is not workshared. Workset operations require a workshared model.");
+
+            Autodesk.Revit.DB.View internalView = view.InternalElement as Autodesk.Revit.DB.View;
+            if (internalView == null)
+                throw new ArgumentException("The provided element is not a valid Revit view.", nameof(view));
+            WorksetVisibility visibilityValue = visible ? WorksetVisibility.Visible : WorksetVisibility.Hidden;
+
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            internalView.SetWorksetVisibility(workset.Id, visibilityValue);
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return view;
         }
     }
 }
