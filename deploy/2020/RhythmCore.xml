@@ -15,6 +15,40 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Rhythm.GenerativeDesign.CirclePacking">
+            <summary>
+            Wrapper class for circle packing operations using a particle-spring simulation system.
+            </summary>
+        </member>
+        <member name="M:Rhythm.GenerativeDesign.CirclePacking.ByBoundary(Autodesk.DesignScript.Geometry.Polygon,System.Int32,System.Double,System.Double,System.Int32,System.Int32)">
+            <summary>
+            Packs circles within a boundary polygon using a particle-spring simulation system.
+            Circles repel each other to prevent overlapping while remaining constrained within the boundary.
+            </summary>
+            <param name="boundary">The boundary polygon to pack circles within</param>
+            <param name="count">Number of circles to pack (default: 10)</param>
+            <param name="minRadius">Minimum circle radius (default: 1.0)</param>
+            <param name="maxRadius">Maximum circle radius (default: 5.0)</param>
+            <param name="iterations">Number of simulation iterations — more iterations produce better packing (default: 100)</param>
+            <param name="seed">Random seed for reproducible results, use -1 for a random seed (default: -1)</param>
+            <returns name="circles">The packed circles</returns>
+            <returns name="centers">The center points of the packed circles</returns>
+            <returns name="radii">The radii of the packed circles</returns>
+            <search>circle packing, particle spring, generative design, circles, packing</search>
+        </member>
+        <member name="M:Rhythm.GenerativeDesign.CirclePacking.ByCentersAndRadii(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Point},System.Collections.Generic.List{System.Double},System.Int32)">
+            <summary>
+            Packs circles from given starting positions using a particle-spring simulation system.
+            Circles repel each other to eliminate overlaps while maintaining their original radii.
+            </summary>
+            <param name="centers">Initial center points of the circles</param>
+            <param name="radii">Radii of the circles. If fewer radii than centers are provided, the last radius is reused.</param>
+            <param name="iterations">Number of simulation iterations — more iterations produce better separation (default: 100)</param>
+            <returns name="circles">The packed circles</returns>
+            <returns name="centers">The center points of the packed circles</returns>
+            <returns name="radii">The radii of the packed circles</returns>
+            <search>circle packing, particle spring, generative design, circles, packing</search>
+        </member>
         <member name="T:Rhythm.GenerativeDesign.GenerativeDesign">
             <summary>
             Wrapper class for generative design
