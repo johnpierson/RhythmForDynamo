@@ -1,6 +1,9 @@
 ---
 name: Feature request
 about: Suggest future improvements for Rhythm
+labels:
+  - host-integration
+  - documentation
 type: feature
 ---
 
