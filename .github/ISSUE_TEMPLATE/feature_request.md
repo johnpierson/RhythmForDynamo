@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest future improvements for Rhythm
-
+type: feature
 ---
 
 **What is the problem that needs solving?**
