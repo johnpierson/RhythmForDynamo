@@ -7,8 +7,8 @@
         <UseWPF>true</UseWPF>
         <PlatformTarget>x64</PlatformTarget>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <Configurations>Debug R24;Debug R20;Debug R21;Debug R22;Debug R23;Debug R25;Debug R26;</Configurations>
-        <Configurations>$(Configurations)Release R24;Release R20;Release R21;Release R22;Release R23;Release R25;Release R26;</Configurations>
+        <Configurations>Debug R24;Debug R20;Debug R21;Debug R22;Debug R23;Debug R25;Debug R26;Debug R27;</Configurations>
+        <Configurations>$(Configurations)Release R24;Release R20;Release R21;Release R22;Release R23;Release R25;Release R26;Release R27;</Configurations>
         <NoWarn>MSB3277;CS1591</NoWarn>
   </PropertyGroup>
  <PropertyGroup Condition="$(Configuration.Contains('Debug R20'))">
@@ -110,14 +110,30 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R26;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER</DefineConstants>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R26'))">
         <DynamoVersion>3.0</DynamoVersion>
         <DynamoOutput>3.0</DynamoOutput>
         <RevitVersion>2026</RevitVersion>
         <DefineConstants>$(DefineConstants);R26;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER</DefineConstants>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
+    </PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('Debug R27'))">
+        <DynamoVersion>4.0</DynamoVersion>
+        <DynamoOutput>4.0</DynamoOutput>
+        <RevitVersion>2027</RevitVersion>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);R27;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER;R27_OR_GREATER</DefineConstants>
+		<TargetFramework>net8.0-windows</TargetFramework>
+    </PropertyGroup>
+    <PropertyGroup Condition="$(Configuration.Contains('Release R27'))">
+        <DynamoVersion>4.0</DynamoVersion>
+        <DynamoOutput>4.0</DynamoOutput>
+        <RevitVersion>2027</RevitVersion>
+        <DefineConstants>$(DefineConstants);R27;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER;R27_OR_GREATER</DefineConstants>
+		<TargetFramework>net8.0-windows</TargetFramework>
     </PropertyGroup>
    <PropertyGroup>
         <DynVersion>$(DynamoVersion)</DynVersion>
@@ -177,7 +193,13 @@
 	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R26|AnyCPU'">
 	   <Optimize>True</Optimize>
 	 </PropertyGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R26|AnyCPU'">
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug R27|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+	 <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release R27|AnyCPU'">
+	   <Optimize>True</Optimize>
+	 </PropertyGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R27|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R27|AnyCPU'">
    <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />
    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="$(DynVersion).*" />
@@ -197,7 +219,7 @@
    <PackageReference Include="Markov" Version="2.0.0" />
    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R26|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R26|AnyCPU'">
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R26|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R26|AnyCPU' Or '$(Configuration)|$(Platform)'=='Release R27|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R27|AnyCPU'">
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.0.0-beta6885" />
 		<PackageReference Include="DynamoVisualProgramming.Core" Version="3.0.0-beta6885" />
 		<PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="3.0.0-beta6885" />

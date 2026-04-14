@@ -30,6 +30,10 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Authenticate GitHub Packages NuGet source
+        run: |
+          dotnet nuget update source johnpierson-github --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
+
       - name: Setup MSBuild for .NET Framework
         uses: microsoft/setup-msbuild@v1.3
 
@@ -56,6 +60,14 @@ jobs:
       - name: Build RhythmCore - Release R25
         run: |
           msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build
+
+      - name: Build RhythmCore - Release R26
+        run: |
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build
+
+      - name: Build RhythmCore - Release R27
+        run: |
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build
 
       - name: Build RhythmRevit - Release R20
         run: |
@@ -85,12 +97,16 @@ jobs:
         run: |
           msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build
 
+      - name: Build RhythmRevit - Release R27
+        run: |
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build
+
       - name: Verify deploy folder structure
         run: |
           Write-Host "Verifying deploy folder structure..."
           $deployPath = "deploy"
-          $rhythmCoreVersions = @("2020", "2021", "2022", "2023", "2024", "2025")
-          $rhythmRevitVersions = @("2020", "2021", "2022", "2023", "2024", "2025", "2026")
+          $rhythmCoreVersions = @("2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027")
+          $rhythmRevitVersions = @("2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027")
           
           $allValid = $true
           
