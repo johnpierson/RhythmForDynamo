@@ -184,12 +184,18 @@ namespace Rhythm.Revit.Selection
 
                 var transformed = c2.CreateTransformed(Transform.CreateTranslation(vec));
 
-                #if R26_OR_GREATER
-                SetComparisonResult test = c.Intersect(transformed, CurveIntersectResultOption.Simple);
-                #else
+#if R27_OR_GREATER
+                CurveIntersectResult test = c.Intersect(transformed, CurveIntersectResultOption.Simple);
+                 if (test.Result == SetComparisonResult.Overlap ||
+                    test.Result == SetComparisonResult.Subset ||
+                    test.Result == SetComparisonResult.Superset ||
+                    test.Result == SetComparisonResult.Equal)
+                {
+                    intersectingGrids.Add(g.ToDSType(false) as global::Revit.Elements.Grid);
+                }
+#else
                 SetComparisonResult test = c.Intersect(transformed);
-                #endif
-                    
+
                 if (test == SetComparisonResult.Overlap ||
                     test == SetComparisonResult.Subset ||
                     test == SetComparisonResult.Superset ||
@@ -197,7 +203,7 @@ namespace Rhythm.Revit.Selection
                 {
                     intersectingGrids.Add(g.ToDSType(false) as global::Revit.Elements.Grid);
                 }
-
+#endif
             }
 
             return intersectingGrids.OrderBy(g => g.Curve.DistanceTo(modelCurve.Curve.StartPoint)).ToList();

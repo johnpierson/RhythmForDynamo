@@ -266,6 +266,85 @@
             <param name="failuresAccessor"></param>
             <returns></returns>
         </member>
+        <member name="T:Rhythm.Revit.Application.Workset">
+            <summary>
+            Wrapper class for workset nodes.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Workset.Create(System.String)">
+            <summary>
+            Creates a new user workset in the active document.
+            </summary>
+            <param name="name">The name of the workset to create.</param>
+            <returns name="workset">The newly created workset.</returns>
+            <search>
+            workset, create, workshared, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Workset.Rename(Autodesk.Revit.DB.Workset,System.String)">
+            <summary>
+            Renames an existing user workset in the active document.
+            </summary>
+            <param name="workset">The workset to rename.</param>
+            <param name="newName">The new name for the workset.</param>
+            <returns name="workset">The renamed workset.</returns>
+            <search>
+            workset, rename, workshared, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Workset.GetAll(Revit.Application.Document)">
+            <summary>
+            Returns all user worksets in the active document.
+            </summary>
+            <param name="document">The document to retrieve worksets from. Defaults to the current document.</param>
+            <returns name="worksets">All user worksets in the document.</returns>
+            <search>
+            workset, getall, list, workshared, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Workset.ByName(System.String)">
+            <summary>
+            Retrieves a workset by name.
+            </summary>
+            <param name="name">The name of the workset to retrieve.</param>
+            <returns name="workset">The workset matching the given name.</returns>
+            <search>
+            workset, byname, find, workshared, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Workset.Delete(Autodesk.Revit.DB.Workset)">
+            <summary>
+            Deletes a user workset from the active document.
+            </summary>
+            <param name="workset">The workset to delete.</param>
+            <returns name="success">Whether the deletion succeeded.</returns>
+            <search>
+            workset, delete, remove, workshared, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Workset.VisibleInView(Autodesk.Revit.DB.Workset,Revit.Elements.Element)">
+            <summary>
+            Returns whether a workset is visible in a specific view.
+            </summary>
+            <param name="workset">The workset to query.</param>
+            <param name="view">The view to check visibility in.</param>
+            <returns name="visible">Whether the workset is visible in the view.</returns>
+            <search>
+            workset, visible, visibility, view, rhythm
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Application.Workset.SetVisibleInView(Autodesk.Revit.DB.Workset,Revit.Elements.Element,System.Boolean)">
+            <summary>
+            Sets workset visibility in a view.
+            </summary>
+            <param name="workset">The workset to modify visibility for.</param>
+            <param name="view">The view in which to set visibility.</param>
+            <param name="visible">True to show the workset, false to hide it.</param>
+            <returns name="view">The updated view.</returns>
+            <search>
+            workset, setvisible, visibility, view, rhythm
+            </search>
+        </member>
         <member name="T:Rhythm.Revit.ElementFilter.ElementFilter">
             <summary>
             Wrapper class for ElementFilter.
@@ -992,6 +1071,18 @@
             <returns name="element">The element that had parameters set.</returns>
             <search>
              CaseInsensitive
+            </search>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.IntersectingElementsOfCategoryBuffered(Revit.Elements.Element,Revit.Elements.Category,Autodesk.DesignScript.Geometry.Vector)">
+            <summary>
+            This will take a given element and category and grab the intersecting elements of that category.
+            </summary>
+            <param name="element">The element to run intersections against.</param>
+            <param name="category">The category to check.</param>
+            <param name="buffer">Optional scale buffer in X, Y, Z directions. Defaults to 0.</param>
+            <returns name="elements">The intersecting elements.</returns>
+            <search>
+             IntersectingElements
             </search>
         </member>
         <member name="M:Rhythm.Revit.Elements.Elements.GetIntersectingElementsOfCategoryLinkOption(Revit.Elements.Element,Revit.Elements.Category,Revit.Elements.Element)">
@@ -2466,6 +2557,15 @@
             <param name="view">The view or view template</param>
             <param name="viewFilters">The view filters in order</param>
             <returns name="viewFiltersInNewOrder"></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Views.View.CopyOrderedFiltersFromView(Revit.Elements.Views.View,Revit.Elements.Views.View)">
+            <summary>
+            Revit 2021 - Copies view filters from the source view to the receiving view while preserving filter order.
+            If the receiving view has a view template assigned, an exception will be thrown.
+            If the source view has a view template assigned, the filters will be copied from that view template instead.
+            </summary>
+            <param name="receivingView">The target view to receive the filters.</param>
+            <param name="sourceView">The source view to copy filters from.</param>
         </member>
         <member name="T:Rhythm.Revit.Views.ViewPlan">
             <summary>
