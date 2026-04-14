@@ -184,8 +184,12 @@ namespace Rhythm.Revit.Selection
 
                 var transformed = c2.CreateTransformed(Transform.CreateTranslation(vec));
 
+                #if R26_OR_GREATER
+                SetComparisonResult test = c.Intersect(transformed, CurveIntersectResultOption.Simple);
+                #else
                 SetComparisonResult test = c.Intersect(transformed);
-
+                #endif
+                    
                 if (test == SetComparisonResult.Overlap ||
                     test == SetComparisonResult.Subset ||
                     test == SetComparisonResult.Superset ||
