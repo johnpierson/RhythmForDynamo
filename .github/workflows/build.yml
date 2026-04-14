@@ -56,6 +56,14 @@ jobs:
         run: |
           msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build
 
+      - name: Build RhythmCore - Release R26
+        run: |
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build
+
+      - name: Build RhythmCore - Release R27
+        run: |
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build
+
       - name: Build RhythmRevit - Release R20
         run: |
           msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R20" /p:Platform="Any CPU" /t:Restore,Build
@@ -84,12 +92,16 @@ jobs:
         run: |
           msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build
 
+      - name: Build RhythmRevit - Release R27
+        run: |
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build
+
       - name: Verify deploy folder structure
         run: |
           Write-Host "Verifying deploy folder structure..."
           $deployPath = "deploy"
-          $rhythmCoreVersions = @("2020", "2021", "2022", "2023", "2024", "2025")
-          $rhythmRevitVersions = @("2020", "2021", "2022", "2023", "2024", "2025", "2026")
+          $rhythmCoreVersions = @("2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027")
+          $rhythmRevitVersions = @("2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027")
           
           $allValid = $true
           
