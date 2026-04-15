@@ -37,69 +37,87 @@ jobs:
       - name: Setup MSBuild for .NET Framework
         uses: microsoft/setup-msbuild@v1.3
 
+      - name: Extract version information from project files
+        id: version_info
+        run: |
+          # Extract version suffix from RhythmRevit.csproj (e.g. "4.1" from "$(RevitVersion).4.1")
+          $revitCsproj = [xml](Get-Content "src/RhythmRevit/RhythmRevit.csproj")
+          $revitVersionTemplate = ($revitCsproj.Project.PropertyGroup | Where-Object { $_.Version } | Select-Object -Last 1).Version
+          $revitVersionSuffix = ($revitVersionTemplate -replace '\$\(RevitVersion\)\.', '')
+          Write-Host "RhythmRevit version suffix: $revitVersionSuffix"
+
+          # Extract assembly version suffix from RhythmCore.csproj (e.g. "1.1" from "$(RevitVersion).1.1")
+          $coreCsproj = [xml](Get-Content "src/RhythmCore/RhythmCore.csproj")
+          $coreAssemblyVersionTemplate = ($coreCsproj.Project.PropertyGroup | Where-Object { $_.AssemblyVersion } | Select-Object -Last 1).AssemblyVersion
+          $coreVersionSuffix = ($coreAssemblyVersionTemplate -replace '\$\(RevitVersion\)\.', '')
+          Write-Host "RhythmCore assembly version suffix: $coreVersionSuffix"
+
+          echo "REVIT_VERSION_SUFFIX=$revitVersionSuffix" >> $env:GITHUB_ENV
+          echo "CORE_VERSION_SUFFIX=$coreVersionSuffix" >> $env:GITHUB_ENV
+
       - name: Build RhythmCore - Release R20
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R20" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R20" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2020.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2020.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2020.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2020" /p:Description="Rhythm for Dynamo|Core2020" /p:Product="Rhythm for Dynamo|Core2020"
 
       - name: Build RhythmCore - Release R21
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R21" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R21" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2021.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2021.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2021.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2021" /p:Description="Rhythm for Dynamo|Core2021" /p:Product="Rhythm for Dynamo|Core2021"
 
       - name: Build RhythmCore - Release R22
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R22" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R22" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2022.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2022.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2022.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2022" /p:Description="Rhythm for Dynamo|Core2022" /p:Product="Rhythm for Dynamo|Core2022"
 
       - name: Build RhythmCore - Release R23
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R23" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R23" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2023.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2023.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2023.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2023" /p:Description="Rhythm for Dynamo|Core2023" /p:Product="Rhythm for Dynamo|Core2023"
 
       - name: Build RhythmCore - Release R24
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2024.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2024.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2024.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2024" /p:Description="Rhythm for Dynamo|Core2024" /p:Product="Rhythm for Dynamo|Core2024"
 
       - name: Build RhythmCore - Release R25
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2025.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2025.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2025.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2025" /p:Description="Rhythm for Dynamo|Core2025" /p:Product="Rhythm for Dynamo|Core2025"
 
       - name: Build RhythmCore - Release R26
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2026.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2026.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2026.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2026" /p:Description="Rhythm for Dynamo|Core2026" /p:Product="Rhythm for Dynamo|Core2026"
 
       - name: Build RhythmCore - Release R27
         run: |
-          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmCore/RhythmCore.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2027.$env:CORE_VERSION_SUFFIX" /p:AssemblyVersion="2027.$env:CORE_VERSION_SUFFIX" /p:FileVersion="2027.$env:CORE_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Core2027" /p:Description="Rhythm for Dynamo|Core2027" /p:Product="Rhythm for Dynamo|Core2027"
 
       - name: Build RhythmRevit - Release R20
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R20" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R20" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2020.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2020.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2020.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2020" /p:Description="Rhythm for Dynamo|Revit2020" /p:Product="Rhythm for Dynamo|Revit2020"
 
       - name: Build RhythmRevit - Release R21
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R21" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R21" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2021.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2021.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2021.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2021" /p:Description="Rhythm for Dynamo|Revit2021" /p:Product="Rhythm for Dynamo|Revit2021"
 
       - name: Build RhythmRevit - Release R22
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R22" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R22" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2022.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2022.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2022.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2022" /p:Description="Rhythm for Dynamo|Revit2022" /p:Product="Rhythm for Dynamo|Revit2022"
 
       - name: Build RhythmRevit - Release R23
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R23" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R23" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2023.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2023.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2023.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2023" /p:Description="Rhythm for Dynamo|Revit2023" /p:Product="Rhythm for Dynamo|Revit2023"
 
       - name: Build RhythmRevit - Release R24
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2024.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2024.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2024.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2024" /p:Description="Rhythm for Dynamo|Revit2024" /p:Product="Rhythm for Dynamo|Revit2024"
 
       - name: Build RhythmRevit - Release R25
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R25" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2025.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2025.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2025.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2025" /p:Description="Rhythm for Dynamo|Revit2025" /p:Product="Rhythm for Dynamo|Revit2025"
 
       - name: Build RhythmRevit - Release R26
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R26" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2026.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2026.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2026.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2026" /p:Description="Rhythm for Dynamo|Revit2026" /p:Product="Rhythm for Dynamo|Revit2026"
 
       - name: Build RhythmRevit - Release R27
         run: |
-          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build
+          msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2027.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2027.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2027.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2027" /p:Description="Rhythm for Dynamo|Revit2027" /p:Product="Rhythm for Dynamo|Revit2027"
 
       - name: Verify deploy folder structure
         run: |
