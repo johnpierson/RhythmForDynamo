@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
@@ -27,40 +26,52 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2025.7.1")]
-[assembly: AssemblyFileVersion("2025.7.1")]
-
 #if R20
-[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2020")]
-[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2020")]
-#endif
-
-#if R21
-[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2021")]
-[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2021")]
-#endif
-
-#if R22
-[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2022")]
-[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2022")]
-#endif
-
-#if R23
-[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2023")]
-[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2023")]
-#endif
-
-#if R24
-[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2024")]
-[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2024")]
-#endif
-
-#if R25
-[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2025")]
-[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2025")]
-#endif
-
-#if R26
-[assembly: AssemblyTitle("Rhythm for Dynamo| Revit 2026")]
-[assembly: AssemblyProduct("Rhythm for Dynamo| Revit 2026")]
+[assembly: AssemblyVersion("2020.4.1")]
+[assembly: AssemblyFileVersion("2020.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2020")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2020")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2020")]
+#elif R21
+[assembly: AssemblyVersion("2021.4.1")]
+[assembly: AssemblyFileVersion("2021.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2021")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2021")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2021")]
+#elif R22
+[assembly: AssemblyVersion("2022.4.1")]
+[assembly: AssemblyFileVersion("2022.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2022")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2022")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2022")]
+#elif R23
+[assembly: AssemblyVersion("2023.4.1")]
+[assembly: AssemblyFileVersion("2023.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2023")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2023")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2023")]
+#elif R24
+[assembly: AssemblyVersion("2024.4.1")]
+[assembly: AssemblyFileVersion("2024.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2024")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2024")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2024")]
+#elif R25
+[assembly: AssemblyVersion("2025.4.1")]
+[assembly: AssemblyFileVersion("2025.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2025")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2025")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2025")]
+#elif R26
+[assembly: AssemblyVersion("2026.4.1")]
+[assembly: AssemblyFileVersion("2026.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2026")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2026")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2026")]
+#elif R27
+[assembly: AssemblyVersion("2027.4.1")]
+[assembly: AssemblyFileVersion("2027.4.1")]
+[assembly: AssemblyTitle("Rhythm for Dynamo|Revit2027")]
+[assembly: AssemblyProduct("Rhythm for Dynamo|Revit2027")]
+[assembly: AssemblyDescription("Rhythm for Dynamo|Revit2027")]
 #endif
