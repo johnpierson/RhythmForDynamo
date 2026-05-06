@@ -32,7 +32,6 @@ namespace Rhythm.Geometry
         /// <param name="threshold">Threshold value for binarization, -1 for automatic (default: -1).</param>
         /// <param name="adaptiveThreshold">Use adaptive thresholding (default: true).</param>
         /// <param name="minLineLength">Minimum detectable line length in pixels (default: 25).</param>
-        /// <param name="wallThicknessRange">Optional expected wall thickness range [min, max] in pixels.</param>
         /// <param name="detectRooms">Attempt room/space contour detection (default: true).</param>
         /// <param name="detectOpenings">Attempt opening detection (default: true).</param>
         /// <param name="debugOutput">Return additional debug metadata (default: false).</param>
@@ -47,7 +46,6 @@ namespace Rhythm.Geometry
             int threshold = -1,
             bool adaptiveThreshold = true,
             double minLineLength = 25,
-            double[] wallThicknessRange = null,
             bool detectRooms = true,
             bool detectOpenings = true,
             bool debugOutput = false)
