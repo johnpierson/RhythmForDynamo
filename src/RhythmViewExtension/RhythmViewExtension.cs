@@ -249,6 +249,7 @@ namespace RhythmViewExtension
                 return false;
             }
 
+            // Revit sessions pass the assembly major version (27), while the core-only fallback path passes the release year (2027).
             return revitVersion >= 2027 || (revitVersion >= 27 && revitVersion < 100);
         }
 
