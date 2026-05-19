@@ -244,7 +244,12 @@ namespace RhythmViewExtension
 
         private static bool ShouldSkipCustomizationDll(string version)
         {
-            return int.TryParse(version, out var revitMajorVersion) && revitMajorVersion >= 27;
+            if (!int.TryParse(version, out var revitVersion))
+            {
+                return false;
+            }
+
+            return revitVersion >= 2027 || (revitVersion >= 27 && revitVersion < 100);
         }
 
         private static void DeleteIfExists(string fileLocation)
