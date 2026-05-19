@@ -2870,11 +2870,6 @@
             <param name="message">Error message describing the cause of the exception</param>
             <param name="inner">Preceding exception that has caused this exception</param>
         </member>
-        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>Initializes the exception from its serialized state</summary>
-            <param name="info">Contains the serialized fields of the exception</param>
-            <param name="context">Additional environmental informations</param>
-        </member>
         <member name="T:Nuclex.Game.Packing.RectanglePacker">
             <summary>Base class for rectangle packing algorithms</summary>
             <remarks>
