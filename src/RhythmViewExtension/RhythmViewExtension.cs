@@ -76,6 +76,7 @@ namespace RhythmViewExtension
 
         private void FirstRunSetup(ViewLoadedParams p, string version)
         {
+            RemoveCustomizationDllsIfNeeded(version);
             //first run setup. If this is the first install of Rhythm, load the correct DLLs.
             if (!File.Exists(Global.RhythmRevitDll))
             {
@@ -100,7 +101,7 @@ namespace RhythmViewExtension
                 DownloadFile(version, Global.RhythmRevitDll);
                 DownloadFile(version, Global.RhythmRevitXml);
                 DownloadFile(version, Global.RhythmRevitCustomizationXml);
-                DownloadFile(version, Global.RhythmRevitCustomizationDll);
+                DownloadCustomizationDllIfSupported(version, Global.RhythmRevitCustomizationDll);
 
                 //next the ui revit nodes
                 DownloadFile(version, Global.RhythmRevitUiDll);
@@ -154,13 +155,14 @@ namespace RhythmViewExtension
 
         internal void LoadCoreNodes(ViewLoadedParams p, string version)
         {
+            RemoveCustomizationDllsIfNeeded(version);
             //download the latest core nodes
             DownloadFile(version, Global.RhythmCoreDll);
 
             //now the appropriate XMLs
             DownloadFile(version, Global.RhythmCoreXml);
             DownloadFile(version,Global.RhythmCoreCustomizationXml);
-            DownloadFile(version, Global.RhythmCoreCustomizationDll);
+            DownloadCustomizationDllIfSupported(version, Global.RhythmCoreCustomizationDll);
 
             //download supplemental DLLs and correct pkg.json
             DownloadFile(version, Global.HumanizerDll);
@@ -216,6 +218,46 @@ namespace RhythmViewExtension
                 {
                     //
                 }
+            }
+        }
+
+        private void DownloadCustomizationDllIfSupported(string version, string fileLocation)
+        {
+            if (ShouldSkipCustomizationDll(version))
+            {
+                return;
+            }
+
+            DownloadFile(version, fileLocation);
+        }
+
+        private static void RemoveCustomizationDllsIfNeeded(string version)
+        {
+            if (!ShouldSkipCustomizationDll(version))
+            {
+                return;
+            }
+
+            DeleteIfExists(Global.RhythmCoreCustomizationDll);
+            DeleteIfExists(Global.RhythmRevitCustomizationDll);
+        }
+
+        private static bool ShouldSkipCustomizationDll(string version)
+        {
+            if (!int.TryParse(version, out var revitVersion))
+            {
+                return false;
+            }
+
+            // Revit sessions pass the assembly major version (27), while the core-only fallback path passes the release year (2027).
+            return revitVersion >= 2027 || (revitVersion >= 27 && revitVersion < 100);
+        }
+
+        private static void DeleteIfExists(string fileLocation)
+        {
+            if (File.Exists(fileLocation))
+            {
+                File.Delete(fileLocation);
             }
         }
 
