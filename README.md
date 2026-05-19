@@ -34,6 +34,8 @@ Rhythm is licensed under the BSD 3 Clause License. You can use this package howe
 ## Current Version
  Supported Revit versions are 2020 and up. And supported Dynamo versions are Dynamo 2.0.x and up. Rhythm is deployed from github, and auto-downloads the correct node libraries on the fly. 
 
+For Revit 2027, Rhythm no longer ships the legacy `*.customization.dll` icon assemblies because .NET 10 disables the legacy bitmap resource loading path they relied on. The package still downloads the main node libraries and customization XML files for 2027.
+
 ## Components
 Rhythm consists of several sub-libraries. These are describe a bit more in detail below.
 - [Rhythm Core](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmCore), General methods and helpers with no reliance on Revit.

@@ -256,7 +256,7 @@
 
     </Target>
 	
-	<Target Name="CreateNodeIcons" AfterTargets="PostBuildEvent">
+	<Target Name="CreateNodeIcons" AfterTargets="PostBuildEvent" Condition="'$(RevitVersion)' != '2027'">
   <!-- Get System.Drawing.dll -->
   <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v4.8">
     <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
@@ -268,5 +268,8 @@
   <!-- Generate customization dll -->
   <GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)\RhythmRevitImages.resx" OutputResources="$(ProjectDir)\RhythmRevitImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
   <AL SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" TargetType="library" EmbedResources="$(ProjectDir)\RhythmRevitImages.resources" OutputAssembly="$(OutDir)RhythmRevit.customization.dll" Version="%(AssemblyInfo.Version)" />
-</Target>
+ </Target>
+	<Target Name="SkipCreateNodeIcons" AfterTargets="PostBuildEvent" Condition="'$(RevitVersion)' == '2027'">
+  <Message Text="Skipping RhythmRevit.customization.dll for Revit 2027 because .NET 10 disables the legacy bitmap resource path used by this customization assembly." Importance="high" />
+ </Target>
 </Project>
