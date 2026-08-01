@@ -31,6 +31,8 @@ This tool is not affiliated with Autodesk and was written and provided in a pers
 [![GitHub license](https://img.shields.io/github/license/johnpierson/RhythmForDynamo)](https://github.com/johnpierson/RhythmForDynamo/blob/master/LICENSE)
 Rhythm is licensed under the BSD 3 Clause License. You can use this package however you want in Dynamo. It's just limited in the way the source code may be used. A simplified version of this license is available [here](https://www.tldrlegal.com/license/bsd-3-clause-license-revised).
 
+Rhythm also incorporates third-party code that is **not** covered by the BSD 3 Clause License and remains under its own terms — most notably a rectangle packer under the IBM Common Public License v1.0. See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) for the full list.
+
 ## Current Version
  Supported Revit versions are 2020 and up. And supported Dynamo versions are Dynamo 2.0.x and up. Rhythm is deployed from github, and auto-downloads the correct node libraries on the fly. 
 

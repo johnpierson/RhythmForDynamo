@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Rhythm for Dynamo")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Design Tech Unraveled")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyCopyright("Copyright (c) 2019 John Pierson")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
