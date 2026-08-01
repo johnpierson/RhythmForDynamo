@@ -7,7 +7,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <AssemblyTitle>RhythmExtension.2024</AssemblyTitle>
     <Product>RhythmExtension.2024</Product>
-    <Copyright>Copyright ©  2023</Copyright>
+    <Copyright>Copyright (c) 2019 John Pierson</Copyright>
  <Configurations>Debug R25;</Configurations>
         <Configurations>$(Configurations)Release R25;</Configurations>
   </PropertyGroup>
@@ -29,7 +29,7 @@
     <DynVersion>$(DynamoVersion)</DynVersion>
 	<AssemblyTitle>Rhythm for Dynamo| Extension</AssemblyTitle>
 	<Product>Rhythm for Dynamo| Extension</Product>
-	<Copyright>Copyright ©  2023</Copyright>
+	<Copyright>Copyright (c) 2019 John Pierson</Copyright>
 	<AssemblyVersion>2023.9.1</AssemblyVersion>
 	<FileVersion>2023.9.1</FileVersion>
   </PropertyGroup>

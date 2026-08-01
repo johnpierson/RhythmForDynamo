@@ -45,7 +45,7 @@
     <DynVersion>$(DynamoVersion)</DynVersion>
 	<AssemblyTitle>Rhythm for Dynamo| View Extension</AssemblyTitle>
 	<Product>Rhythm for Dynamo| View Extension</Product>
-	<Copyright>Copyright ©  2023</Copyright>
+	<Copyright>Copyright (c) 2019 John Pierson</Copyright>
 	<AssemblyVersion>2025.10.1</AssemblyVersion>
 	<FileVersion>2025.10.1</FileVersion>
   </PropertyGroup>
