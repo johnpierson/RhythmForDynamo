@@ -7,7 +7,7 @@ __author__ = 'john pierson - sixtysecondrevit@gmail.com'
 __twitter__ = '@60secondrevit'
 __github__ = '@johnpierson'
 __version__ ='1.0.0'
-__license__ = 'GNU General Public License v3.0' 'https://choosealicense.com/licenses/gpl-3.0/'
+__license__ = 'BSD 3-Clause - https://tldrlegal.com/license/bsd-3-clause-license-(revised)'
 
 # import common language runtime 
 import clr
