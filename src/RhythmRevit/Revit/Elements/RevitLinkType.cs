@@ -26,7 +26,15 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.RevitLinkType internalLinkType =
                 revitLinkType.InternalElement as Autodesk.Revit.DB.RevitLinkType;
 
-            ModelPath mPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(path.Replace(Char.Parse("//"),'/'));
+            if (internalLinkType == null)
+            {
+                throw new ArgumentException("The provided element is not a Revit link type.", nameof(revitLinkType));
+            }
+
+            // Char.Parse requires a string of length one, so the previous "//" argument threw
+            // FormatException on every call, before the link was ever touched. The intent was to
+            // collapse doubled separators, which is the two-argument string overload.
+            ModelPath mPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(path.Replace("//", "/"));
             TransactionManager.Instance.ForceCloseTransaction();
           
             LinkLoadResult  loadResult = internalLinkType.LoadFrom(mPath, new WorksetConfiguration());
