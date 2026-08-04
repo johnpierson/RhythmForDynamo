@@ -1,0 +1,233 @@
+{
+  "Uuid": "3809f56d-59bd-4d09-877f-63dec59f11ed",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Modify.ToQuantity-Example",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"today I was driving and saw {0}\";",
+      "Id": "bfe2813d893849e094cd7981cf8b4578",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2deccb0f747f44b6bc988807cbb5e6e5",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.String.Modify.ToQuantity@string,int",
+      "Id": "230167a2bf014a859d32392b93ebba0c",
+      "Inputs": [
+        {
+          "Id": "c568c731a03c436bafa8608104d720cf",
+          "Name": "str",
+          "Description": "The string to convert to quantity.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6ec1ec31140a4d34890f8346d33e9965",
+          "Name": "quantity",
+          "Description": "The amount of things.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8d41cfd03f2543b284aeb40cc255677e",
+          "Name": "quantityString",
+          "Description": "The formatted quantity.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This will attempt to return a quantity, given a string and count. Made possible with Humanizer (https://github.com/Humanizr/Humanizer)\n\nModify.ToQuantity (str: string, quantity: int): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"ox\";\n5;",
+      "Id": "07b1d82f819d424683951f733a2eb03a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a46c79f5905248dcaf04b792656420f1",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6d57724fe7d94c849b03be0c07b3fc67",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.String.Modify.FormatWith@string,var[]",
+      "Id": "dfdd7f589cba46ae9501e456b19cd67a",
+      "Inputs": [
+        {
+          "Id": "5a533c13803a43b1941d015697a400b6",
+          "Name": "str",
+          "Description": "The string to format.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a4fc08fa80b49d5a2697aacd3e7c4e5",
+          "Name": "args",
+          "Description": "The params (objects)\n\nvar[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "51a2ada01045483ab3dc7b970f4e34c9",
+          "Name": "str",
+          "Description": "The formatted string.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Format input string with arguments. Made possible with Humanizer (https://github.com/Humanizr/Humanizer)\n\nModify.FormatWith (str: string, args: var[]): string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2deccb0f747f44b6bc988807cbb5e6e5",
+      "End": "5a533c13803a43b1941d015697a400b6",
+      "Id": "9d76f0a76d3540dcb1c7978c38dd58ae"
+    },
+    {
+      "Start": "8d41cfd03f2543b284aeb40cc255677e",
+      "End": "0a4fc08fa80b49d5a2697aacd3e7c4e5",
+      "Id": "1de2a59291844caa8dcb0e3401206c51"
+    },
+    {
+      "Start": "a46c79f5905248dcaf04b792656420f1",
+      "End": "c568c731a03c436bafa8608104d720cf",
+      "Id": "9d218865e3dc47eaa3db6f36ee6975f6"
+    },
+    {
+      "Start": "6d57724fe7d94c849b03be0c07b3fc67",
+      "End": "6ec1ec31140a4d34890f8346d33e9965",
+      "Id": "e9caf9dc8a554bbf964cb28282e68e12"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.9.0.3137",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "bfe2813d893849e094cd7981cf8b4578",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 587.09800222509762,
+        "Y": 297.30105928441776
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Modify.ToQuantity",
+        "Id": "230167a2bf014a859d32392b93ebba0c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 718.32497828442251,
+        "Y": 446.09187492972654
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "07b1d82f819d424683951f733a2eb03a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 595.0,
+        "Y": 462.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Modify.FormatWith",
+        "Id": "dfdd7f589cba46ae9501e456b19cd67a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1076.1101204415922,
+        "Y": 389.80379650717
+      }
+    ],
+    "Annotations": [],
+    "X": -592.29945736247737,
+    "Y": -432.80154495995475,
+    "Zoom": 1.7835993623828124
+  }
+}

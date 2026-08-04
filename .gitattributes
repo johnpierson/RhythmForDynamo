@@ -1,0 +1,16 @@
+# The generated node help. The build fails a pull request whose docs/nodes differs from what the
+# generator produces, so the line endings have to be the same on every machine that runs it; the
+# generator writes LF and these keep the working copy on LF to match. deploy/Rhythm/doc is the
+# copy that ships, produced by the same run.
+docs/nodes/*.md          text eol=lf
+deploy/Rhythm/doc/*.md   text eol=lf
+
+# Example graphs are JSON that Dynamo rewrites when it saves. Left exactly as they were saved so a
+# checkout never differs from what the author committed.
+*.dyn                    -text
+
+# Assemblies and screenshots.
+*.dll                    binary
+*.png                    binary
+*.gif                    binary
+*.jpg                    binary
