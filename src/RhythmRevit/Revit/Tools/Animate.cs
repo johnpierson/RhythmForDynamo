@@ -17,6 +17,44 @@ namespace Rhythm.Revit.Tools
     {
         private Element()
         { }
+
+        /// <summary>
+        /// Finds the solid fill pattern by asking the patterns themselves, rather than by matching
+        /// the English display name "solid fill" - which does not exist on a localised Revit, and
+        /// which a user is free to rename.
+        /// </summary>
+        [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
+        private static ElementId GetSolidFillPatternId(Autodesk.Revit.DB.Document doc)
+        {
+            var solidFill = new FilteredElementCollector(doc)
+                .OfClass(typeof(FillPatternElement))
+                .Cast<FillPatternElement>()
+                .FirstOrDefault(f => f.GetFillPattern().IsSolidFill);
+
+            if (solidFill == null)
+            {
+                throw new InvalidOperationException(
+                    "This document has no solid fill pattern, so the elements cannot be colour-filled.");
+            }
+
+            return solidFill.Id;
+        }
+
+        /// <summary>
+        /// Builds the path for one exported frame.
+        /// </summary>
+        /// <remarks>
+        /// The frame number used to be concatenated straight onto the directory path, so a
+        /// directoryPath of "C:\Exports" wrote C:\Exports0.png, C:\Exports1.png ... beside the
+        /// folder rather than inside it. Numbers are zero-padded so that frames sort in order
+        /// lexicographically, which is what video assembly tools expect.
+        /// </remarks>
+        [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
+        private static string BuildFramePath(string directoryPath, int frameNumber)
+        {
+            System.IO.Directory.CreateDirectory(directoryPath);
+            return System.IO.Path.Combine(directoryPath, frameNumber.ToString("D4"));
+        }
 #if !R20
         /// <summary>
         /// Animate a numeric parameter of an element. This will export images of the parameter, then revert the element back to where it was. Also adds text to comments to prevent infinite loops.Clear this comment for subsequent runs.
@@ -85,7 +123,7 @@ namespace Rhythm.Revit.Tools
                             uiDocument.RefreshActiveView();
                             var exportOpts = new ImageExportOptions
                             {
-                                FilePath = directoryPath + num2.ToString(),
+                                FilePath = BuildFramePath(directoryPath, num2),
                                 FitDirection = FitDirectionType.Horizontal,
                                 HLRandWFViewsFileType = ImageFileType.PNG,
                                 ImageResolution = ImageResolution.DPI_300,
@@ -147,6 +185,13 @@ namespace Rhythm.Revit.Tools
             //where to start
             double startValue = 0;
 
+            //Resolve the solid fill pattern once, by asking each pattern whether it IS solid rather
+            //than comparing its display name to the English "solid fill". The name is localised, so
+            //on a German or Japanese Revit the old lookup returned null and the next line threw a
+            //NullReferenceException inside an open transaction. It was also re-collected on every
+            //frame of the animation.
+            ElementId solidFillId = GetSolidFillPatternId(doc);
+
             //starts a transaction group so we can roolback the changes after
             using (TransactionGroup transactionGroup = new TransactionGroup(doc, "group"))
             {
@@ -166,21 +211,9 @@ namespace Rhythm.Revit.Tools
                         //convert to revit color
                         Autodesk.Revit.DB.Color revitColor = new Autodesk.Revit.DB.Color(dscolor.Red, dscolor.Green,
                             dscolor.Blue);
-                        //solid fill id
-                        FilteredElementCollector fillPatternCollector = new FilteredElementCollector(doc);
-                        Autodesk.Revit.DB.Element solidFill = fillPatternCollector.OfClass(typeof(FillPatternElement)).ToElements().FirstOrDefault(x => x.Name.ToLower() == "solid fill");
-
-#if R20 || R21 || R22 || R23
-                        ElementId pattId = new ElementId(20);
-#endif
-
-#if R24_OR_GREATER
-                        ElementId pattId = new ElementId(System.Convert.ToInt64(20));
-#endif
-
                         //set the overrides to the graphic settings
                         ogs.SetSurfaceForegroundPatternColor(revitColor);
-                        ogs.SetSurfaceForegroundPatternId(solidFill.Id);
+                        ogs.SetSurfaceForegroundPatternId(solidFillId);
                         foreach (var e in element)
                         {
                             //apply the changes to view
@@ -191,7 +224,7 @@ namespace Rhythm.Revit.Tools
                         uiDocument.RefreshActiveView();
                         var exportOpts = new ImageExportOptions
                         {
-                            FilePath = directoryPath + num2.ToString(),
+                            FilePath = BuildFramePath(directoryPath, num2),
                             FitDirection = FitDirectionType.Horizontal,
                             HLRandWFViewsFileType = ImageFileType.PNG,
                             ImageResolution = ImageResolution.DPI_300,
@@ -230,10 +263,20 @@ namespace Rhythm.Revit.Tools
             UIDocument uiDocument = new UIDocument(doc);
             Autodesk.Revit.DB.View internalView = (Autodesk.Revit.DB.View)view.InternalElement;
             //create a new form!
-            DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images", "Exporting image {0} of " + iterations.ToString(), "Animate Element Transparency", iterations + 1);
-            double d = (endPercentage - startPercentage) / (iterations - 1.0);
-            int incrementor = Convert.ToInt32(d);
+            if (iterations < 2)
+            {
+                throw new ArgumentOutOfRangeException(nameof(iterations),
+                    "Animating a transparency range needs at least two frames.");
+            }
 
+            DefaultProgressForm statusBar = new DefaultProgressForm("Exporting Images", "Exporting image {0} of " + iterations.ToString(), "Animate Element Transparency", iterations + 1);
+
+            //Step as a double and drive the loop by frame index. The previous version rounded the
+            //step to an int, so any range narrower than about half a percent per frame - 0 to 50%
+            //over 101 frames, say - produced a step of 0. startPercentage then never advanced, the
+            //loop exported the same 300 DPI image forever, and the only thing that stopped it was
+            //the progress bar throwing once it was incremented past its own maximum.
+            double step = (endPercentage - startPercentage) / (iterations - 1.0);
 
             //starts a transaction group so we can roolback the changes after
             using (TransactionGroup transactionGroup = new TransactionGroup(doc, "group"))
@@ -243,8 +286,9 @@ namespace Rhythm.Revit.Tools
                 using (Transaction t2 = new Transaction(doc, "Modify parameter"))
                 {
                     int num2 = 0;
-                    while (startPercentage <= endPercentage)
+                    for (int frame = 0; frame < iterations; frame++)
                     {
+                        int currentPercentage = (int)System.Math.Round(startPercentage + (step * frame));
                         statusBar.Activate();
                         t2.Start();
                         //declare the graphic settings overrides
@@ -259,7 +303,7 @@ namespace Rhythm.Revit.Tools
 #endif
 
                         //set the overrides to the graphic settings
-                        ogs.SetSurfaceTransparency(startPercentage);
+                        ogs.SetSurfaceTransparency(currentPercentage);
                         foreach (var e in element)
                         {
                             //apply the changes to view
@@ -270,7 +314,7 @@ namespace Rhythm.Revit.Tools
                         uiDocument.RefreshActiveView();
                         var exportOpts = new ImageExportOptions
                         {
-                            FilePath = directoryPath + num2.ToString(),
+                            FilePath = BuildFramePath(directoryPath, num2),
                             FitDirection = FitDirectionType.Horizontal,
                             HLRandWFViewsFileType = ImageFileType.PNG,
                             ImageResolution = ImageResolution.DPI_300,
@@ -278,7 +322,6 @@ namespace Rhythm.Revit.Tools
                         };
                         doc.ExportImage(exportOpts);
                         ++num2;
-                        startPercentage += incrementor;
                         statusBar.Increment();
                     }
                 }

@@ -61,7 +61,20 @@ namespace Rhythm
 
         internal void Increment()
         {
-            ++progressBar1.Value;
+            //Clamp rather than let the value run past Maximum: ProgressBar.Value throws
+            //ArgumentOutOfRangeException when it does, and callers were relying on that exception
+            //to end a loop rather than bounding the loop themselves. A progress bar should never be
+            //the thing that decides a batch is over.
+            if (IsDisposed)
+            {
+                return;
+            }
+
+            if (progressBar1.Value < progressBar1.Maximum)
+            {
+                ++progressBar1.Value;
+            }
+
             if (null != _format)
             {
                 label1.Text = string.Format(_format, progressBar1.Value);
