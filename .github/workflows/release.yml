@@ -83,6 +83,30 @@ jobs:
           echo "$NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      # Releases were markers only: no artifacts. What a user actually ran was whatever deploy/
+      # happened to contain on master at the moment their first run downloaded it, so there was no
+      # way to say which binaries a given "release" delivered, and no rollback point. Attaching the
+      # binaries plus a checksum manifest makes a release a real, verifiable artifact set.
+      - name: Package deploy folder and checksums
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          for year in 2020 2021 2022 2023 2024 2025 2026 2027; do
+            if [ -d "deploy/${year}" ]; then
+              zip -r -q "artifacts/Rhythm-${year}-${{ steps.calver.outputs.version }}.zip" "deploy/${year}"
+            else
+              echo "::warning::deploy/${year} is missing and was not packaged"
+            fi
+          done
+
+          # One manifest over every file users download at runtime, so a client can verify what it
+          # fetched against a value published out of band from the file itself.
+          ( cd deploy && find . -type f \( -name '*.dll' -o -name '*.xml' -o -name 'pkg.json' \) \
+              -print0 | sort -z | xargs -0 sha256sum ) > artifacts/SHA256SUMS.txt
+
+          sha256sum artifacts/*.zip >> artifacts/SHA256SUMS.txt
+          echo "Packaged:"; ls -la artifacts
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
@@ -92,5 +116,8 @@ jobs:
           draft: false
           prerelease: false
           generate_release_notes: false
+          files: |
+            artifacts/*.zip
+            artifacts/SHA256SUMS.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -14,15 +14,18 @@ jobs:
  latest-version:
     runs-on: ubuntu-latest
     steps:
+      # This used to call a third-party action pinned to @master - a mutable ref whose code could
+      # change at any time, running in the same job that holds four Twitter credentials. The GitHub
+      # CLI is already on the runner and needs no third-party code at all.
       - name: Get Latest Release
         id: fetch-latest-release
-        uses: pozetroninc/github-action-get-latest-release@master
-        with:
-          owner: johnPierson
-          repo: RhythmForDynamo
-      - name: Consume 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo ${{ steps.fetch-latest-release.outputs.release }}
+          set -euo pipefail
+          tag=$(gh release view --repo johnpierson/RhythmForDynamo --json tagName --jq .tagName)
+          echo "release=${tag}" >> "$GITHUB_OUTPUT"
+          echo "Latest release: ${tag}"
       - uses: ethomson/send-tweet-action@v1
         with:
           status: "New Rhythm for #DynamoBIM Release: https://github.com/johnpierson/RhythmForDynamo/releases/tag/${{ steps.fetch-latest-release.outputs.release }}" 
