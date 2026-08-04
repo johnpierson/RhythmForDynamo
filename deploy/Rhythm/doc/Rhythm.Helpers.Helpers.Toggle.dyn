@@ -1,0 +1,165 @@
+{
+  "Uuid": "0d7acecc-2fa8-434d-8f9c-c450fea45d8c",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Helpers.Toggle-Example",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "a560ad5364664a92b1c44a9eb1823732",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0dddbf9c548c4eaa96b7d84aa5d2f632",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "1;",
+      "Id": "803e43d48fd84b1da22bc89c482c22ee",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ab8103342a5b4789a038ab6b4eaf7a78",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.Helpers.Helpers.Toggle@var[],bool",
+      "Id": "741a9c4c02b74151b2ebd84af9ec8d5e",
+      "Inputs": [
+        {
+          "Id": "e254940dc34e439a828103593c7abd2c",
+          "Name": "obj",
+          "Description": "The object to passthrough.\n\nvar[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "50667193541d4516a48498134a1410e2",
+          "Name": "toggle",
+          "Description": "Toggle the passthrough.\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1579f88159db43848a4e74fc11122868",
+          "Name": "result",
+          "Description": "The object.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This provides a toggle based on boolean input. Replacement for Rhythm.Toggle.\n\nHelpers.Toggle (obj: var[], toggle: bool): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0dddbf9c548c4eaa96b7d84aa5d2f632",
+      "End": "50667193541d4516a48498134a1410e2",
+      "Id": "f4c213044d5d4e5dbba0e20347c676bd"
+    },
+    {
+      "Start": "ab8103342a5b4789a038ab6b4eaf7a78",
+      "End": "e254940dc34e439a828103593c7abd2c",
+      "Id": "74526a95f1954d38a1475eb073d841e3"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.9.0.3137",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "a560ad5364664a92b1c44a9eb1823732",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 550.35214666768479,
+        "Y": 406.46229058885837
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "803e43d48fd84b1da22bc89c482c22ee",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 600.19508924169145,
+        "Y": 215.45195583732769
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Helpers.Toggle",
+        "Id": "741a9c4c02b74151b2ebd84af9ec8d5e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 803.79851919925113,
+        "Y": 236.36137756562988
+      }
+    ],
+    "Annotations": [],
+    "X": -228.55149039128844,
+    "Y": -156.91199488750868,
+    "Zoom": 1.476180239263613
+  }
+}

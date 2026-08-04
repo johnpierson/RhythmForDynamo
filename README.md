@@ -61,6 +61,18 @@ Since there is not currently an update notification process on Dynamo's package 
 ## Examples
 Examples will be available on the [wiki](https://github.com/johnpierson/RhythmForDynamo/wiki) soon,
 
+## Node help
+Every node ships with a help page that Dynamo shows in the panel beside the graph — right-click a node and choose *Help*.
+
+Those pages are generated from the assemblies and from the `<summary>`, `<param>` and `<returns>` comments above each node in `src/`, so they cannot drift from the nodes they describe. To improve a page, improve the comment and regenerate:
+
+```powershell
+./scripts/generate-docs.ps1   # writes docs/nodes
+./scripts/pack-docs.ps1       # copies it to deploy/Rhythm/doc, where Dynamo reads it
+```
+
+The build fails on a pull request whose generated help has drifted from the source, so run both before pushing. [docs/nodes/README.md](docs/nodes/README.md) explains the layout and records how much of the help is actually written — including which nodes still have no description at all, if you are looking for somewhere to start.
+
 ## Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/johnpierson/RhythmForDynamo/pulls).
 

@@ -166,6 +166,30 @@ jobs:
           }
           Write-Host "All required files verified successfully!" -ForegroundColor Green
 
+      # docs/nodes is generated from the assemblies that were just built and from the XML
+      # documentation the compiler wrote beside them. Help that disagrees with the node it
+      # documents is worse than none at all, because the reader believes it - so a pull request
+      # that changes a node's summary, its parameters or its name has to bring the regenerated
+      # help with it.
+      #
+      # deploy/Rhythm/doc is checked in the same step: it is the copy Dynamo actually reads, and a
+      # package whose doc folder lags docs/nodes ships the old help to every user.
+      - name: Verify the node help is up to date
+        run: |
+          # Both scripts throw on failure, which fails the step.
+          ./scripts/generate-docs.ps1
+          ./scripts/pack-docs.ps1
+
+          $changed = git status --porcelain docs/nodes deploy/Rhythm/doc
+          if ($changed) {
+            Write-Host "The node help is out of date. Run:" -ForegroundColor Red
+            Write-Host "  ./scripts/generate-docs.ps1" -ForegroundColor Red
+            Write-Host "  ./scripts/pack-docs.ps1" -ForegroundColor Red
+            Write-Host $changed
+            exit 1
+          }
+          Write-Host "Node help is up to date." -ForegroundColor Green
+
       - name: Configure Git
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         run: |
