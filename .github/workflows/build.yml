@@ -180,7 +180,7 @@ jobs:
           ./scripts/generate-docs.ps1
           ./scripts/pack-docs.ps1
 
-          $changed = git status --porcelain docs/nodes deploy/Rhythm/doc
+          $changed = git status --porcelain docs/nodes docs/node-reference.md deploy/Rhythm/doc
           if ($changed) {
             Write-Host "The node help is out of date. Run:" -ForegroundColor Red
             Write-Host "  ./scripts/generate-docs.ps1" -ForegroundColor Red

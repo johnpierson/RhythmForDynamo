@@ -16,6 +16,6 @@ Helpers Wrapper
 ___
 ## Example File
 
-An example graph ships beside this page. Use the panel's insert button to open it.
+An example graph ships beside this page as `Rhythm.Revit.Helpers.Helpers.CurrentRevitVersion.dyn`.
 
 ![Helpers.CurrentRevitVersion](./Rhythm.Revit.Helpers.Helpers.CurrentRevitVersion_img.png)

@@ -15,6 +15,6 @@ Found in the library under **Actions**.
 ___
 ## Example File
 
-An example graph ships beside this page. Use the panel's insert button to open it.
+An example graph ships beside this page as `Rhythm.String.Modify.ToTitle.dyn`.
 
 ![Modify.ToTitle](./Rhythm.String.Modify.ToTitle_img.png)

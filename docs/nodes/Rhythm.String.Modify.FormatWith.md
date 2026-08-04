@@ -16,6 +16,6 @@ Found in the library under **Actions**.
 ___
 ## Example File
 
-An example graph ships beside this page. Use the panel's insert button to open it.
+An example graph ships beside this page as `Rhythm.String.Modify.FormatWith.dyn`.
 
 ![Modify.FormatWith](./Rhythm.String.Modify.FormatWith_img.png)

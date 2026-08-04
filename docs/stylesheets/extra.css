@@ -1,0 +1,824 @@
+/*
+ * The site, wearing the same clothes as Interlude's.
+ *
+ * Rhythm has no theme of its own to borrow from — it is a node library, not a UI toolkit — so this
+ * is a deliberate port rather than a derivation: the Neubrutalist preset that Interlude's
+ * ThemeDefinition.Default uses, so that two packages by the same author read as coming from the
+ * same hand.
+ *
+ *     Border 2px          Shadow 4px, hard, down and right
+ *     Square corners      Heavy, spaced capitals on headers
+ *
+ * Light is ThemePalette.Neo and dark is ThemePalette.NeoDark, colour for colour, which is why dark
+ * is the light one *inverted* rather than dimmed: black outlines and black shadows disappear on a
+ * dark backdrop, so both become bone white and the accent moves from hot pink to a lime that
+ * survives being surrounded by it.
+ *
+ * The one place this stops short: prose. The node reference is 315 rows and the node help is 315
+ * pages of dense text; setting body copy in spaced capitals because the style calls for it on
+ * *section headers* would be reading the rule and missing the point. Chrome, headings, blocks and
+ * tables are styled hard; paragraphs are left alone.
+ */
+
+/* ---------------------------------------------------------------- font ---
+ *
+ * Space Grotesk, checked in under docs/assets/fonts and published as static files. Not Google
+ * Fonts: a documentation site should not make a third-party request to render its own body text,
+ * and the pinned files mean a build in a year looks like a build today.
+ *
+ * SIL Open Font License 1.1. The licence is published beside them at assets/fonts/.
+ */
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../assets/fonts/SpaceGrotesk-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/SpaceGrotesk-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/SpaceGrotesk-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/SpaceGrotesk-Bold.ttf") format("truetype");
+}
+
+:root {
+  /* `--md-text-font` and `--md-code-font` are the hooks Material's own `font:` setting writes to,
+   * which it then splices into `--md-text-font-family` *on `body`* — so overriding the -family
+   * variable here would be shadowed for everything inside the page. These are the right end. */
+  --md-text-font: "Space Grotesk", "Segoe UI Variable Text", "Segoe UI", Tahoma;
+
+  /* Space Grotesk has no monospace companion, and a system stack keeps it a local request, which
+   * is the other half of why the text font is vendored. Node names are set in this and there are
+   * a great many of them, so it wants to be a face the reader's machine renders well. */
+  --md-code-font: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Consolas, "Liberation Mono";
+
+  --rh-border-width: 2px;
+  --rh-shadow-offset: 4px;
+  --rh-radius: 0;
+  --rh-tracking: 0.05em;
+}
+
+/* ------------------------------------------------------------ palettes ---
+ *
+ * ThemePalette.Neo. Warm paper, pure black ink, one loud accent. Border and BorderStrong are the
+ * same black on purpose — the style takes its structure from outline and offset rather than from a
+ * hierarchy of greys.
+ */
+
+:root,
+[data-md-color-scheme="default"] {
+  --rh-background: #fff4e0;
+  --rh-surface: #ffffff;
+  --rh-surface-alt: #ffe55c;
+  --rh-border: #000000;
+  --rh-foreground: #000000;
+  --rh-foreground-muted: #4a4238;
+  --rh-foreground-disabled: #9a9186;
+  --rh-accent: #ff5c8a;
+  --rh-accent-hover: #ff87a8;
+  --rh-accent-foreground: #000000;
+  --rh-error: #e5383b;
+  --rh-warning: #ff8a00;
+  --rh-success: #00b36b;
+  --rh-shadow: #000000;
+
+  --md-default-bg-color: var(--rh-background);
+  --md-default-fg-color: var(--rh-foreground);
+  --md-default-fg-color--light: var(--rh-foreground-muted);
+  --md-default-fg-color--lighter: var(--rh-foreground-disabled);
+  --md-default-fg-color--lightest: rgba(0, 0, 0, 0.07);
+
+  /* The header is the page's own backdrop, not the accent. The accent is a fill behind black text
+   * — a button, a selected row — and never a large surface. A hot pink bar across every page would
+   * invert that ratio. */
+  --md-primary-fg-color: var(--rh-background);
+  --md-primary-fg-color--light: var(--rh-background);
+  --md-primary-fg-color--dark: var(--rh-background);
+  --md-primary-bg-color: var(--rh-foreground);
+  --md-primary-bg-color--light: var(--rh-foreground-muted);
+
+  --md-accent-fg-color: var(--rh-accent);
+  --md-accent-fg-color--transparent: rgba(255, 92, 138, 0.1);
+  --md-accent-bg-color: var(--rh-accent-foreground);
+  --md-accent-bg-color--light: var(--rh-accent-foreground);
+
+  --md-typeset-color: var(--rh-foreground);
+  --md-typeset-a-color: var(--rh-foreground);
+  --md-code-bg-color: var(--rh-surface);
+  --md-code-fg-color: var(--rh-foreground);
+  --md-footer-bg-color: var(--rh-foreground);
+  --md-footer-bg-color--dark: var(--rh-foreground);
+  --md-footer-fg-color: var(--rh-background);
+  --md-footer-fg-color--light: var(--rh-background);
+  --md-footer-fg-color--lighter: rgba(255, 244, 224, 0.7);
+
+  --md-shadow-z1: none;
+  --md-shadow-z2: none;
+  --md-shadow-z3: none;
+}
+
+/* ThemePalette.NeoDark. The light palette inverted rather than dimmed. */
+
+[data-md-color-scheme="slate"] {
+  --rh-background: #121214;
+  --rh-surface: #1e1e22;
+  --rh-surface-alt: #2c2c33;
+  --rh-border: #f2f2f0;
+  --rh-foreground: #f7f7f5;
+  --rh-foreground-muted: #afafb8;
+  --rh-foreground-disabled: #6a6a72;
+  --rh-accent: #c7f464;
+  --rh-accent-hover: #d9ff8c;
+  --rh-accent-foreground: #121214;
+  --rh-error: #ff6b6b;
+  --rh-warning: #ffc145;
+  --rh-success: #5ce1a0;
+  --rh-shadow: #f2f2f0;
+
+  --md-default-bg-color: var(--rh-background);
+  --md-default-fg-color: var(--rh-foreground);
+  --md-default-fg-color--light: var(--rh-foreground-muted);
+  --md-default-fg-color--lighter: var(--rh-foreground-disabled);
+  --md-default-fg-color--lightest: rgba(247, 247, 245, 0.1);
+
+  --md-primary-fg-color: var(--rh-background);
+  --md-primary-fg-color--light: var(--rh-background);
+  --md-primary-fg-color--dark: var(--rh-background);
+  --md-primary-bg-color: var(--rh-foreground);
+  --md-primary-bg-color--light: var(--rh-foreground-muted);
+
+  --md-accent-fg-color: var(--rh-accent);
+  --md-accent-fg-color--transparent: rgba(199, 244, 100, 0.12);
+  --md-accent-bg-color: var(--rh-accent-foreground);
+  --md-accent-bg-color--light: var(--rh-accent-foreground);
+
+  --md-typeset-color: var(--rh-foreground);
+  --md-typeset-a-color: var(--rh-foreground);
+  --md-code-bg-color: var(--rh-surface);
+  --md-code-fg-color: var(--rh-foreground);
+  --md-footer-bg-color: var(--rh-surface);
+  --md-footer-bg-color--dark: var(--rh-surface);
+  --md-footer-fg-color: var(--rh-foreground);
+  --md-footer-fg-color--light: var(--rh-foreground);
+  --md-footer-fg-color--lighter: var(--rh-foreground-muted);
+}
+
+/* ---------------------------------------------------------------- logo ---
+ *
+ * The metronome from Rhythm's own logo, in docs/assets/rhythm-mark.svg. It is drawn in
+ * currentColor, which inside an <img> resolves to black — right for the light palette, invisible
+ * on the dark one. Inverting is exact rather than approximate here: the mark is pure black on
+ * transparent, so invert(1) gives pure white and leaves the transparency alone.
+ */
+
+[data-md-color-scheme="slate"] .md-header__button.md-logo img,
+[data-md-color-scheme="slate"] .md-nav__button.md-logo img {
+  filter: invert(1);
+}
+
+/* Material sizes the header logo at 1.2rem; the metronome is tall and narrow, so it reads as a
+ * speck at that size next to a wordmark set in capitals. */
+.md-header__button.md-logo img {
+  height: 1.6rem;
+  width: auto;
+}
+
+/* --------------------------------------------------------------- chrome --- */
+
+.md-header {
+  border-bottom: 3px solid var(--rh-border);
+  box-shadow: none;
+}
+
+.md-header--shadow {
+  box-shadow: none;
+}
+
+.md-tabs {
+  border-bottom: var(--rh-border-width) solid var(--rh-border);
+}
+
+.md-header__title {
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  text-transform: uppercase;
+}
+
+/* Search: a form field, so it gets a form field's outline. */
+.md-search__form {
+  background-color: var(--rh-surface);
+  border: var(--rh-border-width) solid var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: none;
+  color: var(--rh-foreground);
+}
+
+.md-search__form:hover {
+  background-color: var(--rh-surface-alt);
+}
+
+.md-search__input {
+  color: var(--rh-foreground);
+}
+
+.md-search__input::placeholder {
+  color: var(--rh-foreground-muted);
+}
+
+.md-search__icon,
+.md-search__options .md-icon {
+  color: var(--rh-foreground);
+}
+
+.md-search__output {
+  border: var(--rh-border-width) solid var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow-offset) var(--rh-shadow-offset) 0 var(--rh-shadow);
+}
+
+.md-search-result__meta {
+  background-color: var(--rh-surface-alt);
+  color: var(--rh-foreground);
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  text-transform: uppercase;
+}
+
+.md-search-result__article--document .md-search-result__title {
+  font-weight: 700;
+}
+
+.md-search-result__item {
+  box-shadow: 0 -1px 0 var(--md-default-fg-color--lightest);
+}
+
+/* ------------------------------------------------------------ navigation ---
+ *
+ * Section labels are small, bold, spaced capitals. The selected page is a filled block.
+ */
+
+.md-nav__title {
+  color: var(--rh-foreground);
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  text-transform: uppercase;
+}
+
+.md-nav__link {
+  border-radius: var(--rh-radius);
+}
+
+.md-nav__item--section > .md-nav__link {
+  color: var(--rh-foreground);
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  text-transform: uppercase;
+}
+
+.md-nav__link--active,
+.md-nav__link--active code {
+  background-color: var(--rh-accent);
+  color: var(--rh-accent-foreground);
+  font-weight: 700;
+}
+
+.md-nav__link--active {
+  /* Drawn wider than the text so it reads as a filled row rather than a highlight, without
+   * shifting anything in the column. */
+  box-shadow: -0.4rem 0 0 var(--rh-accent), 0.4rem 0 0 var(--rh-accent);
+}
+
+.md-nav__link:focus,
+.md-nav__link:hover {
+  color: var(--rh-foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--rh-accent);
+  text-decoration-thickness: var(--rh-border-width);
+  text-underline-offset: 3px;
+}
+
+.md-nav__link--active:focus,
+.md-nav__link--active:hover {
+  color: var(--rh-accent-foreground);
+  text-decoration: none;
+}
+
+/* The node help section of the nav is 315 entries of `Rhythm.Revit.Elements.Elements.SetParameter`.
+ * Material truncates each to one line with an ellipsis, which for these names means every entry
+ * ends `Rhythm.Revit.Element…` and none of them can be told apart. They wrap instead. */
+.md-nav--secondary .md-nav__link,
+.md-sidebar--primary .md-nav__link {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.md-sidebar--secondary .md-nav__title {
+  border-bottom: var(--rh-border-width) solid var(--rh-border);
+  padding-bottom: 0.4rem;
+}
+
+/* ---------------------------------------------------------------- links ---
+ *
+ * Pink text on cream is a 2.7:1 contrast ratio, so a link is foreground-coloured with the accent
+ * as its underline, and hovering fills the block.
+ */
+
+.md-typeset a {
+  color: var(--rh-foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--rh-accent);
+  text-decoration-thickness: var(--rh-border-width);
+  text-underline-offset: 3px;
+}
+
+.md-typeset a:focus,
+.md-typeset a:hover {
+  background-color: var(--rh-accent);
+  color: var(--rh-accent-foreground);
+  text-decoration-color: var(--rh-border);
+}
+
+.md-typeset a:focus code,
+.md-typeset a:hover code {
+  background-color: transparent;
+  color: var(--rh-accent-foreground);
+}
+
+/* ------------------------------------------------------------- headings ---
+ *
+ * Spaced capitals belong on section headers, which is what an h2 is on a page. Applying it to h1
+ * would put `RHYTHM.REVIT.ELEMENTS.ELEMENTS.SETPARAMETER` at the top of 315 pages.
+ */
+
+.md-typeset h1 {
+  color: var(--rh-foreground);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.md-typeset h2 {
+  border-bottom: var(--rh-border-width) solid var(--rh-border);
+  font-size: 1.25em;
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  margin-top: 2em;
+  padding-bottom: 0.3em;
+  text-transform: uppercase;
+}
+
+.md-typeset h3 {
+  font-weight: 700;
+}
+
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  font-weight: 500;
+}
+
+.md-typeset h5 {
+  /* Material capitalises h5 by default, which collides with the h2 treatment. */
+  text-transform: none;
+}
+
+.md-typeset .headerlink {
+  color: var(--rh-foreground-disabled);
+}
+
+.md-typeset :target .headerlink,
+.md-typeset .headerlink:focus,
+.md-typeset :hover > .headerlink {
+  color: var(--rh-accent);
+}
+
+/* ------------------------------------------------------ blocks and code ---
+ *
+ * Everything raised above the backdrop is the same object: a flat surface, a 2px outline, square
+ * corners, and a 4px solid shadow down and to the right.
+ */
+
+.md-typeset pre > code,
+.md-typeset .highlight,
+.md-typeset .highlighttable {
+  border-radius: var(--rh-radius);
+}
+
+.md-typeset .highlight,
+.md-typeset pre.highlight {
+  /* The wrapper carries the surface as well as the `pre` inside it, or the page colour shows
+   * through the padding along the bottom edge and the block reads as unfinished. */
+  background-color: var(--rh-surface);
+  border: var(--rh-border-width) solid var(--rh-border);
+  box-shadow: var(--rh-shadow-offset) var(--rh-shadow-offset) 0 var(--rh-shadow);
+  /* The shadow is drawn outside the box, so the following block needs room for it. */
+  margin-bottom: calc(1em + var(--rh-shadow-offset));
+}
+
+/*
+ * Inline code deliberately does *not* take a palette colour.
+ *
+ * The yellow is the obvious choice and it is wrong here: the node reference is 315 rows with a
+ * code span in every one, and filling each turns the densest page on the site into a wall of
+ * highlighter. The yellow keeps its job on table headers and admonition strips — one band at a
+ * time. A quiet wash reads as a chip on the cream backdrop and on the white surfaces alike.
+ */
+.md-typeset code {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: var(--rh-radius);
+  color: var(--rh-foreground);
+}
+
+[data-md-color-scheme="slate"] .md-typeset code {
+  background-color: rgba(247, 247, 245, 0.09);
+}
+
+.md-typeset pre > code,
+.md-typeset .highlight code {
+  background-color: transparent;
+}
+
+.md-typeset .highlight > pre {
+  background-color: var(--rh-surface);
+}
+
+.md-code__button,
+.md-clipboard {
+  border-radius: var(--rh-radius);
+  color: var(--rh-foreground);
+}
+
+.md-code__button:hover,
+.md-clipboard:hover {
+  background-color: var(--rh-accent);
+  color: var(--rh-accent-foreground);
+}
+
+.md-typeset .md-code__nav {
+  background: transparent;
+}
+
+/* ---------------------------------------------------------- admonitions --- */
+
+/* The `[class]` is not decoration. Material colours each type's border with a selector one class
+ * more specific than a bare `.md-typeset .admonition`, so without it every note keeps its stock
+ * blue left edge. The attribute selector ties the specificity, and this stylesheet loads last. */
+.md-typeset .admonition[class],
+.md-typeset details[class] {
+  border-color: var(--rh-border);
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  background-color: var(--rh-surface);
+  border: var(--rh-border-width) solid var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow-offset) var(--rh-shadow-offset) 0 var(--rh-shadow);
+  font-size: 0.75rem;
+  margin-bottom: calc(1.5625em + var(--rh-shadow-offset));
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: var(--rh-surface-alt);
+  border: none;
+  border-bottom: var(--rh-border-width) solid var(--rh-border);
+  border-radius: 0;
+  color: var(--rh-foreground);
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  margin: 0;
+  padding: 0.5rem 0.6rem 0.5rem 2.2rem;
+  text-transform: uppercase;
+}
+
+/* Material draws the icon tile with ::before and a left rule with ::after. The rule goes: the
+ * outline is the whole structure here. */
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  background-color: var(--rh-foreground);
+  left: 0.7rem;
+  top: 0.55rem;
+}
+
+.md-typeset .admonition-title::after,
+.md-typeset summary::after {
+  color: var(--rh-foreground);
+}
+
+.md-typeset .admonition.note > .admonition-title,
+.md-typeset details.note > summary {
+  background-color: var(--rh-accent);
+}
+
+.md-typeset .admonition.tip > .admonition-title,
+.md-typeset details.tip > summary,
+.md-typeset .admonition.success > .admonition-title,
+.md-typeset details.success > summary {
+  background-color: var(--rh-success);
+}
+
+.md-typeset .admonition.warning > .admonition-title,
+.md-typeset details.warning > summary {
+  background-color: var(--rh-warning);
+}
+
+.md-typeset .admonition.danger > .admonition-title,
+.md-typeset details.danger > summary,
+.md-typeset .admonition.failure > .admonition-title,
+.md-typeset details.failure > summary,
+.md-typeset .admonition.bug > .admonition-title,
+.md-typeset details.bug > summary {
+  background-color: var(--rh-error);
+}
+
+/* Every strip carries black text, including on dark, because these are the light palette's fill
+ * colours in both modes and black is what reads on them. */
+.md-typeset .admonition.note > .admonition-title,
+.md-typeset details.note > summary,
+.md-typeset .admonition.tip > .admonition-title,
+.md-typeset details.tip > summary,
+.md-typeset .admonition.success > .admonition-title,
+.md-typeset details.success > summary,
+.md-typeset .admonition.warning > .admonition-title,
+.md-typeset details.warning > summary,
+.md-typeset .admonition.danger > .admonition-title,
+.md-typeset details.danger > summary,
+.md-typeset .admonition.failure > .admonition-title,
+.md-typeset details.failure > summary,
+.md-typeset .admonition.bug > .admonition-title,
+.md-typeset details.bug > summary {
+  color: #000000;
+}
+
+/* A code span inside a strip takes the strip's colour rather than the body's. Left alone it is
+ * white type on lime in the dark palette, which is the one combination in the whole set that
+ * cannot be read. This sits after the scheme-specific rule for `code` on purpose: same
+ * specificity, later wins. */
+.md-typeset .admonition-title code,
+.md-typeset summary code {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: inherit;
+}
+
+.md-typeset .admonition.note > .admonition-title::before,
+.md-typeset details.note > summary::before,
+.md-typeset .admonition.tip > .admonition-title::before,
+.md-typeset details.tip > summary::before,
+.md-typeset .admonition.success > .admonition-title::before,
+.md-typeset details.success > summary::before,
+.md-typeset .admonition.warning > .admonition-title::before,
+.md-typeset details.warning > summary::before,
+.md-typeset .admonition.danger > .admonition-title::before,
+.md-typeset details.danger > summary::before,
+.md-typeset .admonition.failure > .admonition-title::before,
+.md-typeset details.failure > summary::before,
+.md-typeset .admonition.bug > .admonition-title::before,
+.md-typeset details.bug > summary::before {
+  background-color: #000000;
+}
+
+.md-typeset .admonition.note > .admonition-title::after,
+.md-typeset details.note > summary::after,
+.md-typeset .admonition.warning > .admonition-title::after,
+.md-typeset details.warning > summary::after,
+.md-typeset .admonition.danger > .admonition-title::after,
+.md-typeset details.danger > summary::after {
+  color: #000000;
+}
+
+/* --------------------------------------------------------------- tables ---
+ *
+ * The node reference is one long run of these, so they carry most of the weight of the look.
+ */
+
+.md-typeset table:not([class]) {
+  background-color: var(--rh-surface);
+  border: var(--rh-border-width) solid var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow-offset) var(--rh-shadow-offset) 0 var(--rh-shadow);
+  margin-bottom: calc(1.25em + var(--rh-shadow-offset));
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--rh-surface-alt);
+  border-bottom: var(--rh-border-width) solid var(--rh-border);
+  color: var(--rh-foreground);
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  text-transform: uppercase;
+}
+
+.md-typeset table:not([class]) td {
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  vertical-align: top;
+}
+
+/* Material breaks long words inside a cell, which for a node name means splitting
+ * `SetParameterByNameTypeOrInstance` across two lines mid-chip. A cell may still wrap between
+ * chips; a chip may not wrap inside itself, because half an identifier is not an identifier. */
+.md-typeset table:not([class]) code {
+  white-space: nowrap;
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background-color: var(--md-accent-fg-color--transparent);
+}
+
+/* Several pages use a two-column table with no header as a layout. Filled and outlined, that empty
+ * row reads as a broken band across the top of the block, so a header with nothing in any of its
+ * cells is removed rather than styled. */
+.md-typeset table:not([class]) thead:not(:has(th:not(:empty))) {
+  display: none;
+}
+
+/* Where :has() is unavailable the row stays, so it at least matches the surface it sits on. */
+.md-typeset table:not([class]) th:empty {
+  background-color: var(--rh-surface);
+  border-bottom: none;
+  padding: 0;
+}
+
+/* ----------------------------------------------------------- quotations ---
+ * A bordered surface, but no shadow: a quotation is an aside, not a raised block. */
+
+.md-typeset blockquote {
+  background-color: var(--rh-surface);
+  border-left: var(--rh-shadow-offset) solid var(--rh-accent);
+  color: var(--rh-foreground-muted);
+  padding: 0.6rem 0.8rem;
+}
+
+/* ------------------------------------------------------------- controls ---
+ *
+ * An accent fill, a border in the *border* colour rather than the accent — a black outline around
+ * a hot pink button being the entire look — heavy text, and the hard shadow. Pressing removes the
+ * shadow and translates by the offset, so the surface drops onto where the shadow was.
+ */
+
+.md-typeset a.dyn-download,
+.md-typeset .md-button {
+  background-color: var(--rh-accent);
+  border: var(--rh-border-width) solid var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow-offset) var(--rh-shadow-offset) 0 var(--rh-shadow);
+  color: var(--rh-accent-foreground);
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: var(--rh-tracking);
+  margin-bottom: var(--rh-shadow-offset);
+  padding: 0.45em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: none;
+}
+
+.md-typeset a.dyn-download::before {
+  content: "↓ ";
+}
+
+.md-typeset a.dyn-download:focus,
+.md-typeset a.dyn-download:hover,
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+  background-color: var(--rh-accent-hover);
+  border-color: var(--rh-border);
+  color: var(--rh-accent-foreground);
+}
+
+.md-typeset a.dyn-download:active,
+.md-typeset .md-button:active {
+  box-shadow: none;
+  transform: translate(var(--rh-shadow-offset), var(--rh-shadow-offset));
+}
+
+.md-typeset .tabbed-set > input:checked + label {
+  border-bottom: var(--rh-shadow-offset) solid var(--rh-accent);
+  color: var(--rh-foreground);
+  font-weight: 700;
+}
+
+.md-typeset .tabbed-labels > label {
+  font-weight: 500;
+  letter-spacing: var(--rh-tracking);
+  text-transform: uppercase;
+}
+
+.md-typeset .tabbed-content {
+  border: var(--rh-border-width) solid var(--rh-border);
+  padding: 0.8rem;
+}
+
+/* --------------------------------------------------------------- images ---
+ *
+ * The example screenshots in docs/nodes are captures of a Dynamo canvas, with no frame of their
+ * own. They get the outline and the shadow so they sit on the page as blocks like everything else.
+ */
+
+.md-typeset img[src$="_img.png"],
+.md-typeset img[src$="_img.gif"],
+.md-typeset img[src*="/images/"] {
+  background-color: var(--rh-surface);
+  border: var(--rh-border-width) solid var(--rh-border);
+  box-shadow: var(--rh-shadow-offset) var(--rh-shadow-offset) 0 var(--rh-shadow);
+  margin-bottom: var(--rh-shadow-offset);
+}
+
+/* The logo on the home page carries the wordmark, and is grey artwork rather than a mask, so it
+ * gets neither. */
+.md-typeset img.rh-logo {
+  background: none;
+  border: none;
+  box-shadow: none;
+  max-width: 22rem;
+}
+
+/* ---------------------------------------------------------------- misc ---- */
+
+.md-typeset hr {
+  border-bottom: var(--rh-border-width) solid var(--rh-border);
+}
+
+.md-typeset kbd {
+  background-color: var(--rh-surface);
+  border: var(--rh-border-width) solid var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: 2px 2px 0 var(--rh-shadow);
+  color: var(--rh-foreground);
+}
+
+.md-typeset mark {
+  background-color: var(--rh-surface-alt);
+  color: var(--rh-foreground);
+}
+
+.md-typeset .footnote {
+  color: var(--rh-foreground-muted);
+}
+
+.md-footer {
+  border-top: 3px solid var(--rh-border);
+}
+
+.md-footer-meta {
+  border-top: var(--rh-border-width) solid rgba(255, 244, 224, 0.2);
+}
+
+[data-md-color-scheme="slate"] .md-footer-meta {
+  border-top-color: rgba(247, 247, 245, 0.15);
+}
+
+.md-footer__link:focus,
+.md-footer__link:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-decoration-color: var(--rh-accent);
+  text-decoration-thickness: var(--rh-border-width);
+  text-underline-offset: 3px;
+}
+
+/* Anything Material renders as a floating card gets the flat treatment. */
+.md-typeset .md-tooltip,
+.md-dialog {
+  background-color: var(--rh-surface);
+  border: var(--rh-border-width) solid var(--rh-border);
+  border-radius: var(--rh-radius);
+  box-shadow: var(--rh-shadow-offset) var(--rh-shadow-offset) 0 var(--rh-shadow);
+  color: var(--rh-foreground);
+}
+
+/* The press transform is the only motion added here; honour the OS setting. */
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset a.dyn-download:active,
+  .md-typeset .md-button:active {
+    transform: none;
+  }
+}
+
+/* On a narrow screen the offset shadows cost horizontal room that is not there. The outlines do
+ * the work on their own. */
+@media screen and (max-width: 44.9375em) {
+  :root {
+    --rh-shadow-offset: 3px;
+  }
+}

@@ -159,7 +159,13 @@ internal static class NodeDocs
 
         if (hasGraph)
         {
-            page.AppendLine("An example graph ships beside this page. Use the panel's insert button to open it.");
+            // The file is named as well as offered. Dynamo's own panel resolves the graph by name
+            // and shows an insert button, so the sentence is redundant there; on the documentation
+            // site there is no panel, and scripts/mkdocs_hooks.py turns this exact sentence into a
+            // download link. Matched rather than reformatted, so the generated file that CI checks
+            // byte-for-byte is never touched.
+            page.Append("An example graph ships beside this page as `").Append(fileName)
+                .AppendLine(".dyn`.");
             page.AppendLine();
         }
 

@@ -1,0 +1,86 @@
+name: docs
+
+# The documentation site. Independent of build.yml: it compiles nothing, touches no package, and
+# runs on Linux because MkDocs has no reason to care what Revit runs on.
+#
+# Note that this does *not* check whether the generated parts of docs/ are up to date — build.yml
+# already fails a pull request whose docs/nodes or docs/node-reference.md has drifted from the
+# assemblies, and doing it here as well would mean a second Windows build for no new information.
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'docs-requirements.txt'
+      - 'scripts/mkdocs_hooks.py'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'docs-requirements.txt'
+      - 'scripts/mkdocs_hooks.py'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Deploys are serialised and never cancelled halfway: a run replaced mid-upload leaves Pages
+# serving whichever half arrived. Builds on a branch are a different matter and may be cancelled
+# freely, so the two get different groups.
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: docs-requirements.txt
+
+      - name: Install MkDocs
+        run: pip install -r docs-requirements.txt
+
+      # --strict turns every warning into a failure: a link to a page that is not there, a heading
+      # anchor that no longer exists, a page missing from the nav. A documentation site that builds
+      # with warnings is one that quietly rots, and this is the whole reason the workflow runs on
+      # pull requests as well as on master.
+      - name: Build the site
+        run: mkdocs build --strict
+
+      - name: Upload the site
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    # Pull requests build but do not publish. Only master reaches the live site.
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write       # Deploy to Pages.
+      id-token: write    # Prove to Pages that the deployment came from this workflow.
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

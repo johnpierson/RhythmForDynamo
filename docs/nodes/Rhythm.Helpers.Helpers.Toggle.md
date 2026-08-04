@@ -16,6 +16,6 @@ Found in the library under **Actions**.
 ___
 ## Example File
 
-An example graph ships beside this page. Use the panel's insert button to open it.
+An example graph ships beside this page as `Rhythm.Helpers.Helpers.Toggle.dyn`.
 
 ![Helpers.Toggle](./Rhythm.Helpers.Helpers.Toggle_img.gif)

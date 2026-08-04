@@ -302,3 +302,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Documentation site. `site/` is what `mkdocs build` produces and is published from CI rather
+# than committed; `.venv-docs` is the local preview environment described in docs-requirements.txt.
+/site/
+.venv-docs/
+__pycache__/

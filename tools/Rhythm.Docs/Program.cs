@@ -9,6 +9,7 @@ using Rhythm.Docs;
 
 string assemblies = "deploy/2027";
 string output = "docs/nodes";
+string? reference = null;
 bool listEmpty = false;
 
 for (int i = 0; i < args.Length; i++)
@@ -23,12 +24,18 @@ for (int i = 0; i < args.Length; i++)
             output = args[++i];
             break;
 
+        case "--reference" when i + 1 < args.Length:
+            reference = args[++i];
+            break;
+
         case "--list-undocumented":
             listEmpty = true;
             break;
 
         case "--help" or "-h":
-            Console.WriteLine("usage: rhythm-docs [--assemblies <folder>] [--out <folder>] [--list-undocumented]");
+            Console.WriteLine(
+                "usage: rhythm-docs [--assemblies <folder>] [--out <folder>] [--reference <file>] " +
+                "[--list-undocumented]");
             return 0;
 
         default:
@@ -66,6 +73,7 @@ IReadOnlySet<string> overloaded = NodeDocs.Overloaded(nodes);
 Coverage coverage = new();
 HashSet<string> written = new(StringComparer.OrdinalIgnoreCase);
 List<string> ambiguous = new();
+Dictionary<Node, string> documented = new();
 
 foreach (Node node in nodes.OrderBy(node => node.QualifiedName, StringComparer.Ordinal)
     .ThenBy(node => string.Join(",", node.Parameters.Select(p => p.Type.DocId())), StringComparer.Ordinal))
@@ -85,6 +93,7 @@ foreach (Node node in nodes.OrderBy(node => node.QualifiedName, StringComparer.O
     Write(Path.Combine(output, fileName + ".md"), NodeDocs.Compose(node, docs, examples, fileName));
 
     coverage.Add(node, docs.For(node), fileName, examples);
+    documented[node] = fileName;
 }
 
 // A node withdrawn from the library stops being generated, but its file would sit here forever,
@@ -102,6 +111,22 @@ foreach (string stale in Directory.EnumerateFiles(output, "*.md")
 }
 
 Write(Path.Combine(output, "README.md"), Readme(coverage, examples, written, ambiguous));
+
+// The site's one page that shows the whole library. Written only when asked for, because the
+// package's doc/ folder has no use for it — Dynamo's browser would file it as a node called
+// "node-reference".
+if (reference is not null)
+{
+    string? folder = Path.GetDirectoryName(Path.GetFullPath(reference));
+
+    if (folder is not null)
+    {
+        Directory.CreateDirectory(folder);
+    }
+
+    Write(reference, NodeReference.Compose(documented.Keys, docs, documented));
+    Console.WriteLine($"wrote the node reference to {reference}");
+}
 
 Console.WriteLine($"wrote {written.Count} node help files to {output}" +
     (removed > 0 ? $" ({removed} stale removed)" : string.Empty));

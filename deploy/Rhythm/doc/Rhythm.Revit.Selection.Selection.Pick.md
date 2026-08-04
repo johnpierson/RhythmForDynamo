@@ -16,6 +16,6 @@ Returns `pickedElements` (_object_).
 ___
 ## Example File
 
-An example graph ships beside this page. Use the panel's insert button to open it.
+An example graph ships beside this page as `Rhythm.Revit.Selection.Selection.Pick.dyn`.
 
 ![Selection.Pick](./Rhythm.Revit.Selection.Selection.Pick_img.gif)

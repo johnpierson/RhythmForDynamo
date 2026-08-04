@@ -19,6 +19,11 @@
 .PARAMETER Output
     Where to write the help. docs/nodes by default.
 
+.PARAMETER Reference
+    Where to write the one page that lists the whole library. docs/node-reference.md by default,
+    which is the documentation site's reference page. Not part of the shipped package: Dynamo's
+    browser matches files to nodes by name and would file it as a node called "node-reference".
+
 .PARAMETER ListUndocumented
     Also print every node whose page carries nothing but its signature.
 
@@ -31,6 +36,7 @@
 param(
     [string] $Assemblies,
     [string] $Output,
+    [string] $Reference,
     [switch] $ListUndocumented
 )
 
@@ -41,11 +47,13 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 
 if (-not $Assemblies) { $Assemblies = Join-Path $repoRoot 'deploy/2027' }
 if (-not $Output) { $Output = Join-Path $repoRoot 'docs/nodes' }
+if (-not $Reference) { $Reference = Join-Path $repoRoot 'docs/node-reference.md' }
 
 $arguments = @(
     'run', '--project', (Join-Path $repoRoot 'tools/Rhythm.Docs'), '-v', 'quiet', '--'
     '--assemblies', $Assemblies
     '--out', $Output
+    '--reference', $Reference
 )
 
 if ($ListUndocumented) { $arguments += '--list-undocumented' }
