@@ -1,0 +1,121 @@
+{
+  "Uuid": "3809f56d-59bd-4d09-877f-63dec59f11ed",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Modify.MOcKtExt-Example",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.String.Modify.MOcKtExt@string",
+      "Id": "08b851aabf004640be810b6afcafcc5c",
+      "Inputs": [
+        {
+          "Id": "386f328e36dc419d8fed5c1bb6f0f6c5",
+          "Name": "str",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "364274f240834ea09e1319e1e7d51287",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This generates a \"mocking text\" case. Just for fun. 😀\n\nModify.MOcKtExt (str: string): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"hello from dynamo this is a sentence\";",
+      "Id": "b383341fbef1426389de9fbfa781098e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cba37afc579f450da86f05df1860e4c1",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "cba37afc579f450da86f05df1860e4c1",
+      "End": "386f328e36dc419d8fed5c1bb6f0f6c5",
+      "Id": "db4f1978f2e2460993661490047cd9b7"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.9.0.3137",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Modify.MOcKtExt",
+        "Id": "08b851aabf004640be810b6afcafcc5c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 812.9117491838573,
+        "Y": 467.80174390636893
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "b383341fbef1426389de9fbfa781098e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 427.01056898798322,
+        "Y": 360.53822442870023
+      }
+    ],
+    "Annotations": [],
+    "X": -398.25771108400818,
+    "Y": -328.48868404315147,
+    "Zoom": 1.545620359375
+  }
+}

@@ -109,6 +109,18 @@ These cover the Revit-independent nodes, and run against the built `RhythmCore.d
 
 So a change is not shipped when it is merged; it is shipped when CI has rebuilt `deploy/` from it. Local builds also write into `deploy/`, so **discard those changes rather than committing them** (`git checkout -- deploy/`) and let CI produce the binaries — hand-built assemblies drifting from source is a mistake this project has made before.
 
+## Node help
+Every node ships with a help page that Dynamo shows in the panel beside the graph — right-click a node and choose *Help*.
+
+Those pages are generated from the assemblies and from the `<summary>`, `<param>` and `<returns>` comments above each node in `src/`, so they cannot drift from the nodes they describe. To improve a page, improve the comment and regenerate:
+
+```powershell
+./scripts/generate-docs.ps1   # writes docs/nodes
+./scripts/pack-docs.ps1       # copies it to deploy/Rhythm/doc, where Dynamo reads it
+```
+
+The build fails on a pull request whose generated help has drifted from the source, so run both before pushing. [docs/nodes/README.md](docs/nodes/README.md) explains the layout and records how much of the help is actually written — including which nodes still have no description at all, if you are looking for somewhere to start.
+
 ## Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/johnpierson/RhythmForDynamo/pulls).
 

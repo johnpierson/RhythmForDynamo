@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    DEV ONLY. Never shipped, never copied into the Dynamo package.
+
+    Reads the assemblies already sitting in deploy/ and writes one Markdown help file per node
+    into docs/nodes. Deliberately not part of any Rhythm solution: it targets a modern runtime and
+    must never be dragged into the Revit build matrix.
+  -->
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>rhythm-docs</AssemblyName>
+    <RootNamespace>Rhythm.Docs</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!--
+    No package references at all, and that is the point.
+
+    RhythmRevit.dll references the Revit API, RhythmUI.dll references half of Dynamo, and neither
+    can be loaded with Assembly.LoadFrom without a matching Revit installation. Reading the
+    metadata tables directly with System.Reflection.Metadata - which ships in the runtime - never
+    resolves a referenced assembly, so this runs on a bare CI agent with no Revit and no Dynamo.
+  -->
+
+</Project>
