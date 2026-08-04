@@ -1040,6 +1040,26 @@
              IntersectingElements
             </search>
         </member>
+        <member name="F:Rhythm.Revit.Elements.Elements.MaximumParameterNameDistance">
+            <summary>
+            The largest edit distance still treated as "the user meant this parameter". Four is
+            roughly a typo or two in a realistic parameter name.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Elements.Elements.ResolveParameterName(Revit.Elements.Parameter[],System.String)">
+            <summary>
+            Resolves a user-typed parameter name against the element's parameters: an exact
+            case-insensitive match if there is one, otherwise the nearest name within
+            <see cref="F:Rhythm.Revit.Elements.Elements.MaximumParameterNameDistance"/>.
+            </summary>
+            <remarks>
+            The match used to be unconditional - whichever parameter scored lowest was used, however
+            unlike it was. Asking for a parameter the element does not have therefore returned some
+            arbitrary other parameter's value, and the setter WROTE the user's value into it. A
+            wrong answer is worse than an error, so out-of-range matches now throw and name the
+            candidates they considered.
+            </remarks>
+        </member>
         <member name="M:Rhythm.Revit.Elements.Elements.GetParameterValueByNameCaSeiNSeNSiTiVe(Revit.Elements.Element,System.String)">
             <summary>
             This node will get a parameter value by search string, regardless of case of the search string. Also accounts for misspellings.
@@ -2335,6 +2355,24 @@
             Wrapper class for animators
             </summary>
         </member>
+        <member name="M:Rhythm.Revit.Tools.Element.GetSolidFillPatternId(Autodesk.Revit.DB.Document)">
+            <summary>
+            Finds the solid fill pattern by asking the patterns themselves, rather than by matching
+            the English display name "solid fill" - which does not exist on a localised Revit, and
+            which a user is free to rename.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Element.BuildFramePath(System.String,System.Int32)">
+            <summary>
+            Builds the path for one exported frame.
+            </summary>
+            <remarks>
+            The frame number used to be concatenated straight onto the directory path, so a
+            directoryPath of "C:\Exports" wrote C:\Exports0.png, C:\Exports1.png ... beside the
+            folder rather than inside it. Numbers are zero-padded so that frames sort in order
+            lexicographically, which is what video assembly tools expect.
+            </remarks>
+        </member>
         <member name="M:Rhythm.Revit.Tools.Element.AnimateNumericParameter(System.Collections.Generic.List{Revit.Elements.Element},System.String,System.Double,System.Double,System.Int32,System.String)">
             <summary>
             Animate a numeric parameter of an element. This will export images of the parameter, then revert the element back to where it was. Also adds text to comments to prevent infinite loops.Clear this comment for subsequent runs.
@@ -2388,9 +2426,15 @@
             Wrapper class for batchers.
             </summary>
         </member>
+        <member name="M:Rhythm.Revit.Tools.Batch.IsRevitBackupFile(System.String)">
+            <summary>
+            Revit writes backups alongside the original as "Door.0001.rfa", "Door.0002.rfa" and so
+            on. They are not families to upgrade, and pre-existing ones are not ours to delete.
+            </summary>
+        </member>
         <member name="M:Rhythm.Revit.Tools.Batch.UpgradeFamilies(System.String,System.String)">
             <summary>
-            This tool with batch upgrade all the Revit families in a directory and delete the backup files that are generated.
+            This tool will batch upgrade all the Revit families in a directory, and delete the backup files that this run generates. Backup files that already existed are left alone.
             </summary>
             <param name="directoryPath">The directory to read for ALL families. Including subdirectories.</param>
             <param name="suffix">Optional suffix to save the files as. Useful for read-only files.</param>
@@ -2934,132 +2978,6 @@
             </summary>
             <param name="failuresAccessor"></param>
             <returns></returns>
-        </member>
-        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker">
-            <summary>Packer using a custom algorithm by Markus 'Cygon' Ewald</summary>
-            <remarks>
-              <para>
-                Algorithm conceived by Markus Ewald (cygon at nuclex dot org), though
-                I'm quite sure I'm not the first one to come up with it :)
-              </para>
-              <para>
-                The algorithm always places rectangles as low as possible in the packing
-                area. So, for any new rectangle that is to be added, the packer has to
-                determine the X coordinate at which the rectangle can have the lowest
-                overall height without intersecting any other rectangles.
-              </para>
-              <para>
-                To quickly discover these locations, the packer uses a sophisticated
-                data structure that stores the upper silhouette of the packing area. When
-                a new rectangle needs to be added, only the silouette edges need to be
-                analyzed to find the position where the rectangle would achieve the lowest
-                placement possible in the packing area.
-              </para>
-            </remarks>
-        </member>
-        <member name="T:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer">
-            <summary>Compares the starting position of height slices</summary>
-        </member>
-        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Default">
-            <summary>Provides a default instance for the anchor rank comparer</summary>
-        </member>
-        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.SliceStartComparer.Compare(Autodesk.DesignScript.Geometry.UV,Autodesk.DesignScript.Geometry.UV)">
-            <summary>Compares the starting position of two height slices</summary>
-            <param name="left">Left slice start that will be compared</param>
-            <param name="right">Right slice start that will be compared</param>
-            <returns>The relation of the two slice starts ranks to each other</returns>
-        </member>
-        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.#ctor(System.Double,System.Double)">
-            <summary>Initializes a new rectangle packer</summary>
-            <param name="packingAreaWidth">Maximum width of the packing area</param>
-            <param name="packingAreaHeight">Maximum height of the packing area</param>
-        </member>
-        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.TryPack(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
-            <summary>Tries to allocate space for a rectangle in the packing area</summary>
-            <param name="rectangleWidth">Width of the rectangle to allocate</param>
-            <param name="rectangleHeight">Height of the rectangle to allocate</param>
-            <param name="placement">Output parameter receiving the rectangle's placement</param>
-            <returns>True if space for the rectangle could be allocated</returns>
-        </member>
-        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.tryFindBestPlacement(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
-            <summary>Finds the best position for a rectangle of the given dimensions</summary>
-            <param name="rectangleWidth">Width of the rectangle to find a position for</param>
-            <param name="rectangleHeight">Height of the rectangle to find a position for</param>
-            <param name="placement">Receives the best placement found for the rectangle</param>
-            <returns>True if a valid placement for the rectangle could be found</returns>
-        </member>
-        <member name="M:Nuclex.Game.Packing.CygonRectanglePacker.integrateRectangle(System.Double,System.Double,System.Double)">
-            <summary>Integrates a new rectangle into the height slice table</summary>
-            <param name="left">Position of the rectangle's left side</param>
-            <param name="width">Width of the rectangle</param>
-            <param name="bottom">Position of the rectangle's lower side</param>
-        </member>
-        <member name="F:Nuclex.Game.Packing.CygonRectanglePacker.heightSlices">
-            <summary>Stores the height silhouette of the rectangles</summary>
-        </member>
-        <member name="T:Nuclex.Game.Packing.OutOfSpaceException">
-            <summary>Insufficient space left in packing area to contain a given object</summary>
-            <remarks>
-              An exception being sent to you from deep space. Erm, no, wait, it's an exception
-              that occurs when a packing algorithm runs out of space and is unable to fit
-              the object you tried to pack into the remaining packing area.
-            </remarks>
-        </member>
-        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor">
-            <summary>Initializes the exception</summary>
-        </member>
-        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String)">
-            <summary>Initializes the exception with an error message</summary>
-            <param name="message">Error message describing the cause of the exception</param>
-        </member>
-        <member name="M:Nuclex.Game.Packing.OutOfSpaceException.#ctor(System.String,System.Exception)">
-            <summary>Initializes the exception as a followup exception</summary>
-            <param name="message">Error message describing the cause of the exception</param>
-            <param name="inner">Preceding exception that has caused this exception</param>
-        </member>
-        <member name="T:Nuclex.Game.Packing.RectanglePacker">
-            <summary>Base class for rectangle packing algorithms</summary>
-            <remarks>
-              <para>
-                By uniting all rectangle packers under this common base class, you can
-                easily switch between different algorithms to find the most efficient or
-                performant one for a given job.
-              </para>
-              <para>
-                An almost exhaustive list of packing algorithms can be found here:
-                http://www.csc.liv.ac.uk/~epa/surveyhtml.html
-              </para>
-            </remarks>
-        </member>
-        <member name="M:Nuclex.Game.Packing.RectanglePacker.#ctor(System.Double,System.Double)">
-            <summary>Initializes a new rectangle packer</summary>
-            <param name="packingAreaWidth">Width of the packing area</param>
-            <param name="packingAreaHeight">Height of the packing area</param>
-        </member>
-        <member name="M:Nuclex.Game.Packing.RectanglePacker.Pack(System.Double,System.Double)">
-            <summary>Allocates space for a rectangle in the packing area</summary>
-            <param name="rectangleWidth">Width of the rectangle to allocate</param>
-            <param name="rectangleHeight">Height of the rectangle to allocate</param>
-            <returns>The location at which the rectangle has been placed</returns>
-        </member>
-        <member name="M:Nuclex.Game.Packing.RectanglePacker.TryPack(System.Double,System.Double,Autodesk.DesignScript.Geometry.UV@)">
-            <summary>Tries to allocate space for a rectangle in the packing area</summary>
-            <param name="rectangleWidth">Width of the rectangle to allocate</param>
-            <param name="rectangleHeight">Height of the rectangle to allocate</param>
-            <param name="placement">Output parameter receiving the rectangle's placement</param>
-            <returns>True if space for the rectangle could be allocated</returns>
-        </member>
-        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaWidth">
-            <summary>Maximum width the packing area is allowed to have</summary>
-        </member>
-        <member name="P:Nuclex.Game.Packing.RectanglePacker.PackingAreaHeight">
-            <summary>Maximum height the packing area is allowed to have</summary>
-        </member>
-        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaWidth">
-            <summary>Maximum allowed width of the packing area</summary>
-        </member>
-        <member name="F:Nuclex.Game.Packing.RectanglePacker.packingAreaHeight">
-            <summary>Maximum allowed height of the packing area</summary>
         </member>
     </members>
 </doc>

@@ -107,6 +107,23 @@
             <param name="seed">Random seed for reproducible results (default: uses time-based seed)</param>
             <returns>A PolyCurve created from randomly distributed points</returns>
         </member>
+        <member name="M:Rhythm.Geometry.Polygon.ComputeInscribedCircle(System.Double[][][])">
+             <summary>
+             Returns the centre and radius of the largest circle this routine can place inside the
+             outline, as { x, y, radius }.
+             </summary>
+             <remarks>
+             Split out from <see cref="M:Rhythm.Geometry.Polygon.MinimumCircle(Autodesk.DesignScript.Geometry.Polygon)"/> so the arithmetic can be tested without
+             ProtoGeometry: only the final Circle construction needs the geometry libraries, and a
+             test that cannot run in CI does not protect anything.
+            
+             The centroid is the preferred centre, but for a concave outline - an L shape, say - the
+             centroid can fall outside the polygon entirely, and GetCentroidCell reports a signed
+             distance that is negative when it does. Those polygons are perfectly valid input, so
+             rather than reject them the routine falls back to the pole of inaccessibility, which is
+             by construction the interior point furthest from the outline.
+             </remarks>
+        </member>
         <member name="T:Rhythm.Geometry.Vector">
             <summary>
             Wrapper class for vectors.
@@ -351,6 +368,13 @@
             <param name="precision"></param>
             <param name="debug"></param>
             <returns></returns>
+        </member>
+        <member name="M:Rhythm.Polylabel.Polylabel.GetDistanceCell(System.Double,System.Double,System.Double[][][])">
+            <summary>
+            Builds a zero-size cell at the given point, whose D is the signed distance from that
+            point to the outline. Used to recover the inscribed radius at a point that
+            <see cref="M:Rhythm.Polylabel.Polylabel.GetPolylabel(System.Double[][][],System.Double,System.Boolean)"/> returned, since that method reports only the coordinates.
+            </summary>
         </member>
         <member name="T:Rhythm.String.Inspect">
             <summary>
