@@ -8,9 +8,16 @@ namespace RhythmUI.Utilities
 	{
 
     /// <summary>
-    /// 
+    /// Composable selection filters over ISelectionFilter.
     /// </summary>
-	public static class SelFilter
+    /// <remarks>
+    /// Internal on purpose. Every public static method in a Dynamo node library becomes a node, so
+    /// as a public class this leaked around twenty-five entries into the library search whose
+    /// inputs and outputs are raw Revit API types (ISelectionFilter, ElementFilter, Type, XYZ) that
+    /// a graph has no way to construct - unusable nodes that still generated documentation pages.
+    /// The combinator design is sound; it is a helper for the selection nodes, not an API surface.
+    /// </remarks>
+	internal static class SelFilter
 		{
 
 		//

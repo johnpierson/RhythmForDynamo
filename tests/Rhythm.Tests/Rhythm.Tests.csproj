@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Characterization and regression tests for the parts of Rhythm that do not need Revit.
+
+    This project is deliberately NOT in any of the shipping solutions: adding it there would put a
+    test framework into the dependency graph of the node libraries, which is how NUnit ended up as
+    a PackageReference of RhythmCore in the first place. Run it on its own:
+
+        dotnet test tests/Rhythm.Tests/Rhythm.Tests.csproj
+
+    It tests the built RhythmCore.dll rather than recompiling the sources, so what is asserted is
+    what actually ships. Build RhythmCore "Release R24" first.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>Rhythm.Tests</AssemblyName>
+    <RootNamespace>Rhythm.Tests</RootNamespace>
+    <NoWarn>MSB3277</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+    <!--
+      ProtoGeometry, for the geometry node tests. Pinned to the same Dynamo baseline that
+      RhythmCore's "Release R24" configuration compiles against, so the test assembly and the
+      assembly under test agree about the geometry types they pass to each other.
+    -->
+    <PackageReference Include="DynamoVisualProgramming.ZeroTouchLibrary" Version="2.17.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RhythmCore">
+      <HintPath>..\..\src\RhythmCore\bin\Release R24\RhythmCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

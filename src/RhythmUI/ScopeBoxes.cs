@@ -60,7 +60,7 @@ namespace RhythmUI
                     AstFactory.BuildIntNode(((Element)Items[SelectedIndex].Item).Id.Value)
 #endif
 #if !R26_OR_GREATER
-                    AstFactory.BuildIntNode(((RoofType)Items[SelectedIndex].Item).Id.IntegerValue)
+                    AstFactory.BuildIntNode(((Element)Items[SelectedIndex].Item).Id.IntegerValue)
 #endif
                 });
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };

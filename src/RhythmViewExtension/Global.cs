@@ -8,8 +8,13 @@ namespace RhythmViewExtension
     {
         internal static Assembly ExecutingAssembly = System.Reflection.Assembly.GetExecutingAssembly();
         internal static string PackageBinFolder => Path.GetDirectoryName(ExecutingAssembly.Location);
-        internal static string PackageExtraFolder => PackageBinFolder.Replace("bin", "extra");
-        internal static string PackageRoot => PackageBinFolder.Replace("bin", "");
+
+        // These used to be PackageBinFolder.Replace("bin", ...), which replaces *every* occurrence
+        // of "bin" in the path. The package lives under the user profile, so a user named Robin or
+        // Sabina had their install path silently rewritten (C:\Users\robin\... -> C:\Users\ro\...)
+        // and every pkg.json read and write went to a directory that does not exist.
+        internal static string PackageRoot => Path.GetDirectoryName(PackageBinFolder);
+        internal static string PackageExtraFolder => Path.Combine(PackageRoot, "extra");
         internal static string PackageJson => Path.Combine(PackageRoot, "pkg.json");
         internal static string RhythmCoreDll => Path.Combine(PackageBinFolder, "RhythmCore.dll");
         internal static string RhythmCoreXml => Path.Combine(PackageBinFolder, "RhythmCore.xml");

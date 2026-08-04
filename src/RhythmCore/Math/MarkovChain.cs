@@ -24,12 +24,34 @@ namespace Rhythm.Math
         {
             var chain = new MarkovChain<string>(1);
             chain.Add(trainingData);
-            var list = chain.Chain(new List<string> { previous }).First();
+
+            // GetNextStates returns each candidate successor with the weight the training data gave
+            // it, which is what "likely next" means. The previous implementation called Chain(),
+            // a weighted random *walk* that returns a sequence of words; taking .First() of it gave
+            // one randomly chosen word, and indexing that string yielded its first character - so
+            // likelyNext was a char and otherOptions was the rest of that word's letters. Chain()
+            // also returns an empty sequence for a token that never appears, or appears only as the
+            // final token, so .First() threw on ordinary inputs.
+            var nextStates = chain.GetNextStates(new List<string> { previous });
+
+            if (nextStates == null || nextStates.Count == 0)
+            {
+                return new Dictionary<string, object>
+                {
+                    { "likelyNext", null },
+                    { "otherOptions", new List<object>() }
+                };
+            }
+
+            var ranked = nextStates.OrderByDescending(state => state.Value)
+                                   .ThenBy(state => state.Key)
+                                   .Select(state => state.Key)
+                                   .ToList();
 
             return new Dictionary<string, object>
             {
-                { "likelyNext", list[0] },
-                { "otherOptions", list.Cast<object>().Skip(1).ToList() }
+                { "likelyNext", ranked[0] },
+                { "otherOptions", ranked.Skip(1).Cast<object>().ToList() }
             };
         }
     }

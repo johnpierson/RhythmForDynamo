@@ -26,7 +26,19 @@ namespace Rhythm.Revit.Elements
             Autodesk.Revit.DB.RevitLinkType internalLinkType =
                 revitLinkType.InternalElement as Autodesk.Revit.DB.RevitLinkType;
 
-            ModelPath mPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(path.Replace(Char.Parse("//"),'/'));
+            if (internalLinkType == null)
+            {
+                throw new ArgumentException("The provided element is not a Revit link type.", nameof(revitLinkType));
+            }
+
+            // The path is passed through untouched. The original called Char.Parse("//"), which
+            // requires a string of length one and so threw FormatException on every call, before
+            // the link was ever reached - the node has never worked, so there is no separator
+            // normalisation to preserve here. Nor should there be: ConvertUserVisiblePathToModelPath
+            // accepts user-visible server and cloud paths such as RSN://server/folder/model.rvt,
+            // and collapsing "//" would rewrite that scheme delimiter to RSN:/ and break the very
+            // paths the node exists to reload from.
+            ModelPath mPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(path);
             TransactionManager.Instance.ForceCloseTransaction();
           
             LinkLoadResult  loadResult = internalLinkType.LoadFrom(mPath, new WorksetConfiguration());

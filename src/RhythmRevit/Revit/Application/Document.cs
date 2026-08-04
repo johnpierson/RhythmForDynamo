@@ -282,18 +282,23 @@ namespace Rhythm.Revit.Application
             {
                 try
                 {
-#if Revit2020 || Revit2021 || Revit2022 || Revit2023
+                    //These branches were guarded by "Revit2020"/"Revit2024" - symbols this repo has
+                    //never defined; the constants are R20..R27 and R2x_OR_GREATER. Both blocks
+                    //therefore compiled to nothing in all sixteen configurations, so the
+                    //previewViewId the user supplied was accepted and silently discarded. The R24
+                    //branch also ignored that input in favour of a hardcoded category id.
+#if R20 || R21 || R22 || R23
                     opts.PreviewViewId = new ElementId(previewViewId);
 #endif
 
-#if Revit2024
-                    opts.PreviewViewId = new ElementId(System.Convert.ToInt64(-2000480));
+#if R24_OR_GREATER
+                    opts.PreviewViewId = new ElementId(System.Convert.ToInt64(previewViewId));
 #endif
-                    
+
                 }
                 catch (Exception)
                 {
-                    //suppress
+                    //A view id that is not a valid preview source is not worth failing the save for.
                 }
             }
 

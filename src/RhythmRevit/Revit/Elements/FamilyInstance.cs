@@ -229,10 +229,32 @@ namespace Rhythm.Revit.Elements
             //convert the room to an Autodesk.Revit.DB representation
             Autodesk.Revit.DB.Architecture.Room internalRoom = (Autodesk.Revit.DB.Architecture.Room)room.InternalElement;
             string name = internalRoom.Name;
-            //we close all of the families because we need to swap documents
-            foreach (Autodesk.Revit.DB.Document d in uiapp.Application.Documents)
+            //We need no other family document open in order to swap documents below. Closing them
+            //with Close(false) discards unsaved changes without prompting, so refuse to run rather
+            //than silently destroy work the user has open in the family editor. Snapshot the set
+            //first: closing a document removes it from the live DocumentSet being enumerated.
+            var openFamilyDocuments = uiapp.Application.Documents
+                .Cast<Autodesk.Revit.DB.Document>()
+                .Where(d => d.IsFamilyDocument)
+                .ToList();
+
+            var unsavedFamilyDocuments = openFamilyDocuments
+                .Where(d => d.IsModified)
+                .Select(d => d.Title)
+                .ToList();
+
+            if (unsavedFamilyDocuments.Any())
             {
-                if (d.IsFamilyDocument)
+                throw new InvalidOperationException(
+                    "This node has to close every open family document, and these have unsaved changes that would be lost: "
+                    + string.Join(", ", unsavedFamilyDocuments)
+                    + ". Save or close them yourself, then run the graph again.");
+            }
+
+            foreach (var d in openFamilyDocuments)
+            {
+                //The active document cannot be closed; Revit throws rather than closing it.
+                if (!d.Equals(uiapp.ActiveUIDocument?.Document))
                 {
                     d.Close(false);
                 }

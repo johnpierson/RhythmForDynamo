@@ -7,6 +7,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+# Debug launch profiles point at one developer's local Dynamo/Revit install.
+launchSettings.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

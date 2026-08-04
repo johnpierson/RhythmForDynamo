@@ -165,6 +165,56 @@ namespace Rhythm.Revit.Elements
         }
 
         /// <summary>
+        /// The largest edit distance still treated as "the user meant this parameter". Four is
+        /// roughly a typo or two in a realistic parameter name.
+        /// </summary>
+        private const int MaximumParameterNameDistance = 4;
+
+        /// <summary>
+        /// Resolves a user-typed parameter name against the element's parameters: an exact
+        /// case-insensitive match if there is one, otherwise the nearest name within
+        /// <see cref="MaximumParameterNameDistance"/>.
+        /// </summary>
+        /// <remarks>
+        /// The match used to be unconditional - whichever parameter scored lowest was used, however
+        /// unlike it was. Asking for a parameter the element does not have therefore returned some
+        /// arbitrary other parameter's value, and the setter WROTE the user's value into it. A
+        /// wrong answer is worse than an error, so out-of-range matches now throw and name the
+        /// candidates they considered.
+        /// </remarks>
+        [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
+        private static string ResolveParameterName(global::Revit.Elements.Parameter[] elementParams, string parameterName)
+        {
+            if (elementParams == null || elementParams.Length == 0)
+            {
+                throw new ArgumentException("This element has no parameters to match against.", nameof(parameterName));
+            }
+
+            var exact = elementParams.FirstOrDefault(
+                p => string.Equals(p.Name, parameterName, StringComparison.OrdinalIgnoreCase));
+            if (exact != null)
+            {
+                return exact.Name;
+            }
+
+            var scored = elementParams
+                .Select(p => new { p.Name, Distance = StringComparisonUtilities.Compute(parameterName, p.Name) })
+                .OrderBy(x => x.Distance)
+                .ToList();
+
+            var best = scored.First();
+            if (best.Distance > MaximumParameterNameDistance)
+            {
+                var closest = string.Join(", ", scored.Take(5).Select(x => x.Name));
+                throw new ArgumentException(
+                    $"No parameter on this element resembles \"{parameterName}\". The closest are: {closest}.",
+                    nameof(parameterName));
+            }
+
+            return best.Name;
+        }
+
+        /// <summary>
         /// This node will get a parameter value by search string, regardless of case of the search string. Also accounts for misspellings.
         /// Note: If the parameter name appears multiple times it will retrieve the first one that it finds.
         /// </summary>
@@ -183,17 +233,7 @@ namespace Rhythm.Revit.Elements
 
             global::Revit.Elements.Parameter[] elementParams = element.Parameters;
 
-            string paramToSet;
-            //score of each match list
-            List<int> values = new List<int>();
-            //score the match in the parameter list
-            foreach (var param in elementParams)
-            {
-                values.Add(StringComparisonUtilities.Compute(parameterName, param.Name));
-            }
-            //get the closest matching parameter name
-            int minIndex = values.IndexOf(values.Min());
-            paramToSet = elementParams[minIndex].Name;
+            string paramToSet = ResolveParameterName(elementParams, parameterName);
             //lookup and get the parameter value
             var result = internalElement.LookupParameter(paramToSet);
             var parameterValue = global::Revit.Elements.InternalUtilities.ElementUtils.GetParameterValue(result);
@@ -222,17 +262,7 @@ namespace Rhythm.Revit.Elements
             //create a list to hold the element ids and add them to it
             global::Revit.Elements.Parameter[] elementParams = element.Parameters;
 
-            string paramToSet;
-            //score of each match list
-            List<int> values = new List<int>();
-            //score the match in the parameter list
-            foreach (var param in elementParams)
-            {
-                values.Add(StringComparisonUtilities.Compute(parameterName, param.Name));
-            }
-            //get the closest matching parameter name
-            int minIndex = values.IndexOf(values.Min());
-            paramToSet = elementParams[minIndex].Name;
+            string paramToSet = ResolveParameterName(elementParams, parameterName);
 
             //Convert to a usable value
             var dynval = value as dynamic;

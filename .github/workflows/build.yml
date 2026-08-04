@@ -11,6 +11,14 @@ on:
       - master
   workflow_dispatch:
 
+# Two pushes to master in quick succession used to start two full builds. The first to finish
+# pushed its deploy commit; the second then failed to push (non-fast-forward) and threw away the
+# binaries it had just built. Serialising the branch avoids the race; cancel-in-progress is false
+# because a half-finished run must not leave deploy/ partially updated.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: windows-latest
@@ -25,14 +33,24 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
+      # Revit 2025/2026 build net8.0-windows and Revit 2027 builds net10.0-windows. Only 8.0.x
+      # was pinned before, so the .NET 10 build silently depended on whatever the runner image
+      # happened to preinstall - a runner update could have broken R27 with no change in this repo.
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: |
+            8.0.x
+            10.0.x
 
-      - name: Authenticate GitHub Packages NuGet source
+      # The private feed is not in the committed NuGet.Config: GitHub Packages answers 401 rather
+      # than 404 to unauthenticated callers, and NuGet treats a 401 from any configured source as
+      # fatal, which made every configuration unrestorable for contributors without a token. It is
+      # added here, with credentials, because Revit 2026/2027 need DynamoVisualProgramming.Revit
+      # versions that nuget.org does not carry. See the comment in NuGet.Config.
+      - name: Add authenticated GitHub Packages NuGet source
         run: |
-          dotnet nuget update source johnpierson-github --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
+          dotnet nuget add source https://nuget.pkg.github.com/johnpierson/index.json --name johnpierson-github --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
 
       - name: Setup MSBuild for .NET Framework
         uses: microsoft/setup-msbuild@v1.3
@@ -119,6 +137,32 @@ jobs:
         run: |
           msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R27" /p:Platform="Any CPU" /t:Restore,Build /p:Version="2027.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="2027.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="2027.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit2027" /p:Description="Rhythm for Dynamo|Revit2027" /p:Product="Rhythm for Dynamo|Revit2027"
 
+      # RhythmUI must be built AFTER RhythmRevit for the matching year: it references
+      # deploy/<year>/RhythmRevit.dll, which the RhythmRevit step above has just refreshed.
+      - name: Build RhythmUI - all Revit versions
+        run: |
+          foreach ($year in @(2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027)) {
+            $cfg = "Release R" + $year.ToString().Substring(2)
+            Write-Host "Building RhythmUI $cfg" -ForegroundColor Cyan
+            msbuild src/RhythmUI/RhythmUI.sln /p:Configuration="$cfg" /p:Platform="Any CPU" /t:Restore,Build /p:Version="$year.$env:REVIT_VERSION_SUFFIX" /p:AssemblyVersion="$year.$env:REVIT_VERSION_SUFFIX" /p:FileVersion="$year.$env:REVIT_VERSION_SUFFIX" /p:Title="Rhythm for Dynamo|Revit UI$year" /p:Description="Rhythm for Dynamo|Revit UI$year" /p:Product="Rhythm for Dynamo|Revit UI$year"
+            if ($LASTEXITCODE -ne 0) { throw "RhythmUI $cfg failed" }
+          }
+
+      # The view extension is the package's entry point - it is what downloads every other
+      # assembly at runtime - yet it was never built here, so deploy/RhythmViewExtension.dll was
+      # hand-built and drifted from source. Building it in CI is what keeps the two in step.
+      - name: Build RhythmViewExtension
+        run: |
+          msbuild src/RhythmViewExtension/RhythmViewExtension.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
+          if ($LASTEXITCODE -ne 0) { throw "RhythmViewExtension failed" }
+
+      # Regression tests for the Revit-independent nodes. They run against the RhythmCore that the
+      # "Release R24" step above just produced, so what is asserted is what ships.
+      - name: Run tests
+        run: |
+          dotnet test tests/Rhythm.Tests/Rhythm.Tests.csproj --nologo --verbosity minimal
+          if ($LASTEXITCODE -ne 0) { throw "tests failed" }
+
       - name: Verify deploy folder structure
         run: |
           Write-Host "Verifying deploy folder structure..."
@@ -160,6 +204,25 @@ jobs:
             }
           }
           
+          # RhythmUI ships in every per-year folder and is downloaded at runtime like the others,
+          # so a missing one is just as breaking as a missing RhythmCore.
+          foreach ($version in $rhythmCoreVersions) {
+            $dllPath = Join-Path $deployPath $version "RhythmUI.dll"
+            if (-not (Test-Path $dllPath)) {
+              Write-Host "ERROR: Missing $dllPath" -ForegroundColor Red
+              $allValid = $false
+            } else {
+              Write-Host "✓ Found $dllPath" -ForegroundColor Green
+            }
+          }
+
+          if (-not (Test-Path (Join-Path $deployPath "RhythmViewExtension.dll"))) {
+            Write-Host "ERROR: Missing deploy/RhythmViewExtension.dll" -ForegroundColor Red
+            $allValid = $false
+          } else {
+            Write-Host "✓ Found deploy/RhythmViewExtension.dll" -ForegroundColor Green
+          }
+
           if (-not $allValid) {
             Write-Host "Build verification failed - some required files are missing" -ForegroundColor Red
             exit 1
@@ -181,6 +244,9 @@ jobs:
             $commitMessage = "chore: update deploy folder with latest builds [skip ci]"
             git commit -m $commitMessage
             Write-Host "Committed deploy folder changes"
+            # Rebase before pushing. deploy/ on this branch is what users download at runtime, so
+            # losing a push means shipping stale binaries until someone notices.
+            git pull --rebase origin ${{ github.ref_name }}
             git push origin HEAD:${{ github.ref_name }}
             Write-Host "Pushed changes to ${{ github.ref_name }}"
           } else {

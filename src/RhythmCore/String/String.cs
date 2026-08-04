@@ -91,7 +91,7 @@ namespace Rhythm.String
         [NodeCategory("Actions")]
         public static string ParseRegularExpression(string stringToReplace, string regexString = @"[^a-zA-Z0-9]", string replacement = "")
         {
-            string modifiedString = Regex.Replace(stringToReplace, @"[^a-zA-Z0-9]", "");
+            string modifiedString = Regex.Replace(stringToReplace, regexString, replacement);
 
             return modifiedString;
         }
