@@ -39,7 +39,7 @@ For Revit 2027, Rhythm no longer ships the legacy `*.customization.dll` icon ass
 ## Components
 Rhythm consists of several sub-libraries. These are describe a bit more in detail below.
 - [Rhythm Core](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmCore), General methods and helpers with no reliance on Revit.
-- [Rhythm Revit](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/Rhythm), All the Revit nodes that work from 2020-2025
+- [Rhythm Revit](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmRevit), All the Revit nodes, built for Revit 2020-2027.
 - [Rhythm UI](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmUI), Revit UI Nodes.
 - [Rhythm View Extension](https://github.com/johnpierson/RhythmForDynamo/tree/master/src/RhythmViewExtension), this view extension allows for the auto-annotating of Rhythm nodes and control of the run mode when the user places `Background Document` nodes.
 - [Rhythm Python](https://github.com/johnpierson/RhythmForDynamo/tree/master/RhythmPython), Python code for many of the popular Rhythm  nodes. <sub><sup>if you want to hurt my feelings and not use the Rhythm package :pleading_face: </sub></sup>
@@ -60,6 +60,54 @@ Since there is not currently an update notification process on Dynamo's package 
 
 ## Examples
 Examples will be available on the [wiki](https://github.com/johnpierson/RhythmForDynamo/wiki) soon,
+
+## Building Rhythm
+
+You need Visual Studio 2022 or newer (for MSBuild — `dotnet build` cannot compile the `.resx` files that hold the node icons), and the .NET SDKs for **8.0** and **10.0**. You do **not** need Revit installed: the Revit and Dynamo APIs all come from NuGet.
+
+### Configurations
+
+One codebase covers Revit 2020–2027, so every project has sixteen configurations — `Debug R20`…`Debug R27` and `Release R20`…`Release R27`. The configuration picks the target framework, the Revit and Dynamo package versions, and the `R2x` / `R2x_OR_GREATER` compiler constants used for version-specific code:
+
+| Configuration | Revit | Target framework |
+|---|---|---|
+| R20 – R24 | 2020 – 2024 | `net48` |
+| R25 – R26 | 2025 – 2026 | `net8.0-windows` |
+| R27 | 2027 | `net10.0-windows` |
+
+Building one Revit year looks like this:
+
+```powershell
+msbuild src/RhythmCore/RhythmCore.sln  /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
+msbuild src/RhythmRevit/RhythmRevit.sln /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
+msbuild src/RhythmUI/RhythmUI.sln       /p:Configuration="Release R24" /p:Platform="Any CPU" /t:Restore,Build
+```
+
+**Order matters.** RhythmUI references `deploy/<year>/RhythmRevit.dll`, so build RhythmRevit for the same year first or you will link against a stale one. Each project's post-build step copies its output into `deploy/<year>/`.
+
+### Revit 2026 and 2027 need an extra package feed
+
+Every configuration up to Revit 2025 restores from nuget.org alone. Revit 2026 and 2027 need `DynamoVisualProgramming.Revit` 3.6+ and 27.0+, which are published only to a private GitHub Packages feed.
+
+That feed is deliberately **not** in the committed `NuGet.Config`. GitHub Packages answers `401` rather than `404` to unauthenticated callers, and NuGet treats a `401` from any configured source as fatal — so listing it would make *every* configuration unrestorable for anyone without a token, including the 2020–2025 builds that never needed it. Add it yourself if you are building 2026/2027, using a token with the `read:packages` scope:
+
+```powershell
+dotnet nuget add source https://nuget.pkg.github.com/johnpierson/index.json --name johnpierson-github --username YOUR_GITHUB_NAME --password YOUR_TOKEN --store-password-in-clear-text
+```
+
+### Tests
+
+```powershell
+dotnet test tests/Rhythm.Tests/Rhythm.Tests.csproj
+```
+
+These cover the Revit-independent nodes, and run against the built `RhythmCore.dll` rather than recompiling the sources — so what they assert is what ships. Build `RhythmCore` for `Release R24` first. The project is intentionally outside the shipping solutions, to keep a test framework out of the node libraries' dependency graph.
+
+### How a build reaches users
+
+`deploy/` is not just build output — it is the distribution channel. The package manager installs only a small bootstrap, and the view extension downloads the version-matched node libraries from `deploy/` on this repository at first run. CI rebuilds all sixteen configurations on every push to `master`, verifies the folder structure, and commits the result back with `[skip ci]`.
+
+So a change is not shipped when it is merged; it is shipped when CI has rebuilt `deploy/` from it. Local builds also write into `deploy/`, so **discard those changes rather than committing them** (`git checkout -- deploy/`) and let CI produce the binaries — hand-built assemblies drifting from source is a mistake this project has made before.
 
 ## Help improve Rhythm
 If you're interested in contributing to Rhythm, just submit a [pull request](https://github.com/johnpierson/RhythmForDynamo/pulls).
