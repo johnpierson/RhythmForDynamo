@@ -2,13 +2,14 @@
 
 Generated. Do not edit the `.md` files here by hand — the next run overwrites them.
 
-```
-dotnet run --project tools/Rhythm.Docs -- --assemblies deploy/2027 --out docs/nodes
+```powershell
+./scripts/generate-docs.ps1
+./scripts/pack-docs.ps1
 ```
 
 One Markdown file per node, named the way Dynamo's documentation browser looks
-it up. `scripts/pack-docs.ps1` copies the folder to `deploy/Rhythm/doc`, which is
-where the browser reads it from inside an installed package.
+it up. The second script copies the folder to `deploy/Rhythm/doc`, which is where
+the browser reads it from inside an installed package.
 
 Everything on a page comes from the shipped assemblies: signatures from their
 metadata, prose from the XML documentation the compiler wrote beside them. To

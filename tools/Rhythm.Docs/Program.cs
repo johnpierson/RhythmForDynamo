@@ -205,13 +205,14 @@ static string Readme(Coverage coverage, Examples examples, IReadOnlySet<string> 
     text.AppendLine();
     text.AppendLine("Generated. Do not edit the `.md` files here by hand — the next run overwrites them.");
     text.AppendLine();
-    text.AppendLine("```");
-    text.AppendLine("dotnet run --project tools/Rhythm.Docs -- --assemblies deploy/2027 --out docs/nodes");
+    text.AppendLine("```powershell");
+    text.AppendLine("./scripts/generate-docs.ps1");
+    text.AppendLine("./scripts/pack-docs.ps1");
     text.AppendLine("```");
     text.AppendLine();
     text.AppendLine("One Markdown file per node, named the way Dynamo's documentation browser looks");
-    text.AppendLine("it up. `scripts/pack-docs.ps1` copies the folder to `deploy/Rhythm/doc`, which is");
-    text.AppendLine("where the browser reads it from inside an installed package.");
+    text.AppendLine("it up. The second script copies the folder to `deploy/Rhythm/doc`, which is where");
+    text.AppendLine("the browser reads it from inside an installed package.");
     text.AppendLine();
     text.AppendLine("Everything on a page comes from the shipped assemblies: signatures from their");
     text.AppendLine("metadata, prose from the XML documentation the compiler wrote beside them. To");

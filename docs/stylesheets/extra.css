@@ -652,8 +652,11 @@
   display: none;
 }
 
-/* Where :has() is unavailable the row stays, so it at least matches the surface it sits on. */
-.md-typeset table:not([class]) th:empty {
+/* Where :has() is unavailable the row stays, so it at least matches the surface it sits on.
+ * Scoped to the same fully-empty case: the coverage table has a deliberately blank first heading
+ * above its row labels, and blanking that one cell out of a filled yellow strip reads as a hole
+ * rather than as a label column. */
+.md-typeset table:not([class]) thead:not(:has(th:not(:empty))) th:empty {
   background-color: var(--rh-surface);
   border-bottom: none;
   padding: 0;
