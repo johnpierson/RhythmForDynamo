@@ -31,10 +31,14 @@ namespace Rhythm.Revit.Elements
                 throw new ArgumentException("The provided element is not a Revit link type.", nameof(revitLinkType));
             }
 
-            // Char.Parse requires a string of length one, so the previous "//" argument threw
-            // FormatException on every call, before the link was ever touched. The intent was to
-            // collapse doubled separators, which is the two-argument string overload.
-            ModelPath mPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(path.Replace("//", "/"));
+            // The path is passed through untouched. The original called Char.Parse("//"), which
+            // requires a string of length one and so threw FormatException on every call, before
+            // the link was ever reached - the node has never worked, so there is no separator
+            // normalisation to preserve here. Nor should there be: ConvertUserVisiblePathToModelPath
+            // accepts user-visible server and cloud paths such as RSN://server/folder/model.rvt,
+            // and collapsing "//" would rewrite that scheme delimiter to RSN:/ and break the very
+            // paths the node exists to reload from.
+            ModelPath mPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(path);
             TransactionManager.Instance.ForceCloseTransaction();
           
             LinkLoadResult  loadResult = internalLinkType.LoadFrom(mPath, new WorksetConfiguration());

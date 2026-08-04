@@ -326,15 +326,36 @@ namespace RhythmViewExtension
         }
 
         /// <summary>
-        /// True when the file exists and is large enough to be a real assembly. Guards against the
-        /// zero-byte and truncated files that a failed download used to leave behind.
+        /// True when the file exists and is a readable .NET assembly.
         /// </summary>
+        /// <remarks>
+        /// A length check alone is not enough. A truncated transfer, or a proxy that answers a
+        /// blocked request with an HTML error page and HTTP 200, both produce a non-empty file - so
+        /// a length test would call it installed, Assembly.LoadFrom would fail, and every later
+        /// startup would skip the repair because the bad file still had a length. GetAssemblyName
+        /// reads the PE and CLI headers without loading the assembly into the process, so it
+        /// rejects both cases and can be called on a file we may be about to replace.
+        /// </remarks>
         private static bool IsUsableAssembly(string path)
         {
             try
             {
-                var info = new FileInfo(path);
-                return info.Exists && info.Length > 0;
+                if (!File.Exists(path))
+                {
+                    return false;
+                }
+
+                AssemblyName.GetAssemblyName(path);
+                return true;
+            }
+            catch (BadImageFormatException)
+            {
+                // Truncated, or not managed code at all - an error page, say.
+                return false;
+            }
+            catch (FileLoadException)
+            {
+                return false;
             }
             catch (IOException)
             {
@@ -374,6 +395,16 @@ namespace RhythmViewExtension
                 if (new FileInfo(tempFile).Length == 0)
                 {
                     throw new IOException($"{url} returned an empty file.");
+                }
+
+                // Validate before replacing anything. A blocked request answered with an HTML error
+                // page, or a transfer cut short, both arrive as a plausible-looking non-empty file;
+                // copying one of those over a working DLL is how a good install becomes a broken
+                // one that never repairs itself.
+                if (fileLocation.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
+                    && !IsUsableAssembly(tempFile))
+                {
+                    throw new IOException($"{url} did not return a readable .NET assembly.");
                 }
 
                 // File.Copy over the destination rather than File.Move, because the destination may

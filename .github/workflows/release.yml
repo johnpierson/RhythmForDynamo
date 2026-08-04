@@ -87,25 +87,58 @@ jobs:
       # happened to contain on master at the moment their first run downloaded it, so there was no
       # way to say which binaries a given "release" delivered, and no rollback point. Attaching the
       # binaries plus a checksum manifest makes a release a real, verifiable artifact set.
+      # Two levels of checksum, because they answer different questions and a manifest whose paths
+      # do not resolve is worse than none - it looks verifiable and fails when you try.
+      #
+      #   artifacts/SHA256SUMS.txt  covers the published release assets, by the bare filename
+      #                             GitHub serves them under, so after downloading them into one
+      #                             directory `sha256sum -c SHA256SUMS.txt` just works.
+      #   SHA256SUMS.txt inside     covers that zip's own contents, with paths relative to the
+      #   each zip                  zip root, so it resolves from wherever the zip is extracted.
       - name: Package deploy folder and checksums
         run: |
           set -euo pipefail
           mkdir -p artifacts
+          version="${{ steps.calver.outputs.version }}"
+
           for year in 2020 2021 2022 2023 2024 2025 2026 2027; do
-            if [ -d "deploy/${year}" ]; then
-              zip -r -q "artifacts/Rhythm-${year}-${{ steps.calver.outputs.version }}.zip" "deploy/${year}"
-            else
+            if [ ! -d "deploy/${year}" ]; then
               echo "::warning::deploy/${year} is missing and was not packaged"
+              continue
+            fi
+
+            # Stage so the zip root is the year folder itself; the manifest inside then uses the
+            # same relative paths a user sees after extracting.
+            rm -rf "stage/${year}"
+            mkdir -p "stage/${year}"
+            cp -r "deploy/${year}/." "stage/${year}/"
+
+            ( cd "stage/${year}" \
+              && find . -type f ! -name 'SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum \
+                 > SHA256SUMS.txt )
+
+            # Checked explicitly rather than left to set -e: a subshell's failure does not reliably
+            # abort the script, and a release that silently ships no assets is the failure mode
+            # this whole step exists to prevent.
+            if ! ( cd stage && zip -r -q "../artifacts/Rhythm-${year}-${version}.zip" "${year}" ); then
+              echo "::error::failed to package deploy/${year}"
+              exit 1
             fi
           done
 
-          # One manifest over every file users download at runtime, so a client can verify what it
-          # fetched against a value published out of band from the file itself.
-          ( cd deploy && find . -type f \( -name '*.dll' -o -name '*.xml' -o -name 'pkg.json' \) \
-              -print0 | sort -z | xargs -0 sha256sum ) > artifacts/SHA256SUMS.txt
+          shopt -s nullglob
+          zips=(artifacts/*.zip)
+          if [ ${#zips[@]} -eq 0 ]; then
+            echo "::error::no release assets were produced"
+            exit 1
+          fi
 
-          sha256sum artifacts/*.zip >> artifacts/SHA256SUMS.txt
-          echo "Packaged:"; ls -la artifacts
+          # Bare filenames only: GitHub publishes each asset under its basename, so recording a
+          # path like artifacts/Rhythm-2024.zip would make -c fail for every downloader.
+          ( cd artifacts && sha256sum *.zip > SHA256SUMS.txt )
+
+          echo "Published assets and their checksums:"
+          cat artifacts/SHA256SUMS.txt
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

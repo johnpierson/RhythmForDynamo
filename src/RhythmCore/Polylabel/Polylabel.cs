@@ -89,6 +89,16 @@ namespace Rhythm.Polylabel
             return new double[] { bestCell.X, bestCell.Y };
         }
 
+        /// <summary>
+        /// Builds a zero-size cell at the given point, whose D is the signed distance from that
+        /// point to the outline. Used to recover the inscribed radius at a point that
+        /// <see cref="GetPolylabel"/> returned, since that method reports only the coordinates.
+        /// </summary>
+        internal static Cell GetDistanceCell(double x, double y, double[][][] polygon)
+        {
+            return new Cell(x, y, 0, polygon);
+        }
+
         internal static Cell GetCentroidCell(double[][][] polygon)
         {
             var area = 0.0;
