@@ -29,6 +29,10 @@ namespace Rhythm.Revit.Application
         /// </summary>
         internal static void ActivateSuppressors(UIApplication uiapp)
         {
+            //Detach first. The handlers live in static fields, so a node replicated over a list of
+            //file paths used to overwrite them on each call, stranding the previous subscription
+            //for the rest of the session with no reference left to remove it.
+            DeactivateSuppressors(uiapp);
 
             _dialogHandler = new EventHandler<DialogBoxShowingEventArgs>(DismissAllDialogs);
             _warningsHandler = new EventHandler<FailuresProcessingEventArgs>(DismissAllWarnings);
@@ -40,8 +44,19 @@ namespace Rhythm.Revit.Application
         /// </summary>
         internal static void DeactivateSuppressors(UIApplication uiapp)
         {
-            uiapp.DialogBoxShowing -= _dialogHandler;
-            uiapp.Application.FailuresProcessing -= _warningsHandler;
+            //Unsubscribing a null handler is a no-op in .NET, but the fields are also cleared so a
+            //later Deactivate cannot detach a handler that a newer Activate has since replaced.
+            if (_dialogHandler != null)
+            {
+                uiapp.DialogBoxShowing -= _dialogHandler;
+                _dialogHandler = null;
+            }
+
+            if (_warningsHandler != null)
+            {
+                uiapp.Application.FailuresProcessing -= _warningsHandler;
+                _warningsHandler = null;
+            }
         }
         /// <summary>
         /// Will dismiss all dialogs
@@ -92,36 +107,44 @@ namespace Rhythm.Revit.Application
                 ActivateSuppressors(uiapp);
             }
 
-            //instantiate open options for user to pick to audit or not
-            OpenOptions openOpts = new OpenOptions
+            //The suppressors are session-wide: while attached, every Revit dialog is auto-answered
+            //and every transaction warning is deleted, for all documents. If anything below throws
+            //- a bad path, a corrupt file, a file already open - they must still come off, or the
+            //rest of the Revit session silently auto-confirms dialogs the user never sees.
+            try
             {
-                Audit = audit,
-                DetachFromCentralOption = detachFromCentral == false ? DetachFromCentralOption.DoNotDetach :
-                    preserveWorksets == true ? DetachFromCentralOption.DetachAndPreserveWorksets :
-                    DetachFromCentralOption.DetachAndDiscardWorksets
-            };
-            //TransmittedModelOptions tOpt = TransmittedModelOptions.SaveAsNewCentral;
-            //option to close all worksets
-            WorksetConfiguration worksetConfiguration = new WorksetConfiguration(WorksetConfigurationOption.OpenAllWorksets);
-            if (closeAllWorksets)
-            {
-                worksetConfiguration = new WorksetConfiguration(WorksetConfigurationOption.CloseAllWorksets);
+                //instantiate open options for user to pick to audit or not
+                OpenOptions openOpts = new OpenOptions
+                {
+                    Audit = audit,
+                    DetachFromCentralOption = detachFromCentral == false ? DetachFromCentralOption.DoNotDetach :
+                        preserveWorksets == true ? DetachFromCentralOption.DetachAndPreserveWorksets :
+                        DetachFromCentralOption.DetachAndDiscardWorksets
+                };
+                //TransmittedModelOptions tOpt = TransmittedModelOptions.SaveAsNewCentral;
+                //option to close all worksets
+                WorksetConfiguration worksetConfiguration = new WorksetConfiguration(WorksetConfigurationOption.OpenAllWorksets);
+                if (closeAllWorksets)
+                {
+                    worksetConfiguration = new WorksetConfiguration(WorksetConfigurationOption.CloseAllWorksets);
+                }
+                openOpts.SetOpenWorksetsConfiguration(worksetConfiguration);
+
+                //convert string to model path for open
+                ModelPath modelPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(filePath);
+
+                var document = app.OpenDocumentFile(modelPath, openOpts);
+
+                return document.ToDynamoType();
             }
-            openOpts.SetOpenWorksetsConfiguration(worksetConfiguration);
-
-            //convert string to model path for open
-            ModelPath modelPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(filePath);
-
-            var document = app.OpenDocumentFile(modelPath, openOpts);
-
-
-            //if warning suppression is desired and was used, turn it off
-            if (suppressWarnings)
+            finally
             {
-                DeactivateSuppressors(uiapp);
+                //if warning suppression is desired and was used, turn it off
+                if (suppressWarnings)
+                {
+                    DeactivateSuppressors(uiapp);
+                }
             }
-
-            return document.ToDynamoType();
         }
 
 
