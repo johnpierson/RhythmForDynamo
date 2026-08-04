@@ -31,15 +31,15 @@ on its face rather than being padded out, so this number is the honest one.
 
 | | Pages | Share |
 |---|---:|---:|
-| Total | 315 | 100% |
-| With a summary | 297 | 94% |
-| Taking at least one input | 297 | 94% |
-| — every input described | 230 | 77% |
-| — no input described | 62 | 21% |
-| With the output described | 192 | 61% |
-| With an example image | 45 | 14% |
+| Total | 295 | 100% |
+| With a summary | 278 | 94% |
+| Taking at least one input | 277 | 94% |
+| — every input described | 230 | 83% |
+| — no input described | 42 | 15% |
+| With the output described | 192 | 65% |
+| With an example image | 45 | 15% |
 | With an example graph | 8 | 3% |
-| **Empty — signature only** | 18 | 6% |
+| **Empty — signature only** | 17 | 6% |
 
 The two input rows are shares of the nodes that take inputs, not of every node.
 
@@ -49,7 +49,7 @@ By assembly:
 |---|---:|---:|---:|
 | RhythmCore | 46 | 44 (96%) | 2 (4%) |
 | RhythmRevit | 236 | 221 (94%) | 15 (6%) |
-| RhythmUI | 33 | 32 (97%) | 1 (3%) |
+| RhythmUI | 13 | 13 (100%) | 0 (0%) |
 
 ## Graphs in the old format
 
@@ -58,11 +58,3 @@ Dynamo can open them. Their pages offer no example graph until someone opens eac
 one in a recent Dynamo and saves it again.
 
 - `Rhythm.Revit.Elements.ElevationMarker.CreateElevationByMarkerIndex.dyn`
-
-## Overloads sharing a page
-
-Dynamo names a node by its ports, so two overloads differing only in a
-parameter's type are indistinguishable to it and to the browser. One page
-serves both.
-
-- `RhythmUI.Utilities.SelFilter.GetElementFilter(filterMethod)`

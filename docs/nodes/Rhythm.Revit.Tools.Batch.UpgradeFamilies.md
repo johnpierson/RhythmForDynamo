@@ -2,7 +2,7 @@
 
 `Batch.UpgradeFamilies(directoryPath, suffix: "")`
 
-This tool with batch upgrade all the Revit families in a directory and delete the backup files that are generated.
+This tool will batch upgrade all the Revit families in a directory, and delete the backup files that this run generates. Backup files that already existed are left alone.
 
 The inputs are:
 
