@@ -125,20 +125,21 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>full</DebugType>
         <DefineConstants>$(DefineConstants);R27;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER;R27_OR_GREATER</DefineConstants>
-		<TargetFramework>net8.0-windows</TargetFramework>
+		<TargetFramework>net10.0-windows</TargetFramework>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Release R27'))">
         <DynamoVersion>4.0</DynamoVersion>
         <DynamoOutput>4.0</DynamoOutput>
         <RevitVersion>2027</RevitVersion>
         <DefineConstants>$(DefineConstants);R27;R20_OR_GREATER;R21_OR_GREATER;R22_OR_GREATER;R23_OR_GREATER;R24_OR_GREATER;R25_OR_GREATER;R26_OR_GREATER;R27_OR_GREATER</DefineConstants>
-		<TargetFramework>net8.0-windows</TargetFramework>
+		<TargetFramework>net10.0-windows</TargetFramework>
     </PropertyGroup>
     <PropertyGroup>
         <DynVersion>$(DynamoVersion)</DynVersion>
         <BuildOutput>$(DynamoOutput)</BuildOutput>
         <PublishSingleFile>true</PublishSingleFile>
-        <Copyright>MIT</Copyright>
+        <Copyright>Copyright (c) 2019-2026 John Pierson</Copyright>
+        <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>dynamo</PackageTags>
         <FolderPackages>$(Appdata)\Dynamo\Dynamo Revit\$(BuildOutput)\packages\Rhythm\</FolderPackages>
@@ -210,10 +211,10 @@
 		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*-*" />
         <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DynVersion).*" />
 		<PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DynVersion).*" />
-	<Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Program Files\Autodesk\Revit $(RevitVersion)\AddIns\DynamoForRevit\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+		<!-- Compile-time only: Revit supplies Newtonsoft.Json at runtime, so it must not be
+		     copied to the output. Referencing the package rather than the Revit install keeps
+		     the project buildable on a machine without Revit, such as a CI runner. -->
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" ExcludeAssets="runtime" />
 	 </ItemGroup>
 	  <ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R27|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R27|AnyCPU'">
 		<PackageReference Include="CommonServiceLocator" Version="1.0" />
@@ -230,44 +231,16 @@
         <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
     </ItemGroup>
 	
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R20|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R20|AnyCPU'">
+	<!-- RhythmUI compiles against the RhythmRevit build for the same Revit year. deploy/ is
+	     tracked in git, so this path resolves on any clone and on a CI runner; it replaces eight
+	     per-configuration copies of an absolute path that existed on one developer's machine only.
+	     Build RhythmRevit for the matching configuration before building this project.
+	     Private=False: RhythmRevit.dll is deployed by its own project and must not be copied here,
+	     where the CopyFiles target's *.xml glob would sweep its doc file back into deploy/. -->
+	<ItemGroup>
 		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2020\RhythmRevit.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R21|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R21|AnyCPU'">
-		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2021\RhythmRevit.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R22|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R22|AnyCPU'">
-		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2022\RhythmRevit.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R23|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R23|AnyCPU'">
-		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2023\RhythmRevit.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-	<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R24|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R24|AnyCPU'">
-		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2024\RhythmRevit.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R25|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R25|AnyCPU'">
-		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2025\RhythmRevit.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R26|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R26|AnyCPU'">
-		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2026\RhythmRevit.dll</HintPath>
-        </Reference>
-	</ItemGroup>
-<ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release R27|AnyCPU' Or '$(Configuration)|$(Platform)'=='Debug R27|AnyCPU'">
-		<Reference Include="RhythmRevit">
-	      <HintPath>C:\Users\piersoj\Documents\Repos\RhythmForDynamo\deploy\2027\RhythmRevit.dll</HintPath>
+	      <HintPath>$(ProjectDir)..\..\deploy\$(RevitVersion)\RhythmRevit.dll</HintPath>
+	      <Private>False</Private>
         </Reference>
 	</ItemGroup>
 	
