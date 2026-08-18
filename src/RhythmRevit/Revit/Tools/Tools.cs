@@ -11,7 +11,7 @@ namespace Rhythm.Revit.Tools
     /// <summary>
     /// Wrapper class for tools
     /// </summary>
-    public class Tools
+    public partial class Tools
     {
         private Tools(){}
 
