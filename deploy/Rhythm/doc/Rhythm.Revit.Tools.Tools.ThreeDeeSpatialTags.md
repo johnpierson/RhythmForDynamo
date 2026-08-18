@@ -6,6 +6,8 @@ Open the 3d Spatial Tags dialog, and report what it did.
 
 This is the 3d Spatial Tags add-in as a single node: the same dialog, drawn the same way, doing the same work. Set runIt to true and it opens over Revit. Pick rooms or spaces, optionally a linked model to read them out of, the phase, the tag family type and a text height, then press Create / Update Tags. Close it and the node reports what the run did.
 
+The tag family loads itself. Opening the dialog puts the one Rhythm ships into the model if it is not already there, and replaces an older copy of it with the current one, so the family type list is never empty and never offers a family this node cannot write to. Type parameter values already set on it — text height, materials, visibility — are left as the user set them.
+
 Re-running follows the model rather than piling up duplicates: a tag records the element it belongs to, and the link instance it was read through, in the family's SpatialElementId parameter. Rooms with a blank name or number are skipped, because there would be nothing to put in the tag, and so are unplaced ones, because there is nowhere to put it. Unbounded and redundant rooms still have a marker, so they are still tagged, and the dialog says how many. In a workshared model a tag owned by somebody else is reported, never overwritten. Tags whose room has been deleted are counted and left alone, because deleting elements out of somebody's model is not this node's business.
 
 The dialog opens whenever this node evaluates with runIt true, so drive it from a Boolean toggle rather than from something that changes on every graph run.

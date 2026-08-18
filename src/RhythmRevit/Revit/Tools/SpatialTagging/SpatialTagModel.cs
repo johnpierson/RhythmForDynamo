@@ -200,15 +200,35 @@ namespace Rhythm.Revit.Tools.SpatialTagging
         /// </summary>
         public ObservableCollection<FamilySymbol> CollectTagFamilySymbols()
         {
-            var tags = FindTagSymbols();
+            if (!CurrentFamilyIsLoaded()) LoadBundledFamily();
 
-            if (!tags.Any())
-            {
-                LoadBundledFamily();
-                tags = FindTagSymbols();
-            }
+            return new ObservableCollection<FamilySymbol>(FindTagSymbols());
+        }
 
-            return new ObservableCollection<FamilySymbol>(tags);
+        /// <summary>
+        /// Whether the family already in the document is the one this node writes to.
+        ///
+        /// Asking "is a family called 3dSpatialElementTag loaded" is not the same question, and
+        /// answering that one instead is what made this go wrong: a model carrying the older family
+        /// Rhythm has always shipped in extra/ — the one the superseded ThreeDeeRoomTags and
+        /// ThreeDeeSpaceTags nodes point people at — matched by name, so nothing was loaded, and
+        /// the run then rolled itself back complaining about a missing SpatialElementId. The user
+        /// is told to add a parameter to a family they never chose.
+        ///
+        /// SpatialElementId is an instance parameter, and a family symbol does not carry instance
+        /// parameters, so a placed tag is the only thing that can answer. A model with the family
+        /// loaded but nothing placed yet cannot be judged either way and is reloaded, which costs
+        /// one undo entry and guarantees the right family.
+        /// </summary>
+        private bool CurrentFamilyIsLoaded()
+        {
+            if (!FindTagSymbols().Any()) return false;
+
+            var placed = new FilteredElementCollector(Doc).OfClass(typeof(FamilyInstance))
+                .WhereElementIsNotElementType().Cast<FamilyInstance>()
+                .FirstOrDefault(f => f.Symbol.Family.Name.IndexOf(TagFamilyName, StringComparison.OrdinalIgnoreCase) >= 0);
+
+            return placed != null && placed.LookupParameter(SpatialElementIdParameter) != null;
         }
 
         private List<FamilySymbol> FindTagSymbols()
@@ -280,7 +300,13 @@ namespace Rhythm.Revit.Tools.SpatialTagging
 
                     if (t.GetStatus() != TransactionStatus.Started) return;
 
-                    if (Doc.LoadFamily(path)) t.Commit();
+                    // The overload taking load options, not the bare one. Without them Revit puts
+                    // its own "family already exists" dialog up the moment a model already has a
+                    // family of this name, which is the case this whole path exists to handle, and
+                    // the user gets a prompt about a file they did not ask to load.
+                    Family loaded;
+
+                    if (Doc.LoadFamily(path, new OverwriteFamilyDefinition(), out loaded)) t.Commit();
                     else t.RollBack();
                 }
             }
