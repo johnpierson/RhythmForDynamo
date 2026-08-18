@@ -27,6 +27,12 @@ namespace Rhythm.Revit.Tools
         /// and a text height, then press Create / Update Tags. Close it and the node reports what
         /// the run did.
         ///
+        /// The tag family loads itself. Opening the dialog puts the one Rhythm ships into the model
+        /// if it is not already there, and replaces an older copy of it with the current one, so
+        /// the family type list is never empty and never offers a family this node cannot write to.
+        /// Type parameter values already set on it — text height, materials, visibility — are left
+        /// as the user set them.
+        ///
         /// Re-running follows the model rather than piling up duplicates: a tag records the element
         /// it belongs to, and the link instance it was read through, in the family's
         /// SpatialElementId parameter. Rooms with a blank name or number are skipped, because there
