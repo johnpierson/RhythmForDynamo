@@ -332,6 +332,10 @@ namespace Rhythm.Revit.Tools.SpatialTagging
         /// successful run arrives as two undo entries where the first Ctrl+Z takes back only the
         /// tags. A transaction group makes the pair atomic and, assimilated, a single undo step.
         /// </summary>
+        /// <param name="spatialElementTag">The tag family type to place.</param>
+        /// <param name="spatialElements">The rooms or spaces in scope.</param>
+        /// <param name="updateExisting">Whether to adopt the tags already placed rather than add to them.</param>
+        /// <param name="linkInstance">The link the elements were read through, or null for this document.</param>
         /// <param name="textHeightInches">
         /// The height to apply, or zero or less to leave the family's own alone.
         /// </param>

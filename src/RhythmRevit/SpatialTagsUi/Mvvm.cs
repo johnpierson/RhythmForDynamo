@@ -29,10 +29,10 @@ namespace Rhythm.SpatialTagsUi
     /// <summary>
     /// A command backed by a delegate, with an optional guard.
     ///
-    /// <see cref="RaiseCanExecuteChanged"/> is routed through <see cref="CommandManager"/>, so the
-    /// buttons re-ask their guard whenever WPF next re-evaluates commands. That is what keeps
-    /// "Create / Update Tags" disabled until there is something to tag without the view model
-    /// having to know which buttons exist.
+    /// CanExecuteChanged is routed through <see cref="CommandManager"/>, so the buttons re-ask
+    /// their guard whenever WPF next re-evaluates commands. That is what keeps "Create / Update
+    /// Tags" disabled until there is something to tag, without the view model having to know
+    /// which buttons exist.
     /// </summary>
     internal sealed class RelayCommand<T> : ICommand
     {
