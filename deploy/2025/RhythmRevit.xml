@@ -2452,30 +2452,541 @@
             Application.OpenDocumentFile, rhythm
             </search>
         </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.HideOverlappingElementWarning">
+             <summary>
+             Hides the duplicate-instance warning for tags this run placed on top of each other, and only
+             those.
+            
+             Deleting every duplicate-instance warning raised at commit would be worse than the noise: a
+             tagging run surfaces warnings about geometry it had nothing to do with, and a coordination
+             model quietly losing its duplicate warnings is exactly the kind of data-quality erosion this
+             node is supposed to help with.
+            
+             What is legitimately suppressed is the node arguing with itself. With updateExisting off the
+             node places a fresh set every time, which means stacking tags on the previous ones on
+             purpose. Revit says so once per pair, and the user already asked for it.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.HideOverlappingElementWarning.#ctor(System.Collections.Generic.IEnumerable{Autodesk.Revit.DB.ElementId})">
+            <param name="ownTags">The tags this run created or updated.</param>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.HideOverlappingElementWarning.SuppressedDuplicateWarnings">
+            <summary>How many warnings were suppressed, so the run can say so.</summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.TaggingResult">
+            <summary>What a tagging run actually did, so the dialog and the node can say so.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TaggingResult.SkippedNotPlaced">
+            <summary>Rooms with no point location at all. There is nowhere to put a tag.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TaggingResult.Unbounded">
+            <summary>
+            Tagged rooms with no area: unbounded or redundant. They keep a marker, so they get a
+            tag, but it sits wherever the marker is rather than in a room. Reported because it
+            usually means a modelling problem somebody wants to know about.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TaggingResult.SkippedNotEditable">
+            <summary>
+            Existing tags that could not be touched, owned by another user or changed in central.
+            Counted and reported rather than replaced: placing a second tag on top of one somebody
+            else owns leaves two tags in the model and a suppressed warning saying so.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TaggingResult.MissingParameter">
+            <summary>
+            Set when the chosen family cannot hold a value this writes. The run is rolled back
+            whole rather than leaving half a model tagged with blanks.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TaggingResult.MigratedLegacyTags">
+            <summary>
+            Tags written before the link instance was part of a tag's identity, adopted by this run
+            and rewritten with it. Reported because it explains a one-off run where tags were
+            updated rather than created, and because it only ever happens once.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TaggingResult.OrphanedTags">
+            <summary>
+            Tags whose spatial element has been deleted. Reported rather than removed: the tag is
+            still model geometry in somebody's project.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TaggingResult.SuppressedDuplicateWarnings">
+            <summary>
+            Duplicate-instance warnings hidden because this run placed tags on top of its own
+            previous ones. Only ever non-zero with updating turned off.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel">
+             <summary>
+             Everything the 3d spatial tags dialog asks of the model, and the run itself.
+            
+             Shaped to match the add-in's own model class so the dialog's view model could be ported
+             across largely as it was written. The node uses it through the dialog rather than directly.
+             </summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.TagFamilyName">
+            <summary>
+            The family this discovers and, failing that, loads. Named by a contains match rather
+            than an exact one, so a copy somebody has renamed to "3dSpatialElementTag-old" is still
+            found and still matched against on later runs.
+            </summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.SpatialElementIdParameter">
+            <summary>
+            The parameter a tag stores its source element's id in. This is the whole basis of
+            matching a tag back to its room on a later run, so it is named once here rather than
+            spelled out at each of the places that read and write it.
+            </summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.SourceDocumentIdParameter">
+             <summary>
+             Where the tag records its source in a form Revit can schedule and filter on.
+            
+             Written when the family carries them, and read in preference to the composite value
+             above. They are deliberately not required: a family without them still works, it just
+             cannot be scheduled by source, and rejecting one would turn a reporting convenience
+             into a hard incompatibility.
+             </summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.TextHeightParameter">
+            <summary>The parameter the text height is written to, on the family type.</summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.RequiredTagParameters">
+            <summary>The parameters a tag family has to carry for this to write to it.</summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.CollectTagFamilySymbols">
+            <summary>
+            The tag family types on offer, loading the one Rhythm ships if the model has none.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.IsLinkSelected">
+            <summary>
+            The link the user already had selected in Revit, so the dialog opens on it.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.LoadBundledFamily">
+             <summary>
+             Loads the tag family that ships in the package's extra folder.
+            
+             A failure here is not worth throwing over. The caller looks for the family again either
+             way, and the dialog has a better thing to say than anything about a file path: that no
+             family is loaded, next to the field where one is chosen.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.BundledFamilyPath">
+             <summary>
+             The family the package ships for this node, in extra/2025.
+            
+             The year in the folder is the Revit the family was saved in, not the Revit it is for.
+             Families load forward but never backward, so one saved in 2025 serves every version
+             this node runs on and none of the ones it does not. It sits in its own folder rather
+             than beside the family Rhythm has always shipped in extra/, which is saved in Revit
+             2021, predates the SpatialElementId parameter, and is still what the older
+             ThreeDeeRoomTags and ThreeDeeSpaceTags nodes point people at.
+            
+             Both files keep the same name on purpose. Revit names a loaded family after the file it
+             came from, so telling the two apart by filename would put the year in the family name
+             in every model that loaded it.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.RunTagging(Autodesk.Revit.DB.FamilySymbol,System.Collections.ObjectModel.ObservableCollection{Autodesk.Revit.DB.SpatialElement},System.Boolean,Autodesk.Revit.DB.RevitLinkInstance,System.Double)">
+             <summary>
+             A whole run: the family type's text height, and the tags, as one thing.
+            
+             Two committed transactions with nothing tying them together means a run that reports
+             "nothing was placed" has already resized the family type and left it resized, and a
+             successful run arrives as two undo entries where the first Ctrl+Z takes back only the
+             tags. A transaction group makes the pair atomic and, assimilated, a single undo step.
+             </summary>
+             <param name="spatialElementTag">The tag family type to place.</param>
+             <param name="spatialElements">The rooms or spaces in scope.</param>
+             <param name="updateExisting">Whether to adopt the tags already placed rather than add to them.</param>
+             <param name="linkInstance">The link the elements were read through, or null for this document.</param>
+             <param name="textHeightInches">
+             The height to apply, or zero or less to leave the family's own alone.
+             </param>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.ApplyTextHeight(Autodesk.Revit.DB.FamilySymbol,System.Double)">
+            <summary>
+            Pushes the requested text height onto the tag family type, if one was asked for and the
+            family can take it. A family without the parameter is not a failure worth stopping the
+            run over: the tags are still correct, they are just the size the family already was.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.FirstMissingParameter(Autodesk.Revit.DB.FamilyInstance)">
+             <summary>
+             The first parameter this tag instance is missing, or null if it carries all of them.
+            
+             Asked of a placed instance rather than of the symbol, because these are instance
+             parameters and a family symbol does not carry them.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.CollectExistingTags(Autodesk.Revit.DB.FamilySymbol)">
+            <summary>
+            The tags already in the model: the bundled family, plus whatever family the run was
+            pointed at, so a custom tag family still matches itself on the next run.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.Snapshot(Autodesk.Revit.DB.SpatialElement,Autodesk.Revit.DB.Transform,System.String)">
+            <summary>
+            Reads a spatial element into the plain data the planner works on, applying the link
+            transform on the way so that everything downstream is in host coordinates.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.Snapshot(Autodesk.Revit.DB.FamilyInstance,Autodesk.Revit.DB.Document,System.String)">
+            <summary>
+            Reads an existing tag into plain data. The editability question is asked here, once per
+            tag, rather than in the middle of placing things.
+            </summary>
+            <param name="tag">The tag already in the model.</param>
+            <param name="sourceDoc">
+            The document the run reads elements from, used to notice tags whose element has been
+            deleted.
+            </param>
+            <param name="linkInstanceId">The link instance being tagged, or null for the host.</param>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.IsEditable(Autodesk.Revit.DB.Element)">
+            <summary>
+            Whether this user may write to the element. Everything in a model that is not
+            workshared is fair game; in one that is, a tag checked out by somebody else is not.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.IsSourceMissing(System.String,System.String,Autodesk.Revit.DB.Document,System.String)">
+             <summary>
+             Whether a tag names an element that is no longer in the document it came from.
+            
+             Deliberately narrow. Only tags belonging to the scope being tagged are considered,
+             because a tag for a room in another phase, or read through a different link instance,
+             has not been orphaned just because this run is not about it. Calling it one would report
+             a number that frightens people about nothing.
+             </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.TagOperationKind">
+            <summary>What a run intends to do about one spatial element.</summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.SkipReason">
+            <summary>Why an element is not getting a tag.</summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SkipReason.NotPlaced">
+            <summary>No point location. An unplaced room has nowhere to put a tag.</summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SkipReason.MissingNameOrNumber">
+            <summary>A blank name or number. There would be nothing to write in the tag.</summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.SkipReason.NotEditable">
+            <summary>
+            The matching tag belongs to somebody else, or has moved on in central. Placing a
+            replacement on top would leave the model with two tags for one room.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.TagPoint">
+             <summary>
+             A location in host-document coordinates.
+            
+             Plain doubles rather than Revit's XYZ so that planning stays free of the API it is about to
+             drive. The link transform, when there is one, is applied on the way in.
+             </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot">
+            <summary>
+            Everything the planner needs to know about one room or space, read out of the model before
+            any decision is made.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot.SourceId">
+            <summary>Identifies the element this tag is for. Matched against a tag's stored id.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot.LinkInstanceId">
+            <summary>
+            The link instance this element was read through, or null for a host element. Part of the
+            identity because two instances of one linked file hand back the same element ids.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot.Identity">
+            <summary>The element and the link instance together — what a tag records.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot.IsPlaced">
+            <summary>Whether the element has a point location at all.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot.Point">
+            <summary>Where the tag goes, already in host coordinates.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot.Area">
+            <summary>
+            Zero for a room that is unbounded, redundant or unplaced. Carried so the caller and the
+            planner can agree on one definition of "taggable" rather than counting separately and
+            disagreeing.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot">
+            <summary>A tag already in the model, and whether this user is allowed to touch it.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot.StoredSourceId">
+            <summary>The composite value written on the tag, or null if it carries none.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot.SourceLinkInstanceId">
+            <summary>
+            The link instance recorded in the family's own parameter, where it has one. Empty or
+            null on a host tag, and on any tag written before that parameter existed.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot.SourceMissing">
+             <summary>
+             Whether the element this tag names has been deleted from the document it came from.
+            
+             Answered by the caller, because it takes a document lookup — and answered only for tags
+             in the scope currently being tagged. A tag for a room in another phase has not been
+             orphaned just because this run is not about it.
+             </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.TagOperation">
+            <summary>One decision, for one element.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TagOperation.ExistingTagId">
+            <summary>Which tag to update. Null for anything other than an update.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TagOperation.IsLegacyMigration">
+            <summary>
+            Whether this update adopts a tag written before link instances were part of the
+            identity. The tag is rewritten with the full identity, so it only happens once.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.TagRunPlan">
+            <summary>Everything a run intends to do, and what it noticed on the way.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TagRunPlan.OrphanedTagCount">
+            <summary>
+            Tags whose spatial element no longer exists. Counted and reported, not deleted: removing
+            elements from somebody's model is not something to do without being asked.
+            </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.TagPlanner">
+             <summary>
+             Decides what a run will do, before it does any of it.
+            
+             Deliberately free of the Revit API. The rules about what gets skipped, what gets updated and
+             what gets left alone are the ones most likely to be wrong and the ones a user notices when
+             they are, so they are a value that can be read on its own rather than a shape that only
+             exists in the middle of writing to a document.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagPlanner.Plan(System.Collections.Generic.IList{Rhythm.Revit.Tools.SpatialTagging.SpatialElementSnapshot},System.Collections.Generic.IList{Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot},System.Boolean)">
+            <summary>
+            Works out, for each spatial element, whether it gets a new tag, an update to an existing
+            one, or nothing.
+            </summary>
+            <param name="sources">The elements in scope, already in host coordinates.</param>
+            <param name="existingTags">Tags already in the document. Ignored unless updating.</param>
+            <param name="updateExisting">
+            Whether to adopt matching tags. Off means every run places a fresh set, which is what
+            leaves duplicates behind on purpose.
+            </param>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagPlanner.FindMatch(Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity,System.Collections.Generic.IDictionary{System.String,Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot},System.Collections.Generic.IDictionary{System.String,Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot},System.Collections.Generic.HashSet{System.String},System.Boolean@)">
+             <summary>
+             The tag this element already has, if it has one.
+            
+             Tried in two passes. The exact identity first. That is the normal case, and for a host
+             element it is also the only case, because a host element's stored form has always been
+             its bare id.
+            
+             Then, only for elements read through a link, a tag carrying the bare id and nothing
+             else. Those were written before link instances were part of the identity, and refusing
+             to adopt them would hand every existing user a duplicate set on their first run after
+             upgrading. Adopting one rewrites it with the full identity, so a second placement of the
+             same link finds no legacy tag left to claim and gets its own set.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagPlanner.IndexByStoredValue(System.Collections.Generic.IList{Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot})">
+             <summary>
+             Tags keyed by exactly what is written on them.
+            
+             First one wins, which is what a linear search for the first match would do, so a model
+             that somehow carries two tags for one room behaves as it always has. Building the index
+             once also takes the matching from a scan per element to a lookup per element, which
+             matters on a model with thousands of both.
+            
+             Tags with no stored value are left out entirely: they match nothing, and treating a null
+             as a key would let two of them collide with each other.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagPlanner.IndexLegacyBySourceId(System.Collections.Generic.IList{Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot})">
+            <summary>Tags carrying a bare element id and nothing else, keyed by it.</summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagPlanner.CountOrphans(System.Collections.Generic.IList{Rhythm.Revit.Tools.SpatialTagging.ExistingTagSnapshot},System.Collections.Generic.HashSet{System.String})">
+             <summary>
+             How many tags name an element that is no longer there.
+            
+             Only tags the caller has told us about. It decides which are in the scope being tagged,
+             because a tag for a room in a different phase is not an orphan. A tag this run just
+             adopted is never one either, whatever the caller thinks: it has a live element sitting
+             in front of it.
+             </summary>
+        </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity">
+             <summary>
+             What a tag is a tag *of*: a spatial element, and the link instance it was read through.
+            
+             The element's own id is not enough. Two instances of one linked file share a single link
+             document, so the same room hands back byte-identical ids through both — and a run for the
+             second placement would find the first placement's tags, drag them across, and leave the
+             first untagged. Nothing was reported, because as far as the matching was concerned it had
+             found its tag.
+            
+             The link instance is therefore part of the identity. Host elements have no link, and their
+             stored form is the bare element id, which is exactly what tags carried before — so every
+             existing host tag still matches itself and nothing has to be migrated.
+            
+             The identity is written twice, deliberately. The tag family carries it split across
+             SourceDocumentId and SourceLinkInstanceId, where Revit can schedule and filter on it, and
+             composed into the SpatialElementId text parameter, which is what matching reads and what
+             every tag placed before those parameters existed already carries. Reading prefers the split
+             form and falls back to the composite, so a tag from any version resolves.
+             </summary>
+        </member>
+        <member name="F:Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity.LinkPrefix">
+            <summary>
+            Marks a stored value as carrying a link instance. Chosen so it cannot be mistaken for
+            the bare element id that older tags carry: those are Revit UniqueIds, which are hex and
+            hyphens and never contain a colon.
+            </summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity.SourceId">
+            <summary>The spatial element's own UniqueId, in whichever document it lives.</summary>
+        </member>
+        <member name="P:Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity.LinkInstanceId">
+            <summary>The link instance it was read through, or null when it is a host element.</summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity.ToStoredValue">
+            <summary>
+            What goes on the tag. A host element stores its bare id, unchanged from what this tool
+            has always written.
+            </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity.TryParse(System.String,Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity@,System.Boolean@)">
+            <summary>
+            Reads back what a tag carries.
+            </summary>
+            <param name="stored">What the tag carries, read out of its SpatialElementId parameter.</param>
+            <param name="identity">The element, and the link instance it was read through.</param>
+            <param name="isLegacy">
+            True when the value is a bare element id with no link instance in it. For a host tag
+            that is simply the current format; for a tag that came from a link it is a tag written
+            before this identity existed, and a candidate for migration.
+            </param>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity.TryResolve(System.String,System.String,Rhythm.Revit.Tools.SpatialTagging.TagSourceIdentity@,System.Boolean@)">
+             <summary>
+             The identity a tag records, preferring the parameters the family carries for it and
+             falling back to the composite value.
+            
+             The element id only ever lives in the composite, so that is always parsed; the split
+             parameters contribute the link instance. A tag written before those parameters existed
+             simply has nothing in them, and resolves from the composite alone.
+             </summary>
+        </member>
         <member name="T:Rhythm.Revit.Tools.Tools">
             <summary>
             Wrapper class for tools
             </summary>
         </member>
-        <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeRoomTags(Revit.Elements.Room,Revit.Elements.FamilyType,System.String,System.String)">
+        <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeSpatialTags(System.Boolean)">
+             <summary>
+             Open the 3d Spatial Tags dialog, and report what it did.
+            
+             This is the 3d Spatial Tags add-in as a single node: the same dialog, drawn the same
+             way, doing the same work. Set runIt to true and it opens over Revit. Pick rooms or
+             spaces, optionally a linked model to read them out of, the phase, the tag family type
+             and a text height, then press Create / Update Tags. Close it and the node reports what
+             the run did.
+            
+             Re-running follows the model rather than piling up duplicates: a tag records the element
+             it belongs to, and the link instance it was read through, in the family's
+             SpatialElementId parameter. Rooms with a blank name or number are skipped, because there
+             would be nothing to put in the tag, and so are unplaced ones, because there is nowhere
+             to put it. Unbounded and redundant rooms still have a marker, so they are still tagged,
+             and the dialog says how many. In a workshared model a tag owned by somebody else is
+             reported, never overwritten. Tags whose room has been deleted are counted and left
+             alone, because deleting elements out of somebody's model is not this node's business.
+            
+             The dialog opens whenever this node evaluates with runIt true, so drive it from a
+             Boolean toggle rather than from something that changes on every graph run.
+             </summary>
+             <param name="runIt">Set to true to open the dialog. False changes nothing and opens nothing.</param>
+             <returns name="tags">The tags the run created or updated.</returns>
+             <returns name="created">How many tags were placed.</returns>
+             <returns name="updated">How many existing tags were moved and rewritten.</returns>
+             <returns name="skipped">How many rooms or spaces could not be tagged.</returns>
+             <returns name="orphanedTags">How many tags in the model name a room that has been deleted.</returns>
+             <returns name="message">What the run did, in words.</returns>
+             <search>
+             3d room tags, 3d space tags, spatial tags, rhythm
+             </search>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Tools.RevitMainWindow">
+             <summary>
+             Revit's main window handle, or zero if it cannot be reached.
+            
+             Read from the ribbon component manager, which Rhythm already talks to elsewhere, rather
+             than from a UIApplication: this node never has one to hand and does not otherwise need
+             it. A dialog with no owner still works, so a failure here is not worth reporting.
+             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Tools.Report(Rhythm.Revit.Tools.SpatialTagging.TaggingResult,System.String)">
             <summary>
-            Create 3d room tags given the input rooms!
+            The node's outputs. A null result means no run happened, which is what closing the
+            dialog without pressing the button looks like, and is reported as such rather than as a
+            run that placed nothing.
             </summary>
-            <param name="room">The rooms to place 3d room tags on.</param>
-            <param name="tagType">The 3d room tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
-            <param name="roomNameParameter">The name of your Name parameter, the sample has the parameter named as Room Name</param>
-            <param name="roomNumberParameter">The name of your Number parameter, the sample has the parameter named as Room Number</param>
-            <returns></returns>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Tools.Describe(Rhythm.Revit.Tools.SpatialTagging.TaggingResult)">
+            <summary>What the run did, in the words the dialog's status card uses.</summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeRoomTags(Revit.Elements.Room,Revit.Elements.FamilyType,System.String,System.String)">
+             <summary>
+             Create 3d room tags given the input rooms!
+            
+             Superseded on Revit 2025 and up by Tools.ThreeDeeSpatialTags, which does the whole job
+             from one dialog: every room or space in a phase, from this document or a link, updated
+             in place on a second run instead of piling up a fresh set of duplicates. This node
+             places one tag per room and knows nothing about the tags already there.
+            
+             On those versions it is hidden from the library. It still works, so a graph already
+             built on it keeps running; it just cannot be found and dropped onto a new one.
+            
+             On Revit 2020 to 2024 it is still the way to place 3d room tags, and still in the
+             library, because the node that supersedes it does not exist there: the tag family that
+             one places is saved in Revit 2025, and families do not load backward.
+             </summary>
+             <param name="room">The rooms to place 3d room tags on.</param>
+             <param name="tagType">The 3d room tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
+             <param name="roomNameParameter">The name of your Name parameter, the sample has the parameter named as Room Name</param>
+             <param name="roomNumberParameter">The name of your Number parameter, the sample has the parameter named as Room Number</param>
+             <returns></returns>
         </member>
         <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeSpaceTags(Revit.Elements.Space,Revit.Elements.FamilyType,System.String,System.String)">
-            <summary>
-            Create 3d space tags given the input spaces!
-            </summary>
-            <param name="space">The spaces to place 3d space tags on.</param>
-            <param name="tagType">The 3d space tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
-            <param name="spaceNameParameter">The name of your Name parameter, the sample has the parameter named as Space Name</param>
-            <param name="spaceNumberParameter">The name of your Number parameter, the sample has the parameter named as Space Number</param>
-            <returns></returns>
+             <summary>
+             Create 3d space tags given the input spaces!
+            
+             Superseded on Revit 2025 and up by Tools.ThreeDeeSpatialTags, which tags spaces as
+             readily as rooms, from one dialog: every space in a phase, from this document or a
+             link, updated in place on a second run instead of piling up a fresh set of duplicates.
+             This node places one tag per space and knows nothing about the tags already there.
+            
+             On those versions it is hidden from the library. It still works, so a graph already
+             built on it keeps running; it just cannot be found and dropped onto a new one.
+            
+             On Revit 2021 to 2024 it is still the way to place 3d space tags, and still in the
+             library, because the node that supersedes it does not exist there: the tag family that
+             one places is saved in Revit 2025, and families do not load backward.
+             </summary>
+             <param name="space">The spaces to place 3d space tags on.</param>
+             <param name="tagType">The 3d space tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
+             <param name="spaceNameParameter">The name of your Name parameter, the sample has the parameter named as Space Name</param>
+             <param name="spaceNumberParameter">The name of your Number parameter, the sample has the parameter named as Space Number</param>
+             <returns></returns>
         </member>
         <member name="T:Rhythm.Revit.Views.Sheet">
             <summary>
@@ -2727,6 +3238,196 @@
             </summary>
             <param name="element">The element to check.</param>
             <returns name="lastChangedBy">The username of the person who last changed the element.</returns>
+        </member>
+        <member name="T:Rhythm.SpatialTagsUi.LengthText">
+            <summary>Reads the feet-and-inches the text height box accepts.</summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.LengthText.ParseFeetAndInches(System.String)">
+             <summary>
+             The length in inches, or zero when the text is not a length this can read.
+            
+             Zero doubles as the failure indicator and as "nothing entered", which suits the one
+             caller: both mean leave the tag family's own text height alone.
+             </summary>
+        </member>
+        <member name="T:Rhythm.SpatialTagsUi.ObservableBase">
+             <summary>
+             The two pieces of MVVM this dialog needs, written out rather than taken from a package.
+            
+             The add-in this is ported from used CommunityToolkit.Mvvm. Rhythm deploys into a flat bin
+             folder shared with everything else Dynamo has loaded, where every additional assembly is a
+             version-conflict waiting to happen, and this is two small classes. Nothing else in the
+             toolkit was being used.
+             </summary>
+        </member>
+        <member name="T:Rhythm.SpatialTagsUi.RelayCommand`1">
+             <summary>
+             A command backed by a delegate, with an optional guard.
+            
+             CanExecuteChanged is routed through <see cref="T:System.Windows.Input.CommandManager"/>, so the buttons re-ask
+             their guard whenever WPF next re-evaluates commands. That is what keeps "Create / Update
+             Tags" disabled until there is something to tag, without the view model having to know
+             which buttons exist.
+             </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.RelayCommand`1.Cast(System.Object)">
+            <summary>
+            A null parameter, or one of the wrong type, becomes the default rather than throwing.
+            WPF passes null before a binding has resolved, which is not a programming error.
+            </summary>
+        </member>
+        <member name="T:Rhythm.SpatialTagsUi.SpatialTagDialog">
+             <summary>
+             The 3d Spatial Tags dialog, as the add-in draws it.
+            
+             The handlers here are the view's own business: which control changed, and what the view
+             model should be told about it. Everything that follows from a change lives in the view
+             model, so there is one owner for each piece of state.
+             </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.SpatialTagDialog.ThemeColor(System.String,System.Windows.Media.Color)">
+            <summary>
+            A colour from the merged Interlude dictionary, or the fallback if the key is missing or
+            is not a solid colour brush.
+            </summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialog.ViewModel">
+             <summary>
+             The view model, or null while the window is being built.
+            
+             Every handler below goes through this. The data context is assigned after construction,
+             and the combo boxes raise SelectionChanged as their bindings first resolve, so a
+             straight cast here would be a null reference waiting for the right ordering.
+             </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.SpatialTagDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel">
+             <summary>
+             The 3d Spatial Tags dialog, ported from the add-in of the same name.
+            
+             Kept close to the original on purpose: the point of the node is that the dialog behaves the
+             way the add-in's does. What changed is the plumbing rather than the behaviour. The base
+             class and the command are Rhythm's own two-class MVVM instead of CommunityToolkit.Mvvm,
+             the remembered choices live in memory for the Dynamo session instead of in user settings,
+             and there is no logger: what would have gone to a log file goes into the error line the
+             user is already reading, and the node reports it as well.
+             </summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.LastResult">
+            <summary>
+            What the last run in this dialog did, for the node to report after the dialog closes.
+            Null until a run completes, which is how "the user closed without running" is told
+            apart from "a run happened and placed nothing".
+            </summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.LastFailure">
+            <summary>Whatever stopped the last run, if something did.</summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.ErrorText">
+            <summary>Whatever went wrong on the last attempt, in words the user can act on.</summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.HasLinks">
+            <summary>Whether this document has any link to read spatial elements from.</summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.HasStatus">
+            <summary>Whether the status card has anything to show.</summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.HasTextHeightError">
+            <summary>
+            Whether the text height box holds something this cannot read. Blank is not an error: it
+            means leave the family's own height alone.
+            </summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.CanRun">
+            <summary>Whether the current selection is complete enough to place tags.</summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.ChangeTarget(System.Int32)">
+             <summary>
+             Records which target the user chose, and everything that follows from it.
+            
+             Rooms and spaces are different elements in different categories, so whatever was
+             collected for the old target says nothing about the new one and is dropped.
+             </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.ChangeFamilySymbol(System.Int32)">
+            <summary>
+            Records the chosen tag family type so the next opening starts on it. -1 is "nothing
+            chosen", not a position worth remembering.
+            </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.IsTaggable(Autodesk.Revit.DB.SpatialElement)">
+             <summary>
+             Whether this element would actually get a tag.
+            
+             The same two conditions the planner applies: a point location, and something to write
+             in the tag. Kept here rather than duplicated in words so the count the dialog shows and
+             the count the run produces cannot drift apart.
+             </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.RefreshPhasesForCurrentSource">
+            <summary>
+            Reloads the phase list for whatever source is currently chosen. Called when the link
+            checkbox is toggled: ticking it without a link chosen has nothing to collect from, and
+            showing the host document's phases there invited a run against the wrong model.
+            </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.SpatialTagDialogViewModel.ClearCollectedElements">
+            <summary>
+            Drops the collected elements and the counts describing them. Anything that changes what
+            would be tagged has to come through here, or the status card keeps describing a
+            selection the user has already moved on from.
+            </summary>
+        </member>
+        <member name="T:Rhythm.SpatialTagsUi.SpatialTagSession">
+             <summary>
+             What the dialog remembers between openings: the target, the tag type and the text height.
+            
+             The add-in kept these in user settings, so they survived Revit restarting. This keeps them
+             in memory for the length of the Dynamo session instead. A Dynamo package writing a settings
+             file into a shared bin folder is a support question nobody wants, and the thing this is
+             really for is re-opening the dialog on the same graph a minute later, which memory covers.
+            
+             A graph that wants these choices pinned should say so in the graph, which is what the
+             headless inputs on the node were for before the dialog replaced them.
+             </summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagSession.TargetIndex">
+            <summary>0 for rooms, 1 for spaces.</summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagSession.FamilySymbolIndex">
+            <summary>The position in the tag family type list, clamped by the caller.</summary>
+        </member>
+        <member name="P:Rhythm.SpatialTagsUi.SpatialTagSession.TextHeight">
+            <summary>The text height exactly as typed, so it reads back the way it was entered.</summary>
+        </member>
+        <member name="T:Rhythm.SpatialTagsUi.WindowChromeUtils">
+             <summary>
+             Colours a window's native title bar to match the dialog below it.
+            
+             Windows' own caption, tinted, rather than a caption drawn from scratch. A drawn one has to
+             re-implement minimise and close, the system menu, double-click to maximise, Aero snap and
+             the Windows 11 snap-layouts flyout, and it has to do all of that again for high contrast,
+             for every DPI, and for whatever the next Windows does. This asks the desktop window manager
+             to paint its own caption in three colours instead, and everything else keeps working
+             because it is still the real caption.
+            
+             Windows 11 build 22000 introduced these attributes. On anything older the call returns a
+             failure result, which is ignored: the window keeps the default caption, which is what it
+             would have had anyway.
+             </summary>
+        </member>
+        <member name="M:Rhythm.SpatialTagsUi.WindowChromeUtils.ApplyCaptionColors(System.Windows.Window,System.Windows.Media.Color,System.Windows.Media.Color,System.Windows.Media.Color)">
+             <summary>
+             Paints the window's caption in the given colours once it has a handle.
+            
+             Safe to call before the window is shown: with no handle yet the work is deferred to
+             SourceInitialized, because the attributes are set on an HWND and the HWND does not
+             exist until then.
+             </summary>
         </member>
         <member name="T:Rhythm.Utilities.UVArray">
             <summary>

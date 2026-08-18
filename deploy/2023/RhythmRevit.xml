@@ -2438,24 +2438,48 @@
             </summary>
         </member>
         <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeRoomTags(Revit.Elements.Room,Revit.Elements.FamilyType,System.String,System.String)">
-            <summary>
-            Create 3d room tags given the input rooms!
-            </summary>
-            <param name="room">The rooms to place 3d room tags on.</param>
-            <param name="tagType">The 3d room tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
-            <param name="roomNameParameter">The name of your Name parameter, the sample has the parameter named as Room Name</param>
-            <param name="roomNumberParameter">The name of your Number parameter, the sample has the parameter named as Room Number</param>
-            <returns></returns>
+             <summary>
+             Create 3d room tags given the input rooms!
+            
+             Superseded on Revit 2025 and up by Tools.ThreeDeeSpatialTags, which does the whole job
+             from one dialog: every room or space in a phase, from this document or a link, updated
+             in place on a second run instead of piling up a fresh set of duplicates. This node
+             places one tag per room and knows nothing about the tags already there.
+            
+             On those versions it is hidden from the library. It still works, so a graph already
+             built on it keeps running; it just cannot be found and dropped onto a new one.
+            
+             On Revit 2020 to 2024 it is still the way to place 3d room tags, and still in the
+             library, because the node that supersedes it does not exist there: the tag family that
+             one places is saved in Revit 2025, and families do not load backward.
+             </summary>
+             <param name="room">The rooms to place 3d room tags on.</param>
+             <param name="tagType">The 3d room tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
+             <param name="roomNameParameter">The name of your Name parameter, the sample has the parameter named as Room Name</param>
+             <param name="roomNumberParameter">The name of your Number parameter, the sample has the parameter named as Room Number</param>
+             <returns></returns>
         </member>
         <member name="M:Rhythm.Revit.Tools.Tools.ThreeDeeSpaceTags(Revit.Elements.Space,Revit.Elements.FamilyType,System.String,System.String)">
-            <summary>
-            Create 3d space tags given the input spaces!
-            </summary>
-            <param name="space">The spaces to place 3d space tags on.</param>
-            <param name="tagType">The 3d space tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
-            <param name="spaceNameParameter">The name of your Name parameter, the sample has the parameter named as Space Name</param>
-            <param name="spaceNumberParameter">The name of your Number parameter, the sample has the parameter named as Space Number</param>
-            <returns></returns>
+             <summary>
+             Create 3d space tags given the input spaces!
+            
+             Superseded on Revit 2025 and up by Tools.ThreeDeeSpatialTags, which tags spaces as
+             readily as rooms, from one dialog: every space in a phase, from this document or a
+             link, updated in place on a second run instead of piling up a fresh set of duplicates.
+             This node places one tag per space and knows nothing about the tags already there.
+            
+             On those versions it is hidden from the library. It still works, so a graph already
+             built on it keeps running; it just cannot be found and dropped onto a new one.
+            
+             On Revit 2021 to 2024 it is still the way to place 3d space tags, and still in the
+             library, because the node that supersedes it does not exist there: the tag family that
+             one places is saved in Revit 2025, and families do not load backward.
+             </summary>
+             <param name="space">The spaces to place 3d space tags on.</param>
+             <param name="tagType">The 3d space tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
+             <param name="spaceNameParameter">The name of your Name parameter, the sample has the parameter named as Space Name</param>
+             <param name="spaceNumberParameter">The name of your Number parameter, the sample has the parameter named as Space Number</param>
+             <returns></returns>
         </member>
         <member name="T:Rhythm.Revit.Views.Sheet">
             <summary>
