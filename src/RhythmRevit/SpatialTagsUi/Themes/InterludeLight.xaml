@@ -1,0 +1,954 @@
+﻿<!--
+    The Interlude look, in light mode.
+
+    Interlude (github.com/johnpierson/Interlude) resolves this at run time from a ThemeDefinition:
+    a palette, a set of metrics, and a stack of control styles that read both through
+    DynamicResource. This add-in has one dialog and one appearance, so the resolution is done here
+    instead — the keys keep Interlude's names and values so the two stay recognisably the same UI,
+    and so a change over there is a search-and-replace over here.
+
+    The values below are Interlude's default theme (ThemeDefinition.Default) resolved for light:
+    the neubrutalist palette, square corners, a two-pixel outline, a hard four-pixel shadow and
+    heavy label text.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <!-- ==================================================================================
+       Palette — Interlude's ThemePalette.Neo.
+       ================================================================================== -->
+
+  <SolidColorBrush x:Key="Interlude.Background" Color="#FFF4E0" />
+  <SolidColorBrush x:Key="Interlude.Surface" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Interlude.SurfaceAlt" Color="#FFE55C" />
+  <SolidColorBrush x:Key="Interlude.Border" Color="#000000" />
+  <SolidColorBrush x:Key="Interlude.BorderStrong" Color="#000000" />
+  <SolidColorBrush x:Key="Interlude.Foreground" Color="#000000" />
+  <SolidColorBrush x:Key="Interlude.ForegroundMuted" Color="#4A4238" />
+  <SolidColorBrush x:Key="Interlude.ForegroundDisabled" Color="#9A9186" />
+  <SolidColorBrush x:Key="Interlude.ControlBackground" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Interlude.ControlBackgroundHover" Color="#FFE55C" />
+  <SolidColorBrush x:Key="Interlude.ControlBackgroundDisabled" Color="#E8E2D6" />
+  <SolidColorBrush x:Key="Interlude.Accent" Color="#FF5C8A" />
+  <SolidColorBrush x:Key="Interlude.AccentHover" Color="#FF87A8" />
+  <SolidColorBrush x:Key="Interlude.AccentForeground" Color="#000000" />
+  <!--
+      Error and Warning are darker than Interlude's own signal colours, and deliberately so.
+      They carry the two messages in this dialog a user most needs to be able to read — the
+      unbounded-rooms warning and every failure line — and both are set small: the warning at
+      13px, every error line at 11px. At those sizes WCAG AA asks for 4.5:1.
+
+      Interlude's #FF8A00 measures 2.36:1 on the white status card and 2.17:1 on the cream
+      ground; #E5383B measures 4.23:1 and 3.88:1. The values below clear 4.5:1 against both
+      backgrounds with room to spare (warning 4.99/4.58, error 6.22/5.71) while staying
+      recognisably the same amber and red.
+  -->
+  <SolidColorBrush x:Key="Interlude.Error" Color="#C1121F" />
+  <SolidColorBrush x:Key="Interlude.Warning" Color="#B45400" />
+
+  <!--
+      Focus is signalled by recolouring a control's border and nothing else, so that border
+      has to carry the whole message. The accent pink reads 2.94:1 against the white control
+      background, under the 3:1 WCAG asks of a non-text indicator; this deepened accent reads
+      5.8:1. Kept separate from Interlude.Accent so the primary button's fill is untouched.
+  -->
+  <SolidColorBrush x:Key="Interlude.Focus" Color="#C81048" />
+  <SolidColorBrush x:Key="Interlude.Success" Color="#00B36B" />
+  <Color x:Key="Interlude.ShadowColor">#FF000000</Color>
+
+  <!-- ==================================================================================
+       Metrics.
+       ================================================================================== -->
+
+  <!-- Square shape: the corner radius is zero everywhere, small controls included. -->
+  <CornerRadius x:Key="Interlude.CornerRadius">0</CornerRadius>
+  <CornerRadius x:Key="Interlude.SmallCornerRadius">0</CornerRadius>
+  <sys:Double x:Key="Interlude.CornerRadiusValue">0</sys:Double>
+
+  <sys:Double x:Key="Interlude.FontSize">13</sys:Double>
+  <sys:Double x:Key="Interlude.FontSizeSmall">11</sys:Double>
+  <sys:Double x:Key="Interlude.FontSizeHeading">17.55</sys:Double>
+
+  <!--
+      Space Grotesk, embedded in this assembly so the dialog looks the same on a machine that has
+      never seen the font. The names after it are the walk-back if the resource ever fails to
+      resolve; without them WPF would drop to a serif default and the whole form would look broken.
+  -->
+  <FontFamily x:Key="Interlude.FontFamily">pack://application:,,,/RhythmRevit;component/SpatialTagsUi/Fonts/#Space Grotesk, Segoe UI Variable Text, Segoe UI, Tahoma</FontFamily>
+
+  <sys:Double x:Key="Interlude.Spacing">8</sys:Double>
+  <sys:Double x:Key="Interlude.SpacingSmall">4</sys:Double>
+  <sys:Double x:Key="Interlude.SpacingLarge">16</sys:Double>
+  <sys:Double x:Key="Interlude.ControlHeight">28</sys:Double>
+  <Thickness x:Key="Interlude.ControlPadding">8,2,8,2</Thickness>
+
+  <Thickness x:Key="Interlude.BorderThickness">2</Thickness>
+  <sys:Double x:Key="Interlude.BorderWidthValue">2</sys:Double>
+  <Thickness x:Key="Interlude.EdgeThickness">0,0,0,2</Thickness>
+  <Thickness x:Key="Interlude.UnderlineThickness">0,0,0,2</Thickness>
+
+  <FontWeight x:Key="Interlude.HeadingFontWeight">Bold</FontWeight>
+  <FontWeight x:Key="Interlude.LabelFontWeight">SemiBold</FontWeight>
+
+  <!--
+      The hard offset shadow. ShadowDepth is measured along Direction, so four pixels down *and*
+      four right is four times the diagonal; 315 degrees is down and to the right, because WPF
+      measures anticlockwise from east.
+  -->
+  <DropShadowEffect x:Key="Interlude.ControlShadow"
+                    Color="{StaticResource Interlude.ShadowColor}"
+                    BlurRadius="0"
+                    ShadowDepth="5.6568542494923806"
+                    Direction="315"
+                    Opacity="1" />
+
+  <DropShadowEffect x:Key="Interlude.CardShadow"
+                    Color="{StaticResource Interlude.ShadowColor}"
+                    BlurRadius="0"
+                    ShadowDepth="5.6568542494923806"
+                    Direction="315"
+                    Opacity="1" />
+
+  <!-- Pressing drops a control onto its own shadow, so the translation matches the offset. -->
+  <TranslateTransform x:Key="Interlude.PressTransform" X="4" Y="4" />
+
+  <!-- ==================================================================================
+       Text.
+       ================================================================================== -->
+
+  <Style TargetType="{x:Type TextBlock}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+  </Style>
+
+  <!--
+      WPF's Label is a ContentControl, so it does not inherit the TextBlock style above. It gets
+      the same treatment here rather than being banned from the markup.
+  -->
+  <Style TargetType="{x:Type Label}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="FontWeight" Value="{DynamicResource Interlude.LabelFontWeight}" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <!--
+      Field captions: the label in the column beside a control.
+
+      Aligned to the top and nudged down by a few pixels, so the caption sits on the control's
+      first line. Centring it instead makes a caption drift halfway down whenever the field beside
+      it grows a second control or a line of help text.
+  -->
+  <Style x:Key="Interlude.FieldLabel" TargetType="{x:Type TextBlock}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="FontWeight" Value="{DynamicResource Interlude.LabelFontWeight}" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Margin" Value="0,6,8,0" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+  </Style>
+
+  <!--
+      The micro-label treatment for section headers: small, heavy capitals that read as structure
+      rather than as content. Interlude also tracks the letters apart; WPF has no letter-spacing
+      property, and the interleaved-thin-space trick it uses needs code, so the markup here spaces
+      the capitals by hand where a header wants it.
+  -->
+  <Style x:Key="Interlude.SectionHeader" TargetType="{x:Type TextBlock}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="FontWeight" Value="{DynamicResource Interlude.HeadingFontWeight}" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+  </Style>
+
+  <!-- Help text, descriptions and other secondary copy. -->
+  <Style x:Key="Interlude.HelpText" TargetType="{x:Type TextBlock}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundMuted}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSizeSmall}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+  </Style>
+
+  <Style x:Key="Interlude.ErrorText" TargetType="{x:Type TextBlock}"
+         BasedOn="{StaticResource Interlude.HelpText}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Error}" />
+  </Style>
+
+  <Style TargetType="{x:Type ToolTip}">
+    <Setter Property="Background" Value="{DynamicResource Interlude.SurfaceAlt}" />
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource Interlude.BorderThickness}" />
+    <Setter Property="Padding" Value="8,4" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSizeSmall}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="MaxWidth" Value="360" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToolTip}">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Padding="{TemplateBinding Padding}">
+            <ContentPresenter />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- ==================================================================================
+       Buttons.
+       ================================================================================== -->
+
+  <Style TargetType="{x:Type Button}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="Background" Value="{DynamicResource Interlude.ControlBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource Interlude.BorderThickness}" />
+    <Setter Property="Padding" Value="12,4" />
+    <Setter Property="MinHeight" Value="{DynamicResource Interlude.ControlHeight}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="FontWeight" Value="{DynamicResource Interlude.LabelFontWeight}" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border x:Name="Surface"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Padding="{TemplateBinding Padding}"
+                  Effect="{DynamicResource Interlude.ControlShadow}"
+                  SnapsToDevicePixels="True">
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundHover}" />
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.BorderStrong}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.Focus}" />
+            </Trigger>
+
+            <!-- Pressing drops the button onto its own shadow: shift it, and take the shadow away. -->
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.SurfaceAlt}" />
+              <Setter TargetName="Surface" Property="Effect" Value="{x:Null}" />
+              <Setter TargetName="Surface" Property="RenderTransform"
+                      Value="{DynamicResource Interlude.PressTransform}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundDisabled}" />
+              <Setter TargetName="Surface" Property="Effect" Value="{x:Null}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+              <Setter Property="Cursor" Value="Arrow" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="Interlude.PrimaryButton" TargetType="{x:Type Button}"
+         BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="Background" Value="{DynamicResource Interlude.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.AccentForeground}" />
+    <!--
+        The outline stays the theme's border colour rather than following the accent: the black
+        outline around a hot-pink button is the entire look.
+    -->
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="FontWeight" Value="{DynamicResource Interlude.HeadingFontWeight}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <Border x:Name="Surface"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Padding="{TemplateBinding Padding}"
+                  Effect="{DynamicResource Interlude.ControlShadow}"
+                  SnapsToDevicePixels="True">
+            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.AccentHover}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="Surface" Property="Effect" Value="{x:Null}" />
+              <Setter TargetName="Surface" Property="RenderTransform"
+                      Value="{DynamicResource Interlude.PressTransform}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundDisabled}" />
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.Border}" />
+              <Setter TargetName="Surface" Property="Effect" Value="{x:Null}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+              <Setter Property="Cursor" Value="Arrow" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="Interlude.LinkButton" TargetType="{x:Type Button}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Accent}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSizeSmall}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type Button}">
+          <TextBlock x:Name="Text"
+                     Text="{TemplateBinding Content}"
+                     Foreground="{TemplateBinding Foreground}"
+                     FontSize="{TemplateBinding FontSize}"
+                     FontFamily="{TemplateBinding FontFamily}" />
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Text" Property="TextDecorations" Value="Underline" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Text" Property="Foreground"
+                      Value="{DynamicResource Interlude.ForegroundDisabled}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type CheckBox}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="FontWeight" Value="{DynamicResource Interlude.LabelFontWeight}" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type CheckBox}">
+          <StackPanel Orientation="Horizontal" Background="Transparent">
+            <Border x:Name="Box"
+                    Width="18" Height="18"
+                    CornerRadius="{DynamicResource Interlude.SmallCornerRadius}"
+                    BorderThickness="{DynamicResource Interlude.BorderThickness}"
+                    Background="{DynamicResource Interlude.ControlBackground}"
+                    BorderBrush="{DynamicResource Interlude.BorderStrong}"
+                    VerticalAlignment="Center"
+                    SnapsToDevicePixels="True">
+              <Path x:Name="Tick"
+                    Data="M 2 6 L 5.5 9.5 L 11 3"
+                    Stroke="{DynamicResource Interlude.AccentForeground}"
+                    StrokeThickness="1.8"
+                    StrokeEndLineCap="Round"
+                    StrokeStartLineCap="Round"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Visibility="Collapsed" />
+            </Border>
+            <ContentPresenter x:Name="Label"
+                              Margin="8,0,0,0"
+                              VerticalAlignment="Center"
+                              RecognizesAccessKey="True" />
+          </StackPanel>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+              <Setter TargetName="Box" Property="Background" Value="{DynamicResource Interlude.Accent}" />
+              <Setter TargetName="Tick" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Box" Property="BorderBrush" Value="{DynamicResource Interlude.Accent}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+              <Setter TargetName="Box" Property="BorderBrush" Value="{DynamicResource Interlude.Focus}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Box" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundDisabled}" />
+              <Setter TargetName="Box" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.ForegroundDisabled}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+              <Setter Property="Cursor" Value="Arrow" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type RadioButton}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="FontWeight" Value="{DynamicResource Interlude.LabelFontWeight}" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type RadioButton}">
+          <StackPanel Orientation="Horizontal" Background="Transparent">
+            <Grid Width="18" Height="18" VerticalAlignment="Center">
+              <Ellipse x:Name="Ring"
+                       Stroke="{DynamicResource Interlude.BorderStrong}"
+                       StrokeThickness="{DynamicResource Interlude.BorderWidthValue}"
+                       Fill="{DynamicResource Interlude.ControlBackground}" />
+              <Ellipse x:Name="Dot"
+                       Width="8" Height="8"
+                       Fill="{DynamicResource Interlude.Accent}"
+                       Visibility="Collapsed" />
+            </Grid>
+            <ContentPresenter Margin="8,0,0,0" VerticalAlignment="Center" RecognizesAccessKey="True" />
+          </StackPanel>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+              <Setter TargetName="Dot" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Ring" Property="Stroke" Value="{DynamicResource Interlude.Accent}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Ring" Property="Fill"
+                      Value="{DynamicResource Interlude.ControlBackgroundDisabled}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+              <Setter Property="Cursor" Value="Arrow" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- ==================================================================================
+       Text entry and selection.
+       ================================================================================== -->
+
+  <Style TargetType="{x:Type TextBox}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="Background" Value="{DynamicResource Interlude.ControlBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource Interlude.BorderThickness}" />
+    <Setter Property="Padding" Value="{DynamicResource Interlude.ControlPadding}" />
+    <Setter Property="MinHeight" Value="{DynamicResource Interlude.ControlHeight}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="CaretBrush" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="SelectionBrush" Value="{DynamicResource Interlude.Accent}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type TextBox}">
+          <Border x:Name="Surface"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Effect="{DynamicResource Interlude.ControlShadow}"
+                  SnapsToDevicePixels="True">
+            <ScrollViewer x:Name="PART_ContentHost"
+                          Padding="{TemplateBinding Padding}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Focusable="False"
+                          HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Hidden" />
+          </Border>
+          <ControlTemplate.Triggers>
+            <!--
+                A text box with no border of its own is one nested inside another control. Its
+                surface is transparent, so a drop shadow would fall from the letters rather than
+                from the box.
+            -->
+            <Trigger Property="BorderThickness" Value="0">
+              <Setter TargetName="Surface" Property="Effect" Value="{x:Null}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.BorderStrong}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.Focus}" />
+            </Trigger>
+            <Trigger Property="IsReadOnly" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.SurfaceAlt}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundDisabled}" />
+              <Setter TargetName="Surface" Property="Effect" Value="{x:Null}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="Interlude.ComboToggle" TargetType="{x:Type ToggleButton}">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="ClickMode" Value="Press" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ToggleButton}">
+          <Border Background="Transparent" Width="22">
+            <Path Data="M 0 0 L 4 4 L 8 0"
+                  Stroke="{DynamicResource Interlude.ForegroundMuted}"
+                  StrokeThickness="1.4"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type ComboBox}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="Background" Value="{DynamicResource Interlude.ControlBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource Interlude.BorderThickness}" />
+    <Setter Property="Padding" Value="{DynamicResource Interlude.ControlPadding}" />
+    <Setter Property="MinHeight" Value="{DynamicResource Interlude.ControlHeight}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ComboBox}">
+          <Grid>
+            <Border x:Name="Surface"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                    Effect="{DynamicResource Interlude.ControlShadow}"
+                    SnapsToDevicePixels="True">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--
+                    SelectionBoxItemTemplate is what draws the closed box, and WPF fills it from
+                    ItemTemplate/ItemTemplateSelector only — never from DisplayMemberPath. A combo
+                    box here therefore needs an ItemTemplate, or the closed box falls back to the
+                    item's ToString.
+                -->
+                <ContentPresenter x:Name="ContentSite"
+                                  Grid.Column="0"
+                                  Content="{TemplateBinding SelectionBoxItem}"
+                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                  ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                  Margin="{TemplateBinding Padding}"
+                                  VerticalAlignment="Center"
+                                  IsHitTestVisible="False" />
+
+                <ToggleButton Grid.Column="1"
+                              Style="{StaticResource Interlude.ComboToggle}"
+                              IsChecked="{Binding IsDropDownOpen, Mode=TwoWay,
+                                                  RelativeSource={RelativeSource TemplatedParent}}" />
+              </Grid>
+            </Border>
+
+            <!-- The whole surface is the click target, not just the arrow. -->
+            <ToggleButton Background="Transparent"
+                          BorderThickness="0"
+                          Focusable="False"
+                          ClickMode="Press"
+                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay,
+                                              RelativeSource={RelativeSource TemplatedParent}}">
+              <ToggleButton.Template>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                  <Border Background="Transparent" />
+                </ControlTemplate>
+              </ToggleButton.Template>
+            </ToggleButton>
+
+            <Popup x:Name="PART_Popup"
+                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                   Placement="Bottom"
+                   AllowsTransparency="True"
+                   PopupAnimation="None"
+                   Focusable="False">
+              <Border Background="{DynamicResource Interlude.Surface}"
+                      BorderBrush="{DynamicResource Interlude.BorderStrong}"
+                      BorderThickness="{DynamicResource Interlude.BorderThickness}"
+                      CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                      MinWidth="{TemplateBinding ActualWidth}"
+                      MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                      Margin="0,2,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="2">
+                  <ItemsPresenter />
+                </ScrollViewer>
+              </Border>
+            </Popup>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.BorderStrong}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.Focus}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundDisabled}" />
+              <Setter TargetName="Surface" Property="Effect" Value="{x:Null}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type ComboBoxItem}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="Padding" Value="8,5" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+          <Border x:Name="Surface"
+                  Background="Transparent"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Padding="{TemplateBinding Padding}">
+            <ContentPresenter />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundHover}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.Accent}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.AccentForeground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type ProgressBar}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Accent}" />
+    <Setter Property="Background" Value="{DynamicResource Interlude.ControlBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource Interlude.BorderThickness}" />
+    <Setter Property="Height" Value="14" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ProgressBar}">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Effect="{DynamicResource Interlude.ControlShadow}"
+                  SnapsToDevicePixels="True">
+            <Grid ClipToBounds="True">
+              <Rectangle x:Name="PART_Track" />
+              <Rectangle x:Name="PART_Indicator"
+                         HorizontalAlignment="Left"
+                         Fill="{TemplateBinding Foreground}" />
+              <Rectangle x:Name="Sweep"
+                         Width="70"
+                         HorizontalAlignment="Left"
+                         Fill="{TemplateBinding Foreground}"
+                         Visibility="Collapsed">
+                <Rectangle.RenderTransform>
+                  <TranslateTransform x:Name="SweepOffset" X="-70" />
+                </Rectangle.RenderTransform>
+              </Rectangle>
+            </Grid>
+          </Border>
+          <ControlTemplate.Triggers>
+            <!--
+                Indeterminate: WPF sizes PART_Indicator from Value, which means nothing here, so
+                it is hidden and a fixed-width block is swept across instead. The grid clips the
+                travel, so a bar narrower than the sweep simply spends longer empty at each end.
+            -->
+            <Trigger Property="IsIndeterminate" Value="True">
+              <Setter TargetName="PART_Indicator" Property="Visibility" Value="Collapsed" />
+              <Setter TargetName="Sweep" Property="Visibility" Value="Visible" />
+              <Trigger.EnterActions>
+                <BeginStoryboard x:Name="SweepStoryboard">
+                  <Storyboard RepeatBehavior="Forever">
+                    <DoubleAnimation Storyboard.TargetName="SweepOffset"
+                                     Storyboard.TargetProperty="X"
+                                     From="-70" To="640" Duration="0:0:1.6" />
+                  </Storyboard>
+                </BeginStoryboard>
+              </Trigger.EnterActions>
+              <Trigger.ExitActions>
+                <StopStoryboard BeginStoryboardName="SweepStoryboard" />
+              </Trigger.ExitActions>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- ==================================================================================
+       Containers.
+       ================================================================================== -->
+
+  <Style x:Key="Interlude.Card" TargetType="{x:Type Border}">
+    <Setter Property="Background" Value="{DynamicResource Interlude.Surface}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource Interlude.BorderThickness}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Interlude.CornerRadius}" />
+    <Setter Property="Padding" Value="12" />
+  </Style>
+
+  <Style x:Key="Interlude.CardWithShadow" TargetType="{x:Type Border}"
+         BasedOn="{StaticResource Interlude.Card}">
+    <Setter Property="Effect" Value="{DynamicResource Interlude.CardShadow}" />
+  </Style>
+
+  <Style TargetType="{x:Type GroupBox}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type GroupBox}">
+          <Border Background="{DynamicResource Interlude.Surface}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{DynamicResource Interlude.BorderThickness}"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Effect="{DynamicResource Interlude.ControlShadow}">
+            <DockPanel>
+              <Border DockPanel.Dock="Top"
+                      Background="{DynamicResource Interlude.SurfaceAlt}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{DynamicResource Interlude.EdgeThickness}"
+                      Padding="10,6">
+                <ContentPresenter ContentSource="Header"
+                                  TextElement.FontWeight="{DynamicResource Interlude.HeadingFontWeight}"
+                                  TextElement.Foreground="{DynamicResource Interlude.Foreground}" />
+              </Border>
+              <ContentPresenter Margin="{TemplateBinding Padding}" />
+            </DockPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type TabControl}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type TabControl}">
+          <DockPanel>
+            <Border DockPanel.Dock="Top"
+                    BorderBrush="{DynamicResource Interlude.Border}"
+                    BorderThickness="{DynamicResource Interlude.EdgeThickness}">
+              <TabPanel IsItemsHost="True" Panel.ZIndex="1" Margin="0,0,0,-1" />
+            </Border>
+            <Border Background="Transparent" Padding="0,2,0,0">
+              <ContentPresenter ContentSource="SelectedContent" />
+            </Border>
+          </DockPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type TabItem}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundMuted}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type TabItem}">
+          <Border x:Name="Surface"
+                  Background="Transparent"
+                  BorderBrush="Transparent"
+                  BorderThickness="{DynamicResource Interlude.UnderlineThickness}"
+                  Padding="14,7">
+            <ContentPresenter ContentSource="Header" VerticalAlignment="Center" />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Surface" Property="BorderBrush"
+                      Value="{DynamicResource Interlude.Accent}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+              <Setter Property="FontWeight" Value="{DynamicResource Interlude.HeadingFontWeight}" />
+            </Trigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsMouseOver" Value="True" />
+                <Condition Property="IsSelected" Value="False" />
+              </MultiTrigger.Conditions>
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.SurfaceAlt}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+            </MultiTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type ListBox}">
+    <Setter Property="Background" Value="{DynamicResource Interlude.ControlBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Interlude.Border}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource Interlude.BorderThickness}" />
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="Padding" Value="2" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBox}">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Effect="{DynamicResource Interlude.ControlShadow}">
+            <ScrollViewer Padding="{TemplateBinding Padding}"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+              <ItemsPresenter />
+            </ScrollViewer>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="Padding" Value="8,5" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <Border x:Name="Surface"
+                  Background="Transparent"
+                  CornerRadius="{DynamicResource Interlude.CornerRadius}"
+                  Padding="{TemplateBinding Padding}"
+                  Margin="0,1">
+            <ContentPresenter />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.ControlBackgroundHover}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Surface" Property="Background"
+                      Value="{DynamicResource Interlude.Accent}" />
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.AccentForeground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Foreground" Value="{DynamicResource Interlude.ForegroundDisabled}" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type ScrollBar}">
+    <Setter Property="Width" Value="10" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ScrollBar}">
+          <Grid Background="Transparent">
+            <Track x:Name="PART_Track" IsDirectionReversed="True">
+              <Track.Thumb>
+                <Thumb>
+                  <Thumb.Template>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                      <Border x:Name="Grip"
+                              Background="{DynamicResource Interlude.BorderStrong}"
+                              CornerRadius="4"
+                              Width="6"
+                              HorizontalAlignment="Center"
+                              Opacity="0.7" />
+                      <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                          <Setter TargetName="Grip" Property="Opacity" Value="1" />
+                          <Setter TargetName="Grip" Property="Width" Value="8" />
+                        </Trigger>
+                      </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                  </Thumb.Template>
+                </Thumb>
+              </Track.Thumb>
+              <Track.IncreaseRepeatButton>
+                <RepeatButton Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="False" />
+              </Track.IncreaseRepeatButton>
+              <Track.DecreaseRepeatButton>
+                <RepeatButton Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="False" />
+              </Track.DecreaseRepeatButton>
+            </Track>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+              <Setter TargetName="PART_Track" Property="IsDirectionReversed" Value="False" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!--
+      The window itself. Interlude leaves the operating system's title bar alone and themes only
+      the client area — a custom caption is one more thing to get wrong on a high-DPI multi-monitor
+      Revit session, and it buys nothing the palette does not already give.
+  -->
+  <Style x:Key="Interlude.Window" TargetType="{x:Type Window}">
+    <Setter Property="Background" Value="{DynamicResource Interlude.Background}" />
+    <Setter Property="Foreground" Value="{DynamicResource Interlude.Foreground}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Interlude.FontFamily}" />
+    <Setter Property="FontSize" Value="{DynamicResource Interlude.FontSize}" />
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+  </Style>
+
+</ResourceDictionary>

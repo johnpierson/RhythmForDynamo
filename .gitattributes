@@ -9,8 +9,9 @@ deploy/Rhythm/doc/*.md   text eol=lf
 # checkout never differs from what the author committed.
 *.dyn                    -text
 
-# Assemblies and screenshots.
+# Assemblies, families and screenshots.
 *.dll                    binary
+*.rfa                    binary
 *.png                    binary
 *.gif                    binary
 *.jpg                    binary

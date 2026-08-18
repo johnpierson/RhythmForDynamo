@@ -210,6 +210,39 @@
 	<ItemGroup Condition="'$(Configuration)|$(Platform)'!='Release R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R25|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R26|AnyCPU' And '$(Configuration)|$(Platform)'!='Release R27|AnyCPU' And '$(Configuration)|$(Platform)'!='Debug R27|AnyCPU'">
         <Reference Include="System.Windows" />
     </ItemGroup>
+	<!--
+        The 3d Spatial Tags dialog, which is Revit 2025 and up along with the node that opens it.
+
+        Its C# is behind #if R25_OR_GREATER, but XAML is not compiled by the C# preprocessor: with
+        UseWPF on, every .xaml under the project is picked up as a Page automatically, so on a 2020
+        to 2024 build the view would still be compiled and its generated half would look for a
+        code-behind class the preprocessor had just removed. Removing the markup for those
+        configurations is what keeps the two halves in step.
+
+        The fonts and the credit mark go with it. They are only ever drawn by this dialog, and
+        embedding a megabyte of typeface into builds that cannot show it is waste.
+    -->
+	<ItemGroup Condition="'$(RevitVersion)' == '2020' Or '$(RevitVersion)' == '2021' Or '$(RevitVersion)' == '2022' Or '$(RevitVersion)' == '2023' Or '$(RevitVersion)' == '2024'">
+	    <Page Remove="SpatialTagsUi\**\*.xaml" />
+	    <Resource Remove="SpatialTagsUi\**" />
+	    <None Remove="SpatialTagsUi\**" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(RevitVersion)' == '2025' Or '$(RevitVersion)' == '2026' Or '$(RevitVersion)' == '2027'">
+	    <!--
+	        Space Grotesk, the face the Interlude theme is drawn in, compiled into the assembly so
+	        the dialog looks the same on a machine that has never installed it. These are the STATIC
+	        instances rather than the variable font Google Fonts serves: WPF's text stack does not
+	        read variable axes, and the variable file renders at a single default weight.
+
+	        The OFL requires the licence to travel with the font, hence the text file beside them.
+	    -->
+	    <Resource Include="SpatialTagsUi\Fonts\SpaceGrotesk-Regular.ttf" />
+	    <Resource Include="SpatialTagsUi\Fonts\SpaceGrotesk-Medium.ttf" />
+	    <Resource Include="SpatialTagsUi\Fonts\SpaceGrotesk-Bold.ttf" />
+	    <Resource Include="SpatialTagsUi\Fonts\SpaceGrotesk-Light.ttf" />
+	    <Resource Include="SpatialTagsUi\Resources\DesignTechUnraveledMark_512x383.png" />
+	    <None Include="SpatialTagsUi\Fonts\SpaceGrotesk-OFL.txt" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
 	<ItemGroup>
 	    <PackageReference Include="DynamoVisualProgramming.Revit" Version="$(DynRevitVersion).*" />
         <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DynVersion).*" />

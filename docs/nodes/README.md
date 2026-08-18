@@ -31,12 +31,12 @@ on its face rather than being padded out, so this number is the honest one.
 
 | | Pages | Share |
 |---|---:|---:|
-| Total | 295 | 100% |
-| With a summary | 278 | 94% |
-| Taking at least one input | 277 | 94% |
-| — every input described | 230 | 83% |
+| Total | 294 | 100% |
+| With a summary | 277 | 94% |
+| Taking at least one input | 276 | 94% |
+| — every input described | 229 | 83% |
 | — no input described | 42 | 15% |
-| With the output described | 192 | 65% |
+| With the output described | 193 | 66% |
 | With an example image | 45 | 15% |
 | With an example graph | 8 | 3% |
 | **Empty — signature only** | 17 | 6% |
@@ -48,7 +48,7 @@ By assembly:
 | Assembly | Pages | With a summary | Empty |
 |---|---:|---:|---:|
 | RhythmCore | 46 | 44 (96%) | 2 (4%) |
-| RhythmRevit | 236 | 221 (94%) | 15 (6%) |
+| RhythmRevit | 235 | 220 (94%) | 15 (6%) |
 | RhythmUI | 13 | 13 (100%) | 0 (0%) |
 
 ## Graphs in the old format
