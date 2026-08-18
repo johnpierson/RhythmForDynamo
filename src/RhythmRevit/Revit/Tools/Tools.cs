@@ -24,17 +24,26 @@ namespace Rhythm.Revit.Tools
         /// in place on a second run instead of piling up a fresh set of duplicates. This node
         /// places one tag per room and knows nothing about the tags already there.
         ///
-        /// Still here, and still working, for Revit 2020 to 2024, where that node does not exist
-        /// because the tag family it places cannot be loaded, and for graphs already built on it.
+        /// On those versions it is hidden from the library. It still works, so a graph already
+        /// built on it keeps running; it just cannot be found and dropped onto a new one.
+        ///
+        /// On Revit 2020 to 2024 it is still the way to place 3d room tags, and still in the
+        /// library, because the node that supersedes it does not exist there: the tag family that
+        /// one places is saved in Revit 2025, and families do not load backward.
         /// </summary>
         /// <param name="room">The rooms to place 3d room tags on.</param>
         /// <param name="tagType">The 3d room tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
         /// <param name="roomNameParameter">The name of your Name parameter, the sample has the parameter named as Room Name</param>
         /// <param name="roomNumberParameter">The name of your Number parameter, the sample has the parameter named as Room Number</param>
         /// <returns></returns>
-        // Marked obsolete only where the node that supersedes it exists. Saying "use
-        // ThreeDeeSpatialTags instead" on a 2020-2024 build would point at nothing.
+        // Taken out of the library, and marked obsolete, only where the node that supersedes it
+        // exists. Saying "use ThreeDeeSpatialTags instead" on a 2020-2024 build would point at
+        // nothing, and hiding it there would leave those versions with no 3d room tag node at all.
+        //
+        // Hidden rather than deleted: the method is still here and still works, so a graph already
+        // built on it keeps running. It just cannot be found and dropped onto a new one.
 #if R25_OR_GREATER
+        [IsVisibleInDynamoLibrary(false)]
         [IsObsolete("Superseded by Tools.ThreeDeeSpatialTags, which tags every room in a phase and updates the ones already placed")]
 #endif
         public static global::Revit.Elements.FamilyInstance ThreeDeeRoomTags(global::Revit.Elements.Room room, global::Revit.Elements.FamilyType tagType, string roomNameParameter = "Name", string roomNumberParameter = "Number")
@@ -93,8 +102,12 @@ namespace Rhythm.Revit.Tools
         /// link, updated in place on a second run instead of piling up a fresh set of duplicates.
         /// This node places one tag per space and knows nothing about the tags already there.
         ///
-        /// Still here, and still working, for Revit 2021 to 2024, where that node does not exist
-        /// because the tag family it places cannot be loaded, and for graphs already built on it.
+        /// On those versions it is hidden from the library. It still works, so a graph already
+        /// built on it keeps running; it just cannot be found and dropped onto a new one.
+        ///
+        /// On Revit 2021 to 2024 it is still the way to place 3d space tags, and still in the
+        /// library, because the node that supersedes it does not exist there: the tag family that
+        /// one places is saved in Revit 2025, and families do not load backward.
         /// </summary>
         /// <param name="space">The spaces to place 3d space tags on.</param>
         /// <param name="tagType">The 3d space tag to use. (There is a sample RFA in the extra folder for Rhythm)</param>
@@ -102,6 +115,7 @@ namespace Rhythm.Revit.Tools
         /// <param name="spaceNumberParameter">The name of your Number parameter, the sample has the parameter named as Space Number</param>
         /// <returns></returns>
 #if R25_OR_GREATER
+        [IsVisibleInDynamoLibrary(false)]
         [IsObsolete("Superseded by Tools.ThreeDeeSpatialTags, which tags every space in a phase and updates the ones already placed")]
 #endif
         public static global::Revit.Elements.FamilyInstance ThreeDeeSpaceTags(global::Revit.Elements.Space space, global::Revit.Elements.FamilyType tagType, string spaceNameParameter = "Name", string spaceNumberParameter = "Number")
