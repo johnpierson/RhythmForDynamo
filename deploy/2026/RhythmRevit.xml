@@ -2461,6 +2461,29 @@
         <member name="P:Rhythm.Revit.Tools.SpatialTagging.HideOverlappingElementWarning.SuppressedDuplicateWarnings">
             <summary>How many warnings were suppressed, so the run can say so.</summary>
         </member>
+        <member name="T:Rhythm.Revit.Tools.SpatialTagging.OverwriteFamilyDefinition">
+             <summary>
+             Answers Revit's "this family is already in the project" question, so it is not asked.
+            
+             It has to be answered by something. Calling LoadFamily without load options puts Revit's own
+             dialog on screen the moment a model already carries a family of this name, and the user gets
+             a prompt about a file they never chose to load, in the middle of opening a different dialog.
+            
+             The definition is taken, the values are not. Those are two separate answers and they pull in
+             opposite directions here:
+            
+             Taking the definition is the whole point. The family already in a model is very often the
+             older one Rhythm has always shipped, which has no SpatialElementId parameter — so a run
+             against it rolls back and reports a missing parameter. The newer definition is what puts
+             that parameter there, and with it every existing tag becomes something a later run can find
+             and update rather than duplicate.
+            
+             Keeping the values is what stops that being rude. Type parameter values are the user's:
+             their text height, their materials, their visibility switches. Overwriting them would resize
+             and restyle every tag already standing in the model as a side effect of opening a dialog,
+             which is not what anybody asked for.
+             </summary>
+        </member>
         <member name="T:Rhythm.Revit.Tools.SpatialTagging.TaggingResult">
             <summary>What a tagging run actually did, so the dialog and the node can say so.</summary>
         </member>
@@ -2548,6 +2571,23 @@
             <summary>
             The tag family types on offer, loading the one Rhythm ships if the model has none.
             </summary>
+        </member>
+        <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.CurrentFamilyIsLoaded">
+             <summary>
+             Whether the family already in the document is the one this node writes to.
+            
+             Asking "is a family called 3dSpatialElementTag loaded" is not the same question, and
+             answering that one instead is what made this go wrong: a model carrying the older family
+             Rhythm has always shipped in extra/ — the one the superseded ThreeDeeRoomTags and
+             ThreeDeeSpaceTags nodes point people at — matched by name, so nothing was loaded, and
+             the run then rolled itself back complaining about a missing SpatialElementId. The user
+             is told to add a parameter to a family they never chose.
+            
+             SpatialElementId is an instance parameter, and a family symbol does not carry instance
+             parameters, so a placed tag is the only thing that can answer. A model with the family
+             loaded but nothing placed yet cannot be judged either way and is reloaded, which costs
+             one undo entry and guarantees the right family.
+             </summary>
         </member>
         <member name="M:Rhythm.Revit.Tools.SpatialTagging.SpatialTagModel.IsLinkSelected">
             <summary>
@@ -2889,6 +2929,12 @@
              spaces, optionally a linked model to read them out of, the phase, the tag family type
              and a text height, then press Create / Update Tags. Close it and the node reports what
              the run did.
+            
+             The tag family loads itself. Opening the dialog puts the one Rhythm ships into the model
+             if it is not already there, and replaces an older copy of it with the current one, so
+             the family type list is never empty and never offers a family this node cannot write to.
+             Type parameter values already set on it — text height, materials, visibility — are left
+             as the user set them.
             
              Re-running follows the model rather than piling up duplicates: a tag records the element
              it belongs to, and the link instance it was read through, in the family's
