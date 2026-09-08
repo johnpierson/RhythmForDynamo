@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
 using CoreNodeModels;
@@ -16,6 +17,7 @@ namespace RhythmUI
     [NodeCategory("Rhythm.Revit.Selection.Selection")]
     [NodeDescription("Allows you to select a view family type from your file")]
     [IsDesignScriptCompatible]
+    [Obsolete("This node will be completely removed in future versions of Rhythm. Please use the OOTB node View Family Types from now on.")]
     public class ViewFamilyTypes : RevitDropDownBase
     {
         private const string noFamilyTypes = "No View Family Types available in project.";

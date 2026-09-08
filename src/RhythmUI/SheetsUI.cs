@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
 using CoreNodeModels;
@@ -18,6 +19,7 @@ namespace RhythmUI
     [NodeCategory("Rhythm.Revit.Selection.Selection")]
     [NodeDescription("Allows you to select a sheet from all of the sheets in your project.")]
     [IsDesignScriptCompatible]
+    [Obsolete("This node will be completely removed in future versions of Rhythm. Please use the OOTB node Sheets from now on.")]
     public class Sheets : RevitDropDownBase
     {
         private const string noSheets = "No Sheets available in project.";
