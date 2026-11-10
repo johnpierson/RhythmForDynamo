@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.Elements;
 using Revit.GeometryConversion;
@@ -243,6 +244,7 @@ namespace Rhythm.Revit.Views
         /// <search>
         /// dependent, parent, rhythm
         /// </search>
+        [IsObsolete("Node removed, use the OOTB nodes, View.Origin")]
         public static object Origin(global::Revit.Elements.Element view)
         {
             //the internal revit view
